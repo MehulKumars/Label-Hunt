@@ -1,0 +1,551 @@
+{
+  "version": 1,
+  "levels": [
+    {
+      "id": "t01",
+      "tutorial": "move",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Fruit",
+          "key": "Fruit",
+          "words": ["Apple", "Pear", "Plum", "Mango"]
+        },
+        {
+          "label": "Farm animals",
+          "key": "Farm",
+          "words": ["Cow", "Pig", "Sheep", "Goat"]
+        }
+      ],
+      "jars": [["Apple", "Pear", "Plum"], ["Pig", "Sheep", "Goat", "Mango"], ["Cow"]]
+    },
+    {
+      "id": "t02",
+      "tutorial": "empty",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Weather",
+          "key": "Weather",
+          "words": ["Rain", "Snow", "Wind", "Hail"]
+        },
+        {
+          "label": "Pets",
+          "key": "Pets",
+          "words": ["Dog", "Cat", "Rabbit", "Parrot"]
+        }
+      ],
+      "jars": [["Rain", "Dog", "Snow", "Cat"], ["Rabbit", "Wind", "Parrot", "Hail"], [], []]
+    },
+    {
+      "id": "t03",
+      "tutorial": "rail",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Fruit",
+          "key": "Fruit",
+          "words": ["Lemon", "Cherry", "Grape", "Peach"]
+        },
+        {
+          "label": "Sports",
+          "key": "Sports",
+          "words": ["Tennis", "Golf", "Rugby", "Hockey"]
+        },
+        {
+          "label": "Joints in the body",
+          "key": "Joints",
+          "words": ["Elbow", "Knee", "Ankle", "Wrist"]
+        }
+      ],
+      "jars": [["Lemon", "Golf", "Knee", "Cherry"], ["Tennis", "Elbow", "Grape", "Rugby"], ["Ankle", "Peach", "Hockey", "Wrist"], [], []]
+    },
+    {
+      "id": "t04",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Kitchen tools",
+          "key": "Kitchen",
+          "words": ["Whisk", "Ladle", "Grater", "Tongs"]
+        },
+        {
+          "label": "Planets",
+          "key": "Planets",
+          "words": ["Mars", "Venus", "Saturn", "Jupiter"]
+        },
+        {
+          "label": "Trees",
+          "key": "Trees",
+          "words": ["Oak", "Pine", "Maple", "Birch"]
+        }
+      ],
+      "jars": [["Whisk", "Mars", "Oak", "Venus"], ["Pine", "Ladle", "Saturn", "Maple"], ["Jupiter", "Grater", "Birch", "Tongs"], [], []]
+    },
+    {
+      "id": "t05",
+      "tutorial": "undo",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Instruments",
+          "key": "Instruments",
+          "words": ["Piano", "Drum", "Flute", "Violin"]
+        },
+        {
+          "label": "Birds",
+          "key": "Birds",
+          "words": ["Robin", "Eagle", "Owl", "Crow"]
+        },
+        {
+          "label": "Ways to travel",
+          "key": "travel",
+          "words": ["Bus", "Train", "Taxi", "Tram"]
+        }
+      ],
+      "jars": [["Piano", "Robin", "Bus", "Flute"], ["Eagle", "Train", "Drum", "Owl"], ["Taxi", "Violin", "Crow", "Tram"], [], []]
+    },
+    {
+      "id": "t06",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Shapes",
+          "key": "Shapes",
+          "words": ["Circle", "Square", "Triangle", "Oval"]
+        },
+        {
+          "label": "Insects",
+          "key": "Insects",
+          "words": ["Ant", "Bee", "Beetle", "Moth"]
+        },
+        {
+          "label": "Sweet treats",
+          "key": "Sweet",
+          "words": ["Cake", "Pie", "Fudge", "Toffee"]
+        }
+      ],
+      "jars": [["Cake", "Ant", "Circle", "Bee"], ["Square", "Pie", "Moth", "Oval"], ["Fudge", "Beetle", "Toffee", "Triangle"], [], []]
+    },
+    {
+      "id": "t07",
+      "tutorial": "herring",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Birds",
+          "key": "Birds",
+          "words": ["Swan", "Heron", "Puffin", "Kiwi"]
+        },
+        {
+          "label": "Fruit",
+          "key": "Fruit",
+          "words": ["Lime", "Fig", "Date", "Banana"]
+        },
+        {
+          "label": "Things you wear",
+          "key": "wear",
+          "words": ["Scarf", "Glove", "Sock", "Hat"]
+        }
+      ],
+      "also": {
+        "Kiwi": [1]
+      },
+      "jars": [["Swan", "Lime", "Scarf", "Kiwi"], ["Fig", "Heron", "Glove", "Date"], ["Sock", "Banana", "Puffin", "Hat"], [], []]
+    },
+    {
+      "id": "t08",
+      "tutorial": "peek",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Things with keys",
+          "key": "keys",
+          "words": ["Piano", "Lock", "Map", "Keyboard"]
+        },
+        {
+          "label": "Sea creatures",
+          "key": "Sea",
+          "words": ["Shark", "Octopus", "Crab", "Seal"]
+        },
+        {
+          "label": "Herbs",
+          "key": "Herbs",
+          "words": ["Basil", "Mint", "Thyme", "Sage"]
+        }
+      ],
+      "jars": [["Piano", "Shark", "Basil", "Lock"], ["Crab", "Mint", "Map", "Octopus"], ["Thyme", "Keyboard", "Seal", "Sage"], [], []]
+    },
+    {
+      "id": "t09",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Fabrics",
+          "key": "Fabrics",
+          "words": ["Silk", "Wool", "Cotton", "Denim"]
+        },
+        {
+          "label": "Metals",
+          "key": "Metals",
+          "words": ["Iron", "Gold", "Copper", "Tin"]
+        },
+        {
+          "label": "Card games",
+          "key": "Card",
+          "words": ["Poker", "Snap", "Bridge", "Rummy"]
+        }
+      ],
+      "deal": {
+        "seed": 909,
+        "empties": 2
+      },
+      "jars": [["Snap", "Wool", "Tin", "Denim"], ["Poker", "Iron", "Rummy", "Cotton"], ["Silk", "Gold", "Bridge", "Copper"], [], []]
+    },
+    {
+      "id": "t10",
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Things that fly",
+          "key": "fly",
+          "words": ["Kite", "Plane", "Rocket", "Balloon"]
+        },
+        {
+          "label": "Cheeses",
+          "key": "Cheeses",
+          "words": ["Brie", "Feta", "Gouda", "Cheddar"]
+        },
+        {
+          "label": "Dances",
+          "key": "Dances",
+          "words": ["Tango", "Salsa", "Waltz", "Polka"]
+        }
+      ],
+      "deal": {
+        "seed": 1010,
+        "empties": 2
+      },
+      "jars": [["Cheddar", "Polka", "Brie", "Waltz"], ["Feta", "Balloon", "Tango", "Kite"], ["Plane", "Gouda", "Salsa", "Rocket"], [], []]
+    },
+    {
+      "id": "m01",
+      "budget": 4,
+      "groups": [
+        {
+          "label": "Things with keys",
+          "key": "keys",
+          "words": ["Piano", "Lock", "Map", "Keyboard"]
+        },
+        {
+          "label": "Things with rings",
+          "key": "rings",
+          "words": ["Saturn", "Tree", "Circus", "Onion"]
+        },
+        {
+          "label": "Planets",
+          "key": "Planets",
+          "words": ["Mars", "Venus", "Mercury", "Neptune"]
+        },
+        {
+          "label": "Breakfast foods",
+          "key": "Breakfast",
+          "words": ["Toast", "Cereal", "Pancake", "Waffle"]
+        },
+        {
+          "label": "Sea creatures",
+          "key": "Sea",
+          "words": ["Crab", "Squid", "Shark", "Seal"]
+        }
+      ],
+      "also": {
+        "Saturn": [2]
+      },
+      "deal": {
+        "seed": 101,
+        "empties": 2
+      },
+      "jars": [["Piano", "Venus", "Tree", "Seal"], ["Map", "Waffle", "Circus", "Pancake"], ["Onion", "Shark", "Neptune", "Saturn"], ["Crab", "Mercury", "Cereal", "Keyboard"], ["Squid", "Mars", "Lock", "Toast"], [], []]
+    },
+    {
+      "id": "m02",
+      "budget": 4,
+      "groups": [
+        {
+          "label": "Words before ball",
+          "key": "ball",
+          "words": ["Foot", "Snow", "Eye", "Basket"]
+        },
+        {
+          "label": "Body parts",
+          "key": "Body",
+          "words": ["Thumb", "Knee", "Elbow", "Chin"]
+        },
+        {
+          "label": "Kitchen appliances",
+          "key": "Kitchen",
+          "words": ["Kettle", "Toaster", "Blender", "Fridge"]
+        },
+        {
+          "label": "String instruments",
+          "key": "String",
+          "words": ["Harp", "Cello", "Banjo", "Guitar"]
+        },
+        {
+          "label": "Gems",
+          "key": "Gems",
+          "words": ["Ruby", "Pearl", "Opal", "Jade"]
+        }
+      ],
+      "also": {
+        "Foot": [1],
+        "Eye": [1]
+      },
+      "deal": {
+        "seed": 202,
+        "empties": 2
+      },
+      "jars": [["Toaster", "Elbow", "Fridge", "Opal"], ["Basket", "Cello", "Snow", "Blender"], ["Foot", "Kettle", "Eye", "Harp"], ["Knee", "Jade", "Banjo", "Pearl"], ["Guitar", "Chin", "Ruby", "Thumb"], [], []]
+    },
+    {
+      "id": "m03",
+      "budget": 4,
+      "groups": [
+        {
+          "label": "Coffee drinks",
+          "key": "Coffee",
+          "words": ["Latte", "Mocha", "Espresso", "Americano"]
+        },
+        {
+          "label": "Card games",
+          "key": "Card",
+          "words": ["Poker", "Snap", "Rummy", "Solitaire"]
+        },
+        {
+          "label": "Ways across a river",
+          "key": "river",
+          "words": ["Ferry", "Ford", "Bridge", "Tunnel"]
+        },
+        {
+          "label": "Dog breeds",
+          "key": "Dog",
+          "words": ["Poodle", "Beagle", "Boxer", "Pug"]
+        },
+        {
+          "label": "Spices",
+          "key": "Spices",
+          "words": ["Cumin", "Ginger", "Clove", "Nutmeg"]
+        }
+      ],
+      "also": {
+        "Bridge": [1]
+      },
+      "deal": {
+        "seed": 303,
+        "empties": 2
+      },
+      "jars": [["Rummy", "Espresso", "Pug", "Bridge"], ["Boxer", "Mocha", "Tunnel", "Americano"], ["Clove", "Ford", "Poker", "Nutmeg"], ["Snap", "Ginger", "Beagle", "Ferry"], ["Solitaire", "Cumin", "Poodle", "Latte"], [], []]
+    },
+    {
+      "id": "m04",
+      "budget": 4,
+      "groups": [
+        {
+          "label": "Things in a wallet",
+          "key": "wallet",
+          "words": ["Coin", "Card", "Receipt", "Photo"]
+        },
+        {
+          "label": "Shades of blue",
+          "key": "blue",
+          "words": ["Navy", "Teal", "Azure", "Cobalt"]
+        },
+        {
+          "label": "Royal titles",
+          "key": "Royal",
+          "words": ["Prince", "Duke", "Earl", "Emperor"]
+        },
+        {
+          "label": "Chess pieces",
+          "key": "Chess",
+          "words": ["Rook", "Pawn", "Bishop", "Queen"]
+        },
+        {
+          "label": "Fish",
+          "key": "Fish",
+          "words": ["Cod", "Trout", "Tuna", "Carp"]
+        }
+      ],
+      "also": {
+        "Queen": [2]
+      },
+      "deal": {
+        "seed": 404,
+        "empties": 2
+      },
+      "jars": [["Navy", "Coin", "Earl", "Carp"], ["Duke", "Photo", "Cod", "Prince"], ["Rook", "Receipt", "Queen", "Tuna"], ["Azure", "Trout", "Pawn", "Teal"], ["Cobalt", "Card", "Bishop", "Emperor"], [], []]
+    },
+    {
+      "id": "m05",
+      "budget": 4,
+      "groups": [
+        {
+          "label": "Things with shells",
+          "key": "shells",
+          "words": ["Snail", "Turtle", "Taco", "Clam"]
+        },
+        {
+          "label": "Things you can crack",
+          "key": "crack",
+          "words": ["Code", "Joke", "Whip", "Egg"]
+        },
+        {
+          "label": "Rivers",
+          "key": "Rivers",
+          "words": ["Nile", "Danube", "Ganges", "Amazon"]
+        },
+        {
+          "label": "Hats",
+          "key": "Hats",
+          "words": ["Beret", "Fedora", "Beanie", "Bowler"]
+        },
+        {
+          "label": "Vegetables",
+          "key": "Vegetables",
+          "words": ["Carrot", "Leek", "Onion", "Celery"]
+        }
+      ],
+      "also": {
+        "Egg": [0]
+      },
+      "deal": {
+        "seed": 505,
+        "empties": 2
+      },
+      "jars": [["Fedora", "Joke", "Snail", "Code"], ["Taco", "Nile", "Clam", "Leek"], ["Celery", "Bowler", "Egg", "Beret"], ["Danube", "Onion", "Beanie", "Ganges"], ["Amazon", "Whip", "Turtle", "Carrot"], [], []]
+    },
+    {
+      "id": "m06",
+      "budget": 4,
+      "groups": [
+        {
+          "label": "Metals",
+          "key": "Metals",
+          "words": ["Iron", "Copper", "Tin", "Zinc"]
+        },
+        {
+          "label": "Things in space",
+          "key": "space",
+          "words": ["Comet", "Moon", "Meteor", "Mercury"]
+        },
+        {
+          "label": "Pasta",
+          "key": "Pasta",
+          "words": ["Penne", "Ravioli", "Macaroni", "Spaghetti"]
+        },
+        {
+          "label": "Music genres",
+          "key": "Music",
+          "words": ["Jazz", "Blues", "Disco", "Punk"]
+        },
+        {
+          "label": "Furniture",
+          "key": "Furniture",
+          "words": ["Sofa", "Stool", "Desk", "Bed"]
+        }
+      ],
+      "also": {
+        "Mercury": [0]
+      },
+      "deal": {
+        "seed": 606,
+        "empties": 2,
+        "frost_bottom": 2
+      },
+      "jars": [["Jazz", "Comet", "Iron", "Sofa"], ["Spaghetti", "Blues", "Copper", "Macaroni"], ["Desk", "Moon", "Disco", "Meteor"], ["Mercury", "Bed", "Zinc", "Penne"], ["Stool", "Tin", "Punk", "Ravioli"], [], []],
+      "frost": ["Jazz", "Comet", "Spaghetti", "Blues", "Desk", "Moon", "Mercury", "Bed", "Stool", "Tin"]
+    },
+    {
+      "id": "m07",
+      "budget": 4,
+      "groups": [
+        {
+          "label": "Breads",
+          "key": "Breads",
+          "words": ["Bagel", "Naan", "Brioche", "Baguette"]
+        },
+        {
+          "label": "Trees",
+          "key": "Trees",
+          "words": ["Oak", "Elm", "Willow", "Cedar"]
+        },
+        {
+          "label": "Things with stripes",
+          "key": "stripes",
+          "words": ["Zebra", "Tiger", "Barcode", "Bee"]
+        },
+        {
+          "label": "Big cats",
+          "key": "cats",
+          "words": ["Lion", "Leopard", "Cheetah", "Jaguar"]
+        },
+        {
+          "label": "Card suits",
+          "key": "suits",
+          "words": ["Hearts", "Spades", "Clubs", "Diamonds"]
+        }
+      ],
+      "also": {
+        "Tiger": [3]
+      },
+      "labelled": {
+        "6": 4
+      },
+      "deal": {
+        "seed": 707,
+        "empties": 2
+      },
+      "jars": [["Hearts", "Leopard", "Tiger", "Spades"], ["Barcode", "Cheetah", "Cedar", "Diamonds"], ["Baguette", "Oak", "Bee", "Brioche"], ["Bagel", "Zebra", "Elm", "Lion"], ["Jaguar", "Willow", "Naan", "Clubs"], [], []]
+    },
+    {
+      "id": "m08",
+      "budget": 4,
+      "groups": [
+        {
+          "label": "Things in a toolbox",
+          "key": "toolbox",
+          "words": ["Hammer", "Wrench", "Drill", "Pliers"]
+        },
+        {
+          "label": "Things with teeth",
+          "key": "teeth",
+          "words": ["Comb", "Saw", "Gear", "Shark"]
+        },
+        {
+          "label": "Sweets",
+          "key": "Sweets",
+          "words": ["Fudge", "Toffee", "Nougat", "Truffle"]
+        },
+        {
+          "label": "Countries",
+          "key": "Countries",
+          "words": ["Peru", "Chad", "Fiji", "Oman"]
+        },
+        {
+          "label": "Hairstyles",
+          "key": "Hairstyles",
+          "words": ["Bob", "Bun", "Braid", "Mohawk"]
+        }
+      ],
+      "also": {
+        "Saw": [0]
+      },
+      "corked": [4],
+      "deal": {
+        "seed": 808,
+        "empties": 2
+      },
+      "jars": [["Nougat", "Mohawk", "Shark", "Bun"], ["Peru", "Toffee", "Fiji", "Wrench"], ["Saw", "Fudge", "Oman", "Braid"], ["Bob", "Drill", "Chad", "Comb"], ["Hammer", "Gear", "Pliers", "Truffle"], [], []]
+    }
+  ]
+}
