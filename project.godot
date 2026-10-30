@@ -15,6 +15,13 @@ config/quit_on_go_back=false
 boot_splash/bg_color=Color(1, 0.972549, 0.92549, 1)
 boot_splash/show_image=false
 
+[autoload]
+
+Save="*res://src/core/save.gd"
+Sfx="*res://src/core/sfx.gd"
+Haptics="*res://src/core/haptics.gd"
+Levels="*res://src/core/levels.gd"
+
 [display]
 
 window/size/viewport_width=720
