@@ -62,6 +62,7 @@ static func from_dict(d: Dictionary) -> LevelData:
 			"label": str(gd["label"]),
 			"key": str(gd.get("key", gd["label"])),
 			"words": PackedStringArray(gd["words"]),
+			"tier": int(gd.get("tier", 1)),
 		})
 	for jar_words in d.get("jars", []):
 		var jar := PackedInt32Array()
@@ -94,7 +95,10 @@ static func from_dict(d: Dictionary) -> LevelData:
 func to_dict() -> Dictionary:
 	var gs: Array = []
 	for g in groups:
-		gs.append({"label": g["label"], "key": g["key"], "words": Array(g["words"])})
+		var gd := {"label": g["label"], "key": g["key"], "words": Array(g["words"])}
+		if int(g.get("tier", 1)) != 1:
+			gd["tier"] = g["tier"]
+		gs.append(gd)
 	var js: Array = []
 	for jar in jars:
 		var ws: Array = []

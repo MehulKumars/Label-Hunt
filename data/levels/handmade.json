@@ -161,6 +161,7 @@
         {
           "label": "Things with keys",
           "key": "keys",
+          "tier": 2,
           "words": ["Piano", "Lock", "Map", "Keyboard"]
         },
         {
@@ -193,6 +194,7 @@
         {
           "label": "Card games",
           "key": "Card",
+          "tier": 2,
           "words": ["Poker", "Snap", "Bridge", "Rummy"]
         }
       ],
@@ -235,11 +237,13 @@
         {
           "label": "Things with keys",
           "key": "keys",
+          "tier": 2,
           "words": ["Piano", "Lock", "Map", "Keyboard"]
         },
         {
           "label": "Things with rings",
           "key": "rings",
+          "tier": 3,
           "words": ["Saturn", "Tree", "Circus", "Onion"]
         },
         {
@@ -274,6 +278,7 @@
         {
           "label": "Words before ball",
           "key": "ball",
+          "tier": 3,
           "words": ["Foot", "Snow", "Eye", "Basket"]
         },
         {
@@ -289,6 +294,7 @@
         {
           "label": "String instruments",
           "key": "String",
+          "tier": 2,
           "words": ["Harp", "Cello", "Banjo", "Guitar"]
         },
         {
@@ -319,11 +325,13 @@
         {
           "label": "Card games",
           "key": "Card",
+          "tier": 2,
           "words": ["Poker", "Snap", "Rummy", "Solitaire"]
         },
         {
           "label": "Ways across a river",
           "key": "river",
+          "tier": 2,
           "words": ["Ferry", "Ford", "Bridge", "Tunnel"]
         },
         {
@@ -353,16 +361,19 @@
         {
           "label": "Things in a wallet",
           "key": "wallet",
+          "tier": 2,
           "words": ["Coin", "Card", "Receipt", "Photo"]
         },
         {
           "label": "Shades of blue",
           "key": "blue",
+          "tier": 2,
           "words": ["Navy", "Teal", "Azure", "Cobalt"]
         },
         {
           "label": "Royal titles",
           "key": "Royal",
+          "tier": 2,
           "words": ["Prince", "Duke", "Earl", "Emperor"]
         },
         {
@@ -392,21 +403,25 @@
         {
           "label": "Things with shells",
           "key": "shells",
+          "tier": 3,
           "words": ["Snail", "Turtle", "Taco", "Clam"]
         },
         {
           "label": "Things you can crack",
           "key": "crack",
+          "tier": 3,
           "words": ["Code", "Joke", "Whip", "Egg"]
         },
         {
           "label": "Rivers",
           "key": "Rivers",
+          "tier": 2,
           "words": ["Nile", "Danube", "Ganges", "Amazon"]
         },
         {
           "label": "Hats",
           "key": "Hats",
+          "tier": 2,
           "words": ["Beret", "Fedora", "Beanie", "Bowler"]
         },
         {
@@ -436,6 +451,7 @@
         {
           "label": "Things in space",
           "key": "space",
+          "tier": 2,
           "words": ["Comet", "Moon", "Meteor", "Mercury"]
         },
         {
@@ -472,6 +488,7 @@
         {
           "label": "Breads",
           "key": "Breads",
+          "tier": 2,
           "words": ["Bagel", "Naan", "Brioche", "Baguette"]
         },
         {
@@ -482,6 +499,7 @@
         {
           "label": "Things with stripes",
           "key": "stripes",
+          "tier": 2,
           "words": ["Zebra", "Tiger", "Barcode", "Bee"]
         },
         {
@@ -519,21 +537,25 @@
         {
           "label": "Things with teeth",
           "key": "teeth",
+          "tier": 3,
           "words": ["Comb", "Saw", "Gear", "Shark"]
         },
         {
           "label": "Sweets",
           "key": "Sweets",
+          "tier": 2,
           "words": ["Fudge", "Toffee", "Nougat", "Truffle"]
         },
         {
           "label": "Countries",
           "key": "Countries",
+          "tier": 2,
           "words": ["Peru", "Chad", "Fiji", "Oman"]
         },
         {
           "label": "Hairstyles",
           "key": "Hairstyles",
+          "tier": 2,
           "words": ["Bob", "Bun", "Braid", "Mohawk"]
         }
       ],

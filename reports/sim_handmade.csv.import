@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cya70geq558x3"
+
+[deps]
+
+files=["res://reports/sim_handmade.groups.translation", "res://reports/sim_handmade.budget.translation", "res://reports/sim_handmade.par.translation", "res://reports/sim_handmade.profile.translation", "res://reports/sim_handmade.win.translation", "res://reports/sim_handmade.median.translation", "res://reports/sim_handmade.p90.translation", "res://reports/sim_handmade.mean.translation", "res://reports/sim_handmade.dead.translation", "res://reports/sim_handmade.median.translation", "res://reports/sim_handmade.median.translation"]
+
+source_file="res://reports/sim_handmade.csv"
+dest_files=["res://reports/sim_handmade.groups.translation", "res://reports/sim_handmade.budget.translation", "res://reports/sim_handmade.par.translation", "res://reports/sim_handmade.profile.translation", "res://reports/sim_handmade.win.translation", "res://reports/sim_handmade.median.translation", "res://reports/sim_handmade.p90.translation", "res://reports/sim_handmade.mean.translation", "res://reports/sim_handmade.dead.translation", "res://reports/sim_handmade.median.translation", "res://reports/sim_handmade.median.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
