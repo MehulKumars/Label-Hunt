@@ -30,7 +30,8 @@ const DIM := Color(0.239, 0.173, 0.18, 0.45)
 const TAG_COLORS: Array[Color] = [
 	Color("#3B6E6E"), Color("#A9432C"), Color("#C8711F"), Color("#6F4A86"), Color("#5E6B1F"), Color("#36598A"),
 ]
-enum Glyph { CIRCLE, TRIANGLE, SQUARE, DIAMOND, STAR, HEXAGON }
+## DROP replaced a triangle, which read as a warning sign next to slips.
+enum Glyph { CIRCLE, DROP, SQUARE, DIAMOND, STAR, HEXAGON }
 
 # Type scale on the 720-wide canvas (22 u = 33 px on a 1080-wide phone, above the 28 px floor).
 const FS_22 := 22
@@ -128,8 +129,12 @@ static func draw_glyph(ci: CanvasItem, glyph: int, c: Vector2, r: float, color: 
 	match glyph % 6:
 		Glyph.CIRCLE:
 			ci.draw_circle(c, r, color, true, -1.0, true)
-		Glyph.TRIANGLE:
-			_poly(ci, PackedVector2Array([c + Vector2(0, -r * 1.1), c + Vector2(r, r * 0.8), c + Vector2(-r, r * 0.8)]), color)
+		Glyph.DROP:
+			var drop := PackedVector2Array([c + Vector2(0, -r * 1.25)])
+			for i in 13:
+				var a := deg_to_rad(-30.0 + i * 20.0)
+				drop.append(c + Vector2(0, r * 0.22) + Vector2(cos(a), sin(a)) * r * 0.82)
+			_poly(ci, drop, color)
 		Glyph.SQUARE:
 			_poly(ci, PackedVector2Array([c + Vector2(-r, -r) * 0.85, c + Vector2(r, -r) * 0.85, c + Vector2(r, r) * 0.85, c + Vector2(-r, r) * 0.85]), color)
 		Glyph.DIAMOND:

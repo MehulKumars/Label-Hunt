@@ -231,7 +231,14 @@ func _open_win(stats: Dictionary) -> void:
 	Save.touch()
 	var room_level: bool = cat.entry(id)["track"] == "room"
 	var s := _result_sheet("")
-	s.add_label(cat.title(id), Style.FS_26, true).add_theme_color_override("font_color", Style.INK_SOFT)
+	s.dim_alpha = 0.1
+	if room_level:
+		var labels: Array = []
+		for g: Dictionary in cat.entry(id)["data"].get("groups", []):
+			labels.append(str(g.get("label", "")))
+		var trophy := JarTrophy.new(Materials.preserve_layers(labels), bool(Save.data["solved"][id]["gold"]))
+		s.body.add_child(trophy)
+		trophy.play()
 	var title := s.add_label("Jar filled" if room_level else "Solved", Style.FS_72)
 	title.add_theme_font_override("font", Style.hand())
 	if room_level:
@@ -267,7 +274,7 @@ func _win_shelf(id: String) -> ShelfView:
 	var i := ids.find(id)
 	var from := (i / 5) * 5
 	var strip := ShelfView.new()
-	strip.custom_minimum_size = Vector2(0, 206)
+	strip.custom_minimum_size = Vector2(0, 150)
 	strip.slots = ShelfView.slots_for(ids.slice(from, mini(from + 5, ids.size())), Save.data,
 		Progression.next_level(cat, Save.data))
 	strip.drop_index = i - from
@@ -339,6 +346,7 @@ func _open_pause() -> void:
 		return
 	play.board.cancel_lift()
 	var s := Sheet.new("Paused")
+	s.show_close = false
 	s.add_button("Resume", true, s.close)
 	s.add_button("Restart level", false, start_level.bind(play.level_id, true))
 	s.add_button("Home", false, go_home)

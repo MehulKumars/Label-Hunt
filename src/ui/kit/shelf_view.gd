@@ -54,10 +54,6 @@ func _draw() -> void:
 				var lid: Color = Style.GOLD if s["gold"] else Style.PAPRIKA
 				var key := "mini|%s|%s" % [",".join(layers.map(func(c: Color) -> String: return c.to_html(false))), lid.to_html(false)]
 				draw_texture_rect(Art.tex(key, jar, Materials.mini_jar.bind(layers, lid)), rect, false)
-			"next":
-				draw_style_box(Style.glow(Color(Style.APRICOT, 0.25 + 0.45 * glow), 18, int(10 + 12 * glow)), rect.grow(-8))
-				draw_texture_rect(Art.tex("mini_outline", jar, Materials.mini_jar.bind([], Style.PAPRIKA, true)), rect, false)
-				_number(rect, s, str(s["state"]) == "next")
 			_:
 				draw_texture_rect(Art.tex("mini_outline", jar, Materials.mini_jar.bind([], Style.PAPRIKA, true)), rect, false)
 				_number(rect, s, str(s["state"]) == "next")
@@ -87,12 +83,17 @@ static func slots_for(ids: PackedStringArray, save: Dictionary, next_id: String)
 	return out
 
 
-## Empty slots show their level number: bold on the next one, faint on later ones.
+## Empty slots carry a small kraft tag with their level number; the next level's tag is apricot and breathes.
 func _number(rect: Rect2, s: Dictionary, next: bool) -> void:
 	var n := str(s.get("number", ""))
 	var f := Style.sans_heavy() if next else Style.sans_bold()
-	var fs := Style.FS_30 if next else Style.FS_22
+	var fs := Style.FS_26 if next else Style.FS_22
 	var ts := f.get_string_size(n, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-	var c := rect.get_center() + Vector2(0, rect.size.y * 0.12)
+	var c := rect.get_center() + Vector2(0, rect.size.y * 0.1)
+	var grow := 1.0 + (0.08 * glow if next else 0.0)
+	var tag := Vector2(maxf(ts.x + 18.0, 38.0), fs + 12.0) * grow
+	var fill: Color = Style.APRICOT if next else Color("#E7D1A8")
+	draw_style_box(Style.box(Color(Style.INK, 0.16), Style.R_S), Rect2(c - tag / 2.0 + Vector2(0, 2), tag))
+	draw_style_box(Style.box(fill, Style.R_S), Rect2(c - tag / 2.0, tag))
 	draw_string(f, Vector2(c.x - ts.x / 2.0, c.y - f.get_height(fs) / 2.0 + f.get_ascent(fs)), n,
-		HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK if next else Style.INK_SOFT)
+		HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK if next else Color(Style.INK, 0.7))

@@ -178,6 +178,7 @@ func sync(animate: bool = true) -> void:
 		var jar := session.board.jars[j]
 		for k in jar.size():
 			var cv: CardView = cards[jar[k]]
+			cv.set_buried(k < jar.size() - 1)
 			var lifted := j == lifted_jar and k == jar.size() - 1
 			if lifted and _dragging:
 				continue

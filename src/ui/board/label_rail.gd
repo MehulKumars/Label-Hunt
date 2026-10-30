@@ -1,17 +1,18 @@
-## The label rail: one kraft tag per group standing on a wooden ledge, showing how much of its label the player has
-## earned. A blank tag, then the context words with the key word as blank letter tiles ("Things with ▢▢▢▢"), then
-## the key's first letter, then the full label in hand lettering once the lid is on. Hints are Atkinson: during
-## play they're the puzzle's key information.
+## The label rail: one kraft luggage tag per group, hanging on twine from a wooden rod, showing how much of its
+## label the player has earned. A blank tag, then the context words with the key word as blank letter tiles
+## ("Things with ▢▢▢▢"), then the key's first letter, then the full label in hand lettering once the lid is on.
+## Hints are Atkinson: during play they're the puzzle's key information.
 class_name LabelRail
 extends Control
 
-const TAG_H := 64.0
+const TAG_H := 58.0
 const GAP := 10.0
-const LEDGE := 12.0
-const HOLE_W := 26.0
+const ROD := 12.0
+const TWINE := 12.0
+const HOLE_W := 30.0
 const TILE_GAP := 3.0
-## Blank letter tiles: at least 3:1 against the kraft so the hidden word's length always reads.
-const TILE := Color("#A88A5C")
+## Blank letter tiles in ink at 40%: well over 3:1 on kraft, so the hidden word's length always reads.
+const TILE := Color(0.239, 0.173, 0.18, 0.4)
 
 var session: Session
 var _pulse := {}
@@ -33,7 +34,7 @@ static func columns(groups: int) -> int:
 
 static func height_for(groups: int) -> float:
 	var rows := ceili(groups / float(columns(groups)))
-	return rows * (TAG_H + LEDGE) + (rows - 1) * GAP
+	return rows * (ROD + TWINE + TAG_H) + (rows - 1) * GAP
 
 
 func pulse(g: int) -> void:
@@ -50,38 +51,49 @@ func _draw() -> void:
 	var cols := columns(groups)
 	var rows := ceili(groups / float(cols))
 	var w := (size.x - (cols - 1) * GAP) / cols
+	var row_h := ROD + TWINE + TAG_H + GAP
 	for row in rows:
-		var y := row * (TAG_H + LEDGE + GAP) + TAG_H - 3.0
-		var ledge := Rect2(-8.0, y, size.x + 16.0, LEDGE + 16.0)
-		draw_texture_rect(Art.tex("ledge", ledge.size, Materials.plank), ledge, false)
+		var rod := Rect2(-6.0, row * row_h, size.x + 12.0, ROD + 14.0)
+		draw_texture_rect(Art.tex("rod", rod.size, Materials.plank), rod, false)
 	for g in groups:
-		var r := Rect2((g % cols) * (w + GAP), (g / cols) * (TAG_H + LEDGE + GAP), w, TAG_H)
-		_draw_tag(g, r)
+		var row := g / cols
+		var in_row := mini(cols, groups - row * cols)
+		# A part-filled last row is centred under the rod.
+		var x0 := (size.x - (in_row * w + (in_row - 1) * GAP)) / 2.0
+		var r := Rect2(x0 + (g % cols) * (w + GAP), row * row_h + ROD + TWINE, w, TAG_H)
+		_draw_tag(g, r, -1.2 if g % 2 == 0 else 1.0)
 
 
-func _draw_tag(g: int, r: Rect2) -> void:
+func _draw_tag(g: int, r: Rect2, tilt: float) -> void:
 	var step := session.know.step[g]
 	var lidded := _is_lidded(g)
 	var color := Style.tag_color(g)
+	var eyelet := r.position + Vector2(HOLE_W * 0.55, (r.size.y - 3.0) / 2.0)
+	# Twine from the rod down to the eyelet.
+	draw_line(Vector2(eyelet.x - 4.0, r.position.y - TWINE - 2.0), eyelet, Color(Style.INK, 0.45), 1.6, true)
+	draw_set_transform(eyelet, deg_to_rad(tilt), Vector2.ONE)
+	var local := Rect2(r.position - eyelet, r.size)
 	var p: float = _pulse.get(g, 0.0)
 	if p > 0.0:
-		draw_style_box(Style.glow(Color(Style.APRICOT, 0.7 * p), 10, int(14 * p)), r)
-	draw_texture_rect(Art.tex("tag", r.size, Materials.label.bind(true)), r, false)
+		draw_style_box(Style.glow(Color(Style.APRICOT, 0.7 * p), 10, int(14 * p)), local)
+	draw_texture_rect(Art.tex("hang_tag", r.size, Materials.tag), local, false)
 	if lidded:
-		draw_rect(Rect2(r.position + Vector2(3, 3), Vector2(r.size.x - 6, r.size.y - 9)), Color(color, 0.12))
-	var face := Rect2(r.position, Vector2(r.size.x, r.size.y - 3.0))
-	var x := r.position.x + HOLE_W
+		draw_rect(Rect2(local.position + Vector2(HOLE_W, 3), Vector2(local.size.x - HOLE_W - 4, local.size.y - 9)), Color(color, 0.12))
+	var face := Rect2(local.position, Vector2(local.size.x, local.size.y - 3.0))
+	var x := face.position.x + HOLE_W
 	if step > 0:
-		var c := Vector2(x + 12, face.get_center().y)
-		draw_circle(c, 12.0, color, true, -1.0, true)
-		Style.draw_glyph(self, g, c, 5.8, Style.PAPER)
-		x += 30.0
+		var c := Vector2(x + 13, face.get_center().y)
+		draw_circle(c, 13.0, Style.CARD, true, -1.0, true)
+		draw_circle(c, 11.0, color, true, -1.0, true)
+		Style.draw_glyph(self, g, c, 5.6, Style.PAPER)
+		x += 32.0
 	var avail := face.end.x - x - 8.0
 	var group: Dictionary = session.level.groups[g]
 	if lidded or step >= Knowledge.FULL_STEP:
 		_draw_solved(group["label"], Rect2(x, face.position.y, avail, face.size.y))
 	elif step > 0:
 		_draw_hint(group["label"], group["key"], step, Rect2(x, face.position.y, avail, face.size.y))
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
 func _draw_solved(text: String, area: Rect2) -> void:
@@ -97,12 +109,12 @@ func _draw_solved(text: String, area: Rect2) -> void:
 			HORIZONTAL_ALIGNMENT_LEFT, area.size.x, fs, Style.INK)
 
 
-## Context words in Atkinson, the key word as letter tiles (its first letter shown from step 2). One line at 26 or
-## 24 when it fits, else two lines at 22 (the floor).
+## Context words in Atkinson, the key word as letter tiles (its first letter shown from step 2). One line at 26, 24
+## or 22 when it fits, else two lines at 22 (the floor).
 func _draw_hint(label: String, key: String, step: int, area: Rect2) -> void:
 	var font := Style.sans_bold()
 	var tokens := _tokens(label, key, step)
-	for fs in [Style.FS_26, 24]:
+	for fs in [Style.FS_26, 24, Style.FS_22]:
 		var lines := _layout_tokens(tokens, font, fs, area.size.x)
 		if lines.size() == 1:
 			_paint(lines, font, fs, area)

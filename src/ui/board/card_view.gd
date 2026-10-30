@@ -8,6 +8,8 @@ var tag_group := -1
 var frosted := false
 var lifted := false
 var glow := false
+## Under another card: drawn a touch darker and flatter, so the movable top card stands out.
+var buried := false
 var font_size := 38
 var _chip_pop := 0.0
 var _glow_t := 0.0
@@ -15,6 +17,12 @@ var _glow_t := 0.0
 
 func _init() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+func set_buried(on: bool) -> void:
+	if on != buried:
+		buried = on
+		queue_redraw()
 
 
 func _process(delta: float) -> void:
@@ -68,6 +76,8 @@ func _draw() -> void:
 	var face := Rect2(0, 0, size.x, size.y - 5.0)
 	if lifted:
 		draw_style_box(Style.glow(Color(Style.INK, 0.28), Style.R_M, 14), Rect2(face.position + Vector2(0, 10), face.size).grow(-6))
+	elif not buried:
+		draw_style_box(Style.glow(Color(Style.INK, 0.2), Style.R_M, 6), Rect2(face.position + Vector2(0, 4), face.size).grow(-3))
 	if glow:
 		var a := 0.45 + 0.35 * sin(_glow_t * 5.0)
 		draw_style_box(Style.glow(Color(Style.APRICOT, a), Style.R_M, 16), face)
@@ -78,19 +88,22 @@ func _draw() -> void:
 			var x := face.size.x * (0.14 + i * 0.22)
 			draw_line(Vector2(x, face.size.y * 0.78), Vector2(x + face.size.y * 0.45, face.size.y * 0.22), Color(1, 1, 1, 0.85), 3.0, true)
 		return
-	var left := 0.0
-	if tag_group >= 0:
-		var rad := 13.0 + 6.0 * _chip_pop
-		var c := Vector2(22, face.size.y / 2.0)
-		draw_circle(c, rad, Style.tag_color(tag_group), true, -1.0, true)
-		Style.draw_glyph(self, tag_group, c, rad * 0.48, Style.PAPER)
-		left = 30.0
 	var font := Style.sans_bold()
-	var avail := face.size.x - 20.0 - left
+	var avail := face.size.x - 28.0
 	var fs := font_size
 	# The board picks one size for every card; only a word that still can't fit shrinks on its own.
 	while fs > 26 and font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > avail:
 		fs -= 2
 	var ts := font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
 	var baseline := (face.size.y - font.get_height(fs)) / 2.0 + font.get_ascent(fs)
-	draw_string(font, Vector2(left + 10.0 + (avail - ts.x) / 2.0, baseline), word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+	draw_string(font, Vector2((face.size.x - ts.x) / 2.0, baseline), word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+	if buried:
+		draw_style_box(Style.box(Color(Style.INK, 0.05), Style.R_M), face)
+	# The group tag is a round sticker on the card's top-left corner, so the word stays centred.
+	if tag_group >= 0:
+		var rad := 12.0 + 5.0 * _chip_pop
+		var c := Vector2(9, 9)
+		draw_circle(c + Vector2(0, 1.5), rad + 2.0, Color(Style.INK, 0.18), true, -1.0, true)
+		draw_circle(c, rad + 2.0, Style.CARD, true, -1.0, true)
+		draw_circle(c, rad, Style.tag_color(tag_group), true, -1.0, true)
+		Style.draw_glyph(self, tag_group, c, rad * 0.48, Style.PAPER)

@@ -1,0 +1,56 @@
+# Pair rules for the category bank (read by tools/room_gen.gd). One rule per line, by label:
+#   A < B   B is part of A: never in one level, and B's words also count as A's in phantom checks.
+#   A | B   never in one level (they overlap too much to be fair).
+#   A ! d   never in a level with any category from domain d (lateral categories whose property most d-things have).
+Fruit < Citrus fruit
+Fruit < Tropical fruit
+Fruit < Dried fruit
+Body parts < Parts of the face
+Body parts < Joints in the body
+Body parts < Organs
+Body parts < Bones
+Body parts < Parts of the eye
+Things you wear < Hats
+Things you wear < Footwear
+Instruments < String instruments
+Sports < Winter sports
+Sweet treats < Sweets
+Drinks < Coffee drinks
+Drinks < Kinds of tea
+Dairy < Cheeses
+Things in space < Planets
+Sports | Golf terms
+Sports | Sports gear
+Sports gear | Golf terms
+In a rainbow | Shades of red
+In a rainbow | Shades of yellow
+In a rainbow | Shades of green
+In a rainbow | Shades of blue
+In a rainbow | Shades of pink
+In a rainbow | Shades of brown
+Shades of red | Shades of pink
+Shades of red | Shades of brown
+Shades of yellow | Shades of brown
+Fish | Sea creatures
+Big cats | Safari animals
+Boats | Ways to travel
+Farm animals | Baby animals
+Things that fly | Birds
+Things that fly | Insects
+Kitchen tools | Kitchen appliances
+Kitchen tools | On the table
+Kitchen appliances | On the table
+Rooms in a house | In the bathroom
+Nuts | Things with shells
+Things with keys | Instruments
+Sea creatures | Things with shells
+Things with teeth | Garden tools
+Things with teeth | Things in a toolbox
+Things with teeth ! animals
+Things with shells ! animals
+Things with necks ! animals
+Things with spines ! animals
+Things with tails ! animals
+Things with stripes ! animals
+Things with faces ! body
+Things with roots ! nature

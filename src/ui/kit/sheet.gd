@@ -10,6 +10,10 @@ signal closed
 var dismissible := true
 ## For Back (BackPolicy): "utility" closes, "result" goes Home, "blocking" (an ad playing) ignores Back.
 var kind := "utility"
+## Pause shows no × (it has Resume); it still closes on Back and outside taps.
+var show_close := true
+## How much the sheet darkens the screen behind it (Win keeps it light so the solved board stays in view).
+var dim_alpha := 0.2
 var panel: Control
 var body: VBoxContainer
 var title := ""
@@ -50,7 +54,8 @@ func _init(heading: String = "") -> void:
 
 func _ready() -> void:
 	modulate.a = 0.0
-	if dismissible:
+	_dim.color = Color(Style.INK, dim_alpha)
+	if dismissible and show_close:
 		var x := _CloseButton.new()
 		x.pressed.connect(func() -> void: on_back())
 		panel.add_child(x)
@@ -60,18 +65,20 @@ func _ready() -> void:
 	_fit()
 	resized.connect(_fit)
 	var final_y := panel.position.y
-	panel.position.y += 60.0
+	panel.position.y += 140.0
 	var tw := create_tween().set_parallel()
-	tw.tween_property(self, "modulate:a", 1.0, Style.T_SCREEN)
-	tw.tween_property(panel, "position:y", final_y, Style.T_SCREEN).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.tween_property(self, "modulate:a", 1.0, Style.T_SHEET_IN * 0.6)
+	tw.tween_property(panel, "position:y", final_y, Style.T_SHEET_IN).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 
 
 func _fit() -> void:
-	var w := minf(size.x - 48.0, 620.0)
+	var w := minf(size.x - 32.0, 660.0)
 	panel.size.x = w
 	var h := minf(body.get_combined_minimum_size().y + 72.0, size.y - 48.0)
 	panel.size = Vector2(w, h)
-	panel.position = Vector2((size.x - w) / 2.0, maxf(24.0, (size.y - h) / 2.0))
+	# Anchored to the bottom, in the thumb zone, above the gesture bar.
+	var bottom: float = SafeArea.current(size)["bottom"] + 20.0
+	panel.position = Vector2((size.x - w) / 2.0, maxf(24.0, size.y - h - bottom))
 	for child in panel.get_children():
 		if child is _CloseButton:
 			child.position = Vector2(w - child.size.x - 6.0, 6.0)

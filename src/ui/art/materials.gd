@@ -35,10 +35,10 @@ static func jar_back(size: Vector2) -> String:
 	return _svg(size, """
 <defs>
 <linearGradient id="t" x1="0" y1="0" x2="0" y2="1">
-<stop offset="0" stop-color="%s" stop-opacity="0.07"/><stop offset="1" stop-color="%s" stop-opacity="0.16"/>
+<stop offset="0" stop-color="%s" stop-opacity="0.11"/><stop offset="1" stop-color="%s" stop-opacity="0.22"/>
 </linearGradient>
 <radialGradient id="l" cx="0.42" cy="0.3" r="0.65">
-<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.22"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.10"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
 </radialGradient>
 </defs>
 <rect x="%s" y="%s" width="%s" height="%s" rx="4" fill="%s" fill-opacity="0.08"/>
@@ -59,6 +59,8 @@ static func jar_front(size: Vector2) -> String:
 	var base := clampf(h * 0.06, 10.0, 22.0)
 	var bh := h - rim
 	var stroke := clampf(w * 0.014, 2.0, 3.0)
+	var base_glass := '<ellipse cx="%s" cy="%s" rx="%s" ry="%s" fill="%s" fill-opacity="0.2" clip-path="url(#b)"/>' % [
+		_f(w / 2.0), _f(h - base * 0.45), _f(w * 0.46), _f(base * 0.7), GLASS_DEEP]
 	return _svg(size, """
 <defs>
 <clipPath id="b"><path d="%s"/></clipPath>
@@ -96,7 +98,7 @@ static func jar_front(size: Vector2) -> String:
 		_f(ni), _f(rim * 0.15), _f(w - ni * 2), _f(rim * 1.05), GLASS, GLASS_DEEP, _f(stroke),
 		_f(ni + 4), _f(rim * 0.48), _f(w - ni - 4), _f(rim * 0.48),
 		_f(ni + 4), _f(rim * 0.8), _f(w - ni - 4), _f(rim * 0.8), GLASS_DEEP,
-		_f(r1 * 0.5), _f(rim + r1 * 0.95), _f(r1 * 0.5), _f(rim + r1 * 0.35), _f(r1 * 1.15), _f(rim + r1 * 0.18)])
+		_f(r1 * 0.5), _f(rim + r1 * 0.95), _f(r1 * 0.5), _f(rim + r1 * 0.35), _f(r1 * 1.15), _f(rim + r1 * 0.18)] + base_glass)
 
 
 ## A paper word card. The face is the top (h - 5) units; the edge and a soft contact shadow sit below it.
@@ -110,10 +112,10 @@ static func card(size: Vector2) -> String:
 </linearGradient></defs>
 <rect x="2" y="4" width="%s" height="%s" rx="%s" fill="%s" fill-opacity="0.16"/>
 <rect x="0" y="2" width="%s" height="%s" rx="%s" fill="%s"/>
-<rect x="0" y="0" width="%s" height="%s" rx="%s" fill="url(#p)"/>
+<rect x="0.75" y="0.75" width="%s" height="%s" rx="%s" fill="url(#p)" stroke="%s" stroke-opacity="0.28" stroke-width="1.5"/>
 <rect x="%s" y="1.5" width="%s" height="2" rx="1" fill="#FFFFFF" fill-opacity="0.9"/>
 """ % [PAPER_FACE, PAPER_FOOT, _f(w - 4), _f(h - 4), _f(r), SHADOW, _f(w), _f(h - 3), _f(r), PAPER_EDGE,
-		_f(w), _f(h - 5), _f(r), _f(r * 0.7), _f(w - r * 1.4)])
+		_f(w - 1.5), _f(h - 6.5), _f(r), GLASS, _f(r * 0.7), _f(w - r * 1.4)])
 
 
 ## A screw-top lid in enamel of any colour (the group's colour, or gold), with knurled ridges.
@@ -140,23 +142,52 @@ static func lid(size: Vector2, base: Color = Color("#A9432C")) -> String:
 		_f(h - 7), _f(w)])
 
 
-## A wooden shelf plank: the lit top surface, the front face, and a soft shadow on the wall below.
+## A wooden shelf plank: the lit top surface, the front face with a little grain, a bright lip where they meet,
+## shaded ends, and a soft shadow on the wall below.
 static func plank(size: Vector2) -> String:
 	var w := size.x
 	var h := size.y
 	var top := h * 0.3
 	var face := h * 0.45
+	var grain := ""
+	for i in 3:
+		var y := top + face * (0.3 + i * 0.22)
+		var amp := face * 0.08
+		grain += '<path d="M 0 %s C %s %s %s %s %s %s S %s %s %s %s" fill="none" stroke="#000000" stroke-opacity="0.07" stroke-width="1.2"/>' % [
+			_f(y), _f(w * 0.25), _f(y - amp), _f(w * 0.4), _f(y + amp), _f(w * 0.6), _f(y), _f(w * 0.85), _f(y - amp), _f(w), _f(y + amp * 0.5)]
 	return _svg(size, """
 <defs>
 <linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%s"/><stop offset="1" stop-color="%s"/></linearGradient>
-<linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%s" stop-opacity="0.22"/><stop offset="1" stop-color="%s" stop-opacity="0"/></linearGradient>
+<linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%s" stop-opacity="0.3"/><stop offset="1" stop-color="%s" stop-opacity="0"/></linearGradient>
+<linearGradient id="e" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000000" stop-opacity="0.18"/><stop offset="0.03" stop-color="#000000" stop-opacity="0"/>
+<stop offset="0.97" stop-color="#000000" stop-opacity="0"/><stop offset="1" stop-color="#000000" stop-opacity="0.18"/></linearGradient>
 </defs>
 <rect x="0" y="%s" width="%s" height="%s" fill="url(#s)"/>
 <rect x="0" y="0" width="%s" height="%s" rx="3" fill="%s"/>
 <rect x="0" y="%s" width="%s" height="%s" rx="3" fill="url(#f)"/>
-<rect x="0" y="%s" width="%s" height="1.5" fill="#FFFFFF" fill-opacity="0.35"/>
-""" % [WOOD_FACE[0], WOOD_FACE[1], SHADOW, SHADOW, _f(top + face), _f(w), _f(h - top - face), _f(w), _f(top + 2), WOOD_TOP,
-		_f(top), _f(w), _f(face), _f(top), _f(w)])
+%s
+<rect x="0" y="0" width="%s" height="%s" rx="3" fill="url(#e)"/>
+<rect x="0" y="%s" width="%s" height="1.5" fill="#FFFFFF" fill-opacity="0.45"/>
+""" % [WOOD_FACE[0], WOOD_FACE[1], SHADOW, SHADOW, _f(top + face - 1.0), _f(w), _f(h - top - face + 1.0), _f(w), _f(top + 2), WOOD_TOP,
+		_f(top), _f(w), _f(face), grain, _f(w), _f(top + face), _f(top), _f(w)])
+
+
+## A luggage tag in kraft for the label rail: clipped corners on the left and a reinforced eyelet.
+static func tag(size: Vector2) -> String:
+	var w := size.x
+	var h := size.y - 3.0
+	var c := minf(h * 0.32, 16.0)
+	var r := 6.0
+	var shape := "M %s 0 L %s 0 Q %s 0 %s %s L %s %s Q %s %s %s %s L %s %s L 0 %s L 0 %s Z" % [
+		_f(c), _f(w - r), _f(w), _f(w), _f(r), _f(w), _f(h - r), _f(w), _f(h), _f(w - r), _f(h), _f(c), _f(h), _f(h - c), _f(c)]
+	var ex := c * 0.7 + 7.0
+	return _svg(size, """
+<defs><linearGradient id="k" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="%s"/><stop offset="1" stop-color="%s"/></linearGradient></defs>
+<path d="%s" transform="translate(1.5 3)" fill="%s" fill-opacity="0.16"/>
+<path d="%s" fill="url(#k)"/>
+<circle cx="%s" cy="%s" r="8" fill="%s"/>
+<circle cx="%s" cy="%s" r="3.6" fill="%s" fill-opacity="0.55"/>
+""" % [KRAFT[0], KRAFT[1], shape, SHADOW, shape, _f(ex), _f(h / 2.0), KRAFT[0], _f(ex), _f(h / 2.0), SHADOW])
 
 
 ## A kraft paper label (jar labels, the rail's tags). hole: a punched hole with a ring on the left.
@@ -263,7 +294,7 @@ static func mini_jar(size: Vector2, layers: Array, lid_color: Color, outline_onl
 	var neck := '<rect x="%s" y="%s" width="%s" height="%s" rx="2" fill="%s" fill-opacity="0.16" stroke="%s" stroke-opacity="0.45" stroke-width="1.5"/>' % [
 		_f(w * 0.16), _f(lid_h - 1.0), _f(w * 0.68), _f(neck_h + 3.0), GLASS, GLASS_DEEP]
 	if outline_only:
-		return _svg(size, '<path d="%s" fill="%s" fill-opacity="0.05" stroke="%s" stroke-opacity="0.25" stroke-width="2.5" stroke-dasharray="6 5"/>' % [
+		return _svg(size, '<path d="%s" fill="%s" fill-opacity="0.04" stroke="%s" stroke-opacity="0.3" stroke-width="2"/>' % [
 			body, SHADOW, SHADOW])
 	var fill := ""
 	var n := layers.size()
@@ -277,6 +308,10 @@ static func mini_jar(size: Vector2, layers: Array, lid_color: Color, outline_onl
 	var lid := '<rect x="%s" y="0" width="%s" height="%s" rx="3" fill="#%s"/><rect x="%s" y="1.5" width="%s" height="%s" rx="1.5" fill="#FFFFFF" fill-opacity="0.38"/><rect x="%s" y="%s" width="%s" height="2" fill="#000000" fill-opacity="0.18"/>' % [
 		_f(w * 0.12), _f(w * 0.76), _f(lid_h), lid_color.to_html(false), _f(w * 0.16), _f(w * 0.68), _f(lid_h * 0.28),
 		_f(w * 0.12), _f(lid_h - 2.0), _f(w * 0.76)]
+	if lid_color.is_equal_approx(Color("#D9A441")):
+		# A gold lid catches the light: a bright specular band so it reads as an award, not mustard paint.
+		lid += '<rect x="%s" y="%s" width="%s" height="%s" rx="1" fill="#FFF6D6" fill-opacity="0.85"/>' % [
+			_f(w * 0.3), _f(lid_h * 0.42), _f(w * 0.22), _f(maxf(1.5, lid_h * 0.18))]
 	return _svg(size, """
 <defs><clipPath id="b"><path d="%s"/></clipPath>
 <linearGradient id="s" x1="0" y1="0" x2="1" y2="0">
@@ -324,13 +359,26 @@ static func jar_contents(size: Vector2, layers: Array, frac: float) -> String:
 	if n == 0 or frac <= 0.0:
 		return _svg(size, "")
 	var fill_h := (h - rim - 6.0) * clampf(frac, 0.0, 1.0)
-	var band := fill_h / n
+	# Layers settle unevenly, like real preserves: each a little thicker or thinner, with a gentle wavy top.
+	var weights: Array[float] = []
+	var total := 0.0
+	for i in n:
+		var wt := 0.75 + 0.5 * absf(sin(i * 12.9898 + 4.1))
+		weights.append(wt)
+		total += wt
 	var bands := ""
+	var y := h
 	for i in n:
 		var c: Color = layers[i]
-		var y := h - band * (i + 1)
-		bands += '<rect x="0" y="%s" width="%s" height="%s" fill="#%s"/>' % [_f(y), _f(w), _f(band + 0.8), c.to_html(false)]
-		bands += '<rect x="0" y="%s" width="%s" height="2" fill="#FFFFFF" fill-opacity="0.16"/>' % [_f(y), _f(w)]
+		var band := fill_h * weights[i] / total
+		var top_y := y - band
+		var amp := minf(band * 0.35, 3.5) * (1.0 if i % 2 == 0 else -1.0)
+		bands += '<path d="M 0 %s Q %s %s %s %s T %s %s L %s %s L 0 %s Z" fill="#%s"/>' % [
+			_f(top_y), _f(w * 0.25), _f(top_y - amp), _f(w * 0.5), _f(top_y), _f(w), _f(top_y), _f(w), _f(y + 1.0), _f(y + 1.0),
+			c.to_html(false)]
+		bands += '<path d="M 0 %s Q %s %s %s %s T %s %s" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="1.5"/>' % [
+			_f(top_y), _f(w * 0.25), _f(top_y - amp), _f(w * 0.5), _f(top_y), _f(w), _f(top_y)]
+		y = top_y
 	var top := h - fill_h
 	return _svg(size, """
 <defs><clipPath id="b"><path d="%s"/></clipPath></defs>
