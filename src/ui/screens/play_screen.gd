@@ -110,6 +110,7 @@ func start(id: String, s: Session, bonus_peeks: int = 0) -> void:
 	board.setup(s)
 	rail.setup(s)
 	_layout()
+	board.deal_in()
 	_started_ms = Time.get_ticks_msec()
 	_refresh()
 	_intro_captions()
@@ -259,11 +260,16 @@ func _on_drop(from: int, to: int) -> void:
 
 func _after(events: Array) -> void:
 	var lid_delay := 0.0
+	# A slip's letters are written in pencil (the sound turns the mistake positive); a pair's hint chimes.
+	var from_slip := events.any(func(e: Dictionary) -> bool: return e["type"] == "slip")
 	for e: Dictionary in events:
 		match e["type"]:
 			"step":
 				rail.pulse(e["group"])
-				Sfx.play("tag", 1.0, 0.05, -3.0)
+				if from_slip:
+					Sfx.play_at(0.18, "write", 1.0, 0.05)
+				else:
+					Sfx.play("chime", 1.0, 0.03)
 				if session.know.paired_once[e["group"]] == 1 and session.know.step[e["group"]] == 1:
 					_caption_once("pair", "A pair! Label hint above")
 			"lid":

@@ -17,6 +17,8 @@ const REUSE_GAP := 25
 const WORD_GAP := 15
 const RELAXED_GAPS := [Vector2i(25, 15), Vector2i(25, 15), Vector2i(15, 8)]
 const MAX_WORD := 9
+## The average bot's first-try win rate each kind of level must reach under its budget (DESIGN pass-rate bands).
+const WIN_FLOOR := {"rest": 0.92, "normal": 0.8, "tricky": 0.7, "hard": 0.55}
 
 var bank: Bank
 var rng := RandomNumberGenerator.new()
@@ -33,6 +35,8 @@ var n_final := 200
 var rejects := {}
 var reuse_gap := REUSE_GAP
 var word_gap := WORD_GAP
+## "a,b" category pairs already used together in this room: never repeat a pairing.
+var pairs_used := {}
 
 
 func _init() -> void:
@@ -64,10 +68,10 @@ func _init() -> void:
 		var number := i + 1
 		var ls: Dictionary = spec["levels"][i]
 		var target := _target(number, str(ls["kind"]))
-		var best := {}
+		var found: Array = []
 		rejects.clear()
 		var relax := 0
-		while best.is_empty() and relax < RELAXED_GAPS.size():
+		while found.is_empty() and relax < RELAXED_GAPS.size():
 			reuse_gap = RELAXED_GAPS[relax].x
 			word_gap = RELAXED_GAPS[relax].y
 			for c in cands * (1 if relax == 0 else 3):
@@ -87,41 +91,34 @@ func _init() -> void:
 					if number >= 3 and m["aha_frac"] < 0.4:
 						score += 1.5
 					score += maxf(0.0, m["after_med"] - 8.0) * 0.25
-					if best.is_empty() or score < best["score"]:
-						best = {"score": score, "d": d.duplicate(true), "jars": lvl.jars.duplicate(), "pick": pick, "m": m}
+					found.append({"score": score, "d": d.duplicate(true), "jars": lvl.jars.duplicate(), "pick": pick})
 			relax += 1
 		if relax > 1:
 			md.append("> Level %d needed a wider search (step %d of %d): %s" % [number, relax, RELAXED_GAPS.size(), rejects])
 		reuse_gap = REUSE_GAP
 		word_gap = WORD_GAP
-		if best.is_empty():
+		if found.is_empty():
 			push_error("room_gen: no valid level %d: %s" % [number, rejects])
 			quit(1)
 			return
-		var lvl := LevelData.from_dict(best["d"])
-		lvl.jars = best["jars"]
-		var d: Dictionary = best["d"]
-		d["jars"] = _jar_words(lvl)
-		d.erase("empty")
-		_commit(number, best["pick"])
-		# Budget and gold from the bots' slip distributions with no budget.
-		var nov := _measure(lvl, "novice", n_final, 0)
-		var avg := _measure(lvl, "average", n_final, 0)
-		var budget := 0
-		var gold := -1
-		if ls.get("budget", false):
-			var tight: bool = ls["kind"] in ["tricky", "hard"]
-			budget = maxi(2, int(nov["p75" if tight else "p90"]) + 1)
-			gold = _gold(avg["slips"], budget)
-		d["budget"] = budget
-		d["gold"] = gold
-		lvl.budget = budget
-		var avg_w := _measure(lvl, "average", n_final / 2, budget)
-		var nov_w := _measure(lvl, "novice", n_final / 2, budget)
-		var pro_w := _measure(lvl, "prober", n_final / 2, budget)
-		d["meta"] = {"target": snappedf(target, 0.01), "avg_slips": snappedf(avg["slips_mean"], 0.01),
-			"avg_win": snappedf(avg_w["win"], 0.01), "novice_win": snappedf(nov_w["win"], 0.01),
-			"after_med": avg["after_med"], "aha_frac": snappedf(avg["aha_frac"], 0.01)}
+		# Best-scoring candidates first; the first whose budgeted win rate clears its kind's floor is kept.
+		found.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return a["score"] < b["score"])
+		var fin := {}
+		for cand: Dictionary in found.slice(0, 6):
+			var f := _settle(cand, ls, target)
+			if fin.is_empty() or f["avg_w"]["win"] > fin["avg_w"]["win"]:
+				fin = f
+			if f["avg_w"]["win"] >= WIN_FLOOR.get(str(ls["kind"]), 0.8):
+				fin = f
+				break
+		var d: Dictionary = fin["d"]
+		var avg: Dictionary = fin["avg"]
+		var avg_w: Dictionary = fin["avg_w"]
+		var nov_w: Dictionary = fin["nov_w"]
+		var pro_w: Dictionary = fin["pro_w"]
+		var budget: int = d["budget"]
+		var gold: int = d["gold"]
+		_commit(number, fin["pick"])
 		out.append(d)
 		var names: Array = []
 		for g: Dictionary in d["groups"]:
@@ -211,6 +208,11 @@ func _pick(number: int, ls: Dictionary) -> Dictionary:
 		var pick: int = pool[rng.randi_range(0, pool.size() - 1)]
 		cats.append(pick)
 		domains[_domain_key(pick)] = true
+	for a in cats.size():
+		for b in range(a + 1, cats.size()):
+			if pairs_used.has("%d,%d" % [mini(cats[a], cats[b]), maxi(cats[a], cats[b])]):
+				_reject("pair already used")
+				return {}
 	# Words that belong to two picked categories are herrings; keep exactly as many as the spec asks.
 	var crossings: Array = []
 	for a in cats.size():
@@ -259,6 +261,17 @@ func _pick(number: int, ls: Dictionary) -> Dictionary:
 			_reject("too few free words")
 			return {}
 		words.append(chosen)
+	# Label clashes: a card must not read as naming another group's jar ("Gear" beside "Sports gear").
+	for a in words.size():
+		for b in cats.size():
+			if a == b:
+				continue
+			for token in _label_tokens(cats[b]):
+				for w in words[a]:
+					var lw := w.to_lower()
+					if lw.contains(token) or (lw.length() >= 3 and token.contains(lw)):
+						_reject("label clash")
+						return {}
 	# Phantom groups: no category outside the level (with its children's words) may hold 3 or more of its words.
 	# A parent of a picked category may hold none outside that category's own group (Fruit next to Citrus fruit).
 	for i in bank.categories.size():
@@ -346,6 +359,10 @@ func _gold(sorted_slips: Array[int], budget: int) -> int:
 
 
 func _commit(number: int, pick: Dictionary) -> void:
+	var cs: Array = pick["cats"]
+	for a in cs.size():
+		for b in range(a + 1, cs.size()):
+			pairs_used["%d,%d" % [mini(cs[a], cs[b]), maxi(cs[a], cs[b])]] = true
 	for idx in pick["cats"]:
 		var uses: Array = used.get(idx, [])
 		uses.append(number)
@@ -417,3 +434,42 @@ func _crosses(i: int, cats: Array[int]) -> bool:
 			if h != i and cats.has(h):
 				return true
 	return false
+
+
+## The meaningful words of a category's label (its key plus content words), lower case.
+func _label_tokens(idx: int) -> PackedStringArray:
+	const STOP := ["things", "words", "before", "after", "with", "that", "you", "can", "the", "of", "in", "a", "on",
+		"at", "and", "kinds", "parts", "shades", "ways", "across"]
+	var out := PackedStringArray([(bank.categories[idx]["key"] as String).to_lower()])
+	for t in (bank.categories[idx]["label"] as String).to_lower().split(" ", false):
+		if t.length() >= 3 and not STOP.has(t) and not out.has(t):
+			out.append(t)
+	return out
+
+
+## Deals the candidate for good, sets its budget (novice p90 + 1; p75 + 1 on tricky and hard levels) and gold
+## threshold, and measures every bot under that budget.
+func _settle(cand: Dictionary, ls: Dictionary, target: float) -> Dictionary:
+	var d: Dictionary = (cand["d"] as Dictionary).duplicate(true)
+	var lvl := LevelData.from_dict(d)
+	lvl.jars = cand["jars"]
+	d["jars"] = _jar_words(lvl)
+	d.erase("empty")
+	var nov := _measure(lvl, "novice", n_final, 0)
+	var avg := _measure(lvl, "average", n_final, 0)
+	var budget := 0
+	var gold := -1
+	if ls.get("budget", false):
+		var tight: bool = ls["kind"] in ["tricky", "hard"]
+		budget = maxi(2, int(nov["p75" if tight else "p90"]) + 1)
+		gold = _gold(avg["slips"], budget)
+	d["budget"] = budget
+	d["gold"] = gold
+	lvl.budget = budget
+	var avg_w := _measure(lvl, "average", n_final / 2, budget)
+	var nov_w := _measure(lvl, "novice", n_final / 2, budget)
+	var pro_w := _measure(lvl, "prober", n_final / 2, budget)
+	d["meta"] = {"target": snappedf(target, 0.01), "avg_slips": snappedf(avg["slips_mean"], 0.01),
+		"avg_win": snappedf(avg_w["win"], 0.01), "novice_win": snappedf(nov_w["win"], 0.01),
+		"after_med": avg["after_med"], "aha_frac": snappedf(avg["aha_frac"], 0.01)}
+	return {"d": d, "pick": cand["pick"], "avg": avg, "avg_w": avg_w, "nov_w": nov_w, "pro_w": pro_w}

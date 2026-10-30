@@ -23,7 +23,7 @@ func _ready() -> void:
 	ThemeDB.fallback_font = Style.sans()
 	ThemeDB.fallback_font_size = Style.BODY_FONT
 	_add_background()
-	Sfx.set_enabled(float(Save.setting("sound")) > 0.0)
+	Sfx.set_volumes(float(Save.setting("sound")), float(Save.setting("music")))
 	Haptics.enabled = bool(Save.setting("haptics"))
 	home = HomeScreen.new()
 	home.play_pressed.connect(func() -> void: start_level(home.next_id))
@@ -73,6 +73,8 @@ func go_home() -> void:
 
 ## Crossfades to a screen. The outgoing one stops taking input at once, so a double tap can't navigate twice.
 func _show(target: Control, name: String) -> void:
+	if not target.visible:
+		Sfx.play("whoosh", 1.0, 0.05)
 	screen = name
 	for s: Control in [home, play]:
 		if s == target or not s.visible:
@@ -210,6 +212,7 @@ func open_sheet(s: Sheet) -> Sheet:
 
 
 func close_all_sheets() -> void:
+	Sfx.muffle(false)
 	for s in sheets.duplicate():
 		s.queue_free()
 	sheets.clear()
@@ -239,6 +242,8 @@ func _open_win(stats: Dictionary) -> void:
 		var trophy := JarTrophy.new(Materials.preserve_layers(labels), bool(Save.data["solved"][id]["gold"]))
 		s.body.add_child(trophy)
 		trophy.play()
+		if res["new_gold"]:
+			Sfx.play_at(0.6, "bell")
 	var title := s.add_label("Jar filled" if room_level else "Solved", Style.FS_72)
 	title.add_theme_font_override("font", Style.hand())
 	if room_level:
@@ -282,6 +287,7 @@ func _win_shelf(id: String) -> ShelfView:
 	var tw := strip.create_tween()
 	tw.tween_interval(0.25)
 	tw.tween_property(strip, "drop_t", 1.0, 0.7)
+	Sfx.play_at(0.25 + 0.7 * 0.7, "shelf", 1.0, 0.04)
 	return strip
 
 
@@ -347,6 +353,8 @@ func _open_pause() -> void:
 	play.board.cancel_lift()
 	var s := Sheet.new("Paused")
 	s.show_close = false
+	Sfx.muffle(true)
+	s.closed.connect(Sfx.muffle.bind(false))
 	s.add_button("Resume", true, s.close)
 	s.add_button("Restart level", false, start_level.bind(play.level_id, true))
 	s.add_button("Home", false, go_home)
@@ -364,6 +372,9 @@ func _open_settings() -> void:
 	var s := Sheet.new("Settings")
 	_add_toggles(s)
 	s.add_button("How to play", false, func() -> void: start_tutorial(0, true))
+	s.add_button("Credits", false, func() -> void:
+		s.close()
+		_open_credits())
 	if playtest():
 		s.add_button("Test menu", false, func() -> void:
 			s.close()
@@ -372,10 +383,28 @@ func _open_settings() -> void:
 	open_sheet(s)
 
 
+## Everyone whose work ships in the game (the full list with links is CREDITS.md).
+func _open_credits() -> void:
+	var s := Sheet.new("Credits")
+	for line in [
+		"Made by Mehul, with Claude.",
+		"Fonts: Atkinson Hyperlegible Next (Braille Institute) and Gochi Hand (Huerta Tipográfica), SIL Open Font License.",
+		"Icons: Phosphor Icons, MIT License.",
+		"Sounds: Kenney, rubberduck, sinny, AntumDeluge, StarNinjas, BMacZero and PWL, via OpenGameArt, CC0.",
+		"Music: \"Catmint\" by Kistol, CC0.",
+		"Engine: Godot, MIT License.",
+	]:
+		s.add_label(line, Style.FS_26)
+	open_sheet(s)
+
+
 func _add_toggles(s: Sheet) -> void:
+	s.add_switch("Music", float(Save.setting("music")) > 0.0, func(v: bool) -> void:
+		Save.set_setting("music", 0.7 if v else 0.0)
+		Sfx.set_volumes(float(Save.setting("sound")), float(Save.setting("music"))))
 	s.add_switch("Sound", float(Save.setting("sound")) > 0.0, func(v: bool) -> void:
 		Save.set_setting("sound", 1.0 if v else 0.0)
-		Sfx.set_enabled(v))
+		Sfx.set_volumes(float(Save.setting("sound")), float(Save.setting("music"))))
 	s.add_switch("Haptics", bool(Save.setting("haptics")), func(v: bool) -> void:
 		Save.set_setting("haptics", v)
 		Haptics.enabled = v)

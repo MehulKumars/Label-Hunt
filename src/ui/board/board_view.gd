@@ -35,6 +35,9 @@ var _finger := Vector2.ZERO
 var _hot := -1
 ## A buried card under the press: if the press turns out to be a tap, it gets the "only the top moves" nudge.
 var _buried_hit := -1
+## Lid cascade: how many lids in a row (each within 4 s of the last), and when the last one went on.
+var _combo := 0
+var _last_lid := -10.0
 var _flights := {} # CardView -> Tween
 var _wobble := {} # jar -> Tween
 var _misc: Array[Tween] = []
@@ -81,9 +84,44 @@ func setup(s: Session) -> void:
 	relayout()
 
 
+## +Jar: every jar and card glides to its new place and the new jar fades in, rather than the board jumping.
 func add_jar() -> void:
+	var old := {}
+	for v: Control in backs + fronts:
+		old[v] = v.position
+	for c in cards:
+		old[cards[c]] = (cards[c] as CardView).position
 	_add_jar_nodes()
 	relayout()
+	if reduce_motion:
+		return
+	for node: Control in old:
+		var to := node.position
+		node.position = old[node]
+		_track(node.create_tween()).tween_property(node, "position", to, 0.22).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	for v: Control in [backs.back(), fronts.back()]:
+		v.modulate.a = 0.0
+		_track(v.create_tween()).tween_property(v, "modulate:a", 1.0, 0.25).set_delay(0.12)
+
+
+## The board's entrance: cards drop into their jars, staggered jar by jar, bottom up. Skipped with reduce motion.
+func deal_in() -> void:
+	if reduce_motion:
+		return
+	var i := 0
+	for j in session.board.jar_count():
+		var jar := session.board.jars[j]
+		for k in jar.size():
+			var cv: CardView = cards[jar[k]]
+			var home := cv.position
+			cv.position = home - Vector2(0, 90)
+			cv.modulate.a = 0.0
+			var tw := cv.create_tween().set_parallel()
+			_flights[cv] = tw
+			tw.tween_property(cv, "position", home, 0.22).set_delay(i * 0.022).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+			tw.tween_property(cv, "modulate:a", 1.0, 0.12).set_delay(i * 0.022)
+			tw.finished.connect(func() -> void: _flights.erase(cv))
+			i += 1
 
 
 func _add_jar_nodes() -> void:
@@ -412,7 +450,6 @@ func _set_hot(j: int) -> void:
 	if j >= 0:
 		fronts[j].hot = true
 		fronts[j].queue_redraw()
-		Haptics.tick(4, 0.2)
 
 
 func _on_card(cv: CardView, pos: Vector2) -> bool:
@@ -435,10 +472,16 @@ func show_move(events: Array) -> void:
 				# From the hover spot the card arcs over; from a drag it is already above the jar, so it just drops in.
 				var target := slot_pos(to, slot)
 				var arc := 70.0 if cv.position.y > target.y - 40.0 or absf(cv.position.x - target.x) > 60.0 else 12.0
-				var tw := _fly(cv, target, Style.T_DROP + 0.04, arc, true, stagger)
+				var flight := Style.T_DROP + 0.04
+				var tw := _fly(cv, target, flight, arc, true, stagger)
+				tw.finished.connect(_squash.bind(cv))
+				if stagger < 0.01:
+					# The clink starts early by the audio latency so it lands with the card; it rises in pitch as the
+					# jar fills, like water in a bottle.
+					var fill := session.board.size(to)
+					Sfx.play_at(flight, "drop", 1.0 + 0.05 * (fill - 1), 0.02)
+					tw.finished.connect(Haptics.drop)
 				stagger += 0.06
-				if stagger <= 0.07:
-					tw.finished.connect(_landed.bind(to))
 			"lid":
 				lids.append(e)
 			"uncork":
@@ -453,9 +496,12 @@ func show_move(events: Array) -> void:
 		get_tree().create_timer(Style.T_DROP + stagger).timeout.connect(play_lid.bind(e["jar"], e["group"]))
 
 
-func _landed(to: int) -> void:
-	Sfx.play("drop", 1.0, 0.04)
-	Haptics.drop()
+## A card settles: a quick squash (1.06 x 0.94) that springs back, so a landing reads as weight.
+func _squash(cv: CardView) -> void:
+	if reduce_motion or not is_instance_valid(cv):
+		return
+	cv.scale = Vector2(1.06, 0.94)
+	cv.create_tween().tween_property(cv, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
 func show_slip(from: int, to: int, card: int) -> void:
@@ -508,10 +554,18 @@ func play_lid(j: int, g: int) -> void:
 	f.lid_label = session.level.groups[g]["label"]
 	f.label_color = Style.tag_color(g)
 	f.label_typed = 0.0
-	Sfx.play("lid")
+	# Lids in quick succession climb a semitone each (capped), so a cascade sounds like it's building.
+	var now := Time.get_ticks_msec() / 1000.0
+	_combo = mini(_combo + 1, 5) if now - _last_lid < 4.0 else 0
+	_last_lid = now
+	var pitch := pow(2.0, _combo / 12.0)
 	var tw := _track(create_tween())
+	tw.tween_interval(Style.T_LID_HOLD)
+	tw.tween_callback(Sfx.play.bind("ratchet", pitch, 0.02, 0.0))
 	tw.tween_method(_set_lid.bind(f), 0.0, 1.0, Style.T_LID)
-	tw.tween_callback(Haptics.lid)
+	tw.tween_callback(func() -> void:
+		Sfx.play("seat", pitch, 0.02)
+		Haptics.lid())
 	var chars := f.lid_label.length()
 	tw.tween_method(_type_label.bind(f), 0, chars, maxf(0.15, chars * Style.T_TYPE_CHAR))
 	tw.tween_method(_set_shine.bind(f), 0.0, 1.0, 0.0 if reduce_motion else 0.4)
@@ -632,6 +686,7 @@ func _stop(cv: CardView) -> void:
 	if _flights.has(cv):
 		(_flights[cv] as Tween).kill()
 		_flights.erase(cv)
+	cv.modulate.a = 1.0
 
 
 func _track(tw: Tween) -> Tween:

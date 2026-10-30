@@ -1,6 +1,7 @@
 ## Screenshot mode for checking layouts at many sizes. Needs a real window (headless renders nothing).
 ## godot.cmd --path . -- --shots=shots/m1 --size=1080x2400 [--only=t01,win] [--safe=60,40] [--true-size]
 ## The window takes the phone's shape scaled to fit the monitor (PhoneWindow); --true-size keeps real pixels.
+## Audio is muted unless --with-audio (for Movie Maker captures: godot --write-movie x.avi --fixed-fps 60 -- ...).
 class_name ShotRunner
 extends Node
 
@@ -31,7 +32,8 @@ static func from_args() -> ShotRunner:
 
 func _ready() -> void:
 	main = get_parent()
-	Sfx.set_enabled(false)
+	if not OS.get_cmdline_user_args().has("--with-audio"):
+		Sfx.set_volumes(0.0, 0.0)
 	Save.data["seen_captions"] = {"budget": true}
 	DirAccess.make_dir_recursive_absolute(out_dir)
 	await _wait(0.5)

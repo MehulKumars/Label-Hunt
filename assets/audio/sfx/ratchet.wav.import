@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://2frr32amhcem"
-path="res://.godot/imported/lid.wav-01285588d64e80381076678f1c7851be.sample"
+uid="uid://bep8ahvixorm2"
+path="res://.godot/imported/ratchet.wav-db97089d3783836396759731cd98a304.sample"
 
 [deps]
 
-source_file="res://assets/audio/sfx/lid.wav"
-dest_files=["res://.godot/imported/lid.wav-01285588d64e80381076678f1c7851be.sample"]
+source_file="res://assets/audio/sfx/ratchet.wav"
+dest_files=["res://.godot/imported/ratchet.wav-db97089d3783836396759731cd98a304.sample"]
 
 [params]
 
