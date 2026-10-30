@@ -76,6 +76,8 @@ func _show(target: Control, name: String) -> void:
 	if not target.visible:
 		Sfx.play("whoosh", 1.0, 0.05)
 	screen = name
+	# Home is mostly still: let the engine sleep between redraws there (battery). Play keeps full frame pacing.
+	OS.low_processor_usage_mode = name == "home"
 	for s: Control in [home, play]:
 		if s == target or not s.visible:
 			continue
@@ -357,12 +359,30 @@ func _open_pause() -> void:
 	s.closed.connect(Sfx.muffle.bind(false))
 	s.add_button("Resume", true, s.close)
 	s.add_button("Restart level", false, start_level.bind(play.level_id, true))
+	s.add_button("Rules", false, func() -> void:
+		s.close()
+		_open_rules())
 	s.add_button("Home", false, go_home)
 	_add_toggles(s)
 	if playtest():
 		s.add_button("Test menu", false, func() -> void:
 			s.close()
 			_open_test_menu())
+	open_sheet(s)
+
+
+## The rules on one screen, for a quick refresher mid-level (the interactive tutorial never starts mid-level).
+func _open_rules() -> void:
+	var s := Sheet.new("Rules")
+	for line in [
+		"Every jar hides one group of four. Sort the cards until each jar holds one group.",
+		"Only the top card moves. Drop it on an empty jar, or on a card from its own group.",
+		"A wrong drop is a slip: the card comes back, and part of that group's label is written on the rail.",
+		"Four of a group screw the lid on and reveal the label.",
+		"Undo is free. Peek shows one card's group. +Jar gives you room.",
+	]:
+		s.add_label(line, Style.FS_26)
+	s.add_button("Back to the jars", true, s.close)
 	open_sheet(s)
 
 

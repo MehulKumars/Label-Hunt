@@ -30,13 +30,17 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 | Rebuild `main.tscn` | `godot.cmd --headless --path . -s res://tools/make_scenes.gd` |
 | Tests (GUT 9.7.1) | `godot.cmd --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json` |
 | Run the game (desktop window = a 20:9 phone fitted to the monitor) | `godot.cmd --path . [-- --phone=1080x2520]` |
-| Check hand-made levels (deal seeded boards, unique cover, solvable) | `godot.cmd --headless --path . -s res://tools/check_levels.gd` |
+| Generate a room from the bank + spec → `data/levels/roomN.json`, `reports/roomN_gen.md` (~90 s) | `godot.cmd --headless --path . -s res://tools/room_gen.gd -- --room=1` |
+| Check a level file (deal seeded boards, unique cover, solvable, no pre-built pairs) | `godot.cmd --headless --path . -s res://tools/check_levels.gd -- --file=res://data/levels/room1.json` |
 | Bot sims + bake benchmark → `reports/sim_*.md/csv` | `godot.cmd --headless --path . -s res://tools/sim.gd -- --n=200` |
-| Trace one bot game | `godot.cmd --headless --path . -s res://tools/trace_bot.gd -- --level=m01 --profile=average --seed=1` |
-| Screenshots (needs a window; fitted to the monitor, same layout as the phone) | `godot.cmd --path . -- --shots=shots/m1 --size=1080x2400 [--only=t01,win] [--safe=60,40] [--true-size]` |
+| Trace one bot game | `godot.cmd --headless --path . -s res://tools/trace_bot.gd -- --level=r1-01 --profile=average --seed=1` |
+| Screenshots (needs a window; fitted to the monitor, same layout as the phone) | `godot.cmd --path . -- --shots=shots/m1 --size=1080x2400 [--only=home,win] [--safe=60,40] [--true-size]` |
+| Record video + audio of a scenario (Movie Maker), then a contact sheet | `godot.cmd --path . --write-movie shots/movie/win.avi --fixed-fps 60 -- --shots=shots/movie --only=win --with-audio` |
+| Material art preview PNG (headless) / type lab (window) | `-s res://tools/art_preview.gd` / `-s res://tools/type_lab.gd -- --fonts=<dir>` |
 | App icons from SVG | `godot.cmd --headless --path . -s res://tools/make_icons.gd` |
-| Placeholder SFX | `bash tools/make_sfx.sh` |
+| Sounds from the CC0 packs (sources in CREDITS.md) | `bash tools/import_sfx.sh <folder of unzipped packs>` |
 | Test APK (arm64, release template, debug key) | set `GODOT_ANDROID_KEYSTORE_RELEASE_PATH=C:/Users/lordi/AppData/Roaming/Godot/keystores/debug.keystore`, `_USER=androiddebugkey`, `_PASSWORD=android`, then `godot.cmd --headless --path . --export-release "Android" build/jarful-X.Y.Z-arm64.apk` |
+| Audit an APK (permissions, debuggable, files that must not ship) | `bash tools/audit_apk.sh build/jarful-X.Y.Z-arm64.apk` |
 
 ## Decisions (facts, not rules)
 - **No Python or Node on this machine.** All tooling is headless GDScript in `tools/`.
@@ -68,3 +72,10 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 - Headless Godot renders nothing. Screenshots need a windowed run (`tools/shots.gd`).
 - PowerShell 5.1 has no `&&` and drops quotes on native arguments. Use Git Bash for those.
 - `godot --doctool <dir>` dumps the exact 4.7.2 API. Use it before trusting your memory of an API.
+- Godot imports any `.csv` as a translation table (and makes `.translation` files that would ship). The bank is
+  `data/bank/categories.txt` in CSV format for that reason.
+- JSON numbers are floats, and `[1.0].has(1)` is false: cast before `has`, `find` or `erase` (bit the room spec).
+- A SceneTree tool script can't define `_finalize()`: it's a MainLoop virtual.
+- Material art is SVG built in code (`src/ui/art/materials.gd`) and rasterised at device scale by `Art`; nothing
+  imports it. Icons are raw Phosphor SVGs, shipped as text via the export `include_filter`.
+- Screenshot runs use their own fresh save (`user://shots_save.json`) and mute audio unless `--with-audio`.
