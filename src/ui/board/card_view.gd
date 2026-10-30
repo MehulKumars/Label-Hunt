@@ -38,8 +38,12 @@ func _set_pop(v: float) -> void:
 
 
 func set_lifted(on: bool) -> void:
+	if on == lifted:
+		return
 	lifted = on
 	z_index = 5 if on else 1
+	var s := 1.06 if on else 1.0
+	create_tween().tween_property(self, "scale", Vector2(s, s), 0.08).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	queue_redraw()
 
 

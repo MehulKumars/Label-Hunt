@@ -1,14 +1,19 @@
 ## Base for every popup: dims the screen, slides a paper panel up, and closes on Back unless told otherwise.
+## Dismissible sheets also close from a × button and from a tap on the dimmed area outside the panel.
 ## Built from plain Controls (never Window-based nodes, which show default chrome).
 class_name Sheet
 extends Control
 
 signal closed
 
+## False for sheets that need a decision (results, a playing ad): no ×, and outside taps do nothing.
+var dismissible := true
 var panel: Control
 var body: VBoxContainer
 var title := ""
 var _dim: ColorRect
+var _outside_press := false
+var _closing := false
 
 
 func _init(heading: String = "") -> void:
@@ -42,6 +47,10 @@ func _init(heading: String = "") -> void:
 
 func _ready() -> void:
 	modulate.a = 0.0
+	if dismissible:
+		var x := _CloseButton.new()
+		x.pressed.connect(func() -> void: on_back())
+		panel.add_child(x)
 	_fit()
 	# Wrapped labels only know their height once the containers have given them a width.
 	await get_tree().process_frame
@@ -60,15 +69,35 @@ func _fit() -> void:
 	var h := minf(body.get_combined_minimum_size().y + 72.0, size.y - 48.0)
 	panel.size = Vector2(w, h)
 	panel.position = Vector2((size.x - w) / 2.0, maxf(24.0, (size.y - h) / 2.0))
+	for child in panel.get_children():
+		if child is _CloseButton:
+			child.position = Vector2(w - child.size.x - 6.0, 6.0)
 
 
-## Called by Main on Android Back. Return true if handled.
+## Taps that reach the sheet itself landed outside the panel (the panel swallows its own). Press and release both
+## have to be outside, so a drag that started on a button can't close the sheet by accident.
+func _gui_input(event: InputEvent) -> void:
+	if not (event is InputEventMouseButton) or event.button_index != MOUSE_BUTTON_LEFT:
+		return
+	accept_event()
+	if event.pressed:
+		_outside_press = true
+	elif _outside_press:
+		_outside_press = false
+		if dismissible and not _closing:
+			on_back()
+
+
+## Called by Main on Android Back, and by the × and outside taps on dismissible sheets. Return true if handled.
 func on_back() -> bool:
 	close()
 	return true
 
 
 func close() -> void:
+	if _closing:
+		return
+	_closing = true
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var tw := create_tween()
 	tw.tween_property(self, "modulate:a", 0.0, 0.12)
@@ -116,3 +145,34 @@ class _Panel extends Control:
 	func _draw() -> void:
 		draw_style_box(Style.box(Style.SHADOW, 30), Rect2(Vector2(0, 8), size))
 		draw_style_box(Style.box(Style.PAPER, 30, 3, Style.INK), Rect2(Vector2.ZERO, size))
+
+
+## The × in the panel's top-right corner: a 56 px disc inside an 88 px touch target.
+class _CloseButton extends Control:
+	signal pressed
+
+	var _down := false
+
+	func _init() -> void:
+		size = Vector2(88, 88)
+		mouse_filter = Control.MOUSE_FILTER_STOP
+
+	func _gui_input(event: InputEvent) -> void:
+		if not (event is InputEventMouseButton) or event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		accept_event()
+		if event.pressed:
+			_down = true
+			Sfx.play("tap", 1.0, 0.05, -4.0)
+			Haptics.tick(6, 0.25)
+		elif _down:
+			_down = false
+			if Rect2(Vector2.ZERO, size).has_point(event.position):
+				pressed.emit()
+
+	func _draw() -> void:
+		var c := size / 2.0
+		draw_circle(c, 28.0, Style.PAPER_DEEP)
+		var d := 10.0
+		draw_line(c + Vector2(-d, -d), c + Vector2(d, d), Style.INK, 5.0, true)
+		draw_line(c + Vector2(d, -d), c + Vector2(-d, d), Style.INK, 5.0, true)

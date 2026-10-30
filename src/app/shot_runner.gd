@@ -3,7 +3,7 @@
 class_name ShotRunner
 extends Node
 
-const SCENARIOS := ["t01", "t03_slip", "t07", "m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "win", "lose", "pause", "test"]
+const SCENARIOS := ["t01", "t03_slip", "t07", "m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "win", "lose", "pause", "test", "drag", "pick"]
 
 var out_dir := ""
 var window := Vector2i(720, 1280)
@@ -92,14 +92,76 @@ func _run(name: String) -> void:
 			main.start_level(3)
 			await _wait(0.3)
 			main._open_test_menu()
+		"drag", "pick":
+			# Real input events: press on jar 0's body (below its top card), then drag towards jar 2.
+			main.start_level(10)
+			await _wait(0.4)
+			var rects: Array[Rect2] = play.board.layout["jars"]
+			var from := rects[0].position + Vector2(rects[0].size.x / 2.0, rects[0].size.y * 0.85)
+			var to := rects[5].get_center() + Vector2(0, rects[5].size.y * 0.3)
+			_touch(play.board, from, true)
+			if name == "drag":
+				for i in 12:
+					await _wait(0.03)
+					_touch(play.board, from.lerp(to, (i + 1) / 12.0), true, true)
+				await _wait(0.25)
+			_marker(play.board, to if name == "drag" else from)
+			await _wait(0.1)
+			await RenderingServer.frame_post_draw
+			_save(name, play)
+			if name == "drag":
+				_touch(play.board, to, false)
+				await _wait(0.8)
+				_save("drag_dropped", play)
+			for c in get_children():
+				c.queue_free()
+			return
 	await _wait(1.4)
 	await RenderingServer.frame_post_draw
+	_save(name, play)
+	for line in play.board.misplaced():
+		print("  MISPLACED ", line)
+
+
+func _save(name: String, play: PlayScreen) -> void:
 	var img := get_viewport().get_texture().get_image()
 	var path := "%s/%s_%dx%d.png" % [out_dir, name, img.get_width(), img.get_height()]
 	img.save_png(path)
 	print("shot: ", path, "  viewport=", get_viewport().get_visible_rect().size, " main=", main.size, " play=", play.size, " board=", play.board.size)
-	for line in play.board.misplaced():
-		print("  MISPLACED ", line)
+
+
+## Sends a real mouse event (the same path touch takes on Android) at a point in `ctl`'s local coordinates.
+func _touch(ctl: Control, local: Vector2, down: bool, motion: bool = false) -> void:
+	var screen := get_viewport().get_screen_transform() * ctl.get_global_transform_with_canvas() * local
+	var ev: InputEventMouse
+	if motion:
+		var m := InputEventMouseMotion.new()
+		m.button_mask = MOUSE_BUTTON_MASK_LEFT
+		ev = m
+	else:
+		var b := InputEventMouseButton.new()
+		b.button_index = MOUSE_BUTTON_LEFT
+		b.pressed = down
+		b.button_mask = MOUSE_BUTTON_MASK_LEFT if down else 0
+		ev = b
+	ev.position = screen
+	ev.global_position = screen
+	Input.parse_input_event(ev)
+	Input.flush_buffered_events()
+
+
+## A translucent fingertip so screenshots show where the touch is.
+func _marker(ctl: Control, local: Vector2) -> void:
+	var dot := _Dot.new()
+	dot.position = ctl.get_global_transform_with_canvas() * local
+	dot.z_index = 200
+	add_child(dot)
+
+
+class _Dot extends Node2D:
+	func _draw() -> void:
+		draw_circle(Vector2.ZERO, 34.0, Color(0.2, 0.2, 0.9, 0.35))
+		draw_arc(Vector2.ZERO, 34.0, 0, TAU, 32, Color(0.2, 0.2, 0.9, 0.8), 3.0)
 
 
 ## Plays the solver's next n moves through the real play screen.

@@ -17,6 +17,8 @@ var label_typed := 1.0
 var label_color := Style.PAPRIKA
 var shine_t := -1.0
 var dim := false
+## A dragged card is over this jar (shown on every jar alike, so it never hints at which drop is right).
+var hot := false
 
 
 func _init(l: Layer = Layer.BACK) -> void:
@@ -36,6 +38,8 @@ func _draw() -> void:
 		draw_style_box(Style.box(Style.GLASS_FILL, 8), mouth)
 		return
 	var edge := Style.GLASS_EDGE
+	if hot:
+		draw_style_box(_outline(Color(Style.APRICOT, 0.6), 8, 34), body.grow(5))
 	draw_style_box(_outline(edge, 4, 30), body)
 	draw_line(Vector2(mouth.position.x, 2), Vector2(mouth.position.x, neck + 4), edge, 4.0, true)
 	draw_line(Vector2(mouth.end.x, 2), Vector2(mouth.end.x, neck + 4), edge, 4.0, true)

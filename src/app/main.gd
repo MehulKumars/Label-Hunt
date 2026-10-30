@@ -156,6 +156,7 @@ func _open_lose() -> void:
 
 func _mock_ad(grant: Callable) -> void:
 	var s := Sheet.new("Ad")
+	s.dismissible = false
 	s.add_label("Test build: a rewarded video plays here later.", 26)
 	open_sheet(s)
 	get_tree().create_timer(1.5).timeout.connect(func() -> void:
@@ -291,6 +292,10 @@ func _make_theme() -> Theme:
 ## A sheet whose Back runs a custom action (Win: Next, Lose: Retry).
 class _BackSheet extends Sheet:
 	var back_action: Callable
+
+	func _init(heading: String = "") -> void:
+		super(heading)
+		dismissible = false
 
 	func on_back() -> bool:
 		if back_action.is_valid():

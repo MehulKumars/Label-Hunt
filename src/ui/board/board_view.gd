@@ -10,7 +10,13 @@ signal buried_tapped(card: int)
 signal peek_picked(card: int)
 signal lid_finished(jar: int)
 
-const DRAG_START := 16.0
+const DRAG_START := 12.0
+## A dragged card rides this far above the fingertip (in card heights, centre to touch point) so the finger never
+## hides the word.
+const FINGER_LIFT := 1.15
+## How quickly a dragged card catches up with the finger (per second, exponential).
+const FOLLOW_RATE := 32.0
+const PICK_RISE := 10.0
 
 var session: Session
 var layout: Dictionary = {}
@@ -21,8 +27,14 @@ var lifted_jar := -1
 var peek_mode := false
 var reduce_motion := false
 var _dragging := false
+var _pressing := false
+## True while the press that picked the card up is still down (release = tap, so the card goes to its hover spot).
+var _fresh_pick := false
 var _press_pos := Vector2.ZERO
-var _drag_offset := Vector2.ZERO
+var _finger := Vector2.ZERO
+var _hot := -1
+## A buried card under the press: if the press turns out to be a tap, it gets the "only the top moves" nudge.
+var _buried_hit := -1
 var _flights := {} # CardView -> Tween
 var _wobble := {} # jar -> Tween
 var _misc: Array[Tween] = []
@@ -30,6 +42,7 @@ var _misc: Array[Tween] = []
 
 func _init() -> void:
 	mouse_filter = Control.MOUSE_FILTER_STOP
+	set_process(false)
 
 
 func _notification(what: int) -> void:
@@ -55,6 +68,7 @@ func setup(s: Session) -> void:
 	_wobble.clear()
 	lifted_jar = -1
 	peek_mode = false
+	_end_drag()
 	for j in s.board.jar_count():
 		_add_jar_nodes()
 	for c in s.level.card_count():
@@ -95,6 +109,7 @@ func relayout() -> void:
 	for c in cards:
 		var cv: CardView = cards[c]
 		cv.size = layout["card_size"]
+		cv.pivot_offset = cv.size / 2.0
 		cv.font_size = layout["font"]
 	refresh_jars()
 	refresh_cards(false)
@@ -145,6 +160,8 @@ func sync(animate: bool = true) -> void:
 		for k in jar.size():
 			var cv: CardView = cards[jar[k]]
 			var lifted := j == lifted_jar and k == jar.size() - 1
+			if lifted and _dragging:
+				continue
 			var target := hover_pos(j) if lifted else slot_pos(j, k)
 			if cv.position.distance_to(target) < 0.5 and not _flights.has(cv):
 				continue
@@ -187,6 +204,12 @@ func top_card(j: int) -> CardView:
 
 # --- input ---------------------------------------------------------------------------------------------------------
 
+## Input model:
+## - Press a jar: its top card pops up in place (same frame).
+## - Release without moving (a tap): the card glides to its hover spot above the jar; tap another jar to drop.
+## - Move past DRAG_START: the card rides just above the fingertip; release over any jar to drop there.
+##   The drop jar is the one under the card (generous column hit areas), highlighted while you hover.
+## - Tap the lifted card's own jar again, or empty space, to put it back.
 func _gui_input(event: InputEvent) -> void:
 	if session == null or session.is_over():
 		return
@@ -196,19 +219,22 @@ func _gui_input(event: InputEvent) -> void:
 		else:
 			_on_release(event.position)
 		accept_event()
-	elif event is InputEventMouseMotion and lifted_jar >= 0 and (event.button_mask & MOUSE_BUTTON_MASK_LEFT) != 0:
-		if not _dragging and event.position.distance_to(_press_pos) > DRAG_START:
-			_dragging = true
+	elif event is InputEventMouseMotion and _pressing and lifted_jar >= 0 \
+			and (event.button_mask & MOUSE_BUTTON_MASK_LEFT) != 0:
+		_finger = event.position
+		if not _dragging and _finger.distance_to(_press_pos) > DRAG_START:
+			_start_drag()
 		if _dragging:
-			var cv := top_card(lifted_jar)
-			_stop(cv)
-			cv.position = event.position - _drag_offset
+			_set_hot(_drop_target())
 		accept_event()
 
 
 func _on_press(pos: Vector2) -> void:
 	_press_pos = pos
+	_finger = pos
 	_dragging = false
+	_pressing = false
+	_fresh_pick = false
 	if peek_mode:
 		var c := card_at(pos)
 		if c >= 0:
@@ -216,7 +242,10 @@ func _on_press(pos: Vector2) -> void:
 		return
 	var j := jar_at(pos)
 	if lifted_jar >= 0:
-		if j < 0 or j == lifted_jar:
+		if j == lifted_jar or _on_card(top_card(lifted_jar), pos):
+			# Press on the lifted card's jar: a tap puts it back, a drag carries it.
+			_pressing = true
+		elif j < 0:
 			cancel_lift()
 		else:
 			drop_requested.emit(lifted_jar, j)
@@ -226,27 +255,47 @@ func _on_press(pos: Vector2) -> void:
 			wobble(j, 0.5)
 		return
 	var hit := card_at(pos)
-	lift(j)
-	if hit >= 0 and hit != session.board.top(j):
-		(cards[hit] as CardView).nudge()
-		buried_tapped.emit(hit)
-	_drag_offset = pos - hover_pos(j)
+	_buried_hit = hit if hit >= 0 and hit != session.board.top(j) else -1
+	_pick(j)
 
 
-func _on_release(pos: Vector2) -> void:
-	if lifted_jar < 0 or not _dragging:
-		_dragging = false
+func _on_release(_pos: Vector2) -> void:
+	var was_pressing := _pressing
+	_pressing = false
+	if lifted_jar < 0 or not was_pressing:
+		_end_drag()
 		return
-	_dragging = false
-	var j := jar_at(pos)
-	if j >= 0 and j != lifted_jar:
-		drop_requested.emit(lifted_jar, j)
-	elif j == lifted_jar:
-		_fly(top_card(j), hover_pos(j), 0.1, 0.0, false)
+	if _dragging:
+		var to := _drop_target()
+		_end_drag()
+		if to >= 0 and to != lifted_jar:
+			drop_requested.emit(lifted_jar, to)
+		else:
+			cancel_lift()
+	elif _fresh_pick:
+		_fly(top_card(lifted_jar), hover_pos(lifted_jar), Style.T_LIFT + 0.04, 0.0, false)
+		if _buried_hit >= 0:
+			(cards[_buried_hit] as CardView).nudge()
+			buried_tapped.emit(_buried_hit)
 	else:
 		cancel_lift()
+	_fresh_pick = false
 
 
+## Picks up the top card of jar j: it pops up in place and waits to see whether this is a tap or a drag.
+func _pick(j: int) -> void:
+	lifted_jar = j
+	_pressing = true
+	_fresh_pick = true
+	var cv := top_card(j)
+	cv.set_lifted(true)
+	_fly(cv, slot_pos(j, session.board.size(j) - 1) + Vector2(0, -PICK_RISE), 0.06, 0.0, false)
+	Sfx.play("lift")
+	Haptics.lift()
+	lift_started.emit(j)
+
+
+## Programmatic lift straight to the hover spot (tutorial replays and screenshots).
 func lift(j: int) -> void:
 	lifted_jar = j
 	var cv := top_card(j)
@@ -258,13 +307,89 @@ func lift(j: int) -> void:
 
 
 func cancel_lift() -> void:
+	_pressing = false
+	_end_drag()
 	if lifted_jar < 0:
 		return
 	var j := lifted_jar
 	lifted_jar = -1
 	var cv := top_card(j)
-	_fly(cv, slot_pos(j, session.board.size(j) - 1), 0.1, 0.0, true)
+	_fly(cv, slot_pos(j, session.board.size(j) - 1), 0.12, 0.0, true)
 	lift_cancelled.emit()
+
+
+func _start_drag() -> void:
+	_dragging = true
+	_fresh_pick = false
+	_stop(top_card(lifted_jar))
+	set_process(true)
+
+
+func _end_drag() -> void:
+	_dragging = false
+	_set_hot(-1)
+	set_process(false)
+
+
+## Where the dragged card wants to be: centred on the finger, lifted clear of the fingertip.
+func _drag_anchor() -> Vector2:
+	var cs: Vector2 = layout["card_size"]
+	return _finger - Vector2(cs.x / 2.0, cs.y / 2.0 + cs.y * FINGER_LIFT)
+
+
+func _process(delta: float) -> void:
+	if not _dragging or lifted_jar < 0:
+		return
+	var cv := top_card(lifted_jar)
+	var before := cv.position
+	var k := 1.0 - exp(-FOLLOW_RATE * delta)
+	cv.position = before.lerp(_drag_anchor(), k)
+	if not reduce_motion and delta > 0.0:
+		# Lean into the direction of travel, like a card held by its top edge.
+		var lean := clampf((cv.position.x - before.x) / delta * 0.00022, -0.14, 0.14)
+		cv.rotation = lerpf(cv.rotation, lean, 1.0 - exp(-14.0 * delta))
+
+
+## The jar under the dragged card's centre, else under the finger, else the nearest jar within reach.
+func _drop_target() -> int:
+	if lifted_jar < 0 or layout.is_empty():
+		return -1
+	var cv := top_card(lifted_jar)
+	var centre := _drag_anchor() + cv.size / 2.0
+	var j := jar_at(centre)
+	if j < 0:
+		j = jar_at(_finger)
+	if j >= 0:
+		return j
+	var rects: Array[Rect2] = layout["jars"]
+	var best := -1
+	var best_d := rects[0].size.x * 0.8
+	for i in rects.size():
+		var d := rects[i].get_center().distance_to(centre)
+		if d < best_d:
+			best = i
+			best_d = d
+	return best
+
+
+## Highlights the jar a drag would drop into (any jar, legal or not, so it never hints at groups).
+func _set_hot(j: int) -> void:
+	if j == lifted_jar:
+		j = -1
+	if j == _hot:
+		return
+	if _hot >= 0 and _hot < fronts.size():
+		fronts[_hot].hot = false
+		fronts[_hot].queue_redraw()
+	_hot = j
+	if j >= 0:
+		fronts[j].hot = true
+		fronts[j].queue_redraw()
+		Haptics.tick(4, 0.2)
+
+
+func _on_card(cv: CardView, pos: Vector2) -> bool:
+	return cv != null and Rect2(cv.position, cv.size).grow(8.0).has_point(pos)
 
 
 # --- results from Session ---------------------------------------------------------------------------------------
@@ -280,7 +405,10 @@ func show_move(events: Array) -> void:
 				var to: int = e["to"]
 				var slot := session.board.jars[to].find(e["card"])
 				cv.set_lifted(true)
-				var tw := _fly(cv, slot_pos(to, slot), Style.T_DROP + 0.04, 70.0, true, stagger)
+				# From the hover spot the card arcs over; from a drag it is already above the jar, so it just drops in.
+				var target := slot_pos(to, slot)
+				var arc := 70.0 if cv.position.y > target.y - 40.0 or absf(cv.position.x - target.x) > 60.0 else 12.0
+				var tw := _fly(cv, target, Style.T_DROP + 0.04, arc, true, stagger)
 				stagger += 0.06
 				if stagger <= 0.07:
 					tw.finished.connect(_landed.bind(to))
@@ -441,7 +569,9 @@ func _apply_angle(deg: float, j: int) -> void:
 		var cv: CardView = cards[jar[k]]
 		if _flights.has(cv) or cv.lifted:
 			continue
-		cv.position = pivot + (slot_pos(j, k) - pivot).rotated(rad)
+		# Cards turn about their own centre (pivot_offset), so rotate the centre around the jar's base.
+		var centre := slot_pos(j, k) + cv.size / 2.0
+		cv.position = pivot + (centre - pivot).rotated(rad) - cv.size / 2.0
 		cv.rotation = rad
 
 
@@ -454,13 +584,15 @@ func set_glow_card(card: int) -> void:
 
 func _fly(cv: CardView, target: Vector2, dur: float, arc: float, settle: bool, delay: float = 0.0) -> Tween:
 	_stop(cv)
-	cv.rotation = 0.0
 	var from := cv.position
+	var lean := cv.rotation
 	var tw := cv.create_tween()
 	_flights[cv] = tw
 	if delay > 0.0:
 		tw.tween_interval(delay)
-	tw.tween_method(func(t: float) -> void: cv.position = _bezier(from, target, arc, t), 0.0, 1.0, dur) \
+	tw.tween_method(func(t: float) -> void:
+		cv.position = _bezier(from, target, arc, t)
+		cv.rotation = lean * (1.0 - t), 0.0, 1.0, dur) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tw.finished.connect(func() -> void:
 		_flights.erase(cv)
