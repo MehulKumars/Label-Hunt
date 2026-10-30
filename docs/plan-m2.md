@@ -1,6 +1,9 @@
-# M2 plan: Home, tutorial, progression and a crafted look (draft 3, reviewed)
+# M2 plan: Home, tutorial, progression and a crafted look (draft 4)
 
-Written after Mehul's first phone playtest of v0.1.0 (2026-10-30).
+Written after Mehul's first phone playtest of v0.1.0 (2026-10-30). Approved by Mehul on 2026-10-30, with full
+rights to change anything in service of quality. Draft 4 adds the quality bar he asked for (§10–§15): the player
+experience and reward cadence, feel, sound, performance, security and accessibility, worked through the installed
+`game-design`, `game-feel` and `frontend-design` skills.
 - **Supersedes:** the M2 section of the approved plan, and pulls part of M3a (Room 1 content) and M3b (the art
   direction) forward.
 - **Inputs:** `docs/research-ux.md` (web research plus the vetted design skills) and `docs/DESIGN.md`.
@@ -15,7 +18,9 @@ Written after Mehul's first phone playtest of v0.1.0 (2026-10-30).
 | UI/UX and art that look crafted | Style frames approved first, SVG material art, one token system (§2) |
 | Drag that follows the finger | **Done** (c964f34, b7c879d): the card rides above the fingertip and drops into the jar under it |
 | Proper progression | A sawtooth Room 1 of 30 levels, layered jars on shelves, gold lids, room reveal (§5) |
-| Vetted Claude skills | `tools/install_skills.sh`, pinned to the reviewed commits (Mehul runs it) |
+| Vetted Claude skills | **Installed** (bf8c264) and wired into CLAUDE.md and `.claude/rules/` so every session uses them |
+| Test window that looks like a phone | **Done** (51e45a7): `PhoneWindow` fits a 20:9 window to the monitor |
+| Sound, animation, performance, security, the reward loop | §10–§15 |
 
 ## 1. What's wrong now (critique plus review)
 - **Outlines.** 2–3 px ink outlines on everything make it read as a wireframe; cards look like form fields in a box
@@ -202,8 +207,7 @@ pointer dims the rest of the board by about 50%, hides on the first touch, and c
 - **Deferred to M2b, with no placeholders:** the daily (Jar of the Day) and coins.
 
 ## 6. Sound
-- New UI sounds (screen whoosh, button tap, jar onto shelf, gold lid) are synthesised the same way as now.
-- A music bed and Kenney packs wait for Mehul's manual download (optional ask). Otherwise they move to M3b.
+Pulled forward from M3b; the full sound design is §12.
 
 ## 7. Build order
 **Step 0** (style-independent logic, tests first, alongside the content track):
@@ -212,20 +216,24 @@ pointer dims the rest of the board by about 50%, hides on the first touch, and c
 - Save v2 with its migration;
 - the progression model (ids, `introduces`, gold-lid thresholds);
 - tutorial gating;
-- `AdService`.
+- `AdService`;
+- the security baseline from §14 (playtest-only test menu, save validation).
 
 **Steps 1–6:**
-1. **Style frames:** 3 in-engine frames at 1080×2400 (Home, mid-game Play, Win) built from the SVG art, plus the
-   type-lab frame. **Mehul OKs the look from screenshots** before the kit is rewritten. This is a quick reply, and
-   step 0 carries on meanwhile.
+1. **Style frames:** 3 in-engine frames in the phone window (Home, mid-game Play, Win) built from the SVG art,
+   plus the type-lab frame. Mehul gave full rights, so the frames don't wait for his reply: a fresh-agent critique
+   of the screenshots is the gate, and Mehul sees them in the progress note and can redirect.
 2. **Kit and board art:** tokens, Button, IconButton, Sheet (bottom and centred), ArtCache, card, jar, shelf,
    rail ledge, layout fixes. Re-shoot every scenario.
 3. **Screens:** Play, Win, Lose and Pause in the new style; Home, Room and Settings; the tutorial.
-4. **Alpha APK (v0.2.0-alpha)** with Home, the tutorial and Play in the new look. Mehul plays it.
-5. **Progression wiring:** layered jars, gold lids, room reveal, exact resume, kill test. Room 1 content lands.
-6. **Release v0.2.0:**
+4. **Feel and sound pass:** the event table in §11, the sound set and mix in §12, checked with frame-by-frame
+   captures and loudness reports.
+5. **Alpha APK (v0.2.0-alpha)** with Home, the tutorial, Play, the feel and sound. Mehul plays it.
+6. **Progression wiring:** layered jars, gold lids, room reveal, exact resume, kill test. Room 1 content lands.
+7. **Release v0.2.0:**
    - screenshots at all 5 sizes, with and without `--safe` insets;
    - a fresh-agent design review of the screenshots (no author opinion), and fixes from it;
+   - the performance budget (§13) and the security audit (§14) on the release APK;
    - on-device checks;
    - the pre-release.
 
@@ -248,9 +256,215 @@ pointer dims the rest of the board by about 50%, hides on the first touch, and c
   - haptics;
   - install over USB.
 
-## 9. Questions for Mehul
-- **Fail model** (still open from M1): the slip budget from L11, or stars-only with no fail? The default stays the
-  budget; the test-menu toggle remains.
-- **Style frames** (step 1): a quick yes, or which direction to change.
-- **Optional:** download a Kenney audio pack by hand (kenney.nl blocks scripted downloads) if you want real
-  recorded sounds in this milestone.
+- **Feel, sound, performance, security:** the checks listed in §11–§14.
+
+## 9. Decisions taken under Mehul's full rights (he can overrule any of them)
+- **Fail model:** keep the slip budget from L11 (§10 explains why), with generous Room 1 budgets and the
+  two-fails assist. The stars-only toggle stays in the test menu.
+- **Style frames:** not blocking (step 1).
+- **Recorded sounds:** Kenney's own CC0 uploads on OpenGameArt instead of a manual download (§12).
+
+## 10. Player experience and reward loop (`game-design`)
+**The experience, named.** In LeBlanc's terms, Jarful aims at *Discovery* first (the "aha" of a hidden category),
+*Challenge* second (deduce under a slip budget) and *Submission* third (calm tidying). *Sensation* is spent only at
+the payoffs.
+- **Iconic mechanic:** a wrong drop writes part of the label.
+- **Core dialectic:** guess or know. Spend a slip to learn, or reason from what's on the board. The same trade
+  returns at every scale: probe or reason in a move, Peek or slip in a level, clean or quick for the gold lid.
+
+**The loop stack.** Each layer's output feeds the next one.
+
+| Loop | Time | Payoff | Feeds |
+|---|---|---|---|
+| Move | 1–3 s | the clink, or a bounce plus label letters | knowledge |
+| Level | 2–4 min | the lid cascade and the label reveal | a layered jar for the shelf |
+| Session | 10–15 min | the shelf filling, gold lids, "Shelf 1 full" every 10 levels | the room |
+| Meta | days | the room reveal, then the next room (and the daily in M2b) | a collection that tells the player's story |
+
+**Isolation test.** Is the bare move-and-lid loop fun on its own? That waits on Mehul's M1 answers. The known risk
+is post-aha busywork: 5–18 moves on 5-group boards.
+- **Gate:** every Room 1 level has a bot median of 8 or fewer moves after the aha.
+- **Levers:**
+  - at most 4 groups in Room 1;
+  - "pour proven runs" on by default if the sim shows it cuts busywork (it moves only cards the player has proven
+    alike, so it leaks nothing);
+  - lid combos, so the cascade itself feels good.
+
+**Why keep the slip budget.** Without a cost, random dragging solves every board, so the probe stops being a
+decision (the "no opportunity cost" smell). The fair-challenge rules below keep the budget from feeling cruel:
+- anything the board already proves is refused for free;
+- Room 1 budgets are generous (the average bot's p90 slips + 1);
+- Retry is instant and keeps the same deal;
+- after two fails you get a free Peek and +1 slip, and the gold lid is withheld (an assist that removes the wall,
+  not the pride).
+
+**Reward cadence: the dopamine is made of competence and information, not slot-machine schedules.**
+
+| Moment | How often | Kind of reward |
+|---|---|---|
+| Every touch answered within 100 ms | every action | control |
+| A slip writes label letters | each slip | information: failure pays |
+| First pair writes a letter | per group | information: careful play pays too |
+| Lid, label, combo pitch | every 30–60 s | completion |
+| Layered jar drops onto the shelf | per level | collection |
+| Gold lid | per clean level from L11 | mastery |
+| "Shelf 1 full" and a look at what's next ("Next shelf: 4 groups") | every 10 levels | progress, anticipation, a clean place to stop |
+| Room reveal | every 30 levels | the big one |
+| Surprises that are not currency (first gold lid, a perfect sort on a hard level) | rare | delight that doesn't crowd out the fun of playing (the over-justification guardrail) |
+
+The next goal is always visible: Home shows the next empty slot, and the Win card names a new idea when one is
+coming.
+
+**The ethics line.** These fail the test "would the player have more fun fulfilling this than not", so they never ship:
+- energy or lives;
+- timers;
+- login calendars;
+- paid or random reward boxes;
+- near-miss presentation;
+- streak guilt;
+- push notifications;
+- fake urgency;
+- upsells on the fail screen beyond the opt-in Continue;
+- interstitial ads in M2.
+
+**Respect the player's time.**
+- Speed:
+  - launch to an interactive Home in under 2 s;
+  - one tap from Home to a board, and from Win to the next board;
+  - Retry is instant;
+  - the median level is under 4 minutes.
+- Skipping: Win skips on a tap, and Pause opens instantly.
+- Resume: the board resumes exactly after a kill.
+- Confirmations: the only one is Reset progress (hold for 1.2 s).
+
+**Copy.** Plain verbs and sentence case. A button names its action ("Next level", "Try again", "Play level 13").
+Messages give direction, not mood. No exclamation spam.
+
+## 11. Feel: every event, by tier (`game-feel`, `tween-animation`)
+**Tiers:** S acknowledges a touch, M confirms a change of state, L celebrates (lid, gold), XL marks a milestone
+(win, shelf, room).
+
+**Rules:**
+- Juice never blocks input, and always returns to rest.
+- No screen shake or hit-stop anywhere. The one held beat is an 80 ms pause before a lid drops (anticipation).
+- Everything is eased: back-out for pops, cubic-out for settling, sine in-out for slides.
+- The durations live in one `Style` motion table.
+
+| Event | Tier | Motion | Sound | Haptic |
+|---|---|---|---|---|
+| Press a jar | S | top card rises 10 u, scale 1.06 with a shadow, 80 ms back-out | paper lift, ±5% pitch | 8 ms |
+| Drag | S | follows the finger (exp 32/s) and leans up to 8° with speed; target jar glows within 80 ms | soft tick on entering a jar with room | 4 ms |
+| Valid drop | S/M | 150 ms cubic-out glide, landing squash 1.06/0.94 settling in 120 ms | glass clink whose pitch rises as the jar fills, like a filling bottle; 3 variants | 10 ms |
+| Free refusal | S | card leans 6 u toward the target and back in 160 ms; the proving tag pulses | soft wooden tock | none |
+| Slip | M | 220 ms arc home, jar wobble ±3° damped over 300 ms, tag pops in, rail letters write, a slip jar cracks | a knock, then a pencil scritch as the letters write (the sound turns positive) | 12 ms, soft |
+| First pair | M | both tags pop, rail letters write | soft two-note chime | 10 ms |
+| Lid | L | 80 ms hold, lid drops in 120 ms ease-in, one 300 ms screw turn, squash on seat, label at 25 ms per letter, 400 ms shine sweep, 8 sparkles | ratchet ×3, a seat thock, pencil; +1 semitone per lid within 4 s | 30 ms + 3 light ticks |
+| Gold lid | L | gold sheen across the shelf jar | small bell | 20 ms |
+| Win | XL | jars hop in a wave staggered 60 ms, 40 paper confetti for 1.2 s, the level's jar bounces into its shelf slot | a short warm stinger; music ducks 6 dB | 20-40-20 pattern |
+| Shelf full, room reveal | XL | glow sweep along the shelf, cabinet reveal | longer stinger | pattern |
+| Lose | M, subdued | slip jars dim, sheet rises in 250 ms | low two-note, never a buzzer | none |
+| UI press | S | scale 0.96 in 80 ms, release back-out in 120 ms | soft tap | 6 ms |
+| Screen change | none | 250 ms slide or crossfade; sheets rise in 250 ms and fall in 180 ms | a quiet whoosh | none |
+| Pause | none | instant dim, nothing animates in the way | the game audio goes "behind glass" (low-pass, −6 dB) | none |
+
+**Reduce motion** removes the wobble, lean, hops, confetti and sparkles, and turns slides into fades.
+
+**Check:**
+- `--frames` captures at 60 fps feed ffmpeg contact sheets, and each timing is checked against the table.
+- A scenario taps during a lid to prove input still works.
+
+## 12. Sound design (`game-feel`)
+**The palette is a pantry:** glass, wood, cork, paper and pencil, under a warm, slow, unobtrusive music bed
+(acoustic or electric piano, about 70 bpm, loopable). No casino or arcade sounds, and no buzzers.
+
+**Sources.** Licence first, and every file goes in CREDITS.md.
+1. **Kenney's CC0 packs, from Kenney's own OpenGameArt uploads:** Impact Sounds (glass, wood), Interface Sounds and
+   UI Audio. This avoids the scripted-download block on kenney.nl. Each licence page is checked.
+2. **ffmpeg synthesis (modal: decaying partials) for what the packs lack:** the rising-pitch clink series and the
+   pencil scritch. These are formulas, not AI generation.
+3. **Music: one CC0 loop.** If nothing clears the bar, M2 ships without music; silence beats a bad loop.
+
+**Mix.**
+- **Buses:** Master → Music, Sfx, Ui.
+- **Ducking and pause:** music ducks 6 dB under stingers. Pause adds a low-pass at 800 Hz and −6 dB.
+- **Levels:** peaks at or below −1 dBFS. Effects are loudness-matched within ±2 LU per tier (ffmpeg `ebur128`).
+- **Variation and voices:**
+  - pitch varies ±3–8%, with 2–3 variants of each frequent sound;
+  - at most 3 voices of the same sound, so nothing machine-guns;
+  - a pool of 12 players.
+- **Formats:** WAV with QOA compression for effects; OGG with loop points for music.
+- **Settings:** separate Music and Sound volumes, plus Haptics.
+
+**Check:**
+- `reports/audio.md` with per-file loudness.
+- A scenario records a full level's mix through `AudioEffectRecord` to a WAV for a listen-through and a mix
+  loudness check.
+
+## 13. Performance budget (mobile)
+- **Frame rate:** a steady 60 fps on Mehul's phone on the heaviest board (9 jars, drag + lid + confetti). Frame
+  CPU stays at or under 8 ms, with no hitch over 33 ms.
+- **Cold start:** tap to the first interactive frame in 2.5 s or less (`am start -W` plus an in-game timestamp).
+- **Size and memory:** APK at most 35 MB (arm64; 26.8 MB today), RAM at most 250 MB PSS.
+- **Battery:** idle screens don't redraw. Low-processor mode is measured both on and off.
+- **How:**
+  - SVGs are rasterised once per size into a cache, with no per-frame vector work;
+  - `_draw` runs only on change;
+  - particles are pooled (CPUParticles2D, 64 or fewer);
+  - nothing is generated at runtime;
+  - JSON loads once;
+  - first-use hitches (a lid's first text, the first sound) are pre-warmed at boot.
+- **Check:** a `--bench` scenario plays the heaviest scripted sequence and writes frame-time p50, p95 and max to
+  `reports/perf.md`. The same numbers come from the phone through logcat.
+
+## 14. Security and privacy
+**Threat model:** an offline, single-player game with no accounts, no network and no purchases in M2. The real
+risks:
+- a corrupt or hand-edited save that crashes the game;
+- debug features in a store build;
+- a leaked signing key;
+- the asset and dependency supply chain;
+- personal data.
+
+**Measures:**
+- **No network:** the INTERNET permission stays off; only VIBRATE is requested. There's no analytics SDK. The
+  playtest log stays on the phone until the tester copies it.
+- **Safe save loading:**
+  - JSON only. Never `str_to_var` or `bytes_to_var` with objects, and never load `.tres` or `.res` from `user://`;
+    those can carry scripts.
+  - Every field is type- and range-checked, unknown level ids are dropped, and files over 1 MB are rejected.
+  - Writes are atomic, with a `.bak` fallback.
+  - A fuzz test feeds corrupt saves.
+- **Debug features:**
+  - The test menu exists only in builds with the `playtest` feature tag; the store preset leaves it out.
+  - Release exports aren't debuggable.
+- **Keys:**
+  - The release keystore is made only with Mehul's OK (M4) and lives outside the repo.
+  - Passwords come from environment variables.
+  - `.gitignore` covers `*.keystore`, `*.jks` and export credentials.
+- **Supply chain:**
+  - GUT and the skills are pinned.
+  - Fonts and sounds ship with their licence files.
+  - Nothing is downloaded at runtime.
+  - CREDITS.md lists every third-party file with its source.
+- **Export hygiene:** `tools/`, `tests/`, `docs/`, `reports/`, `.claude/` and `src/gen/` are excluded, and an APK
+  listing proves it.
+- **Later:** real purchases need server-side verification. That's Mehul's call with the accounts.
+
+**Check:**
+- `tools/audit_apk.sh`: permissions, debuggable flag, unexpected files.
+- GUT fuzz tests for the save.
+
+## 15. Accessibility (the Basic tier of the Game Accessibility Guidelines, in phone terms)
+- **Text:** the smallest text is 22 u, which is 33 px on a 1080-wide phone, above the 28 px floor. Card words are
+  at least 34 u.
+- **Contrast:** at least 4.5:1 (Ink on Paper is 12.5). Apricot is never used for text.
+- **Never carried by one channel alone:**
+  - tags use both a colour and a glyph;
+  - the slip and hot-jar states use shape as well as colour;
+  - every sound has a visual.
+- **Touch:** targets are at least 88 u (about 48 dp). Play controls sit in the lower two-thirds for one thumb;
+  Pause at top left is the rare exception.
+- **No time pressure** anywhere, and undo is unlimited back to the last lid.
+- **Settings:** Music, Sound, Haptics and Reduce motion. Nothing flashes more than 3 times a second.
+- **Check:** colour-vision-deficiency screenshots (a `--cvd=deutan|protan|tritan` filter in the shot tool) of the
+  tag palette and the rail.
