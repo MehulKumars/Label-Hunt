@@ -4,7 +4,7 @@
 class_name ShotRunner
 extends Node
 
-const SCENARIOS := ["t01", "t03_slip", "t07", "m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "win", "lose", "pause", "test", "drag", "pick"]
+const SCENARIOS := ["home", "tutorial", "t01", "t03_slip", "t07", "m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "win", "lose", "pause", "test", "drag", "pick"]
 
 var out_dir := ""
 var only: PackedStringArray = []
@@ -45,52 +45,58 @@ func _run(name: String) -> void:
 	var play: PlayScreen = main.play
 	match name:
 		"t01":
-			main.start_level(0)
+			main.start_level("tut1")
 		"t03_slip":
-			main.start_level(2)
+			main.start_level("tut3")
 			await _legal(play, 2)
 			await _slips(play, 1)
 		"t07":
-			main.start_level(6)
+			main.start_level("r1-04")
 			await _legal(play, 3)
 		"m01":
-			main.start_level(10)
+			main.start_level("m01")
 		"m01_play":
-			main.start_level(10)
+			main.start_level("m01")
 			await _legal(play, 6)
 			await _slips(play, 1)
 		"m06_frost":
-			main.start_level(15)
+			main.start_level("m06")
 			await _legal(play, 2)
 		"m07_label":
-			main.start_level(16)
+			main.start_level("m07")
 		"m08_cork":
-			main.start_level(17)
+			main.start_level("m08")
 		"worst":
-			main.start_level(10)
+			main.start_level("m01")
 			for i in 2:
 				play.session.add_jar()
 				play.board.add_jar()
 			await _slips(play, 1)
+		"home":
+			main.go_home()
+			await _wait(0.4)
+		"tutorial":
+			main.start_tutorial(0)
+			await _wait(1.2)
 		"win":
-			main.start_level(0)
+			main.start_level("r1-01")
 			await _legal(play, 99)
 			await _wait(2.5)
 		"lose":
-			main.start_level(10)
+			main.start_level("m01")
 			await _slips(play, 4)
 			await _wait(1.5)
 		"pause":
-			main.start_level(3)
+			main.start_level("r1-01")
 			await _wait(0.3)
 			main._open_pause()
 		"test":
-			main.start_level(3)
+			main.start_level("r1-01")
 			await _wait(0.3)
 			main._open_test_menu()
 		"drag", "pick":
 			# Real input events: press on jar 0's body (below its top card), then drag towards jar 2.
-			main.start_level(10)
+			main.start_level("m01")
 			await _wait(0.4)
 			var rects: Array[Rect2] = play.board.layout["jars"]
 			var from := rects[0].position + Vector2(rects[0].size.x / 2.0, rects[0].size.y * 0.85)
@@ -115,7 +121,7 @@ func _run(name: String) -> void:
 	await _wait(1.4)
 	await RenderingServer.frame_post_draw
 	_save(name, play)
-	for line in play.board.misplaced():
+	for line in (play.board.misplaced() if play.session != null else []):
 		print("  MISPLACED ", line)
 
 

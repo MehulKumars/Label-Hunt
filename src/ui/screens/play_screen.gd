@@ -5,11 +5,15 @@ extends Control
 
 signal finished(won: bool, stats: Dictionary)
 signal pause_requested
+signal skip_requested
 
 const TOP_BAR := 96.0
 const BAR_H := 122.0
 
-var level_index := 0
+var level_id := ""
+## Features taught by this level (Catalog.features_at) and the ones it introduces.
+var features: Dictionary = {}
+var introduces: PackedStringArray = []
 var session: Session
 var board: BoardView
 var rail: LabelRail
@@ -20,6 +24,7 @@ var undo_btn: RoundButton
 var peek_btn: RoundButton
 var jar_btn: RoundButton
 var tidy_btn: RoundButton
+var skip_btn: PillButton
 var caption: Caption
 var hand: HandPointer
 var peeks_left := 1
@@ -61,6 +66,11 @@ func _init() -> void:
 	tidy_btn = _bar_button("tidy", "Tidy up", _on_tidy)
 	caption = Caption.new()
 	add_child(caption)
+	skip_btn = PillButton.new("Skip", false, 72.0)
+	skip_btn.font_size = 26
+	skip_btn.visible = false
+	skip_btn.pressed.connect(func() -> void: skip_requested.emit())
+	add_child(skip_btn)
 	hand = HandPointer.new()
 	add_child(hand)
 
@@ -72,8 +82,10 @@ func _bar_button(icon: String, text: String, action: Callable) -> RoundButton:
 	return b
 
 
-func start(index: int, s: Session, bonus_peeks: int = 0) -> void:
-	level_index = index
+func start(id: String, s: Session, bonus_peeks: int = 0) -> void:
+	level_id = id
+	features = Levels.catalog.features_at(id)
+	introduces = Levels.catalog.entry(id).get("introduces", PackedStringArray())
 	session = s
 	peeks_left = 1 + bonus_peeks
 	jars_left = 1
@@ -85,14 +97,14 @@ func start(index: int, s: Session, bonus_peeks: int = 0) -> void:
 	caption.modulate.a = 0.0
 	for b in [undo_btn, peek_btn, jar_btn, tidy_btn]:
 		b.set_pulse(false)
-	# Tutorial levels introduce the thumb-bar buttons one at a time.
-	undo_btn.visible = index >= 2
-	jar_btn.visible = index >= 4
-	peek_btn.visible = index >= 7
+	# The thumb-bar buttons appear as the levels that teach them are reached.
+	undo_btn.visible = features.has("undo")
+	jar_btn.visible = features.has("jar")
+	peek_btn.visible = features.has("peek")
 	tidy_btn.visible = false
-	hide_rail = s.level.tutorial in ["move", "empty"]
+	hide_rail = not features.has("slip")
 	rail.visible = not hide_rail
-	title_label.text = Levels.title(index)
+	title_label.text = Levels.title(id)
 	board.reduce_motion = bool(Save.setting("reduce_motion"))
 	board.setup(s)
 	rail.setup(s)
@@ -119,6 +131,8 @@ func _layout() -> void:
 	var meter_w := maxf(110.0, session.budget * 38.0 + 8.0) if session.budget > 0 else 140.0
 	meter.position = Vector2(left + content_w - meter_w, top)
 	meter.size = Vector2(meter_w, RoundButton.D)
+	skip_btn.size = Vector2(130, 72)
+	skip_btn.position = Vector2(left + content_w - 130, top + (RoundButton.D - 72) / 2.0)
 	title_label.position = Vector2(left + 110, top)
 	title_label.size = Vector2(content_w - 110 - maxf(110.0, meter_w) - 10, RoundButton.D)
 	var rail_h := 0.0 if hide_rail else LabelRail.height_for(session.level.group_count())
@@ -173,21 +187,33 @@ func _stop_hint() -> void:
 		board.set_glow_card(-1)
 
 
+## The one short line a level opens with: what this level introduces, if anything.
 func _intro_captions() -> void:
 	match session.level.tutorial:
 		"empty":
 			caption.say("Empty jars take any card", 3.0)
 		"rail":
-			caption.say("Same group stacks", 3.0)
-		"undo":
-			undo_btn.set_pulse(true)
-			caption.say("Undo is free", 3.0)
-			get_tree().create_timer(3.5).timeout.connect(undo_btn.set_pulse.bind(false))
-		"peek":
-			peek_btn.set_pulse(true)
-			caption.say("Peek shows a card's group", 3.0)
+			caption.say("Not sure? Try a drop", 3.0)
+	for f in introduces:
+		match f:
+			"undo":
+				_teach(undo_btn, "Undo is free")
+			"jar":
+				_teach(jar_btn, "Stuck? Add a jar")
+			"peek":
+				_teach(peek_btn, "Peek shows a card's group")
+			"four":
+				caption.say("Four groups now", 3.0)
+			"herrings":
+				caption.say("Some words fit two", 3.0)
 	if session.has_budget() and not Save.data["seen_captions"].has("budget"):
 		_caption_once("budget", "%d slips allowed" % session.budget)
+
+
+func _teach(button: RoundButton, text: String) -> void:
+	button.set_pulse(true)
+	caption.say(text, 3.0)
+	get_tree().create_timer(3.5).timeout.connect(button.set_pulse.bind(false))
 
 
 func _caption_once(key: String, text: String) -> void:
@@ -254,7 +280,7 @@ func _refresh() -> void:
 	peek_btn.enabled = peeks_left > 0 and not session.is_over()
 	jar_btn.badge = str(jars_left)
 	jar_btn.enabled = jars_left > 0 and not session.is_over() and session.board.jar_count() < 9
-	var tidy := session.all_known() and not _tidying and level_index >= 2
+	var tidy := session.all_known() and not _tidying and features.has("undo")
 	if tidy != tidy_btn.visible:
 		tidy_btn.visible = tidy
 		tidy_btn.set_pulse(tidy)
@@ -343,7 +369,7 @@ func _finish(won: bool) -> void:
 
 func stats(won: bool) -> Dictionary:
 	return {
-		"level": session.level.id, "index": level_index, "won": won, "slips": session.slips,
+		"level": session.level.id, "won": won, "slips": session.slips,
 		"budget": session.budget, "moves": session.moves, "undos": session.undos, "peeks": session.peeks,
 		"jars_added": session.jars_added, "continues": session.continues, "tidy": _tidying,
 		"secs": snappedf((Time.get_ticks_msec() - _started_ms) / 1000.0, 0.1),
@@ -367,3 +393,10 @@ func on_back() -> bool:
 		board.cancel_lift()
 		return true
 	return false
+
+
+## Tutorial boards swap the slip meter for a visible Skip.
+func set_tutorial(on: bool) -> void:
+	skip_btn.visible = on
+	if on:
+		meter.visible = false

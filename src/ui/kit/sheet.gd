@@ -8,6 +8,8 @@ signal closed
 
 ## False for sheets that need a decision (results, a playing ad): no ×, and outside taps do nothing.
 var dismissible := true
+## For Back (BackPolicy): "utility" closes, "result" goes Home, "blocking" (an ad playing) ignores Back.
+var kind := "utility"
 var panel: Control
 var body: VBoxContainer
 var title := ""

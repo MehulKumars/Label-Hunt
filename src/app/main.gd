@@ -1,11 +1,20 @@
-## Root of the app: theme, background, the play screen, popups and the Android Back button.
+## Root of the app: theme, background, the screens (Home, Play), popups, the tutorial flow and the Android Back
+## button. Progress goes through Progression; Back decisions through BackPolicy.
 extends Control
 
+const T_IN := 0.25
+const T_OUT := 0.18
+
+var home: HomeScreen
 var play: PlayScreen
+## "home", "play" (a room or test level) or "tutorial"
+var screen := "home"
 var sheets: Array[Sheet] = []
 var fps_label: Label
 var _fails := 0
+var _assisted := false
 var _flags: Array[String] = []
+var _tutorial_replay := false
 
 
 func _ready() -> void:
@@ -14,23 +23,33 @@ func _ready() -> void:
 	ThemeDB.fallback_font = Style.sans()
 	ThemeDB.fallback_font_size = Style.BODY_FONT
 	_add_background()
-	Sfx.set_enabled(bool(Save.setting("sound")))
+	Sfx.set_enabled(float(Save.setting("sound")) > 0.0)
 	Haptics.enabled = bool(Save.setting("haptics"))
+	home = HomeScreen.new()
+	home.play_pressed.connect(func() -> void: start_level(home.next_id))
+	home.tutorial_pressed.connect(start_tutorial.bind(0, true))
+	home.settings_pressed.connect(_open_settings)
+	add_child(home)
 	play = PlayScreen.new()
 	play.finished.connect(_on_finished)
 	play.pause_requested.connect(_open_pause)
+	play.skip_requested.connect(_open_skip)
+	play.visible = false
 	add_child(play)
 	fps_label = Label.new()
 	fps_label.position = Vector2(8, 4)
 	fps_label.z_index = 100
 	fps_label.add_theme_font_size_override("font_size", 20)
-	fps_label.visible = bool(Save.setting("fps"))
+	fps_label.visible = bool(Save.setting("fps")) and playtest()
 	add_child(fps_label)
 	var shots := ShotRunner.from_args()
 	if shots:
 		add_child(shots)
 		return
-	start_level(int(Save.data["level"]))
+	if not bool(Save.data["tutorial"]["done"]):
+		start_tutorial(int(Save.data["tutorial"]["board"]))
+	else:
+		go_home()
 
 
 func _process(_delta: float) -> void:
@@ -38,40 +57,126 @@ func _process(_delta: float) -> void:
 		fps_label.text = "%d fps" % Engine.get_frames_per_second()
 
 
-func start_level(i: int, retry: bool = false) -> void:
+## Test tools (test menu, level select, FPS) exist in debug runs and in APKs exported with the "playtest" tag only.
+static func playtest() -> bool:
+	return OS.is_debug_build() or OS.has_feature("playtest")
+
+
+# --- screens -------------------------------------------------------------------------------------------------------
+
+func go_home() -> void:
+	close_all_sheets()
+	play.board.cancel_lift()
+	home.refresh()
+	_show(home, "home")
+
+
+## Crossfades to a screen. The outgoing one stops taking input at once, so a double tap can't navigate twice.
+func _show(target: Control, name: String) -> void:
+	screen = name
+	for s: Control in [home, play]:
+		if s == target or not s.visible:
+			continue
+		s.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED
+		var out := s.create_tween()
+		out.tween_property(s, "modulate:a", 0.0, T_OUT)
+		out.tween_callback(s.hide)
+	target.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_INHERITED
+	if target.visible and target.modulate.a >= 1.0:
+		return
+	target.show()
+	target.modulate.a = 0.0
+	var tw := target.create_tween()
+	tw.tween_property(target, "modulate:a", 1.0, T_IN).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+
+func start_tutorial(board: int, replay: bool = false) -> void:
+	var ids := Levels.catalog.tutorial
+	board = clampi(board, 0, ids.size() - 1)
+	_tutorial_replay = replay
+	if not replay:
+		Save.data["tutorial"]["board"] = board
+		Save.touch()
+	_begin(ids[board], "tutorial", false)
+
+
+func start_level(id: String, retry: bool = false) -> void:
+	if id == "" or not Levels.catalog.has(id):
+		go_home()
+		return
+	_begin(id, "play", retry)
+
+
+func _begin(id: String, mode: String, retry: bool) -> void:
 	close_all_sheets()
 	if not retry:
 		_fails = 0
-	i = clampi(i, 0, Levels.count() - 1)
-	var rules: Dictionary = Save.data["rules"]
-	var level: LevelData = Levels.make_level(i, bool(rules.get("one_empty", false)))
+	var rules: Dictionary = Save.data["rules"] if playtest() else {}
+	var level: LevelData = Levels.make_level(id, bool(rules.get("one_empty", false)))
 	var s := Session.new(level, rules.duplicate())
 	var bonus := 0
+	_assisted = false
 	if _fails >= 2:
 		s.budget += 1 if s.budget > 0 else 0
 		bonus = 1
-	play.start(i, s, bonus)
-	Save.data["level"] = i
-	Save.write()
+		_assisted = true
+	play.start(id, s, bonus)
+	play.set_tutorial(mode == "tutorial")
+	_show(play, mode)
 
 
 func _on_finished(won: bool, stats: Dictionary) -> void:
 	stats["flags"] = []
 	_flags = []
 	Save.log_attempt(stats)
-	if won:
+	if screen == "tutorial":
+		_tutorial_won() if won else start_tutorial(Levels.catalog.tutorial.find(play.level_id), _tutorial_replay)
+	elif won:
 		_open_win(stats)
 	else:
 		_fails += 1
 		_open_lose()
 
 
+func _tutorial_won() -> void:
+	var ids := Levels.catalog.tutorial
+	var i := ids.find(play.level_id)
+	if i + 1 < ids.size():
+		start_tutorial(i + 1, _tutorial_replay)
+		return
+	if not _tutorial_replay:
+		Save.data["tutorial"] = {"done": true, "board": 0}
+		Save.touch()
+	var s := _result_sheet("You're ready")
+	s.add_label("Sort the cards. Wrong drops give clues.", 28)
+	var next := Progression.next_level(Levels.catalog, Save.data)
+	s.add_button("Play level %d" % (Levels.catalog.play_order().find(next) + 1) if next != "" else "Home", true,
+		func() -> void: start_level(next) if next != "" else go_home(), 104.0)
+	s.add_button("Home", false, go_home)
+	open_sheet(s)
+
+
+func _open_skip() -> void:
+	if not sheets.is_empty():
+		return
+	play.board.cancel_lift()
+	var s := Sheet.new("Skip the tutorial?")
+	s.add_label("You can replay it any time from Home.", 28)
+	s.add_button("Keep learning", true, s.close)
+	s.add_button("Skip", false, func() -> void:
+		if not _tutorial_replay:
+			Save.data["tutorial"] = {"done": true, "board": 0}
+			Save.touch()
+		go_home())
+	open_sheet(s)
+
+
+# --- back ----------------------------------------------------------------------------------------------------------
+
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_WM_GO_BACK_REQUEST:
 			on_back()
-		NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_WM_CLOSE_REQUEST:
-			Save.write()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -79,12 +184,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		on_back()
 
 
-## Back: close the top popup, else put down a lifted card, else pause.
 func on_back() -> void:
-	if not sheets.is_empty():
-		sheets.back().on_back()
-	elif not play.on_back():
-		_open_pause()
+	var top: String = "" if sheets.is_empty() else sheets.back().kind
+	var lifted := play.visible and (play.board.lifted_jar >= 0 or play.board.peek_mode)
+	match BackPolicy.decide({"screen": screen, "sheet": top, "lifted": lifted}):
+		&"close_sheet":
+			sheets.back().on_back()
+		&"home":
+			go_home()
+		&"drop_card":
+			play.on_back()
+		&"pause":
+			_open_pause()
+		&"skip_prompt":
+			_open_skip()
+		&"background":
+			AppBack.to_background()
 
 
 func open_sheet(s: Sheet) -> Sheet:
@@ -102,11 +217,36 @@ func close_all_sheets() -> void:
 
 # --- popups --------------------------------------------------------------------------------------------------------
 
+func _result_sheet(heading: String) -> Sheet:
+	var s := Sheet.new(heading)
+	s.dismissible = false
+	s.kind = "result"
+	return s
+
+
 func _open_win(stats: Dictionary) -> void:
-	var s := _BackSheet.new("Solved!")
-	s.back_action = _next_level
-	s.add_label("%d slips · %d moves · %ss" % [stats["slips"], stats["moves"], stats["secs"]], 26)
-	s.add_button("Next", true, _next_level, 110.0)
+	var id := play.level_id
+	var cat := Levels.catalog
+	var res := Progression.record_win(cat, Save.data, id, int(stats["slips"]), _assisted or play.session.continues > 0)
+	Save.touch()
+	var s := _result_sheet("Solved")
+	if res["shelf_full"] >= 0:
+		s.add_label("Shelf %d is full." % (res["shelf_full"] + 1), 30)
+	if res["new_gold"]:
+		s.add_label("Clean sort: gold lid." if not res["first_gold"] else "Clean sort: your first gold lid.", 28)
+	var next: String = res["next"] if cat.entry(id)["track"] == "room" else ""
+	if cat.entry(id)["track"] == "test":
+		var tests := cat.test
+		next = tests[(tests.find(id) + 1) % tests.size()]
+	if next != "":
+		s.add_button("Next level", true, start_level.bind(next), 104.0)
+	s.add_button("Home", next == "", go_home)
+	if playtest():
+		_add_flag_row(s)
+	open_sheet(s)
+
+
+func _add_flag_row(s: Sheet) -> void:
 	s.add_label("Playtest: how was that board?", 22)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 10)
@@ -120,7 +260,6 @@ func _open_win(stats: Dictionary) -> void:
 			b.queue_redraw())
 		row.add_child(b)
 	s.body.add_child(row)
-	open_sheet(s)
 
 
 func _flag(flag: String) -> void:
@@ -135,35 +274,32 @@ func _flag(flag: String) -> void:
 	Save.flush_log()
 
 
-func _next_level() -> void:
-	var next := play.level_index + 1
-	if next >= Levels.count():
-		next = 0
-	start_level(next)
-
-
 func _open_lose() -> void:
-	var s := _BackSheet.new("Out of slips")
-	s.back_action = func() -> void: start_level(play.level_index, true)
-	s.add_label("Every slip showed you part of a label.", 26)
-	s.add_button("Retry", true, func() -> void: start_level(play.level_index, true), 110.0)
-	s.add_button("Continue +2 slips (ad)", false, func() -> void:
-		s.close()
-		_mock_ad(func() -> void:
-			play.session.continue_play(2)
-			play.resume_after_continue()))
+	var s := _result_sheet("Out of slips")
+	s.add_label("Every slip showed you part of a label.", 28)
+	s.add_button("Try again", true, start_level.bind(play.level_id, true), 104.0)
+	if AdPolicy.can_offer_continue(play.session.continues):
+		s.add_button("Continue with 2 more slips", false, func() -> void:
+			s.close()
+			_rewarded("continue", func() -> void:
+				play.session.continue_play(2)
+				play.resume_after_continue()))
+	s.add_button("Home", false, go_home)
 	open_sheet(s)
 
 
-func _mock_ad(grant: Callable) -> void:
+## A rewarded ad through Ads. While it plays, a blocking sheet stands in (the mock provider's "video").
+func _rewarded(placement: String, grant: Callable) -> void:
 	var s := Sheet.new("Ad")
 	s.dismissible = false
-	s.add_label("Test build: a rewarded video plays here later.", 26)
+	s.kind = "blocking"
+	s.add_label("Test build: a rewarded video plays here.", 26)
 	open_sheet(s)
-	get_tree().create_timer(1.5).timeout.connect(func() -> void:
-		if is_instance_valid(s):
-			s.close()
-		grant.call())
+	var granted: bool = await Ads.show_rewarded(placement)
+	if is_instance_valid(s):
+		s.close()
+	if granted:
+		grant.call()
 
 
 func _open_pause() -> void:
@@ -172,9 +308,33 @@ func _open_pause() -> void:
 	play.board.cancel_lift()
 	var s := Sheet.new("Paused")
 	s.add_button("Resume", true, s.close)
-	s.add_button("Restart level", false, func() -> void: start_level(play.level_index, true))
-	s.add_toggle("Sound", bool(Save.setting("sound")), func(v: bool) -> void:
-		Save.set_setting("sound", v)
+	s.add_button("Restart level", false, start_level.bind(play.level_id, true))
+	s.add_button("Home", false, go_home)
+	_add_toggles(s)
+	if playtest():
+		s.add_button("Test menu", false, func() -> void:
+			s.close()
+			_open_test_menu())
+	open_sheet(s)
+
+
+func _open_settings() -> void:
+	if not sheets.is_empty():
+		return
+	var s := Sheet.new("Settings")
+	_add_toggles(s)
+	s.add_button("How to play", false, func() -> void: start_tutorial(0, true))
+	if playtest():
+		s.add_button("Test menu", false, func() -> void:
+			s.close()
+			_open_test_menu())
+	s.add_label("Jarful %s" % ProjectSettings.get_setting("application/config/version"), 22)
+	open_sheet(s)
+
+
+func _add_toggles(s: Sheet) -> void:
+	s.add_toggle("Sound", float(Save.setting("sound")) > 0.0, func(v: bool) -> void:
+		Save.set_setting("sound", 1.0 if v else 0.0)
 		Sfx.set_enabled(v))
 	s.add_toggle("Haptics", bool(Save.setting("haptics")), func(v: bool) -> void:
 		Save.set_setting("haptics", v)
@@ -182,10 +342,6 @@ func _open_pause() -> void:
 	s.add_toggle("Reduce motion", bool(Save.setting("reduce_motion")), func(v: bool) -> void:
 		Save.set_setting("reduce_motion", v)
 		play.board.reduce_motion = v)
-	s.add_button("Test menu", false, func() -> void:
-		s.close()
-		_open_test_menu())
-	open_sheet(s)
 
 
 func _open_test_menu() -> void:
@@ -206,14 +362,17 @@ func _open_test_menu() -> void:
 	_compact(s.add_toggle("FPS", fps_label.visible, func(v: bool) -> void:
 		fps_label.visible = v
 		Save.set_setting("fps", v)), toggles)
-	s.add_button("Apply rules: restart level", true, func() -> void: start_level(play.level_index, true), 80.0)
+	var cat := Levels.catalog
 	var levels := _grid(s, 6)
-	for i in Levels.count():
-		var name := str(i + 1) if i < 10 else "B%d" % (i - 9)
-		var b := PillButton.new(name, i == play.level_index, 60.0)
+	var ids: PackedStringArray = cat.play_order()
+	ids.append_array(cat.test)
+	for id in ids:
+		var e := cat.entry(id)
+		var name := str(cat.play_order().find(id) + 1) if e["track"] == "room" else "T%d" % e["number"]
+		var b := PillButton.new(name, id == play.level_id, 60.0)
 		b.custom_minimum_size = Vector2(80, 60)
 		b.font_size = 22
-		b.pressed.connect(start_level.bind(i))
+		b.pressed.connect(start_level.bind(id))
 		levels.add_child(b)
 	var tools := _grid(s, 2)
 	_compact(s.add_button("Copy log (%d)" % Save.log_entries.size(), false, func() -> void:
@@ -224,7 +383,9 @@ func _open_test_menu() -> void:
 		Save.clear_log()
 		Save.write()
 		play.caption.say("Log and captions reset")), tools)
-	_compact(s.add_button("Background", false, func() -> void: AppBack.to_background()), tools)
+	_compact(s.add_button("Reset progress", false, func() -> void:
+		Save.reset()
+		start_tutorial(0)), tools)
 	_compact(s.add_button("Close", false, s.close), tools)
 	open_sheet(s)
 
@@ -288,17 +449,3 @@ func _make_theme() -> Theme:
 	t.default_font_size = Style.BODY_FONT
 	t.set_color("font_color", "Label", Style.INK)
 	return t
-
-
-## A sheet whose Back runs a custom action (Win: Next, Lose: Retry).
-class _BackSheet extends Sheet:
-	var back_action: Callable
-
-	func _init(heading: String = "") -> void:
-		super(heading)
-		dismissible = false
-
-	func on_back() -> bool:
-		if back_action.is_valid():
-			back_action.call()
-		return true

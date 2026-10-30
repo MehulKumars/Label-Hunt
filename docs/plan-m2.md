@@ -1,4 +1,4 @@
-# M2 plan: Home, tutorial, progression and a crafted look (draft 4)
+# M2 plan: Home, tutorial, progression and a crafted look (draft 4, reviewed)
 
 Written after Mehul's first phone playtest of v0.1.0 (2026-10-30). Approved by Mehul on 2026-10-30, with full
 rights to change anything in service of quality. Draft 4 adds the quality bar he asked for (§10–§15): the player
@@ -228,7 +228,7 @@ Pulled forward from M3b; the full sound design is §12.
 3. **Screens:** Play, Win, Lose and Pause in the new style; Home, Room and Settings; the tutorial.
 4. **Feel and sound pass:** the event table in §11, the sound set and mix in §12, checked with frame-by-frame
    captures and loudness reports.
-5. **Alpha APK (v0.2.0-alpha)** with Home, the tutorial, Play, the feel and sound. Mehul plays it.
+5. **Alpha APK (v0.2.0-alpha)** with Home, the tutorial, Play, the feel and sound, and the minimum progression of §16.6. Mehul plays it.
 6. **Progression wiring:** layered jars, gold lids, room reveal, exact resume, kill test. Room 1 content lands.
 7. **Release v0.2.0:**
    - screenshots at all 5 sizes, with and without `--safe` insets;
@@ -468,3 +468,88 @@ risks:
 - **Settings:** Music, Sound, Haptics and Reduce motion. Nothing flashes more than 3 times a second.
 - **Check:** colour-vision-deficiency screenshots (a `--cvd=deutan|protan|tritan` filter in the shot tool) of the
   tag palette and the rail.
+
+## 16. Review of draft 4: decisions folded in (these override the numbers above)
+A fresh adversarial review (a mobile-game design lead and a Godot tech lead) checked draft 4 against the code, the
+sim reports and the installed skills.
+
+**Before building:**
+1. **L1–10 must contain a discovery.** The old t04–t10 boards show 0 median slips and 100% wins even for the random
+   prober: the bot knows every group from move 0, so the slip-writes-the-label mechanic never fires.
+   - L1–3 are 2-group quickies of about 20 s.
+   - From L3, every level has one non-obvious group (a tier-2 category or a gentle herring).
+   - **Per-level targets:** average-bot median slips ≥ 1, and the aha arrives after ≥ 40% of moves.
+   - Each level's deal is the one with the lowest post-aha median among about 50 seeded deals.
+   - Pour isn't counted on to cut busywork.
+2. **Tutorial board 3:** two empty jars plus the Cricket herring, which makes the natural first move an honest slip
+   without making the board unsolvable. It gets no solver hint pointer, and every tutorial board shows a visible
+   **Skip** link (not only Back).
+3. **Android edge-swipe Back:** a canceled release (`event.is_canceled()`) puts the card back and is never a drop.
+   The board's side gutter is at least 40 u, a token, because the gesture zone is about 24 dp.
+4. **The SVG art must be exported as source.** Godot imports `.svg` as a texture and doesn't ship the text.
+   - `assets/art/*.svg` joins the export `include_filter`, and is rasterised at runtime at device scale.
+   - The cache is keyed by asset and size, and tints use `modulate`.
+   - The wordmark is set in code in the display font, not drawn as SVG letters.
+5. **Gold and budgets:**
+   - The gold threshold is the largest k where 25–45% of average-bot runs earn it.
+   - A gold notch on the slip meter shows it during play.
+   - Until bot calibration reaches ρ ≥ 0.6, budgets come from the **novice** bot's p90 + 1.
+6. **The alpha ships with minimum progression:** ids, the solved list, the jar flying to its shelf, and L1–10.
+   Gold lids, the room reveal and the kill test can follow.
+7. **Exact resume saves the whole attempt, not the board:**
+   - The save keeps the attempt's action log (moves, slips, undos, peeks, +jars) and the fail count.
+   - On load the log replays through `Session`, which rebuilds the knowledge, tags and slips exactly. A kill can't
+     refund slips or forget what the player learned.
+   - Writes are debounced (about 0.5 s after the animations settle) and forced on pause or focus loss.
+
+**During the build:**
+8. **Haptics:** only lift, drop, slip, lid and win, with a 15–20 ms floor. Godot 4.7 has `vibrate_handheld`
+   only, and cheap ERM motors buzz on tiny pulses. No haptic on drag hover or UI presses.
+9. **Audio:**
+   - The landing clink starts `AudioServer.get_output_latency()` early, checked against a slow-motion video of the
+     phone.
+   - Stingers get reserved players.
+   - Short clips are matched by peak and active RMS, because ebur128 is meaningless under 400 ms.
+   - The music keeps processing during pause, behind glass.
+10. **Feel events added to §11:**
+    - the board's deal-in;
+    - the +Jar relayout (jars glide to their new spots);
+    - the undo rewind (the card flies back along its path);
+    - put back, which looks different from a slip (no wobble or knock);
+    - a last-slip warning (the final slip jar pulses once);
+    - the stuck state (Undo and +Jar pulse);
+    - the Tidy-up autoplay at 120 ms per move, with the combo pitch capped at +5 semitones.
+11. **Battery:**
+    - Frame rate capped at 60 fps (120 Hz phones otherwise render 120).
+    - The Play pill breathes 3 times, then rests, and starts again after 20 s idle.
+    - Low-processor mode on Home and Room.
+12. **Double taps:** the outgoing screen ignores input once navigation starts. Win's Next ignores taps for the first
+    400 ms, so the jar-to-shelf payoff is seen.
+13. **Home:**
+    - It shows the **current shelf** large (10 slots as 5×2, about 120 u each), and the cabinet itself opens Room.
+    - How to play sits in the top-right "?", replacing the link row.
+    - The button reads "Play level 13" (no middle dot).
+    - No starter shelf: after the tutorial, slot 1 glows as the invitation.
+14. **Type:**
+    - Card text uses one quantised size per board (42, 38 or 34) instead of shrinking per card. This avoids glyph
+      hitches and mismatched neighbours.
+    - Lid labels are never under 26 u.
+15. **Tidy up** finishes with a greedy sort (every group is proven by then), never the solver on the main thread.
+16. **Backups and keys:**
+    - Android backup is allowed, so a new phone keeps the collection; the save holds no secrets.
+    - Play App Signing goes in M4.
+    - Moving from the debug key to the release key forces an uninstall, which wipes test saves; that's planned for.
+17. **Content fairness:** a fresh agent lists every Room 1 word that could fit another group in its level. Each
+    one becomes a deliberate herring or gets swapped.
+18. **Captures use Godot's Movie Maker** (`--write-movie … --fixed-fps 60`) for frame-timing sheets and the
+    full-mix WAV. It's deterministic and records audio.
+
+**Smaller contradictions:**
+- Cold start to interactive is under 3 s everywhere.
+- Reset progress uses a confirm sheet with the safe choice focused, not a hold.
+- Pause dims instantly and its sheet rises in 150 ms.
+
+**Scope cut order if time runs short:**
+1. Room becomes a scroll of Home.
+2. Music.
+3. The room-reveal choreography.

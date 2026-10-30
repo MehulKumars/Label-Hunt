@@ -1,9 +1,9 @@
 ## Deals hand-made levels that ask for a seeded deal, then checks every level and writes the file back.
 ## Checks: unique exact cover, solvable by the solver, no same-group cards touching (tutorial t01 is exempt).
-## Run: godot --headless --path . -s res://tools/check_levels.gd [-- --file=res://data/levels/handmade.json]
+## Run: godot --headless --path . -s res://tools/check_levels.gd [-- --file=res://data/levels/room1.json]
 extends SceneTree
 
-const DEFAULT_FILE := "res://data/levels/handmade.json"
+const DEFAULT_FILE := "res://data/levels/room1.json"
 
 
 func _init() -> void:
@@ -21,7 +21,7 @@ func _init() -> void:
 		var cover := ExactCover.count(level)
 		if cover != 1:
 			notes.append("COVER=%d" % cover)
-		if not Dealer.no_adjacent_pairs(level.jars) and level.id != "t01":
+		if not Dealer.no_adjacent_pairs(level.jars) and level.id != "tut1":
 			notes.append("ADJACENT")
 		var t0 := Time.get_ticks_msec()
 		var res := Solver.solve(BoardState.from_level(level), 200000)

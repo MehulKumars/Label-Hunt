@@ -214,7 +214,13 @@ func _gui_input(event: InputEvent) -> void:
 	if session == null or session.is_over():
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
+		if event.is_canceled():
+			# The system took the touch (Android edge-swipe Back): put the card down, never drop it.
+			if lifted_jar >= 0:
+				cancel_lift()
+			_pressing = false
+			accept_event()
+		elif event.pressed:
 			_on_press(event.position)
 		else:
 			_on_release(event.position)

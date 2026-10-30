@@ -1,0 +1,71 @@
+{
+  "version": 2,
+  "track": "tutorial",
+  "levels": [
+    {
+      "id": "tut1",
+      "tutorial": "move",
+      "introduces": ["move"],
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Fruit",
+          "key": "Fruit",
+          "words": ["Apple", "Pear", "Plum", "Mango"]
+        },
+        {
+          "label": "Farm animals",
+          "key": "Farm",
+          "words": ["Cow", "Pig", "Sheep", "Goat"]
+        }
+      ],
+      "jars": [["Apple", "Pear", "Plum"], ["Pig", "Sheep", "Goat", "Mango"], ["Cow"]]
+    },
+    {
+      "id": "tut2",
+      "tutorial": "empty",
+      "introduces": ["dig", "drag"],
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Weather",
+          "key": "Weather",
+          "words": ["Rain", "Snow", "Wind", "Hail"]
+        },
+        {
+          "label": "Pets",
+          "key": "Pets",
+          "words": ["Dog", "Cat", "Rabbit", "Parrot"]
+        }
+      ],
+      "jars": [["Rain", "Dog", "Snow", "Cat"], ["Rabbit", "Wind", "Parrot", "Hail"], [], []]
+    },
+    {
+      "id": "tut3",
+      "tutorial": "rail",
+      "introduces": ["slip"],
+      "budget": 0,
+      "groups": [
+        {
+          "label": "Sports",
+          "key": "Sports",
+          "words": ["Tennis", "Golf", "Rugby", "Hockey"]
+        },
+        {
+          "label": "Joints in the body",
+          "key": "Joints",
+          "words": ["Elbow", "Knee", "Ankle", "Wrist"]
+        },
+        {
+          "label": "Insects",
+          "key": "Insects",
+          "words": ["Ant", "Bee", "Moth", "Cricket"]
+        }
+      ],
+      "also": {
+        "Cricket": [0]
+      },
+      "jars": [["Golf", "Elbow", "Hockey", "Cricket"], ["Ant", "Knee", "Bee", "Tennis"], ["Wrist", "Moth", "Rugby", "Ankle"], [], []]
+    }
+  ]
+}

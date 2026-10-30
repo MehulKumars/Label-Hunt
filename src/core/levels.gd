@@ -1,37 +1,34 @@
-## Shipped levels (autoload "Levels"). Loads baked/hand-made JSON; never generates levels at runtime.
+## Shipped levels (autoload "Levels"): the Catalog of tutorial, room and test boards, loaded from baked JSON.
+## Never generates levels at runtime.
 extends Node
 
-const HANDMADE := "res://data/levels/handmade.json"
+const FILES := [
+	"res://data/levels/tutorial.json",
+	"res://data/levels/room1.json",
+	"res://data/levels/test.json",
+]
 
-var levels: Array[LevelData] = []
+var catalog: Catalog
 
 
 func _ready() -> void:
-	var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(HANDMADE))
-	if data is Dictionary:
-		for d in data["levels"]:
-			levels.append(LevelData.from_dict(d))
+	catalog = Catalog.from_files(PackedStringArray(FILES))
 
 
-func count() -> int:
-	return levels.size()
+func valid_ids() -> Dictionary:
+	var out := {}
+	for id in catalog.entries:
+		out[id] = true
+	return out
 
 
-func level_at(i: int) -> LevelData:
-	return levels[clampi(i, 0, levels.size() - 1)]
+func title(id: String) -> String:
+	return catalog.title(id)
 
 
-## Player-facing title. M1 ships tutorials as levels 1-10 and the mid-game test boards after them.
-func title(i: int) -> String:
-	var l := level_at(i)
-	if l.id.begins_with("m"):
-		return "Test board %d" % (int(l.id.substr(1)))
-	return "Level %d" % (i + 1)
-
-
-## A fresh copy for one attempt, with the dev "one empty jar" toggle applied.
-func make_level(i: int, one_empty: bool = false) -> LevelData:
-	var l := LevelData.from_dict(level_at(i).to_dict())
+## A fresh copy for one attempt, with the playtest "one empty jar" toggle applied.
+func make_level(id: String, one_empty: bool = false) -> LevelData:
+	var l := catalog.level(id)
 	if one_empty:
 		for j in range(l.jars.size() - 1, -1, -1):
 			if l.jars[j].is_empty() and not l.labelled.has(j) and _plain_empty_count(l) > 1:

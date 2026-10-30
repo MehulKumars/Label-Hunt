@@ -1,25 +1,38 @@
-## Persistent profile (autoload "Save"). Written atomically: tmp file -> rename, keeping the previous copy as .bak.
+## Persistent profile (autoload "Save"). The shape lives in SaveSchema; every load is size-capped and sanitised.
+## Written atomically (tmp file -> rename, keeping the previous copy as .bak). Writes during play are debounced;
+## pausing or quitting the app flushes at once.
 extends Node
 
 const PATH := "user://save.json"
 const LOG_PATH := "user://playtest.json"
-const VERSION := 1
 const LOG_CAP := 500
+const DEBOUNCE := 0.5
 
 var data: Dictionary = {}
 var log_entries: Array = []
+var _dirty_at := -1.0
 
 
 func _ready() -> void:
-	data = _read(PATH)
-	if data.is_empty():
-		data = _read(PATH + ".bak")
-	data = _with_defaults(data)
-	data["launches"] = int(data.get("launches", 0)) + 1
-	var log_text := FileAccess.get_file_as_string(LOG_PATH)
-	var parsed: Variant = JSON.parse_string(log_text) if log_text != "" else null
+	var raw: Variant = _read(PATH)
+	if raw == null:
+		raw = _read(PATH + ".bak")
+	data = SaveSchema.sanitize(raw, Levels.valid_ids())
+	data["launches"] = int(data["launches"]) + 1
+	var parsed: Variant = _read(LOG_PATH)
 	log_entries = parsed if parsed is Array else []
 	write()
+
+
+func _process(_delta: float) -> void:
+	if _dirty_at >= 0.0 and Time.get_ticks_msec() / 1000.0 - _dirty_at >= DEBOUNCE:
+		write()
+
+
+func _notification(what: int) -> void:
+	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_APPLICATION_FOCUS_OUT, NOTIFICATION_WM_CLOSE_REQUEST]:
+		if _dirty_at >= 0.0:
+			write()
 
 
 func setting(key: String) -> Variant:
@@ -31,7 +44,14 @@ func set_setting(key: String, value: Variant) -> void:
 	write()
 
 
+## Marks the save as changed; it's written once things settle (or at once when the app pauses).
+func touch() -> void:
+	if _dirty_at < 0.0:
+		_dirty_at = Time.get_ticks_msec() / 1000.0
+
+
 func write() -> void:
+	_dirty_at = -1.0
 	_atomic(PATH, JSON.stringify(data))
 
 
@@ -52,33 +72,18 @@ func clear_log() -> void:
 
 
 func reset() -> void:
-	data = _with_defaults({})
+	data = SaveSchema.defaults()
 	write()
 
 
-static func _with_defaults(d: Dictionary) -> Dictionary:
-	var out := {
-		"version": VERSION,
-		"level": 0,
-		"launches": 0,
-		"settings": {"sound": true, "haptics": true, "reduce_motion": false, "fps": false},
-		"rules": {},
-		"seen_captions": {},
-	}
-	for k in d:
-		if out.has(k) and out[k] is Dictionary and d[k] is Dictionary:
-			(out[k] as Dictionary).merge(d[k], true)
-		else:
-			out[k] = d[k]
-	out["level"] = int(out["level"])
-	return out
-
-
-static func _read(path: String) -> Dictionary:
+## Parsed JSON, or null when the file is missing, oversized or unreadable.
+static func _read(path: String) -> Variant:
 	if not FileAccess.file_exists(path):
-		return {}
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
-	return parsed if parsed is Dictionary else {}
+		return null
+	var f := FileAccess.open(path, FileAccess.READ)
+	if f == null or f.get_length() > SaveSchema.MAX_BYTES:
+		return null
+	return JSON.parse_string(f.get_as_text())
 
 
 static func _atomic(path: String, text: String) -> void:

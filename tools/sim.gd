@@ -1,5 +1,5 @@
 ## Plays every level in a level file with each bot profile and reports difficulty, plus a bake-time benchmark.
-## Run: godot --headless --path . -s res://tools/sim.gd [-- --n=200 --file=res://data/levels/handmade.json --out=handmade]
+## Run: godot --headless --path . -s res://tools/sim.gd [-- --n=200 --file=res://data/levels/room1.json --out=room1]
 extends SceneTree
 
 const PROFILES := ["novice", "average", "expert", "prober"]
@@ -7,8 +7,8 @@ const PROFILES := ["novice", "average", "expert", "prober"]
 
 func _init() -> void:
 	var n := 200
-	var path := "res://data/levels/handmade.json"
-	var out := "handmade"
+	var path := "res://data/levels/room1.json"
+	var out := "room1"
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("--n="):
 			n = int(a.substr(4))
