@@ -161,7 +161,8 @@ Left for later: real ads/IAP, localisation, leaderboards, notifications.
 | Milestone | Version | Contents |
 |---|---|---|
 | M1 | v0.1 | Find the fun: grey-box + toggles + bot |
-| M2 | v0.2 | Full loop |
-| M3a | v0.3 | Content |
-| M3b | v0.4 | Look and sound |
+| M2 | v0.2 | Home, tutorial, Room 1 progression, the art direction (style frames, SVG materials). See `docs/plan-m2.md` |
+| M2b | v0.2.x | Jar of the Day (daily module) and coins/boosters |
+| M3a | v0.3 | Content: bank, full pipeline, rooms 2–5, dailies |
+| M3b | v0.4 | Sound and music pass, remaining rooms' art, juice pass |
 | M4 | v1.0-rc | Polish, performance, store kit |
