@@ -26,8 +26,8 @@ Levels="*res://src/core/levels.gd"
 
 window/size/viewport_width=720
 window/size/viewport_height=1280
-window/size/window_width_override=450
-window/size/window_height_override=800
+window/size/window_width_override=432
+window/size/window_height_override=960
 window/handheld/orientation=1
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"

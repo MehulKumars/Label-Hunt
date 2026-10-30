@@ -9,6 +9,7 @@ var _flags: Array[String] = []
 
 
 func _ready() -> void:
+	PhoneWindow.fit(get_window(), PhoneWindow.phone_from_args())
 	theme = _make_theme()
 	ThemeDB.fallback_font = Style.sans()
 	ThemeDB.fallback_font_size = Style.BODY_FONT
