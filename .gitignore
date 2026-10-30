@@ -1,0 +1,12 @@
+# Godot cache
+.godot/
+/android/
+
+# Builds and local output
+/build/
+*.apk
+*.aab
+*.idsig
+/reports/cache/
+/shots/
+*.tmp
