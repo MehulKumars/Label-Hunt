@@ -314,7 +314,7 @@ func cancel_lift() -> void:
 	var j := lifted_jar
 	lifted_jar = -1
 	var cv := top_card(j)
-	_fly(cv, slot_pos(j, session.board.size(j) - 1), 0.12, 0.0, true)
+	_fly(cv, slot_pos(j, session.board.size(j) - 1), 0.16, 0.0, true)
 	lift_cancelled.emit()
 
 
@@ -372,9 +372,10 @@ func _drop_target() -> int:
 	return best
 
 
-## Highlights the jar a drag would drop into (any jar, legal or not, so it never hints at groups).
+## Highlights the jar a drag would drop into. It means "this jar has room" (visible to anyone), never "this is
+## the right group".
 func _set_hot(j: int) -> void:
-	if j == lifted_jar:
+	if j == lifted_jar or (j >= 0 and (session.board.is_full(j) or session.board.is_closed(j))):
 		j = -1
 	if j == _hot:
 		return
