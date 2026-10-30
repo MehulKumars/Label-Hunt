@@ -68,6 +68,7 @@ func _init() -> void:
 	add_child(caption)
 	skip_btn = PillButton.new("Skip", false, 72.0)
 	skip_btn.font_size = 26
+	skip_btn.custom_minimum_size = Vector2(130, 72)
 	skip_btn.visible = false
 	skip_btn.pressed.connect(func() -> void: skip_requested.emit())
 	add_child(skip_btn)
@@ -128,7 +129,7 @@ func _layout() -> void:
 	var left := (w - content_w) / 2.0
 	pause_btn.position = Vector2(left, top)
 	pause_btn.size = pause_btn.custom_minimum_size
-	var meter_w := maxf(110.0, session.budget * 38.0 + 8.0) if session.budget > 0 else 140.0
+	var meter_w := maxf(110.0, session.budget * 44.0 + 8.0) if session.budget > 0 else 140.0
 	meter.position = Vector2(left + content_w - meter_w, top)
 	meter.size = Vector2(meter_w, RoundButton.D)
 	skip_btn.size = Vector2(130, 72)
@@ -175,7 +176,8 @@ func _show_hint() -> void:
 	var cs: Vector2 = board.layout["card_size"]
 	var top_slot := session.board.size(mv.x) - 1
 	var a := board.position + board.slot_pos(mv.x, top_slot) + Vector2(cs.x * 0.82, cs.y * 0.8)
-	var b := board.position + (board.layout["jars"][mv.y] as Rect2).get_center() + Vector2(cs.x * 0.3, 0)
+	# End on the slot the card will land in, so the pointer never covers a word.
+	var b := board.position + board.slot_pos(mv.y, session.board.size(mv.y)) + Vector2(cs.x * 0.62, cs.y * 0.75)
 	hand.show_path(a, b)
 
 
@@ -190,6 +192,8 @@ func _stop_hint() -> void:
 ## The one short line a level opens with: what this level introduces, if anything.
 func _intro_captions() -> void:
 	match session.level.tutorial:
+		"move":
+			caption.say("Tap a jar, then another", 6.0)
 		"empty":
 			caption.say("Empty jars take any card", 3.0)
 		"rail":

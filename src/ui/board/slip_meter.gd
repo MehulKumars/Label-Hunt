@@ -33,21 +33,26 @@ func _draw() -> void:
 		return
 	if budget <= 0:
 		return
-	var w := 30.0
+	var w := 36.0
 	var gap := 8.0
 	var x := size.x - budget * (w + gap) + gap
 	for i in budget:
 		var cracked := i >= budget - slips
-		var r := Rect2(x + i * (w + gap), size.y / 2.0 - 20, w, 40)
+		var r := Rect2(x + i * (w + gap), size.y / 2.0 - 25, w, 50)
 		if cracked and i == budget - slips:
 			r.position.x += sin(_shake * 30.0) * 4.0 * _shake
 		_draw_mini_jar(r, cracked)
 
 
+## A small glass jar per slip left; a used one empties, greys and shows a clean crack across its body.
 func _draw_mini_jar(r: Rect2, cracked: bool) -> void:
-	var col := Style.INK_SOFT if cracked else Style.TEAL
-	draw_style_box(Style.box(Color(col, 0.15), 8, 3, col), Rect2(r.position + Vector2(0, 8), r.size - Vector2(0, 8)))
-	draw_rect(Rect2(r.position + Vector2(5, 0), Vector2(r.size.x - 10, 9)), Style.PAPRIKA if not cracked else Style.INK_SOFT)
+	var body := Rect2(r.position + Vector2(0, 9), r.size - Vector2(0, 9))
+	var glass := Color(Style.TEAL, 0.2 if not cracked else 0.08)
+	draw_style_box(Style.box(glass, 9, 2, Color(Style.TEAL if not cracked else Style.INK, 0.6 if not cracked else 0.35)), body)
+	if not cracked:
+		draw_style_box(Style.box(Color(Style.TEAL, 0.35), 6), Rect2(body.position + Vector2(4, body.size.y * 0.45), Vector2(body.size.x - 8, body.size.y * 0.5)))
+		draw_line(body.position + Vector2(6, 7), body.position + Vector2(6, body.size.y * 0.5), Color(1, 1, 1, 0.7), 2.5, true)
+	draw_style_box(Style.box(Style.PAPRIKA if not cracked else Color(Style.INK, 0.3), 3), Rect2(r.position + Vector2(4, 0), Vector2(r.size.x - 8, 10)))
 	if cracked:
-		var a := r.position + Vector2(r.size.x * 0.55, 12)
-		draw_polyline(PackedVector2Array([a, a + Vector2(-6, 8), a + Vector2(2, 14), a + Vector2(-4, 24)]), Style.INK, 2.0, true)
+		var a := body.position + Vector2(body.size.x * 0.2, body.size.y * 0.3)
+		draw_polyline(PackedVector2Array([a, a + Vector2(9, 7), a + Vector2(6, 13), a + Vector2(17, 21)]), Style.INK, 2.2, true)

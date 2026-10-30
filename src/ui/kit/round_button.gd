@@ -77,14 +77,16 @@ func _draw() -> void:
 	var isz := D * 0.44
 	if ICONS.has(icon):
 		draw_texture_rect(Art.icon(ICONS[icon], isz, Style.INK), Rect2(c - Vector2(isz, isz) / 2.0, Vector2(isz, isz)), false)
+	# How many are left: a small kraft count tag on the disc's shoulder (not a red notification dot).
 	if badge != "":
-		var bc := c + Vector2(D * 0.34, -D * 0.34)
-		draw_circle(bc + Vector2(0, 2), 16.0, Color(Style.INK, 0.2), true, -1.0, true)
-		draw_circle(bc, 16.0, Style.PAPRIKA, true, -1.0, true)
 		var f := Style.sans_heavy()
 		var ts := f.get_string_size(badge, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22)
-		draw_string(f, bc + Vector2(-ts.x / 2.0, -f.get_height(Style.FS_22) / 2.0 + f.get_ascent(Style.FS_22)), badge,
-			HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22, Style.PAPER)
+		var tag := Vector2(maxf(ts.x + 16.0, 32.0), 30.0)
+		var at := c + Vector2(D * 0.3, -D * 0.36) - tag / 2.0
+		draw_style_box(Style.box(Color(Style.INK, 0.18), Style.R_S), Rect2(at + Vector2(0, 2), tag))
+		draw_style_box(Style.box(Color("#E7D1A8"), Style.R_S), Rect2(at, tag))
+		draw_string(f, at + Vector2((tag.x - ts.x) / 2.0, (tag.y - f.get_height(Style.FS_22)) / 2.0 + f.get_ascent(Style.FS_22)), badge,
+			HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22, Style.INK)
 	if caption != "":
 		var f := Style.sans_bold()
 		var ts := f.get_string_size(caption, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22)

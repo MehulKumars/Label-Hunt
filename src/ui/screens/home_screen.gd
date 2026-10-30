@@ -39,7 +39,7 @@ func _init() -> void:
 	_count.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_count.add_theme_font_override("font", Style.sans_bold())
 	_count.add_theme_font_size_override("font_size", Style.FS_26)
-	_count.add_theme_color_override("font_color", Style.INK_SOFT)
+	_count.add_theme_color_override("font_color", Color(Style.INK, 0.78))
 	add_child(_count)
 	_play = PillButton.new("Play", true, Style.TOUCH_PRIMARY + 8.0)
 	_play.icon = "play"
@@ -97,15 +97,17 @@ func _layout() -> void:
 	_count.position = Vector2(0, _play.position.y - 40 - 28.0)
 	var cab_h := 440.0
 	_cabinet.size = Vector2(w - (left - 8.0) * 2.0, cab_h)
-	_cabinet.position = Vector2(left - 8.0, _count.position.y - 20.0 - cab_h)
-	_shelf.position = _cabinet.position + Vector2(30, 56)
-	_shelf.size = _cabinet.size - Vector2(60, 82)
-	# The hero jar takes the room between the top bar and the cabinet's name tag.
-	var hero_top := top + RoundButton.D * 0.4
-	var hero_h := clampf(_cabinet.position.y - 56.0 - hero_top, 240.0, 470.0)
-	var hero_w := minf(hero_h * 0.78, w - 2.0 * (left + RoundButton.D + 12.0))
+	_cabinet.position = Vector2(left - 8.0, _count.position.y - 44.0 - cab_h)
+	_shelf.position = _cabinet.position + Vector2(30, 26)
+	_shelf.size = _cabinet.size - Vector2(60, 76)
+	# The hero jar stands on the cabinet's top, filling the room above it.
+	var hero_top := top + RoundButton.D * 0.35
+	var stand := _cabinet.position.y + 12.0
+	var hero_h := clampf(stand - hero_top, 240.0, 500.0)
+	var hero_w := minf(hero_h * 0.78, w * 0.62)
 	_hero.size = Vector2(hero_w, hero_h)
-	_hero.position = Vector2((w - hero_w) / 2.0, hero_top + (_cabinet.position.y - 56.0 - hero_top - hero_h) / 2.0)
+	_hero.position = Vector2((w - hero_w) / 2.0, stand - hero_h)
+	move_child(_hero, -1)
 
 
 ## The big jar: glass, its contents, a paprika lid (gold when the room is complete) and the "Jarful" label.
@@ -119,6 +121,8 @@ class _HeroJar extends Control:
 	func _draw() -> void:
 		var r := Rect2(Vector2.ZERO, size)
 		var neck := Materials.jar_rim(size.y)
+		var foot := Rect2(Vector2(size.x * 0.08, size.y - 10.0), Vector2(size.x * 0.84, 14.0))
+		draw_style_box(Style.glow(Color(Style.INK, 0.3), 8, 10), foot)
 		draw_texture_rect(Art.tex("hero_back", size, Materials.jar_back), r, false)
 		var key := "hero_fill|%d|%.3f|%d" % [layers.size(), frac, hash(layers)]
 		draw_texture_rect(Art.tex(key, size, Materials.jar_contents.bind(layers, frac)), r, false)
@@ -138,7 +142,7 @@ class _HeroJar extends Control:
 		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
-## The wooden cabinet, with the room's name on a kraft label pinned to its crown.
+## The wooden cabinet, with the room's name on a kraft nameplate pinned to its base.
 class _Cabinet extends Control:
 	var title := "":
 		set(v):
@@ -153,9 +157,10 @@ class _Cabinet extends Control:
 		var f := Style.hand()
 		var fs := Style.FS_44
 		var ts := f.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-		var tag := Vector2(ts.x + 56.0, 66.0)
-		draw_set_transform(Vector2(size.x / 2.0, 6.0), deg_to_rad(-2.0), Vector2.ONE)
+		var tag := Vector2(ts.x + 64.0, 62.0)
+		draw_set_transform(Vector2(size.x / 2.0, size.y - 14.0), deg_to_rad(-1.5), Vector2.ONE)
 		draw_texture_rect(Art.tex("room_tag", tag, Materials.label.bind(false)), Rect2(-tag / 2.0, tag), false)
-		draw_circle(Vector2(0, -tag.y / 2.0 + 9.0), 4.5, Style.WOOD_DARK, true, -1.0, true)
+		for side in [-1.0, 1.0]:
+			draw_circle(Vector2(side * (tag.x / 2.0 - 14.0), -1.5), 4.0, Style.WOOD_DARK, true, -1.0, true)
 		draw_string(f, Vector2(-ts.x / 2.0, f.get_ascent(fs) * 0.36), title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
 		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)

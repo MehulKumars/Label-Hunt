@@ -49,7 +49,8 @@ static func compute(area: Rect2, jar_count: int) -> Dictionary:
 	var total_h := rows * jar_h + fixed
 	# Sit low (thumb zone) but not jammed against the bottom: 35% of any spare height goes below the board.
 	var spare := maxf(0.0, area.size.y - total_h - (card_h + HOVER_GAP))
-	var y0 := area.end.y - total_h - spare * BOTTOM_SHARE
+	# One-row boards (the first tutorials) sit nearer the middle; taller boards stay low in the thumb zone.
+	var y0 := area.end.y - total_h - spare * (BOTTOM_SHARE if rows > 1 else 0.48)
 	var grid_w := jar_w * COLS + GAP_X * (COLS - 1)
 	var inset := clampf(jar_w * INSET_SHARE, 10.0, 18.0)
 	var cx := area.get_center().x

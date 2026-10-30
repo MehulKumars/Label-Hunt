@@ -261,7 +261,7 @@ static func disc(size: Vector2) -> String:
 
 
 ## Preserve colours for the layers in a solved jar on the shelf. A category always gets the same one.
-const PRESERVES := ["#7B3F61", "#E8A04A", "#8A9A4B", "#D9A441", "#C6553A", "#4A5A8C", "#7FA88E", "#B98A5A",
+const PRESERVES := ["#7B3F61", "#E8A04A", "#8A9A4B", "#5B4A7A", "#C6553A", "#4A5A8C", "#7FA88E", "#B98A5A",
 	"#EBD3A2", "#5E7F9A", "#B5C77A", "#6D8B3A"]
 
 

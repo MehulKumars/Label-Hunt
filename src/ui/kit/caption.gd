@@ -1,4 +1,4 @@
-## A short teaching caption that fades in near the board, then away. Never a wall of text.
+## A short teaching caption on a kraft slip, just under the rail: fades in, then away. Never a wall of text.
 class_name Caption
 extends Control
 
@@ -26,9 +26,10 @@ func _draw() -> void:
 	if text == "":
 		return
 	var f := Style.sans_bold()
-	var fs := 28
+	var fs := Style.FS_26
 	var ts := f.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-	var r := Rect2((size.x - ts.x) / 2.0 - 26, (size.y - 56) / 2.0, ts.x + 52, 56)
-	draw_style_box(Style.box(Style.INK, 28), r)
-	draw_string(f, Vector2(r.position.x + 26, r.get_center().y - ts.y / 2.0 + f.get_ascent(fs)), text,
-		HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.PAPER)
+	var slip := Vector2(ts.x + 48.0, 52.0)
+	draw_set_transform(size / 2.0, deg_to_rad(-1.0), Vector2.ONE)
+	draw_texture_rect(Art.tex("caption|%d" % roundi(slip.x), slip, Materials.label.bind(false)), Rect2(-slip / 2.0, slip), false)
+	draw_string(f, Vector2(-ts.x / 2.0, -f.get_height(fs) / 2.0 + f.get_ascent(fs) - 2.0), text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
