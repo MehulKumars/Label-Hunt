@@ -229,21 +229,53 @@ func _open_win(stats: Dictionary) -> void:
 	var cat := Levels.catalog
 	var res := Progression.record_win(cat, Save.data, id, int(stats["slips"]), _assisted or play.session.continues > 0)
 	Save.touch()
-	var s := _result_sheet("Solved")
+	var room_level: bool = cat.entry(id)["track"] == "room"
+	var s := _result_sheet("")
+	s.add_label(cat.title(id), Style.FS_26, true).add_theme_color_override("font_color", Style.INK_SOFT)
+	var title := s.add_label("Jar filled" if room_level else "Solved", Style.FS_72)
+	title.add_theme_font_override("font", Style.hand())
+	if room_level:
+		s.body.add_child(_win_shelf(id))
+	var line := ""
 	if res["shelf_full"] >= 0:
-		s.add_label("Shelf %d is full." % (res["shelf_full"] + 1), 30)
-	if res["new_gold"]:
-		s.add_label("Clean sort: gold lid." if not res["first_gold"] else "Clean sort: your first gold lid.", 28)
-	var next: String = res["next"] if cat.entry(id)["track"] == "room" else ""
+		line = "Shelf %d is full." % (res["shelf_full"] + 1)
+	elif res["new_gold"]:
+		line = "Clean sort: your first gold lid." if res["first_gold"] else "Clean sort: gold lid."
+	if line != "":
+		s.add_label(line, Style.FS_30, true)
+	var next: String = res["next"] if room_level else ""
 	if cat.entry(id)["track"] == "test":
 		var tests := cat.test
 		next = tests[(tests.find(id) + 1) % tests.size()]
 	if next != "":
-		s.add_button("Next level", true, start_level.bind(next), 104.0)
-	s.add_button("Home", next == "", go_home)
+		s.add_button("Next level", true, start_level.bind(next), Style.TOUCH_PRIMARY).icon = "play"
+	s.add_button("Home", next == "", go_home, Style.TOUCH)
 	if playtest():
 		_add_flag_row(s)
+	# Taps are ignored for a moment so the jar's drop onto the shelf is seen, not skipped by a fast double tap.
+	s.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED
+	get_tree().create_timer(0.4).timeout.connect(func() -> void:
+		if is_instance_valid(s):
+			s.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_INHERITED)
 	open_sheet(s)
+
+
+## The row of the shelf this level's jar belongs to, with the jar dropping into its slot.
+func _win_shelf(id: String) -> ShelfView:
+	var cat := Levels.catalog
+	var ids := cat.room_ids(cat.entry(id)["room"])
+	var i := ids.find(id)
+	var from := (i / 5) * 5
+	var strip := ShelfView.new()
+	strip.custom_minimum_size = Vector2(0, 206)
+	strip.slots = ShelfView.slots_for(ids.slice(from, mini(from + 5, ids.size())), Save.data,
+		Progression.next_level(cat, Save.data))
+	strip.drop_index = i - from
+	strip.drop_t = 0.0
+	var tw := strip.create_tween()
+	tw.tween_interval(0.25)
+	tw.tween_property(strip, "drop_t", 1.0, 0.7)
+	return strip
 
 
 func _add_flag_row(s: Sheet) -> void:
@@ -333,13 +365,13 @@ func _open_settings() -> void:
 
 
 func _add_toggles(s: Sheet) -> void:
-	s.add_toggle("Sound", float(Save.setting("sound")) > 0.0, func(v: bool) -> void:
+	s.add_switch("Sound", float(Save.setting("sound")) > 0.0, func(v: bool) -> void:
 		Save.set_setting("sound", 1.0 if v else 0.0)
 		Sfx.set_enabled(v))
-	s.add_toggle("Haptics", bool(Save.setting("haptics")), func(v: bool) -> void:
+	s.add_switch("Haptics", bool(Save.setting("haptics")), func(v: bool) -> void:
 		Save.set_setting("haptics", v)
 		Haptics.enabled = v)
-	s.add_toggle("Reduce motion", bool(Save.setting("reduce_motion")), func(v: bool) -> void:
+	s.add_switch("Reduce motion", bool(Save.setting("reduce_motion")), func(v: bool) -> void:
 		Save.set_setting("reduce_motion", v)
 		play.board.reduce_motion = v)
 
@@ -424,15 +456,18 @@ func _playtest_text() -> String:
 
 # --- look ----------------------------------------------------------------------------------------------------------
 
+## The pantry wall: warm light from the top left (the same light the materials use), falling off to the corners.
 func _add_background() -> void:
 	var g := Gradient.new()
-	g.set_color(0, Style.PAPER)
-	g.set_color(1, Style.PAPER_DEEP)
+	g.set_color(0, Style.WALL_LIGHT)
+	g.add_point(0.55, Style.PAPER)
+	g.set_color(g.get_point_count() - 1, Style.WALL_SHADE)
 	var tex := GradientTexture2D.new()
 	tex.gradient = g
-	tex.fill_from = Vector2(0, 0)
-	tex.fill_to = Vector2(0, 1)
-	tex.width = 4
+	tex.fill = GradientTexture2D.FILL_RADIAL
+	tex.fill_from = Vector2(0.18, 0.08)
+	tex.fill_to = Vector2(1.15, 1.05)
+	tex.width = 128
 	tex.height = 256
 	var bg := TextureRect.new()
 	bg.texture = tex

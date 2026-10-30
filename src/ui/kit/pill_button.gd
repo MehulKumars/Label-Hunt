@@ -1,4 +1,5 @@
-## Text button in our own style: primary (paprika) or secondary (paper with ink edge). Fires on release inside.
+## Text button: primary (paprika enamel) or secondary (paper). Presses answer at once (squash, tap sound); the
+## action fires on release inside. Optional leading icon.
 class_name PillButton
 extends Control
 
@@ -6,7 +7,8 @@ signal pressed
 
 var text := ""
 var primary := true
-var font_size := 32
+var icon := ""
+var font_size := Style.FS_30
 var enabled := true:
 	set(v):
 		enabled = v
@@ -14,10 +16,10 @@ var enabled := true:
 var _down := false
 
 
-func _init(label: String = "", is_primary: bool = true, height: float = 96.0) -> void:
+func _init(label: String = "", is_primary: bool = true, height: float = Style.TOUCH) -> void:
 	text = label
 	primary = is_primary
-	custom_minimum_size = Vector2(260, height)
+	custom_minimum_size = Vector2(240, height)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
@@ -27,31 +29,41 @@ func _gui_input(event: InputEvent) -> void:
 		return
 	accept_event()
 	pivot_offset = size / 2.0
-	if event.pressed:
+	if event.is_canceled():
+		_release(false)
+	elif event.pressed:
 		_down = true
-		create_tween().tween_property(self, "scale", Vector2.ONE * 0.95, 0.05)
+		create_tween().tween_property(self, "scale", Vector2.ONE * 0.96, Style.T_PRESS).set_ease(Tween.EASE_OUT)
 		if enabled:
 			Sfx.play("tap", 1.0, 0.05, -4.0)
-			Haptics.tick(6, 0.25)
 	elif _down:
-		_down = false
-		create_tween().tween_property(self, "scale", Vector2.ONE, 0.08).set_trans(Tween.TRANS_BACK)
-		if enabled and Rect2(Vector2.ZERO, size).has_point(event.position):
-			pressed.emit()
+		_release(Rect2(Vector2.ZERO, size).has_point(event.position))
+
+
+func _release(inside: bool) -> void:
+	_down = false
+	create_tween().tween_property(self, "scale", Vector2.ONE, Style.T_RELEASE).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	if enabled and inside:
+		pressed.emit()
 
 
 func _draw() -> void:
 	var r := Rect2(Vector2.ZERO, size)
-	var radius := size.y / 2.0
-	draw_style_box(Style.box(Style.SHADOW, radius), Rect2(r.position + Vector2(0, 5), r.size))
-	if primary:
-		draw_style_box(Style.box(Style.PAPRIKA, radius, 3, Style.INK), r)
-	else:
-		draw_style_box(Style.box(Style.CARD, radius, 3, Style.INK), r)
-	var f := Style.sans_bold()
+	var face_h := size.y - 8.0
+	var key := "pill_%s" % ("paper" if not primary else Style.PAPRIKA.to_html(false))
+	draw_texture_rect(Art.tex(key, size, Materials.pill.bind(Style.PAPRIKA, not primary)), r, false)
+	var ink := Style.PAPER if primary else Style.INK
+	var f := Style.sans_heavy() if primary else Style.sans_bold()
+	var icon_w := 0.0
+	var isz := roundf(font_size * 1.05)
+	if icon != "":
+		icon_w = isz + 12.0
 	var fs := font_size
-	while fs > 18 and f.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > size.x - 40:
-		fs -= 1
+	while fs > Style.FS_22 and f.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > size.x - 48.0 - icon_w:
+		fs -= 2
 	var ts := f.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-	draw_string(f, Vector2((size.x - ts.x) / 2.0, (size.y - ts.y) / 2.0 + f.get_ascent(fs)), text,
-		HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.PAPER if primary else Style.INK)
+	var x := (size.x - ts.x - icon_w) / 2.0
+	if icon != "":
+		draw_texture_rect(Art.icon(icon, isz, ink), Rect2(x, (face_h - isz) / 2.0, isz, isz), false)
+	draw_string(f, Vector2(x + icon_w, (face_h - f.get_height(fs)) / 2.0 + f.get_ascent(fs)), text,
+		HORIZONTAL_ALIGNMENT_LEFT, -1, fs, ink)

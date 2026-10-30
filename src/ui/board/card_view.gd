@@ -62,42 +62,35 @@ func nudge() -> void:
 	tw.tween_property(self, "position:x", base.x, 0.05)
 
 
+## Paper tile from Materials.card; the face is the top (height - 5) units, the paper's edge shows below it.
 func _draw() -> void:
 	var r := Rect2(Vector2.ZERO, size)
+	var face := Rect2(0, 0, size.x, size.y - 5.0)
 	if lifted:
-		draw_style_box(Style.box(Style.SHADOW, 12), Rect2(r.position + Vector2(0, 7), r.size))
-	if frosted:
-		draw_style_box(Style.box(Style.FROST, 12, 2, Style.GLASS_EDGE), r)
-		for i in 4:
-			var x := r.size.x * (0.15 + i * 0.22)
-			draw_line(Vector2(x, r.size.y * 0.8), Vector2(x + r.size.y * 0.5, r.size.y * 0.2), Color(1, 1, 1, 0.8), 3.0, true)
-		return
-	draw_style_box(Style.box(Style.CARD, 12, 2, Style.INK), r)
+		draw_style_box(Style.glow(Color(Style.INK, 0.28), Style.R_M, 14), Rect2(face.position + Vector2(0, 10), face.size).grow(-6))
 	if glow:
-		var a := 0.55 + 0.45 * sin(_glow_t * 6.0)
-		draw_style_box(_outline(Color(Style.APRICOT, a), 5), r.grow(4))
+		var a := 0.45 + 0.35 * sin(_glow_t * 5.0)
+		draw_style_box(Style.glow(Color(Style.APRICOT, a), Style.R_M, 16), face)
+	draw_texture_rect(Art.tex("card", size, Materials.card), r, false)
+	if frosted:
+		draw_style_box(Style.box(Color(Style.FROST, 0.94), Style.R_M), face)
+		for i in 4:
+			var x := face.size.x * (0.14 + i * 0.22)
+			draw_line(Vector2(x, face.size.y * 0.78), Vector2(x + face.size.y * 0.45, face.size.y * 0.22), Color(1, 1, 1, 0.85), 3.0, true)
+		return
 	var left := 0.0
 	if tag_group >= 0:
-		var rad := 12.0 + 6.0 * _chip_pop
-		var c := Vector2(20, r.size.y / 2.0)
-		draw_circle(c, rad, Style.tag_color(tag_group))
-		Style.draw_glyph(self, tag_group, c, rad * 0.5, Style.PAPER)
+		var rad := 13.0 + 6.0 * _chip_pop
+		var c := Vector2(22, face.size.y / 2.0)
+		draw_circle(c, rad, Style.tag_color(tag_group), true, -1.0, true)
+		Style.draw_glyph(self, tag_group, c, rad * 0.48, Style.PAPER)
 		left = 30.0
 	var font := Style.sans_bold()
-	var avail := r.size.x - 20.0 - left
+	var avail := face.size.x - 20.0 - left
 	var fs := font_size
+	# The board picks one size for every card; only a word that still can't fit shrinks on its own.
 	while fs > 26 and font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > avail:
-		fs -= 1
+		fs -= 2
 	var ts := font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-	var baseline := (r.size.y - ts.y) / 2.0 + font.get_ascent(fs)
+	var baseline := (face.size.y - font.get_height(fs)) / 2.0 + font.get_ascent(fs)
 	draw_string(font, Vector2(left + 10.0 + (avail - ts.x) / 2.0, baseline), word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
-
-
-static func _outline(color: Color, width: int) -> StyleBoxFlat:
-	var sb := StyleBoxFlat.new()
-	sb.draw_center = false
-	sb.set_border_width_all(width)
-	sb.border_color = color
-	sb.set_corner_radius_all(16)
-	sb.anti_aliasing = true
-	return sb

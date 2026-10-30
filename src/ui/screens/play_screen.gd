@@ -46,7 +46,7 @@ func _init() -> void:
 	title_label = Label.new()
 	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	title_label.add_theme_font_override("font", Style.typed())
+	title_label.add_theme_font_override("font", Style.sans_heavy())
 	title_label.add_theme_font_size_override("font_size", 34)
 	title_label.add_theme_color_override("font_color", Style.INK)
 	add_child(title_label)

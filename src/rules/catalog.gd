@@ -99,7 +99,7 @@ func features_at(id: String) -> Dictionary:
 		for f in e["introduces"]:
 			out[f] = true
 		if e["track"] == "test":
-			for f in ["undo", "jar", "peek", "tidy", "budget"]:
+			for f in ["slip", "undo", "jar", "peek", "tidy", "budget"]:
 				out[f] = true
 		return out
 	for t in tutorial:

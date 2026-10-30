@@ -5,17 +5,20 @@ extends RefCounted
 
 const COLS := 3
 const GAP_X := 18.0
-const SHELF := 14.0
+const SHELF := 18.0
 const ROW_SPACE := 24.0
 const MAX_BOARD_W := 720.0
 const MAX_JAR_W := 224.0
-const ASPECT := 1.45
+const ASPECT := 1.7
 const NECK_RATIO := 0.075
-const INSET := 9.0
+## Glass visible beside the cards, as a share of the jar width (clamped).
+const INSET_SHARE := 0.075
+## Each side of the board stays clear of the Android edge-swipe Back zone (about 24 dp).
+const SIDE := 28.0
 const PAD_TOP := 8.0
 const PAD_BOTTOM := 10.0
 const CARD_GAP := 5.0
-const MAX_CARD_H := 70.0
+const MAX_CARD_H := 78.0
 const MIN_CARD_H := 46.0
 const FONT_MIN := 34
 const FONT_MAX := 42
@@ -23,10 +26,10 @@ const HOVER_GAP := 14.0
 const BOTTOM_SHARE := 0.35
 
 
-## Returns {jars: Array[Rect2], shelves: Array[Rect2], card_size: Vector2, card_gap, neck, font, hover, ok}.
+## Returns {jars: Array[Rect2], shelves: Array[Rect2], card_size: Vector2, card_gap, neck, inset, font, hover, ok}.
 static func compute(area: Rect2, jar_count: int) -> Dictionary:
 	var rows := ceili(jar_count / float(COLS))
-	var board_w := minf(area.size.x - 24.0, MAX_BOARD_W)
+	var board_w := minf(area.size.x - SIDE * 2.0, MAX_BOARD_W)
 	var jar_w := minf((board_w - GAP_X * (COLS - 1)) / COLS, MAX_JAR_W)
 	var fixed := rows * SHELF + (rows - 1) * ROW_SPACE
 	var inner := PAD_TOP + PAD_BOTTOM + 3 * CARD_GAP
@@ -48,6 +51,7 @@ static func compute(area: Rect2, jar_count: int) -> Dictionary:
 	var spare := maxf(0.0, area.size.y - total_h - (card_h + HOVER_GAP))
 	var y0 := area.end.y - total_h - spare * BOTTOM_SHARE
 	var grid_w := jar_w * COLS + GAP_X * (COLS - 1)
+	var inset := clampf(jar_w * INSET_SHARE, 10.0, 18.0)
 	var cx := area.get_center().x
 	var jars: Array[Rect2] = []
 	var shelves: Array[Rect2] = []
@@ -60,7 +64,7 @@ static func compute(area: Rect2, jar_count: int) -> Dictionary:
 			jars.append(Rect2(x + i * (jar_w + GAP_X), y, jar_w, jar_h))
 		shelves.append(Rect2(cx - grid_w / 2.0 - 12.0, y + jar_h, grid_w + 24.0, SHELF))
 	return {
-		"jars": jars, "shelves": shelves, "card_size": Vector2(jar_w - INSET * 2, card_h),
+		"jars": jars, "shelves": shelves, "card_size": Vector2(jar_w - inset * 2, card_h), "inset": inset,
 		"card_gap": CARD_GAP, "neck": neck, "font": font, "hover": card_h + HOVER_GAP,
 		"ok": card_h >= MIN_CARD_H and y0 - (card_h + HOVER_GAP) >= area.position.y - 0.5,
 	}
@@ -70,10 +74,10 @@ static func compute(area: Rect2, jar_count: int) -> Dictionary:
 static func card_pos(layout: Dictionary, jar: Rect2, slot: int) -> Vector2:
 	var cs: Vector2 = layout["card_size"]
 	var y := jar.end.y - PAD_BOTTOM - (slot + 1) * cs.y - slot * CARD_GAP
-	return Vector2(jar.position.x + INSET, y)
+	return Vector2(jar.position.x + float(layout["inset"]), y)
 
 
 ## Where a lifted card hovers: just above the jar's mouth.
 static func hover_pos(layout: Dictionary, jar: Rect2) -> Vector2:
 	var cs: Vector2 = layout["card_size"]
-	return Vector2(jar.position.x + INSET, jar.position.y - cs.y - HOVER_GAP + 6.0)
+	return Vector2(jar.position.x + float(layout["inset"]), jar.position.y - cs.y - HOVER_GAP + 6.0)

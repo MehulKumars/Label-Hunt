@@ -106,15 +106,34 @@ func relayout() -> void:
 			v.size = rects[j].size
 			v.neck = layout["neck"]
 			v.pivot_offset = Vector2(rects[j].size.x / 2.0, rects[j].size.y)
+	var font := _board_font((layout["card_size"] as Vector2).x, layout["font"])
 	for c in cards:
 		var cv: CardView = cards[c]
 		cv.size = layout["card_size"]
 		cv.pivot_offset = cv.size / 2.0
-		cv.font_size = layout["font"]
+		cv.font_size = font
 	refresh_jars()
 	refresh_cards(false)
 	sync(false)
 	queue_redraw()
+
+
+## One card size per board (42, 38, 34, then 30): the largest at which every word fits beside a tag chip, so
+## neighbouring cards never look mismatched and no glyph sizes are rasterised mid-game.
+func _board_font(card_w: float, cap: int) -> int:
+	var f := Style.sans_bold()
+	var avail := card_w - 20.0 - 30.0
+	for fs in [42, 38, 34, 30]:
+		if fs > cap and fs > 30:
+			continue
+		var fits := true
+		for c in cards:
+			if f.get_string_size((cards[c] as CardView).word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > avail:
+				fits = false
+				break
+		if fits:
+			return fs
+	return 30
 
 
 ## Jar decorations from board state (corks, printed labels, lids already on).
@@ -643,6 +662,7 @@ static func _bezier(a: Vector2, b: Vector2, arc: float, t: float) -> Vector2:
 func _draw() -> void:
 	if layout.is_empty():
 		return
+	# Wooden planks: the jars stand on the lit top surface; the plank's shadow falls on the wall below.
 	for s: Rect2 in layout["shelves"]:
-		draw_style_box(Style.box(Style.WOOD, 6), s)
-		draw_rect(Rect2(s.position.x + 6, s.end.y - 4, s.size.x - 12, 4), Style.WOOD_DARK)
+		var plank := Rect2(s.position.x, s.position.y - 6.0, s.size.x, s.size.y + 26.0)
+		draw_texture_rect(Art.tex("plank", plank.size, Materials.plank), plank, false)

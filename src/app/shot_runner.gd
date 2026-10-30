@@ -4,7 +4,7 @@
 class_name ShotRunner
 extends Node
 
-const SCENARIOS := ["home", "tutorial", "t01", "t03_slip", "t07", "m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "win", "lose", "pause", "test", "drag", "pick"]
+const SCENARIOS := ["home", "home_mid", "tutorial", "t01", "t03_slip", "t07", "m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "win", "lose", "pause", "test", "drag", "pick"]
 
 var out_dir := ""
 var only: PackedStringArray = []
@@ -73,6 +73,13 @@ func _run(name: String) -> void:
 				play.board.add_jar()
 			await _slips(play, 1)
 		"home":
+			main.go_home()
+			await _wait(0.4)
+		"home_mid":
+			# A player a few levels in: four jars on the shelf, two with gold lids.
+			var ids := Levels.catalog.play_order()
+			for i in mini(4, ids.size() - 1):
+				Save.data["solved"][ids[i]] = {"slips": 0, "gold": i % 2 == 1}
 			main.go_home()
 			await _wait(0.4)
 		"tutorial":

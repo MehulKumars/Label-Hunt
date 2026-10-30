@@ -33,17 +33,18 @@ func _init(heading: String = "") -> void:
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
 	for side in ["left", "right", "top", "bottom"]:
-		margin.add_theme_constant_override("margin_" + side, 36)
+		margin.add_theme_constant_override("margin_" + side, 40)
 	panel.add_child(margin)
 	body = VBoxContainer.new()
-	body.add_theme_constant_override("separation", 18)
+	body.add_theme_constant_override("separation", 16)
 	margin.add_child(body)
 	if heading != "":
 		var t := Label.new()
 		t.text = heading
 		t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		t.add_theme_font_override("font", Style.typed())
-		t.add_theme_font_size_override("font_size", 46)
+		t.add_theme_font_override("font", Style.sans_heavy())
+		t.add_theme_font_size_override("font_size", Style.FS_44)
+		t.add_theme_color_override("font_color", Style.INK)
 		body.add_child(t)
 
 
@@ -145,8 +146,12 @@ func add_toggle(text: String, on: bool, action: Callable) -> PillButton:
 
 class _Panel extends Control:
 	func _draw() -> void:
-		draw_style_box(Style.box(Style.SHADOW, 30), Rect2(Vector2(0, 8), size))
-		draw_style_box(Style.box(Style.PAPER, 30, 3, Style.INK), Rect2(Vector2.ZERO, size))
+		var sb := Style.box(Style.PAPER, Style.R_XL)
+		sb.shadow_color = Color(Style.INK, 0.22)
+		sb.shadow_size = 26
+		sb.shadow_offset = Vector2(0, 10)
+		draw_style_box(sb, Rect2(Vector2.ZERO, size))
+		draw_rect(Rect2(Style.R_XL, 2, size.x - Style.R_XL * 2, 2), Color(1, 1, 1, 0.8))
 
 
 ## The × in the panel's top-right corner: a 56 px disc inside an 88 px touch target.
@@ -166,7 +171,6 @@ class _CloseButton extends Control:
 		if event.pressed:
 			_down = true
 			Sfx.play("tap", 1.0, 0.05, -4.0)
-			Haptics.tick(6, 0.25)
 		elif _down:
 			_down = false
 			if Rect2(Vector2.ZERO, size).has_point(event.position):
@@ -174,7 +178,58 @@ class _CloseButton extends Control:
 
 	func _draw() -> void:
 		var c := size / 2.0
-		draw_circle(c, 28.0, Style.PAPER_DEEP)
-		var d := 10.0
-		draw_line(c + Vector2(-d, -d), c + Vector2(d, d), Style.INK, 5.0, true)
-		draw_line(c + Vector2(d, -d), c + Vector2(-d, d), Style.INK, 5.0, true)
+		draw_circle(c, 28.0, Style.PAPER_DEEP, true, -1.0, true)
+		draw_texture_rect(Art.icon("x", 26.0, Style.INK), Rect2(c - Vector2(13, 13), Vector2(26, 26)), false)
+
+
+## A settings row: the setting's name, and a switch that flips on a tap anywhere in the row.
+func add_switch(text: String, on: bool, action: Callable) -> Control:
+	var row := _Switch.new(text, on)
+	row.toggled.connect(action)
+	body.add_child(row)
+	return row
+
+
+## On/off shows as the knob's side as well as the track colour, so colour is never the only signal.
+class _Switch extends Control:
+	signal toggled(on: bool)
+
+	var text := ""
+	var on := false
+	var _knob := 0.0
+	var _down := false
+
+	func _init(label: String, value: bool) -> void:
+		text = label
+		on = value
+		_knob = 1.0 if value else 0.0
+		custom_minimum_size = Vector2(0, Style.TOUCH)
+		mouse_filter = Control.MOUSE_FILTER_STOP
+
+	func _gui_input(event: InputEvent) -> void:
+		if not (event is InputEventMouseButton) or event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		accept_event()
+		if event.is_canceled():
+			_down = false
+		elif event.pressed:
+			_down = true
+		elif _down:
+			_down = false
+			if Rect2(Vector2.ZERO, size).has_point(event.position):
+				on = not on
+				Sfx.play("tap", 1.0, 0.05, -4.0)
+				create_tween().tween_method(func(v: float) -> void:
+					_knob = v
+					queue_redraw(), _knob, 1.0 if on else 0.0, Style.T_RELEASE).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+				toggled.emit(on)
+
+	func _draw() -> void:
+		var f := Style.sans_bold()
+		var fs := Style.FS_30
+		draw_string(f, Vector2(4, (size.y - f.get_height(fs)) / 2.0 + f.get_ascent(fs)), text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+		var track := Rect2(size.x - 100, (size.y - 48) / 2.0, 96, 48)
+		draw_style_box(Style.box(Style.TEAL.lerp(Style.INK_FAINT, 1.0 - _knob) if _knob < 1.0 else Style.TEAL, 24), track)
+		var kc := Vector2(lerpf(track.position.x + 24, track.end.x - 24, _knob), track.get_center().y)
+		draw_circle(kc + Vector2(0, 2), 19.0, Color(Style.INK, 0.2), true, -1.0, true)
+		draw_circle(kc, 19.0, Style.CARD, true, -1.0, true)

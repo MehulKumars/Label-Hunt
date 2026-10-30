@@ -4,19 +4,27 @@
 extends Node
 
 const PATH := "user://save.json"
+const SHOTS_PATH := "user://shots_save.json"
 const LOG_PATH := "user://playtest.json"
 const LOG_CAP := 500
 const DEBOUNCE := 0.5
 
+## Screenshot runs use their own fresh save, so they never touch the player's progress.
+var path := PATH
 var data: Dictionary = {}
 var log_entries: Array = []
 var _dirty_at := -1.0
 
 
 func _ready() -> void:
-	var raw: Variant = _read(PATH)
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--shots="):
+			path = SHOTS_PATH
+			DirAccess.remove_absolute(path)
+			DirAccess.remove_absolute(path + ".bak")
+	var raw: Variant = _read(path)
 	if raw == null:
-		raw = _read(PATH + ".bak")
+		raw = _read(path + ".bak")
 	data = SaveSchema.sanitize(raw, Levels.valid_ids())
 	data["launches"] = int(data["launches"]) + 1
 	var parsed: Variant = _read(LOG_PATH)
@@ -52,7 +60,7 @@ func touch() -> void:
 
 func write() -> void:
 	_dirty_at = -1.0
-	_atomic(PATH, JSON.stringify(data))
+	_atomic(path, JSON.stringify(data))
 
 
 func log_attempt(entry: Dictionary) -> void:
@@ -77,24 +85,24 @@ func reset() -> void:
 
 
 ## Parsed JSON, or null when the file is missing, oversized or unreadable.
-static func _read(path: String) -> Variant:
-	if not FileAccess.file_exists(path):
+static func _read(file: String) -> Variant:
+	if not FileAccess.file_exists(file):
 		return null
-	var f := FileAccess.open(path, FileAccess.READ)
+	var f := FileAccess.open(file, FileAccess.READ)
 	if f == null or f.get_length() > SaveSchema.MAX_BYTES:
 		return null
 	return JSON.parse_string(f.get_as_text())
 
 
-static func _atomic(path: String, text: String) -> void:
-	var tmp := path + ".tmp"
+static func _atomic(file: String, text: String) -> void:
+	var tmp := file + ".tmp"
 	var f := FileAccess.open(tmp, FileAccess.WRITE)
 	if f == null:
 		push_error("save: can't write %s" % tmp)
 		return
 	f.store_string(text)
 	f.close()
-	if FileAccess.file_exists(path):
-		DirAccess.remove_absolute(path + ".bak")
-		DirAccess.rename_absolute(path, path + ".bak")
-	DirAccess.rename_absolute(tmp, path)
+	if FileAccess.file_exists(file):
+		DirAccess.remove_absolute(file + ".bak")
+		DirAccess.rename_absolute(file, file + ".bak")
+	DirAccess.rename_absolute(tmp, file)

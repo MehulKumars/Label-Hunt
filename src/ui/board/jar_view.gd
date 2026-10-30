@@ -1,9 +1,12 @@
-## A glass jar, drawn in two layers so cards sit inside it: the back (glass tint) behind the cards and the front
-## (outline, shine, cork, lid, label) above them. BoardView owns both and positions them on the same rect.
+## A glass jar in two layers so cards sit inside it: the back (glass tint) behind the cards and the front (walls,
+## highlights, rim, cork, lid, label) above them. BoardView owns both and positions them on the same rect.
+## Art comes from Materials; this file only places it and animates the lid and label.
 class_name JarView
 extends Control
 
 enum Layer { BACK, FRONT }
+
+const LABEL_SHARE := 0.88
 
 var layer := Layer.BACK
 var neck := 20.0
@@ -28,78 +31,75 @@ func _init(l: Layer = Layer.BACK) -> void:
 
 
 func _draw() -> void:
-	var w := size.x
-	var h := size.y
-	var neck_inset := w * 0.1
-	var body := Rect2(0, neck, w, h - neck)
-	var mouth := Rect2(neck_inset, 0, w - neck_inset * 2, neck + 10)
+	var r := Rect2(Vector2.ZERO, size)
 	if layer == Layer.BACK:
-		draw_style_box(Style.box(Style.GLASS_FILL, 30), body)
-		draw_style_box(Style.box(Style.GLASS_FILL, 8), mouth)
+		if hot:
+			var body := Rect2(0, neck, size.x, size.y - neck)
+			draw_style_box(Style.glow(Color(Style.APRICOT, 0.55), 30, 22), body.grow(-6))
+		draw_texture_rect(Art.tex("jar_back", size, Materials.jar_back), r, false)
 		return
-	var edge := Style.GLASS_EDGE
-	if hot:
-		draw_style_box(_outline(Color(Style.APRICOT, 0.6), 8, 34), body.grow(5))
-	draw_style_box(_outline(edge, 4, 30), body)
-	draw_line(Vector2(mouth.position.x, 2), Vector2(mouth.position.x, neck + 4), edge, 4.0, true)
-	draw_line(Vector2(mouth.end.x, 2), Vector2(mouth.end.x, neck + 4), edge, 4.0, true)
-	draw_line(Vector2(mouth.position.x - 4, 2), Vector2(mouth.end.x + 4, 2), edge, 5.0, true)
-	# Shine stripe down the left side of the glass.
-	draw_line(Vector2(12, neck + 26), Vector2(12, h - 34), Style.GLASS_SHINE, 6.0, true)
-	draw_line(Vector2(22, neck + 26), Vector2(22, neck + 70), Color(1, 1, 1, 0.3), 3.0, true)
+	draw_texture_rect(Art.tex("jar_front", size, Materials.jar_front), r, false)
+	var ni := Materials.jar_neck(size.x)
+	var mouth := Rect2(ni, 0, size.x - ni * 2, neck)
 	if corked:
-		var cork := Rect2(mouth.position.x + 4, -14, mouth.size.x - 8, neck + 8)
-		draw_style_box(Style.box(Color("#C49A6C"), 8, 3, Color("#7A5636")), cork)
-		for i in 3:
-			draw_circle(cork.position + Vector2(cork.size.x * (0.25 + i * 0.25), cork.size.y * 0.45), 3.0, Color("#7A5636"))
+		_draw_cork(mouth)
 	if lid_t > 0.0:
 		_draw_lid(mouth)
 	var text := lid_label if lid_t > 0.0 else labelled_text
 	if text != "" and (lid_t >= 1.0 or labelled_text != ""):
-		_draw_label(text, w, h)
+		_draw_label(text)
+	if dim:
+		draw_rect(r, Color(Style.PAPER, 0.45))
 
 
+func _draw_cork(mouth: Rect2) -> void:
+	var cork := Rect2(mouth.position.x + 4, -14, mouth.size.x - 8, neck + 10)
+	draw_style_box(Style.box(Color("#C49A6C"), 8), cork)
+	draw_style_box(Style.box(Color("#D7B286"), 6), Rect2(cork.position + Vector2(4, 3), Vector2(cork.size.x - 8, 6)))
+	for i in 3:
+		draw_circle(cork.position + Vector2(cork.size.x * (0.25 + i * 0.25), cork.size.y * 0.55), 2.5, Color("#8C6440"), true, -1.0, true)
+
+
+## The lid drops in from above, then seats with a small squash.
 func _draw_lid(mouth: Rect2) -> void:
-	var drop := (1.0 - minf(lid_t, 1.0)) * -46.0
-	var lid := Rect2(mouth.position.x - 8, -16 + drop, mouth.size.x + 16, 26)
-	var squash := 1.0 + 0.12 * sin(clampf(lid_t, 0.0, 1.0) * PI) * float(lid_t > 0.7)
-	lid.size.y /= squash
-	draw_style_box(Style.box(label_color, 9, 3, Style.INK), lid)
-	# Ridges scroll sideways while it screws on.
-	var phase := fmod(lid_t * 3.0, 1.0) * 14.0
-	var x := lid.position.x + 8 + phase
-	while x < lid.end.x - 6:
-		draw_line(Vector2(x, lid.position.y + 5), Vector2(x, lid.end.y - 5), Color(1, 1, 1, 0.35), 2.0, true)
-		x += 14.0
+	var t := clampf(lid_t, 0.0, 1.0)
+	var drop := (1.0 - ease(t, 0.4)) * -52.0
+	var lid_size := Vector2(mouth.size.x + 16, maxf(26.0, neck * 1.25))
+	var squash := 1.0 + 0.1 * sin(clampf((t - 0.7) / 0.3, 0.0, 1.0) * PI)
+	var rect := Rect2(mouth.position.x - 8, -lid_size.y * 0.55 + drop, lid_size.x, lid_size.y / squash)
+	rect.position.x -= (rect.size.x * (squash - 1.0)) / 2.0
+	rect.size.x *= squash
+	var tex := Art.tex("lid_%s" % label_color.to_html(false), lid_size, Materials.lid.bind(label_color))
+	draw_texture_rect(tex, rect, false)
 
 
-func _draw_label(text: String, w: float, h: float) -> void:
-	var font := Style.typed()
-	var fs := Style.LABEL_FONT
-	var shown := text.substr(0, ceili(text.length() * clampf(label_typed, 0.0, 1.0)))
-	var max_w := w - 26.0
+func _draw_label(text: String) -> void:
+	var font := Style.hand()
+	var w := size.x * LABEL_SHARE
+	var max_w := w - 20.0
+	var fs := Style.FS_30
 	var lines := _wrap(text, font, fs, max_w)
-	while lines.size() > 2 and fs > 15:
-		fs -= 1
+	if lines.size() > 1 or font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > max_w:
+		fs = Style.FS_26
 		lines = _wrap(text, font, fs, max_w)
-	var line_h := fs + 4.0
-	var box_h := line_h * lines.size() + 14.0
-	var box := Rect2(8, h * 0.5 - box_h / 2.0, w - 16, box_h)
-	draw_set_transform(box.get_center(), deg_to_rad(-2.0), Vector2.ONE)
-	var local := Rect2(-box.size / 2.0, box.size)
-	draw_style_box(Style.box(Style.SHADOW, 6), Rect2(local.position + Vector2(0, 4), local.size))
-	draw_style_box(Style.box(Style.PAPER, 6, 2, Style.INK), local)
+	var line_h := fs * 1.08
+	var box := Vector2(w, line_h * lines.size() + 20.0)
+	var centre := Vector2(size.x / 2.0, neck + (size.y - neck) * 0.46)
+	draw_set_transform(centre, deg_to_rad(-2.0), Vector2.ONE)
+	var local := Rect2(-box / 2.0, box)
+	draw_texture_rect(Art.tex("label", box, Materials.label.bind(false)), local, false)
+	var shown := ceili(text.length() * clampf(label_typed, 0.0, 1.0))
 	var used := 0
 	for i in lines.size():
 		var line: String = lines[i]
-		var visible := clampi(shown.length() - used, 0, line.length())
+		var visible := clampi(shown - used, 0, line.length())
 		used += line.length() + 1
 		var ts := font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-		var y := local.position.y + 7.0 + line_h * i + font.get_ascent(fs)
+		var y := local.position.y + 9.0 + line_h * i + font.get_ascent(fs) * 0.92
 		draw_string(font, Vector2(-ts.x / 2.0, y), line.substr(0, visible), HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
 	if shine_t >= 0.0 and shine_t <= 1.0:
 		var sx := lerpf(local.position.x - 30, local.end.x + 30, shine_t)
-		draw_line(Vector2(sx, local.position.y + 2), Vector2(sx - 18, local.end.y - 2), Color(1, 1, 1, 0.75), 10.0, true)
+		draw_line(Vector2(sx, local.position.y + 3), Vector2(sx - 16, local.end.y - 5), Color(1, 1, 1, 0.6), 12.0, true)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
@@ -116,13 +116,3 @@ static func _wrap(text: String, font: Font, fs: int, max_w: float) -> PackedStri
 	if line != "":
 		out.append(line)
 	return out
-
-
-static func _outline(color: Color, width: int, radius: int) -> StyleBoxFlat:
-	var sb := StyleBoxFlat.new()
-	sb.draw_center = false
-	sb.set_border_width_all(width)
-	sb.border_color = color
-	sb.set_corner_radius_all(radius)
-	sb.anti_aliasing = true
-	return sb
