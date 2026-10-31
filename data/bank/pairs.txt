@@ -1218,3 +1218,268 @@ Rodents | Things that hibernate
 Things that set | Things you can set
 Garden tools | Things you can sharpen
 At the hairdresser | Worn in the hair
+# Merged from data/bank/drafts
+Countries < European countries
+Countries < African countries
+Countries < Asian countries
+Countries < South American nations
+Things that fly < Aircraft
+Things in space < Spacecraft
+In the garden < Garden features
+Shapes < Polygons
+Shapes < Solid shapes
+Spicy things | South American nations
+Works of art | At the museum
+Currencies | At the bank
+Things in a wallet | At the bank
+Things with wings | Aircraft
+Things with tails | Aircraft
+Things with fins | Aircraft
+Things that fly | Spacecraft
+Kinds of home | Places to stay
+Things you can book | Places to stay
+Things you can answer | Ways to communicate
+Ways to walk | Words for slow
+Things that leak | Plumbing
+Things that overflow | Plumbing
+In the park | Garden features
+Things that glow | Lighting
+Things you light | Lighting
+Things you light | By the fireplace
+People at school | At school
+Kinds of song | Kinds of poem
+Kinds of comedy | Figures of speech
+Kinds of story | Parts of a story
+Numbers | Fractions
+Toys | Playground games
+Ways to move | Playground games
+Social media words | Playground games
+Chess pieces | Chess terms
+Film genres | Video game genres
+Shapes | Curves
+Shapes | Shape adjectives
+Things with faces | Solid shapes
+Things that are hot | Hot drinks
+Things that are cold | Cold drinks
+Kinds of bean | Coffee words
+Things you can catch | Ailments
+At the cinema | On television
+Film genres | On television
+On a film set | On television
+Kinds of book | In a library
+Parts of a book | In a library
+Things with pages | In a library
+Places in a town | In a library
+Things with branches | In a library
+Things you wear < Winter clothes
+Outerwear | Winter clothes
+Words before coat | Winter clothes
+Things you wear < Sportswear
+Tops | Sportswear
+At the gym | Sportswear
+Sports gear | Sportswear
+Things you wear < Formal wear
+At a concert | At a match
+Tennis terms | At a match
+Things you light | At a match
+Body parts < Hands and feet
+Joints in the body | Hands and feet
+Parts of a shoe | Hands and feet
+Film genres | In the Wild West
+Directions | In the Wild West
+Riding gear | In the Wild West
+Words for a horse | In the Wild West
+Jobs with animals | In the Wild West
+Jobs | In the Wild West
+Landforms | In the Wild West
+In the park | At a theme park
+Roles in a story | Superhero words
+Magic show | Superhero words
+In a courtroom | At the police station
+Detective story | At the police station
+Social media words | At the post office
+Workplaces | At the post office
+Rooms in a house | At the post office
+At a play | On a film set
+Photography | On a film set
+Jobs | On a film set
+In fairy tales | Roles in a story
+In a courtroom | Detective story
+Crafts | Pottery words
+Materials | Pottery words
+Dances | Dance moves
+Gymnastics moves | Dance moves
+At the ballet | Dance moves
+Ways to move | Dance moves
+Things that spin | Dance moves
+Capital cities | Ancient Rome
+Words for old | Ancient Rome
+Groups of people | Ancient Rome
+Ways to travel | Ancient Rome
+Countries | Ancient Egypt
+Words for old | Ancient Egypt
+Instruments | Parts of a guitar
+String instruments | Parts of a guitar
+Musicians | Parts of a guitar
+Things with strings | Parts of a guitar
+Things with necks | Parts of a guitar
+Things with bridges | Parts of a guitar
+Languages | Italian music words
+Music terms | Italian music words
+Groups of people | Musical groups
+Music terms | Music notation
+Music genres | Classical pieces
+Kinds of song | Classical pieces
+Ways to talk | Ways to sing
+Singing voices | At the opera
+At a concert | At the opera
+At a play | At the opera
+Music genres | At the opera
+Classical pieces | At the opera
+Kinds of song | At the opera
+Percussion < Kinds of drum
+Instruments | Kinds of drum
+Musicians | Kinds of drum
+Indoor games | Snooker words
+Things you can break | Snooker words
+Sports | Surfing terms
+Water sports | Surfing terms
+Sportspeople | Surfing terms
+Things at the beach | Surfing terms
+Things with fins | Surfing terms
+Sportspeople | Playing positions
+Sportspeople | At a skate park
+Ways to move | At a skate park
+Things with blades | Figure skating
+Things that spin | Figure skating
+Winter sports | Figure skating
+Sportspeople | Figure skating
+Shopkeepers | Old trades
+Trades | Old trades
+Medieval people | Old trades
+On a pirate ship | People at sea
+At the hospital | Medical jobs
+At the dentist | Medical jobs
+Body parts < Muscles
+Reflexes | Ways to breathe
+Ways to touch | Ways to hold
+At the hospital | Kinds of medicine
+Ways to move | Ways to run
+Ways to walk | Ways to run
+Body parts | Parts of the mouth
+Organs | Parts of the mouth
+Parts of the face | Parts of the mouth
+At the dentist | Parts of the mouth
+Sweets | Parts of the mouth
+Sticky things | Parts of the mouth
+Metals | Chemical elements
+Gases | Chemical elements
+Chemistry words | Chemical elements
+Rocks | Geology words
+Volcano words | Geology words
+Minerals | Geology words
+Branches of science | Geology words
+Natural disasters | Geology words
+Rocks | Minerals
+Gems | Minerals
+Units of measure | Science units
+Electricity | Science units
+Scientists | Science units
+Arithmetic | Statistics
+Things in space | Astronomy words
+Branches of science | Astronomy words
+Spacecraft | Astronomy words
+Fungi | Microscopic life
+Tiny things | Microscopic life
+Biology words | Microscopic life
+At the museum | Prehistoric life
+Energy sources | Forms of energy
+Electricity | Forms of energy
+Chemical elements | Forms of energy
+Photography | Optics
+Physics words | Optics
+In the lab | Optics
+Tiny things | Optics
+Branches of science | Optics
+Sewing kit | Trimmings
+Parts of a dress | Trimmings
+Garden jobs | Trimmings
+Worn on the legs | Kinds of skirt
+Parts of a dress | Kinds of skirt
+Things you wear < Kinds of skirt
+Crafts | Knitting words
+Sewing kit | Knitting words
+Silent K | Knitting words
+Onomatopoeia | Exclamations
+Exclamations | Words for hello
+Exclamations | Words for goodbye
+Exclamations | Words for yes
+Weather | Natural disasters
+Extreme weather | Natural disasters
+Storms | Natural disasters
+Parts of a plant | Parts of a tree
+Parts of a plant | Parts of a flower
+Parts of a plant | Parts of a fruit
+Weather | Weather forecast
+Worn on the face | Cosmetics
+In a handbag | Cosmetics
+In the bathroom | First aid kit
+Flowers | Shades of pink
+Sauces | Middle Eastern food
+Spicy things | Kinds of pepper
+Mexican food | Kinds of pepper
+Spices | Kinds of pepper
+Fruit < Stone fruit
+Ways to drink | Ways to eat
+Onomatopoeia | Ways to eat
+Vegetables < Leafy greens
+Fermented foods | Ways to preserve food
+Sea mammals | Kinds of whale
+Sea creatures | Kinds of whale
+Kinds of whale | Kinds of shark
+Birds < Songbirds
+Things that sing | Songbirds
+Birds < Seabirds
+Water birds < Seabirds
+Things at the beach | Seabirds
+Languages | Cat breeds
+Animal parts | Parts of a bird
+Animal coverings | Parts of a bird
+Weather | Kinds of cloud
+Weather | Kinds of wind
+Extreme weather | Kinds of wind
+Storms | Kinds of wind
+Directions | Kinds of wind
+Onomatopoeia | Ways water moves
+Jobs | Kinds of knot
+Family | Kinds of knot
+Parts of a bottle ! body
+Words for terrible | Words for evil
+Words for clever | Words for fancy
+Words for beautiful | Words for fancy
+Words for great | Words for beautiful
+Words for brave | Words for courage
+Virtues | Words for courage
+Words for courage ! body
+Words for a mess | Words for a fuss
+Words for a mess | Words for a problem
+Words for a fight | Words for a fuss
+Words for a mistake | Words for a problem
+Ways to talk | Words for a speech
+Kinds of comedy | Words for funny
+Words for funny | Words for strange
+Animal sounds | Ways to cry
+Ways to talk | Ways to cry
+Food textures | Words for wet
+Words for angry | Words for rude
+Words for dirty | Words for dark
+Things that glow | Ways to shine
+Things that sparkle | Ways to shine
+Music terms | Words for clever
+Tastes | Words for angry
+Tastes | Words for calm
+Weather forecast | Words for happy
+Weather forecast | Words for angry
+Weather forecast | Words for wet
+Weather forecast | Words for dark
+Parts of a bird ! body

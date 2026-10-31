@@ -1,156 +1,246 @@
 # Bank merge
 
-- review_3.txt: 0 new categories
-- review_3.txt: added Bell to loud_things
-- review_3.txt: added Wing to animal_parts
-- review_3.txt: added Green to words_before_land
-- review_3.txt: added Ice to words_before_land
-- review_3.txt: added Head to words_before_land
-- review_3.txt: added Tail to words_before_bone
-- review_3.txt: added Fore to golf_terms
-- review_3.txt: added Play to words_before_room
-- review_3.txt: added Wicket to words_before_keeper
-- review_3.txt: added Oven to words_before_proof
-- review_3.txt: added Work to words_before_man
-- review_3.txt: added Man to words_after_sand
-- review_3.txt: added Bed to words_after_hot
-- review_3.txt: added House to words_after_tea
-- review_3.txt: added Set to tennis_terms
-- review_3.txt: added Web to internet_words
-- review_3.txt: added Bass to two_pronunciations
-- review_3.txt: added Sow to two_pronunciations
-- review_3.txt: added Tear to two_pronunciations
-- review_3.txt: added Project to two_pronunciations
-- review_3.txt: added Insert to two_pronunciations
-- review_3.txt: added Console to two_pronunciations
-- review_3.txt: added Compound to two_pronunciations
-- review_3.txt: added Buffet to two_pronunciations
-- review_3.txt: added Upset to two_pronunciations
-- review_3.txt: added Firework to loud_things
-- review_3.txt: added Slime to slippery_things
-- review_3.txt: added Ewe to sound_like_letters
-- review_3.txt: added Ivy to sound_like_two_letters
-- review_3.txt: added Mousse to sound_like_animals
-- review_3.txt: added Hair to sound_like_animals
-- review_3.txt: added Beat to sound_like_foods
-- review_3.txt: added Peep to palindromes
-- review_3.txt: added Ewe to palindromes
-- review_3.txt: added Gag to palindromes
-- review_3.txt: added Pip to palindromes
-- review_3.txt: added Bib to palindromes
-- review_3.txt: added Gym to y_only_vowel
-- review_3.txt: added Sty to y_only_vowel
-- review_3.txt: added Raccoon to two_double_letters
-- review_3.txt: added Bassoon to two_double_letters
-- review_3.txt: added Squeegee to two_double_letters
-- review_3.txt: added Kneecap to silent_k
-- review_3.txt: added Knob to silent_k
-- review_3.txt: added Knocker to silent_k
-- review_3.txt: added Knitting to silent_k
-- review_3.txt: added Two to silent_w
-- review_3.txt: added Wrestling to silent_w
-- review_3.txt: added Wrestler to silent_w
-- review_3.txt: added Wrapping to silent_w
-- review_3.txt: added Limb to silent_b
-- review_3.txt: added Dumbbell to silent_b
-- review_3.txt: added Palm to silent_l
-- review_3.txt: added Walking to silent_l
-- review_3.txt: added Halve to silent_l
-- review_3.txt: added Tongue to silent_u
-- review_3.txt: added Guard to silent_u
-- review_3.txt: added Guide to silent_u
-- review_3.txt: added Brogue to silent_u
-- review_3.txt: added Mosquito to silent_u
-- review_3.txt: added Antique to silent_u
-- review_3.txt: added Boutique to silent_u
-- review_3.txt: added Plaque to silent_u
-- review_3.txt: added Quiche to silent_u
-- review_3.txt: added Parquet to silent_u
-- review_3.txt: added Splash to onomatopoeia
-- review_3.txt: added Clap to onomatopoeia
-- review_3.txt: added Gong to onomatopoeia
-- review_3.txt: added Hiccup to onomatopoeia
-- review_3.txt: added Podcast to blended_words
-- review_3.txt: added Blog to blended_words
-- review_3.txt: added Moped to blended_words
-- review_3.txt: added Pixel to blended_words
-- review_3.txt: added Chortle to blended_words
-- review_3.txt: added Gym to shortened_words
-- review_3.txt: added Lab to shortened_words
-- review_3.txt: added Vet to shortened_words
-- review_3.txt: added Zoo to shortened_words
-- review_3.txt: added Chimp to shortened_words
-- review_3.txt: added Champ to shortened_words
-- review_3.txt: added Decaf to shortened_words
-- review_3.txt: added Amp to shortened_words
-- review_3.txt: added Demo to shortened_words
-- review_3.txt: added Intro to shortened_words
-- review_3.txt: added Leggings to always_plural
-- review_3.txt: added Tights to always_plural
-- review_3.txt: added Flippers to always_plural
-- review_3.txt: added Clippers to always_plural
-- review_3.txt: added Stilts to always_plural
-- review_3.txt: added Splits to always_plural
-- review_3.txt: added Bagpipes to always_plural
-- review_3.txt: added Customs to always_plural
-- review_3.txt: added Rapids to always_plural
-- review_3.txt: added Pot to new_word_backwards
-- review_3.txt: added Top to new_word_backwards
-- review_3.txt: added Rat to new_word_backwards
-- review_3.txt: added Tar to new_word_backwards
-- review_3.txt: added Bat to new_word_backwards
-- review_3.txt: added Tab to new_word_backwards
-- review_3.txt: added Gum to new_word_backwards
-- review_3.txt: added Pool to new_word_backwards
-- review_3.txt: added Ten to new_word_backwards
-- review_3.txt: added Deer to new_word_backwards
-- review_3.txt: added Reed to new_word_backwards
-- review_3.txt: added Trap to new_word_backwards
-- review_3.txt: added Spot to new_word_backwards
-- review_3.txt: added Lap to new_word_backwards
-- review_3.txt: added Pal to new_word_backwards
-- review_3.txt: added Room to new_word_backwards
-- review_3.txt: added Rail to new_word_backwards
-- review_3.txt: added Time to new_word_backwards
-- review_3.txt: added Tub to new_word_backwards
-- review_3.txt: added Tip to new_word_backwards
-- review_3.txt: added Pit to new_word_backwards
-- review_3.txt: added Peek to new_word_backwards
-- review_3.txt: added Keep to new_word_backwards
-- review_3.txt: added Step to new_word_backwards
-- review_3.txt: added Reel to new_word_backwards
-- review_3.txt: added Strap to new_word_backwards
-- review_3.txt: added Stew to new_word_backwards
-- review_3.txt: added Won to new_word_backwards
-- review_3.txt: added Keel to new_word_backwards
-- review_3.txt: added Plug to new_word_backwards
-- review_3.txt: added Spool to new_word_backwards
-- review_3.txt: added Car to things_that_crash
-- review_3.txt: added Plane to things_that_crash
-- review_3.txt: added Butterfly to things_that_flutter
-- review_3.txt: removed birthmark from marks_on_skin
-- review_3.txt: removed arcade from places_to_shop
-- review_3.txt: removed errand from kinds_of_trip
-- review_3.txt: removed edison from scientists
-- review_3.txt: removed step from words_before_stone
-- review_3.txt: removed tide from words_before_mark
-- review_3.txt: removed shower from words_before_proof
-- review_3.txt: removed sign from words_after_star
-- review_3.txt: removed shine from words_after_moon
-- review_3.txt: removed boot from words_after_moon
-- review_3.txt: removed plane from words_after_air
-- review_3.txt: removed cap from words_after_night
-- review_3.txt: removed proud from words_after_house
-- review_3.txt: removed screen from words_after_wind
-- review_3.txt: removed girl from words_after_show
-- review_3.txt: removed koala from slow_things
-- review_3.txt: removed chalk from squeaky_things
-- review_3.txt: removed pineapple from hidden_fruit
-- review_3.txt: removed chore from anagrams_of_hues
-- review_3.txt: removed bookworm from two_double_letters
-- review_3.txt: removed dice from plurals_without_s
-- review_3.txt: removed owl from things_with_eyes
-- review_3.txt: removed monkey from things_with_arms
-- review_3.txt: deleted star_signs
-- 598 categories now (0 new), 59 pair rules added
-- pair rules naming deleted categories removed
+- 09a_thin_domains.txt: 61 new categories
+- 09b_people_culture.txt: 63 new categories
+- 09c_food_nature.txt: 63 new categories
+- 09a_thin_domains.txt: added Adverb, Pronoun, Gerund, Article to grammar_words
+- 09a_thin_domains.txt: added Semicolon to punctuation
+- 09a_thin_domains.txt: added Spelling, Classwork, Revision, Exercise to schoolwork
+- 09a_thin_domains.txt: added Coaching, Mentoring, Tuition, Practice to ways_to_learn
+- 09a_thin_domains.txt: added English, Art, Music, Latin, French, Algebra to school_subjects
+- 09a_thin_domains.txt: added Marker, Peg to in_a_board_game
+- 09a_thin_domains.txt: added Suit, Dealer, Meld, Bluff to playing_card_terms
+- 09a_thin_domains.txt: added Conundrum, Codeword, Cryptic, Acrostic to kinds_of_puzzle
+- 09a_thin_domains.txt: added Ludo, Carrom, Pinball to indoor_games
+- 09a_thin_domains.txt: added Quaff, Chug, Imbibe to ways_to_drink
+- 09a_thin_domains.txt: added Instant, Lungo to coffee_drinks
+- 09a_thin_domains.txt: added Punch, Slush, Kombucha to drinks
+- 09a_thin_domains.txt: added Teacup to things_to_drink_from
+- 09a_thin_domains.txt: added Terrazzo, Cork, Flagstone, Marble to floor_coverings
+- 09a_thin_domains.txt: added Face, Cog, Weight to parts_of_a_clock
+- 09a_thin_domains.txt: added Hold, Rotate, Slide to touchscreen_moves
+- 09a_thin_domains.txt: added Trundle, Canopy, Single, Double, Twin to kinds_of_bed
+- 09a_thin_domains.txt: added Broken, Solid, Jagged, Crooked, Squiggly to kinds_of_line
+- 09a_thin_domains.txt: added Bailey, Parapet, Bastion, Barbican to parts_of_a_castle
+- 09a_thin_domains.txt: added Knob, Panel, Threshold, Lintel, Jamb, Keyhole to parts_of_a_door
+- 09a_thin_domains.txt: added Plaid, Stripe, Damask, Harlequin, Polka to patterns
+- 09a_thin_domains.txt: added Store, Outlet, Plaza to places_to_shop
+- 09a_thin_domains.txt: added Buffet, Pool, Gym to at_a_hotel
+- 09a_thin_domains.txt: added Chlorine, Kickboard, Ladder to at_the_pool
+- 09a_thin_domains.txt: added Path, Kiosk, Gazebo to in_the_park
+- 09a_thin_domains.txt: added Pigsty, Paddock, Hayloft, Windmill to on_a_farm
+- 09a_thin_domains.txt: added Speaker, Webcam, Charger, Tracker to gadgets
+- 09a_thin_domains.txt: added Keypad, Calendar, Voicemail, Settings to on_a_phone
+- 09a_thin_domains.txt: added Home, Space, Backspace, Option, Command to computer_keys
+- 09a_thin_domains.txt: added Tail, Aileron, Window to parts_of_a_plane
+- 09a_thin_domains.txt: added Barrow, Loppers to garden_tools
+- 09a_thin_domains.txt: added Hoeing, Potting, Edging, Spraying to garden_jobs
+- 09a_thin_domains.txt: added Fireplace, Footstool, Throw, Ottoman to in_the_living_room
+- 09a_thin_domains.txt: added Washer, Suds, Rinse, Lint to laundry_day
+- 09a_thin_domains.txt: added Throw, Valance, Eiderdown, Coverlet to on_the_bed
+- 09a_thin_domains.txt: added Laundry, Wiping, Cleaning to chores
+- 09a_thin_domains.txt: added Scourer, Wipes, Spray to cleaning_kit
+- 09a_thin_domains.txt: added Lintel, Mullion, Casement, Lock to parts_of_a_window
+- 09a_thin_domains.txt: added Fortnight to units_of_time
+- 09a_thin_domains.txt: added Afternoon, Sundown to times_of_day
+- 09a_thin_domains.txt: added Retiree, Juvenile to stages_of_life
+- 09a_thin_domains.txt: added Obsolete, Classic, Bygone, Primeval to words_for_old
+- 09a_thin_domains.txt: added Nightly, Regularly to how_often
+- 09a_thin_domains.txt: added Domain, Search, Online, Username to internet_words
+- 09a_thin_domains.txt: added Hash, Caret, Percent, Pound to text_symbols
+- 09a_thin_domains.txt: added Boat, Swim, Wade, Canoe, Pontoon, Zipline to ways_across_a_river
+- 09a_thin_domains.txt: added Pebble, Lifeguard, Surfboard, Sunscreen to things_at_the_beach
+- 09a_thin_domains.txt: added Prologue, Epilogue to parts_of_a_book
+- 09a_thin_domains.txt: added Piston to parts_of_a_car
+- 09a_thin_domains.txt: added Dentures to things_with_teeth
+- 09a_thin_domains.txt: added Syringe to things_with_needles
+- 09a_thin_domains.txt: added Mouthwash to in_the_bathroom
+- 09a_thin_domains.txt: added Lassi to indian_food
+- 09a_thin_domains.txt: added Horchata to mexican_food
+- 09a_thin_domains.txt: added Horchata to spanish_food
+- 09a_thin_domains.txt: added Granita to italian_food
+- 09a_thin_domains.txt: added Kombucha to fermented_foods
+- 09a_thin_domains.txt: added English to languages
+- 09b_people_culture.txt: added Culottes, Breeches, Jodhpurs, Flares to worn_on_the_legs
+- 09b_people_culture.txt: added Wedge, Platform, Galosh, Slingback to footwear
+- 09b_people_culture.txt: added Tricorn, Topper, Cloche, Pillbox, Derby to hats
+- 09b_people_culture.txt: added Dirndl, Hanbok, Kaftan, Dashiki, Kurta, Cheongsam, Dhoti to traditional_clothes
+- 09b_people_culture.txt: added Mohawk, Quiff, Pigtail, Bouffant to hairstyles
+- 09b_people_culture.txt: added Trench to outerwear
+- 09b_people_culture.txt: added Pinstripe to fabric_patterns
+- 09b_people_culture.txt: added Slit, Ruffle, Lining to parts_of_a_dress
+- 09b_people_culture.txt: added Toggle, Vent to parts_of_a_coat
+- 09b_people_culture.txt: added Arch, Upper, Aglet to parts_of_a_shoe
+- 09b_people_culture.txt: added Barrette, Feather to worn_in_the_hair
+- 09b_people_culture.txt: added Eyepatch to worn_on_the_face
+- 09b_people_culture.txt: added Snare, Djembe, Castanets, Cajon to percussion
+- 09b_people_culture.txt: added Zither, Balalaika, Lyre, Koto to string_instruments
+- 09b_people_culture.txt: added Madrigal, Lament to kinds_of_song
+- 09b_people_culture.txt: added Hook, Interlude, Breakdown to parts_of_a_song
+- 09b_people_culture.txt: added Mezzo to singing_voices
+- 09b_people_culture.txt: added Vinyl, Cassette, Reissue to music_releases
+- 09b_people_culture.txt: added Setlist to at_a_concert
+- 09b_people_culture.txt: added Dash, Motocross, Duathlon, Derby to kinds_of_race
+- 09b_people_culture.txt: added Backboard, Swish, Buzzer to basketball_terms
+- 09b_people_culture.txt: added Shrug, Press to exercises
+- 09b_people_culture.txt: added Walkover, Aerial, Straddle to gymnastics_moves
+- 09b_people_culture.txt: added Girth, Blinkers, Jodhpurs, Harness to riding_gear
+- 09b_people_culture.txt: added Mogul, Binding, Avalanche to on_the_slopes
+- 09b_people_culture.txt: added Dodgeball, Futsal, Kabaddi to team_sports
+- 09b_people_culture.txt: added Skeleton, Hockey to winter_sports
+- 09b_people_culture.txt: added Spare, Dunk, Eagle to ways_to_score
+- 09b_people_culture.txt: added Oval, Circuit to sports_venues
+- 09b_people_culture.txt: added Stepper, Towel, Mirror to at_the_gym
+- 09b_people_culture.txt: added Wreath to prizes
+- 09b_people_culture.txt: added Capoeira, Hapkido to combat_sports
+- 09b_people_culture.txt: added Yachting, Paddling to water_sports
+- 09b_people_culture.txt: added Leer, Beam to facial_expressions
+- 09b_people_culture.txt: added Handshake, Facepalm to gestures
+- 09b_people_culture.txt: added Startle, Gag, Wince, Recoil to reflexes
+- 09b_people_culture.txt: added Stroke, Brush, Dab to ways_to_touch
+- 09b_people_culture.txt: added Gawk to ways_to_look
+- 09b_people_culture.txt: added Wiry, Matted, Coily to hair_textures
+- 09b_people_culture.txt: added Sclera, Socket to parts_of_the_eye
+- 09b_people_culture.txt: added Rash, Blister, Graze to marks_on_skin
+- 09b_people_culture.txt: added Hunch to body_positions
+- 09b_people_culture.txt: added Leader, Governor, Mayor to people_in_charge
+- 09b_people_culture.txt: added Scribe, Bard, Falconer, Damsel to medieval_people
+- 09b_people_culture.txt: added Milliner, Draper, Chandler to shopkeepers
+- 09b_people_culture.txt: added Bard, Editor, Dramatist to writers
+- 09b_people_culture.txt: added Glazier, Joiner to trades
+- 09b_people_culture.txt: added Greenhorn, Recruit to learners
+- 09b_people_culture.txt: added Adept, Whiz, Hotshot, Sage to experts
+- 09b_people_culture.txt: added Comrade, Crony, Confidant to words_for_a_friend
+- 09b_people_culture.txt: added Busker, Ballerina, Hypnotist to performers
+- 09b_people_culture.txt: added Farrier to jobs_with_animals
+- 09b_people_culture.txt: added Beading to crafts
+- 09b_people_culture.txt: added Illusion, Trick, Assistant to magic_show
+- 09b_people_culture.txt: added Cribbage, Euchre, Pinochle to card_games
+- 09b_people_culture.txt: added Improv, Lampoon to kinds_of_comedy
+- 09b_people_culture.txt: added Mystery, Romance to kinds_of_story
+- 09b_people_culture.txt: added Masthead, Comic to in_a_newspaper
+- 09b_people_culture.txt: added Prom, Shindig, Bash to celebrations
+- 09b_people_culture.txt: added Aperture to photography
+- 09b_people_culture.txt: added Tau, Omicron to greek_letters
+- 09b_people_culture.txt: added Paperback, Hardback to kinds_of_book
+- 09b_people_culture.txt: added Burner, Crucible, Dropper to in_the_lab
+- 09b_people_culture.txt: added Peat, Steam, Wave to energy_sources
+- 09b_people_culture.txt: added Caldera, Dormant, Molten to volcano_words
+- 09b_people_culture.txt: added Organism, Osmosis, Mutation to biology_words
+- 09b_people_culture.txt: added Schist, Gneiss to rocks
+- 09b_people_culture.txt: added Mendel, Bohr to scientists
+- 09b_people_culture.txt: added Isotope to chemistry_words
+- 09b_people_culture.txt: added Torque to physics_words
+- 09b_people_culture.txt: added Monsoon to storms
+- 09b_people_culture.txt: added Channel to bodies_of_water
+- 09b_people_culture.txt: added Nanny to female_animals
+- 09b_people_culture.txt: added Pitcher to on_the_table
+- 09b_people_culture.txt: added Stamp to stationery
+- 09b_people_culture.txt: added Kiln to hot_things
+- 09b_people_culture.txt: added Warble, Trill to things_birds_do
+- 09b_people_culture.txt: added Maid to words_after_house
+- 09b_people_culture.txt: added Sunshine to weather
+- 09b_people_culture.txt: added Apex to parts_of_a_mountain
+- 09b_people_culture.txt: added Apex to geometry
+- 09b_people_culture.txt: added Cosmos to flowers
+- 09b_people_culture.txt: added Plankton to sea_creatures
+- 09b_people_culture.txt: added Binding to parts_of_a_book
+- 09b_people_culture.txt: added Tie to worn_on_the_neck
+- 09b_people_culture.txt: added Blade to sharp_things
+- 09b_people_culture.txt: added Spiral to shapes
+- 09b_people_culture.txt: added Wagon to ways_to_travel
+- 09b_people_culture.txt: added Forum to internet_words
+- 09b_people_culture.txt: added Scarab to insects
+- 09b_people_culture.txt: added Oasis to landforms
+- 09b_people_culture.txt: added Raptor to birds_of_prey
+- 09b_people_culture.txt: added Uniform to things_you_wear
+- 09b_people_culture.txt: added Uniform to phonetic_alphabet
+- 09b_people_culture.txt: added Tom to male_animals
+- 09b_people_culture.txt: added Mohawk, Henchman, Archenemy to hidden_birds
+- 09b_people_culture.txt: added Headband, Headstock, Facepalm, Chandler, Slingback, Earmuffs, Allegro, Cribbage, Fullback, Flip, Earache, Shindig, Eyepatch, Scribble, Headache, Kneepad, Heels, Wristband, Orchestra, Backstage, Paperback, Masthead, Leggings, Handcuffs, Handshake, Slip, Legato, Inscribe, Sunshine, Scribe, Deckhand, Footman, Kickflip, Hardback, Footprint, Plunge, Nuclear, Eclipse, Toothache, Backboard to hidden_body_parts
+- 09b_people_culture.txt: added Overcoat, Librarian, Waistcoat, Cutie, Snowsuit, Wetsuit, Braid, Embrace, Mitten, Suite, Tracksuit, Tailcoat, Microbe to hidden_clothing
+- 09b_people_culture.txt: added Pyramid, Frame, Paramedic, Pigtail, Henchman, Mailbox, Pillbox, Beatbox, Dramatist, Ramp, Cowboy, Equinox, Archenemy, Pathogen, Longboard, Cramp, Backboard to hidden_farm_animals
+- 09b_people_culture.txt: added Heel, Heels, Coda, Handshake to hidden_fish
+- 09b_people_culture.txt: added Plummet to hidden_fruit
+- 09b_people_culture.txt: added Rosette, Corsage, Castanets, Pinky, Tanner, Assistant, Plummet, Kaftan, Stand to hidden_hues
+- 09b_people_culture.txt: added Mammoth, Mantle, Anthem, Bouffant, Dormant, Pant, Confidant, Radiant, Hydrant, Assistant, Canter, Sergeant, Chant, Antidote, Andante to hidden_insects
+- 09b_people_culture.txt: added Gluteus, Organism, Greenhorn to hidden_instruments
+- 09b_people_culture.txt: added Copy, Telescope to hidden_jobs
+- 09b_people_culture.txt: added Yachting, Latin, Platinum, Buttercup, Pant, Potential, Potter, Potassium, Tinker, Timpani to hidden_kitchen_items
+- 09b_people_culture.txt: added Stoneware, Falconer, Molten, Tenor, Mitten, Potential, Tension, Baritone to hidden_numbers
+- 09b_people_culture.txt: added Firework, Dashiki, Rash, Bash, Helmsman, Leash to hidden_trees
+- 09b_people_culture.txt: added Busk, Scarab, Carbon, Cable, Cartoon, Busker, Carousel to hidden_vehicles
+- 09b_people_culture.txt: added Stoneware, Tongue, Plutonium, Plankton, Skeleton, Tonsil, Newton, Photon, Baritone to hidden_weights
+- 09c_food_nature.txt: added Swift, Emu, Cockatoo, Cassowary to birds
+- 09c_food_nature.txt: added Emu, Cockatoo, Bilby, Cassowary to australian_animals
+- 09c_food_nature.txt: added Butterfly to insects
+- 09c_food_nature.txt: added Carnation to flowers
+- 09c_food_nature.txt: added Sumac to spices
+- 09c_food_nature.txt: added Kofta to indian_food
+- 09c_food_nature.txt: added Baklava to desserts
+- 09c_food_nature.txt: added Onigiri to japanese_food
+- 09c_food_nature.txt: added Swift, Nimble to words_for_fast
+- 09c_food_nature.txt: added Ecru, Buff, Parchment, Flax to shades_of_beige
+- 09c_food_nature.txt: added Pitch, Sable, Tar to shades_of_black
+- 09c_food_nature.txt: added Bone, Porcelain, Milk, Cotton to shades_of_white
+- 09c_food_nature.txt: added Heather, Damson, Puce, Iris, Thistle to shades_of_purple
+- 09c_food_nature.txt: added Carmine, Raspberry, Lipstick to shades_of_red
+- 09c_food_nature.txt: added Carnation, Blossom, Peony to shades_of_pink
+- 09c_food_nature.txt: added Marigold, Flame, Papaya to shades_of_orange
+- 09c_food_nature.txt: added Brazil, Filbert to nuts
+- 09c_food_nature.txt: added Ribeye, Chuck, Cutlet, Skirt to cuts_of_meat
+- 09c_food_nature.txt: added Borscht, Consomme, Wonton to soups
+- 09c_food_nature.txt: added Ziti, Rotini, Bucatini, Capellini to pasta
+- 09c_food_nature.txt: added Cockle, Crayfish, Whelk, Abalone to seafood
+- 09c_food_nature.txt: added Cremini, Puffball, Cep, Maitake to kinds_of_mushroom
+- 09c_food_nature.txt: added Daikon, Jicama, Salsify, Beet to root_vegetables
+- 09c_food_nature.txt: added Red, Carnaroli, Patna to kinds_of_rice
+- 09c_food_nature.txt: added Pilaf, Kedgeree, Onigiri to rice_dishes
+- 09c_food_nature.txt: added Glucose, Fructose, Sucrose, Xylitol to sweeteners
+- 09c_food_nature.txt: added Rapeseed, Grapeseed, Hazelnut to cooking_oils
+- 09c_food_nature.txt: added Satsuma, Citron, Bergamot to citrus_fruit
+- 09c_food_nature.txt: added Pecan, Praline to ice_cream
+- 09c_food_nature.txt: added Chervil, Lovage to herbs
+- 09c_food_nature.txt: added Nutty, Fruity, Peppery, Earthy to tastes
+- 09c_food_nature.txt: added Hotdog, Sub to fast_food
+- 09c_food_nature.txt: added Eatery, Tearoom, Taqueria, Creperie to places_to_eat
+- 09c_food_nature.txt: added Doppio, Piccolo to coffee_drinks
+- 09c_food_nature.txt: added Gelding, Charger, Yearling, Pinto to words_for_a_horse
+- 09c_food_nature.txt: added Krait, Rattler, Moccasin to snakes
+- 09c_food_nature.txt: added Whelk, Limpet, Crayfish, Winkle, Conch to shellfish
+- 09c_food_nature.txt: added Burro, Reindeer to pack_animals
+- 09c_food_nature.txt: added Cell, Brood, Pupa, Propolis to in_a_hive
+- 09c_food_nature.txt: added Cockerel, Billy, Jack, Cob to male_animals
+- 09c_food_nature.txt: added Queen, Jenny, Hind, Heifer to female_animals
+- 09c_food_nature.txt: added Ovine, Ursine, Vulpine, Piscine, Leonine to animal_adjectives
+- 09c_food_nature.txt: added Paw, Wait, Shake, Leave, Roll to dog_commands
+- 09c_food_nature.txt: added Lichen, Fluff, Wool to things_in_a_nest
+- 09c_food_nature.txt: added Down, Fleece, Pelt, Coat, Bristle to animal_coverings
+- 09c_food_nature.txt: added Osprey, Merlin, Peregrine to birds_of_prey
+- 09c_food_nature.txt: added Woodlouse, Mite, Leech to creepy_crawlies
+- 09c_food_nature.txt: added Gopher to rodents
+- 09c_food_nature.txt: added Cowslip, Yarrow, Harebell to wildflowers
+- 09c_food_nature.txt: added Hemlock to conifers
+- 09c_food_nature.txt: added Stigma, Carpel to parts_of_a_flower
+- 09c_food_nature.txt: added Crown, Needle, Cone, Foliage to parts_of_a_tree
+- 09c_food_nature.txt: added Pothos, Bonsai to houseplants
+- 09c_food_nature.txt: added Hickory, Beech, Birch, Elm to types_of_wood
+- 09c_food_nature.txt: added Flank, Spur, Saddle, Crag, Shoulder to parts_of_a_mountain
+- 09c_food_nature.txt: added Bracket, Enoki, Cep to fungi
+- 09c_food_nature.txt: added Dead, Coral, Ionian, Bering to seas_of_the_world
+- 09c_food_nature.txt: added Pram, Stroller, Playpen, Teether to baby_gear
+- 09c_food_nature.txt: added Bedroll to camping_gear
+- 09c_food_nature.txt: added Bunting, Popper, Pinata, Sparkler to at_a_party
+- 09c_food_nature.txt: added Duffel, Knapsack, Holdall to bags
+- 09c_food_nature.txt: added Waders, Creel, Swivel, Bobber, Fly to fishing_gear
+- 09c_food_nature.txt: added Foils, Tongs, Bleach, Shampoo to at_the_hairdresser
+- 09c_food_nature.txt: added Asphalt, Steel, Rebar to building_materials
+- 09c_food_nature.txt: added Footnote, Foreword to parts_of_a_book
+- 09c_food_nature.txt: added Lace, Yarn to sewing_kit
+- 09c_food_nature.txt: added Belt, Pennant, Jackpot to prizes
+- 09c_food_nature.txt: added Note, Stamp, Token, Change to things_in_a_wallet
+- 09c_food_nature.txt: added Level, Compass to measuring_tools
+- 09c_food_nature.txt: added Bowl, Muzzle, Kibble, Tank to pet_supplies
+- 09c_food_nature.txt: added Sparkler, Incense, Beacon, Flare to things_you_light
+- 09c_food_nature.txt: added Diligence, Integrity, Tolerance, Gratitude to virtues
+- 785 categories now (187 new), 264 pair rules added

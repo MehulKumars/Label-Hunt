@@ -1,0 +1,377 @@
+# Draft 09b: people, culture, music, sport, clothing, body, science (tier 1 and tier 2 only)
+# Format: id,label,key,tier,domain,Word|Word|... ; +existing_id,Word|Word ; PAIR: A | B ; PAIR: Parent < Child
+
+# ---------- TIER 1 ----------
+ailments,Ailments,Ailments,1,body,Flu|Fever|Measles|Mumps|Asthma|Migraine|Rash|Sprain|Blister|Cramp|Allergy|Sunburn|Toothache|Earache|Headache
+sleep_words,Sleep words,Sleep,1,body,Nap|Doze|Snooze|Dream|Snore|Slumber|Siesta|Nightmare|Insomnia|Yawn|Drowsy|Lullaby|Bedtime
+on_television,On television,television,1,culture,Channel|Episode|Series|Remote|Cartoon|Quiz|Soap|Sitcom|News|Presenter|Finale|Pilot|Broadcast|Studio
+in_a_library,In a library,library,1,culture,Shelf|Librarian|Loan|Card|Return|Fine|Silence|Novel|Atlas|Reader|Stamp|Aisle|Bookmark
+winter_clothes,Winter clothes,Winter,1,clothing,Scarf|Glove|Mitten|Beanie|Earmuffs|Thermals|Parka|Puffer|Anorak|Overcoat|Snowsuit|Fleece
+sportswear,Sportswear,Sportswear,1,clothing,Tracksuit|Leotard|Singlet|Sweatband|Headband|Unitard|Wetsuit|Kneepad|Bib|Wristband|Shorts|Leggings
+
+# ---------- TIER 2: culture ----------
+on_a_film_set,On a film set,film,2,culture,Director|Producer|Extra|Script|Camera|Clapper|Boom|Take|Scene|Cue|Crane|Trailer|Wrap
+roles_in_a_story,Roles in a story,Roles,2,culture,Hero|Villain|Narrator|Sidekick|Mentor|Rival|Underdog|Trickster|Henchman|Nemesis|Damsel|Archenemy|Rogue
+detective_story,Detective story,Detective,2,culture,Clue|Suspect|Alibi|Motive|Sleuth|Culprit|Hunch|Disguise|Magnifier|Inspector|Witness|Footprint|Deduction
+pottery_words,Pottery words,Pottery,2,culture,Kiln|Clay|Glaze|Wheel|Slip|Coil|Bisque|Porcelain|Stoneware|Ceramic|Potter|Vase|Slab
+ways_to_write,Ways to write,write,2,culture,Scribble|Scrawl|Jot|Type|Draft|Inscribe|Engrave|Etch|Pen|Note|Copy|Text
+dance_moves,Dance moves,moves,2,culture,Twirl|Shimmy|Moonwalk|Robot|Pirouette|Sway|Spin|Dip|Twist|Shuffle|Worm|Splits|Grapevine
+
+# ---------- TIER 2: music ----------
+parts_of_a_guitar,Parts of a guitar,guitar,2,music,Neck|Fret|String|Bridge|Pickup|Headstock|Saddle|Tuner|Peg|Soundhole|Pickguard|Strap
+italian_music_words,Italian music words,Italian,2,music,Allegro|Adagio|Andante|Largo|Presto|Lento|Forte|Piano|Crescendo|Staccato|Legato|Vivace|Moderato|Dolce
+musical_groups,Musical groups,groups,2,music,Duo|Trio|Quartet|Quintet|Sextet|Septet|Octet|Orchestra|Ensemble|Choir|Combo|Band|Chorus
+music_notation,Music notation,notation,2,music,Clef|Stave|Bar|Rest|Sharp|Tie|Stem|Beam|Dot|Note|Accent|Coda
+classical_pieces,Classical pieces,pieces,2,music,Symphony|Concerto|Sonata|Overture|Suite|Prelude|Nocturne|Fugue|Rhapsody|Toccata|Scherzo|Serenade|Opera|March
+ways_to_sing,Ways to sing,sing,2,music,Croon|Warble|Chant|Yodel|Belt|Trill|Rap|Serenade|Beatbox|Lilt|Busk|Solo
+
+# ---------- TIER 2: sport ----------
+snooker_words,Snooker words,Snooker,2,sport,Cue|Pocket|Rack|Chalk|Break|Cushion|Baize|Pot|Bridge|Rest|Frame|Screw|Triangle|Foul
+surfing_terms,Surfing terms,Surfing,2,sport,Wave|Wipeout|Barrel|Swell|Leash|Wax|Fin|Paddle|Wetsuit|Reef|Lineup|Longboard|Riptide
+playing_positions,Playing positions,positions,2,sport,Striker|Winger|Defender|Goalie|Pitcher|Catcher|Shortstop|Fullback|Sweeper|Forward|Bowler|Batter|Flanker
+motor_racing,Motor racing,racing,2,sport,Grid|Pole|Podium|Chicane|Overtake|Circuit|Apex|Marshal|Flag|Visor|Helmet|Formula
+
+# ---------- TIER 2: people ----------
+old_trades,Old trades,trades,2,people,Cooper|Tanner|Weaver|Potter|Cobbler|Miller|Chandler|Farrier|Saddler|Spinner|Smith|Milliner|Tinker
+household_staff,Household staff,Household,2,people,Butler|Maid|Nanny|Chauffeur|Gardener|Valet|Footman|Governess|Cleaner|Tutor|Steward|Coachman
+terms_of_endearment,Terms of endearment,endearment,2,people,Honey|Darling|Dear|Love|Sugar|Kitten|Treasure|Petal|Sunshine|Buttercup|Precious|Cutie
+people_at_sea,People at sea,sea,2,people,Sailor|Mariner|Skipper|Bosun|Deckhand|Navigator|Captain|Pirate|Purser|Stowaway|Lookout|Helmsman|Castaway
+
+# ---------- TIER 2: body ----------
+muscles,Muscles,Muscles,2,body,Biceps|Triceps|Hamstring|Deltoid|Pectoral|Trapezius|Gluteus|Oblique|Calf|Heart|Tongue|Abs|Quads
+ways_to_breathe,Ways to breathe,breathe,2,body,Pant|Wheeze|Sigh|Puff|Huff|Inhale|Exhale|Snore|Sniff|Gasp|Snort|Yawn
+ways_to_hold,Ways to hold,hold,2,body,Grip|Grasp|Clutch|Clasp|Hug|Cradle|Cuddle|Clench|Embrace|Cling|Squeeze|Grab|Seize|Snatch
+kinds_of_medicine,Kinds of medicine,medicine,2,body,Pill|Tablet|Capsule|Syrup|Ointment|Cream|Inhaler|Lozenge|Vitamin|Vaccine|Tonic|Balm|Antidote|Remedy|Salve
+ways_to_run,Ways to run,run,2,body,Sprint|Jog|Dash|Bolt|Scamper|Scurry|Gallop|Trot|Lope|Hurtle|Zoom|Scuttle|Canter
+ways_to_fall,Ways to fall,fall,2,body,Tumble|Slip|Topple|Plunge|Plummet|Collapse|Slump|Flop|Crumple|Sprawl|Spill|Nosedive
+
+# ---------- TIER 2: science ----------
+chemical_elements,Chemical elements,elements,2,science,Carbon|Sodium|Calcium|Iodine|Silicon|Lithium|Uranium|Radium|Boron|Potassium|Plutonium|Platinum|Chromium|Arsenic
+geology_words,Geology words,Geology,2,science,Crust|Mantle|Core|Plate|Fault|Fossil|Strata|Sediment|Erosion|Mineral|Tremor|Rift|Bedrock|Quake|Seam
+minerals,Minerals,Minerals,2,science,Quartz|Mica|Feldspar|Calcite|Gypsum|Talc|Pyrite|Graphite|Fluorite|Bauxite|Malachite|Borax
+science_units,Science units,units,2,science,Volt|Watt|Amp|Ohm|Joule|Newton|Hertz|Kelvin|Pascal|Coulomb|Farad|Lumen|Decibel|Mole|Calorie
+statistics,Statistics,Statistics,2,science,Mean|Median|Mode|Average|Sample|Survey|Ratio|Percent|Tally|Outlier|Variance|Graph|Chart
+astronomy_words,Astronomy words,Astronomy,2,science,Orbit|Eclipse|Equinox|Solstice|Axis|Phase|Zenith|Horizon|Cosmos|Gravity|Crater|Telescope|Supernova
+microscopic_life,Microscopic life,Microscopic,2,science,Virus|Bacteria|Germ|Spore|Microbe|Yeast|Algae|Plankton|Mildew|Diatom|Pathogen|Bacillus
+
+# ---------- TIER 2: clothing ----------
+trimmings,Trimmings,Trimmings,2,clothing,Sequin|Bead|Tassel|Ruffle|Frill|Braid|Piping|Lace|Ribbon|Bow|Rosette|Feather|Patch
+kinds_of_skirt,Kinds of skirt,skirt,2,clothing,Mini|Maxi|Midi|Pencil|Tutu|Kilt|Sarong|Pleated|Wrap|Tulip|Puffball|Bubble|Skater
+
+# ---------- EXTENSIONS: clothing ----------
++worn_on_the_legs,Culottes|Breeches|Jodhpurs|Flares
++footwear,Wedge|Platform|Galosh|Slingback
++hats,Tricorn|Topper|Cloche|Pillbox|Derby
++traditional_clothes,Dirndl|Hanbok|Kaftan|Dashiki|Kurta|Cheongsam|Dhoti
++hairstyles,Mohawk|Quiff|Pigtail|Bouffant
++outerwear,Trench
++fabric_patterns,Pinstripe
++parts_of_a_dress,Slit|Ruffle|Lining
++parts_of_a_coat,Toggle|Vent
++parts_of_a_shoe,Arch|Upper|Aglet
++worn_in_the_hair,Barrette|Feather
++worn_on_the_face,Eyepatch
+
+# ---------- EXTENSIONS: music ----------
++percussion,Snare|Djembe|Castanets|Cajon
++string_instruments,Zither|Balalaika|Lyre|Koto
++kinds_of_song,Madrigal|Lament
++parts_of_a_song,Hook|Interlude|Breakdown
++singing_voices,Mezzo
++music_releases,Vinyl|Cassette|Reissue
++at_a_concert,Setlist
+
+# ---------- EXTENSIONS: sport ----------
++kinds_of_race,Dash|Motocross|Duathlon|Derby
++basketball_terms,Backboard|Swish|Buzzer
++exercises,Shrug|Press
++gymnastics_moves,Walkover|Aerial|Straddle
++riding_gear,Girth|Blinkers|Jodhpurs|Harness
++on_the_slopes,Mogul|Binding|Avalanche
++team_sports,Dodgeball|Futsal|Kabaddi
++winter_sports,Skeleton|Hockey
++ways_to_score,Spare|Dunk|Eagle
++sports_venues,Oval|Circuit
++at_the_gym,Stepper|Towel|Mirror
++prizes,Wreath
++combat_sports,Capoeira|Hapkido
++water_sports,Yachting|Paddling
+
+# ---------- EXTENSIONS: body ----------
++facial_expressions,Leer|Beam
++gestures,Handshake|Facepalm
++reflexes,Startle|Gag|Wince|Recoil
++ways_to_touch,Stroke|Brush|Dab
++ways_to_look,Gawk
++hair_textures,Wiry|Matted|Coily
++parts_of_the_eye,Sclera|Socket
++marks_on_skin,Rash|Blister|Graze
++body_positions,Hunch
+
+# ---------- EXTENSIONS: people ----------
++people_in_charge,Leader|Governor|Mayor
++medieval_people,Scribe|Bard|Falconer|Damsel
++shopkeepers,Milliner|Draper|Chandler
++writers,Bard|Editor|Dramatist
++trades,Glazier|Joiner
++learners,Greenhorn|Recruit
++experts,Adept|Whiz|Hotshot|Sage
++words_for_a_friend,Comrade|Crony|Confidant
++performers,Busker|Ballerina|Hypnotist
++jobs_with_animals,Farrier
+
+# ---------- EXTENSIONS: culture ----------
++crafts,Beading
++magic_show,Illusion|Trick|Assistant
++card_games,Cribbage|Euchre|Pinochle
++kinds_of_comedy,Improv|Lampoon
++kinds_of_story,Mystery|Romance
++in_a_newspaper,Masthead|Comic
++celebrations,Prom|Shindig|Bash
++photography,Aperture
++greek_letters,Tau|Omicron
++kinds_of_book,Paperback|Hardback
+
+# ---------- EXTENSIONS: science ----------
++in_the_lab,Burner|Crucible|Dropper
++energy_sources,Peat|Steam|Wave
++volcano_words,Caldera|Dormant|Molten
++biology_words,Organism|Osmosis|Mutation
++rocks,Schist|Gneiss
++scientists,Mendel|Bohr
++chemistry_words,Isotope
++physics_words,Torque
++storms,Monsoon
+
+# ---------- CROSSING DECLARATIONS outside my domains (rule 3: honest second memberships) ----------
++bodies_of_water,Channel
++female_animals,Nanny
++on_the_table,Pitcher
++stationery,Stamp
++hot_things,Kiln
++things_birds_do,Warble|Trill
++words_after_house,Maid
++weather,Sunshine
++parts_of_a_mountain,Apex
++geometry,Apex
++flowers,Cosmos
++sea_creatures,Plankton
++parts_of_a_book,Binding
+
+# ---------- SECOND BATCH: tier 1 ----------
+at_a_match,At a match,match,1,sport,Referee|Whistle|Fan|Mascot|Stand|Goal|Ticket|Captain|Trophy|Chant|Anthem|Turnstile|Bench
+formal_wear,Formal wear,Formal,1,clothing,Tuxedo|Gown|Suit|Tie|Waistcoat|Cufflink|Tailcoat|Blazer|Dress|Corsage|Cravat|Heels
+hands_and_feet,Hands and feet,Hands,1,body,Palm|Thumb|Finger|Knuckle|Nail|Wrist|Cuticle|Pinky|Heel|Toe|Sole|Arch|Instep|Ankle
+in_the_wild_west,In the Wild West,Wild,1,culture,Sheriff|Lasso|Ranch|Rodeo|Cactus|Spur|Posse|Wagon|Bronco|Corral|Prairie|Canyon|Saddle|Cowboy
+at_a_theme_park,At a theme park,theme,1,culture,Ride|Queue|Mascot|Carousel|Arcade|Ticket|Flume|Parade|Souvenir|Turnstile|Balloon|Popcorn|Firework
+superhero_words,Superhero words,Superhero,1,culture,Cape|Mask|Sidekick|Lair|Villain|Tights|Hideout|Emblem|Disguise|Nemesis|Costume|Secret
+at_the_police_station,At the police station,police,1,people,Officer|Cell|Badge|Handcuffs|Sergeant|Siren|Uniform|Constable|Patrol|Witness|Suspect|Detective|Inspector
+at_the_fire_station,At the fire station,fire,1,people,Hose|Ladder|Helmet|Siren|Engine|Hydrant|Pole|Alarm|Bell|Truck|Smoke|Uniform
+at_the_post_office,At the post office,post,1,culture,Parcel|Stamp|Letter|Envelope|Courier|Queue|Scale|Counter|Mailbox|Address|Delivery|Package|Airmail
+
+# ---------- SECOND BATCH: tier 2 ----------
+medical_jobs,Medical jobs,Medical,2,people,Surgeon|Midwife|Paramedic|Physio|Osteopath|Dentist|Optician|Matron|Orderly|Doctor|Nurse|Vet
+kinds_of_drum,Kinds of drum,drum,2,music,Snare|Bongo|Conga|Tabla|Djembe|Timpani|Tom|Bass|Taiko|Cajon|Bodhran|Kettle
+at_the_opera,At the opera,opera,2,music,Aria|Diva|Libretto|Overture|Chorus|Encore|Bravo|Maestro|Conductor|Orchestra|Soprano|Tenor|Baritone
+at_a_skate_park,At a skate park,skate,2,sport,Ramp|Rail|Halfpipe|Helmet|Kneepad|Bowl|Grind|Ollie|Scooter|Deck|Truck|Wheel|Kickflip
+figure_skating,Figure skating,skating,2,sport,Axel|Lutz|Salchow|Spin|Spiral|Camel|Blade|Rink|Lift|Twizzle|Loop|Flip|Edge
+ancient_rome,Ancient Rome,Rome,2,culture,Toga|Senate|Emperor|Forum|Villa|Aqueduct|Chariot|Mosaic|Colosseum|Consul|Latin|Sandal|Arena
+ancient_egypt,Ancient Egypt,Egypt,2,culture,Pharaoh|Pyramid|Sphinx|Nile|Papyrus|Scarab|Obelisk|Cairo|Camel|Desert|Delta|Oasis|Dynasty
+parts_of_the_mouth,Parts of the mouth,mouth,2,body,Tongue|Tooth|Gum|Lip|Palate|Tonsil|Uvula|Molar|Incisor|Canine|Saliva|Jaw|Cheek
+forms_of_energy,Forms of energy,energy,2,science,Kinetic|Potential|Thermal|Chemical|Electric|Heat|Elastic|Nuclear|Magnetic|Radiant|Solar|Tidal
+optics,Optics,Optics,2,science,Prism|Lens|Beam|Glare|Laser|Mirror|Spectrum|Photon|Focus|Mirage|Shadow|Reflect|Refract
+prehistoric_life,Prehistoric life,Prehistoric,2,science,Dinosaur|Mammoth|Raptor|Trilobite|Ammonite|Mastodon|Pterosaur|Megalodon|Smilodon|Iguanodon|Stegosaur|Allosaur
+fashion_show,Fashion show,Fashion,2,clothing,Catwalk|Runway|Model|Designer|Couture|Stylist|Backstage|Trend|Season|Outfit|Label|Mannequin
+knitting_words,Knitting words,Knitting,2,clothing,Needle|Yarn|Wool|Stitch|Purl|Row|Cable|Rib|Skein|Gauge|Tension|Moss|Cast
+
+# ---------- More crossing declarations (second batch) ----------
++worn_on_the_neck,Tie
++sharp_things,Blade
++shapes,Spiral
++ways_to_travel,Wagon
++internet_words,Forum
++insects,Scarab
++landforms,Oasis
++birds_of_prey,Raptor
++things_you_wear,Uniform
++phonetic_alphabet,Uniform
++male_animals,Tom
+
+# ---------- PAIR RULES: tier 1 ----------
+PAIR: Things you can catch | Ailments
+PAIR: At the cinema | On television
+PAIR: Film genres | On television
+PAIR: On a film set | On television
+PAIR: Kinds of book | In a library
+PAIR: Parts of a book | In a library
+PAIR: Things with pages | In a library
+PAIR: Places in a town | In a library
+PAIR: Things with branches | In a library
+PAIR: Things you wear < Winter clothes
+PAIR: Outerwear | Winter clothes
+PAIR: Words before coat | Winter clothes
+PAIR: Things you wear < Sportswear
+PAIR: Tops | Sportswear
+PAIR: At the gym | Sportswear
+PAIR: Sports gear | Sportswear
+PAIR: Things you wear < Formal wear
+PAIR: At a concert | At a match
+PAIR: Tennis terms | At a match
+PAIR: Things you light | At a match
+PAIR: Body parts < Hands and feet
+PAIR: Joints in the body | Hands and feet
+PAIR: Parts of a shoe | Hands and feet
+PAIR: Film genres | In the Wild West
+PAIR: Directions | In the Wild West
+PAIR: Riding gear | In the Wild West
+PAIR: Words for a horse | In the Wild West
+PAIR: Jobs with animals | In the Wild West
+PAIR: Jobs | In the Wild West
+PAIR: Landforms | In the Wild West
+PAIR: In the park | At a theme park
+PAIR: Roles in a story | Superhero words
+PAIR: Magic show | Superhero words
+PAIR: In a courtroom | At the police station
+PAIR: Detective story | At the police station
+PAIR: Social media words | At the post office
+PAIR: Workplaces | At the post office
+PAIR: Rooms in a house | At the post office
+
+# ---------- PAIR RULES: tier 2 culture and music ----------
+PAIR: At a play | On a film set
+PAIR: Photography | On a film set
+PAIR: Jobs | On a film set
+PAIR: In fairy tales | Roles in a story
+PAIR: In a courtroom | Detective story
+PAIR: Crafts | Pottery words
+PAIR: Materials | Pottery words
+PAIR: Dances | Dance moves
+PAIR: Gymnastics moves | Dance moves
+PAIR: At the ballet | Dance moves
+PAIR: Ways to move | Dance moves
+PAIR: Things that spin | Dance moves
+PAIR: Capital cities | Ancient Rome
+PAIR: Words for old | Ancient Rome
+PAIR: Groups of people | Ancient Rome
+PAIR: Ways to travel | Ancient Rome
+PAIR: Countries | Ancient Egypt
+PAIR: Words for old | Ancient Egypt
+PAIR: Instruments | Parts of a guitar
+PAIR: String instruments | Parts of a guitar
+PAIR: Musicians | Parts of a guitar
+PAIR: Things with strings | Parts of a guitar
+PAIR: Things with necks | Parts of a guitar
+PAIR: Things with bridges | Parts of a guitar
+PAIR: Languages | Italian music words
+PAIR: Music terms | Italian music words
+PAIR: Groups of people | Musical groups
+PAIR: Music terms | Music notation
+PAIR: Music genres | Classical pieces
+PAIR: Kinds of song | Classical pieces
+PAIR: Ways to talk | Ways to sing
+PAIR: Singing voices | At the opera
+PAIR: At a concert | At the opera
+PAIR: At a play | At the opera
+PAIR: Music genres | At the opera
+PAIR: Classical pieces | At the opera
+PAIR: Kinds of song | At the opera
+PAIR: Percussion < Kinds of drum
+PAIR: Instruments | Kinds of drum
+PAIR: Musicians | Kinds of drum
+
+# ---------- PAIR RULES: tier 2 sport and people ----------
+PAIR: Indoor games | Snooker words
+PAIR: Things you can break | Snooker words
+PAIR: Sports | Surfing terms
+PAIR: Water sports | Surfing terms
+PAIR: Sportspeople | Surfing terms
+PAIR: Things at the beach | Surfing terms
+PAIR: Things with fins | Surfing terms
+PAIR: Sportspeople | Playing positions
+PAIR: Sportspeople | At a skate park
+PAIR: Ways to move | At a skate park
+PAIR: Things with blades | Figure skating
+PAIR: Things that spin | Figure skating
+PAIR: Winter sports | Figure skating
+PAIR: Sportspeople | Figure skating
+PAIR: Shopkeepers | Old trades
+PAIR: Trades | Old trades
+PAIR: Medieval people | Old trades
+PAIR: On a pirate ship | People at sea
+PAIR: At the hospital | Medical jobs
+PAIR: At the dentist | Medical jobs
+
+# ---------- PAIR RULES: tier 2 body, science, clothing ----------
+PAIR: Body parts < Muscles
+PAIR: Reflexes | Ways to breathe
+PAIR: Ways to touch | Ways to hold
+PAIR: At the hospital | Kinds of medicine
+PAIR: Ways to move | Ways to run
+PAIR: Ways to walk | Ways to run
+PAIR: Body parts | Parts of the mouth
+PAIR: Organs | Parts of the mouth
+PAIR: Parts of the face | Parts of the mouth
+PAIR: At the dentist | Parts of the mouth
+PAIR: Sweets | Parts of the mouth
+PAIR: Sticky things | Parts of the mouth
+PAIR: Metals | Chemical elements
+PAIR: Gases | Chemical elements
+PAIR: Chemistry words | Chemical elements
+PAIR: Rocks | Geology words
+PAIR: Volcano words | Geology words
+PAIR: Minerals | Geology words
+PAIR: Branches of science | Geology words
+PAIR: Natural disasters | Geology words
+PAIR: Rocks | Minerals
+PAIR: Gems | Minerals
+PAIR: Units of measure | Science units
+PAIR: Electricity | Science units
+PAIR: Scientists | Science units
+PAIR: Arithmetic | Statistics
+PAIR: Things in space | Astronomy words
+PAIR: Branches of science | Astronomy words
+PAIR: Spacecraft | Astronomy words
+PAIR: Fungi | Microscopic life
+PAIR: Tiny things | Microscopic life
+PAIR: Biology words | Microscopic life
+PAIR: At the museum | Prehistoric life
+PAIR: Energy sources | Forms of energy
+PAIR: Electricity | Forms of energy
+PAIR: Chemical elements | Forms of energy
+PAIR: Photography | Optics
+PAIR: Physics words | Optics
+PAIR: In the lab | Optics
+PAIR: Tiny things | Optics
+PAIR: Branches of science | Optics
+PAIR: Sewing kit | Trimmings
+PAIR: Parts of a dress | Trimmings
+PAIR: Garden jobs | Trimmings
+PAIR: Worn on the legs | Kinds of skirt
+PAIR: Parts of a dress | Kinds of skirt
+PAIR: Things you wear < Kinds of skirt
+PAIR: Crafts | Knitting words
+PAIR: Sewing kit | Knitting words
+PAIR: Silent K | Knitting words
+
+# ---------- HIDDEN-WORD CROSSINGS (each word literally contains the hidden target) ----------
++hidden_birds,Mohawk|Henchman|Archenemy
++hidden_body_parts,Headband|Headstock|Facepalm|Chandler|Slingback|Earmuffs|Allegro|Cribbage|Fullback|Flip|Earache|Shindig|Eyepatch|Scribble|Headache|Kneepad|Heels|Wristband|Orchestra|Backstage|Paperback|Masthead|Leggings|Handcuffs|Handshake|Slip|Legato|Inscribe|Sunshine|Scribe|Deckhand|Footman|Kickflip|Hardback|Footprint|Plunge|Nuclear|Eclipse|Toothache|Backboard
++hidden_clothing,Overcoat|Librarian|Waistcoat|Cutie|Snowsuit|Wetsuit|Braid|Embrace|Mitten|Suite|Tracksuit|Tailcoat|Microbe
++hidden_farm_animals,Pyramid|Frame|Paramedic|Pigtail|Henchman|Mailbox|Pillbox|Beatbox|Dramatist|Ramp|Cowboy|Equinox|Archenemy|Pathogen|Longboard|Cramp|Backboard
++hidden_fish,Heel|Heels|Coda|Handshake
++hidden_fruit,Plummet
++hidden_hues,Rosette|Corsage|Castanets|Pinky|Tanner|Assistant|Plummet|Kaftan|Stand
++hidden_insects,Mammoth|Mantle|Anthem|Bouffant|Dormant|Pant|Confidant|Radiant|Hydrant|Assistant|Canter|Sergeant|Chant|Antidote|Andante
++hidden_instruments,Gluteus|Organism|Greenhorn
++hidden_jobs,Copy|Telescope
++hidden_kitchen_items,Yachting|Latin|Platinum|Buttercup|Pant|Potential|Potter|Potassium|Tinker|Timpani
++hidden_numbers,Stoneware|Falconer|Molten|Tenor|Mitten|Potential|Tension|Baritone
++hidden_trees,Firework|Dashiki|Rash|Bash|Helmsman|Leash
++hidden_vehicles,Busk|Scarab|Carbon|Cable|Cartoon|Busker|Carousel
++hidden_weights,Stoneware|Tongue|Plutonium|Plankton|Skeleton|Tonsil|Newton|Photon|Baritone
+
+# ---------- NOTES ----------
+# Written after checking 09a and 09c: their labels are not repeated here, and the near twins Bowling, Words for hello and Spacecraft were left to them.
+# Least sure: Forms of energy (adjectives, school-science feel), Minerals (Feldspar, Fluorite, Bauxite are niche), Prehistoric life (Smilodon, Allosaur),
+#   Figure skating (Salchow, Twizzle), Parts of a guitar (Pickguard, Headstock), Playing positions (mixes sports, so each player knows part of it).
+# Regional watch: Queue, Constable, Waistcoat (understood, but more UK), Pitcher and Shortstop (more US), Pinky.

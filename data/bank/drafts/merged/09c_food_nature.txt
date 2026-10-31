@@ -1,0 +1,252 @@
+# 09c: more tier-1 and tier-2 categories for food, animals, nature, objects, colour and abstract concept sets.
+# Format: id,label,key,tier,domain,Word|Word|...   /   +existing_id,Word|Word   /   PAIR: A | B   /   PAIR: Parent < Child   /   PAIR: A ! domain
+# Synonym sets are split by part of speech and by sense, so neighbouring moods stay fair; close neighbours get a PAIR.
+
+# ---------- TIER 1 ----------
+emotions,Emotions,Emotions,1,abstract,Joy|Anger|Fear|Sorrow|Love|Hate|Envy|Pride|Shame|Guilt|Disgust|Surprise|Grief|Jealousy|Boredom
+exclamations,Exclamations,Exclamations,1,abstract,Oops|Ouch|Yikes|Phew|Hooray|Alas|Eureka|Bravo|Gosh|Golly|Yippee|Whoa|Ahem|Wow|Eek
+words_for_yes,Words for yes,yes,1,abstract,Yeah|Yep|Yup|Sure|Okay|Aye|Indeed|Certainly|Agreed|Right|Fine|Roger|Gladly|Totally
+words_for_hello,Words for hello,hello,1,abstract,Hey|Howdy|Hiya|Greetings|Aloha|Hola|Ciao|Bonjour|Ahoy|Welcome|Morning|Evening|Salaam
+words_for_goodbye,Words for goodbye,goodbye,1,abstract,Bye|Farewell|Cheerio|Adieu|Adios|Sayonara|Later|Cheers|Toodles|Ciao|Aloha|Goodnight
+words_for_big,Words for big,big,1,abstract,Huge|Giant|Vast|Large|Massive|Enormous|Immense|Jumbo|Mammoth|Colossal|Hefty|Bulky|Titanic|Gigantic|Whopping|Hulking
+words_for_small,Words for small,small,1,abstract,Little|Mini|Petite|Wee|Minute|Teeny|Dinky|Puny|Slight|Pocket|Minuscule|Elfin|Weeny
+natural_disasters,Natural disasters,disasters,1,nature,Tsunami|Flood|Drought|Wildfire|Avalanche|Landslide|Eruption|Mudslide|Sinkhole|Quake|Hurricane|Tornado|Cyclone
+parts_of_a_plant,Parts of a plant,plant,1,nature,Root|Stem|Leaf|Seed|Bud|Thorn|Shoot|Bulb|Tuber|Pod|Tendril|Stalk|Runner
+weather_forecast,Weather forecast,forecast,1,nature,Sunny|Cloudy|Rainy|Windy|Foggy|Stormy|Snowy|Frosty|Misty|Muggy|Humid|Overcast|Breezy|Chilly|Icy
+cosmetics,Cosmetics,Cosmetics,1,objects,Lipstick|Mascara|Eyeliner|Powder|Concealer|Bronzer|Primer|Gloss|Rouge|Kohl|Eyeshadow|Blush|Contour
+first_aid_kit,First aid kit,aid,1,objects,Bandage|Gauze|Tape|Scissors|Tweezers|Splint|Sling|Ointment|Swab|Dressing|Wipes|Compress|Iodine
+
+# ---------- TIER 2: food ----------
+middle_eastern_food,Middle Eastern food,Eastern,2,food,Hummus|Falafel|Tahini|Shawarma|Baklava|Fattoush|Dolma|Mezze|Sumac|Halloumi|Shakshuka|Kofta
+kinds_of_pepper,Kinds of pepper,pepper,2,food,Jalapeno|Habanero|Cayenne|Bell|Black|Chipotle|Poblano|Serrano|Pink|White|Banana|Pimento|Paprika
+stone_fruit,Stone fruit,Stone,2,food,Peach|Plum|Cherry|Apricot|Nectarine|Mango|Date|Olive|Damson|Greengage|Sloe|Mirabelle
+ways_to_eat,Ways to eat,eat,2,food,Munch|Chomp|Nibble|Devour|Scoff|Wolf|Dine|Chew|Gorge|Bolt|Peck|Feast|Snack|Gnaw|Swallow
+leafy_greens,Leafy greens,greens,2,food,Spinach|Kale|Lettuce|Cabbage|Chard|Endive|Radicchio|Romaine|Escarole|Collard|Frisee|Cress|Iceberg
+ways_to_preserve_food,Ways to preserve food,preserve,2,food,Pickle|Smoke|Salt|Cure|Dry|Freeze|Can|Jar|Ferment|Bottle|Brine|Chill|Dehydrate
+
+# ---------- TIER 2: animals ----------
+kinds_of_whale,Kinds of whale,whale,2,animals,Blue|Humpback|Sperm|Killer|Minke|Beluga|Narwhal|Right|Pilot|Beaked|Pygmy|Fin
+kinds_of_shark,Kinds of shark,shark,2,animals,Mako|Nurse|Basking|Lemon|Blue|Reef|Thresher|Goblin|Tiger|Bull|Whale|Zebra|Sand
+songbirds,Songbirds,Songbirds,2,animals,Robin|Sparrow|Thrush|Wren|Finch|Starling|Lark|Warbler|Canary|Linnet|Oriole|Swallow|Nuthatch|Blackbird
+seabirds,Seabirds,Seabirds,2,animals,Gull|Puffin|Albatross|Gannet|Cormorant|Pelican|Tern|Petrel|Skua|Fulmar|Kittiwake|Guillemot|Auk|Penguin
+cat_breeds,Cat breeds,Cat,2,animals,Persian|Siamese|Sphynx|Bengal|Burmese|Manx|Birman|Siberian|Himalayan|Tonkinese|Bombay|Balinese|Munchkin
+parts_of_a_bird,Parts of a bird,bird,2,animals,Beak|Wing|Feather|Talon|Crest|Tail|Plume|Bill|Wattle|Comb|Crop|Gizzard|Down|Claw
+
+# ---------- TIER 2: nature ----------
+kinds_of_cloud,Kinds of cloud,cloud,2,nature,Cirrus|Cumulus|Stratus|Nimbus|Mammatus|Contrail|Storm|Rain|Thunder|Funnel|Mushroom|Anvil
+kinds_of_wind,Kinds of wind,wind,2,nature,Breeze|Gale|Gust|Zephyr|Squall|Mistral|Sirocco|Chinook|Monsoon|Northerly|Easterly|Westerly|Southerly|Trade|Blast
+ways_water_moves,Ways water moves,water,2,nature,Trickle|Drip|Gush|Spurt|Splash|Ripple|Flow|Pour|Cascade|Seep|Ooze|Leak|Squirt|Dribble|Stream
+
+# ---------- TIER 2: objects ----------
+kinds_of_knot,Kinds of knot,knot,2,objects,Reef|Granny|Bowline|Hitch|Overhand|Square|Windsor|Bow|Butterfly|Celtic|Clove|Slip|Surgeon|Fisherman
+parts_of_a_bottle,Parts of a bottle,bottle,2,objects,Neck|Cap|Cork|Label|Base|Shoulder|Lip|Mouth|Seal|Body|Stopper|Lid|Rim
+
+# ---------- TIER 2: colour ----------
+words_for_pale,Words for pale,pale,2,colour,Wan|Pallid|Ashen|Pasty|Sallow|Waxen|Ghostly|Sickly|Bloodless|Chalky|Doughy|Deathly
+words_for_dark,Words for dark,dark,2,colour,Dim|Murky|Gloomy|Shadowy|Dusky|Inky|Unlit|Shady|Moonless|Starless|Sunless|Stygian|Twilit
+
+# ---------- TIER 2: abstract, moods and qualities ----------
+words_for_happy,Words for happy,happy,2,abstract,Glad|Merry|Jolly|Cheerful|Elated|Content|Chirpy|Upbeat|Gleeful|Jovial|Blissful|Ecstatic|Thrilled|Delighted
+words_for_sad,Words for sad,sad,2,abstract,Glum|Gloomy|Blue|Miserable|Dejected|Downcast|Mournful|Forlorn|Morose|Doleful|Tearful|Heartsick|Woebegone
+words_for_angry,Words for angry,angry,2,abstract,Mad|Irate|Livid|Furious|Fuming|Raging|Seething|Incensed|Enraged|Irked|Annoyed|Peeved|Riled|Huffy|Wrathful
+words_for_scared,Words for scared,scared,2,abstract,Afraid|Terrified|Petrified|Nervous|Anxious|Jumpy|Jittery|Panicky|Spooked|Startled|Alarmed|Aghast|Rattled|Uneasy
+words_for_tired,Words for tired,tired,2,abstract,Sleepy|Weary|Drowsy|Exhausted|Fatigued|Drained|Spent|Beat|Jaded|Haggard|Lethargic|Sluggish|Groggy|Bleary
+words_for_clever,Words for clever,clever,2,abstract,Smart|Bright|Brainy|Wise|Shrewd|Astute|Gifted|Canny|Savvy|Learned|Erudite|Sage|Ingenious
+words_for_brave,Words for brave,brave,2,abstract,Bold|Daring|Heroic|Valiant|Gallant|Plucky|Gutsy|Intrepid|Dauntless|Gritty|Audacious|Spirited|Feisty|Unafraid
+words_for_great,Words for great,great,2,abstract,Superb|Terrific|Fantastic|Wonderful|Splendid|Fabulous|Excellent|Awesome|Amazing|Stellar|Ace|Wicked|Neat
+words_for_terrible,Words for terrible,terrible,2,abstract,Awful|Dreadful|Horrible|Atrocious|Abysmal|Lousy|Ghastly|Appalling|Dire|Shoddy|Pathetic|Crummy|Vile|Rotten
+words_for_strange,Words for strange,strange,2,abstract,Odd|Weird|Bizarre|Peculiar|Curious|Quirky|Eerie|Uncanny|Freaky|Offbeat|Unusual|Surreal|Abnormal|Atypical|Eccentric
+words_for_beautiful,Words for beautiful,beautiful,2,abstract,Pretty|Lovely|Gorgeous|Stunning|Handsome|Exquisite|Comely|Cute|Ravishing|Fetching|Striking|Glamorous|Winsome
+words_for_boring,Words for boring,boring,2,abstract,Dull|Tedious|Dreary|Bland|Humdrum|Mundane|Tiresome|Banal|Lifeless|Dry|Prosaic|Vapid|Trite
+words_for_rude,Words for rude,rude,2,abstract,Impolite|Insolent|Cheeky|Blunt|Curt|Abrupt|Surly|Impudent|Uncouth|Coarse|Boorish|Sassy|Mouthy|Gruff
+words_for_wet,Words for wet,wet,2,abstract,Damp|Soggy|Moist|Soaked|Sodden|Drenched|Dripping|Clammy|Dank|Sopping|Watery|Saturated|Squelchy|Dewy
+words_for_dirty,Words for dirty,dirty,2,abstract,Filthy|Grimy|Grubby|Muddy|Mucky|Dusty|Sooty|Soiled|Stained|Unclean|Squalid|Greasy|Dingy
+words_for_calm,Words for calm,calm,2,abstract,Serene|Placid|Tranquil|Peaceful|Relaxed|Mellow|Composed|Collected|Unruffled|Halcyon|Restful|Easygoing|Poised
+words_for_evil,Words for evil,evil,2,abstract,Sinister|Malicious|Cruel|Nasty|Vicious|Spiteful|Heinous|Fiendish|Malign|Nefarious|Dastardly|Wicked|Baleful|Devious
+words_for_funny,Words for funny,funny,2,abstract,Hilarious|Comic|Witty|Amusing|Droll|Riotous|Jokey|Farcical|Humorous|Laughable|Priceless|Waggish|Wry
+words_for_fancy,Words for fancy,fancy,2,abstract,Posh|Plush|Swanky|Ritzy|Classy|Lavish|Opulent|Upmarket|Deluxe|Chic|Elegant|Sumptuous|Stylish
+
+# ---------- TIER 2: abstract, nouns ----------
+words_for_courage,Words for courage,courage,2,abstract,Pluck|Grit|Nerve|Spine|Mettle|Moxie|Bravery|Backbone|Gumption|Heart|Chutzpah|Audacity|Fortitude
+words_for_a_mess,Words for a mess,mess,2,abstract,Muddle|Jumble|Clutter|Chaos|Shambles|Tangle|Disarray|Disorder|Havoc|Mayhem|Pigsty|Turmoil|Mishmash
+words_for_a_mistake,Words for a mistake,mistake,2,abstract,Error|Blunder|Slip|Gaffe|Goof|Flub|Howler|Lapse|Fault|Oversight|Bungle|Typo|Misstep|Fumble|Glitch
+words_for_nonsense,Words for nonsense,nonsense,2,abstract,Rubbish|Drivel|Twaddle|Baloney|Bunkum|Hogwash|Tosh|Piffle|Poppycock|Gibberish|Claptrap|Hooey|Malarkey
+words_for_a_fuss,Words for a fuss,fuss,2,abstract,Ado|Bother|Commotion|Hoopla|Kerfuffle|Palaver|Rumpus|Stir|Uproar|Flap|Tizzy|Brouhaha|Hubbub|Ruckus
+words_for_lots,Words for lots,lots,2,abstract,Loads|Heaps|Tons|Masses|Piles|Stacks|Oodles|Scores|Dozens|Plenty|Myriad|Umpteen|Countless|Numerous|Reams
+words_for_a_problem,Words for a problem,problem,2,abstract,Snag|Hitch|Hiccup|Hurdle|Setback|Pitfall|Dilemma|Quandary|Pickle|Jam|Bind|Headache|Catch|Obstacle
+words_for_a_speech,Words for a speech,speech,2,abstract,Address|Lecture|Oration|Toast|Eulogy|Monologue|Keynote|Spiel|Tirade|Harangue|Diatribe|Soliloquy|Discourse|Pitch
+words_for_a_fight,Words for a fight,fight,2,abstract,Brawl|Scrap|Scuffle|Tussle|Fracas|Melee|Skirmish|Fray|Bout|Duel|Battle|Joust|Showdown
+
+# ---------- TIER 2: abstract, verbs ----------
+ways_to_steal,Ways to steal,steal,2,abstract,Rob|Pinch|Swipe|Pilfer|Filch|Lift|Snatch|Loot|Pocket|Poach|Embezzle|Plunder|Shoplift|Nab|Purloin|Mug
+ways_to_throw,Ways to throw,throw,2,abstract,Toss|Hurl|Fling|Chuck|Lob|Pitch|Cast|Sling|Heave|Bowl|Launch|Pelt|Flick|Propel|Catapult
+ways_to_shine,Ways to shine,shine,2,abstract,Gleam|Glint|Glimmer|Glisten|Glitter|Shimmer|Twinkle|Flash|Flicker|Dazzle|Beam|Blaze|Radiate|Flare|Glare
+ways_to_cry,Ways to cry,cry,2,abstract,Sob|Weep|Wail|Bawl|Blubber|Whimper|Snivel|Howl|Whine|Sniffle|Keen|Lament|Mewl
+
+# ---------- EXTENSIONS: needed so a new card has a declared home ----------
++birds,Swift|Emu|Cockatoo|Cassowary
++australian_animals,Emu|Cockatoo|Bilby|Cassowary
++insects,Butterfly
++flowers,Carnation
++spices,Sumac
++indian_food,Kofta
++desserts,Baklava
++japanese_food,Onigiri
+# words_for_fast is defined in 09a_thin_domains.txt; Swift needs a declared home there as well as in Birds.
++words_for_fast,Swift|Nimble
+
+# ---------- EXTENSIONS: colour ----------
++shades_of_beige,Ecru|Buff|Parchment|Flax
++shades_of_black,Pitch|Sable|Tar
++shades_of_white,Bone|Porcelain|Milk|Cotton
++shades_of_purple,Heather|Damson|Puce|Iris|Thistle
++shades_of_red,Carmine|Raspberry|Lipstick
++shades_of_pink,Carnation|Blossom|Peony
++shades_of_orange,Marigold|Flame|Papaya
+
+# ---------- EXTENSIONS: food and drink ----------
++nuts,Brazil|Filbert
++cuts_of_meat,Ribeye|Chuck|Cutlet|Skirt
++soups,Borscht|Consomme|Wonton
++pasta,Ziti|Rotini|Bucatini|Capellini
++seafood,Cockle|Crayfish|Whelk|Abalone
++kinds_of_mushroom,Cremini|Puffball|Cep|Maitake
++root_vegetables,Daikon|Jicama|Salsify|Beet
++kinds_of_rice,Red|Carnaroli|Patna
++rice_dishes,Pilaf|Kedgeree|Onigiri
++sweeteners,Glucose|Fructose|Sucrose|Xylitol
++cooking_oils,Rapeseed|Grapeseed|Hazelnut
++citrus_fruit,Satsuma|Citron|Bergamot
++ice_cream,Pecan|Praline
++herbs,Chervil|Lovage
++tastes,Nutty|Fruity|Peppery|Earthy
++fast_food,Hotdog|Sub
++places_to_eat,Eatery|Tearoom|Taqueria|Creperie
++coffee_drinks,Lungo|Doppio|Piccolo
+
+# ---------- EXTENSIONS: animals ----------
++words_for_a_horse,Gelding|Charger|Yearling|Pinto
++snakes,Krait|Rattler|Moccasin
++shellfish,Whelk|Limpet|Crayfish|Winkle|Conch
++pack_animals,Burro|Reindeer
++in_a_hive,Cell|Brood|Pupa|Propolis
++male_animals,Cockerel|Tom|Billy|Jack|Cob
++female_animals,Queen|Jenny|Hind|Heifer
++animal_adjectives,Ovine|Ursine|Vulpine|Piscine|Leonine
++dog_commands,Paw|Wait|Shake|Leave|Roll
++things_in_a_nest,Lichen|Fluff|Wool
++animal_coverings,Down|Fleece|Pelt|Coat|Bristle
++birds_of_prey,Osprey|Merlin|Peregrine
++creepy_crawlies,Woodlouse|Mite|Leech
++rodents,Gopher
+
+# ---------- EXTENSIONS: nature ----------
++wildflowers,Cowslip|Yarrow|Harebell
++conifers,Hemlock
++parts_of_a_flower,Stigma|Carpel
++parts_of_a_tree,Crown|Needle|Cone|Foliage
++houseplants,Pothos|Bonsai
++types_of_wood,Hickory|Beech|Birch|Elm
++parts_of_a_mountain,Flank|Spur|Saddle|Crag|Shoulder
++fungi,Bracket|Enoki|Cep
++seas_of_the_world,Dead|Coral|Ionian|Bering
+
+# ---------- EXTENSIONS: objects and abstract ----------
++baby_gear,Pram|Stroller|Playpen|Teether
++camping_gear,Bedroll
++at_a_party,Bunting|Popper|Pinata|Sparkler
++bags,Duffel|Knapsack|Holdall
++fishing_gear,Waders|Creel|Swivel|Bobber|Fly
++at_the_hairdresser,Foils|Tongs|Bleach|Shampoo
++building_materials,Asphalt|Steel|Rebar
++parts_of_a_book,Prologue|Epilogue|Footnote|Foreword
++sewing_kit,Lace|Yarn
++prizes,Belt|Pennant|Jackpot
++things_in_a_wallet,Note|Stamp|Token|Change
++measuring_tools,Level|Compass
++pet_supplies,Bowl|Muzzle|Kibble|Tank
++things_you_light,Sparkler|Incense|Beacon|Flare
++virtues,Diligence|Integrity|Tolerance|Gratitude
+
+# ---------- PAIR RULES: tier 1 ----------
+PAIR: Onomatopoeia | Exclamations
+PAIR: Exclamations | Words for hello
+PAIR: Exclamations | Words for goodbye
+PAIR: Exclamations | Words for yes
+PAIR: Weather | Natural disasters
+PAIR: Extreme weather | Natural disasters
+PAIR: Storms | Natural disasters
+PAIR: Parts of a plant | Parts of a tree
+PAIR: Parts of a plant | Parts of a flower
+PAIR: Parts of a plant | Parts of a fruit
+PAIR: Weather | Weather forecast
+PAIR: Worn on the face | Cosmetics
+PAIR: In a handbag | Cosmetics
+PAIR: In the bathroom | First aid kit
+PAIR: Flowers | Shades of pink
+
+# ---------- PAIR RULES: food ----------
+PAIR: Sauces | Middle Eastern food
+PAIR: Spicy things | Kinds of pepper
+PAIR: Mexican food | Kinds of pepper
+PAIR: Spices | Kinds of pepper
+PAIR: Fruit < Stone fruit
+PAIR: Ways to drink | Ways to eat
+PAIR: Onomatopoeia | Ways to eat
+PAIR: Vegetables < Leafy greens
+PAIR: Fermented foods | Ways to preserve food
+
+# ---------- PAIR RULES: animals ----------
+PAIR: Sea mammals | Kinds of whale
+PAIR: Sea creatures | Kinds of whale
+PAIR: Kinds of whale | Kinds of shark
+PAIR: Birds < Songbirds
+PAIR: Things that sing | Songbirds
+PAIR: Birds < Seabirds
+PAIR: Water birds < Seabirds
+PAIR: Things at the beach | Seabirds
+PAIR: Languages | Cat breeds
+PAIR: Animal parts | Parts of a bird
+PAIR: Animal coverings | Parts of a bird
+
+# ---------- PAIR RULES: nature and objects ----------
+PAIR: Weather | Kinds of cloud
+PAIR: Weather | Kinds of wind
+PAIR: Extreme weather | Kinds of wind
+PAIR: Storms | Kinds of wind
+PAIR: Directions | Kinds of wind
+PAIR: Onomatopoeia | Ways water moves
+PAIR: Jobs | Kinds of knot
+PAIR: Family | Kinds of knot
+PAIR: Parts of a bottle ! body
+
+# ---------- PAIR RULES: abstract neighbours ----------
+PAIR: Words for terrible | Words for evil
+PAIR: Words for clever | Words for fancy
+PAIR: Words for beautiful | Words for fancy
+PAIR: Words for great | Words for beautiful
+PAIR: Words for brave | Words for courage
+PAIR: Virtues | Words for courage
+PAIR: Words for courage ! body
+PAIR: Words for a mess | Words for a fuss
+PAIR: Words for a mess | Words for a problem
+PAIR: Words for a fight | Words for a fuss
+PAIR: Words for a mistake | Words for a problem
+PAIR: Ways to talk | Words for a speech
+PAIR: Kinds of comedy | Words for funny
+PAIR: Words for funny | Words for strange
+PAIR: Animal sounds | Ways to cry
+PAIR: Ways to talk | Ways to cry
+PAIR: Food textures | Words for wet
+PAIR: Words for angry | Words for rude
+PAIR: Words for dirty | Words for dark
+PAIR: Things that glow | Ways to shine
+PAIR: Things that sparkle | Ways to shine
+PAIR: Music terms | Words for clever
+PAIR: Tastes | Words for angry
+PAIR: Tastes | Words for calm
+PAIR: Weather forecast | Words for happy
+PAIR: Weather forecast | Words for angry
+PAIR: Weather forecast | Words for wet
+PAIR: Weather forecast | Words for dark
+PAIR: Parts of a bird ! body

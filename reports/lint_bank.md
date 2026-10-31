@@ -1,15 +1,15 @@
 # Bank lint
 
-598 categories, 0 errors, 88 warnings.
+785 categories, 0 errors, 90 warnings.
 
 | tier | categories |
 |---|---|
-| 1 | 149 |
-| 2 | 238 |
+| 1 | 192 |
+| 2 | 382 |
 | 3 | 170 |
 | 4 | 41 |
 
-Average members: 12.0. Domains: { "food": 52, "animals": 41, "nature": 23, "sport": 18, "body": 19, "home": 21, "science": 17, "music": 12, "travel": 13, "clothing": 16, "objects": 25, "culture": 28, "drink": 6, "colour": 12, "time": 8, "people": 17, "lateral": 170, "school": 8, "games": 5, "places": 7, "tech": 10, "abstract": 26, "shapes": 3, "wordplay": 41 }
+Average members: 13.3. Domains: { "food": 58, "animals": 47, "nature": 29, "sport": 25, "body": 29, "home": 28, "science": 27, "music": 20, "travel": 20, "clothing": 23, "objects": 29, "culture": 42, "drink": 10, "colour": 14, "time": 14, "people": 24, "lateral": 170, "school": 15, "games": 11, "places": 20, "tech": 17, "abstract": 65, "shapes": 7, "wordplay": 41 }
 
 ## Errors
 
@@ -42,16 +42,13 @@ Average members: 12.0. Domains: { "food": 52, "animals": 41, "nature": 23, "spor
 - boats (Boats): 'Tugboat' contains its own label word 'boat'
 - boats (Boats): 'Lifeboat' contains its own label word 'boat'
 - sports_gear (Sports gear): 'Bat' is contested; check its sense here
-- ways_across_a_river (Ways across a river): only 6 words (fewer uses)
 - dog_breeds (Dog breeds): 'Bulldog' contains its own label word 'dog'
 - spices (Spices): 'Pepper' is contested; check its sense here
 - footwear (Footwear): 'Boot' is contested; check its sense here
 - tropical_fruit (Tropical fruit): 'Starfruit' contains its own label word 'fruit'
 - shades_of_yellow (Shades of yellow): 'Corn' is contested; check its sense here
 - dried_fruit (Dried fruit): only 7 words (fewer uses)
-- parts_of_the_eye (Parts of the eye): only 7 words (fewer uses)
 - things_that_tell_time (Things that tell time): only 5 words (fewer uses)
-- winter_sports (Winter sports): only 6 words (fewer uses)
 - things_you_can_draw (Things you can draw): only 7 words (fewer uses)
 - things_that_pop (Things that pop): only 7 words (fewer uses)
 - things_that_pop (Things that pop): 'Corn' is contested; check its sense here
@@ -59,6 +56,8 @@ Average members: 12.0. Domains: { "food": 52, "animals": 41, "nature": 23, "spor
 - things_with_crowns (Things with crowns): only 5 words (fewer uses)
 - desserts (Desserts): 'Pudding' is contested; check its sense here
 - grains (Grains): 'Corn' is contested; check its sense here
+- places_to_eat (Places to eat): 'Eatery' contains its own label word 'eat'
+- cuts_of_meat (Cuts of meat): 'Cutlet' contains its own label word 'cut'
 - cooking_oils (Cooking oils): 'Corn' is contested; check its sense here
 - preserves (Preserves): only 7 words (fewer uses)
 - preserves (Preserves): 'Jam' is contested; check its sense here
@@ -66,13 +65,13 @@ Average members: 12.0. Domains: { "food": 52, "animals": 41, "nature": 23, "spor
 - animal_parts (Animal parts): 'Trunk' is contested; check its sense here
 - creepy_crawlies (Creepy crawlies): 'Spider' is contested; check its sense here
 - australian_animals (Australian animals): 'Koala' is contested; check its sense here
+- birds_of_prey (Birds of prey): 'Osprey' contains its own label word 'prey'
 - sea_mammals (Sea mammals): 'Whale' is contested; check its sense here
 - sea_mammals (Sea mammals): 'Seal' contains its own label word 'sea'
 - fungi (Fungi): 'Mushroom' is contested; check its sense here
 - worn_on_the_legs (Worn on the legs): 'Leggings' contains its own label word 'leg'
 - bags (Bags): 'Handbag' contains its own label word 'bag'
 - team_sports (Team sports): 'Football' is contested; check its sense here
-- singing_voices (Singing voices): only 7 words (fewer uses)
 - shades_of_beige (Shades of beige): 'Mushroom' is contested; check its sense here
 - words_before_bone (Words before bone): 'Whale' is contested; check its sense here
 - words_after_snow (Words after snow): 'Boot' is contested; check its sense here
@@ -80,6 +79,7 @@ Average members: 12.0. Domains: { "food": 52, "animals": 41, "nature": 23, "spor
 - slow_things (Slow things): only 7 words (fewer uses)
 - spicy_things (Spicy things): 'Pepper' is contested; check its sense here
 - squeaky_things (Squeaky things): only 7 words (fewer uses)
+- hidden_fish (Hidden fish): singular/plural twins around Heels
 - hidden_trees (Hidden trees): 'Squash' is contested; check its sense here
 - new_word_backwards (New word backwards): 'Bat' is contested; check its sense here
 - things_with_wings (Things with wings): 'Bat' is contested; check its sense here
@@ -94,13 +94,15 @@ Average members: 12.0. Domains: { "food": 52, "animals": 41, "nature": 23, "spor
 - things_that_pop_up (Things that pop up): 'Mushroom' is contested; check its sense here
 - things_you_can_spread (Things you can spread): 'Jam' is contested; check its sense here
 - things_in_a_pod (Things in a pod): 'Whale' is contested; check its sense here
+- kinds_of_shark (Kinds of shark): 'Whale' is contested; check its sense here
+- kinds_of_cloud (Kinds of cloud): 'Mushroom' is contested; check its sense here
+- words_for_a_problem (Words for a problem): 'Jam' is contested; check its sense here
 - near-duplicates without a pair rule: Fish / Things with fins share 7 words
 - near-duplicates without a pair rule: Fish / Things with gills share 8 words
 - near-duplicates without a pair rule: Things with necks / Things with strings share 6 words
 - near-duplicates without a pair rule: Things with necks / Things with bridges share 5 words
 - near-duplicates without a pair rule: Tops / Things with sleeves share 5 words
-- near-duplicates without a pair rule: Worn on the legs / Always plural share 5 words
-- near-duplicates without a pair rule: Things with shells / Shellfish share 6 words
-- near-duplicates without a pair rule: Body parts / Parts of a shoe share 4 words
+- near-duplicates without a pair rule: Coffee drinks / Hot drinks share 7 words
+- near-duplicates without a pair rule: Drinks / Cold drinks share 7 words
 - near-duplicates without a pair rule: Things that tangle / Things you can wind share 6 words
 - near-duplicates without a pair rule: Reptiles / Things with scales share 7 words
