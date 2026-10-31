@@ -24,7 +24,7 @@ static func shop(main: Node) -> void:
 			var id: String = p["id"]
 			var coins := int(p["coins"])
 			var row := _ShopRow.new(tier, "%s coins" % CoinPill._fmt(coins),
-				"= %d Hints or %d Completes" % [coins / int(Economy.PRICES["hint"]), coins / int(Economy.PRICES["complete"])],
+				"%d Hints or %d Completes" % [coins / int(Economy.PRICES["hint"]), coins / int(Economy.PRICES["complete"])],
 				Store.price_text(id), false)
 			row.pressed.connect(func() -> void:
 				s.close()

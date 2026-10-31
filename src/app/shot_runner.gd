@@ -77,10 +77,16 @@ func _run(name: String) -> void:
 				play.board.add_jar()
 			await _slips(play, 1)
 		"levels":
+			# A player well into the game: Room 1 done, Room 2 under way.
+			var cat := Levels.catalog
+			for id in cat.room_ids(1):
+				Save.data["solved"][id] = {"slips": 0, "gold": int(id.substr(id.length() - 1)) % 3 == 0}
+			for id in cat.room_ids(2).slice(0, 12):
+				Save.data["solved"][id] = {"slips": 1, "gold": false}
 			main.open_levels()
 			await _wait(0.4)
 		"room":
-			main.open_room(int(Levels.catalog.room_numbers().back()), "levels")
+			main.open_room(2, "levels")
 			await _wait(0.4)
 		"profile":
 			Save.data["profile"]["name"] = "Mehul"
@@ -160,7 +166,7 @@ func _run(name: String) -> void:
 		"win":
 			main.close_all_sheets()
 			Save.data["xp"] = 50
-			main.start_level("r1-01")
+			main.start_level("l2-01")
 			await _legal(play, 99)
 			await _wait(2.5)
 		"lose":
@@ -169,11 +175,11 @@ func _run(name: String) -> void:
 			await _slips(play, 4)
 			await _wait(1.5)
 		"pause":
-			main.start_level("r1-01")
+			main.start_level("l2-01")
 			await _wait(0.3)
 			main._open_pause()
 		"test":
-			main.start_level("r1-01")
+			main.start_level("l2-01")
 			await _wait(0.3)
 			main._open_test_menu()
 		"drag", "pick":

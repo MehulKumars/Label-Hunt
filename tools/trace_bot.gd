@@ -5,7 +5,7 @@ const LEVELS := preload("res://src/core/levels.gd")
 
 
 func _init() -> void:
-	var id := "r1-01"
+	var id := "l2-01"
 	var prof := "average"
 	var game_seed := 1
 	for a in OS.get_cmdline_user_args():

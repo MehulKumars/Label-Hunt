@@ -6,6 +6,10 @@ extends Control
 
 signal closed
 
+const MARGIN := 40.0
+## Kit buttons draw their soft shadow just below their rect; the scrolling body would clip it.
+const SHADOW_ROOM := 8.0
+
 ## False for sheets that need a decision (results, a playing ad): no ×, and outside taps do nothing.
 var dismissible := true
 ## For Back (BackPolicy): "utility" closes, "result" goes Home, "blocking" (an ad playing) ignores Back.
@@ -38,7 +42,7 @@ func _init(heading: String = "") -> void:
 	var margin := MarginContainer.new()
 	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
 	for side in ["left", "right", "top", "bottom"]:
-		margin.add_theme_constant_override("margin_" + side, 40)
+		margin.add_theme_constant_override("margin_" + side, int(MARGIN))
 	panel.add_child(margin)
 	# The body scrolls when it is taller than the screen allows (Shop, test menu); no scrollbar chrome on a phone.
 	scroll = ScrollContainer.new()
@@ -81,7 +85,7 @@ func _ready() -> void:
 func _fit() -> void:
 	var w := minf(size.x - 32.0, 660.0)
 	panel.size.x = w
-	var h := minf(body.get_combined_minimum_size().y + 72.0, size.y - 48.0)
+	var h := minf(body.get_combined_minimum_size().y + MARGIN * 2.0 + SHADOW_ROOM, size.y - 48.0)
 	panel.size = Vector2(w, h)
 	# Anchored to the bottom, in the thumb zone, above the gesture bar.
 	var bottom: float = SafeArea.current(size)["bottom"] + 20.0

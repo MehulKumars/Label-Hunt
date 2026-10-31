@@ -62,7 +62,7 @@ func refresh() -> void:
 		["Rooms finished", str(rooms_done) if rooms_done > 0 else "%s: %d of %d" % [cat.room_name(room1),
 			Progression.solved_count(cat, save, room1), cat.room_ids(room1).size()], rooms_done == 0],
 		["Play streak", ("%d day%s (best %d)" % [streak, "" if streak == 1 else "s", int(save["streak"]["best"])]) if streak > 0
-			else "Win a level today to start one", streak == 0],
+			else "Win a level to start", streak == 0],
 	]
 	var ledger := _Ledger.new(rows)
 	ledger.custom_minimum_size = Vector2(0, 96 + rows.size() * 70)
