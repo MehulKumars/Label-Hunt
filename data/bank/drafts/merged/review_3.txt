@@ -1,0 +1,217 @@
+# review_3: lines 344-end of categories.txt (tech/science/body/places, compounds, abstract properties, wordplay)
+DEL: star_signs # astrology sits too close to the religion house rule
++loud_things,Bell # a bell is plainly loud; Bell is in bikes/clocks/rings
+PAIR: Storms | Things that spin # hurricanes, cyclones, whirlwinds all spin
+PAIR: Extreme weather | Things that spin # Hurricane/Cyclone/Typhoon spin, only Tornado declared
+-marks_on_skin,Birthmark # contains its own label word "mark"
+-places_to_shop,Arcade # shopping arcade is UK-only; elsewhere an amusement arcade
+-kinds_of_trip,Errand # an errand is a task, not a trip
++animal_parts,Wing # Wing (Parts of a plane) is plainly an animal part
+PAIR: Things that are hot | Volcano words # Magma, Geyser, Ash are hot; only Lava declared
+PAIR: Things that glow | Volcano words # Magma glows; only Lava declared
+PAIR: Chemistry words | Sour things # Acid is sour by definition
+PAIR: Tiny things | Chemistry words # Proton, Electron are tiny (Atom/Molecule declared)
+PAIR: Tiny things | Physics words # Particle, Quantum are tiny
+PAIR: Tiny things | Biology words # Cell, Gene are tiny
+-scientists,Edison # inventor, not usually called a scientist
+PAIR: Punctuation | Text symbols # Comma/Colon/Hyphen/Dash are text symbols too
+# --- compounds (Words before/after X): only before-vs-after and vs-other-domain clashes matter (same pattern never shares a level)
++words_before_land,Green # Greenland; Green sits in rainbow/golf/tea/bean
++words_before_land,Ice # Iceland; Ice sits in six abstract categories
++words_before_land,Head # Headland; Head sits in Body parts
++words_before_bone,Tail # tailbone; Tail sits in Words after fish
++golf_terms,Fore # "Fore!" is a golf term; Fore sits in Words before man
++words_before_room,Play # playroom; Play sits in Words after horse
++words_before_keeper,Wicket # wicketkeeper; Wicket sits in Ways to score
++words_before_proof,Oven # ovenproof; Oven sits in appliances/hot things
++words_before_man,Work # workman; Work sits in four Words after lists
++words_after_sand,Man # sandman; Man sits in Words before hole
++words_after_hot,Bed # hotbed; Bed sits in Furniture/Parts of a river
++words_after_tea,House # teahouse; House sits in Words before fly/work/keeper
+PAIR: Organs | Words before stone # kidney stone (illness: don't declare)
+PAIR: Kinds of bean | Words before stone # kidney stone
+PAIR: Rivers | Words before stone # Rhine -> rhinestone
+PAIR: Body parts | Words before stone # Head -> headstone (death: don't declare)
+PAIR: Joints in the body | Words before bone # ankle bone, knucklebone, hip declared
+-words_before_stone,Step # "step stone" isn't a word (it's stepping stone)
+-words_before_mark,Tide # tidemark is UK-only and rare
+-words_before_proof,Shower # showerproof is UK-only
+-words_after_star,Sign # star sign is astrology (star_signs deleted)
++tennis_terms,Set # game, set, match; Set sits in four Words after lists
++internet_words,Web # Web (Sticky things) is plainly an internet word
+# --- Two pronunciations: classic heteronyms elsewhere in the bank
++two_pronunciations,Bass # fish vs music; in Fish/String instruments/Singing voices
++two_pronunciations,Sow # pig vs seeds; in Female animals/Gardening jobs
++two_pronunciations,Tear # rip vs cry; in Words before drop
++two_pronunciations,Project # PROject/proJECT; in Schoolwork
++two_pronunciations,Insert # INsert/inSERT; in Computer keys
++two_pronunciations,Console # CONsole/conSOLE; in Gadgets/In a video game
++two_pronunciations,Compound # COMpound/comPOUND; in Chemistry words
++two_pronunciations,Buffet # buff-AY/BUFF-it; in Meals/Places to eat
++two_pronunciations,Upset # UPset/upSET; in Swapped halves
+-words_after_moon,Shine # moonshine is chiefly illegal liquor (alcohol)
+-words_after_moon,Boot # Moon Boot is a trademark
+-words_after_air,Plane # airplane is US spelling (UK aeroplane)
+-words_after_night,Cap # nightcap's main sense is a bedtime alcoholic drink
+-words_after_house,Proud # house-proud is UK-only and rare
+-words_after_wind,Screen # windscreen is UK (US windshield)
+-words_after_show,Girl # showgirl is dated and risque
+PAIR: At the hairdresser | Words after hair # Cut/Spray/Brush/Clip/Pin all hairdresser things
+PAIR: Worn in the hair | Words after hair # Band/Tie/Net fit worn in the hair; only Clip/Pin declared
+PAIR: Parts of a door | Words after door # Bell/Mat/Stop/Post read as door parts; Knob/Handle/Frame declared
+# --- abstract properties
+PAIR: Sticky things | Sweeteners # Molasses, Agave are sticky; only Honey/Syrup declared
+PAIR: Sticky things | Preserves # Marmalade, Curd, Compote are sticky; only Jam declared
+PAIR: Smelly things | Cheeses # Roquefort, Camembert, Brie are famously smelly
+PAIR: Loud things | Percussion # Timpani, Cowbell, Bongo are loud
+PAIR: Loud things | Wind instruments # Trombone, Bugle, Bagpipes are loud
+PAIR: Loud things | At a concert # Speaker, Amp, Crowd are loud
++loud_things,Firework # plainly loud; Firework sits in Things you light
+PAIR: Sharp things | Animal parts # Beak, Tusk, Horn, Antler read as sharp
+PAIR: Sharp things | Fasteners # Nail, Staple, Rivet are sharp
+PAIR: Things that spin | At the ballet # a Pirouette is a spin
+-slow_things,Koala # koalas are sleepy, not proverbially slow
+PAIR: Slow things | Sea mammals # Dugong is as slow as the Manatee
+PAIR: Things that are hot | Extreme weather # Heatwave, Drought are hot
+PAIR: Sour things | Citrus fruit # Yuzu, Kumquat, Pomelo are sour; only Lemon/Lime declared
+PAIR: Sour things | Fermented foods # Kefir, Kombucha are sour
+PAIR: Transparent things | Parts of a window # Pane is transparent; only Glass declared
+PAIR: Things that float | Pond life # Duck, Swan, Lily float
+PAIR: Things that float | Water birds # Duck, Swan, Pelican float
+PAIR: Soft things | On the bed # Duvet, Quilt, Mattress are soft
++slippery_things,Slime # slime is slippery; it sits in Sticky/Stretchy things
+PAIR: Things that sparkle | In a jewel box # Necklace, Bracelet, Earring sparkle
+PAIR: Tiny things | Creepy crawlies # a Tick is tiny
+-squeaky_things,Chalk # chalk screeches; "squeaky" is disputable
+PAIR: Squeaky things | Rodents # Rat, Hamster, Gerbil squeak
+PAIR: Squeaky things | Pets # Hamster, Gerbil squeak
+# --- wordplay: rule checks inside each category, plus bank words that satisfy the rule undeclared
++sound_like_letters,Ewe # sounds like U; Ewe sits in Female animals
++sound_like_two_letters,Ivy # sounds like I-V; Ivy sits in forest/houseplants
++sound_like_animals,Mousse # sounds like moose; Mousse sits in sweet treats/desserts/hairdresser
++sound_like_animals,Hair # sounds like hare; Hair sits in Body parts
++sound_like_foods,Beat # sounds like beet; Beat sits in Ways to mix/Music terms
+-hidden_fruit,Pineapple # is itself a fruit, not a hidden one
+-anagrams_of_hues,Chore # Ochre is a UK spelling (US ocher) and an obscure hue
++palindromes,Peep # palindrome; in Ways to look/Words before hole
++palindromes,Ewe # palindrome; in Female animals
++palindromes,Gag # palindrome; in Kinds of comedy
++palindromes,Pip # palindrome; in Parts of a fruit
++palindromes,Bib # palindrome; in Baby gear
++y_only_vowel,Gym # Y is its only vowel; in Places in a town
++y_only_vowel,Sty # Y is its only vowel; in Animal homes
+-two_double_letters,Bookworm # only one double (oo); worm has a single o
++two_double_letters,Raccoon # cc + oo; in Forest animals
++two_double_letters,Bassoon # ss + oo; in Wind instruments
++two_double_letters,Squeegee # ee + ee; in Cleaning kit
++silent_k,Kneecap # silent K; in Bones
++silent_k,Knob # silent K; in Parts of a door/Words after door
++silent_k,Knocker # silent K; in Parts of a door
++silent_k,Knitting # silent K; in Crafts
++silent_w,Two # silent W; in Numbers
++silent_w,Wrestling # silent W; in Combat sports
++silent_w,Wrestler # silent W; in Sportspeople
++silent_w,Wrapping # silent W; in Words before paper
++silent_b,Limb # silent B; in Body parts/Parts of a tree
++silent_b,Dumbbell # silent B in dumb-; in At the gym
++silent_l,Palm # silent L; in Houseplants/Cooking oils (Trees/Body parts paired)
++silent_l,Walking # silent L; in Words before stick
++silent_l,Halve # silent L; in Ways to cut food
++silent_u,Tongue # silent U; in Body parts/Parts of a shoe
++silent_u,Guard # silent U; in At the station
++silent_u,Guide # silent U; in Words before book
++silent_u,Brogue # silent U; in Footwear
++silent_u,Mosquito # silent U (qui = kee); in Insects
++silent_u,Antique # silent U (que); in Words for old
++silent_u,Boutique # silent U (que); in Places to shop
++silent_u,Plaque # silent U (que); in On the wall/Prizes
++silent_u,Quiche # silent U (qu = k); in French food
++silent_u,Parquet # silent U (quet = kay); in Floor coverings
++onomatopoeia,Splash # imitative; in Recipe amounts
++onomatopoeia,Clap # imitative; in Gestures
++onomatopoeia,Gong # imitative; in Percussion/Loud things
++onomatopoeia,Hiccup # imitative; in Reflexes
+PAIR: Onomatopoeia | Ways to drink # Slurp, Glug, Gulp are imitative
+PAIR: Onomatopoeia | Ways to laugh # Giggle, Cackle, Hoot, Snort are imitative
+PAIR: Onomatopoeia | Ways to talk # Babble, Murmur, Mumble, Mutter are imitative
++blended_words,Podcast # iPod + broadcast; in Internet words
++blended_words,Blog # web + log; in Internet words
++blended_words,Moped # motor + pedal; in Ways to travel
++blended_words,Pixel # picture + element; in Tiny things/In a video game
++blended_words,Chortle # chuckle + snort; in Ways to laugh
++shortened_words,Gym # gymnasium; in Places in a town
++shortened_words,Lab # laboratory; in Workplaces/Words before coat
++shortened_words,Vet # veterinarian; in Jobs/Jobs with animals
++shortened_words,Zoo # zoological garden; in Places in a town
++shortened_words,Chimp # chimpanzee; in Jungle animals/Primates
++shortened_words,Champ # champion; in Experts
++shortened_words,Decaf # decaffeinated; in Coffee drinks
++shortened_words,Amp # amplifier; in At a concert
++shortened_words,Demo # demonstration; in Music releases
++shortened_words,Intro # introduction; in Parts of a song
+-plurals_without_s,Dice # widely used as a singular (one dice)
++always_plural,Leggings # always plural; in Stretchy things (clothing is paired)
++always_plural,Tights # always plural; in Stretchy things
++always_plural,Flippers # always plural; in At the pool
++always_plural,Clippers # always plural; in Garden tools/At the hairdresser
++always_plural,Stilts # always plural; in At the circus
++always_plural,Splits # "the splits"; in Gymnastics moves
++always_plural,Bagpipes # always plural; in Wind instruments
++always_plural,Customs # always plural in this sense; in At the airport
++always_plural,Rapids # always plural; in Parts of a river
+# new_word_backwards: common bank words that reverse to a common word (a reversal guard like wordplay_targets would be better)
++new_word_backwards,Pot # reads Top backwards; Pot sits elsewhere in the bank
++new_word_backwards,Top # reads Pot backwards; Top sits elsewhere in the bank
++new_word_backwards,Rat # reads Tar backwards; Rat sits elsewhere in the bank
++new_word_backwards,Tar # reads Rat backwards; Tar sits elsewhere in the bank
++new_word_backwards,Bat # reads Tab backwards; Bat sits elsewhere in the bank
++new_word_backwards,Tab # reads Bat backwards; Tab sits elsewhere in the bank
++new_word_backwards,Gum # reads Mug backwards; Gum sits elsewhere in the bank
++new_word_backwards,Pool # reads Loop backwards; Pool sits elsewhere in the bank
++new_word_backwards,Ten # reads Net backwards; Ten sits elsewhere in the bank
++new_word_backwards,Deer # reads Reed backwards; Deer sits elsewhere in the bank
++new_word_backwards,Reed # reads Deer backwards; Reed sits elsewhere in the bank
++new_word_backwards,Trap # reads Part backwards; Trap sits elsewhere in the bank
++new_word_backwards,Spot # reads Tops backwards; Spot sits elsewhere in the bank
++new_word_backwards,Lap # reads Pal backwards; Lap sits elsewhere in the bank
++new_word_backwards,Pal # reads Lap backwards; Pal sits elsewhere in the bank
++new_word_backwards,Room # reads Moor backwards; Room sits elsewhere in the bank
++new_word_backwards,Rail # reads Liar backwards; Rail sits elsewhere in the bank
++new_word_backwards,Time # reads Emit backwards; Time sits elsewhere in the bank
++new_word_backwards,Tub # reads But backwards; Tub sits elsewhere in the bank
++new_word_backwards,Tip # reads Pit backwards; Tip sits elsewhere in the bank
++new_word_backwards,Pit # reads Tip backwards; Pit sits elsewhere in the bank
++new_word_backwards,Peek # reads Keep backwards; Peek sits elsewhere in the bank
++new_word_backwards,Keep # reads Peek backwards; Keep sits elsewhere in the bank
++new_word_backwards,Step # reads Pets backwards; Step sits elsewhere in the bank
++new_word_backwards,Reel # reads Leer backwards; Reel sits elsewhere in the bank
++new_word_backwards,Strap # reads Parts backwards; Strap sits elsewhere in the bank
++new_word_backwards,Stew # reads Wets backwards; Stew sits elsewhere in the bank
++new_word_backwards,Won # reads Now backwards; Won sits elsewhere in the bank
++new_word_backwards,Keel # reads Leek backwards; Keel sits elsewhere in the bank
++new_word_backwards,Plug # reads Gulp backwards; Plug sits elsewhere in the bank
++new_word_backwards,Spool # reads Loops backwards; Spool sits elsewhere in the bank
+# --- lines 516-600 (things with/that/you can..., added to the bank during this review): lighter pass
+-things_with_eyes,Owl # every animal has eyes; nothing lateral about an owl's
+-things_with_arms,Monkey # every primate has arms; not lateral
++things_that_crash,Car # the archetypal crash; Car sits in Ways to travel
++things_that_crash,Plane # planes crash; Plane sits in Ways to travel/Things that fly
++things_that_flutter,Butterfly # the archetypal flutterer; in Things with wings
+PAIR: Things with sleeves ! clothing # Dress, Fleece, Parka, Blazer have sleeves
+PAIR: Seats | Things with legs # Throne, Highchair, Recliner have legs
+PAIR: Worn on the legs | Things with legs # Chinos, Stockings, Kilt? have legs
+PAIR: Seats | Things with arms # Recliner, Couch have arms
+PAIR: Containers | Things with lids # Box, Tub, Barrel have lids
+PAIR: Fasteners | Things with heads # Rivet, Tack have heads
+PAIR: Conifers | Things with branches # every conifer has branches
+PAIR: Gadgets | Things with lenses # Drone, Tablet, Scanner have lenses
+PAIR: Fungi | Things with caps # every mushroom has a cap
+PAIR: In a jewel box | Things with chains # Bracelet, Anklet have chains
+PAIR: Shellfish | Things with hinges # Cockle is hinged
+PAIR: Things with pods | Things in a pod # near-duplicates
+PAIR: Things that blow | Things you can blow # near-duplicate (Horn, Whistle, Fuse)
+PAIR: Things that spread | Things you can spread # near-duplicates
+PAIR: Forest animals | Things that hibernate # Chipmunk hibernates
+PAIR: Rodents | Things that hibernate # Marmot, Chipmunk hibernate
+PAIR: Things that set | Things you can set # near-duplicate (Sun, Glue, Concrete vs Table, Trap)
+PAIR: Garden tools | Things you can sharpen # Hoe, Trowel, Clippers

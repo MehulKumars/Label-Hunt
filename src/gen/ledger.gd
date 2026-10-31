@@ -34,9 +34,10 @@ static func global_number(room: int, number: int) -> int:
 	return (room - 1) * ROOM_SIZE + number
 
 
-## How many times a category may appear in the whole game: about one use per 3 members, 2 to 4.
+## How many times a category may appear in the whole game: two uses per 5 members, 2 to 5 (a 13-word category about
+## once per 100 levels; each use still changes at least half its words, see words_ok).
 func max_uses(idx: int) -> int:
-	return clampi((bank.categories[idx]["words"] as PackedStringArray).size() / 3, 2, 4)
+	return clampi((bank.categories[idx]["words"] as PackedStringArray).size() * 2 / 5, 2, 5)
 
 
 func uses(idx: int) -> int:

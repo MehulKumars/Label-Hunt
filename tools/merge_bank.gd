@@ -106,9 +106,13 @@ func _init() -> void:
 			continue
 		var c: Dictionary = by_id[id]
 		var add := _clean(c, Array((e[1] as String).get_slice(",", 1).split("|", false)), log, e[0])
+		var added_words: Array = []
 		for w in add:
 			if not (c["words"] as Array).any(func(x: String) -> bool: return x.to_lower() == (w as String).to_lower()):
 				(c["words"] as Array).append(w)
+				added_words.append(w)
+		if not added_words.is_empty():
+			log.append("%s: added %s to %s" % [e[0], ", ".join(added_words), id])
 	for wk: Array in weak:
 		var parts := (wk[1] as String).split(" ", false)
 		if parts.size() >= 2 and by_id.has(parts[0]):

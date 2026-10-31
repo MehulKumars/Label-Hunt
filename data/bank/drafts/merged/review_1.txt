@@ -1,0 +1,140 @@
+# review_1: fresh-eyes fairness review of categories.txt lines 2-172 (fruit .. sweeteners), cross-checked against the
+# whole bank as of 09:56 (600 categories, incl. the merged 06a/06b/06c lateral sets). Vetted with a script: every
+# + line opens a crossing the generator can actually reach (different domain key, no pair rule), every PAIR is new.
+# Not flagged: same-domain overlaps, label clashes and hidden-word/anagram overlaps (room_gen rejects those itself).
+
+# ---------- A. Weak members ----------
+-birds,Teal # weak for tier 1: most adults know teal as a colour, not a duck (it stays in Water birds, tier 2)
+-spices,Allspice # contains its own label word "spice" and gives the group away
+-dairy,Custard # weak: a cooked dessert made with milk and egg, not a dairy product; it stays in Desserts
+-cooking_oils,Truffle # weak: truffle oil is a finishing flavouring, not a cooking oil
+-words_before_cake,Chocolate|Coffee # open compounds ("chocolate cake") make every flavour a member: Banana, Lemon, Vanilla, Honey... keep the true compounds
++things_with_spines,Diary # strong (bound book spine); the category is down to 5 members
++things_with_spines,Atlas # strong (book spine); category is short
++things_with_spines,Thistle # strong (spiny plant); category is short
++things_that_tell_time,Phone # the category is down to 4 (Clock, Watch, Sundial, Hourglass); a phone plainly tells the time
+
+# ---------- B. Declared crossings (word plainly fits a category that can share a level with its home) ----------
++farm_animals,Duck # a duck is a farm animal; can meet Pond life
++pets,Canary # a classic pet bird; can meet Shades of yellow, Things that sing
++meats,Duck # duck is a common meat; can meet Pond life, Water birds, Birds
++things_you_wear,Helmet # you wear a helmet; can meet Sports gear, Riding gear, On the slopes
++body_parts,Nail # fingernail; can meet Things in a toolbox, Fasteners, Sharp things
++things_that_spin,Pinwheel # a pinwheel spins; can meet Toys
++pizza_toppings,Cheese # the most common topping; can meet Words before cake, Things that melt
++vegetables,Pepper # bell pepper; can meet Spicy things
++playing_card_terms,King # court card, as Jack already is; can meet Chess pieces, Titles, Things with crowns
++playing_card_terms,Queen # court card; can meet Chess pieces, Titles, Things with crowns, In a hive
++sportspeople,Bowler # cricket/tenpin bowler; can meet Hats
++phonetic_alphabet,India # it is a NATO code word; can meet Countries
++animal_homes,Beehive # a beehive is an animal home; can meet Hairstyles
++furniture,Chest # a chest is furniture; can meet Body parts, Containers
++in_a_jewel_box,Ring # the commonest piece of jewellery; can meet At the circus
++shades_of_black,Charcoal # charcoal is a near-black shade; can meet Art supplies
++things_with_shells,Pistachio # nut in a shell; can meet Ice cream, Shades of green
++things_with_shells,Hazelnut # can meet Ice cream
++things_with_shells,Walnut # can meet Cooking oils, Types of wood, Shades of brown
++things_with_shells,Almond # can meet Cooking oils, Kinds of milk
++things_with_shells,Chestnut # can meet Trees, Shades of brown, Kinds of mushroom
++things_you_can_crack,Grin # "crack a grin" (like Smile); can meet Facial expressions
++shortened_words,Mayo # short for mayonnaise; can meet Sauces
++shortened_words,Deli # short for delicatessen; can meet Places to eat
++sound_like_body_parts,Mussel # sounds like muscle; can meet Seafood, Things with shells, Things with hinges
++on_the_table,Teaspoon # cutlery on the table; can meet Recipe amounts
+
+# ---------- C. Compound categories: common compounds whose first/second half is a bank word elsewhere ----------
++words_before_house,Steak # steakhouse; can meet Meats
++words_before_house,Tea # teahouse; can meet Drinks
++words_before_house,Hen # henhouse; can meet Female animals
++words_before_fly,May # mayfly; can meet Months (category has only 6)
++words_before_fly,Green # greenfly; can meet In a rainbow, Golf terms, Kinds of tea, Kinds of bean
++words_before_fish,Dog # dogfish; can meet Pets
++words_before_fish,Silver # silverfish; can meet Metals
++words_before_fish,Puffer # pufferfish; can meet Outerwear
++words_after_fire,Hose # fire hose; can meet Garden tools, In the garden
++words_after_fire,Escape # fire escape; can meet Computer keys
++words_after_fire,Door # fire door; can meet Parts of a house
++words_after_fire,Power # firepower; can meet Words before house
++words_after_sun,Block # sunblock; can meet Basketball terms, Social media words
++words_after_sun,Bed # sunbed; can meet Furniture, Parts of a river
++words_after_sun,Down # sundown; can meet Dog commands
++words_before_board,White # whiteboard; can meet Kinds of tea, rice and bean
++words_before_board,Diving # diving board; can meet Sports, Water sports
++words_before_board,Ironing # ironing board; can meet Chores
++words_before_board,Switch # switchboard; can meet On the wall, Electricity
++words_before_board,Mother # motherboard; can meet Family
++words_before_board,Story # storyboard; can meet Social media words
++words_before_board,Cheese # cheeseboard; can meet Dairy
++words_before_board,Over # overboard; can meet Words after hand
++words_before_ball,Volley # volleyball; can meet Tennis terms
++words_before_ball,Fur # furball; can meet Animal coverings, Soft things
++words_before_ball,Disco # disco ball (like Crystal ball); can meet Dances, Music genres
++things_with_rings,Calamari # calamari rings; can meet Seafood
+
+# ---------- D. Pair rules (overlap too wide to declare word by word) ----------
+PAIR: Things with necks | Instruments # Guitar, Violin, Cello already shared; Banjo, Ukulele, Sitar count via String instruments
+PAIR: Things with necks ! clothing # sweaters, dresses, polo necks: most tops have necks
+PAIR: Things that fly ! animals # birds, bats, bees fly: Parrot (Jungle), Vulture (Desert), Bee/Drone (In a hive)
+PAIR: Things that fly | Mythical creatures # Dragon, Phoenix, Fairy, Griffin fly
+PAIR: Things that fly | Pond life # Duck, Swan, Heron fly
+PAIR: Dances | Music genres # Salsa, Tango, Samba, Rumba, Polka, Mambo are genres too (Disco, Swing already shared)
+PAIR: Body parts | Parts of a book # Spine
+PAIR: Things you wear | Things you can tie # Apron and Tie are worn
+PAIR: Things you wear | Baby gear # Bib, Onesie are worn
+PAIR: Furniture | Baby gear # Cot, Crib, Cradle, Highchair, Bassinet are furniture
+PAIR: Jobs | At a play # Actor, Director, Usher are jobs
+PAIR: Jobs | At the circus # Clown, Juggler, Acrobat
+PAIR: Jobs | At a concert # Singer, Roadie
+PAIR: Jobs | At university # Professor, Dean
+PAIR: On a desk | Computer parts # Mouse, Keyboard, Monitor shared
+PAIR: Animal sounds | Ways to laugh # Hoot, Snort, Roar, Howl shared
+PAIR: Drinks | Fermented foods # Kombucha, Kefir are drinks
+PAIR: Units of measure | Units of time # Second, Minute, Hour are units of measure
+PAIR: Kinds of tea | Kinds of rice # Jasmine, Black, White shared
+PAIR: Kinds of tea | Kinds of bean # Green, Black, White shared
+PAIR: Things with keys | Wind instruments # Flute, Clarinet, Saxophone, Oboe have keys
+PAIR: Things with shells | Things you can crack # Egg, Crab, Lobster and the nuts crack
+PAIR: Things you can crack | On the table # Plate, Glass, Mug, Bowl, Saucer crack
+PAIR: Things with teeth ! body # Mouth, Jaw have teeth
+PAIR: Things you can catch ! animals # any fish or animal can be caught (Cod, Trout, Crab...)
+PAIR: Things you can draw | Shapes # draw a circle, square, star...
+PAIR: Things you can break | Bones # every bone can be broken
+PAIR: Things you can break ! body # Arm, Wrist, Nose, Toe break
+PAIR: Things you can break | On the table # Plate, Glass, Cup, Mug break
+PAIR: Things you can break | Things to drink from # Glass, Cup, Mug, Goblet break
+PAIR: Things you can tie | Worn on the neck # Cravat, Bandana (Scarf shared)
+PAIR: Things you can tie | Worn in the hair # Bandana, Scrunchie (Ribbon, Bow shared)
+PAIR: Things you can tie | Parts of a shoe # Lace
+PAIR: Things with faces | Toys # Doll, Teddy, Puppet, Robot shared
+PAIR: Things with tails | Things that fly # Pigeon, Owl, Bat have tails
+PAIR: Things that run ! animals # animals run
+PAIR: Things that run | Bodies of water # Stream, Creek, Brook run
+PAIR: Things that run | Rivers # every river runs
+PAIR: Words before cake | Ice cream # vanilla cake, caramel cake, cherry cake...
+PAIR: Words before cake | Baking ingredients # honey cake, butter cake, sugar cake...
+PAIR: Words before cake | Fruit # banana cake, apple cake, cherry cake...
+PAIR: Sports | Words before ball # golf ball, tennis ball, cricket ball, rugby ball
+PAIR: Team sports | Words before ball # rugby ball, cricket ball, hockey ball
+PAIR: Kinds of milk ! animals # Cow, Goat, Sheep, Camel, Buffalo shared with farm, pack, horned, safari animals
+PAIR: Things with caps | Kinds of mushroom # every mushroom has a cap
+PAIR: Things with caps | Things in a forest # Acorn, Mushroom, Toadstool shared
+PAIR: Things with gills | Kinds of mushroom # mushrooms have gills
+PAIR: Things with layers | Desserts # Trifle, Tiramisu, Strudel, Cake shared
+PAIR: Things with layers | Sweet treats # Baklava, Pastry, Strudel, Cake shared
+PAIR: Things with bridges | Instruments # Guitar, Violin, Cello shared
+PAIR: Things with hinges | Seafood # Clam, Oyster, Mussel, Scallop shared
+PAIR: Things with hinges | Furniture # Cupboard, Wardrobe, Cabinet shared
+PAIR: Kinds of bean | Things with pods # every bean grows in a pod
+PAIR: Things that charge | Safari animals # Rhino, Elephant, Buffalo, Hippo shared
+PAIR: Things that click | On a desk # Mouse, Keyboard, Pen shared
+PAIR: Things that roar | Safari animals # Lion, Leopard roar
+PAIR: Things that expire | Things in a wallet # Ticket, Coupon, Voucher, Card shared
+PAIR: Things that spread | Baking ingredients # Butter, Honey, Margarine shared
+PAIR: Things that hum | Kitchen appliances # Fridge, Freezer, Microwave shared
+PAIR: Things you can fold | Things at the beach # Deckchair, Towel, Parasol
+PAIR: Things you can wind | Things that tell time # Clock, Watch are half the category
+PAIR: Things you can bend ! body # Knee, Elbow shared; Arm, Leg, Back, Finger bend
+PAIR: Things in a nest | Things in a forest # Twig, Moss, Leaf shared
+# Added by the lead after the review: woodwinds have literal keys; Things with keys was down to 5.
++things_with_keys,Flute|Clarinet|Saxophone
+PAIR: Things with keys | Wind instruments

@@ -74,7 +74,7 @@
       "id": "r1-03",
       "kind": "normal",
       "introduces": [],
-      "budget": 0,
+      "budget": 2,
       "groups": [
         {
           "label": "Shapes",
@@ -97,13 +97,15 @@
       ],
       "also": {},
       "jars": [["Terminal", "Tooth", "Gate", "Hair"], ["Word", "Star", "Pilot", "Circle"], ["Ticket", "Triangle", "Carrot", "Octagon"], [], []],
-      "gold": -1,
+      "gold": 0,
       "meta": {
         "target": 0.4,
-        "avg_slips": 0.28,
-        "avg_win": 1,
-        "novice_win": 1,
-        "after_med": 8,
+        "floor": 0.85,
+        "avg_slips": 0.29,
+        "avg_win": 0.94,
+        "novice_win": 0.83,
+        "prober_win": 0,
+        "after_med": 9,
         "aha_frac": 0.38
       }
     },
@@ -111,7 +113,7 @@
       "id": "r1-04",
       "kind": "normal",
       "introduces": [],
-      "budget": 0,
+      "budget": 3,
       "groups": [
         {
           "label": "Things with keys",
@@ -134,21 +136,23 @@
       ],
       "also": {},
       "jars": [["Skiing", "Mars", "Laptop", "Venus"], ["Organ", "Luge", "Piano", "Mercury"], ["Slalom", "Computer", "Earth", "Skating"], [], []],
-      "gold": -1,
+      "gold": 0,
       "meta": {
         "target": 0.48,
-        "avg_slips": 0.55,
-        "avg_win": 1,
-        "novice_win": 1,
+        "floor": 0.85,
+        "avg_slips": 0.52,
+        "avg_win": 0.95,
+        "novice_win": 0.86,
+        "prober_win": 0,
         "after_med": 8,
-        "aha_frac": 0.47
+        "aha_frac": 0.43
       }
     },
     {
       "id": "r1-05",
       "kind": "tricky",
       "introduces": [],
-      "budget": 0,
+      "budget": 3,
       "groups": [
         {
           "label": "Hairstyles",
@@ -171,21 +175,23 @@
       ],
       "also": {},
       "jars": [["Vase", "Cashew", "Bun", "Almond"], ["Swan", "Mullet", "Bottle", "Pixie"], ["Pecan", "Guitar", "Ponytail", "Macadamia"], [], []],
-      "gold": -1,
+      "gold": 0,
       "meta": {
         "target": 0.74,
-        "avg_slips": 0.59,
-        "avg_win": 1,
-        "novice_win": 1,
+        "floor": 0.75,
+        "avg_slips": 0.54,
+        "avg_win": 0.96,
+        "novice_win": 0.87,
+        "prober_win": 0.01,
         "after_med": 8,
-        "aha_frac": 0.52
+        "aha_frac": 0.53
       }
     },
     {
       "id": "r1-06",
       "kind": "rest",
       "introduces": [],
-      "budget": 0,
+      "budget": 2,
       "groups": [
         {
           "label": "Things in a toolbox",
@@ -208,12 +214,14 @@
       ],
       "also": {},
       "jars": [["Cortado", "Chisel", "Relish", "Saw"], ["Mustard", "Mocha", "Nail", "Macchiato"], ["Aioli", "Espresso", "Ketchup", "Mallet"], [], []],
-      "gold": -1,
+      "gold": 0,
       "meta": {
         "target": 0.38,
-        "avg_slips": 0.22,
-        "avg_win": 1,
-        "novice_win": 1,
+        "floor": 0.94,
+        "avg_slips": 0.13,
+        "avg_win": 0.96,
+        "novice_win": 0.92,
+        "prober_win": 0,
         "after_med": 11,
         "aha_frac": 0
       }
@@ -222,7 +230,7 @@
       "id": "r1-07",
       "kind": "normal",
       "introduces": [],
-      "budget": 0,
+      "budget": 2,
       "groups": [
         {
           "label": "Metals",
@@ -247,21 +255,23 @@
         "Gold": [0]
       },
       "jars": [["Nickel", "Amber", "Zinc", "Gold"], ["Lemon", "Whisk", "Banana", "Sieve"], ["Iron", "Spatula", "Copper", "Tongs"], [], []],
-      "gold": -1,
+      "gold": 0,
       "meta": {
         "target": 0.7,
-        "avg_slips": 0.33,
-        "avg_win": 1,
-        "novice_win": 1,
-        "after_med": 9,
-        "aha_frac": 0.36
+        "floor": 0.85,
+        "avg_slips": 0.32,
+        "avg_win": 0.96,
+        "novice_win": 0.84,
+        "prober_win": 0,
+        "after_med": 8,
+        "aha_frac": 0.42
       }
     },
     {
       "id": "r1-08",
       "kind": "normal",
       "introduces": [],
-      "budget": 0,
+      "budget": 3,
       "groups": [
         {
           "label": "Family",
@@ -284,12 +294,14 @@
       ],
       "also": {},
       "jars": [["Receipt", "Proof", "Father", "Cash"], ["Photo", "Side", "Nephew", "Coin"], ["Uncle", "Place", "Aunt", "Light"], [], []],
-      "gold": -1,
+      "gold": 0,
       "meta": {
         "target": 0.78,
-        "avg_slips": 0.81,
-        "avg_win": 1,
-        "novice_win": 1,
+        "floor": 0.85,
+        "avg_slips": 0.78,
+        "avg_win": 0.97,
+        "novice_win": 0.83,
+        "prober_win": 0,
         "after_med": 9,
         "aha_frac": 0.36
       }
@@ -298,7 +310,7 @@
       "id": "r1-09",
       "kind": "normal",
       "introduces": [],
-      "budget": 0,
+      "budget": 3,
       "groups": [
         {
           "label": "Sea creatures",
@@ -323,21 +335,23 @@
         "Crab": [1]
       },
       "jars": [["Whale", "Cup", "Alarm", "Pan"], ["Sundial", "Squid", "Timer", "Dolphin"], ["Hourglass", "Fish", "Crab", "Cream"], [], []],
-      "gold": -1,
+      "gold": 0,
       "meta": {
         "target": 0.85,
-        "avg_slips": 0.76,
-        "avg_win": 1,
-        "novice_win": 1,
-        "after_med": 7,
-        "aha_frac": 0.5
+        "floor": 0.85,
+        "avg_slips": 0.7,
+        "avg_win": 0.93,
+        "novice_win": 0.74,
+        "prober_win": 0,
+        "after_med": 6,
+        "aha_frac": 0.58
       }
     },
     {
       "id": "r1-10",
       "kind": "hard",
       "introduces": [],
-      "budget": 0,
+      "budget": 4,
       "groups": [
         {
           "label": "Street food",
@@ -362,14 +376,16 @@
         "Taco": [0]
       },
       "jars": [["Goblin", "Turtle", "Falafel", "Fairy"], ["Egg", "Churro", "Lobster", "Nachos"], ["Giant", "Taco", "Dumpling", "Phoenix"], [], []],
-      "gold": -1,
+      "gold": 0,
       "meta": {
         "target": 1.48,
-        "avg_slips": 1.22,
-        "avg_win": 1,
-        "novice_win": 1,
-        "after_med": 8,
-        "aha_frac": 0.54
+        "floor": 0.65,
+        "avg_slips": 1.2,
+        "avg_win": 0.96,
+        "novice_win": 0.83,
+        "prober_win": 0.01,
+        "after_med": 9,
+        "aha_frac": 0.52
       }
     },
     {

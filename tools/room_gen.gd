@@ -213,7 +213,7 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 		if chosen.is_empty():
 			return {}
 		words.append(chosen)
-	# Wordplay: no other group's word may hide (or anagram) one of a wordplay group's targets.
+	# Wordplay: no other group's word may obey a wordplay group's rule, unless it is that group's declared herring.
 	for a in cats.size():
 		if not bank.targets.has(cats[a]):
 			continue
@@ -221,7 +221,8 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 			if b == a:
 				continue
 			for w in words[b]:
-				if bank.trips(cats[a], w):
+				var hx: Array = herring_words.get(w.to_lower(), [])
+				if bank.trips(cats[a], w) and not (not hx.is_empty() and hx[2] == a):
 					_reject("wordplay overlap")
 					return {}
 	# Label clashes: a card must not read as naming another group's jar ("Gear" beside "Sports gear").
@@ -285,6 +286,8 @@ func _choose_words(cats: Array[int], a: int, herrings: Array, herring_words: Dic
 			continue
 		if Array(bank.homes(w)).any(func(h: int) -> bool: return h != idx and cats.has(h)):
 			continue
+		if cats.any(func(h: int) -> bool: return h != idx and bank.trips(h, w)):
+			continue  # it obeys another group's wordplay rule
 		(reused if ledger.used_in(idx, w) else fresh).append(w)
 	Dealer._shuffle_array(fresh, rng)
 	Dealer._shuffle_array(reused, rng)

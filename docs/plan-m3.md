@@ -339,7 +339,7 @@ The known dip from L26–30 (4 groups) to L31–40 (3 groups) is a room-start br
   - keep a list of uses per word (:249, :372);
   - global level numbers come from `index.json` order.
 - **Reuse:**
-  - max uses = clamp(words / 3, 2, 4);
+  - max uses = clamp(2 × words / 5, 2, 5) (raised from words / 3, max 4, when the dry run showed tier 2 short);
   - at least 60 levels apart (relaxing to 40, then 25);
   - each new use shares at most 2 words with earlier uses;
   - word gap 30;

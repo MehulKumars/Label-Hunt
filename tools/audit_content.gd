@@ -105,7 +105,8 @@ func _check(id: String, lvl: LevelData, d: Dictionary, hints: bool) -> void:
 					hits.append(str(w))
 		if hits.size() >= (1 if own >= 0 else 3):
 			errors.append("%s: phantom group %s (%s)" % [id, bank.categories[i]["label"], ", ".join(hits)])
-	# Wordplay: another group's word that hides (or anagrams) a wordplay group's target.
+	# Wordplay: another group's word that obeys a wordplay group's rule (its declared herring excepted).
+	var also: Dictionary = d.get("also", {})
 	for a in cats.size():
 		if cats[a] < 0 or not bank.targets.has(cats[a]):
 			continue
@@ -113,7 +114,8 @@ func _check(id: String, lvl: LevelData, d: Dictionary, hints: bool) -> void:
 			if b == a:
 				continue
 			for w in words[b]:
-				if bank.trips(cats[a], str(w)):
+				var alts: Array = (also.get(str(w), []) as Array).map(func(x: Variant) -> int: return int(x))
+				if bank.trips(cats[a], str(w)) and not alts.has(a):
 					errors.append("%s: '%s' also fits %s" % [id, w, d["groups"][a]["label"]])
 	# A card that reads as naming another group's label.
 	for a in words.size():
