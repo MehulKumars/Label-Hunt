@@ -50,10 +50,11 @@ func homes(word: String) -> PackedInt32Array:
 
 ## The bank category with this label, or -1 (levels written before the bank name categories by label).
 func find_label(label: String) -> int:
-	for i in categories.size():
-		if (categories[i]["label"] as String).to_lower() == label.to_lower():
-			return i
-	return -1
+	if _by_label.is_empty():
+		for i in categories.size():
+			_by_label[(categories[i]["label"] as String).to_lower()] = i
+	return int(_by_label.get(label.to_lower(), -1))
+
 
 
 ## Wordplay targets: category index -> {kind: "hidden" | "anagram", words: PackedStringArray}. A hidden-word
@@ -125,6 +126,9 @@ func load_pairs(path: String) -> void:
 				var kids: PackedInt32Array = children.get(a, PackedInt32Array())
 				kids.append(b)
 				children[a] = kids
+				var ps: Array = _parents.get(b, [])
+				ps.append(a)
+				_parents[b] = ps
 			break
 
 
@@ -135,12 +139,33 @@ func compatible(a: int, b: int) -> bool:
 		and not (never_domain.get(b, []) as Array).has(categories[a]["domain"])
 
 
-## A category's words plus its children's, for phantom checks.
+## A category's words plus its children's, for phantom checks (cached: the bank doesn't change during a run).
 func family_words(i: int) -> Dictionary:
+	if _family.has(i):
+		return _family[i]
 	var out := {}
 	for w in categories[i]["words"]:
 		out[(w as String).to_lower()] = true
 	for k in children.get(i, PackedInt32Array()):
 		for w in categories[k]["words"]:
 			out[(w as String).to_lower()] = true
+	_family[i] = out
 	return out
+
+
+## Categories that hold any of `words` in their family (phantom candidates), so a phantom check looks at a handful
+## of categories instead of the whole bank.
+func families_holding(words: Array) -> Dictionary:
+	var out := {}
+	for w in words:
+		for h in homes(str(w)):
+			out[h] = true
+			for p in _parents.get(h, []):
+				out[p] = true
+	return out
+
+
+var _family := {}
+var _by_label := {}
+## child index -> Array of parent indices (built by load_pairs).
+var _parents := {}

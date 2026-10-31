@@ -1,0 +1,374 @@
+# Draft 06a: tier 3 lateral, the "Things with X" family.
+# Bank PAIRs sit under each category. PAIRs between my own categories, and the big
+# "creature property" block for eyes/legs/arms/heads, are at the end.
+
+things_with_wings,Things with wings,wings,3,lateral,Plane|Jet|Glider|Chicken|Ostrich|Penguin|Bat|Butterfly|Moth|Bee|Wasp|Dragon|Fairy|Phoenix|Palace|Hospital
+# Palace/Hospital = building wings. Every bird/insect has wings, and so does Pixie in some art.
+PAIR: Things with wings ! animals
+PAIR: Things with wings | Things that fly
+PAIR: Things with wings | Mythical creatures
+PAIR: Things with wings | Places in a town
+PAIR: Things with wings | Golf terms
+PAIR: Things with wings | Words before fish
+
+things_with_handles,Things with handles,handles,3,lateral,Door|Drawer|Suitcase|Umbrella|Briefcase|Basket|Bucket|Bag|Kettle|Teapot|Mug|Jug|Iron|Pan|Hammer|Broom
+# Nearly every tool and utensil has a handle, so the tool categories are paired off.
+PAIR: Things with handles | Kitchen tools
+PAIR: Things with handles | Kitchen appliances
+PAIR: Things with handles | On the table
+PAIR: Things with handles | Garden tools
+PAIR: Things with handles | Cleaning kit
+PAIR: Things with handles | Things in a toolbox
+PAIR: Things with handles | Sports gear
+PAIR: Things with handles | In the bathroom
+PAIR: Things with handles | Art supplies
+PAIR: Things with handles | Sewing kit
+PAIR: Things with handles | Toys
+PAIR: Things with handles | Ways to travel
+
+things_with_buttons,Things with buttons,buttons,3,lateral,Shirt|Coat|Jacket|Blouse|Cardigan|Remote|Mouse|Phone|Camera|Radio|Doorbell|Belly|Accordion
+# Belly = belly button. Accordion: the bass side is all buttons.
+PAIR: Things with buttons | Things you wear
+PAIR: Things with buttons | Kitchen appliances
+PAIR: Things with buttons | On a desk
+PAIR: Things with buttons | Sewing kit
+PAIR: Things with buttons | Things that pop
+
+things_with_blades,Things with blades,blades,3,lateral,Skate|Razor|Scissors|Fan|Propeller|Blender|Oar|Paddle|Shoulder|Grass|Turbine|Peeler|Saw|Mower|Shears
+PAIR: Things with blades | Garden tools
+PAIR: Things with blades | Things in a toolbox
+PAIR: Things with blades | Kitchen appliances
+
+things_with_strings,Things with strings,strings,3,lateral,Kite|Puppet|Piano|Harp|Guitar|Violin|Cello|Banjo|Ukulele|Sitar|Hoodie|Apron
+# Lists every Instruments member that has strings (Piano, Harp, Guitar, Violin, Cello), so no PAIR with Instruments.
+PAIR: Things with strings | String instruments
+
+things_with_scales,Things with scales,scales,2,lateral,Snake|Lizard|Dragon|Crocodile|Salmon|Carp|Goldfish|Mermaid|Iguana|Gecko|Cobra|Python|Trout|Tuna
+PAIR: Things with scales ! animals
+
+things_with_eyes,Things with eyes,eyes,3,lateral,Potato|Needle|Storm|Hurricane|Cyclone|Doll|Teddy|Puppet|Robot|Snowman|Cyclops|Peacock|Owl
+# Lists every toy with eyes (Doll, Teddy, Puppet, Robot). Tornado in Weather might be read as having an eye.
+PAIR: Things with eyes ! animals
+PAIR: Things with eyes ! body
+PAIR: Things with eyes ! people
+PAIR: Things with eyes | Weather
+PAIR: Things with eyes | Mythical creatures
+PAIR: Things with eyes | Things with faces
+
+things_with_legs,Things with legs,legs,3,lateral,Table|Chair|Stool|Desk|Bench|Bed|Sofa|Tripod|Easel|Jeans|Trousers|Shorts|Tights|Journey|Piano|Lamb
+# Journey = legs of a journey. Lamb = leg of lamb. Leggings left out (it contains "leg").
+PAIR: Things with legs ! animals
+PAIR: Things with legs ! body
+PAIR: Things with legs ! people
+PAIR: Things with legs | Furniture
+PAIR: Things with legs | Things you wear
+PAIR: Things with legs | Toys
+
+things_with_lids,Things with lids,lids,3,lateral,Jar|Kettle|Teapot|Eye|Laptop|Toilet|Tin|Chest|Pot|Saucepan|Lunchbox|Casserole|Piano
+PAIR: Things with lids | Parts of the eye
+PAIR: Things with lids | Kitchen tools
+PAIR: Things with lids | Kitchen appliances
+PAIR: Things with lids | On a desk
+
+things_with_holes,Things with holes,holes,3,lateral,Bagel|Sponge|Emmental|Button|Golf|Net|Sieve|Colander|Belt|Pretzel|Bead|Lace|Needle
+# Golf = 18 holes. Flute and Whistle were left out: woodwinds and the gear list are paired off instead.
+PAIR: Things with holes | Kitchen tools
+PAIR: Things with holes | Golf terms
+PAIR: Things with holes | Instruments
+PAIR: Things with holes | Sports gear
+
+things_with_needles,Things with needles,needles,3,lateral,Pine|Fir|Spruce|Cedar|Larch|Compass|Cactus|Turntable|Gauge
+# Lists every needle tree in Trees (Pine, Fir, Spruce, Cedar). Cactus crosses Things with spines.
+PAIR: Things with needles | Sewing kit
+PAIR: Things with needles | Conifers
+
+things_with_arms,Things with arms,arms,3,lateral,Octopus|Starfish|Squid|Galaxy|Crane|Robot|Windmill|Sofa|Throne|Monkey
+# Galaxy = spiral arms. Chair left out (many chairs have no arms); Armchair left out (it contains "arm").
+PAIR: Things with arms ! animals
+PAIR: Things with arms ! body
+PAIR: Things with arms ! people
+PAIR: Things with arms | Furniture
+PAIR: Things with arms | Toys
+
+things_with_heads,Things with heads,heads,3,lateral,Coin|Comet|Bed|Table|Shower|Match|Pin|Nail|Hammer|Mop|Screw|Bolt
+# Coin and Comet also cross Things with tails, which makes a fine heads-or-tails herring.
+PAIR: Things with heads ! animals
+PAIR: Things with heads ! body
+PAIR: Things with heads ! people
+PAIR: Things with heads | Toys
+PAIR: Things with heads | Things in a toolbox
+PAIR: Things with heads | Cleaning kit
+PAIR: Things with heads | Garden tools
+PAIR: Things with heads | Sports gear
+PAIR: Things with heads | Instruments
+PAIR: Things with heads | Vegetables
+
+things_with_horns,Things with horns,horns,3,lateral,Car|Train|Ship|Bus|Taxi|Van|Moped|Unicorn|Rhino|Bull|Goat|Ram|Buffalo|Yak|Gazelle|Antelope
+# Deer/Moose (antlers), Narwhal (tusk) and Giraffe (ossicones) are deliberately out.
+PAIR: Things with horns ! animals
+PAIR: Things with horns | Ways to travel
+PAIR: Things with horns | Instruments
+PAIR: Things with horns | Mythical creatures
+PAIR: Things with horns | Horned animals
+
+things_with_branches,Things with branches,branches,3,lateral,Bank|Library|River|Lightning|Coral|Antler|Tree|Bush|Shrub|Hedge
+# Any chain shop or hotel has branches, so Places in a town is paired off.
+PAIR: Things with branches | Trees
+PAIR: Things with branches | Things in a forest
+PAIR: Things with branches | Parts of a tree
+PAIR: Things with branches | Places in a town
+
+things_with_spots,Things with spots,spots,2,lateral,Dice|Domino|Toadstool|Leopard|Cheetah|Jaguar|Dalmatian|Fawn|Giraffe
+# A sibling of Things with stripes. Hyena left out (striped and spotted kinds); Panther and Lynx are unclear, hence Big cats.
+PAIR: Things with spots | Big cats
+PAIR: Things with spots | Safari animals
+PAIR: Things with spots | Spotted animals
+
+things_with_lenses,Things with lenses,lenses,2,lateral,Camera|Glasses|Telescope|Eye|Projector|Goggles|Monocle|Magnifier|Webcam|Phone
+PAIR: Things with lenses | Parts of the eye
+
+things_with_caps,Things with caps,caps,3,lateral,Bottle|Pen|Mushroom|Knee|Acorn|Marker|Lipstick|Toadstool
+# Knee = kneecap. Kneecap in Bones and Cap in Hats both clash with the key.
+PAIR: Things with caps | Hats
+PAIR: Things with caps | Bones
+
+things_with_chains,Things with chains,chains,3,lateral,Bicycle|Anchor|Swing|Locket|Necklace|Motorbike|Pendant|Medallion
+# Hotel, Mountain and Island chains were left out: those things belong to a chain rather than having one.
+
+things_with_fins,Things with fins,fins,3,lateral,Rocket|Surfboard|Plane|Submarine|Shark|Dolphin|Whale|Salmon|Trout|Goldfish|Tuna|Cod|Mermaid|Anchovy
+# Anchovy is here because Pizza toppings has it. Glider, Jet, Blimp and Airship also have fins, hence Things that fly.
+PAIR: Things with fins ! animals
+PAIR: Things with fins | Things that fly
+PAIR: Things with fins | Words before cake
+
+things_with_layers,Things with layers,layers,3,lateral,Onion|Earth|Trifle|Baklava|Croissant|Pastry|Tiramisu|Plywood|Cake|Strudel
+# Lists every layered member of Sweet treats (Cake, Pastry, Baklava, Strudel). Mars, Sun and sedimentary rocks have layers too.
+PAIR: Things with layers | Planets
+PAIR: Things with layers | Things in space
+PAIR: Things with layers | Rocks
+
+things_with_bridges,Things with bridges,bridges,3,lateral,Nose|Glasses|Ship|Guitar|Violin|Cello|Banjo|Ukulele|Viola
+# Bridge is a member of Card games and of Ways across a river. Every string instrument except the harp has a bridge.
+PAIR: Things with bridges | Card games
+PAIR: Things with bridges | Ways across a river
+PAIR: Things with bridges | String instruments
+
+things_with_bulbs,Things with bulbs,bulbs,3,lateral,Lamp|Projector|Onion|Garlic|Tulip|Daffodil|Lily|Fennel|Shallot|Hyacinth
+# Iris (bulb or rhizome) is unclear, hence Flowers.
+PAIR: Things with bulbs | Flowers
+
+things_with_locks,Things with locks,locks,3,lateral,Door|Safe|Canal|Suitcase|Car|Chest|Vault|Window|Briefcase
+# Canal = canal locks. Diary and Gate were cut (not typical). Locker and Padlock contain the key word.
+
+things_with_pedals,Things with pedals,pedals,3,lateral,Bicycle|Piano|Organ|Car|Tricycle|Unicycle|Tractor|Bus|Harp|Taxi
+# Harp = concert pedal harp. Pedalo contains the key word. A drum kit's bass drum has a pedal, hence Instruments.
+PAIR: Things with pedals | Ways to travel
+PAIR: Things with pedals | Instruments
+
+things_with_sleeves,Things with sleeves,sleeves,3,lateral,Record|Album|Shirt|Jacket|Coat|Sweater|Blouse|Hoodie|Cardigan|Kimono|Gown
+# Record/Album = record sleeve. Shirt crosses Things with necks.
+PAIR: Things with sleeves | Things you wear
+
+things_with_gills,Things with gills,gills,3,lateral,Mushroom|Toadstool|Tadpole|Shark|Salmon|Trout|Goldfish|Tuna|Cod|Carp|Anchovy
+# Mushroom/Toadstool = gills under the cap.
+PAIR: Things with gills ! animals
+PAIR: Things with gills | Words before cake
+
+things_with_hinges,Things with hinges,hinges,3,lateral,Door|Gate|Laptop|Clam|Oyster|Mussel|Locket|Glasses|Stapler|Cupboard|Wardrobe|Cabinet|Scallop
+# Elbow and Knee (hinge joints) were left out: Jaw, Ankle and the fingers would join them.
+PAIR: Things with hinges ! body
+
+things_with_pods,Things with pods,pods,3,lateral,Pea|Bean|Okra|Vanilla|Cardamom|Tamarind|Chickpea|Edamame|Carob
+# Vanilla and Cardamom cross Spices, Tamarind crosses Tropical fruit, Pea crosses Vegetables. Risk: Anise (star anise pods) in Spices is undeclared.
+
+# ---- PAIRs between my own categories (shared or near-universal members) ----
+PAIR: Things with wings | Things with legs
+PAIR: Things with handles | Things with blades
+PAIR: Things with handles | Things with lids
+PAIR: Things with handles | Things with hinges
+PAIR: Things with handles | Things with locks
+PAIR: Things with handles | Things with horns
+PAIR: Things with handles | Things with pedals
+PAIR: Things with handles | Things with heads
+PAIR: Things with buttons | Things with sleeves
+PAIR: Things with buttons | Things with holes
+PAIR: Things with strings | Things with bridges
+PAIR: Things with scales | Things with fins
+PAIR: Things with scales | Things with gills
+PAIR: Things with scales | Things with horns
+PAIR: Things with fins | Things with gills
+PAIR: Things with lids | Things with hinges
+PAIR: Things with lids | Things with caps
+PAIR: Things with hinges | Things with locks
+PAIR: Things with chains | Things with pedals
+PAIR: Things with pedals | Things with horns
+PAIR: Things with needles | Things with holes
+PAIR: Things with needles | Things with branches
+PAIR: Things with heads | Things with bridges
+PAIR: Things with heads | Things with blades
+PAIR: Things with heads | Things with bulbs
+
+# ---- Creature-property block: eyes, legs, arms and heads ----
+# Anything alive, any person and any doll has eyes and a head (and usually legs and arms), so these four
+# stay away from every category whose members are creatures or people: the bank ones below and my own.
+# (Suggestion: one generator tag such as '! creatures' would replace most of these lines.)
+PAIR: Things with eyes | Things with legs
+PAIR: Things with eyes | Things with arms
+PAIR: Things with eyes | Things with heads
+PAIR: Things with legs | Things with arms
+PAIR: Things with legs | Things with heads
+PAIR: Things with arms | Things with heads
+PAIR: Things with eyes | At the circus
+PAIR: Things with eyes | Things with crowns
+PAIR: Things with eyes | Things with stripes
+PAIR: Things with eyes | Things with shells
+PAIR: Things with eyes | Things with teeth
+PAIR: Things with eyes | Things with necks
+PAIR: Things with eyes | Things with spines
+PAIR: Things with eyes | Things that fly
+PAIR: Things with eyes | Words before fish
+PAIR: Things with eyes | Words before fly
+PAIR: Things with eyes | Words before house
+PAIR: Things with eyes | Golf terms
+PAIR: Things with eyes | Meats
+PAIR: Things with eyes | Pizza toppings
+PAIR: Things with eyes | Words before cake
+PAIR: Things with eyes | Things in space
+PAIR: Things with eyes | At the airport
+PAIR: Things with eyes | Things with tails
+PAIR: Things with eyes | Things with wings
+PAIR: Things with eyes | Things with scales
+PAIR: Things with eyes | Things with horns
+PAIR: Things with eyes | Things with fins
+PAIR: Things with eyes | Things with gills
+PAIR: Things with eyes | Things with spots
+PAIR: Things with eyes | Things with lids
+PAIR: Things with eyes | Things with lenses
+PAIR: Things with eyes | Things with needles
+PAIR: Things with legs | At the circus
+PAIR: Things with legs | Things with crowns
+PAIR: Things with legs | Things with stripes
+PAIR: Things with legs | Things with shells
+PAIR: Things with legs | Things with teeth
+PAIR: Things with legs | Things with necks
+PAIR: Things with legs | Things with spines
+PAIR: Things with legs | Things that fly
+PAIR: Things with legs | Words before fish
+PAIR: Things with legs | Words before fly
+PAIR: Things with legs | Words before house
+PAIR: Things with legs | Golf terms
+PAIR: Things with legs | Meats
+PAIR: Things with legs | Pizza toppings
+PAIR: Things with legs | Words before cake
+PAIR: Things with legs | Things in space
+PAIR: Things with legs | At the airport
+PAIR: Things with legs | Mythical creatures
+PAIR: Things with legs | Things with wings
+PAIR: Things with legs | Things with scales
+PAIR: Things with legs | Things with horns
+PAIR: Things with legs | Things with spots
+PAIR: Things with legs | Things with strings
+PAIR: Things with legs | Things with pedals
+PAIR: Things with legs | Things with hinges
+PAIR: Things with arms | Mythical creatures
+PAIR: Things with arms | At the circus
+PAIR: Things with arms | Things with crowns
+PAIR: Things with arms | Things in space
+PAIR: Things with arms | At the airport
+PAIR: Things with arms | Things with fins
+PAIR: Things with arms | Things with strings
+PAIR: Things with heads | At the circus
+PAIR: Things with heads | Things with crowns
+PAIR: Things with heads | Things with stripes
+PAIR: Things with heads | Things with shells
+PAIR: Things with heads | Things with teeth
+PAIR: Things with heads | Things with necks
+PAIR: Things with heads | Things with spines
+PAIR: Things with heads | Things that fly
+PAIR: Things with heads | Words before fish
+PAIR: Things with heads | Words before fly
+PAIR: Things with heads | Words before house
+PAIR: Things with heads | Golf terms
+PAIR: Things with heads | Meats
+PAIR: Things with heads | Pizza toppings
+PAIR: Things with heads | Words before cake
+PAIR: Things with heads | Things in space
+PAIR: Things with heads | At the airport
+PAIR: Things with heads | Things with tails
+PAIR: Things with heads | Mythical creatures
+PAIR: Things with heads | Things with wings
+PAIR: Things with heads | Things with scales
+PAIR: Things with heads | Things with horns
+PAIR: Things with heads | Things with fins
+PAIR: Things with heads | Things with gills
+PAIR: Things with heads | Things with spots
+PAIR: Things with heads | Things with strings
+
+# ---- Extensions to existing bank categories ----
++things_with_shells,Oyster|Mussel|Scallop|Armadillo
++things_with_necks,Violin|Cello|Banjo|Ukulele|Sitar
++things_with_faces,Pyramid|Doll|Teddy|Snowman|Puppet|Robot
++things_with_stripes,Chipmunk|Tabby|Clownfish
++things_with_rings,Lemur|Boxing|Wrestling
++things_with_teeth,Cog|Piranha|Beaver
++things_with_roots,Radish|Parsnip|Turmeric
+# Why: Violin and Cello (Instruments) have necks, which was undeclared. Pyramid (Shapes) has faces, which was undeclared.
+# Toys Doll/Teddy/Puppet/Robot have faces, which was undeclared. Radish/Parsnip (Vegetables) and Turmeric (Spices) are roots, which was undeclared.
+
+# ---- Weak members of existing categories ----
+# WEAK: things_with_rings Bell - "rings" is the verb; a bell rings but doesn't have rings
+# WEAK: things_with_rings Phone - the same verb pun as Bell
+# WEAK: things_with_tails Meteor - a meteor leaves a trail; tails belong to comets
+# WEAK: things_with_roots Square - a square root is maths; a square doesn't have roots
+# WEAK: things_with_crowns Hat - "the crown of a hat" is obscure, and players read a crown as a kind of hat
+# WEAK: things_with_spines Echidna - not widely known worldwide
+
+# ---- Proposed PAIRs for existing categories (undeclared overlaps found while drafting) ----
+PAIR: Things with faces ! animals
+PAIR: Things with faces ! people
+PAIR: Things with faces | Shapes
+PAIR: Things with tails | Mythical creatures
+PAIR: Things with necks | String instruments
+PAIR: Things with roots | Vegetables
+PAIR: Things with roots | Herbs
+# Why: animals and people all have faces. Cone and Cylinder (Shapes) have faces too. Unicorn, Griffin, Centaur and Mermaid
+# all have tails. Viola, Lute, Mandolin, Bass and Fiddle have necks. Every vegetable and herb plant has roots.
+
+# SUMMARY
+# 29 new categories: tier 2 = 3 (scales, spots, lenses), tier 3 = 26. Plus 7 extensions, 6 WEAK flags and 7 PAIRs on existing categories.
+# Crossings declared (word: categories):
+#   Piano: keys/instruments/legs/strings/pedals/lids. Plane: wings/fins/tails/things that fly. Coin: heads/faces/tails.
+#   Chicken: wings/farm/birds/meats/pizza. Bat: wings/sports gear. Dragon: wings/scales/mythical/words before fly.
+#   Mouse: buttons/pets. Accordion: buttons/keys/instruments. Shoulder: blades/joints/body. Grass: blades/green.
+#   Oar and Paddle: blades/sports gear. Saw: blades/teeth. Peeler: blades/kitchen tools. Kite and Puppet: strings/toys.
+#   Salmon: scales/fins/gills/pink. Potato: eyes/veg. Needle: eyes/holes/sewing. Storm: eyes/weather. Lamb: legs/meats/farm.
+#   Easel: legs/art. Chest: lids/locks/body. Tin: lids/metals. Laptop: lids/hinges/keys. Bagel: holes/breads.
+#   Sponge: holes/bathroom/cleaning/cake. Emmental: holes/cheeses. Golf: holes/sports. Net: holes/gear/ball. Lace: holes/fabrics.
+#   Cactus: needles/spines. Galaxy: arms/space. Octopus: arms/sea. Robot: arms/eyes/toys/faces. Comet: heads/tails/space.
+#   Pin: heads/sewing/ball. Iron: handles/metals/golf. Bank and Library: branches/town. Lightning: branches/weather.
+#   Coral: branches/pink. Tree: branches/rings/roots/crowns. Dice: spots/faces. Giraffe: spots/necks/safari.
+#   Toadstool: spots/caps/gills/forest. Mushroom: caps/gills/pizza/forest. Acorn: caps/nuts/forest. Knee: caps/joints/body.
+#   Bottle: caps/necks. Glasses: lenses/bridges/hinges/wear/sun. Camera and Phone: lenses/buttons. Rocket: fins/fly/space.
+#   Anchovy: fins/gills/pizza/fish. Onion: layers/bulbs/rings/veg/pizza. Earth: layers/planets. Cake/Baklava/Pastry/Strudel:
+#   layers/sweet treats. Croissant: layers/breakfast. Nose: bridges/face/run. Lamp: bulbs/desk. Tulip/Daffodil/Lily:
+#   bulbs/flowers (paired; Daffodil also yellow). Safe: locks/crack. Record: sleeves/break. Unicycle: pedals/circus.
+#   Clam/Oyster: hinges/shells/sea. Locket: hinges/chains. Stapler: hinges/desk. Vanilla/Cardamom: pods/spices.
+#   Tamarind: pods/tropical. Pea: pods/veg/green. Hospital: wings/town (paired off). Bull/Goat/Buffalo: horns/animals (paired).
+# Words deliberately avoided:
+#   Spider (pedantry); Deer/Moose/Narwhal/Giraffe for horns; Doughnut, Racket, Tyre, Pyjamas, Raccoon (spelling variants);
+#   Pram, Trolley, Lift, Elevator, Bin, Truck, Hood (US/UK); Knife, Sword, Arrow, Axe, Scythe (taste); Coffin, Urn,
+#   Syringe (taste); Leggings, Armchair, Padlock, Locker, Pedalo, Kneecap, Doorknob (contain the key);
+#   Map (contested); Teabag (most have no string); Diary and Gate for locks (not typical); Chair for arms (most have none);
+#   Sandwich for layers; Pangolin and Axolotl (not widely known); Hurricane/Storm/Cyclone are all in eyes, so the generator
+#   may want to cap them at one per level.
+# Families rejected as weak or overlapping: bark, feet, hands, ears, tongues, wheels, spokes, sails, bells, ribs, antennae,
+#   tentacles, tusks, stems, pockets, collars, nets, stars, pits/stones (US/UK split), corners, tips (too broad).
+# Least sure:
+#   1. things_with_heads / things_with_eyes / things_with_legs / things_with_arms: honest but near-universal, so they need
+#      about 100 PAIR lines. They may be better behind a "! creatures" tag.
+#   2. things_with_handles: so broad that 12 bank PAIRs plus 7 own PAIRs are needed. Bicycle/Scooter handlebars are undeclared.
+#   3. things_with_buttons: Belly (belly button) and Accordion may feel like stretches.
+#   4. things_with_needles: thin (9). Larch and Gauge are the weakest.
+#   5. things_with_blades: Grater (Kitchen tools) and hockey Stick or cricket Bat (Sports gear) could be read as having blades; not paired.
+# Also unsure: Palace/Hospital (wings), Galaxy (arms), Comet (heads), Submarine (fins), Harp (pedals), Apron (strings),
+#   Trifle (not known everywhere), the Anise risk in pods.

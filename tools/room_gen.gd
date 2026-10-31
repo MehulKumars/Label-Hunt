@@ -37,6 +37,7 @@ var deals := 6
 var n := 30
 var n_final := 200
 var rejects := {}
+var _crossings: Array = []
 
 
 func _init() -> void:
@@ -236,7 +237,10 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 						return {}
 	# Phantom groups: no category outside the level (with its children's words) may hold 3 or more of its words.
 	# A parent of a picked category may hold none outside that category's own group (Fruit next to Citrus fruit).
-	for i in bank.categories.size():
+	var all_words: Array = []
+	for ws in words:
+		all_words.append_array(Array(ws))
+	for i: int in bank.families_holding(all_words):
 		if cats.has(i):
 			continue
 		var family := bank.family_words(i)
@@ -291,7 +295,7 @@ func _choose_words(cats: Array[int], a: int, herrings: Array, herring_words: Dic
 	if chosen.size() < 4:
 		_reject("too few free words")
 		return PackedStringArray()
-	if not ledger.words_ok(idx, chosen):
+	if not ledger.words_ok(idx, chosen, at):
 		_reject("same words as before")
 		return PackedStringArray()
 	return chosen
@@ -315,30 +319,36 @@ func _level_dict(room: int, number: int, ls: Dictionary, pick: Dictionary, spec:
 
 ## Two allowed categories from different domains whose tiers fit the spec and that share a word, or [].
 func _crossing_pair(at: int, tiers: Array, exclude: Array) -> Array:
+	if _crossings.is_empty():
+		# Every (word, a, b) that could ever be a herring, worked out once: the ledger and spec filter it per try.
+		for w in bank.by_word:
+			var hs: PackedInt32Array = bank.by_word[w]
+			if hs.size() < 2 or (w as String).length() > MAX_WORD:
+				continue
+			for x in hs.size():
+				for y in hs.size():
+					var a := hs[x]
+					var b := hs[y]
+					if a != b and _domain_key(a) != _domain_key(b) and bank.compatible(a, b):
+						_crossings.append([w, a, b])
 	var pairs: Array = []
-	for w in bank.by_word:
-		var hs: PackedInt32Array = bank.by_word[w]
-		if hs.size() < 2 or (w as String).length() > MAX_WORD or not ledger.word_ok(w, at):
+	for cr: Array in _crossings:
+		var a: int = cr[1]
+		var b: int = cr[2]
+		var ca: Dictionary = bank.categories[a]
+		var cb: Dictionary = bank.categories[b]
+		if exclude.has(ca["domain"]) or exclude.has(cb["domain"]):
 			continue
-		for x in hs.size():
-			for y in hs.size():
-				var a := hs[x]
-				var b := hs[y]
-				var ca: Dictionary = bank.categories[a]
-				var cb: Dictionary = bank.categories[b]
-				if a == b or _domain_key(a) == _domain_key(b) or exclude.has(ca["domain"]) or exclude.has(cb["domain"]):
-					continue
-				if not ledger.cat_ok(a, at) or not ledger.cat_ok(b, at) or not bank.compatible(a, b) or not ledger.pair_ok(a, b, at):
-					continue
-				var left := tiers.duplicate()
-				if not left.has(int(ca["tier"])):
-					continue
-				left.erase(int(ca["tier"]))
-				if left.has(int(cb["tier"])):
-					pairs.append([a, b])
+		var left := tiers.duplicate()
+		if not left.has(int(ca["tier"])):
+			continue
+		left.erase(int(ca["tier"]))
+		if not left.has(int(cb["tier"])):
+			continue
+		if not ledger.word_ok(cr[0], at) or not ledger.cat_ok(a, at) or not ledger.cat_ok(b, at) or not ledger.pair_ok(a, b, at):
+			continue
+		pairs.append([a, b])
 	return [] if pairs.is_empty() else pairs[rng.randi_range(0, pairs.size() - 1)]
-
-
 # --- phase 2: settle ----------------------------------------------------------------------------------------------
 
 func _settle_room(room: int, only: Array[int]) -> int:

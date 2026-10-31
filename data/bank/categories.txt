@@ -19,11 +19,11 @@ sea_creatures,Sea creatures,Sea,1,animals,Shark|Octopus|Crab|Seal|Squid|Dolphin|
 herbs,Herbs,Herbs,1,food,Basil|Mint|Thyme|Sage|Parsley|Rosemary|Dill|Oregano|Chives|Tarragon|Bay|Marjoram
 fabrics,Fabrics,Fabrics,1,clothing,Silk|Wool|Cotton|Denim|Linen|Velvet|Satin|Tweed|Lace|Canvas|Chiffon|Corduroy|Muslin|Cashmere|Flannel|Fleece|Tartan|Gingham|Spandex
 metals,Metals,Metals,1,science,Iron|Gold|Copper|Tin|Zinc|Mercury|Silver|Lead|Nickel|Cobalt|Steel|Bronze|Brass|Titanium|Magnesium|Tungsten
-things_that_fly,Things that fly,fly,1,objects,Kite|Plane|Rocket|Balloon|Drone|Glider|Jet|Blimp|Airship|Pigeon|Owl
+things_that_fly,Things that fly,fly,1,objects,Kite|Plane|Rocket|Balloon|Drone|Glider|Jet|Blimp|Airship|Pigeon|Owl|Bat
 cheeses,Cheeses,Cheeses,1,food,Brie|Feta|Gouda|Cheddar|Edam|Camembert|Parmesan|Ricotta|Paneer|Halloumi|Emmental|Provolone|Roquefort|Manchego
 dances,Dances,Dances,1,culture,Tango|Salsa|Waltz|Polka|Ballet|Samba|Rumba|Foxtrot|Disco|Jive|Twist|Mambo|Conga|Flamenco|Limbo|Hula|Swing
 breakfast_foods,Breakfast foods,Breakfast,1,food,Toast|Cereal|Pancake|Waffle|Granola|Bacon|Croissant|Muesli|Egg|Bagel|Sausage|Muffin
-body_parts,Body parts,Body,1,body,Thumb|Knee|Elbow|Chin|Palm|Calf|Toe|Neck|Foot|Tooth|Heel|Limb|Chest|Tongue|Waist|Arm|Leg|Hand|Thigh|Shin|Head|Jaw|Finger|Back|Hair
+body_parts,Body parts,Body,1,body,Thumb|Knee|Elbow|Chin|Palm|Calf|Toe|Neck|Foot|Tooth|Heel|Limb|Chest|Tongue|Waist|Arm|Leg|Hand|Thigh|Shin|Head|Jaw|Finger|Back|Hair|Throat|Sole
 kitchen_appliances,Kitchen appliances,Kitchen,1,home,Kettle|Toaster|Blender|Fridge|Oven|Freezer|Microwave|Mixer|Stove|Juicer|Fryer|Steamer|Grill
 coffee_drinks,Coffee drinks,Coffee,1,drink,Latte|Mocha|Espresso|Americano|Macchiato|Cortado|Ristretto|Decaf|Frappe
 chess_pieces,Chess pieces,Chess,1,culture,Rook|Pawn|Bishop|Queen|King|Knight|Castle
@@ -34,7 +34,7 @@ music_genres,Music genres,Music,1,music,Jazz|Blues|Disco|Punk|Funk|Pop|Reggae|Fo
 furniture,Furniture,Furniture,1,home,Sofa|Stool|Desk|Bed|Chair|Table|Wardrobe|Bench|Shelf|Cabinet|Armchair|Bookcase|Cupboard|Futon|Dresser|Ottoman
 big_cats,Big cats,cats,1,animals,Lion|Leopard|Cheetah|Jaguar|Tiger|Panther|Puma|Lynx|Cougar
 card_suits,Card suits,suits,1,culture,Hearts|Spades|Clubs|Diamonds
-things_in_a_toolbox,Things in a toolbox,toolbox,1,objects,Hammer|Wrench|Drill|Pliers|Saw|Chisel|Screw|Clamp|Mallet|Nail|Bolt|Crowbar|Sander|Jigsaw
+things_in_a_toolbox,Things in a toolbox,toolbox,1,objects,Hammer|Wrench|Drill|Pliers|Saw|Chisel|Screw|Clamp|Mallet|Nail|Bolt|Crowbar
 in_a_rainbow,In a rainbow,rainbow,1,colour,Red|Orange|Yellow|Green|Blue|Indigo|Violet
 months,Months,Months,1,time,January|February|March|April|June|July|August|September|October|November|May|December
 drinks,Drinks,Drinks,1,drink,Tea|Coffee|Milk|Juice|Water|Cocoa|Smoothie|Cola|Shake|Tonic
@@ -43,7 +43,7 @@ parts_of_the_face,Parts of the face,face,1,body,Nose|Mouth|Chin|Cheek|Brow|Lip|E
 flowers,Flowers,Flowers,1,nature,Rose|Tulip|Daisy|Lily|Orchid|Poppy|Violet|Iris|Jasmine|Daffodil|Sunflower|Lotus|Peony|Lilac|Marigold|Dahlia|Begonia|Lavender|Fuchsia
 rooms_in_a_house,Rooms in a house,Rooms,1,home,Kitchen|Bedroom|Bathroom|Attic|Cellar|Hallway|Garage|Study|Pantry|Lounge|Basement|Loft|Nursery|Office|Playroom
 in_the_bathroom,In the bathroom,bathroom,1,home,Towel|Soap|Sponge|Mirror|Shower|Bathtub|Toilet|Sink|Shampoo|Razor|Plunger|Loofah|Floss|Lotion
-things_at_the_beach,Things at the beach,beach,1,travel,Sand|Shell|Wave|Towel|Bucket|Crab|Pier|Dune|Parasol|Ball|Seaweed
+things_at_the_beach,Things at the beach,beach,1,travel,Sand|Shell|Wave|Towel|Bucket|Crab|Pier|Dune|Parasol|Ball|Seaweed|Deckchair
 on_the_table,On the table,table,1,home,Fork|Spoon|Plate|Bowl|Cup|Glass|Napkin|Saucer|Mug|Jug|Coaster|Teapot|Platter
 garden_tools,Garden tools,Garden,1,home,Rake|Hoe|Shovel|Trowel|Shears|Fork|Mower|Hose|Sprinkler|Clippers
 nuts,Nuts,Nuts,1,food,Almond|Walnut|Cashew|Pecan|Hazelnut|Pistachio|Chestnut|Macadamia|Acorn
@@ -70,14 +70,14 @@ gems,Gems,Gems,2,nature,Ruby|Pearl|Opal|Jade|Emerald|Sapphire|Amber|Topaz|Turquo
 ways_across_a_river,Ways across a river,river,2,travel,Ferry|Ford|Bridge|Tunnel|Raft|Causeway
 dog_breeds,Dog breeds,Dog,2,animals,Poodle|Beagle|Boxer|Pug|Labrador|Terrier|Collie|Husky|Dalmatian|Spaniel|Bulldog|Greyhound|Corgi|Chihuahua|Dachshund
 spices,Spices,Spices,2,food,Cumin|Ginger|Clove|Nutmeg|Pepper|Cinnamon|Paprika|Saffron|Turmeric|Cardamom|Allspice|Anise|Caraway|Cayenne|Vanilla
-things_in_a_wallet,Things in a wallet,wallet,2,objects,Coin|Card|Receipt|Photo|Cash|Ticket|Stamp|Coupon|Voucher
+things_in_a_wallet,Things in a wallet,wallet,2,objects,Coin|Card|Receipt|Photo|Cash|Ticket|Coupon|Voucher
 shades_of_blue,Shades of blue,blue,2,colour,Navy|Teal|Azure|Cobalt|Indigo|Sapphire|Cyan|Turquoise|Denim|Sky|Cerulean|Aqua|Midnight
 royal_titles,Titles,Titles,2,people,Prince|Duke|Earl|Emperor|Queen|King|Pharaoh|Duchess|Baron|Count|Sultan|Empress|Lady|Viscount|Shah|Sir
 rivers,Rivers,Rivers,2,nature,Nile|Danube|Ganges|Amazon|Thames|Rhine|Volga|Seine|Mekong|Yangtze|Indus|Tigris|Euphrates|Zambezi
 hats,Hats,Hats,2,clothing,Beret|Fedora|Beanie|Bowler|Sombrero|Bonnet|Cap|Trilby|Panama|Fez|Boater
 things_in_space,Things in space,space,2,science,Comet|Moon|Meteor|Mercury|Star|Galaxy|Rocket|Asteroid|Satellite|Sun|Nebula|Astronaut|Pulsar|Quasar
 breads,Breads,Breads,2,food,Bagel|Naan|Brioche|Baguette|Ciabatta|Roti|Focaccia|Rye|Sourdough|Bun|Tortilla|Paratha|Pretzel
-things_with_stripes,Things with stripes,stripes,2,lateral,Zebra|Tiger|Barcode|Bee|Skunk|Badger|Wasp
+things_with_stripes,Things with stripes,stripes,2,lateral,Zebra|Tiger|Barcode|Bee|Skunk|Badger|Wasp|Chipmunk|Tabby|Clownfish
 sweets,Sweets,Sweets,2,food,Fudge|Toffee|Nougat|Truffle|Caramel|Marzipan|Lollipop|Praline|Bonbon|Brittle|Gummy|Fondant|Bubblegum
 countries,Countries,Countries,2,travel,Peru|Chad|Fiji|Oman|Cuba|Mali|Nepal|Kenya|Egypt|Panama|Spain|India|Brazil|Canada|Greece|Norway
 hairstyles,Hairstyles,Hairstyles,2,body,Bob|Bun|Braid|Ponytail|Mullet|Afro|Pixie|Perm|Beehive|Topknot|Undercut|Pompadour
@@ -105,32 +105,32 @@ sewing_kit,Sewing kit,Sewing,2,objects,Needle|Thread|Pin|Button|Thimble|Scissors
 gases,Gases,Gases,2,science,Oxygen|Hydrogen|Helium|Neon|Argon|Nitrogen|Methane|Ozone|Chlorine|Propane|Butane|Xenon|Krypton
 bones,Bones,Bones,2,body,Skull|Rib|Femur|Pelvis|Tibia|Sternum|Jaw|Kneecap|Fibula|Humerus|Radius|Ulna|Vertebra|Clavicle
 golf_terms,Golf terms,Golf,2,sport,Tee|Putt|Birdie|Eagle|Drive|Green|Bunker|Iron|Par|Fairway|Rough|Wedge|Divot|Slice|Hook|Hole|Club
-things_that_tell_time,Things that tell time,time,2,time,Clock|Watch|Sundial|Hourglass|Timer|Alarm
+things_that_tell_time,Things that tell time,time,2,time,Clock|Watch|Sundial|Hourglass
 art_supplies,Art supplies,Art,2,culture,Brush|Easel|Canvas|Palette|Crayon|Pastel|Chalk|Paint|Pencil|Charcoal|Ink|Marker|Clay|Stencil|Glitter
 at_the_circus,At the circus,circus,2,culture,Clown|Juggler|Acrobat|Trapeze|Tightrope|Unicycle|Stilts|Tent|Strongman|Hoop|Mime|Popcorn|Ring
 ice_cream,Ice cream,cream,2,food,Vanilla|Chocolate|Mint|Pistachio|Caramel|Coffee|Mango|Toffee|Hazelnut|Raspberry|Cherry
 winter_sports,Winter sports,Winter,2,sport,Skiing|Skating|Curling|Luge|Biathlon|Slalom
 kinds_of_tea,Kinds of tea,tea,2,drink,Chai|Jasmine|Matcha|Oolong|Mint|Green|Black|White|Herbal|Iced|Ginger|Lemon|Bubble|Rooibos
 things_with_keys,Things with keys,keys,3,lateral,Piano|Organ|Laptop|Accordion|Computer
-things_with_rings,Things with rings,rings,3,lateral,Saturn|Tree|Circus|Onion|Bell|Phone
+things_with_rings,Things with rings,rings,3,lateral,Saturn|Tree|Circus|Onion|Lemur|Boxing|Wrestling
 words_before_ball,Words before ball,ball,3,lateral,Foot|Snow|Eye|Basket|Base|Pin|Meat|Fire|Hand|Soft|Hard|Net|Paint|Moth|Cotton|Hair|Crystal|Gum
-things_with_shells,Things with shells,shells,3,lateral,Snail|Turtle|Taco|Clam|Egg|Crab|Lobster|Tortoise
-things_you_can_crack,Things you can crack,crack,3,lateral,Code|Joke|Whip|Egg|Safe|Smile|Knuckle|Case
-things_with_teeth,Things with teeth,teeth,3,lateral,Comb|Saw|Gear|Shark|Rake|Crocodile
+things_with_shells,Things with shells,shells,3,lateral,Snail|Turtle|Taco|Clam|Egg|Crab|Lobster|Tortoise|Oyster|Mussel|Scallop|Armadillo
+things_you_can_crack,Things you can crack,crack,3,lateral,Code|Joke|Whip|Egg|Safe|Smile|Knuckle|Case|Nut|Mystery|Window
+things_with_teeth,Things with teeth,teeth,3,lateral,Comb|Saw|Gear|Shark|Rake|Crocodile|Cog|Piranha|Beaver
 phonetic_alphabet,Phonetic alphabet,alphabet,3,culture,Alpha|Bravo|Delta|Echo|Golf|Hotel|Tango|Lima|Kilo|Foxtrot|November|Sierra|Romeo|Victor|Juliet
 parts_of_a_river,Parts of a river,river,3,nature,Bank|Mouth|Bed|Source|Delta|Current|Bend|Rapids|Tributary|Estuary|Meander
-things_with_necks,Things with necks,necks,3,lateral,Guitar|Bottle|Giraffe|Swan|Shirt|Vase
-things_with_spines,Things with spines,spines,3,lateral,Book|Cactus|Hedgehog|Porcupine|Urchin|Echidna
-things_you_can_catch,Things you can catch,catch,3,lateral,Cold|Bus|Breath|Ball|Wave|Flu|Fire|Fish|Plane
-things_you_can_draw,Things you can draw,draw,3,lateral,Curtain|Bath|Card|Breath|Line|Crowd|Straw
-things_you_can_break,Things you can break,break,3,lateral,Record|Promise|News|Silence|Ice|Habit|Bread|Code|Egg|Bone|Leg
-things_you_can_tie,Things you can tie,tie,3,lateral,Knot|Shoelace|Ribbon|Bow|Rope|Apron|Scarf
+things_with_necks,Things with necks,necks,3,lateral,Guitar|Bottle|Giraffe|Swan|Shirt|Vase|Violin|Cello|Banjo|Ukulele|Sitar
+things_with_spines,Things with spines,spines,3,lateral,Book|Cactus|Hedgehog|Porcupine|Urchin
+things_you_can_catch,Things you can catch,catch,3,lateral,Cold|Bus|Breath|Ball|Wave|Flu|Fire|Fish|Plane|Train|Taxi|Tram|Ferry|Metro|Eye|Glimpse
+things_you_can_draw,Things you can draw,draw,3,lateral,Curtain|Card|Breath|Line|Crowd|Straw|Attention
+things_you_can_break,Things you can break,break,3,lateral,Record|Promise|News|Silence|Ice|Habit|Code|Egg|Bone|Leg|Heart|Rule|Spell|Law|Window|Bank
+things_you_can_tie,Things you can tie,tie,3,lateral,Knot|Shoelace|Ribbon|Bow|Rope|Apron|Scarf|String
 things_that_pop,Things that pop,pop,3,lateral,Balloon|Bubble|Cork|Question|Button|Corn|Ears
-things_with_faces,Things with faces,faces,3,lateral,Clock|Watch|Cliff|Dice|Cube|Coin|Mountain
-things_with_tails,Things with tails,tails,3,lateral,Comet|Kite|Plane|Coin|Tadpole|Shirt|Meteor
-things_with_roots,Things with roots,roots,3,lateral,Tooth|Hair|Word|Carrot|Tree|Ginger|Turnip|Square|Radish
-things_with_crowns,Things with crowns,crowns,3,lateral,Tooth|Pineapple|Tree|Hat|King|Queen
-things_that_run,Things that run,run,3,lateral,Nose|River|Engine|Paint|Clock|Ink|Mascara
+things_with_faces,Things with faces,faces,3,lateral,Clock|Watch|Cliff|Dice|Cube|Coin|Mountain|Pyramid|Doll|Teddy|Snowman|Puppet|Robot
+things_with_tails,Things with tails,tails,3,lateral,Comet|Kite|Plane|Coin|Tadpole|Shirt
+things_with_roots,Things with roots,roots,3,lateral,Tooth|Hair|Word|Carrot|Tree|Ginger|Turnip|Radish|Parsnip|Turmeric
+things_with_crowns,Things with crowns,crowns,3,lateral,Tooth|Pineapple|Tree|King|Queen
+things_that_run,Things that run,run,3,lateral,Nose|River|Engine|Paint|Clock|Ink|Mascara|Tap
 words_before_house,Words before house,house,3,lateral,Green|Light|Tree|Opera|Farm|Dog|Glass|Doll|Ware|School|Club|Boat|Court|Guest|Play|Power|Coffee
 words_after_fire,Words after fire,fire,3,lateral,Work|Place|Fly|Wood|Ball|Proof|Side|Light|Man|Guard|Storm|Wall|Engine|Alarm|Drill|Station|Pit|Ant
 words_before_fly,Words before fly,fly,3,lateral,Butter|Dragon|Fire|House|Horse|Fruit
@@ -170,9 +170,9 @@ recipe_amounts,Recipe amounts,Recipe,2,food,Pinch|Dash|Cup|Handful|Splash|Drop|S
 ways_to_mix,Ways to mix,mix,2,food,Stir|Whisk|Beat|Fold|Blend|Whip|Toss|Churn|Shake|Swirl|Knead
 seeds_you_eat,Seeds you eat,Seeds,2,food,Sesame|Sunflower|Pumpkin|Chia|Poppy|Flax|Hemp|Mustard
 sweeteners,Sweeteners,Sweeteners,2,food,Sugar|Honey|Syrup|Stevia|Agave|Molasses|Jaggery|Aspartame|Saccharin
-preserves,Preserves,Preserves,2,food,Jam|Marmalade|Chutney|Pickle|Relish|Compote|Curd|Conserve
-parts_of_a_fruit,Parts of a fruit,fruit,2,food,Peel|Pip|Stone|Core|Flesh|Rind|Skin|Zest|Pith|Stalk|Segment
-fermented_foods,Fermented foods,Fermented,2,food,Kimchi|Miso|Tempeh|Kefir|Kombucha|Pickle|Sourdough|Vinegar|Cheese
+preserves,Preserves,Preserves,2,food,Jam|Marmalade|Chutney|Pickle|Relish|Compote|Conserve
+parts_of_a_fruit,Parts of a fruit,fruit,2,food,Peel|Pip|Stone|Core|Flesh|Rind|Skin|Zest|Pith|Stalk|Segment|Seed
+fermented_foods,Fermented foods,Fermented,2,food,Kimchi|Miso|Tempeh|Kefir|Pickle|Sourdough|Vinegar|Cheese
 rodents,Rodents,Rodents,1,animals,Rat|Mouse|Squirrel|Beaver|Hamster|Gerbil|Vole|Chipmunk|Porcupine|Marmot|Lemming|Capybara
 pond_life,Pond life,Pond,1,nature,Frog|Toad|Newt|Tadpole|Duck|Swan|Heron|Reed|Algae|Lily|Goldfish|Carp|Minnow
 in_the_garden,In the garden,garden,1,nature,Lawn|Hedge|Shed|Patio|Gnome|Fence|Hose|Compost|Path|Weed|Sundial|Bench|Sprinkler
@@ -180,7 +180,7 @@ jungle_animals,Jungle animals,Jungle,1,animals,Monkey|Gorilla|Tiger|Jaguar|Parro
 polar_animals,Polar animals,Polar,1,animals,Penguin|Walrus|Seal|Narwhal|Reindeer|Beluga|Lemming|Caribou
 desert_animals,Desert animals,Desert,1,animals,Camel|Scorpion|Meerkat|Vulture|Coyote|Jackal|Lizard|Gecko|Snake|Tortoise|Armadillo|Dingo
 forest_animals,Forest animals,Forest,1,animals,Deer|Fox|Badger|Squirrel|Owl|Hedgehog|Boar|Bear|Wolf|Moose|Raccoon|Chipmunk|Stag|Elk
-parts_of_a_tree,Parts of a tree,tree,1,nature,Trunk|Branch|Leaf|Bark|Twig|Bud|Sap|Bough|Canopy|Limb
+parts_of_a_tree,Parts of a tree,tree,1,nature,Trunk|Branch|Leaf|Bark|Twig|Bud|Sap|Bough|Canopy|Limb|Root
 animal_parts,Animal parts,Animal,1,animals,Hoof|Paw|Claw|Beak|Mane|Snout|Tusk|Antler|Whisker|Fin|Gill|Talon|Horn|Trunk|Hump|Udder
 creepy_crawlies,Creepy crawlies,crawlies,1,animals,Spider|Worm|Slug|Snail|Centipede|Millipede|Scorpion|Tick|Earwig|Beetle
 animals_that_hop,Animals that hop,hop,1,animals,Kangaroo|Frog|Rabbit|Hare|Wallaby|Flea|Toad|Cricket|Locust
@@ -212,11 +212,11 @@ wildflowers,Wildflowers,Wildflowers,2,nature,Buttercup|Bluebell|Daisy|Clover|Dan
 fungi,Fungi,Fungi,2,nature,Mushroom|Toadstool|Truffle|Yeast|Puffball|Morel|Porcini|Shiitake|Mildew
 gardening_jobs,Gardening jobs,Gardening,2,nature,Dig|Weed|Prune|Plant|Mow|Rake|Water|Sow|Hoe|Mulch|Trim|Harvest
 habitats,Habitats,Habitats,2,nature,Jungle|Desert|Forest|Tundra|Swamp|Marsh|Prairie|Meadow|Reef|Wetland|Grassland|Bog|Mangrove
-bodies_of_water,Bodies of water,water,2,nature,Lake|Pond|Ocean|Stream|Lagoon|Bay|Gulf|Creek|Brook|Canal|Fjord|Reservoir|Estuary|Strait
+bodies_of_water,Bodies of water,water,2,nature,Lake|Pond|Ocean|Stream|Lagoon|Bay|Gulf|Creek|Brook|Canal|Fjord|Reservoir|Estuary|Strait|River
 seas_of_the_world,Seas of the world,Seas,2,nature,Baltic|Caspian|Aegean|Adriatic|Caribbean|Arabian|Red|Black|North
 parts_of_a_mountain,Parts of a mountain,mountain,2,nature,Peak|Summit|Slope|Ridge|Base|Foot|Crest|Pass
 containers,Containers,Containers,1,objects,Box|Jar|Bottle|Basket|Bucket|Tin|Crate|Barrel|Tub|Sack|Carton|Chest|Vase
-stationery,Stationery,Stationery,1,objects,Pen|Ruler|Stapler|Glue|Tape|Folder|Marker|Notepad|Envelope|Paperclip|Scissors|Crayon|Sharpener|Diary
+stationery,Stationery,Stationery,1,objects,Pen|Ruler|Stapler|Glue|Tape|Folder|Marker|Notepad|Envelope|Paperclip|Scissors|Crayon|Diary|Journal
 in_a_jewel_box,In a jewel box,jewel,1,clothing,Necklace|Bracelet|Earring|Brooch|Pendant|Locket|Bangle|Chain|Choker|Cufflink|Anklet|Tiara|Charm
 materials,Materials,Materials,1,objects,Wood|Glass|Plastic|Paper|Stone|Leather|Clay|Brick|Concrete|Cardboard|Ceramic|Wax|Cork|Foam
 parts_of_a_house,Parts of a house,house,1,home,Roof|Wall|Door|Window|Floor|Chimney|Ceiling|Porch|Gutter|Balcony|Beam|Stairs
@@ -233,33 +233,33 @@ laundry_day,Laundry day,Laundry,1,home,Peg|Iron|Basket|Hanger|Dryer|Detergent|St
 at_a_picnic,At a picnic,picnic,1,objects,Basket|Blanket|Hamper|Flask|Sandwich|Cooler|Napkin|Rug|Ant|Plate
 at_a_party,At a party,party,1,objects,Balloon|Banner|Streamer|Confetti|Candle|Present|Invite|Garland|Cake
 in_the_living_room,In the living room,living,1,home,Rug|Lamp|Cushion|Remote|Curtain|Sofa|Armchair|Bookcase|Coaster|Ornament
-bags,Bags,Bags,1,objects,Backpack|Suitcase|Briefcase|Rucksack|Satchel|Tote|Pouch|Sack|Clutch|Duffel
+bags,Bags,Bags,1,objects,Backpack|Suitcase|Briefcase|Rucksack|Satchel|Tote|Pouch|Clutch|Handbag
 kinds_of_home,Kinds of home,home,1,home,Bungalow|Cottage|Mansion|Villa|Cabin|Apartment|Chalet|Hut|Igloo|Palace|Castle|Shack|Manor|Lodge
 outerwear,Outerwear,Outerwear,2,clothing,Coat|Jacket|Anorak|Parka|Blazer|Cloak|Cape|Poncho|Fleece|Puffer|Shawl
-traditional_clothes,Traditional clothes,Traditional,2,clothing,Sari|Kimono|Kilt|Sarong|Poncho|Kaftan|Toga|Sombrero|Fez
-parts_of_a_shoe,Parts of a shoe,shoe,2,clothing,Sole|Heel|Lace|Tongue|Toe|Insole|Eyelet|Buckle|Strap
+traditional_clothes,Traditional clothes,Traditional,2,clothing,Sari|Kimono|Kilt|Sarong|Poncho|Toga|Sombrero|Fez
+parts_of_a_shoe,Parts of a shoe,shoe,2,clothing,Sole|Heel|Lace|Tongue|Toe|Eyelet|Buckle|Strap
 parts_of_a_coat,Parts of a coat,coat,2,clothing,Collar|Cuff|Sleeve|Button|Pocket|Hem|Seam|Lapel|Lining|Hood|Belt
 parts_of_a_dress,Parts of a dress,dress,2,clothing,Bodice|Skirt|Hem|Sleeve|Train|Neckline|Waist|Strap|Bow|Sash
-parts_of_a_door,Parts of a door,door,2,home,Hinge|Handle|Knob|Latch|Bolt|Lock|Knocker|Frame|Chain|Peephole
+parts_of_a_door,Parts of a door,door,2,home,Hinge|Handle|Latch|Bolt|Lock|Knocker|Frame|Chain|Peephole
 parts_of_a_window,Parts of a window,window,2,home,Pane|Sill|Frame|Sash|Latch|Ledge|Shutter|Glass|Hinge|Handle
 in_a_handbag,In a handbag,handbag,2,objects,Lipstick|Mirror|Comb|Tissue|Phone|Pen|Umbrella|Diary|Mascara|Charger|Hairbrush|Perfume
-fabric_patterns,Fabric patterns,patterns,2,clothing,Tartan|Paisley|Gingham|Argyle|Chevron|Check|Spot|Floral|Zigzag|Plaid
+fabric_patterns,Fabric patterns,patterns,2,clothing,Tartan|Paisley|Gingham|Argyle|Chevron|Check|Floral|Zigzag|Plaid
 kinds_of_bed,Kinds of bed,bed,2,home,Bunk|Cot|Crib|Futon|Hammock|Cradle|Berth|Bassinet|Divan
 worn_in_the_hair,Worn in the hair,hair,2,clothing,Clip|Scrunchie|Headband|Comb|Bow|Ribbon|Tiara|Bandana|Pin
 worn_on_the_neck,Worn on the neck,neck,2,clothing,Scarf|Cravat|Choker|Collar|Shawl|Bandana|Locket|Pendant|Lanyard|Medal|Garland|Lei|Boa
 worn_on_the_face,Worn on the face,face,2,clothing,Glasses|Mask|Monocle|Veil|Goggles|Lipstick|Mascara|Visor|Blush|Eyeliner
 fasteners,Fasteners,Fasteners,2,objects,Nail|Screw|Bolt|Rivet|Staple|Pin|Tack|Peg|Clip|Button|Buckle|Clasp
 pet_supplies,Pet supplies,Pet,2,objects,Collar|Leash|Kennel|Cage|Hutch|Perch|Litter|Brush|Harness
-things_you_light,Things you light,light,2,objects,Candle|Match|Bonfire|Firework|Fuse|Barbecue|Lantern|Stove|Wick|Fire
+things_you_light,Things you light,light,2,objects,Candle|Match|Bonfire|Firework|Fuse|Barbecue|Lantern|Stove|Wick
 fishing_gear,Fishing gear,Fishing,2,objects,Rod|Reel|Hook|Line|Bait|Float|Lure|Net|Sinker|Tackle
 parts_of_a_book,Parts of a book,book,2,objects,Page|Cover|Chapter|Index|Jacket|Blurb|Preface|Appendix|Glossary|Margin|Spine
-things_with_pages,Things with pages,pages,2,objects,Book|Diary|Magazine|Comic|Atlas|Calendar|Menu|Notebook|Album|Website|Manual|Passport|Brochure|Notepad
+things_with_pages,Things with pages,pages,2,objects,Book|Diary|Magazine|Comic|Atlas|Calendar|Menu|Album|Website|Manual|Passport|Brochure|Notepad
 floor_coverings,Floor coverings,Floor,2,home,Carpet|Rug|Tile|Linoleum|Parquet|Laminate|Mat|Vinyl
 building_materials,Building materials,Building,2,objects,Brick|Cement|Concrete|Timber|Slate|Plaster|Gravel|Tile|Stone|Thatch|Sand
-measuring_tools,Measuring tools,Measuring,2,objects,Ruler|Scales|Tape|Gauge|Barometer|Odometer|Pedometer|Altimeter|Sextant
+measuring_tools,Measuring tools,Measuring,2,objects,Ruler|Tape|Gauge|Barometer|Odometer|Pedometer|Altimeter|Sextant|Scale
 prizes,Prizes,Prizes,2,objects,Trophy|Medal|Cup|Shield|Plaque|Ribbon|Rosette|Badge
 at_the_hairdresser,At the hairdresser,hairdresser,2,objects,Comb|Scissors|Dryer|Gel|Cape|Curler|Clippers|Dye|Mousse|Perm|Razor
-magic_show,Magic show,Magic,2,culture,Wand|Rabbit|Cape|Dove|Card|Coin|Rope|Scarf|Cloak
+magic_show,Magic show,Magic,2,culture,Wand|Rabbit|Cape|Dove|Card|Coin|Rope|Scarf|Cloak|Hat
 crafts,Crafts,Crafts,2,culture,Knitting|Pottery|Weaving|Quilting|Crochet|Origami|Woodwork|Collage|Carving|Mosaic|Batik|Painting
 school_subjects,School subjects,subjects,1,school,History|Geography|Biology|Chemistry|Physics|Drama|Science|Economics|Sociology|Computing
 school_supplies,School supplies,School,1,school,Pencil|Ruler|Notebook|Crayon|Glue|Scissors|Stapler|Backpack|Compass|Sharpener|Marker|Folder|Chalk|Textbook
@@ -283,7 +283,7 @@ in_fairy_tales,In fairy tales,fairy,1,culture,Witch|Wolf|Prince|Frog|Beanstalk|W
 pirate_ship,On a pirate ship,pirate,1,culture,Parrot|Treasure|Map|Hook|Plank|Flag|Patch|Compass|Anchor|Telescope|Captain|Deck
 wind_instruments,Wind instruments,Wind,2,music,Flute|Clarinet|Oboe|Bassoon|Saxophone|Recorder|Piccolo|Trumpet|Trombone|Tuba|Bugle|Harmonica|Bagpipes|Cornet
 percussion,Percussion,Percussion,2,music,Drum|Cymbal|Gong|Xylophone|Triangle|Bongo|Maraca|Tabla|Timpani|Cowbell|Marimba|Conga
-singing_voices,Singing voices,voices,2,music,Soprano|Alto|Tenor|Bass|Baritone|Contralto|Falsetto|Treble
+singing_voices,Singing voices,voices,2,music,Soprano|Alto|Tenor|Bass|Baritone|Falsetto|Treble
 music_terms,Music terms,Music,2,music,Tempo|Chord|Melody|Rhythm|Harmony|Octave|Scale|Beat|Pitch|Clef|Sharp|Note|Tune
 kinds_of_song,Kinds of song,song,2,music,Ballad|Anthem|Lullaby|Jingle|Shanty|Aria|Serenade|Ditty|Duet|Medley
 parts_of_a_song,Parts of a song,song,2,music,Verse|Chorus|Bridge|Intro|Outro|Riff|Solo|Lyric|Refrain|Coda
@@ -296,7 +296,7 @@ celebrations,Celebrations,Celebrations,2,culture,Reunion|Festival|Parade|Carniva
 kinds_of_story,Kinds of story,story,2,culture,Fable|Myth|Legend|Saga|Epic|Anecdote|Allegory|Yarn|Novel|Tragedy|Satire
 kinds_of_comedy,Kinds of comedy,comedy,2,culture,Sketch|Skit|Parody|Satire|Farce|Spoof|Slapstick|Sitcom|Pun|Gag|Prank
 in_a_newspaper,In a newspaper,newspaper,2,culture,Headline|Article|Column|Editorial|Cartoon|Crossword|Review|Caption|Interview|Sudoku|Byline
-photography,Photography,Photography,2,culture,Lens|Flash|Shutter|Focus|Zoom|Tripod|Exposure|Filter|Frame|Selfie|Negative
+photography,Photography,Photography,2,culture,Lens|Flash|Shutter|Focus|Zoom|Tripod|Exposure|Filter|Frame|Selfie|Negative|Camera
 in_a_courtroom,In a courtroom,courtroom,2,people,Judge|Jury|Lawyer|Witness|Clerk|Gavel|Verdict|Oath|Bench|Trial|Evidence|Dock|Appeal
 jobs_with_animals,Jobs with animals,animals,2,people,Vet|Farmer|Zookeeper|Jockey|Shepherd|Beekeeper|Breeder|Rancher|Ranger|Groomer|Cowboy|Herder
 trades,Trades,Trades,2,people,Plumber|Builder|Carpenter|Painter|Roofer|Mason|Welder|Locksmith|Mechanic|Plasterer|Tiler
@@ -304,25 +304,25 @@ people_in_charge,People in charge,charge,2,people,Boss|Chief|Captain|Skipper|Com
 groups_of_people,Groups of people,Groups,2,people,Team|Crew|Clan|Squad|Tribe|Cast|Troupe|Jury|Class|Panel|Crowd|Audience|Band|Choir|Chorus|Committee
 words_for_a_friend,Words for a friend,friend,2,people,Pal|Buddy|Mate|Chum|Ally|Companion|Partner|Sidekick|Amigo
 learners,Learners,Learners,2,people,Pupil|Student|Scholar|Trainee|Intern|Novice|Beginner|Rookie|Cadet
-experts,Words for an expert,expert,2,people,Master|Ace|Genius|Maestro|Virtuoso|Pro|Pundit|Veteran|Prodigy|Champ
+experts,Words for an expert,expert,2,people,Master|Ace|Genius|Maestro|Virtuoso|Pundit|Veteran|Prodigy|Champ
 shopkeepers,Shopkeepers,Shopkeepers,2,people,Butcher|Baker|Grocer|Florist|Tailor|Barber|Cobbler|Optician|Stationer
 writers,Writers,Writers,2,people,Author|Poet|Novelist|Reporter|Columnist|Blogger|Scribe|Lyricist|Essayist|Diarist
 medieval_people,Medieval people,Medieval,2,people,Jester|Knight|Squire|Page|Herald|Minstrel|Peasant|Serf|Baron
 workplaces,Workplaces,Workplaces,2,people,Office|Factory|Farm|Studio|Lab|Mine|Workshop|Warehouse|Salon|Clinic|Mill|Quarry
-grammar_words,Grammar words,Grammar,2,school,Noun|Verb|Adjective|Adverb|Pronoun|Clause|Phrase|Prefix|Suffix|Syllable|Vowel|Tense|Plural|Sentence
-punctuation,Punctuation,Punctuation,2,school,Comma|Colon|Hyphen|Dash|Bracket|Asterisk|Semicolon|Slash|Ellipsis
+grammar_words,Grammar words,Grammar,2,school,Noun|Verb|Adjective|Clause|Phrase|Prefix|Suffix|Syllable|Vowel|Tense|Plural|Sentence
+punctuation,Punctuation,Punctuation,2,school,Comma|Colon|Hyphen|Dash|Bracket|Asterisk|Slash|Ellipsis
 arithmetic,Arithmetic,Arithmetic,2,school,Plus|Minus|Times|Divide|Equals|Total|Fraction|Decimal|Remainder|Multiply|Subtract|Add|Sum|Product
 schoolwork,Schoolwork,Schoolwork,2,school,Homework|Essay|Exam|Test|Quiz|Project|Report|Dictation|Worksheet
-at_university,At university,university,2,school,Campus|Lecture|Degree|Professor|Dean|Thesis|Seminar|Semester|Faculty|Diploma|Graduate|Tuition
+at_university,At university,university,2,school,Campus|Lecture|Degree|Professor|Dean|Thesis|Seminar|Semester|Faculty|Diploma|Graduate|Tuition|Student
 ways_to_learn,Ways to learn,learn,2,school,Lesson|Lecture|Seminar|Tutorial|Workshop|Class|Course|Webinar|Training
-sports_venues,Sports venues,venues,2,sport,Stadium|Arena|Court|Pitch|Track|Rink|Pool|Course|Field|Velodrome|Dojo
+sports_venues,Sports venues,venues,2,sport,Stadium|Arena|Court|Pitch|Track|Rink|Pool|Course|Field|Velodrome|Dojo|Gym
 tennis_terms,Tennis terms,Tennis,2,sport,Ace|Love|Deuce|Serve|Volley|Lob|Fault|Rally|Smash|Let|Slice|Net|Match
 ways_to_score,Ways to score,score,2,sport,Goal|Try|Basket|Touchdown|Strike|Bullseye|Point|Ace|Birdie|Wicket
 kinds_of_race,Kinds of race,race,2,sport,Sprint|Relay|Marathon|Rally|Regatta|Triathlon|Hurdles|Slalom|Biathlon
 gymnastics_moves,Gymnastics moves,Gymnastics,2,sport,Cartwheel|Handstand|Headstand|Flip|Vault|Splits|Tuck|Twist|Leap
 exercises,Exercises,Exercises,2,sport,Squat|Lunge|Plank|Crunch|Burpee|Deadlift|Curl|Stretch|Dip
 riding_gear,Riding gear,Riding,2,sport,Saddle|Bridle|Stirrup|Rein|Halter|Horseshoe|Whip|Helmet|Spur
-on_the_slopes,On the slopes,slopes,2,sport,Goggles|Pole|Helmet|Lift|Chalet|Snowboard|Lodge|Gondola|Ski|Skier
+on_the_slopes,On the slopes,slopes,2,sport,Goggles|Pole|Helmet|Lift|Chalet|Snowboard|Lodge|Gondola|Ski
 basketball_terms,Basketball terms,Basketball,2,sport,Dunk|Rebound|Dribble|Hoop|Assist|Foul|Pivot|Block|Steal|Court
 in_a_board_game,In a board game,board,2,games,Dice|Counter|Token|Card|Timer|Spinner|Pawn|Tile|Chip|Hourglass
 playing_card_terms,Playing card terms,card,2,games,Deck|Deal|Shuffle|Trick|Joker|Ace|Jack|Fold|Bid
@@ -441,7 +441,7 @@ words_after_fish,Words after fish,fish,3,lateral,Bowl|Cake|Net|Bone|Tank|Pond|Fo
 words_after_horse,Words after horse,horse,3,lateral,Shoe|Power|Fly|Back|Radish|Play|Man|Hair|Box|Race|Whip|Chestnut
 words_after_hot,Words after hot,hot,3,lateral,Dog|Pot|Spot|Cake|House|Plate|Head|Rod|Tub|Sauce|Spring|Line|Water|Chocolate|Air
 words_after_under,Words after under,under,3,lateral,Ground|Water|Wear|Line|Dog|Cover|Pass|Stand|Take|World|Arm|Coat|Current|Cut|Study|Score
-words_after_door,Words after door,door,3,lateral,Bell|Step|Way|Mat|Knob|Man|Frame|Stop|Handle|Post
+words_after_door,Words after door,door,3,lateral,Bell|Step|Way|Mat|Man|Frame|Stop|Handle|Post
 words_after_play,Words after play,play,3,lateral,Ground|Time|House|Mate|Room|Pen|School|Group|List|Thing|Off|Date|Back
 words_after_home,Words after home,home,3,lateral,Work|Made|Town|Land|Page|Coming|Grown|Owner|Run|School
 words_after_wind,Words after wind,wind,3,lateral,Mill|Screen|Fall|Pipe|Sock|Bag|Surf|Farm|Burn|Break|Storm|Turbine|Power|Tunnel
@@ -451,23 +451,23 @@ things_that_melt,Things that melt,melt,2,abstract,Ice|Snow|Butter|Chocolate|Cand
 sticky_things,Sticky things,Sticky,2,abstract,Glue|Honey|Tape|Syrup|Bubblegum|Jam|Toffee|Caramel|Sap|Resin|Paste|Tar|Slime|Web
 smelly_things,Smelly things,Smelly,2,abstract,Skunk|Garlic|Sock|Sewer|Compost|Manure|Durian|Drain|Onion|Pigsty
 loud_things,Loud things,Loud,2,abstract,Thunder|Siren|Drum|Alarm|Horn|Jet|Trumpet|Whistle|Gong|Cymbal|Drill|Chainsaw|Megaphone|Rooster
-sharp_things,Sharp things,Sharp,2,abstract,Needle|Pin|Thorn|Razor|Claw|Scissors|Spike|Tack|Fang|Cactus|Talon|Chisel|Saw|Dart
+sharp_things,Sharp things,Sharp,2,abstract,Needle|Pin|Thorn|Razor|Claw|Scissors|Spike|Tack|Fang|Cactus|Talon|Chisel|Saw|Dart|Nail
 things_that_glow,Things that glow,glow,2,abstract,Lava|Ember|Candle|Lantern|Neon|Lamp|Bulb|Moon|Star|Screen|Beacon|Sun|Light|Fire
 things_that_spin,Things that spin,spin,2,abstract,Wheel|Top|Fan|Propeller|Globe|Tornado|Carousel|Turbine|Record|Whirlpool|Gear|Drill
 fragile_things,Fragile things,Fragile,2,abstract,Glass|Egg|Vase|Mirror|Bubble|Bulb|Crystal|Porcelain
 slow_things,Slow things,Slow,2,abstract,Snail|Sloth|Tortoise|Glacier|Slug|Turtle|Manatee|Koala
 things_that_buzz,Things that buzz,buzz,3,abstract,Bee|Wasp|Fly|Hornet|Mosquito|Phone|Kazoo|Razor|Drone
 stretchy_things,Stretchy things,Stretchy,2,abstract,Elastic|Spandex|Bubblegum|Dough|Slime|Balloon|Tights|Leggings|Spring|Bungee
-hot_things,Things that are hot,hot,2,abstract,Sun|Fire|Oven|Lava|Stove|Kettle|Desert|Sauna|Volcano|Furnace|Radiator|Toaster|Grill|Ember|Steam|Candle
+hot_things,Things that are hot,hot,2,abstract,Sun|Fire|Oven|Lava|Stove|Kettle|Desert|Sauna|Volcano|Furnace|Radiator|Toaster|Grill|Ember|Steam|Candle|Heatwave
 sour_things,Sour things,Sour,2,abstract,Lemon|Lime|Vinegar|Pickle|Cranberry|Tamarind|Kimchi|Crabapple
 transparent_things,Transparent things,Transparent,2,abstract,Glass|Window|Water|Air|Lens|Bubble|Jellyfish|Crystal|Prism|Ice
-things_that_float,Things that float,float,2,abstract,Cork|Buoy|Log|Raft|Bubble|Feather|Leaf|Cloud|Balloon|Boat|Ship|Ice|Oil
-soft_things,Soft things,Soft,2,abstract,Pillow|Cushion|Feather|Teddy|Blanket|Fleece|Velvet|Wool|Cotton|Fur|Moss|Sponge|Towel|Tissue|Fluff
+things_that_float,Things that float,float,2,abstract,Cork|Buoy|Log|Raft|Bubble|Feather|Leaf|Cloud|Balloon|Boat|Ship|Ice|Oil|Iceberg
+soft_things,Soft things,Soft,2,abstract,Pillow|Cushion|Feather|Teddy|Blanket|Fleece|Velvet|Wool|Cotton|Fur|Moss|Sponge|Towel|Tissue|Fluff|Foam
 slippery_things,Slippery things,Slippery,2,abstract,Ice|Soap|Eel|Oil|Grease|Mud|Slug|Seaweed
 things_that_sparkle,Things that sparkle,sparkle,2,abstract,Glitter|Sequin|Tinsel|Crystal|Star|Tiara|Jewel|Dew|Frost
 spicy_things,Spicy things,Spicy,2,abstract,Wasabi|Curry|Salsa|Mustard|Ginger|Pepper|Cayenne|Vindaloo|Kimchi
 tiny_things,Tiny things,Tiny,2,abstract,Atom|Germ|Seed|Crumb|Speck|Grain|Pixel|Dot|Molecule|Flea|Mite
-cold_things,Things that are cold,cold,2,abstract,Fridge|Freezer|Igloo|Glacier|Icicle|Frost|Winter|Blizzard|Tundra|Ice|Snow|Hail|Sleet
+cold_things,Things that are cold,cold,2,abstract,Fridge|Freezer|Igloo|Glacier|Icicle|Frost|Winter|Blizzard|Tundra|Ice|Snow|Hail|Sleet|Iceberg
 squeaky_things,Squeaky things,Squeaky,3,abstract,Mouse|Hinge|Wheel|Chalk|Brake|Swing|Gate|Door
 virtues,Virtues,Virtues,2,abstract,Patience|Courage|Honesty|Kindness|Humility|Wisdom|Loyalty|Justice|Mercy|Modesty|Prudence
 things_that_sting,Things that sting,sting,2,abstract,Bee|Wasp|Hornet|Nettle|Jellyfish|Scorpion|Urchin|Ant
@@ -512,4 +512,89 @@ blended_words,Blended words,Blended,4,wordplay,Brunch|Motel|Emoticon|Glamping|Fr
 shortened_words,Shortened words,Shortened,4,wordplay,Exam|Memo|Typo|Info|Phone|Flu|Plane|Bus|Fridge|Photo|Hippo|Rhino|Taxi|Metro|Piano|Disco|Kilo|Pop
 swap_halves,Swapped halves,Swapped,4,wordplay,Lookout|Outlook|Upset|Layout|Takeover|Overtake|Turnover|Overturn|Houseboat|Boathouse|Overlay
 plurals_without_s,Plurals without S,Plurals,4,wordplay,Mice|Geese|Feet|Children|Women|Men|Cacti|Fungi|People|Criteria|Dice
-always_plural,Always plural,plural,4,wordplay,Jeans|Shorts|Trousers|Clothes|Thanks|Riches|Scissors|Pliers|Tongs|Shears|Goggles|Glasses
+always_plural,Always plural,plural,4,wordplay,Jeans|Shorts|Trousers|Clothes|Thanks|Riches|Scissors|Pliers|Tongs|Shears|Goggles|Glasses|Tweezers
+things_with_wings,Things with wings,wings,3,lateral,Plane|Jet|Glider|Chicken|Ostrich|Penguin|Bat|Butterfly|Moth|Bee|Wasp|Dragon|Fairy|Phoenix|Palace|Hospital
+things_with_handles,Things with handles,handles,3,lateral,Door|Drawer|Suitcase|Umbrella|Briefcase|Basket|Bucket|Bag|Kettle|Teapot|Mug|Jug|Iron|Pan|Hammer|Broom
+things_with_buttons,Things with buttons,buttons,3,lateral,Shirt|Coat|Jacket|Blouse|Cardigan|Remote|Mouse|Phone|Camera|Radio|Doorbell|Belly|Accordion
+things_with_blades,Things with blades,blades,3,lateral,Skate|Razor|Scissors|Fan|Propeller|Blender|Oar|Paddle|Shoulder|Grass|Turbine|Peeler|Saw|Mower|Shears
+things_with_strings,Things with strings,strings,3,lateral,Kite|Puppet|Piano|Harp|Guitar|Violin|Cello|Banjo|Ukulele|Sitar|Hoodie|Apron
+things_with_scales,Things with scales,scales,2,lateral,Snake|Lizard|Dragon|Crocodile|Salmon|Carp|Goldfish|Mermaid|Iguana|Gecko|Cobra|Python|Trout|Tuna
+things_with_eyes,Things with eyes,eyes,3,lateral,Potato|Needle|Storm|Hurricane|Cyclone|Doll|Teddy|Puppet|Robot|Snowman|Cyclops|Peacock|Owl
+things_with_legs,Things with legs,legs,3,lateral,Table|Chair|Stool|Desk|Bench|Bed|Sofa|Tripod|Easel|Jeans|Trousers|Shorts|Tights|Journey|Piano|Lamb
+things_with_lids,Things with lids,lids,3,lateral,Jar|Kettle|Teapot|Eye|Laptop|Toilet|Tin|Chest|Pot|Saucepan|Lunchbox|Casserole|Piano
+things_with_holes,Things with holes,holes,3,lateral,Bagel|Sponge|Emmental|Button|Golf|Net|Sieve|Colander|Belt|Pretzel|Bead|Lace|Needle
+things_with_needles,Things with needles,needles,3,lateral,Pine|Fir|Spruce|Cedar|Larch|Compass|Cactus|Turntable|Gauge
+things_with_arms,Things with arms,arms,3,lateral,Octopus|Starfish|Squid|Galaxy|Crane|Robot|Windmill|Sofa|Throne|Monkey
+things_with_heads,Things with heads,heads,3,lateral,Coin|Comet|Bed|Table|Shower|Match|Pin|Nail|Hammer|Mop|Screw|Bolt
+things_with_horns,Things with horns,horns,3,lateral,Car|Train|Ship|Bus|Taxi|Van|Moped|Unicorn|Rhino|Bull|Goat|Ram|Buffalo|Yak|Gazelle|Antelope
+things_with_branches,Things with branches,branches,3,lateral,Bank|Library|River|Lightning|Coral|Antler|Tree|Bush|Shrub|Hedge
+things_with_spots,Things with spots,spots,2,lateral,Dice|Domino|Toadstool|Leopard|Cheetah|Jaguar|Dalmatian|Fawn|Giraffe
+things_with_lenses,Things with lenses,lenses,2,lateral,Camera|Glasses|Telescope|Eye|Projector|Goggles|Monocle|Magnifier|Webcam|Phone
+things_with_caps,Things with caps,caps,3,lateral,Bottle|Pen|Mushroom|Knee|Acorn|Marker|Lipstick|Toadstool
+things_with_chains,Things with chains,chains,3,lateral,Bicycle|Anchor|Swing|Locket|Necklace|Motorbike|Pendant|Medallion
+things_with_fins,Things with fins,fins,3,lateral,Rocket|Surfboard|Plane|Submarine|Shark|Dolphin|Whale|Salmon|Trout|Goldfish|Tuna|Cod|Mermaid|Anchovy
+things_with_layers,Things with layers,layers,3,lateral,Onion|Earth|Trifle|Baklava|Croissant|Pastry|Tiramisu|Plywood|Cake|Strudel
+things_with_bridges,Things with bridges,bridges,3,lateral,Nose|Glasses|Ship|Guitar|Violin|Cello|Banjo|Ukulele|Viola
+things_with_bulbs,Things with bulbs,bulbs,3,lateral,Lamp|Projector|Onion|Garlic|Tulip|Daffodil|Lily|Fennel|Shallot|Hyacinth
+things_with_locks,Things with locks,locks,3,lateral,Door|Safe|Canal|Suitcase|Car|Chest|Vault|Window|Briefcase
+things_with_pedals,Things with pedals,pedals,3,lateral,Bicycle|Piano|Organ|Car|Tricycle|Unicycle|Tractor|Bus|Harp|Taxi
+things_with_sleeves,Things with sleeves,sleeves,3,lateral,Record|Album|Shirt|Jacket|Coat|Sweater|Blouse|Hoodie|Cardigan|Kimono|Gown
+things_with_gills,Things with gills,gills,3,lateral,Mushroom|Toadstool|Tadpole|Shark|Salmon|Trout|Goldfish|Tuna|Cod|Carp|Anchovy
+things_with_hinges,Things with hinges,hinges,3,lateral,Door|Gate|Laptop|Clam|Oyster|Mussel|Locket|Glasses|Stapler|Cupboard|Wardrobe|Cabinet|Scallop
+things_with_pods,Things with pods,pods,3,lateral,Pea|Bean|Okra|Vanilla|Cardamom|Tamarind|Chickpea|Edamame|Carob
+things_that_crash,Things that crash,crash,3,lateral,Wave|Cymbal|Thunder|Computer|Laptop|Phone|App|Website|Server|Browser|Market|Price
+things_that_roll,Things that roll,roll,3,lateral,Dice|Ball|Wheel|Marble|Barrel|Log|Thunder|Credits|Tear|Coin|Wave|Eye
+things_that_charge,Things that charge,charge,3,lateral,Phone|Battery|Laptop|Bull|Rhino|Elephant|Buffalo|Hippo|Boar|Ram
+things_that_snap,Things that snap,snap,3,lateral,Twig|Branch|Crocodile|Alligator|Camera|Elastic|Pencil|Celery|Wishbone
+things_that_click,Things that click,click,3,lateral,Mouse|Keyboard|Camera|Seatbelt|Lock|Switch|Dolphin|Buckle|Latch|Tongue|Pen
+things_that_roar,Things that roar,roar,3,lateral,Lion|Tiger|Engine|Crowd|Fire|Thunder|Waterfall|Dinosaur|Wind
+things_that_whistle,Things that whistle,whistle,3,lateral,Kettle|Train|Referee|Wind|Firework|Blackbird|Shepherd|Lifeguard|Dolphin
+things_that_blow,Things that blow,blow,3,lateral,Wind|Breeze|Hurricane|Blizzard|Fan|Hairdryer|Whale|Fuse|Volcano|Bellows
+things_that_rise,Things that rise,rise,3,lateral,Sun|Moon|Dough|Cake|Tide|Smoke|Steam|Price|Rent|Balloon|Phoenix
+things_that_set,Things that set,set,3,lateral,Sun|Moon|Concrete|Cement|Glue|Mortar|Jam|Resin|Plaster
+things_that_leak,Things that leak,leak,3,lateral,Tap|Roof|Pipe|Pen|Boat|Hose|Tent|Battery|Secret|Gutter|News
+things_that_expire,Things that expire,expire,3,lateral,Passport|Ticket|Coupon|Voucher|Lease|Contract|Warranty|Password|Permit|Card|Milk
+things_that_swing,Things that swing,swing,3,lateral,Pendulum|Door|Gate|Hammock|Monkey|Mood|Golfer|Trapeze
+things_that_pinch,Things that pinch,pinch,3,lateral,Crab|Lobster|Shoe|Tweezers|Pliers|Earwig|Clamp|Peg|Scorpion
+things_that_spread,Things that spread,spread,3,lateral,Butter|Jam|Honey|Margarine|Marmalade|Gossip|News|Fire|Panic|Ivy
+things_that_fade,Things that fade,fade,3,lateral,Jeans|Photo|Memory|Tan|Echo|Ink|Light|Smile|Paint
+things_that_hold_water,Things that hold water,water,3,lateral,Bucket|Jug|Vase|Tank|Dam|Kettle|Bath|Well|Argument|Theory|Excuse|Story
+things_that_beat,Things that beat,beat,3,lateral,Heart|Drum|Wing|Pulse|Rain|Sun|Whisk|Mixer|Wave
+things_that_flutter,Things that flutter,flutter,3,lateral,Eyelash|Flag|Heart|Leaf|Ribbon|Banner|Wing|Curtain
+things_that_drift,Things that drift,drift,3,lateral,Snow|Cloud|Mind|Smoke|Iceberg|Leaf|Sand|Continent|Boat|Balloon
+things_that_lift,Things that lift,lift,3,lateral,Crane|Jack|Pulley|Lever|Winch|Fog|Mist|Haze|Mood
+things_that_hum,Things that hum,hum,3,lateral,Fridge|Freezer|Microwave|Bee|Engine|Computer|Generator|Fan|Turbine
+things_that_sing,Things that sing,sing,3,lateral,Choir|Whale|Robin|Lark|Blackbird|Canary|Soprano|Tenor|Siren
+things_that_hibernate,Things that hibernate,hibernate,3,lateral,Bear|Hedgehog|Tortoise|Dormouse|Bat|Groundhog|Laptop|Computer
+things_that_pop_up,Things that pop up,pop,3,lateral,Toast|Meerkat|Mushroom|Mole|Shop|Book|Tent|Window
+things_that_tangle,Things that tangle,tangle,3,lateral,Hair|Wire|Cable|Rope|Yarn|Necklace|Thread|String|Hose|Ribbon
+things_that_overflow,Things that overflow,overflow,3,lateral,Bath|Sink|River|Inbox|Gutter|Drain|Dam|Cup
+things_that_ring,Things that ring,ring,3,lateral,Bell|Phone|Alarm|Doorbell|Gong|Ear|Triangle|Cowbell|Chime
+things_you_can_fold,Things you can fold,fold,3,lateral,Paper|Napkin|Map|Umbrella|Deckchair|Flag|Laundry|Towel|Sheet|Blanket|Parasol
+things_you_can_blow,Things you can blow,blow,3,lateral,Bubble|Kiss|Whistle|Candle|Balloon|Nose|Horn|Fuse|Raspberry|Dandelion|Chance|Cover
+things_you_can_flip,Things you can flip,flip,3,lateral,Coin|Pancake|Switch|Burger|Page|Card|Mattress|Record|Hourglass
+things_you_can_wind,Things you can wind,wind,3,lateral,Clock|Watch|Yarn|Wool|Rope|String|Hose|Cable|Bandage|Ribbon|Reel|Spring
+things_you_can_sign,Things you can sign,sign,3,lateral,Letter|Card|Contract|Form|Lease|Petition|Treaty|Receipt|Autograph|Name|Deal
+things_you_can_steal,Things you can steal,steal,3,lateral,Kiss|Show|Glance|Heart|Thunder|Limelight|Scene|Ball|Idea
+things_you_can_raise,Things you can raise,raise,3,lateral,Hand|Flag|Eyebrow|Voice|Alarm|Bar|Price|Question|Family|Roof|Curtain|Sail|Money|Doubt
+things_you_can_set,Things you can set,set,3,lateral,Table|Alarm|Record|Trap|Example|Goal|Pace|Mood|Scene|Date|Stage|Bone|Time|Sail|Price
+things_you_can_book,Things you can book,book,3,lateral,Table|Flight|Room|Ticket|Taxi|Hotel|Seat|Trip|Cruise|Tour|Court|Lesson
+things_you_can_pay,Things you can pay,pay,3,lateral,Bill|Rent|Tax|Fine|Attention|Visit|Respect|Tribute|Debt|Fee|Toll|Price
+things_you_can_skip,Things you can skip,skip,3,lateral,Stone|Class|Song|Beat|School|Step|Page|Rope|Breakfast|Meal|Chapter
+things_you_can_save,Things you can save,save,3,lateral,Money|Time|Energy|Face|Seat|Date|File|Life|Breath|Penalty|Space
+things_you_can_cast,Things you can cast,cast,3,lateral,Spell|Vote|Shadow|Net|Line|Doubt|Glance|Eye|Light
+things_you_can_strike,Things you can strike,strike,3,lateral,Match|Deal|Pose|Balance|Gold|Oil|Chord|Bargain|Gong|Note
+things_you_can_spread,Things you can spread,spread,3,lateral,Butter|Jam|Honey|Mustard|News|Word|Joy|Cheer|Gossip|Love
+things_you_can_settle,Things you can settle,settle,3,lateral,Score|Debt|Bill|Argument|Dispute|Stomach|Bet|Case|Matter|Account
+things_you_can_turn,Things you can turn,turn,3,lateral,Page|Key|Tide|Corner|Wheel|Knob|Dial|Profit|Screw|Handle
+things_you_can_sharpen,Things you can sharpen,sharpen,3,lateral,Pencil|Crayon|Scissors|Chisel|Saw|Claw|Skill|Mind|Focus|Skate|Razor|Shears
+things_you_can_bend,Things you can bend,bend,3,lateral,Spoon|Wire|Straw|Truth|Rule|Paperclip|Branch|Knee|Elbow|Pipe
+things_you_can_shed,Things you can shed,shed,3,lateral,Skin|Tear|Light|Weight|Pound|Fur|Hair|Antler|Feather|Layer|Leaf
+things_you_can_tell,Things you can tell,tell,3,lateral,Story|Joke|Lie|Truth|Time|Secret|Fortune|Tale|Riddle|Future
+things_you_can_answer,Things you can answer,answer,3,lateral,Phone|Door|Question|Call|Letter|Email|Riddle|Text|Message
+things_you_can_clear,Things you can clear,clear,3,lateral,Throat|Table|Name|Air|Path|Hurdle|Customs|Head|Desk|Snow|Room
+things_you_can_drive,Things you can drive,drive,3,lateral,Car|Truck|Tractor|Van|Nail|Bargain|Wedge|Point|Screw
+things_you_can_lead,Things you can lead,lead,3,lateral,Way|Team|Life|Band|Dance|Parade|Race|Pack|Meeting|Tour
+things_in_a_nest,Things in a nest,nest,2,animals,Egg|Chick|Twig|Feather|Straw|Moss|Mud|Grass|Leaf
+things_in_a_pod,Things in a pod,pod,3,lateral,Pea|Bean|Whale|Dolphin|Coffee|Cocoa|Seed|Vanilla
+things_in_pairs,Things in pairs,pairs,3,lateral,Sock|Glove|Mitten|Earring|Twin|Chopstick|Skate|Ski|Cymbal|Oar|Cufflink|Stilt|Dice|Shoe

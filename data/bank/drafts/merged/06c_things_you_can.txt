@@ -1,0 +1,216 @@
+# 06c: tier 3 lateral, "Things you can X" family + "Things in a X" / pairs links.
+# Rule used throughout: only idiomatic senses a typical adult accepts at once. Verbs that apply to almost any
+# object (lose, throw, pick, pull, read, pour, spill, change, hold) were rejected: they make undeclared overlaps.
+# Verb categories cross each other a lot; every shared word is listed in BOTH categories, and the heaviest
+# overlaps get a PAIR line instead.
+
+things_you_can_fold,Things you can fold,fold,3,lateral,Paper|Napkin|Map|Umbrella|Deckchair|Flag|Laundry|Towel|Sheet|Blanket|Parasol
+PAIR: Things you can fold | Things you wear
+PAIR: Things you can fold | Tops
+PAIR: Things you can fold | Worn on the legs
+PAIR: Things you can fold | Outerwear
+PAIR: Things you can fold | On the bed
+
+things_you_can_blow,Things you can blow,blow,3,lateral,Bubble|Kiss|Whistle|Candle|Balloon|Nose|Horn|Fuse|Raspberry|Dandelion|Chance|Cover
+# Every wind instrument can be blown, so blow never meets the instrument categories.
+PAIR: Things you can blow | Instruments
+PAIR: Things you can blow | Wind instruments
+
+things_you_can_flip,Things you can flip,flip,3,lateral,Coin|Pancake|Switch|Burger|Page|Card|Mattress|Record|Hourglass
+# "Turn over" = flip (turn a page, a mattress, an hourglass, a card), so the two never share a level.
+PAIR: Things you can flip | Things you can turn
+
+things_you_can_wind,Things you can wind,wind,3,lateral,Clock|Watch|Yarn|Wool|Rope|String|Hose|Cable|Bandage|Ribbon|Reel|Spring
+# The aha is the second sense of "wind". Rope/Ribbon/String also tie (declared in both).
+
+things_you_can_sign,Things you can sign,sign,3,lateral,Letter|Card|Contract|Form|Lease|Petition|Treaty|Receipt|Autograph|Name|Deal
+# Cast (a plaster cast) left out: it is the key word of Things you can cast.
+
+things_you_can_steal,Things you can steal,steal,3,lateral,Kiss|Show|Glance|Heart|Thunder|Limelight|Scene|Ball|Idea
+
+things_you_can_raise,Things you can raise,raise,3,lateral,Hand|Flag|Eyebrow|Voice|Alarm|Bar|Price|Question|Family|Roof|Curtain|Sail|Money|Doubt
+# Shares Alarm, Bar, Price, Sail with set: paired. Any body part can be raised: paired with body categories.
+PAIR: Things you can raise | Things you can set
+PAIR: Things you can raise | Body parts
+PAIR: Things you can raise | Parts of the face
+
+things_you_can_set,Things you can set,set,3,lateral,Table|Alarm|Record|Trap|Example|Goal|Pace|Mood|Scene|Date|Stage|Bone|Time|Sail|Price
+# Clocks, watches and timers are all set, and Clock/Watch are wound: paired instead of listed.
+PAIR: Things you can set | Things that tell time
+PAIR: Things you can set | Things you can wind
+
+things_you_can_book,Things you can book,book,3,lateral,Table|Flight|Room|Ticket|Taxi|Hotel|Seat|Trip|Cruise|Tour|Court|Lesson
+# You can book a train, a ferry, a restaurant, an excursion: paired rather than padded.
+PAIR: Things you can book | Ways to travel
+PAIR: Things you can book | Kinds of trip
+PAIR: Things you can book | Places to eat
+PAIR: Things you can book | At a hotel
+PAIR: Things you can book | Things you can catch
+
+things_you_can_pay,Things you can pay,pay,3,lateral,Bill|Rent|Tax|Fine|Attention|Visit|Respect|Tribute|Debt|Fee|Toll|Price
+# "Pay cash", "pay a pound": paired with money categories.
+PAIR: Things you can pay | Things in a wallet
+PAIR: Things you can pay | Currencies
+
+things_you_can_skip,Things you can skip,skip,3,lateral,Stone|Class|Song|Beat|School|Step|Page|Rope|Breakfast|Meal|Chapter
+# Turn (skip a turn) left out: it is the key word of Things you can turn. Any meal can be skipped: paired.
+PAIR: Things you can skip | Meals
+
+things_you_can_save,Things you can save,save,3,lateral,Money|Time|Energy|Face|Seat|Date|File|Life|Breath|Penalty|Space
+
+things_you_can_cast,Things you can cast,cast,3,lateral,Spell|Vote|Shadow|Net|Line|Doubt|Glance|Eye|Light
+# Anchor left out ("drop/raise anchor" is more usual).
+
+things_you_can_strike,Things you can strike,strike,3,lateral,Match|Deal|Pose|Balance|Gold|Oil|Chord|Bargain|Gong|Note
+
+things_you_can_spread,Things you can spread,spread,3,lateral,Butter|Jam|Honey|Mustard|News|Word|Joy|Cheer|Gossip|Love
+# Germ left out (illness). Every jam-like or sauce-like food spreads: paired.
+PAIR: Things you can spread | Preserves
+PAIR: Things you can spread | Sauces
+
+things_you_can_settle,Things you can settle,settle,3,lateral,Score|Debt|Bill|Argument|Dispute|Stomach|Bet|Case|Matter|Account
+
+things_you_can_turn,Things you can turn,turn,3,lateral,Page|Key|Tide|Corner|Wheel|Knob|Dial|Profit|Screw|Handle
+# Anything that spins can be turned: paired.
+PAIR: Things you can turn | Things that spin
+
+things_you_can_sharpen,Things you can sharpen,sharpen,3,lateral,Pencil|Crayon|Scissors|Chisel|Saw|Claw|Skill|Mind|Focus|Skate|Razor|Shears
+PAIR: Things you can sharpen | Sharp things
+
+things_you_can_bend,Things you can bend,bend,3,lateral,Spoon|Wire|Straw|Truth|Rule|Paperclip|Branch|Knee|Elbow|Pipe
+# Every limb and joint bends: paired with the body categories.
+PAIR: Things you can bend | Body parts
+PAIR: Things you can bend | Joints in the body
+
+things_you_can_shed,Things you can shed,shed,3,lateral,Skin|Tear|Light|Weight|Pound|Fur|Hair|Antler|Feather|Layer|Leaf
+# Garden shed vs the verb is the aha. Most animal coverings are shed: paired.
+PAIR: Things you can shed | Animal coverings
+# (wind, continued) Thread, Bobbin and Spool all wind:
+PAIR: Things you can wind | Sewing kit
+
+things_you_can_tell,Things you can tell,tell,3,lateral,Story|Joke|Lie|Truth|Time|Secret|Fortune|Tale|Riddle|Future
+# Every kind of story or joke can be told; "Things that tell time" collides with the key word.
+PAIR: Things you can tell | Kinds of story
+PAIR: Things you can tell | Kinds of comedy
+PAIR: Things you can tell | Things that tell time
+
+things_you_can_answer,Things you can answer,answer,3,lateral,Phone|Door|Question|Call|Letter|Email|Riddle|Text|Message
+
+things_you_can_clear,Things you can clear,clear,3,lateral,Throat|Table|Name|Air|Path|Hurdle|Customs|Head|Desk|Snow|Room
+# Throat is a body part and was missing from Body parts:
++body_parts,Throat
+
+things_you_can_drive,Things you can drive,drive,3,lateral,Car|Truck|Tractor|Van|Nail|Bargain|Wedge|Point|Screw
+# Every road vehicle can be driven: paired. Wedge also crosses Golf terms (Drive is a golf term too).
+PAIR: Things you can drive | Ways to travel
+PAIR: Things you can drive | Boats
+
+things_you_can_lead,Things you can lead,lead,3,lateral,Way|Team|Life|Band|Dance|Parade|Race|Pack|Meeting|Tour
+
+# ---- "Things in a X" and pairs ----
+things_in_a_nest,Things in a nest,nest,2,animals,Egg|Chick|Twig|Feather|Straw|Moss|Mud|Grass|Leaf
+# Literal, so tier 2. Twig/Moss/Leaf cross Things in a forest (declared there already).
+
+things_in_a_pod,Things in a pod,pod,3,lateral,Pea|Bean|Whale|Dolphin|Coffee|Cocoa|Seed|Vanilla
+# Pea pod, whale pod, coffee pod. Other sea mammals and every bean also come in pods: paired.
+PAIR: Things in a pod | Sea mammals
+PAIR: Things in a pod | Kinds of bean
+PAIR: Things in a pod | Words before bean
+
+things_in_pairs,Things in pairs,pairs,3,lateral,Sock|Glove|Mitten|Earring|Twin|Chopstick|Skate|Ski|Cymbal|Oar|Cufflink|Stilt|Dice|Shoe
+# No body parts as members (eyes, ears, lungs, knees: far too many to list), so it never meets them.
+# "A pair of" garments and tools (jeans, scissors, glasses) and all footwear are paired out too.
+PAIR: Things in pairs | Body parts
+PAIR: Things in pairs | Parts of the face
+PAIR: Things in pairs | Joints in the body
+PAIR: Things in pairs | Organs
+PAIR: Things in pairs | Bones
+PAIR: Things in pairs | Animal parts
+PAIR: Things in pairs | Footwear
+PAIR: Things in pairs | Always plural
+PAIR: Things in pairs | Worn on the legs
+PAIR: Things in pairs | Things you wear
+
+# ---- Extensions to existing "can X" categories (honest members that were missing) ----
++things_you_can_crack,Nut|Mystery|Window
++things_you_can_break,Heart|Rule|Spell|Law|Window|Bank
+# catch a train/taxi/tram/ferry/metro was an undeclared overlap with Ways to travel:
++things_you_can_catch,Train|Taxi|Tram|Ferry|Metro|Eye|Glimpse
++things_you_can_draw,Attention
++things_you_can_tie,String
+
+# ---- Existing overlaps that need a pair rule ----
+# Every nut in Nuts can be cracked; every item in Fragile things can be cracked and broken.
+PAIR: Things you can crack | Nuts
+PAIR: Things you can crack | Fragile things
+PAIR: Things you can break | Fragile things
+
+# ---- Weak existing members ----
+# WEAK: things_you_can_draw Bath - "draw a bath" is dated; many players say "run a bath".
+# WEAK: things_you_can_break Bread - "break bread" is formal, with a religious flavour; not instant for all.
+# WEAK: things_in_a_toolbox Sander - a power tool, rarely kept in a toolbox.
+# WEAK: things_in_a_toolbox Jigsaw - most players read it as the puzzle; the power saw is not a toolbox item.
+# WEAK: things_in_a_wallet Stamp - few people keep stamps in a wallet any more.
+# NOTE: things_you_can_draw has a literal sense (draw a picture of anything): Tree, Cat, Map all "can be drawn".
+#   Its members are idioms, but a player can argue any concrete noun. Consider pairing it with concrete-object
+#   categories or renaming it.
+
+# ---- Pair rules added after the overlap check ----
+# Every drum, triangle and xylophone can be struck:
+PAIR: Things you can strike | Percussion
+PAIR: Things you can strike | Instruments
+# Fishermen cast lures, bait and rods:
+PAIR: Things you can cast | Fishing gear
+# Cast is a member of Groups of people; Nest and Pod are members of Animal homes and Animal groups.
+PAIR: Things you can cast | Groups of people
+PAIR: Things in a nest | Animal homes
+PAIR: Things in a pod | Animal groups
+# Pitches, rinks and pools are booked like courts:
+PAIR: Things you can book | Sports venues
+# Crews, squads and choirs are led like teams and bands (Horse left out: any farm or pack animal can be led):
+PAIR: Things you can lead | Groups of people
+# More "pair of" items: maracas, bongos, ski poles, stirrups, spurs, flippers, goggles, glasses.
+PAIR: Things in pairs | Percussion
+PAIR: Things in pairs | On the slopes
+PAIR: Things in pairs | Riding gear
+PAIR: Things in pairs | At the pool
+PAIR: Things in pairs | Sports gear
+PAIR: Things in pairs | Worn on the face
+
+# SUMMARY
+# New categories: 28. Tier 3: 27 (25 "Things you can X" + Things in a pod + Things in pairs). Tier 2: 1 (Things in a nest).
+# Extensions: crack +3 (Nut, Mystery, Window), break +6, catch +7 (Train/Taxi/Tram/Ferry/Metro fix an undeclared
+#   overlap with Ways to travel), draw +1, tie +1, body_parts +1 (Throat).
+# Crossings declared between the verb categories (each word is listed in both or all):
+#   Price (raise/set/pay), Time (set/save/tell), Page (flip/skip/turn), Table (set/book/clear), Kiss (blow/steal),
+#   Flag (fold/raise), Card (flip/sign + draw), Record (flip/set + break), Deal (sign/strike), Scene (steal/set),
+#   Glance (steal/cast), Doubt (raise/cast), Money (raise/save), Seat (book/save), Date (set/save + Fruit),
+#   Bill and Debt (pay/settle), Question (raise/answer), Letter (sign/answer), Riddle (tell/answer), Truth (bend/tell),
+#   Light (cast/shed), Name (sign/clear), Room (book/clear), Life (save/lead), Tour (book/lead), Screw (turn/drive),
+#   Bargain (strike/drive), Rope (wind/skip + tie), Feather and Leaf (shed/nest), Straw (bend/nest + draw).
+#   Cross-domain herrings: Raspberry (fruit), Thunder (weather), Gold/Oil (metals, energy), Butter/Honey/Jam (food),
+#   Love (tennis), Heart (organs), Stomach (organs), Pound (units, currencies), Whale/Dolphin (sea), Coffee/Cocoa
+#   (drinks), Hotel (phonetic alphabet), Wedge (golf), Dandelion (wildflowers), Cymbal/Gong (percussion).
+# Deliberately avoided:
+#   - Verbs that fit almost any object: lose, throw, pick, pull, read, pour, spill, change, hold, keep, climb.
+#   - Brief suggestions dropped: peel (every fruit and vegetable peels: undeclared overlap everywhere),
+#     pitch/toss/deal/shuffle/whistle/file (fewer than 8 instant members), plant (needs pairs with Trees,
+#     Flowers, Vegetables, Herbs, Houseplants), spill/pour (any drink).
+#   - Members equal to another new key: Cast (sign), Turn (skip). Germ (illness). Compliment (10 letters).
+#     Difference (10 letters). Anchor (cast/raise both arguable). Horse (lead: any animal can be led).
+#     Lunch (skip: kept Breakfast and Meal only). Hair (tie: arguable).
+#   - Things in a hive/deck/stable: already covered by In a hive, Playing card terms, Words for a horse / Riding gear.
+#   - In a fireplace: drafted, then cut ("fireplace" contains Fire, and Words after fire has Place).
+# Key words that are also members elsewhere (the bank tolerates this, but the generator may want to avoid it):
+#   fold (Ways to mix, Playing card terms), blow (Words before fish/hole), flip (Gymnastics moves), wind (Weather,
+#   Two pronunciations), set (Words after sun/head/tea/hand), book (Things with spines/pages), skip (Ways to move),
+#   strike (Ways to score), bend (Parts of a river), shed (In the garden), drive (Golf terms, Computer parts),
+#   lead (Metals, Two pronunciations), steal (Basketball terms). Cast, nest and pod got PAIR lines.
+# Unsure:
+#   - Things in pairs: a classic, but "a pair of" covers body parts, footwear, goggles, maracas, stirrups;
+#     it needs 16 PAIR lines to stay fair. Drop it if the generator struggles to place it.
+#   - Things in a pod: exactly 8 words; "vanilla pod" is UK/EU (US says bean); coffee pod is recent.
+#   - Things you can steal: idiom set (Show, Thunder, Limelight, Scene), but literally anything can be stolen.
+#   - Things you can turn: a broad verb; paired with flip and Things that spin.
+#   - Things you can settle: abstract; Argument, Dispute and Matter are close in meaning.
+#   - Things you can drive: half vehicles (paired with Ways to travel and Boats), half idioms.

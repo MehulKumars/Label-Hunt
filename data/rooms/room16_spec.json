@@ -47,7 +47,7 @@
     {
       "kind": "tricky",
       "tiers": [2, 2, 2, 2, 3, 3],
-      "herrings": 3,
+      "herrings": 2,
       "budget": true,
       "floor": 0.55,
       "novice_floor": 0,
@@ -98,7 +98,7 @@
     {
       "kind": "hard",
       "tiers": [2, 2, 2, 2, 3, 4],
-      "herrings": 3,
+      "herrings": 2,
       "budget": true,
       "floor": 0.5,
       "novice_floor": 0,
@@ -149,7 +149,7 @@
     {
       "kind": "tricky",
       "tiers": [2, 2, 2, 2, 3, 3],
-      "herrings": 3,
+      "herrings": 2,
       "budget": true,
       "floor": 0.55,
       "novice_floor": 0,
@@ -199,7 +199,7 @@
     {
       "kind": "hard",
       "tiers": [2, 2, 2, 2, 3, 4],
-      "herrings": 3,
+      "herrings": 2,
       "budget": true,
       "floor": 0.5,
       "novice_floor": 0,
@@ -249,7 +249,7 @@
     {
       "kind": "tricky",
       "tiers": [2, 2, 2, 2, 3, 3],
-      "herrings": 3,
+      "herrings": 2,
       "budget": true,
       "floor": 0.55,
       "novice_floor": 0,
@@ -300,7 +300,7 @@
     {
       "kind": "hard",
       "tiers": [2, 2, 2, 2, 3, 4],
-      "herrings": 3,
+      "herrings": 2,
       "budget": true,
       "floor": 0.5,
       "novice_floor": 0,

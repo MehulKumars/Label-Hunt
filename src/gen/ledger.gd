@@ -7,13 +7,16 @@ extends RefCounted
 const ROOM_SIZE := 30
 ## A category pairing may repeat only this many levels apart.
 const PAIR_GAP := 150
-## A new use of a category may share at most this many words with any earlier use of it.
+## A new use of a category may share at most this many words with an earlier use of it, or MAX_SHARED_FAR when
+## that use is at least FAR levels back (nobody remembers a word list from 150 levels ago).
 const MAX_SHARED := 2
+const MAX_SHARED_FAR := 3
+const FAR := 150
 
 var bank: Bank
 ## category index -> Array[int] of global level numbers
 var cat_uses := {}
-## category index -> Array of lower-case word sets (Dictionary word -> true), one per use
+## category index -> Array of [global level, lower-case word set (Dictionary word -> true)], one per use
 var cat_words := {}
 ## lower-case word -> Array[int]
 var word_uses := {}
@@ -53,22 +56,23 @@ func pair_ok(a: int, b: int, at: int) -> bool:
 	return _far(pair_uses.get(_pair(a, b), []), at, PAIR_GAP)
 
 
-## True if `chosen` shares at most MAX_SHARED words with every earlier use of the category.
-func words_ok(idx: int, chosen: PackedStringArray) -> bool:
-	for prev: Dictionary in cat_words.get(idx, []):
+## True if `chosen` shares at most MAX_SHARED words with every earlier use of the category (MAX_SHARED_FAR with a
+## use at least FAR levels away).
+func words_ok(idx: int, chosen: PackedStringArray, at: int = 0) -> bool:
+	for prev: Array in cat_words.get(idx, []):
 		var shared := 0
 		for w in chosen:
-			if prev.has(w.to_lower()):
+			if (prev[1] as Dictionary).has(w.to_lower()):
 				shared += 1
-		if shared > MAX_SHARED:
+		if shared > (MAX_SHARED_FAR if absi(at - int(prev[0])) >= FAR else MAX_SHARED):
 			return false
 	return true
 
 
 ## True if `word` appeared in an earlier use of this category (fresh words are preferred).
 func used_in(idx: int, word: String) -> bool:
-	for prev: Dictionary in cat_words.get(idx, []):
-		if prev.has(word.to_lower()):
+	for prev: Array in cat_words.get(idx, []):
+		if (prev[1] as Dictionary).has(word.to_lower()):
 			return true
 	return false
 
@@ -84,7 +88,7 @@ func add(at: int, cats: Array, words: Array) -> void:
 			continue
 		_push(cat_uses, idx, at)
 		var ws: Array = cat_words.get(idx, [])
-		ws.append(set)
+		ws.append([at, set])
 		cat_words[idx] = ws
 		for b in range(a + 1, cats.size()):
 			if int(cats[b]) >= 0:
