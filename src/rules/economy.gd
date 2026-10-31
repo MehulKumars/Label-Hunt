@@ -20,13 +20,12 @@ const MAX_SAVERS := 2
 const STREAK_MILESTONES := {30: {"coins": 400, "avatar": "trophy"}, 100: {"coins": 800, "avatar": "crown"}}
 ## Free samples when a booster is first introduced (by the level's `introduces` tag).
 const INTRO_GIFTS := {"hint": {"hint": 3}, "complete": {"complete": 1}}
-## Coin packs (USD base; the store sets local prices). The largest pack is deliberately small (the ethics line).
+## Coin packs (USD base; the store sets local prices). The largest is $9.99: a calm game has no big-spender pack.
 const PACKS := [
 	{"id": "coins_500", "coins": 500, "usd": "0.99"},
 	{"id": "coins_1200", "coins": 1200, "usd": "1.99"},
 	{"id": "coins_3500", "coins": 3500, "usd": "4.99"},
 	{"id": "coins_8000", "coins": 8000, "usd": "9.99"},
-	{"id": "coins_18000", "coins": 18000, "usd": "19.99"},
 ]
 const TITLES := [[1, "Apprentice"], [5, "Jam Maker"], [10, "Pickler"], [15, "Preserver"], [20, "Pantry Keeper"],
 	[30, "Larder Master"], [40, "Grand Preserver"], [50, "Legend of the Larder"]]

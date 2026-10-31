@@ -82,6 +82,9 @@ func _draw() -> void:
 		var a := 0.45 + 0.35 * sin(_glow_t * 5.0)
 		draw_style_box(Style.glow(Color(Style.APRICOT, a), Style.R_M, 16), face)
 	draw_texture_rect(Art.tex("card", size, Materials.card), r, false)
+	if glow:
+		# The card a Hint points at: a paprika ring around the face, so it can't be mistaken for a group tag.
+		draw_style_box(Style.box(Color(0, 0, 0, 0), Style.R_M + 2, 5, Style.PAPRIKA), face.grow(3.0))
 	if frosted:
 		draw_style_box(Style.box(Color(Style.FROST, 0.94), Style.R_M), face)
 		for i in 4:

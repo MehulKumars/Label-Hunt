@@ -14,10 +14,15 @@ const TILE_GAP := 3.0
 ## Blank letter tiles in ink at 40%: well over 3:1 on kraft, so the hidden word's length always reads.
 const TILE := Color(0.239, 0.173, 0.18, 0.4)
 
+signal tag_picked(group: int)
+
 var session: Session
+## The group chosen for Complete (-1 = none yet).
+var selected := -1
 var _pulse := {}
 var _choosing := false
 var _breath := 0.0
+var _press_tag := -1
 
 
 func _init() -> void:
@@ -47,11 +52,39 @@ func pulse(g: int) -> void:
 		queue_redraw(), 1.0, 0.0, 0.6)
 
 
-## While the Complete picker is open, the unsolved tags breathe (it adds no information: they're just the choices).
+## While Complete is choosing, the unsolved tags breathe and can be tapped (it adds no information: they're just the
+## choices); the chosen one glows steadily.
 func set_choosing(on: bool) -> void:
 	_choosing = on
+	selected = -1
 	set_process(on)
+	mouse_filter = Control.MOUSE_FILTER_STOP if on else Control.MOUSE_FILTER_IGNORE
 	queue_redraw()
+
+
+## While choosing: a tap anywhere in a tag's cell (tag, twine and half the gap around it, a thumb-sized target)
+## picks that group, if it isn't solved yet.
+func _gui_input(event: InputEvent) -> void:
+	if not _choosing or not (event is InputEventMouseButton) or event.button_index != MOUSE_BUTTON_LEFT:
+		return
+	accept_event()
+	if event.pressed:
+		_press_tag = _tag_at(event.position)
+	elif _press_tag >= 0 and _tag_at(event.position) == _press_tag:
+		selected = _press_tag
+		Sfx.play("tap", 1.1, 0.03, -2.0)
+		tag_picked.emit(selected)
+		queue_redraw()
+
+
+func _tag_at(pos: Vector2) -> int:
+	for g in session.level.group_count():
+		if session.board.is_solved(g):
+			continue
+		var r := tag_rect(g)
+		if Rect2(r.position - Vector2(GAP / 2.0, ROD + TWINE), r.size + Vector2(GAP, ROD + TWINE + GAP / 2.0)).has_point(pos):
+			return g
+	return -1
 
 
 func _process(delta: float) -> void:
@@ -101,7 +134,7 @@ func _draw_tag(g: int, r: Rect2, tilt: float) -> void:
 	var local := Rect2(r.position - eyelet, r.size)
 	var p: float = _pulse.get(g, 0.0)
 	if _choosing and not lidded:
-		p = maxf(p, 0.45 + 0.35 * sin(_breath * 4.0))
+		p = maxf(p, 1.0 if g == selected else (0.25 + 0.2 * sin(_breath * 4.0) if selected >= 0 else 0.45 + 0.35 * sin(_breath * 4.0)))
 	if p > 0.0:
 		draw_style_box(Style.glow(Color(Style.APRICOT, 0.7 * p), 10, int(14 * p)), local)
 	draw_texture_rect(Art.tex("hang_tag", r.size, Materials.tag), local, false)

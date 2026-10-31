@@ -116,13 +116,14 @@ func _run(name: String) -> void:
 			await _legal(play, 4)
 			await _slips(play, 1)
 			play._on_complete()
+			await _wait(0.3)
+			play.rail.selected = 1
+			play._on_tag_picked(1)
 		"complete_fly":
-			main.close_all_sheets()
 			Save.data["coins"] = 500
 			main.start_level("m01")
 			await _wait(0.5)
 			play._on_complete()
-			main.close_all_sheets()
 			play.do_complete(0)
 			await _wait(0.32)
 			await RenderingServer.frame_post_draw

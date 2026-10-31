@@ -1,5 +1,5 @@
-## The sheets around the economy and the profile: Shop, not-enough-coins, the Complete picker, the daily gift, the
-## streak, the avatar picker, renaming, a solved level's card and the room reveal. Built on Main's open_sheet.
+## The sheets around the economy and the profile: Shop, not-enough-coins, the daily gift, the streak, the avatar
+## picker, renaming, a solved level's card and the room reveal. Built on Main's open_sheet.
 class_name MetaSheets
 extends RefCounted
 
@@ -8,41 +8,124 @@ extends RefCounted
 static func shop(main: Node) -> void:
 	var s := Sheet.new("Shop")
 	s.add_label("Coins buy Hints and Complete. Everything can also be won by playing.", Style.FS_26)
-	var free_left := Wallet.ads_left("shop_coins")
 	if Ads.available():
-		var b := _row(s, "Free coins", "+%d" % Economy.AD_COINS, "Watch an ad (%d left today)" % free_left, func() -> void:
+		var left := Wallet.ads_left("shop_coins")
+		var free := _ShopRow.new(0, "+%d coins" % Economy.AD_COINS, "%d left today" % left, "Watch ad", true)
+		free.enabled = Ads.rewarded_ready("shop_coins")
+		free.pressed.connect(func() -> void:
 			s.close()
 			main.rewarded("shop_coins", func() -> void:
 				Wallet.grant({"coins": Economy.AD_COINS})
 				main.toast("+%d coins" % Economy.AD_COINS)))
-		b.enabled = Ads.rewarded_ready("shop_coins")
+		s.body.add_child(free)
 	if Store.available():
+		var tier := 1
 		for p: Dictionary in Store.products():
 			var id: String = p["id"]
-			_row(s, "%s coins" % CoinPill._fmt(int(p["coins"])), Store.price_text(id), "", func() -> void:
+			var coins := int(p["coins"])
+			var row := _ShopRow.new(tier, "%s coins" % CoinPill._fmt(coins),
+				"= %d Hints or %d Completes" % [coins / int(Economy.PRICES["hint"]), coins / int(Economy.PRICES["complete"])],
+				Store.price_text(id), false)
+			row.pressed.connect(func() -> void:
 				s.close()
 				main.purchase(id))
+			s.body.add_child(row)
+			tier += 1
 		if Store.provider == "mock":
-			s.add_label("Test build: purchases are simulated and free.", Style.FS_22)
+			s.add_label("Test build: purchases are simulated and free.", Style.FS_26)
 	elif not Ads.available():
 		s.add_label("The shop opens in a later version. Play levels and claim daily gifts for coins.", Style.FS_26)
+	var pad := Control.new()
+	pad.custom_minimum_size = Vector2(0, 12)
+	s.body.add_child(pad)
 	main.open_sheet(s)
 
 
-static func _row(s: Sheet, title: String, price: String, note: String, action: Callable) -> PillButton:
-	var b := PillButton.new("%s    %s" % [title, price], false, 92.0)
-	b.icon = ""
-	b.font_size = Style.FS_30
-	b.pressed.connect(action)
-	s.body.add_child(b)
-	if note != "":
-		var l := Label.new()
-		l.text = note
-		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		l.add_theme_font_size_override("font_size", Style.FS_22)
-		l.add_theme_color_override("font_color", Color(Style.INK, 0.7))
-		s.body.add_child(l)
-	return b
+## One shop row: a coin stack that grows with the pack (or an ad film for free coins), the amount and what it buys,
+## and a price chip (paprika to buy, teal for an ad). Tappable anywhere; a drag scrolls the list instead.
+class _ShopRow extends Control:
+	signal pressed
+
+	var tier := 0
+	var title := ""
+	var sub := ""
+	var price := ""
+	var ad := false
+	var enabled := true:
+		set(v):
+			enabled = v
+			modulate.a = 1.0 if v else 0.45
+	var _down := false
+	var _scrolling := false
+	var _press_at := Vector2.ZERO
+
+	func _init(t: int, ttl: String, s: String, p: String, is_ad: bool) -> void:
+		tier = t
+		title = ttl
+		sub = s
+		price = p
+		ad = is_ad
+		custom_minimum_size = Vector2(0, 112)
+		mouse_filter = Control.MOUSE_FILTER_STOP
+
+	func _gui_input(event: InputEvent) -> void:
+		if event is InputEventMouseMotion and (_down or _scrolling):
+			accept_event()
+			if not _scrolling and event.position.distance_to(_press_at) > Scroller.SLOP:
+				_scrolling = true
+				_down = false
+			if _scrolling:
+				Scroller.drag(self, event.relative)
+			return
+		if not (event is InputEventMouseButton) or event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		accept_event()
+		if event.is_canceled():
+			_down = false
+			_scrolling = false
+		elif event.pressed:
+			_down = true
+			_scrolling = false
+			_press_at = event.position
+		elif _scrolling:
+			_scrolling = false
+		elif _down:
+			_down = false
+			if enabled and Rect2(Vector2.ZERO, size).has_point(event.position):
+				Sfx.play("tap", 1.0, 0.05, -4.0)
+				pressed.emit()
+
+	func _draw() -> void:
+		var r := Rect2(Vector2.ZERO, size)
+		var sb := Style.box(Style.CARD, Style.R_L)
+		sb.shadow_color = Color(Style.INK, 0.12)
+		sb.shadow_size = 6
+		sb.shadow_offset = Vector2(0, 3)
+		draw_style_box(sb, r)
+		# Left: a stack of coins that grows with the pack, or an ad's film for free coins.
+		var art := Rect2(14, 10, 92, size.y - 20)
+		if ad:
+			draw_circle(art.get_center(), 34.0, Color(Style.TEAL, 0.14), true, -1.0, true)
+			draw_texture_rect(Art.icon("film-slate", 40, Style.TEAL), Rect2(art.get_center() - Vector2(20, 20), Vector2(40, 40)), false)
+		else:
+			var coin := Art.tex("coin", Vector2(48, 48), Materials.coin)
+			var n := tier + 1
+			for i in n:
+				var x := art.position.x + 20.0 + (i % 2) * 18.0 - (i / 4) * 8.0
+				var y := art.end.y - 50.0 - i * 9.0
+				draw_texture_rect(coin, Rect2(x, y, 48, 48), false)
+		var f := Style.sans_heavy()
+		var fb := Style.sans_bold()
+		var chip_w := 150.0
+		var text_w := size.x - 120.0 - chip_w - 24.0
+		draw_string(f, Vector2(120, size.y / 2.0 - 4), title, HORIZONTAL_ALIGNMENT_LEFT, text_w, Style.FS_36, Style.INK)
+		draw_string(fb, Vector2(120, size.y / 2.0 + 30), sub, HORIZONTAL_ALIGNMENT_LEFT, text_w, Style.FS_22, Color(Style.INK, 0.72))
+		# Right: the price chip.
+		var chip := Rect2(size.x - chip_w - 16, (size.y - 60) / 2.0, chip_w, 60)
+		draw_style_box(Style.box(Style.TEAL if ad else Style.PAPRIKA, 30), chip)
+		var ps := f.get_string_size(price, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_30)
+		draw_string(f, Vector2(chip.get_center().x - ps.x / 2.0, chip.get_center().y + 11), price, HORIZONTAL_ALIGNMENT_LEFT, -1,
+			Style.FS_30, Style.PAPER)
 
 
 ## A booster the player can't pay for: a free hint for an ad (Hint only), or the Shop. Never shown on a lose sheet.
@@ -51,55 +134,13 @@ static func need_coins(main: Node, item: String) -> void:
 	var s := Sheet.new("Get a hint" if item == "hint" else "Complete a jar")
 	s.add_label("It costs %d coins. You have %d." % [price, Wallet.coins()], Style.FS_30)
 	if item == "hint" and Ads.rewarded_ready("free_hint"):
-		s.add_button("Watch an ad for a free hint", true, func() -> void:
+		s.add_button("Watch an ad for a free hint", false, func() -> void:
 			s.close()
-			main.rewarded("free_hint", main.play.grant_free_hint), Style.TOUCH_PRIMARY)
-	s.add_button("Get coins", item != "hint" or not Ads.rewarded_ready("free_hint"), func() -> void:
+			main.rewarded("free_hint", main.play.grant_free_hint))
+	s.add_button("Get coins", false, func() -> void:
 		s.close()
 		shop(main))
 	s.add_button("Not now", false, s.close)
-	main.open_sheet(s)
-
-
-## Which jar to complete: the unsolved labels exactly as the rail shows them (no new information), then a confirm.
-## Closing it any way spends nothing.
-static func complete_picker(main: Node) -> void:
-	var play: PlayScreen = main.play
-	var s := Sheet.new("Complete which jar?")
-	var chosen := [-1]
-	var held := Wallet.count("complete")
-	var confirm := PillButton.new("Pick a label", true, Style.TOUCH_PRIMARY)
-	confirm.enabled = false
-	var done := [false]
-	var rows: Array[PillButton] = []
-	for g in play.session.level.group_count():
-		if play.session.board.is_solved(g):
-			continue
-		var group: Dictionary = play.session.level.groups[g]
-		var text := LabelText.at_step(group["label"], group["key"], play.session.know.step[g]).replace("_", "▢")
-		var b := PillButton.new(text if text != "" else "A label not found yet", false, 84.0)
-		b.font_size = Style.FS_26
-		b.icon = ""
-		b.pressed.connect(func() -> void:
-			chosen[0] = g
-			for r in rows:
-				r.primary = r == b
-				r.queue_redraw()
-			confirm.text = "Fill this jar: %s" % ("1 free" if held > 0 else "%d coins" % Economy.PRICES["complete"])
-			confirm.enabled = true
-			confirm.queue_redraw())
-		rows.append(b)
-		s.body.add_child(b)
-	confirm.pressed.connect(func() -> void:
-		if chosen[0] < 0:
-			return
-		done[0] = true
-		s.close()
-		play.do_complete(chosen[0]))
-	s.body.add_child(confirm)
-	s.closed.connect(func() -> void:
-		if not done[0]:
-			play.cancel_complete())
 	main.open_sheet(s)
 
 
@@ -115,6 +156,8 @@ static func gift(main: Node) -> void:
 	var savers := int(Save.data["streak"]["savers"])
 	s.add_label("%d-day streak%s" % [streak, (", %d streak saver%s" % [savers, "" if savers == 1 else "s"]) if savers > 0 else ""],
 		Style.FS_26, true)
+	s.add_label("Miss a day and a streak saver covers it. You earn one every 7 days." if savers > 0
+		else "Win a level each day to grow the gift. Every 7 days earns a streak saver.", Style.FS_26)
 	if view.waiting:
 		var r: Dictionary = today["rewards"]
 		var what := "%d coins" % int(r.get("coins", 0)) + (" and a Complete" if r.has("complete") else "")
@@ -162,7 +205,7 @@ static func avatar_picker(main: Node) -> void:
 		var cell := _AvatarCell.new(id, not unlocked, Save.data["profile"]["avatar"] == id)
 		cell.custom_minimum_size = Vector2(120, 140)
 		cell.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		cell.note = "" if unlocked else ("Level %d" % int(a[3]) if int(a[3]) > 0 else ("30-day streak" if id == "trophy" else "100-day streak"))
+		cell.note = "" if unlocked else ("Rank %d" % int(a[3]) if int(a[3]) > 0 else ("30-day streak" if id == "trophy" else "100-day streak"))
 		cell.pressed.connect(func() -> void:
 			if not unlocked:
 				return

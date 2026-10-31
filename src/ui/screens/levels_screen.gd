@@ -149,7 +149,7 @@ class RoomCard extends Control:
 		var x := r.size.x * 0.5
 		var w := r.size.x - x - 22
 		var f := Style.sans_bold()
-		draw_string(f, Vector2(x, 46), "Room %d" % room, HORIZONTAL_ALIGNMENT_LEFT, w, Style.FS_22, Color(Style.INK, 0.65))
+		draw_string(f, Vector2(x, 46), "Room %d" % room, HORIZONTAL_ALIGNMENT_LEFT, w, Style.FS_26, Color(Style.INK, 0.72))
 		var hand := Style.hand()
 		var fs := Style.FS_44
 		while fs > Style.FS_30 and hand.get_string_size(name_text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > w:
@@ -170,5 +170,8 @@ class RoomCard extends Control:
 		draw_string(fh, Vector2(x, r.size.y - 22), "%d / %d" % [solved, total], HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Style.INK)
 		if gold > 0:
 			var gx := x + w - 70
-			draw_circle(Vector2(gx, r.size.y - 31), 11.0, Style.GOLD, true, -1.0, true)
+			# A tiny gold lid (not a coin): gold lids are mastery, coins are currency.
+			draw_style_box(Style.box(Style.GOLD, 4), Rect2(gx - 14, r.size.y - 40, 28, 14))
+			draw_rect(Rect2(gx - 8, r.size.y - 36, 9, 3), Color("#FFF6D6"))
+			draw_style_box(Style.box(Color(Style.TEAL, 0.35), 3), Rect2(gx - 11, r.size.y - 27, 22, 8))
 			draw_string(fh, Vector2(gx + 18, r.size.y - 22), str(gold), HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Style.INK)

@@ -10,8 +10,8 @@ signal skip_requested
 signal shop_requested
 ## The player can't pay for a booster ("hint" or "complete"): main offers an ad (Hint only) or the Shop.
 signal need_coins(item: String)
-## Complete was paid for: main shows the label picker, then calls do_complete or cancel_complete.
-signal complete_requested
+
+
 ## The attempt changed (for the resume save).
 signal progress_changed
 
@@ -42,6 +42,10 @@ var hand: HandPointer
 var free_hints := 0
 var jars_left := 1
 var hide_rail := false
+## Complete is waiting for a label to be tapped.
+var choosing := false
+var _dim: ColorRect
+var _choice: _ChoiceBar
 var _started_ms := 0
 var _done := false
 var _tidying := false
@@ -95,6 +99,21 @@ func _init() -> void:
 	skip_btn.visible = false
 	skip_btn.pressed.connect(func() -> void: skip_requested.emit())
 	add_child(skip_btn)
+	_dim = ColorRect.new()
+	_dim.color = Color(Style.PAPER, 0.62)
+	_dim.visible = false
+	_dim.z_index = 10  # above the board's cards and jar fronts (z 1-6)
+	_dim.gui_input.connect(func(e: InputEvent) -> void:
+		if e is InputEventMouseButton and not e.pressed:
+			cancel_complete())
+	add_child(_dim)
+	_choice = _ChoiceBar.new()
+	_choice.visible = false
+	_choice.z_index = 11
+	_choice.cancelled.connect(cancel_complete)
+	_choice.confirmed.connect(func() -> void: do_complete(rail.selected))
+	add_child(_choice)
+	rail.tag_picked.connect(_on_tag_picked)
 	hand = HandPointer.new()
 	add_child(hand)
 
@@ -139,6 +158,7 @@ func start(id: String, s: Session, bonus_hints: int = 0) -> void:
 	complete_btn.visible = features.has("complete")
 	tidy_btn.visible = false
 	coins.visible = features.has("hint") or Wallet.coins() > 0
+	coins.hold = false
 	coins.set_value(Wallet.coins(), false)
 	hide_rail = not features.has("slip")
 	rail.visible = not hide_rail
@@ -202,6 +222,10 @@ func _layout() -> void:
 	board.position = Vector2(0, board_top)
 	board.size = Vector2(w, bar_y - 8.0 - board_top)
 	caption.position = Vector2(0, board_top - 4)
+	_dim.position = board.position
+	_dim.size = board.size + Vector2(0, BAR_H + 30.0)
+	_choice.size = Vector2(content_w, 170.0)
+	_choice.position = Vector2(left, h - ins["bottom"] - 180.0)
 	caption.size = Vector2(w, 64)
 
 
@@ -503,30 +527,42 @@ func _unsolved() -> Array[int]:
 	return out
 
 
+## Complete: the board dims, the unsolved tags on the rail glow and can be tapped, and a bar at the bottom confirms
+## the choice and its price. Cancel, Back or a tap on the dimmed board spends nothing.
 func _on_complete() -> void:
-	if session.is_over() or _unsolved().is_empty():
+	if session.is_over() or _unsolved().is_empty() or choosing:
 		return
 	board.cancel_lift()
 	_stop_hint()
 	if not Wallet.can_afford("complete"):
 		need_coins.emit("complete")
 		return
+	choosing = true
 	board.input_locked = true
 	rail.set_choosing(true)
-	complete_requested.emit()
+	_dim.show()
+	_choice.open(Wallet.count("complete") > 0)
+	caption.modulate.a = 0.0
+	_layout()
 
 
-## The picker was closed without choosing: nothing was spent.
+func _on_tag_picked(_g: int) -> void:
+	_choice.ready_to_finish()
+
+
+## Closed without choosing: nothing was spent.
 func cancel_complete() -> void:
+	choosing = false
 	board.input_locked = false
 	rail.set_choosing(false)
+	_dim.hide()
+	_choice.hide()
 
 
 ## Seals group g: charges Complete (inventory first, then coins), then the cards fly up into the label.
 func do_complete(g: int) -> void:
-	board.input_locked = false
-	rail.set_choosing(false)
-	if session.is_over() or session.board.is_solved(g) or not Wallet.spend("complete"):
+	cancel_complete()
+	if g < 0 or session.is_over() or session.board.is_solved(g) or not Wallet.spend("complete"):
 		_refresh()
 		return
 	_hint_path = []
@@ -616,8 +652,11 @@ func resume_after_continue() -> void:
 	progress_changed.emit()
 
 
-## Back: put down a lifted card. Returns true if it did something.
+## Back: leave Complete's choice, or put down a lifted card. Returns true if it did something.
 func on_back() -> bool:
+	if choosing:
+		cancel_complete()
+		return true
 	if board.lifted_jar >= 0:
 		board.cancel_lift()
 		return true
@@ -631,3 +670,61 @@ func set_tutorial(on: bool) -> void:
 		meter.visible = false
 		coins.visible = false
 	_layout()
+
+
+## The bar under the board while Complete waits for a label: what to do, Cancel, and the price on the confirm button.
+class _ChoiceBar extends Control:
+	signal cancelled
+	signal confirmed
+
+	var _text: Label
+	var _confirm: PillButton
+	var _free := false
+
+	func _init() -> void:
+		mouse_filter = Control.MOUSE_FILTER_STOP
+		_text = Label.new()
+		_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		_text.add_theme_font_override("font", Style.sans_bold())
+		_text.add_theme_font_size_override("font_size", Style.FS_30)
+		_text.add_theme_color_override("font_color", Style.INK)
+		add_child(_text)
+		var cancel := PillButton.new("Cancel", false, 84.0)
+		cancel.custom_minimum_size = Vector2(170, 84)
+		cancel.pressed.connect(func() -> void: cancelled.emit())
+		add_child(cancel)
+		_confirm = PillButton.new("", true, 84.0)
+		_confirm.pressed.connect(func() -> void: confirmed.emit())
+		add_child(_confirm)
+		resized.connect(_place)
+
+	func open(free: bool) -> void:
+		_free = free
+		_text.text = "Tap a label above to finish its jar"
+		_confirm.text = "Finish it"
+		_confirm.enabled = false
+		_confirm.queue_redraw()
+		show()
+
+	func ready_to_finish() -> void:
+		_text.text = "Its four cards will fly into the label"
+		_confirm.text = "Finish: 1 free" if _free else "Finish: %d coins" % Economy.PRICES["complete"]
+		_confirm.enabled = true
+		_confirm.queue_redraw()
+
+	func _place() -> void:
+		var pad := 18.0
+		_text.position = Vector2(pad, 14)
+		_text.size = Vector2(size.x - pad * 2.0, 40)
+		var cancel: Control = get_child(1)
+		cancel.position = Vector2(pad, size.y - 84 - 18)
+		cancel.size = Vector2(170, 84)
+		_confirm.position = Vector2(pad + 170 + 14, size.y - 84 - 18)
+		_confirm.size = Vector2(size.x - pad * 2.0 - 170 - 14, 84)
+
+	func _draw() -> void:
+		var sb := Style.box(Style.PAPER, Style.R_XL)
+		sb.shadow_color = Color(Style.INK, 0.2)
+		sb.shadow_size = 20
+		sb.shadow_offset = Vector2(0, 6)
+		draw_style_box(sb, Rect2(Vector2.ZERO, size))

@@ -9,7 +9,7 @@ var waiting := false
 
 
 func _init() -> void:
-	custom_minimum_size = Vector2(0, 132)
+	custom_minimum_size = Vector2(0, 146)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
@@ -33,8 +33,8 @@ func _draw() -> void:
 			Rect2(c - Vector2(isz, isz) / 2.0, Vector2(isz, isz)), false)
 		var g: Dictionary = Economy.GIFT_LADDER[i]
 		var txt := str(g.get("coins", 0))
-		var ts := fb.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22)
-		draw_string(fb, Vector2(c.x - ts.x / 2.0, 108), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22, Style.INK)
+		var ts := fb.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26)
+		draw_string(fb, Vector2(c.x - ts.x / 2.0, 110), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Style.INK)
 		var day := "Day %d" % (i + 1)
-		var ds := fb.get_string_size(day, HORIZONTAL_ALIGNMENT_LEFT, -1, 18)
-		draw_string(fb, Vector2(c.x - ds.x / 2.0, 128), day, HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color(Style.INK, 0.6))
+		var ds := fb.get_string_size(day, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22)
+		draw_string(fb, Vector2(c.x - ds.x / 2.0, 136), day, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22, Color(Style.INK, 0.72))

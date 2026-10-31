@@ -15,6 +15,8 @@ signal streak_pressed
 signal room_pressed
 
 var next_id := ""
+## The open wall between the top row and the hero jar, where the room's decoration hangs (empty when too tight).
+var props_band := Rect2()
 var room := 1
 var _gear: RoundButton
 var _profile: _ProfileChip
@@ -174,6 +176,9 @@ func _layout() -> void:
 	_streak.position = Vector2(maxf(left - 14.0, (_hero.position.x - _streak.size.x) / 2.0), side_y)
 	_gift.position = Vector2(w - _streak.position.x - _gift.size.x, side_y)
 	move_child(_hero, -1)
+	var band_top := top + RoundButton.D + 4.0
+	var band_h := minf(150.0, _hero.position.y - band_top + 10.0)
+	props_band = Rect2(0, band_top, w, band_h) if band_h >= 70.0 else Rect2()
 
 
 ## Avatar with an XP ring, "Level 7" and the title beside it. Tap for the profile.
@@ -213,7 +218,7 @@ class _ProfileChip extends Control:
 		AvatarView.draw_avatar(self, Rect2(0, 0, d, d), _avatar, float(_info["into"]) / float(_info["need"]))
 		var f := Style.sans_heavy()
 		var fb := Style.sans_bold()
-		draw_string(f, Vector2(d + 10.0, d * 0.46), "Level %d" % _info["level"], HORIZONTAL_ALIGNMENT_LEFT, size.x - d - 10.0,
+		draw_string(f, Vector2(d + 10.0, d * 0.46), "Rank %d" % _info["level"], HORIZONTAL_ALIGNMENT_LEFT, size.x - d - 10.0,
 			Style.FS_30, Style.INK)
 		draw_string(fb, Vector2(d + 10.0, d * 0.46 + 30.0), str(_info["title"]), HORIZONTAL_ALIGNMENT_LEFT, size.x - d - 10.0,
 			Style.FS_22, Color(Style.INK, 0.72))

@@ -8,6 +8,8 @@ signal pressed
 const H := 64.0
 
 var shown := 0.0
+## While coins are flying in, the pill keeps the old number (so the count-up happens when they land).
+var hold := false
 var _bump := 0.0
 var _down := false
 var _tw: Tween
@@ -20,6 +22,8 @@ func _init() -> void:
 
 ## Shows `value`, counting up from the last shown value when it grew.
 func set_value(value: int, animate: bool = true) -> void:
+	if hold:
+		return
 	if _tw != null and _tw.is_valid():
 		_tw.kill()
 	if not animate or value <= int(shown) or not is_inside_tree():

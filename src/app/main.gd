@@ -62,7 +62,6 @@ func _ready() -> void:
 	play.skip_requested.connect(_open_skip)
 	play.shop_requested.connect(func() -> void: _sheet_once(MetaSheets.shop))
 	play.need_coins.connect(func(item: String) -> void: _sheet_once(MetaSheets.need_coins.bind(item)))
-	play.complete_requested.connect(func() -> void: MetaSheets.complete_picker(self))
 	play.progress_changed.connect(_save_board)
 	play.visible = false
 	add_child(play)
@@ -121,6 +120,7 @@ func go_home() -> void:
 func refresh_home() -> void:
 	home.refresh()
 	backdrop.set_room(home.room)
+	backdrop.props_rect = home.props_band
 
 
 func open_levels() -> void:
@@ -308,7 +308,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func on_back() -> void:
 	var top: String = "" if sheets.is_empty() else sheets.back().kind
-	var lifted := play.visible and play.board.lifted_jar >= 0
+	var lifted := play.visible and (play.board.lifted_jar >= 0 or play.choosing)
 	match BackPolicy.decide({"screen": screen, "sheet": top, "lifted": lifted, "origin": room_view.origin}):
 		&"close_sheet":
 			sheets.back().on_back()
@@ -344,7 +344,7 @@ func close_all_sheets() -> void:
 	for s in sheets.duplicate():
 		s.queue_free()
 	sheets.clear()
-	if play.board.input_locked and play.session != null and not play._tidying:
+	if play.choosing:
 		play.cancel_complete()
 
 
@@ -366,6 +366,8 @@ func _open_win(stats: Dictionary) -> void:
 	var helped := _assisted or play.session.continues > 0 or play.session.hints > 0 or play.session.completes > 0
 	var res := Progression.record_win(cat, Save.data, id, int(stats["slips"]), helped)
 	var before := Wallet.level_info()
+	# The HUD pill keeps its number until the earned coins fly into it.
+	play.coins.hold = room_level
 	var rewards := Wallet.record_win(entry, res) if room_level else {}
 	var s := _result_sheet("")
 	s.dim_alpha = 0.1
@@ -388,13 +390,25 @@ func _open_win(stats: Dictionary) -> void:
 		row.before = before
 		row.after = Wallet.level_info()
 		row.ups = rewards["ups"]
+		row.fit()
 		row.offer_double(Ads.rewarded_ready("win_double"))
 		row.double_pressed.connect(func() -> void:
 			rewarded("win_double", func() -> void:
+				play.coins.hold = true
 				Wallet.grant({"coins": row.coins})
 				row.doubled()))
 		s.body.add_child(row)
+		row.coins_landed.connect(func(from: Vector2) -> void:
+			var release := func() -> void:
+				play.coins.hold = false
+				play.coins.set_value(Wallet.coins())
+			if bool(Save.setting("reduce_motion")):
+				release.call()
+			else:
+				CoinFlight.launch(self, from, play.coins.coin_center()).landed.connect(release))
 		row.play(0.95)
+		if row.coins == 0:
+			play.coins.hold = false
 	var lines: Array[String] = []
 	if room_level:
 		if res["shelf_full"] >= 0 and not res["room_done"]:
@@ -402,7 +416,7 @@ func _open_win(stats: Dictionary) -> void:
 		elif res["new_gold"]:
 			lines.append("Clean sort: your first gold lid." if res["first_gold"] else "Clean sort: gold lid.")
 		for up: Dictionary in rewards["ups"]:
-			lines.append("Level %d: %s" % [up["level"], MetaSheets._reward_text(up["rewards"])])
+			lines.append("Rank %d: %s" % [up["level"], MetaSheets._reward_text(up["rewards"])])
 		if res["room_done"]:
 			lines.append("Room complete: +%d coins." % Economy.ROOM_COINS)
 		if not (rewards["milestone"] as Dictionary).is_empty():

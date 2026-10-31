@@ -4,10 +4,15 @@
 class_name RoomBackdrop
 extends Control
 
-const PROPS_H := 130.0
+
 
 var room := 0
 ## The decoration band shows on Home only (play screens stay calm: the HUD lives at the top).
+## Where the decoration band goes (set by Home; empty = none).
+var props_rect := Rect2():
+	set(v):
+		props_rect = v
+		queue_redraw()
 var props_visible := false:
 	set(v):
 		props_visible = v
@@ -56,12 +61,11 @@ func _paint(rm: int, r: Rect2, alpha: float) -> void:
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE * (tile.x / tex.get_width()))
 	draw_texture_rect(tex, Rect2(Vector2.ZERO, r.size * (tex.get_width() / tile.x)), true, Color(1, 1, 1, alpha))
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-	if props_visible and str(Themes.of(rm)["props"]) != "none":
+	if props_visible and props_rect.size.y > 0.0 and str(Themes.of(rm)["props"]) != "none":
 		# The room's decoration hangs across the wall under Home's top row.
-		var band := Vector2(r.size.x, PROPS_H)
-		var top: float = SafeArea.current(r.size)["top"]
-		draw_texture_rect(Art.tex("props|%d|%d" % [rm, roundi(band.x)], band, RoomArt.props.bind(rm)),
-			Rect2(Vector2(0, top + RoundButton.D + 10.0), band), false, Color(1, 1, 1, alpha))
+		var band := props_rect.size
+		draw_texture_rect(Art.tex("props|%d|%d|%d" % [rm, roundi(band.x), roundi(band.y)], band, RoomArt.props.bind(rm)),
+			props_rect, false, Color(1, 1, 1, alpha))
 
 
 func _gradient(rm: int) -> GradientTexture2D:

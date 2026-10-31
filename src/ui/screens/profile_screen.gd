@@ -51,20 +51,22 @@ func refresh() -> void:
 	for r in cat.room_numbers():
 		if Progression.solved_count(cat, save, r) == cat.room_ids(r).size():
 			rooms_done += 1
-	var grid := GridContainer.new()
-	grid.columns = 2
-	grid.add_theme_constant_override("h_separation", 14)
-	grid.add_theme_constant_override("v_separation", 14)
-	for row: Array in [
-		["Levels solved", solved], ["Gold lids", Progression.gold_count(cat, save, -1)],
-		["Labels collected", categories.size()], ["Rooms finished", rooms_done],
-		["Day streak", Wallet.streak_shown()], ["Best streak", int(save["streak"]["best"])],
-	]:
-		var card := _Stat.new(str(row[0]), int(row[1]))
-		card.custom_minimum_size = Vector2(0, 116)
-		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		grid.add_child(card)
-	list.add_child(grid)
+	# The pantry ledger: what the player has done, and for anything still at zero, the next thing to aim for.
+	var room1 := int(cat.room_numbers()[0]) if not cat.room_numbers().is_empty() else 1
+	var gold := Progression.gold_count(cat, save, -1)
+	var streak := Wallet.streak_shown()
+	var rows: Array = [
+		["Levels solved", str(solved) if solved > 0 else "Play your first level", solved == 0],
+		["Gold lids", str(gold) if gold > 0 else "Sort a level with no slips", gold == 0],
+		["Labels collected", str(categories.size()) if categories.size() > 0 else "Fill a jar to keep its label", categories.is_empty()],
+		["Rooms finished", str(rooms_done) if rooms_done > 0 else "%s: %d of %d" % [cat.room_name(room1),
+			Progression.solved_count(cat, save, room1), cat.room_ids(room1).size()], rooms_done == 0],
+		["Play streak", ("%d day%s (best %d)" % [streak, "" if streak == 1 else "s", int(save["streak"]["best"])]) if streak > 0
+			else "Win a level today to start one", streak == 0],
+	]
+	var ledger := _Ledger.new(rows)
+	ledger.custom_minimum_size = Vector2(0, 96 + rows.size() * 70)
+	list.add_child(ledger)
 	if Social.available():
 		var head := Label.new()
 		head.text = "Friends (test data)"
@@ -140,7 +142,7 @@ class _Top extends Control:
 		draw_string(f, Vector2((size.x - ts.x) / 2.0, 226), shown, HORIZONTAL_ALIGNMENT_LEFT, -1, fs,
 			Style.INK if name != "" else Color(Style.INK, 0.55))
 		var fb := Style.sans_bold()
-		var line := "Level %d, %s" % [info["level"], info["title"]]
+		var line := "Rank %d, %s" % [info["level"], info["title"]]
 		var ls := fb.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26)
 		draw_string(fb, Vector2((size.x - ls.x) / 2.0, 262), line, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Color(Style.INK, 0.8))
 		var bar := Rect2(size.x * 0.14, 276, size.x * 0.72, 14)
@@ -149,34 +151,37 @@ class _Top extends Control:
 		if t > 0.0:
 			draw_style_box(Style.box(Style.TEAL, 7), Rect2(bar.position, Vector2(maxf(bar.size.x * t, 14.0), bar.size.y)))
 		var xp := "%d / %d XP" % [info["into"], info["need"]]
-		var xs := fb.get_string_size(xp, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22)
-		draw_string(fb, Vector2((size.x - xs.x) / 2.0, 298 + 18), xp, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22, Color(Style.INK, 0.6))
+		var xs := fb.get_string_size(xp, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26)
+		draw_string(fb, Vector2((size.x - xs.x) / 2.0, 322), xp, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Color(Style.INK, 0.72))
 
 
-## A stat on a paper card: the number big, the name under it.
-class _Stat extends Control:
-	var label := ""
-	var value := 0
+## The pantry ledger: a kraft card with a hand-lettered heading and one ruled row per stat.
+class _Ledger extends Control:
+	var rows: Array = []
 
-	func _init(l: String, v: int) -> void:
-		label = l
-		value = v
+	func _init(r: Array) -> void:
+		rows = r
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	func _draw() -> void:
 		var r := Rect2(Vector2.ZERO, size)
-		var sb := Style.box(Style.CARD, Style.R_L)
-		sb.shadow_color = Color(Style.INK, 0.12)
-		sb.shadow_size = 8
-		sb.shadow_offset = Vector2(0, 4)
-		draw_style_box(sb, r)
-		var f := Style.sans_heavy()
-		var n := str(value)
-		var ns := f.get_string_size(n, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_44)
-		draw_string(f, Vector2((size.x - ns.x) / 2.0, 58), n, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_44, Style.INK)
-		var fb := Style.sans_bold()
-		var ls := fb.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22)
-		draw_string(fb, Vector2((size.x - ls.x) / 2.0, 92), label, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22, Color(Style.INK, 0.7))
+		draw_texture_rect(Art.tex("ledger|%d|%d" % [roundi(size.x), roundi(size.y)], size, Materials.label.bind(false)), r, false)
+		var hand := Style.hand()
+		draw_string(hand, Vector2(28, 58), "Pantry ledger", HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_44, Style.INK)
+		var f := Style.sans_bold()
+		var fh := Style.sans_heavy()
+		for i in rows.size():
+			var y := 96.0 + i * 70.0
+			draw_line(Vector2(24, y), Vector2(size.x - 24, y), Color(Style.INK, 0.18), 1.5, true)
+			var label: String = rows[i][0]
+			var value: String = rows[i][1]
+			var goal: bool = rows[i][2]
+			draw_string(f, Vector2(28, y + 44), label, HORIZONTAL_ALIGNMENT_LEFT, size.x * 0.42, Style.FS_26, Color(Style.INK, 0.8))
+			var vf := f if goal else fh
+			var vs := Style.FS_26 if goal else Style.FS_36
+			var vw := vf.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, vs).x
+			draw_string(vf, Vector2(maxf(size.x * 0.46, size.x - 28 - vw), y + 46), value, HORIZONTAL_ALIGNMENT_LEFT,
+				size.x * 0.52, vs, Color(Style.INK, 0.7) if goal else Style.INK)
 
 
 ## A friend (or you): avatar, name, the level they've reached.

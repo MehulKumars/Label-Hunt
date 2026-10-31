@@ -13,6 +13,8 @@ var origin := "home"
 var shelves: Array[ShelfView] = []
 var _ids: PackedStringArray = []
 var _count: Label
+var _play: PillButton
+var _next := ""
 
 
 func _init() -> void:
@@ -27,6 +29,10 @@ func _init() -> void:
 	_count.add_theme_font_size_override("font_size", Style.FS_26)
 	_count.add_theme_color_override("font_color", Color(Style.INK, 0.78))
 	add_child(_count)
+	_play = PillButton.new("Play", true, Style.TOUCH_PRIMARY)
+	_play.icon = "play"
+	_play.pressed.connect(func() -> void: level_pressed.emit(_next))
+	add_child(_play)
 	for i in 3:
 		var s := ShelfView.new()
 		s.tappable = true
@@ -59,6 +65,12 @@ func show_room(r: int, from: String) -> void:
 		s.visible = not part.is_empty()
 		s.queue_redraw()
 	shelves[0].breathe()
+	# The room's next level, if it has one, gets the same Play button as Home.
+	_next = next if next != "" and cat.entry(next)["room"] == room else ""
+	_play.visible = _next != ""
+	if _play.visible:
+		_play.text = "Play level %d" % (cat.order_index(_next) + 1)
+		_play.queue_redraw()
 	_layout()
 
 
@@ -70,6 +82,10 @@ func _notification(what: int) -> void:
 func _layout() -> void:
 	var y := header.place(size)
 	var bottom: float = size.y - SafeArea.current(size)["bottom"] - 24.0
+	if _play.visible:
+		_play.size = Vector2(size.x - Style.GUTTER * 2.0, Style.TOUCH_PRIMARY)
+		_play.position = Vector2(Style.GUTTER, bottom - Style.TOUCH_PRIMARY)
+		bottom = _play.position.y - 16.0
 	_count.position = Vector2(0, y)
 	_count.size = Vector2(size.x, 36)
 	y += 48.0
