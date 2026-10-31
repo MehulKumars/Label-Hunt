@@ -1,10 +1,11 @@
 ## Merges the drafted bank slices (data/bank/drafts/*.txt) into data/bank/categories.txt and pairs.txt.
-## Draft lines: "id,label,key,tier,domain,W|W|..." (new), "+id,W|W" (extend), "PAIR: A | B" / "PAIR: A < B" /
+## Draft lines: "id,label,key,tier,domain,W|W|..." (new), "+id,W|W" (extend), "-id,W|W" (remove), "TIER: id,n",
+## "DEL: id", "PAIR: A | B" / "PAIR: A < B" /
 ## "PAIR: A ! domain", "# WEAK: id Word - reason" (drop a weak member). The merge drops what can't ship (words that
 ## aren't single 3-9 letter words, banned words, a lateral or wordplay member containing its own key, duplicates),
 ## skips duplicate labels, and drops categories left with fewer than 6 members. Everything it did is listed in
 ## reports/bank_merge.md. Run tools/lint_bank.gd afterwards.
-## Run: godot --headless --path . -s res://tools/merge_bank.gd [-- --dry]
+## Run: godot --headless --path . -s res://tools/merge_bank.gd [-- --dry] [--only=<file prefix, e.g. review>]
 extends SceneTree
 
 const LINT := preload("res://tools/lint_bank.gd")
@@ -16,6 +17,10 @@ const MIN_WORDS := 6
 
 func _init() -> void:
 	var dry := OS.get_cmdline_user_args().has("--dry")
+	var prefix := ""
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--only="):
+			prefix = a.substr(7)
 	var errs: Array[String] = []
 	var cats: Array = LINT.read_rows(BANK, errs)
 	var by_id := {}
@@ -27,8 +32,12 @@ func _init() -> void:
 	var pairs: Array[String] = []
 	var weak: Array = []
 	var extends_: Array = []
+	var removals: Array = []
+	var tiers: Array = []
+	var deletions: Array = []
 	var added := 0
 	var files := Array(DirAccess.get_files_at(DRAFTS)).filter(func(f: String) -> bool: return f.ends_with(".txt"))
+	files = files.filter(func(f: String) -> bool: return prefix == "" or f.begins_with(prefix))
 	files.sort()
 	for f: String in files:
 		var n_before := added
@@ -42,10 +51,19 @@ func _init() -> void:
 			if line.begins_with("#"):
 				continue
 			if line.begins_with("PAIR:"):
-				pairs.append(line.substr(5).strip_edges())
+				pairs.append(line.substr(5).get_slice("#", 0).strip_edges())
+				continue
+			if line.begins_with("-"):
+				removals.append([f, line.substr(1).get_slice("#", 0).strip_edges()])
+				continue
+			if line.begins_with("TIER:"):
+				tiers.append([f, line.substr(5).get_slice("#", 0).strip_edges()])
+				continue
+			if line.begins_with("DEL:"):
+				deletions.append([f, line.substr(4).get_slice("#", 0).strip_edges()])
 				continue
 			if line.begins_with("+"):
-				extends_.append([f, line.substr(1)])
+				extends_.append([f, line.substr(1).get_slice("#", 0).strip_edges()])
 				continue
 			var cols := line.split(",")
 			if cols.size() != 6:
@@ -87,6 +105,36 @@ func _init() -> void:
 			c["words"] = (c["words"] as Array).filter(func(x: String) -> bool: return x.to_lower() != parts[1].to_lower())
 			if (c["words"] as Array).size() < before:
 				log.append("%s: removed weak member %s from %s (%s)" % [wk[0], parts[1], parts[0], wk[1]])
+	# Review patches: removals, tier changes, deletions.
+	for rm: Array in removals:
+		var id := (rm[1] as String).get_slice(",", 0).strip_edges()
+		if not by_id.has(id):
+			log.append("%s: removal from unknown id %s" % [rm[0], id])
+			continue
+		var c: Dictionary = by_id[id]
+		var gone := {}
+		for w in (rm[1] as String).get_slice(",", 1).split("|", false):
+			gone[w.strip_edges().to_lower()] = true
+		c["words"] = (c["words"] as Array).filter(func(x: String) -> bool: return not gone.has(x.to_lower()))
+		log.append("%s: removed %s from %s" % [rm[0], ", ".join(gone.keys()), id])
+	for t: Array in tiers:
+		var id := (t[1] as String).get_slice(",", 0).strip_edges()
+		if by_id.has(id):
+			by_id[id]["tier"] = clampi(int((t[1] as String).get_slice(",", 1)), 1, 4)
+			log.append("%s: %s is now tier %d" % [t[0], id, by_id[id]["tier"]])
+	for dl: Array in deletions:
+		var id := str(dl[1]).strip_edges()
+		if by_id.has(id):
+			cats.erase(by_id[id])
+			by_label.erase((by_id[id]["label"] as String).to_lower())
+			by_id.erase(id)
+			log.append("%s: deleted %s" % [dl[0], id])
+	for c: Dictionary in cats.duplicate():
+		if (c["words"] as Array).size() < MIN_WORDS:
+			cats.erase(c)
+			by_label.erase((c["label"] as String).to_lower())
+			by_id.erase(c["id"])
+			log.append("dropped %s: fewer than %d members after fixes" % [c["id"], MIN_WORDS])
 	var pair_added := 0
 	var existing_pairs := FileAccess.get_file_as_string(PAIRS)
 	var new_pairs: Array[String] = []
