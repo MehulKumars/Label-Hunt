@@ -24,6 +24,10 @@ const BANK := "res://data/bank/categories.txt"
 const PAIRS := "res://data/bank/pairs.txt"
 const TUTORIAL := "res://data/levels/tutorial.json"
 const MAX_WORD := 9
+## Stands for "never won" in a sorted list of slips.
+const STUCK := 999
+## Sampling noise allowed when checking a budget against its floor (the curve report allows the same).
+const FLOOR_TOLERANCE := 0.03
 ## When a level can't be picked the gaps relax step by step: (category gap, word gap, tries).
 const RELAX := [Vector3i(60, 30, 60), Vector3i(40, 20, 120), Vector3i(25, 12, 160), Vector3i(15, 8, 240)]
 ## Domains whose categories cut across every other domain: two of them share a level only with different patterns.
@@ -433,6 +437,8 @@ func _settle_level(room: int, number: int, level: Dictionary, ls: Dictionary) ->
 			continue
 		var m := _measure(lvl, "average", n, 0)
 		var score := absf(m["slips_mean"] - target)
+		# A deal that strands players (stuck past Undo and +Jar) can't meet its floor at any slip limit.
+		score += maxf(0.0, float(ls.get("floor", 0.8)) + 0.05 - m["win"]) * 10.0
 		if number >= 3 and ls["kind"] != "rest" and m["aha_frac"] < 0.4:
 			score += 1.5
 		score += maxf(0.0, m["after_med"] - 8.0) * 0.25
@@ -473,9 +479,14 @@ func _budget(d: Dictionary, lvl: LevelData, ls: Dictionary) -> Dictionary:
 	var budget := 0
 	var gold := -1
 	if ls.get("budget", false):
-		budget = maxi(2, _quantile(avg["slips"], floor_avg) + 1)
+		budget = maxi(2, _floor_slips(avg["slips"], floor_avg) + 1)
 		if floor_nov > 0.0:
-			budget = maxi(budget, _quantile(nov["slips"], floor_nov) + 1)
+			budget = maxi(budget, _floor_slips(nov["slips"], floor_nov) + 1)
+		# That count comes from games without a limit, and a limit changes the play: check it, give room if needed.
+		for extra in 3:
+			if _measure(lvl, "average", n_final / 2, budget, 7)["win"] >= floor_avg - FLOOR_TOLERANCE:
+				break
+			budget += 1
 		gold = _gold(avg["slips"], budget)
 	d["budget"] = budget
 	d["gold"] = gold
@@ -518,7 +529,8 @@ func _measure(lvl: LevelData, prof: String, games: int, budget: int, salt: int =
 	for g in games:
 		var r := Bot.play(lvl, prof, hash([lvl.id, prof, budget, g, salt]))
 		wins += 1 if r["won"] else 0
-		slips.append(r["slips"])
+		# A run that got stuck never won at any slip limit.
+		slips.append(r["slips"] if r["won"] or budget > 0 else STUCK)
 		total += r["slips"]
 		after.append(r["after_known"])
 		fracs.append(1.0 - float(r["after_known"]) / maxf(r["moves"], 1.0))
@@ -534,6 +546,16 @@ func _measure(lvl: LevelData, prof: String, games: int, budget: int, salt: int =
 static func _quantile(sorted_slips: Array[int], q: float) -> int:
 	var need := ceili(q * sorted_slips.size())
 	return sorted_slips[clampi(need - 1, 0, sorted_slips.size() - 1)]
+
+
+## The slip count that lets `q` of runs win, or the most any winning run needed when too many got stuck for that (no
+## limit can reach the floor then: the settle report shows the miss).
+static func _floor_slips(sorted_slips: Array[int], q: float) -> int:
+	var s := _quantile(sorted_slips, q)
+	if s < STUCK:
+		return s
+	var won := sorted_slips.filter(func(x: int) -> bool: return x < STUCK)
+	return 0 if won.is_empty() else won.back()
 
 
 static func _gold(sorted_slips: Array[int], budget: int) -> int:

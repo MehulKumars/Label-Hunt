@@ -54,7 +54,7 @@
       "meta": {
         "target": 3.68,
         "floor": 0.78,
-        "avg_slips": 1.78,
+        "avg_slips": 1.77,
         "avg_win": 0.79,
         "novice_win": 0.58,
         "prober_win": 0,
@@ -107,11 +107,11 @@
       "meta": {
         "target": 3.69,
         "floor": 0.78,
-        "avg_slips": 1.72,
+        "avg_slips": 1.68,
         "avg_win": 0.86,
         "novice_win": 0.56,
         "prober_win": 0,
-        "after_med": 13,
+        "after_med": 14,
         "aha_frac": 0.44
       }
     },
@@ -156,7 +156,7 @@
         "Funnel": [2]
       },
       "jars": [["Clip", "Squid", "Funnel", "Masher"], ["Cellist", "Pan", "Conductor", "Crane"], ["Harpist", "Rudder", "Throne", "Bandana"], ["Helm", "Peeler", "Scrunchie", "Skewer"], ["Bridge", "Starfish", "Pianist", "Comb"], [], []],
-      "gold": 1,
+      "gold": 0,
       "meta": {
         "target": 3.71,
         "floor": 0.78,
@@ -214,12 +214,12 @@
       "meta": {
         "target": 3.72,
         "floor": 0.78,
-        "avg_slips": 2.35,
-        "avg_win": 0.76,
-        "novice_win": 0.63,
+        "avg_slips": 2.29,
+        "avg_win": 0.85,
+        "novice_win": 0.65,
         "prober_win": 0,
-        "after_med": 2,
-        "aha_frac": 0.92
+        "after_med": 3,
+        "aha_frac": 0.91
       }
     },
     {
@@ -268,7 +268,7 @@
       "meta": {
         "target": 5.05,
         "floor": 0.68,
-        "avg_slips": 2.21,
+        "avg_slips": 2.17,
         "avg_win": 0.73,
         "novice_win": 0.47,
         "prober_win": 0,
@@ -319,7 +319,7 @@
       "meta": {
         "target": 2.25,
         "floor": 0.9,
-        "avg_slips": 1.04,
+        "avg_slips": 1.03,
         "avg_win": 0.97,
         "novice_win": 0.74,
         "prober_win": 0,
@@ -373,19 +373,19 @@
       "meta": {
         "target": 3.77,
         "floor": 0.78,
-        "avg_slips": 1.62,
-        "avg_win": 0.85,
-        "novice_win": 0.55,
+        "avg_slips": 1.61,
+        "avg_win": 0.87,
+        "novice_win": 0.58,
         "prober_win": 0,
         "after_med": 2,
-        "aha_frac": 0.93
+        "aha_frac": 0.92
       }
     },
     {
       "id": "l8-08",
       "kind": "normal",
       "introduces": [],
-      "budget": 3,
+      "budget": 4,
       "groups": [
         {
           "label": "Materials",
@@ -427,8 +427,8 @@
         "target": 3.79,
         "floor": 0.78,
         "avg_slips": 1.42,
-        "avg_win": 0.72,
-        "novice_win": 0.54,
+        "avg_win": 0.88,
+        "novice_win": 0.68,
         "prober_win": 0,
         "after_med": 9,
         "aha_frac": 0.65
@@ -479,12 +479,12 @@
       "meta": {
         "target": 3.8,
         "floor": 0.78,
-        "avg_slips": 1.6,
-        "avg_win": 0.79,
-        "novice_win": 0.52,
+        "avg_slips": 1.51,
+        "avg_win": 0.86,
+        "novice_win": 0.56,
         "prober_win": 0,
         "after_med": 12,
-        "aha_frac": 0.54
+        "aha_frac": 0.52
       }
     },
     {
@@ -534,11 +534,11 @@
       "meta": {
         "target": 6.11,
         "floor": 0.58,
-        "avg_slips": 3.38,
+        "avg_slips": 3.4,
         "avg_win": 0.78,
-        "novice_win": 0.44,
+        "novice_win": 0.45,
         "prober_win": 0,
-        "after_med": 3,
+        "after_med": 2,
         "aha_frac": 0.92
       }
     },
@@ -587,7 +587,7 @@
       "meta": {
         "target": 3.84,
         "floor": 0.78,
-        "avg_slips": 1.47,
+        "avg_slips": 1.46,
         "avg_win": 0.92,
         "novice_win": 0.6,
         "prober_win": 0,
@@ -640,12 +640,12 @@
       "meta": {
         "target": 3.85,
         "floor": 0.78,
-        "avg_slips": 1.66,
-        "avg_win": 0.86,
-        "novice_win": 0.56,
+        "avg_slips": 1.65,
+        "avg_win": 0.88,
+        "novice_win": 0.58,
         "prober_win": 0,
         "after_med": 6,
-        "aha_frac": 0.76
+        "aha_frac": 0.75
       }
     },
     {
@@ -694,12 +694,12 @@
       "meta": {
         "target": 3.87,
         "floor": 0.78,
-        "avg_slips": 1.97,
-        "avg_win": 0.5,
-        "novice_win": 0.47,
+        "avg_slips": 1.99,
+        "avg_win": 0.76,
+        "novice_win": 0.6,
         "prober_win": 0,
-        "after_med": 1,
-        "aha_frac": 0.97
+        "after_med": 2,
+        "aha_frac": 0.96
       }
     },
     {
@@ -747,19 +747,19 @@
       "meta": {
         "target": 3.88,
         "floor": 0.78,
-        "avg_slips": 1.65,
+        "avg_slips": 1.63,
         "avg_win": 0.88,
         "novice_win": 0.56,
         "prober_win": 0,
         "after_med": 8,
-        "aha_frac": 0.68
+        "aha_frac": 0.7
       }
     },
     {
       "id": "l8-15",
       "kind": "tricky",
       "introduces": [],
-      "budget": 4,
+      "budget": 5,
       "groups": [
         {
           "label": "New word backwards",
@@ -802,10 +802,10 @@
         "target": 5.27,
         "floor": 0.68,
         "avg_slips": 2.34,
-        "avg_win": 0.62,
-        "novice_win": 0.38,
+        "avg_win": 0.77,
+        "novice_win": 0.54,
         "prober_win": 0,
-        "after_med": 9,
+        "after_med": 8,
         "aha_frac": 0.68
       }
     },
@@ -899,7 +899,7 @@
       "meta": {
         "target": 3.93,
         "floor": 0.78,
-        "avg_slips": 1.51,
+        "avg_slips": 1.52,
         "avg_win": 0.89,
         "novice_win": 0.74,
         "prober_win": 0,
@@ -947,17 +947,17 @@
       "also": {
         "Queen": [0]
       },
-      "jars": [["Mix", "Wax", "Serenade", "Rattle"], ["Worker", "Bid", "Queen", "Shanty"], ["Mill", "Cradle", "King", "Ditty"], ["Joker", "Jingle", "Deck", "Honey"], ["Dill", "Bottle", "Vivid", "Crib"], [], []],
-      "gold": 1,
+      "jars": [["Serenade", "Rattle", "Shanty", "Cradle"], ["Vivid", "Worker", "Dill", "Bottle"], ["Ditty", "Honey", "Crib", "Bid"], ["Mill", "Queen", "Joker", "Jingle"], ["Mix", "King", "Wax", "Deck"], [], []],
+      "gold": 0,
       "meta": {
         "target": 3.95,
         "floor": 0.78,
-        "avg_slips": 1.95,
-        "avg_win": 0.82,
-        "novice_win": 0.45,
+        "avg_slips": 1.83,
+        "avg_win": 0.85,
+        "novice_win": 0.44,
         "prober_win": 0,
-        "after_med": 9,
-        "aha_frac": 0.69
+        "after_med": 8,
+        "aha_frac": 0.7
       }
     },
     {
@@ -1006,11 +1006,11 @@
       "meta": {
         "target": 3.96,
         "floor": 0.78,
-        "avg_slips": 1.68,
-        "avg_win": 0.79,
-        "novice_win": 0.63,
+        "avg_slips": 1.67,
+        "avg_win": 0.8,
+        "novice_win": 0.64,
         "prober_win": 0,
-        "after_med": 1,
+        "after_med": 2,
         "aha_frac": 0.96
       }
     },
@@ -1065,7 +1065,7 @@
         "novice_win": 0.49,
         "prober_win": 0,
         "after_med": 8,
-        "aha_frac": 0.72
+        "aha_frac": 0.73
       }
     },
     {
@@ -1168,8 +1168,8 @@
         "target": 4.01,
         "floor": 0.78,
         "avg_slips": 1.94,
-        "avg_win": 0.74,
-        "novice_win": 0.4,
+        "avg_win": 0.76,
+        "novice_win": 0.41,
         "prober_win": 0,
         "after_med": 2,
         "aha_frac": 0.93
@@ -1220,8 +1220,8 @@
       "meta": {
         "target": 4.03,
         "floor": 0.78,
-        "avg_slips": 1.72,
-        "avg_win": 0.8,
+        "avg_slips": 1.66,
+        "avg_win": 0.81,
         "novice_win": 0.64,
         "prober_win": 0,
         "after_med": 13,
@@ -1232,7 +1232,7 @@
       "id": "l8-24",
       "kind": "normal",
       "introduces": [],
-      "budget": 4,
+      "budget": 5,
       "groups": [
         {
           "label": "Hidden body parts",
@@ -1268,17 +1268,17 @@
       "also": {
         "Charm": [0]
       },
-      "jars": [["Vet", "Boar", "Pearl", "Anecdote"], ["Bubblegum", "Fable", "Stallion", "Charm"], ["Bracelet", "Earth", "Ranger", "Buck"], ["Rancher", "Locket", "Shears", "Yarn"], ["Stag", "Shepherd", "Tragedy", "Ring"], [], []],
+      "jars": [["Pearl", "Locket", "Shears", "Tragedy"], ["Stag", "Ranger", "Boar", "Fable"], ["Anecdote", "Bubblegum", "Charm", "Earth"], ["Stallion", "Rancher", "Yarn", "Ring"], ["Bracelet", "Shepherd", "Buck", "Vet"], [], []],
       "gold": 1,
       "meta": {
         "target": 4.04,
         "floor": 0.78,
-        "avg_slips": 2.12,
-        "avg_win": 0.74,
-        "novice_win": 0.5,
+        "avg_slips": 2.1,
+        "avg_win": 0.9,
+        "novice_win": 0.65,
         "prober_win": 0,
-        "after_med": 9,
-        "aha_frac": 0.69
+        "after_med": 10,
+        "aha_frac": 0.62
       }
     },
     {
@@ -1328,8 +1328,8 @@
       "meta": {
         "target": 5.48,
         "floor": 0.68,
-        "avg_slips": 2.71,
-        "avg_win": 0.86,
+        "avg_slips": 2.7,
+        "avg_win": 0.87,
         "novice_win": 0.4,
         "prober_win": 0,
         "after_med": 2,
@@ -1340,7 +1340,7 @@
       "id": "l8-26",
       "kind": "rest",
       "introduces": [],
-      "budget": 2,
+      "budget": 3,
       "groups": [
         {
           "label": "Fast food",
@@ -1368,16 +1368,16 @@
         }
       ],
       "also": {},
-      "jars": [["Sister", "Wrap", "Skunk", "Burger"], ["Brother", "Puppy", "Daughter", "Tuxedo"], ["Taco", "Cousin", "Penguin", "Calf"], ["Shake", "Chick", "Badger", "Joey"], [], []],
+      "jars": [["Joey", "Badger", "Burger", "Tuxedo"], ["Chick", "Wrap", "Sister", "Penguin"], ["Skunk", "Puppy", "Cousin", "Shake"], ["Daughter", "Taco", "Brother", "Calf"], [], []],
       "gold": 0,
       "meta": {
         "target": 2.45,
         "floor": 0.9,
-        "avg_slips": 0.41,
-        "avg_win": 0.66,
-        "novice_win": 0.75,
+        "avg_slips": 0.42,
+        "avg_win": 0.96,
+        "novice_win": 0.83,
         "prober_win": 0,
-        "after_med": 15,
+        "after_med": 17,
         "aha_frac": 0
       }
     },
@@ -1426,9 +1426,9 @@
       "meta": {
         "target": 4.09,
         "floor": 0.78,
-        "avg_slips": 1.62,
+        "avg_slips": 1.63,
         "avg_win": 0.85,
-        "novice_win": 0.63,
+        "novice_win": 0.62,
         "prober_win": 0,
         "after_med": 12,
         "aha_frac": 0.56
@@ -1438,7 +1438,7 @@
       "id": "l8-28",
       "kind": "normal",
       "introduces": [],
-      "budget": 4,
+      "budget": 5,
       "groups": [
         {
           "label": "Things in a nest",
@@ -1481,8 +1481,8 @@
         "target": 4.11,
         "floor": 0.78,
         "avg_slips": 1.93,
-        "avg_win": 0.73,
-        "novice_win": 0.48,
+        "avg_win": 0.92,
+        "novice_win": 0.63,
         "prober_win": 0,
         "after_med": 2,
         "aha_frac": 0.92
@@ -1533,12 +1533,12 @@
       "meta": {
         "target": 4.12,
         "floor": 0.78,
-        "avg_slips": 1.63,
-        "avg_win": 0.78,
-        "novice_win": 0.57,
+        "avg_slips": 1.5,
+        "avg_win": 0.87,
+        "novice_win": 0.66,
         "prober_win": 0,
         "after_med": 11,
-        "aha_frac": 0.6
+        "aha_frac": 0.58
       }
     },
     {
@@ -1587,11 +1587,11 @@
       "meta": {
         "target": 6.62,
         "floor": 0.58,
-        "avg_slips": 2.94,
-        "avg_win": 0.75,
-        "novice_win": 0.47,
+        "avg_slips": 2.93,
+        "avg_win": 0.76,
+        "novice_win": 0.48,
         "prober_win": 0,
-        "after_med": 11,
+        "after_med": 12,
         "aha_frac": 0.61
       }
     }

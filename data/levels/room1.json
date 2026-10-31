@@ -78,7 +78,7 @@
       "meta": {
         "target": 0.15,
         "floor": 0.8,
-        "avg_slips": 0.32,
+        "avg_slips": 0.31,
         "avg_win": 1,
         "novice_win": 1,
         "prober_win": 1,
@@ -117,7 +117,7 @@
       "meta": {
         "target": 0.3,
         "floor": 0.8,
-        "avg_slips": 0.2,
+        "avg_slips": 0.19,
         "avg_win": 1,
         "novice_win": 1,
         "prober_win": 1,
@@ -314,12 +314,12 @@
       "meta": {
         "target": 0.6,
         "floor": 0.8,
-        "avg_slips": 0.58,
+        "avg_slips": 0.57,
         "avg_win": 1,
         "novice_win": 1,
         "prober_win": 1,
         "after_med": 8,
-        "aha_frac": 0.46
+        "aha_frac": 0.47
       }
     },
     {
@@ -513,12 +513,12 @@
       "meta": {
         "target": 0.75,
         "floor": 0.92,
-        "avg_slips": 0.52,
+        "avg_slips": 0.53,
         "avg_win": 0.99,
         "novice_win": 0.9,
         "prober_win": 0.03,
         "after_med": 7,
-        "aha_frac": 0.43
+        "aha_frac": 0.45
       }
     },
     {
@@ -555,7 +555,7 @@
         "target": 0.8,
         "floor": 0.92,
         "avg_slips": 0.82,
-        "avg_win": 0.98,
+        "avg_win": 0.99,
         "novice_win": 0.9,
         "prober_win": 0,
         "after_med": 8,
@@ -600,7 +600,7 @@
         "novice_win": 0.75,
         "prober_win": 0,
         "after_med": 8,
-        "aha_frac": 0.48
+        "aha_frac": 0.5
       }
     },
     {
@@ -876,12 +876,12 @@
       "meta": {
         "target": 1,
         "floor": 0.92,
-        "avg_slips": 0.7,
+        "avg_slips": 0.71,
         "avg_win": 0.97,
         "novice_win": 0.89,
         "prober_win": 0.01,
         "after_med": 8,
-        "aha_frac": 0.48
+        "aha_frac": 0.5
       }
     },
     {
@@ -956,7 +956,7 @@
       "meta": {
         "target": 1.1,
         "floor": 0.92,
-        "avg_slips": 1.06,
+        "avg_slips": 1.05,
         "avg_win": 0.93,
         "novice_win": 0.85,
         "prober_win": 0,
@@ -997,7 +997,7 @@
       "meta": {
         "target": 1.45,
         "floor": 0.82,
-        "avg_slips": 0.97,
+        "avg_slips": 0.99,
         "avg_win": 0.94,
         "novice_win": 0.62,
         "prober_win": 0.01,
@@ -1132,7 +1132,7 @@
       "meta": {
         "target": 1.25,
         "floor": 0.92,
-        "avg_slips": 0.89,
+        "avg_slips": 0.88,
         "avg_win": 0.95,
         "novice_win": 0.87,
         "prober_win": 0,

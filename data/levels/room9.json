@@ -53,9 +53,9 @@
       "meta": {
         "target": 4.16,
         "floor": 0.75,
-        "avg_slips": 1.79,
-        "avg_win": 0.8,
-        "novice_win": 0.56,
+        "avg_slips": 1.7,
+        "avg_win": 0.85,
+        "novice_win": 0.58,
         "prober_win": 0,
         "after_med": 14,
         "aha_frac": 0.48
@@ -161,11 +161,11 @@
         "target": 4.19,
         "floor": 0.75,
         "avg_slips": 2.55,
-        "avg_win": 0.69,
-        "novice_win": 0.48,
+        "avg_win": 0.79,
+        "novice_win": 0.5,
         "prober_win": 0,
-        "after_med": 1,
-        "aha_frac": 0.96
+        "after_med": 2,
+        "aha_frac": 0.95
       }
     },
     {
@@ -213,19 +213,19 @@
       "meta": {
         "target": 4.2,
         "floor": 0.75,
-        "avg_slips": 1.5,
-        "avg_win": 0.79,
+        "avg_slips": 1.48,
+        "avg_win": 0.8,
         "novice_win": 0.41,
         "prober_win": 0,
         "after_med": 10,
-        "aha_frac": 0.66
+        "aha_frac": 0.65
       }
     },
     {
       "id": "l9-05",
       "kind": "tricky",
       "introduces": [],
-      "budget": 3,
+      "budget": 4,
       "groups": [
         {
           "label": "Things you can skip",
@@ -262,24 +262,24 @@
         "Song": [1],
         "Rope": [3]
       },
-      "jars": [["Stove", "Embryo", "Canteen", "Wool"], ["Song", "Protein", "Sea", "Cotton"], ["Stone", "Evolution", "Feather", "Early"], ["Page", "Tent", "Fossil", "Cushion"], ["Rope", "Humming", "Compass", "Water"], [], []],
+      "jars": [["Page", "Early", "Cotton", "Water"], ["Canteen", "Rope", "Humming", "Feather"], ["Embryo", "Stone", "Stove", "Cushion"], ["Song", "Evolution", "Tent", "Sea"], ["Fossil", "Wool", "Compass", "Protein"], [], []],
       "gold": 1,
       "meta": {
         "target": 5.7,
         "floor": 0.65,
-        "avg_slips": 2.18,
-        "avg_win": 0.69,
-        "novice_win": 0.41,
+        "avg_slips": 2.35,
+        "avg_win": 0.7,
+        "novice_win": 0.45,
         "prober_win": 0,
         "after_med": 10,
-        "aha_frac": 0.69
+        "aha_frac": 0.61
       }
     },
     {
       "id": "l9-06",
       "kind": "rest",
       "introduces": ["labelled"],
-      "budget": 3,
+      "budget": 2,
       "groups": [
         {
           "label": "Pond life",
@@ -321,19 +321,19 @@
       "meta": {
         "target": 2.54,
         "floor": 0.88,
-        "avg_slips": 1.12,
-        "avg_win": 0.91,
-        "novice_win": 0.84,
+        "avg_slips": 0.29,
+        "avg_win": 0.92,
+        "novice_win": 0.69,
         "prober_win": 0,
-        "after_med": 24,
-        "aha_frac": 0.06
+        "after_med": 22,
+        "aha_frac": 0.09
       }
     },
     {
       "id": "l9-07",
       "kind": "normal",
       "introduces": [],
-      "budget": 4,
+      "budget": 5,
       "groups": [
         {
           "label": "Words before ball",
@@ -371,13 +371,13 @@
       },
       "jars": [["Volley", "Baton", "Gum", "Tapestry"], ["Statue", "Marjoram", "Snow", "Poodle"], ["Labrador", "Puck", "Chihuahua", "Bay"], ["Portrait", "Husky", "Helmet", "Tarragon"], ["Sketch", "Chives", "Stick", "Net"], [], []],
       "frost": ["Volley", "Baton", "Statue", "Marjoram", "Labrador", "Puck", "Portrait", "Husky", "Sketch", "Chives"],
-      "gold": 0,
+      "gold": 1,
       "meta": {
         "target": 4.25,
         "floor": 0.75,
-        "avg_slips": 1.98,
-        "avg_win": 0.66,
-        "novice_win": 0.55,
+        "avg_slips": 1.94,
+        "avg_win": 0.88,
+        "novice_win": 0.65,
         "prober_win": 0,
         "after_med": 2,
         "aha_frac": 0.96
@@ -427,16 +427,16 @@
       "labelled": {
         "6": 3
       },
-      "gold": 1,
+      "gold": 0,
       "meta": {
         "target": 4.27,
         "floor": 0.75,
-        "avg_slips": 2.37,
-        "avg_win": 0.11,
-        "novice_win": 0.2,
+        "avg_slips": 1.71,
+        "avg_win": 0.84,
+        "novice_win": 0.66,
         "prober_win": 0,
-        "after_med": 9,
-        "aha_frac": 0.59
+        "after_med": 16,
+        "aha_frac": 0.58
       }
     },
     {
@@ -484,19 +484,19 @@
       "meta": {
         "target": 4.28,
         "floor": 0.75,
-        "avg_slips": 2,
-        "avg_win": 0.83,
-        "novice_win": 0.61,
+        "avg_slips": 1.94,
+        "avg_win": 0.86,
+        "novice_win": 0.63,
         "prober_win": 0,
         "after_med": 12,
-        "aha_frac": 0.61
+        "aha_frac": 0.57
       }
     },
     {
       "id": "l9-10",
       "kind": "hard",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
           "label": "Words after wind",
@@ -537,23 +537,23 @@
       "labelled": {
         "6": 0
       },
-      "gold": 2,
+      "gold": 1,
       "meta": {
         "target": 6.88,
         "floor": 0.55,
-        "avg_slips": 2.86,
-        "avg_win": 0.85,
-        "novice_win": 0.45,
+        "avg_slips": 2.81,
+        "avg_win": 0.75,
+        "novice_win": 0.3,
         "prober_win": 0,
-        "after_med": 5,
-        "aha_frac": 0.84
+        "after_med": 4,
+        "aha_frac": 0.85
       }
     },
     {
       "id": "l9-11",
       "kind": "normal",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
           "label": "Things birds do",
@@ -595,9 +595,9 @@
       "meta": {
         "target": 4.32,
         "floor": 0.75,
-        "avg_slips": 2.4,
-        "avg_win": 0.81,
-        "novice_win": 0.51,
+        "avg_slips": 2.32,
+        "avg_win": 0.8,
+        "novice_win": 0.36,
         "prober_win": 0,
         "after_med": 1,
         "aha_frac": 0.96
@@ -607,7 +607,7 @@
       "id": "l9-12",
       "kind": "normal",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
           "label": "Shades of brown",
@@ -643,7 +643,7 @@
       "also": {
         "Bronze": [0]
       },
-      "jars": [["Bronze", "Absolute", "Caramel", "Cobbler"], ["Lead", "Bibimbap", "Tan", "Baker"], ["Jollof", "Embassy", "Paella", "Rust"], ["Conundrum", "Walnut", "Butcher", "Tungsten"], ["Congee", "Mercury", "Thorn", "Florist"], [], []],
+      "jars": [["Rust", "Bronze", "Conundrum", "Baker"], ["Congee", "Embassy", "Florist", "Jollof"], ["Tungsten", "Walnut", "Lead", "Thorn"], ["Cobbler", "Mercury", "Paella", "Tan"], ["Absolute", "Butcher", "Caramel", "Bibimbap"], [], []],
       "labelled": {
         "6": 3
       },
@@ -651,12 +651,12 @@
       "meta": {
         "target": 4.33,
         "floor": 0.75,
-        "avg_slips": 2.71,
-        "avg_win": 0.79,
-        "novice_win": 0.66,
+        "avg_slips": 2.23,
+        "avg_win": 0.78,
+        "novice_win": 0.39,
         "prober_win": 0,
-        "after_med": 9,
-        "aha_frac": 0.78
+        "after_med": 7,
+        "aha_frac": 0.79
       }
     },
     {
@@ -705,7 +705,7 @@
         "target": 4.35,
         "floor": 0.75,
         "avg_slips": 1.29,
-        "avg_win": 0.79,
+        "avg_win": 0.8,
         "novice_win": 0.57,
         "prober_win": 0,
         "after_med": 13,
@@ -752,20 +752,20 @@
       "also": {
         "Love": [1]
       },
-      "jars": [["Fjord", "Walrus", "Hose", "Porpoise"], ["Stream", "Fork", "Lob", "Mower"], ["Creek", "Cheer", "Trowel", "Lake"], ["Set", "Manatee", "Love", "Joy"], ["News", "Dugong", "Ace", "Jam"], [], []],
+      "jars": [["News", "Stream", "Mower", "Set"], ["Fjord", "Fork", "Ace", "Creek"], ["Cheer", "Dugong", "Lob", "Lake"], ["Porpoise", "Trowel", "Jam", "Manatee"], ["Walrus", "Love", "Joy", "Hose"], [], []],
       "labelled": {
-        "6": 3
+        "6": 0
       },
-      "gold": 0,
+      "gold": 1,
       "meta": {
         "target": 4.36,
         "floor": 0.75,
-        "avg_slips": 1.91,
-        "avg_win": 0.75,
-        "novice_win": 0.45,
+        "avg_slips": 2.01,
+        "avg_win": 0.84,
+        "novice_win": 0.52,
         "prober_win": 0,
-        "after_med": 17,
-        "aha_frac": 0.57
+        "after_med": 11,
+        "aha_frac": 0.63
       }
     },
     {
@@ -815,9 +815,9 @@
       "meta": {
         "target": 5.91,
         "floor": 0.65,
-        "avg_slips": 3.81,
+        "avg_slips": 3.74,
         "avg_win": 0.67,
-        "novice_win": 0.35,
+        "novice_win": 0.36,
         "prober_win": 0,
         "after_med": 2,
         "aha_frac": 0.93
@@ -965,16 +965,16 @@
       "labelled": {
         "6": 0
       },
-      "gold": 1,
+      "gold": 0,
       "meta": {
         "target": 4.43,
         "floor": 0.75,
-        "avg_slips": 2.4,
-        "avg_win": 0.68,
-        "novice_win": 0.46,
+        "avg_slips": 1.71,
+        "avg_win": 0.84,
+        "novice_win": 0.52,
         "prober_win": 0,
-        "after_med": 10,
-        "aha_frac": 0.68
+        "after_med": 2,
+        "aha_frac": 0.91
       }
     },
     {
@@ -1023,19 +1023,19 @@
       "meta": {
         "target": 4.44,
         "floor": 0.75,
-        "avg_slips": 2.08,
-        "avg_win": 0.82,
+        "avg_slips": 2.07,
+        "avg_win": 0.83,
         "novice_win": 0.48,
         "prober_win": 0,
         "after_med": 2,
-        "aha_frac": 0.96
+        "aha_frac": 0.95
       }
     },
     {
       "id": "l9-20",
       "kind": "hard",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
           "label": "Animal groups",
@@ -1080,9 +1080,9 @@
       "meta": {
         "target": 7.14,
         "floor": 0.55,
-        "avg_slips": 3.18,
-        "avg_win": 0.76,
-        "novice_win": 0.49,
+        "avg_slips": 3.02,
+        "avg_win": 0.59,
+        "novice_win": 0.3,
         "prober_win": 0,
         "after_med": 10,
         "aha_frac": 0.69
@@ -1181,20 +1181,20 @@
       "also": {
         "Table": [1]
       },
-      "jars": [["Bookcase", "Block", "Clover", "Wardrobe"], ["Table", "Pin", "Thistle", "Ribbon"], ["Story", "Room", "Needle", "Like"], ["Hurdle", "Feed", "Foxglove", "Thread"], ["Air", "Daisy", "Chair", "Head"], [], []],
+      "jars": [["Clover", "Bookcase", "Thistle", "Thread"], ["Room", "Story", "Pin", "Foxglove"], ["Like", "Air", "Wardrobe", "Feed"], ["Chair", "Block", "Table", "Daisy"], ["Needle", "Head", "Ribbon", "Hurdle"], [], []],
       "labelled": {
-        "6": 3
+        "6": 2
       },
       "gold": 1,
       "meta": {
         "target": 4.49,
         "floor": 0.75,
-        "avg_slips": 2.09,
-        "avg_win": 0.75,
-        "novice_win": 0.56,
+        "avg_slips": 1.99,
+        "avg_win": 0.88,
+        "novice_win": 0.54,
         "prober_win": 0,
-        "after_med": 9,
-        "aha_frac": 0.71
+        "after_med": 10,
+        "aha_frac": 0.66
       }
     },
     {
@@ -1243,9 +1243,9 @@
       "meta": {
         "target": 4.51,
         "floor": 0.75,
-        "avg_slips": 2.23,
-        "avg_win": 0.81,
-        "novice_win": 0.42,
+        "avg_slips": 2.09,
+        "avg_win": 0.82,
+        "novice_win": 0.44,
         "prober_win": 0,
         "after_med": 2,
         "aha_frac": 0.94
@@ -1255,7 +1255,7 @@
       "id": "l9-24",
       "kind": "normal",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
           "label": "Things that float",
@@ -1291,20 +1291,20 @@
       "also": {
         "Ice": [1]
       },
-      "jars": [["Sextant", "Cloud", "Slug", "Ruler"], ["Toffee", "Echidna", "Odometer", "Goodness"], ["Dingo", "Soap", "Barometer", "Grease"], ["Wombat", "Ice", "Bandicoot", "Possess"], ["Iceberg", "Squeegee", "Raft", "Seaweed"], [], []],
+      "jars": [["Dingo", "Squeegee", "Ruler", "Raft"], ["Cloud", "Wombat", "Grease", "Echidna"], ["Barometer", "Soap", "Iceberg", "Seaweed"], ["Ice", "Goodness", "Odometer", "Possess"], ["Toffee", "Sextant", "Bandicoot", "Slug"], [], []],
       "labelled": {
-        "6": 0
+        "6": 1
       },
-      "gold": 1,
+      "gold": 0,
       "meta": {
         "target": 4.52,
         "floor": 0.75,
-        "avg_slips": 2.3,
-        "avg_win": 0.89,
-        "novice_win": 0.6,
+        "avg_slips": 1.69,
+        "avg_win": 0.82,
+        "novice_win": 0.66,
         "prober_win": 0,
-        "after_med": 8,
-        "aha_frac": 0.75
+        "after_med": 6,
+        "aha_frac": 0.77
       }
     },
     {
@@ -1353,12 +1353,12 @@
       "meta": {
         "target": 6.13,
         "floor": 0.65,
-        "avg_slips": 2.54,
-        "avg_win": 0.47,
-        "novice_win": 0.37,
+        "avg_slips": 2.46,
+        "avg_win": 0.74,
+        "novice_win": 0.42,
         "prober_win": 0,
-        "after_med": 8,
-        "aha_frac": 0.68
+        "after_med": 13,
+        "aha_frac": 0.63
       }
     },
     {
@@ -1410,7 +1410,7 @@
       "id": "l9-27",
       "kind": "normal",
       "introduces": [],
-      "budget": 4,
+      "budget": 5,
       "groups": [
         {
           "label": "Ways to mix",
@@ -1453,8 +1453,8 @@
         "target": 4.57,
         "floor": 0.75,
         "avg_slips": 2.34,
-        "avg_win": 0.84,
-        "novice_win": 0.53,
+        "avg_win": 0.87,
+        "novice_win": 0.8,
         "prober_win": 0,
         "after_med": 3,
         "aha_frac": 0.93
@@ -1464,7 +1464,7 @@
       "id": "l9-28",
       "kind": "normal",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
           "label": "Laundry day",
@@ -1504,16 +1504,16 @@
       "labelled": {
         "6": 1
       },
-      "gold": 1,
+      "gold": 0,
       "meta": {
         "target": 4.59,
         "floor": 0.75,
-        "avg_slips": 2.42,
-        "avg_win": 0.84,
-        "novice_win": 0.69,
+        "avg_slips": 1.69,
+        "avg_win": 0.91,
+        "novice_win": 0.61,
         "prober_win": 0,
-        "after_med": 5,
-        "aha_frac": 0.84
+        "after_med": 2,
+        "aha_frac": 0.93
       }
     },
     {
@@ -1566,14 +1566,14 @@
         "novice_win": 0.51,
         "prober_win": 0,
         "after_med": 17,
-        "aha_frac": 0.44
+        "aha_frac": 0.43
       }
     },
     {
       "id": "l9-30",
       "kind": "hard",
       "introduces": [],
-      "budget": 6,
+      "budget": 5,
       "groups": [
         {
           "label": "Animal homes",
@@ -1610,20 +1610,20 @@
         "Sty": [0],
         "Pen": [0]
       },
-      "jars": [["Sty", "Aquarium", "Mushroom", "Exam"], ["Yew", "Acorn", "Barn", "Report"], ["Worksheet", "Nest", "Marker", "Sequoia"], ["Rhythm", "Pen", "Lynx", "Juniper"], ["Warren", "Cedar", "Sly", "Quiz"], [], []],
+      "jars": [["Sty", "Mushroom", "Cedar", "Acorn"], ["Aquarium", "Exam", "Nest", "Worksheet"], ["Lynx", "Pen", "Report", "Marker"], ["Sequoia", "Warren", "Rhythm", "Yew"], ["Sly", "Barn", "Juniper", "Quiz"], [], []],
       "labelled": {
-        "6": 1
+        "6": 3
       },
-      "gold": 3,
+      "gold": 2,
       "meta": {
         "target": 7.39,
         "floor": 0.55,
-        "avg_slips": 4.29,
-        "avg_win": 0.63,
-        "novice_win": 0.37,
+        "avg_slips": 3.03,
+        "avg_win": 0.79,
+        "novice_win": 0.45,
         "prober_win": 0,
-        "after_med": 3,
-        "aha_frac": 0.91
+        "after_med": 9,
+        "aha_frac": 0.76
       }
     }
   ]

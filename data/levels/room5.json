@@ -53,9 +53,9 @@
       "meta": {
         "target": 2.24,
         "floor": 0.8,
-        "avg_slips": 1.62,
-        "avg_win": 0.86,
-        "novice_win": 0.7,
+        "avg_slips": 1.59,
+        "avg_win": 0.89,
+        "novice_win": 0.71,
         "prober_win": 0,
         "after_med": 12,
         "aha_frac": 0.5
@@ -107,7 +107,7 @@
         "target": 2.25,
         "floor": 0.8,
         "avg_slips": 1.67,
-        "avg_win": 0.83,
+        "avg_win": 0.86,
         "novice_win": 0.59,
         "prober_win": 0,
         "after_med": 9,
@@ -159,9 +159,9 @@
       "meta": {
         "target": 2.27,
         "floor": 0.8,
-        "avg_slips": 1.63,
+        "avg_slips": 1.62,
         "avg_win": 0.9,
-        "novice_win": 0.72,
+        "novice_win": 0.73,
         "prober_win": 0,
         "after_med": 12,
         "aha_frac": 0.56
@@ -319,9 +319,9 @@
       "meta": {
         "target": 1.39,
         "floor": 0.92,
-        "avg_slips": 0.86,
-        "avg_win": 0.92,
-        "novice_win": 0.8,
+        "avg_slips": 0.83,
+        "avg_win": 0.94,
+        "novice_win": 0.81,
         "prober_win": 0,
         "after_med": 14,
         "aha_frac": 0.41
@@ -372,12 +372,12 @@
       "meta": {
         "target": 2.33,
         "floor": 0.8,
-        "avg_slips": 1.72,
-        "avg_win": 0.8,
+        "avg_slips": 1.69,
+        "avg_win": 0.81,
         "novice_win": 0.53,
         "prober_win": 0,
         "after_med": 15,
-        "aha_frac": 0.5
+        "aha_frac": 0.49
       }
     },
     {
@@ -425,7 +425,7 @@
       "meta": {
         "target": 2.35,
         "floor": 0.8,
-        "avg_slips": 1.68,
+        "avg_slips": 1.67,
         "avg_win": 0.8,
         "novice_win": 0.63,
         "prober_win": 0,
@@ -478,7 +478,7 @@
       "meta": {
         "target": 2.36,
         "floor": 0.8,
-        "avg_slips": 1.51,
+        "avg_slips": 1.5,
         "avg_win": 0.92,
         "novice_win": 0.72,
         "prober_win": 0,
@@ -532,7 +532,7 @@
       "meta": {
         "target": 3.81,
         "floor": 0.6,
-        "avg_slips": 1.99,
+        "avg_slips": 2,
         "avg_win": 0.83,
         "novice_win": 0.54,
         "prober_win": 0,
@@ -585,9 +585,9 @@
       "meta": {
         "target": 2.4,
         "floor": 0.8,
-        "avg_slips": 1.72,
-        "avg_win": 0.89,
-        "novice_win": 0.62,
+        "avg_slips": 1.69,
+        "avg_win": 0.92,
+        "novice_win": 0.64,
         "prober_win": 0,
         "after_med": 13,
         "aha_frac": 0.52
@@ -597,7 +597,7 @@
       "id": "l5-12",
       "kind": "normal",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
           "label": "Things you can draw",
@@ -634,16 +634,16 @@
         "Straw": [1]
       },
       "jars": [["Feather", "Sneeze", "Egg", "Chalet"], ["Crowd", "Satire", "Moss", "Cough"], ["Attention", "Twig", "Mansion", "Myth"], ["Yawn", "Card", "Novel", "Manor"], ["Legend", "Straw", "Villa", "Flinch"], [], []],
-      "gold": 1,
+      "gold": 0,
       "meta": {
         "target": 2.41,
         "floor": 0.8,
-        "avg_slips": 2.04,
-        "avg_win": 0.9,
-        "novice_win": 0.68,
+        "avg_slips": 1.85,
+        "avg_win": 0.88,
+        "novice_win": 0.58,
         "prober_win": 0,
         "after_med": 10,
-        "aha_frac": 0.62
+        "aha_frac": 0.61
       }
     },
     {
@@ -691,9 +691,9 @@
       "meta": {
         "target": 2.43,
         "floor": 0.8,
-        "avg_slips": 1.48,
-        "avg_win": 0.89,
-        "novice_win": 0.71,
+        "avg_slips": 1.4,
+        "avg_win": 0.91,
+        "novice_win": 0.75,
         "prober_win": 0,
         "after_med": 11,
         "aha_frac": 0.57
@@ -744,11 +744,11 @@
       "meta": {
         "target": 2.44,
         "floor": 0.8,
-        "avg_slips": 1.71,
-        "avg_win": 0.87,
+        "avg_slips": 1.7,
+        "avg_win": 0.88,
         "novice_win": 0.63,
         "prober_win": 0,
-        "after_med": 9,
+        "after_med": 10,
         "aha_frac": 0.6
       }
     },
@@ -798,7 +798,7 @@
       "meta": {
         "target": 3.32,
         "floor": 0.7,
-        "avg_slips": 1.54,
+        "avg_slips": 1.53,
         "avg_win": 0.87,
         "novice_win": 0.56,
         "prober_win": 0,
@@ -900,7 +900,7 @@
         "target": 2.49,
         "floor": 0.8,
         "avg_slips": 1.3,
-        "avg_win": 0.89,
+        "avg_win": 0.9,
         "novice_win": 0.63,
         "prober_win": 0,
         "after_med": 13,
@@ -1005,9 +1005,9 @@
       "meta": {
         "target": 2.52,
         "floor": 0.8,
-        "avg_slips": 1.34,
+        "avg_slips": 1.33,
         "avg_win": 0.94,
-        "novice_win": 0.67,
+        "novice_win": 0.68,
         "prober_win": 0,
         "after_med": 13,
         "aha_frac": 0.52
@@ -1059,12 +1059,12 @@
       "meta": {
         "target": 4.06,
         "floor": 0.6,
-        "avg_slips": 1.75,
-        "avg_win": 0.73,
-        "novice_win": 0.64,
+        "avg_slips": 1.61,
+        "avg_win": 0.88,
+        "novice_win": 0.66,
         "prober_win": 0,
         "after_med": 9,
-        "aha_frac": 0.7
+        "aha_frac": 0.68
       }
     },
     {
@@ -1107,17 +1107,17 @@
       "also": {
         "Lemur": [1]
       },
-      "jars": [["Chimp", "Flour", "Lemur", "Honey"], ["Eyelet", "Saturn", "Milk", "Lifeboat"], ["Marmoset", "Lace", "Circus", "Kayak"], ["Liner", "Gorilla", "Boxing", "Margarine"], ["Sole", "Mandrill", "Gondola", "Toe"], [], []],
-      "gold": 1,
+      "jars": [["Chimp", "Honey", "Toe", "Milk"], ["Lemur", "Lifeboat", "Lace", "Gondola"], ["Flour", "Saturn", "Kayak", "Gorilla"], ["Sole", "Boxing", "Marmoset", "Circus"], ["Liner", "Margarine", "Eyelet", "Mandrill"], [], []],
+      "gold": 0,
       "meta": {
         "target": 2.56,
         "floor": 0.8,
-        "avg_slips": 2.07,
-        "avg_win": 0.76,
-        "novice_win": 0.61,
+        "avg_slips": 1.31,
+        "avg_win": 0.89,
+        "novice_win": 0.77,
         "prober_win": 0,
-        "after_med": 15,
-        "aha_frac": 0.5
+        "after_med": 11,
+        "aha_frac": 0.54
       }
     },
     {
@@ -1165,11 +1165,11 @@
       "meta": {
         "target": 2.57,
         "floor": 0.8,
-        "avg_slips": 1.68,
-        "avg_win": 0.81,
-        "novice_win": 0.5,
+        "avg_slips": 1.56,
+        "avg_win": 0.82,
+        "novice_win": 0.53,
         "prober_win": 0,
-        "after_med": 13,
+        "after_med": 12,
         "aha_frac": 0.55
       }
     },
@@ -1426,8 +1426,8 @@
       "meta": {
         "target": 2.65,
         "floor": 0.8,
-        "avg_slips": 1.4,
-        "avg_win": 0.78,
+        "avg_slips": 1.41,
+        "avg_win": 0.83,
         "novice_win": 0.62,
         "prober_win": 0,
         "after_med": 12,
@@ -1438,7 +1438,7 @@
       "id": "l5-28",
       "kind": "normal",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
           "label": "Ways to move",
@@ -1474,17 +1474,17 @@
       "also": {
         "Skate": [1]
       },
-      "jars": [["Parallel", "Jewel", "Leap", "Pack"], ["Story", "Straight", "School", "Tinsel"], ["Pride", "Dotted", "White", "Roll"], ["Dew", "Black", "Gaggle", "Skate"], ["Vertical", "Tiara", "Hop", "Surf"], [], []],
-      "gold": 1,
+      "jars": [["Parallel", "Leap", "Vertical", "Gaggle"], ["Roll", "Story", "Hop", "Tinsel"], ["Dotted", "Pack", "Dew", "School"], ["Black", "Straight", "Surf", "Tiara"], ["Jewel", "Skate", "White", "Pride"], [], []],
+      "gold": 0,
       "meta": {
         "target": 2.67,
         "floor": 0.8,
-        "avg_slips": 2.3,
-        "avg_win": 0.71,
-        "novice_win": 0.7,
+        "avg_slips": 1.64,
+        "avg_win": 0.95,
+        "novice_win": 0.65,
         "prober_win": 0,
-        "after_med": 12,
-        "aha_frac": 0.57
+        "after_med": 10,
+        "aha_frac": 0.62
       }
     },
     {
@@ -1532,12 +1532,12 @@
       "meta": {
         "target": 2.68,
         "floor": 0.8,
-        "avg_slips": 1.47,
+        "avg_slips": 1.44,
         "avg_win": 0.89,
         "novice_win": 0.54,
         "prober_win": 0,
         "after_med": 13,
-        "aha_frac": 0.46
+        "aha_frac": 0.47
       }
     },
     {
@@ -1586,12 +1586,12 @@
       "meta": {
         "target": 4.32,
         "floor": 0.6,
-        "avg_slips": 2.17,
-        "avg_win": 0.55,
-        "novice_win": 0.44,
+        "avg_slips": 1.96,
+        "avg_win": 0.81,
+        "novice_win": 0.49,
         "prober_win": 0,
         "after_med": 14,
-        "aha_frac": 0.6
+        "aha_frac": 0.55
       }
     }
   ]

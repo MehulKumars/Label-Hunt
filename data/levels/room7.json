@@ -48,17 +48,17 @@
       "also": {
         "Shelf": [1]
       },
-      "jars": [["Shop", "Sofa", "Fox", "Keeper"], ["Shelf", "Gummy", "Raccoon", "Opal"], ["Brittle", "Jet", "Toffee", "Squirrel"], ["Worm", "Bubblegum", "Cupboard", "Agate"], ["Fair", "Topaz", "Bear", "Stool"], [], []],
+      "jars": [["Gummy", "Shelf", "Opal", "Raccoon"], ["Shop", "Bear", "Agate", "Keeper"], ["Bubblegum", "Fair", "Sofa", "Squirrel"], ["Worm", "Toffee", "Fox", "Topaz"], ["Stool", "Brittle", "Cupboard", "Jet"], [], []],
       "gold": 0,
       "meta": {
         "target": 3.2,
         "floor": 0.78,
-        "avg_slips": 1.79,
-        "avg_win": 0.43,
-        "novice_win": 0.53,
+        "avg_slips": 1.32,
+        "avg_win": 0.93,
+        "novice_win": 0.6,
         "prober_win": 0,
-        "after_med": 10,
-        "aha_frac": 0.61
+        "after_med": 14,
+        "aha_frac": 0.5
       }
     },
     {
@@ -106,12 +106,12 @@
       "meta": {
         "target": 3.21,
         "floor": 0.78,
-        "avg_slips": 1.8,
-        "avg_win": 0.74,
-        "novice_win": 0.5,
+        "avg_slips": 1.73,
+        "avg_win": 0.89,
+        "novice_win": 0.55,
         "prober_win": 0,
-        "after_med": 8,
-        "aha_frac": 0.7
+        "after_med": 9,
+        "aha_frac": 0.66
       }
     },
     {
@@ -159,7 +159,7 @@
       "meta": {
         "target": 3.23,
         "floor": 0.78,
-        "avg_slips": 1.47,
+        "avg_slips": 1.41,
         "avg_win": 0.78,
         "novice_win": 0.47,
         "prober_win": 0,
@@ -171,7 +171,7 @@
       "id": "l7-04",
       "kind": "normal",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
           "label": "Things you can blow",
@@ -207,17 +207,17 @@
       "also": {
         "Balloon": [1]
       },
-      "jars": [["Chlorine", "Relay", "Balloon", "Rally"], ["Shawl", "Biathlon", "Top", "Nitrogen"], ["Cravat", "Horn", "Oxygen", "Kite"], ["Pendant", "Cover", "Xenon", "Pinwheel"], ["Fuse", "Hurdles", "Rattle", "Medal"], [], []],
-      "gold": 1,
+      "jars": [["Oxygen", "Pinwheel", "Biathlon", "Fuse"], ["Hurdles", "Nitrogen", "Cover", "Kite"], ["Balloon", "Medal", "Rattle", "Rally"], ["Pendant", "Relay", "Xenon", "Shawl"], ["Cravat", "Chlorine", "Horn", "Top"], [], []],
+      "gold": 0,
       "meta": {
         "target": 3.24,
         "floor": 0.78,
-        "avg_slips": 2.3,
-        "avg_win": 0.8,
-        "novice_win": 0.67,
+        "avg_slips": 1.58,
+        "avg_win": 0.89,
+        "novice_win": 0.62,
         "prober_win": 0,
         "after_med": 14,
-        "aha_frac": 0.56
+        "aha_frac": 0.52
       }
     },
     {
@@ -266,12 +266,12 @@
       "meta": {
         "target": 4.4,
         "floor": 0.68,
-        "avg_slips": 2.33,
-        "avg_win": 0.82,
-        "novice_win": 0.39,
+        "avg_slips": 2.32,
+        "avg_win": 0.83,
+        "novice_win": 0.4,
         "prober_win": 0,
         "after_med": 10,
-        "aha_frac": 0.67
+        "aha_frac": 0.66
       }
     },
     {
@@ -318,12 +318,12 @@
       "meta": {
         "target": 1.97,
         "floor": 0.9,
-        "avg_slips": 0.99,
-        "avg_win": 0.91,
-        "novice_win": 0.88,
+        "avg_slips": 0.84,
+        "avg_win": 0.98,
+        "novice_win": 0.9,
         "prober_win": 0,
-        "after_med": 2,
-        "aha_frac": 0.96
+        "after_med": 4,
+        "aha_frac": 0.89
       }
     },
     {
@@ -383,7 +383,7 @@
       "id": "l7-08",
       "kind": "normal",
       "introduces": [],
-      "budget": 4,
+      "budget": 5,
       "groups": [
         {
           "label": "Parts of a flower",
@@ -426,8 +426,8 @@
         "target": 3.31,
         "floor": 0.78,
         "avg_slips": 2.21,
-        "avg_win": 0.72,
-        "novice_win": 0.53,
+        "avg_win": 0.86,
+        "novice_win": 0.62,
         "prober_win": 0,
         "after_med": 4,
         "aha_frac": 0.87
@@ -478,7 +478,7 @@
       "meta": {
         "target": 3.32,
         "floor": 0.78,
-        "avg_slips": 1.44,
+        "avg_slips": 1.43,
         "avg_win": 0.83,
         "novice_win": 0.5,
         "prober_win": 0,
@@ -533,7 +533,7 @@
       "meta": {
         "target": 5.34,
         "floor": 0.58,
-        "avg_slips": 3.15,
+        "avg_slips": 3.16,
         "avg_win": 0.71,
         "novice_win": 0.44,
         "prober_win": 0,
@@ -586,9 +586,9 @@
       "meta": {
         "target": 3.36,
         "floor": 0.78,
-        "avg_slips": 1.48,
-        "avg_win": 0.69,
-        "novice_win": 0.47,
+        "avg_slips": 1.49,
+        "avg_win": 0.75,
+        "novice_win": 0.49,
         "prober_win": 0,
         "after_med": 15,
         "aha_frac": 0.5
@@ -636,16 +636,16 @@
       },
       "jars": [["Hiccup", "Plant", "Mortar", "Journal"], ["Gasp", "Rake", "Plaster", "Notepad"], ["Folder", "Sow", "Concrete", "Envelope"], ["Sepia", "Blink", "Cinnamon", "Mulch"], ["Bronze", "Twitch", "Mocha", "Glue"], [], []],
       "frost": ["Hiccup", "Gasp", "Folder", "Sepia", "Bronze"],
-      "gold": 2,
+      "gold": 1,
       "meta": {
         "target": 3.37,
         "floor": 0.78,
-        "avg_slips": 2.7,
-        "avg_win": 0.86,
-        "novice_win": 0.6,
+        "avg_slips": 2.56,
+        "avg_win": 0.87,
+        "novice_win": 0.62,
         "prober_win": 0,
         "after_med": 2,
-        "aha_frac": 0.94
+        "aha_frac": 0.93
       }
     },
     {
@@ -693,8 +693,8 @@
       "meta": {
         "target": 3.39,
         "floor": 0.78,
-        "avg_slips": 1.48,
-        "avg_win": 0.9,
+        "avg_slips": 1.45,
+        "avg_win": 0.91,
         "novice_win": 0.71,
         "prober_win": 0,
         "after_med": 8,
@@ -747,12 +747,12 @@
       "meta": {
         "target": 3.4,
         "floor": 0.78,
-        "avg_slips": 2.3,
+        "avg_slips": 2.31,
         "avg_win": 0.85,
         "novice_win": 0.68,
         "prober_win": 0,
         "after_med": 4,
-        "aha_frac": 0.92
+        "aha_frac": 0.88
       }
     },
     {
@@ -801,7 +801,7 @@
       "meta": {
         "target": 4.62,
         "floor": 0.68,
-        "avg_slips": 2.01,
+        "avg_slips": 2,
         "avg_win": 0.82,
         "novice_win": 0.49,
         "prober_win": 0,
@@ -895,16 +895,16 @@
         "Iron": [0]
       },
       "jars": [["Squint", "Tee", "Peer", "Decade"], ["Phone", "Week", "Iron", "Divot"], ["Piece", "Softener", "Watch", "Detergent"], ["Minute", "Plug", "Hook", "Hour"], ["Ring", "Basket", "Wedge", "Glare"], [], []],
-      "gold": 1,
+      "gold": 0,
       "meta": {
         "target": 3.45,
         "floor": 0.78,
-        "avg_slips": 1.95,
-        "avg_win": 0.76,
-        "novice_win": 0.62,
+        "avg_slips": 1.88,
+        "avg_win": 0.8,
+        "novice_win": 0.63,
         "prober_win": 0,
         "after_med": 16,
-        "aha_frac": 0.5
+        "aha_frac": 0.52
       }
     },
     {
@@ -953,9 +953,9 @@
       "meta": {
         "target": 3.47,
         "floor": 0.78,
-        "avg_slips": 2.25,
+        "avg_slips": 2.22,
         "avg_win": 0.83,
-        "novice_win": 0.37,
+        "novice_win": 0.38,
         "prober_win": 0,
         "after_med": 2,
         "aha_frac": 0.93
@@ -1006,7 +1006,7 @@
       "meta": {
         "target": 3.48,
         "floor": 0.78,
-        "avg_slips": 1.98,
+        "avg_slips": 1.97,
         "avg_win": 0.84,
         "novice_win": 0.67,
         "prober_win": 0,
@@ -1061,12 +1061,12 @@
       "meta": {
         "target": 5.6,
         "floor": 0.58,
-        "avg_slips": 2.96,
+        "avg_slips": 2.97,
         "avg_win": 0.73,
         "novice_win": 0.47,
         "prober_win": 0,
-        "after_med": 3,
-        "aha_frac": 0.91
+        "after_med": 2,
+        "aha_frac": 0.92
       }
     },
     {
@@ -1169,7 +1169,7 @@
         "target": 3.53,
         "floor": 0.78,
         "avg_slips": 2.13,
-        "avg_win": 0.8,
+        "avg_win": 0.81,
         "novice_win": 0.49,
         "prober_win": 0,
         "after_med": 2,
@@ -1221,8 +1221,8 @@
       "meta": {
         "target": 3.55,
         "floor": 0.78,
-        "avg_slips": 1.46,
-        "avg_win": 0.85,
+        "avg_slips": 1.44,
+        "avg_win": 0.86,
         "novice_win": 0.47,
         "prober_win": 0,
         "after_med": 13,
@@ -1275,12 +1275,12 @@
       "meta": {
         "target": 3.56,
         "floor": 0.78,
-        "avg_slips": 2.06,
+        "avg_slips": 2.05,
         "avg_win": 0.81,
         "novice_win": 0.42,
         "prober_win": 0,
-        "after_med": 1,
-        "aha_frac": 0.96
+        "after_med": 2,
+        "aha_frac": 0.95
       }
     },
     {
@@ -1329,7 +1329,7 @@
       "meta": {
         "target": 4.83,
         "floor": 0.68,
-        "avg_slips": 2.6,
+        "avg_slips": 2.59,
         "avg_win": 0.74,
         "novice_win": 0.44,
         "prober_win": 0,
@@ -1374,7 +1374,7 @@
       "meta": {
         "target": 2.16,
         "floor": 0.9,
-        "avg_slips": 0.24,
+        "avg_slips": 0.23,
         "avg_win": 0.93,
         "novice_win": 0.78,
         "prober_win": 0,
@@ -1427,8 +1427,8 @@
       "meta": {
         "target": 3.61,
         "floor": 0.78,
-        "avg_slips": 1.45,
-        "avg_win": 0.81,
+        "avg_slips": 1.43,
+        "avg_win": 0.82,
         "novice_win": 0.51,
         "prober_win": 0,
         "after_med": 11,
@@ -1481,12 +1481,12 @@
       "meta": {
         "target": 3.63,
         "floor": 0.78,
-        "avg_slips": 2.19,
-        "avg_win": 0.71,
-        "novice_win": 0.49,
+        "avg_slips": 2.17,
+        "avg_win": 0.75,
+        "novice_win": 0.52,
         "prober_win": 0,
         "after_med": 3,
-        "aha_frac": 0.93
+        "aha_frac": 0.92
       }
     },
     {
@@ -1534,12 +1534,12 @@
       "meta": {
         "target": 3.64,
         "floor": 0.78,
-        "avg_slips": 1.83,
-        "avg_win": 0.78,
-        "novice_win": 0.62,
+        "avg_slips": 1.78,
+        "avg_win": 0.83,
+        "novice_win": 0.66,
         "prober_win": 0,
         "after_med": 13,
-        "aha_frac": 0.55
+        "aha_frac": 0.54
       }
     },
     {
@@ -1589,7 +1589,7 @@
       "meta": {
         "target": 5.86,
         "floor": 0.58,
-        "avg_slips": 3.45,
+        "avg_slips": 3.44,
         "avg_win": 0.72,
         "novice_win": 0.47,
         "prober_win": 0,

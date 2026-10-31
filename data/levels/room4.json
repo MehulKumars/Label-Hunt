@@ -94,7 +94,7 @@
       "meta": {
         "target": 1.77,
         "floor": 0.82,
-        "avg_slips": 1.59,
+        "avg_slips": 1.58,
         "avg_win": 0.86,
         "novice_win": 0.68,
         "prober_win": 0,
@@ -237,7 +237,7 @@
         "floor": 0.72,
         "avg_slips": 1.24,
         "avg_win": 0.91,
-        "novice_win": 0.62,
+        "novice_win": 0.61,
         "prober_win": 0,
         "after_med": 9,
         "aha_frac": 0.55
@@ -281,17 +281,17 @@
         }
       ],
       "also": {},
-      "jars": [["Rower", "Orange", "Stand", "Jet"], ["Lounge", "Bake", "Violet", "Boil"], ["Blue", "Diver", "Microwave", "Owl"], ["Red", "Lean", "Boxer", "Barbecue"], ["Recline", "Kite", "Gymnast", "Airship"], [], []],
+      "jars": [["Red", "Owl", "Lounge", "Blue"], ["Airship", "Rower", "Recline", "Microwave"], ["Gymnast", "Lean", "Kite", "Diver"], ["Boil", "Orange", "Boxer", "Barbecue"], ["Stand", "Bake", "Violet", "Jet"], [], []],
       "gold": 0,
       "meta": {
         "target": 1.1,
         "floor": 0.94,
-        "avg_slips": 0.43,
-        "avg_win": 0.96,
-        "novice_win": 0.84,
+        "avg_slips": 0.36,
+        "avg_win": 0.98,
+        "novice_win": 0.86,
         "prober_win": 0,
-        "after_med": 19,
-        "aha_frac": 0.26
+        "after_med": 21,
+        "aha_frac": 0.14
       }
     },
     {
@@ -339,11 +339,11 @@
       "meta": {
         "target": 1.85,
         "floor": 0.82,
-        "avg_slips": 1.42,
+        "avg_slips": 1.36,
         "avg_win": 0.85,
-        "novice_win": 0.58,
+        "novice_win": 0.59,
         "prober_win": 0,
-        "after_med": 21,
+        "after_med": 19,
         "aha_frac": 0.28
       }
     },
@@ -392,8 +392,8 @@
       "meta": {
         "target": 1.87,
         "floor": 0.82,
-        "avg_slips": 1.83,
-        "avg_win": 0.86,
+        "avg_slips": 1.82,
+        "avg_win": 0.87,
         "novice_win": 0.71,
         "prober_win": 0,
         "after_med": 12,
@@ -445,9 +445,9 @@
       "meta": {
         "target": 1.88,
         "floor": 0.82,
-        "avg_slips": 1.41,
+        "avg_slips": 1.4,
         "avg_win": 0.93,
-        "novice_win": 0.66,
+        "novice_win": 0.67,
         "prober_win": 0,
         "after_med": 14,
         "aha_frac": 0.48
@@ -493,24 +493,24 @@
       "also": {
         "Scissors": [0]
       },
-      "jars": [["Husband", "Minus", "Scissors", "Pickle"], ["Niece", "Sourdough", "Parent", "Shoulder"], ["Ampersand", "Mower", "Kefir", "Ribbon"], ["Mother", "Asterisk", "Turbine", "Cheese"], ["Thread", "Plus", "Saw", "Elastic"], [], []],
-      "gold": 1,
+      "jars": [["Minus", "Ribbon", "Husband", "Shoulder"], ["Scissors", "Mother", "Asterisk", "Niece"], ["Thread", "Sourdough", "Ampersand", "Mower"], ["Cheese", "Saw", "Pickle", "Parent"], ["Plus", "Elastic", "Kefir", "Turbine"], [], []],
+      "gold": 0,
       "meta": {
         "target": 3.04,
         "floor": 0.62,
-        "avg_slips": 1.83,
-        "avg_win": 0.68,
-        "novice_win": 0.43,
+        "avg_slips": 1.38,
+        "avg_win": 0.85,
+        "novice_win": 0.65,
         "prober_win": 0,
-        "after_med": 15,
-        "aha_frac": 0.45
+        "after_med": 9,
+        "aha_frac": 0.65
       }
     },
     {
       "id": "l4-11",
       "kind": "normal",
       "introduces": [],
-      "budget": 4,
+      "budget": 5,
       "groups": [
         {
           "label": "Pond life",
@@ -551,9 +551,9 @@
       "meta": {
         "target": 1.92,
         "floor": 0.82,
-        "avg_slips": 1.52,
-        "avg_win": 0.76,
-        "novice_win": 0.59,
+        "avg_slips": 1.51,
+        "avg_win": 0.96,
+        "novice_win": 0.75,
         "prober_win": 0,
         "after_med": 13,
         "aha_frac": 0.5
@@ -599,17 +599,17 @@
       "also": {
         "Laptop": [0]
       },
-      "jars": [["Enoki", "Jar", "Neckline", "Toilet"], ["Scanner", "Skirt", "Console", "Newton"], ["Bow", "Truffle", "Waist", "Kepler"], ["Einstein", "Oyster", "Laptop", "Camera"], ["Porcini", "Curie", "Casserole", "Tablet"], [], []],
+      "jars": [["Bow", "Oyster", "Waist", "Enoki"], ["Jar", "Console", "Skirt", "Newton"], ["Toilet", "Porcini", "Einstein", "Neckline"], ["Camera", "Laptop", "Tablet", "Curie"], ["Scanner", "Casserole", "Kepler", "Truffle"], [], []],
       "gold": 0,
       "meta": {
         "target": 1.93,
         "floor": 0.82,
-        "avg_slips": 1.75,
+        "avg_slips": 1.88,
         "avg_win": 0.83,
-        "novice_win": 0.6,
+        "novice_win": 0.64,
         "prober_win": 0,
-        "after_med": 13,
-        "aha_frac": 0.58
+        "after_med": 15,
+        "aha_frac": 0.52
       }
     },
     {
@@ -657,11 +657,11 @@
       "meta": {
         "target": 1.95,
         "floor": 0.82,
-        "avg_slips": 1.67,
+        "avg_slips": 1.66,
         "avg_win": 0.91,
         "novice_win": 0.66,
         "prober_win": 0,
-        "after_med": 18,
+        "after_med": 17,
         "aha_frac": 0.42
       }
     },
@@ -765,7 +765,7 @@
         "floor": 0.72,
         "avg_slips": 1.24,
         "avg_win": 0.95,
-        "novice_win": 0.68,
+        "novice_win": 0.69,
         "prober_win": 0,
         "after_med": 13,
         "aha_frac": 0.54
@@ -861,7 +861,7 @@
       "meta": {
         "target": 2.01,
         "floor": 0.82,
-        "avg_slips": 1.38,
+        "avg_slips": 1.37,
         "avg_win": 0.91,
         "novice_win": 0.58,
         "prober_win": 0,
@@ -1073,19 +1073,19 @@
       "meta": {
         "target": 2.08,
         "floor": 0.82,
-        "avg_slips": 1.54,
-        "avg_win": 0.84,
-        "novice_win": 0.64,
+        "avg_slips": 1.49,
+        "avg_win": 0.86,
+        "novice_win": 0.66,
         "prober_win": 0,
         "after_med": 13,
-        "aha_frac": 0.5
+        "aha_frac": 0.52
       }
     },
     {
       "id": "l4-22",
       "kind": "normal",
       "introduces": [],
-      "budget": 4,
+      "budget": 5,
       "groups": [
         {
           "label": "Things that pinch",
@@ -1126,9 +1126,9 @@
       "meta": {
         "target": 2.09,
         "floor": 0.82,
-        "avg_slips": 1.55,
-        "avg_win": 0.75,
-        "novice_win": 0.57,
+        "avg_slips": 1.54,
+        "avg_win": 0.93,
+        "novice_win": 0.69,
         "prober_win": 0,
         "after_med": 12,
         "aha_frac": 0.48
@@ -1179,12 +1179,12 @@
       "meta": {
         "target": 2.11,
         "floor": 0.82,
-        "avg_slips": 1.31,
-        "avg_win": 0.92,
-        "novice_win": 0.74,
+        "avg_slips": 1.25,
+        "avg_win": 0.96,
+        "novice_win": 0.77,
         "prober_win": 0,
-        "after_med": 13,
-        "aha_frac": 0.55
+        "after_med": 12,
+        "aha_frac": 0.56
       }
     },
     {
@@ -1232,12 +1232,12 @@
       "meta": {
         "target": 2.12,
         "floor": 0.82,
-        "avg_slips": 1.67,
-        "avg_win": 0.79,
-        "novice_win": 0.58,
+        "avg_slips": 1.6,
+        "avg_win": 0.88,
+        "novice_win": 0.62,
         "prober_win": 0,
-        "after_med": 9,
-        "aha_frac": 0.6
+        "after_med": 11,
+        "aha_frac": 0.54
       }
     },
     {
@@ -1285,7 +1285,7 @@
       "meta": {
         "target": 2.89,
         "floor": 0.72,
-        "avg_slips": 1.7,
+        "avg_slips": 1.66,
         "avg_win": 0.87,
         "novice_win": 0.69,
         "prober_win": 0,
@@ -1383,7 +1383,7 @@
       "meta": {
         "target": 2.17,
         "floor": 0.82,
-        "avg_slips": 1.21,
+        "avg_slips": 1.2,
         "avg_win": 0.89,
         "novice_win": 0.73,
         "prober_win": 0,
@@ -1436,12 +1436,12 @@
       "meta": {
         "target": 2.19,
         "floor": 0.82,
-        "avg_slips": 1.75,
-        "avg_win": 0.76,
-        "novice_win": 0.65,
+        "avg_slips": 1.66,
+        "avg_win": 0.86,
+        "novice_win": 0.7,
         "prober_win": 0,
-        "after_med": 11,
-        "aha_frac": 0.64
+        "after_med": 12,
+        "aha_frac": 0.63
       }
     },
     {
@@ -1489,7 +1489,7 @@
       "meta": {
         "target": 2.2,
         "floor": 0.82,
-        "avg_slips": 1.37,
+        "avg_slips": 1.36,
         "avg_win": 0.9,
         "novice_win": 0.71,
         "prober_win": 0,
@@ -1537,17 +1537,17 @@
       "also": {
         "Slide": [0]
       },
-      "jars": [["Rocket", "Slide", "Bench", "Nest"], ["Asteroid", "Paratha", "Lily", "Pond"], ["Tortilla", "Way", "Migrate", "Statue"], ["Sun", "Mark", "Bandstand", "Meteor"], ["Brioche", "Fly", "Bagel", "Glide"], [], []],
+      "jars": [["Sun", "Way", "Bench", "Tortilla"], ["Migrate", "Brioche", "Fly", "Asteroid"], ["Bagel", "Bandstand", "Slide", "Statue"], ["Glide", "Meteor", "Nest", "Pond"], ["Mark", "Paratha", "Lily", "Rocket"], [], []],
       "gold": 0,
       "meta": {
         "target": 3.55,
         "floor": 0.62,
-        "avg_slips": 1.82,
-        "avg_win": 0.73,
-        "novice_win": 0.63,
+        "avg_slips": 1.65,
+        "avg_win": 0.88,
+        "novice_win": 0.61,
         "prober_win": 0,
-        "after_med": 12,
-        "aha_frac": 0.6
+        "after_med": 11,
+        "aha_frac": 0.55
       }
     }
   ]

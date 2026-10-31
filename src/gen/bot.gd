@@ -13,6 +13,8 @@ const PROFILES := {
 	"prober": {"random": true},
 }
 const MAX_ACTIONS := 400
+## The game's +Jar limit (see the play screen).
+const MAX_JARS := 9
 const UNSURE := -1
 
 var level: LevelData
@@ -64,6 +66,10 @@ func _run(rules: Dictionary) -> Dictionary:
 			elif s.can_undo():
 				_tabu[_key()] = true
 				s.undo()
+				continue
+			elif s.jars_added == 0 and s.board.jar_count() < MAX_JARS:
+				# Stuck past the last lid: the free +Jar is what a person reaches for.
+				s.add_jar()
 				continue
 			else:
 				mv = _probe(false)
