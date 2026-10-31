@@ -111,7 +111,7 @@ at_the_circus,At the circus,circus,2,culture,Clown|Juggler|Acrobat|Trapeze|Tight
 ice_cream,Ice cream,cream,2,food,Vanilla|Chocolate|Mint|Pistachio|Caramel|Coffee|Mango|Toffee
 winter_sports,Winter sports,Winter,2,sport,Skiing|Skating|Curling|Luge|Biathlon|Slalom
 kinds_of_tea,Kinds of tea,tea,2,drink,Chai|Jasmine|Matcha|Oolong|Mint|Green
-things_with_keys,Things with keys,keys,3,lateral,Piano|Lock|Map|Keyboard|Organ|Laptop|Accordion
+things_with_keys,Things with keys,keys,3,lateral,Piano|Organ|Laptop|Accordion|Computer
 things_with_rings,Things with rings,rings,3,lateral,Saturn|Tree|Circus|Onion|Bell|Phone
 words_before_ball,Words before ball,ball,3,lateral,Foot|Snow|Eye|Basket|Base|Pin|Meat|Fire
 things_with_shells,Things with shells,shells,3,lateral,Snail|Turtle|Taco|Clam|Egg|Crab|Lobster|Tortoise

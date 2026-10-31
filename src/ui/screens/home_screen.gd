@@ -1,37 +1,57 @@
 ## Home. The hero is a big glass jar labelled "Jarful" that fills with a layer for every category sorted in this
-## room (full when the room is done). Below it the cabinet holds the current shelf, one layered jar per solved level,
-## then one big Play button in the thumb zone. Settings top left, How to play top right.
+## room (full when the room is done). Below it the cabinet holds the current shelf (tap it for the whole room).
+## Around them: the profile chip (avatar, level, XP ring) and coins at the top; the play streak and today's gift
+## beside the jar; Levels, the big Play button and the Shop in the thumb zone.
 class_name HomeScreen
 extends Control
 
 signal play_pressed
-signal tutorial_pressed
 signal settings_pressed
-
-const ROOM_NAMES := {1: "The Larder"}
+signal levels_pressed
+signal shop_pressed
+signal profile_pressed
+signal gift_pressed
+signal streak_pressed
+signal room_pressed
 
 var next_id := ""
+var room := 1
 var _gear: RoundButton
-var _help: RoundButton
+var _profile: _ProfileChip
+var _coins: CoinPill
+var _streak: RoundButton
+var _gift: RoundButton
 var _hero: _HeroJar
 var _cabinet: _Cabinet
 var _shelf: ShelfView
 var _count: Label
+var _levels: RoundButton
+var _shop: RoundButton
 var _play: PillButton
 
 
 func _init() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_profile = _ProfileChip.new()
+	_profile.pressed.connect(func() -> void: profile_pressed.emit())
+	add_child(_profile)
+	_coins = CoinPill.new()
+	_coins.pressed.connect(func() -> void: shop_pressed.emit())
+	add_child(_coins)
 	_gear = RoundButton.new("gear")
 	_gear.pressed.connect(func() -> void: settings_pressed.emit())
 	add_child(_gear)
-	_help = RoundButton.new("help")
-	_help.pressed.connect(func() -> void: tutorial_pressed.emit())
-	add_child(_help)
 	_hero = _HeroJar.new()
 	add_child(_hero)
+	_streak = RoundButton.new("streak", "Streak")
+	_streak.pressed.connect(func() -> void: streak_pressed.emit())
+	add_child(_streak)
+	_gift = RoundButton.new("gift", "Gift")
+	_gift.pressed.connect(func() -> void: gift_pressed.emit())
+	add_child(_gift)
 	_cabinet = _Cabinet.new()
+	_cabinet.pressed.connect(func() -> void: room_pressed.emit())
 	add_child(_cabinet)
 	_shelf = ShelfView.new()
 	add_child(_shelf)
@@ -41,6 +61,12 @@ func _init() -> void:
 	_count.add_theme_font_size_override("font_size", Style.FS_26)
 	_count.add_theme_color_override("font_color", Color(Style.INK, 0.78))
 	add_child(_count)
+	_levels = RoundButton.new("levels", "Levels")
+	_levels.pressed.connect(func() -> void: levels_pressed.emit())
+	add_child(_levels)
+	_shop = RoundButton.new("shop", "Shop")
+	_shop.pressed.connect(func() -> void: shop_pressed.emit())
+	add_child(_shop)
 	_play = PillButton.new("Play", true, Style.TOUCH_PRIMARY + 8.0)
 	_play.icon = "play"
 	_play.font_size = Style.FS_36
@@ -48,16 +74,27 @@ func _init() -> void:
 	add_child(_play)
 
 
+func _ready() -> void:
+	Wallet.changed.connect(func() -> void:
+		if visible:
+			_coins.set_value(Wallet.coins())
+			_profile.refresh())
+
+
 func refresh() -> void:
 	var cat := Levels.catalog
 	var save := Save.data
 	next_id = Progression.next_level(cat, save)
-	var room := Progression.current_room(cat, save)
+	room = Progression.current_room(cat, save)
 	var ids := cat.room_ids(room)
 	var solved := Progression.solved_count(cat, save, room)
-	_cabinet.title = ROOM_NAMES.get(room, "Room %d" % room)
+	_cabinet.title = cat.room_name(room)
 	_count.text = "%d of %d jars filled" % [solved, ids.size()]
-	_play.text = "Play level %d" % (cat.play_order().find(next_id) + 1) if next_id != "" else "Room complete"
+	var resume := str(save["board"].get("id", "")) == next_id and next_id != ""
+	if next_id == "":
+		_play.text = "All rooms done"
+	else:
+		_play.text = ("Continue level %d" if resume else "Play level %d") % (cat.order_index(next_id) + 1)
 	_play.enabled = next_id != ""
 	_play.queue_redraw()
 	var labels: Array = []
@@ -68,11 +105,21 @@ func refresh() -> void:
 	_hero.layers = Materials.preserve_layers(labels)
 	_hero.frac = solved / float(maxi(ids.size(), 1))
 	_hero.queue_redraw()
-	var shelf := 0 if next_id == "" else cat.shelf_of(next_id)
+	var shelf := 0 if next_id == "" or cat.entry(next_id)["room"] != room else cat.shelf_of(next_id)
 	var from := shelf * Catalog.SHELF
 	_shelf.slots = ShelfView.slots_for(ids.slice(from, mini(from + Catalog.SHELF, ids.size())), save, next_id)
 	_shelf.queue_redraw()
 	_shelf.breathe()
+	_coins.set_value(Wallet.coins(), false)
+	_profile.refresh()
+	var streak := Wallet.streak_shown()
+	_streak.badge = str(streak) if streak > 0 else ""
+	_streak.caption = "%d day%s" % [streak, "" if streak == 1 else "s"] if streak > 0 else "Streak"
+	var ready := Wallet.gift_ready()
+	_gift.caption = "Open" if ready else "Gift"
+	_gift.set_pulse(ready)
+	for b in [_streak, _gift]:
+		b.queue_redraw()
 	_layout()
 
 
@@ -87,27 +134,86 @@ func _layout() -> void:
 	var bottom: float = size.y - ins["bottom"]
 	var w := size.x
 	var left := Style.GUTTER
-	_gear.position = Vector2(left, top)
+	_profile.position = Vector2(left - 6.0, top)
+	_profile.size = Vector2(230, RoundButton.D)
+	_gear.position = Vector2(w - left - RoundButton.D, top)
 	_gear.size = _gear.custom_minimum_size
-	_help.position = Vector2(w - left - RoundButton.D, top)
-	_help.size = _help.custom_minimum_size
-	_play.size = Vector2(w - left * 2.0, Style.TOUCH_PRIMARY + 8.0)
-	_play.position = Vector2(left, bottom - _play.size.y - 40.0)
+	_coins.size = Vector2(160, CoinPill.H)
+	_coins.position = Vector2(_gear.position.x - 12.0 - 160.0, top + (RoundButton.D - CoinPill.H) / 2.0)
+	# Thumb row: Levels, Play, Shop.
+	var disc_w := RoundButton.D + 12.0
+	var play_h := Style.TOUCH_PRIMARY + 8.0
+	var row_y := bottom - play_h - 36.0
+	_play.size = Vector2(w - left * 2.0 - disc_w * 2.0 - 16.0, play_h)
+	_play.position = Vector2(left + disc_w + 8.0, row_y)
+	for b: RoundButton in [_levels, _shop]:
+		b.size = Vector2(disc_w, b.custom_minimum_size.y)
+	_levels.position = Vector2(left - 6.0, row_y + (play_h - 8.0 - RoundButton.D) / 2.0)
+	_shop.position = Vector2(w - left - disc_w + 6.0, _levels.position.y)
 	_count.size = Vector2(w, 40)
-	_count.position = Vector2(0, _play.position.y - 40 - 28.0)
-	var cab_h := 440.0
+	_count.position = Vector2(0, row_y - 40 - 22.0)
+	# The cabinet takes what the screen can spare: full height on tall phones, less on 16:9.
+	var cab_h := clampf((_count.position.y - top) * 0.46, 330.0, 440.0)
 	_cabinet.size = Vector2(w - (left - 8.0) * 2.0, cab_h)
-	_cabinet.position = Vector2(left - 8.0, _count.position.y - 44.0 - cab_h)
+	_cabinet.position = Vector2(left - 8.0, _count.position.y - 40.0 - cab_h)
 	_shelf.position = _cabinet.position + Vector2(30, 26)
 	_shelf.size = _cabinet.size - Vector2(60, 76)
-	# The hero jar stands on the cabinet's top, filling the room above it.
-	var hero_top := top + RoundButton.D * 0.35
+	# The hero jar stands on the cabinet's top, filling the room above it; streak and gift sit at its shoulders.
+	var hero_top := top + RoundButton.D + 18.0
 	var stand := _cabinet.position.y + 12.0
-	var hero_h := clampf(stand - hero_top, 240.0, 500.0)
-	var hero_w := minf(hero_h * 0.78, w * 0.62)
+	var hero_h := clampf(stand - hero_top, 220.0, 480.0)
+	var hero_w := minf(hero_h * 0.78, w * 0.56)
 	_hero.size = Vector2(hero_w, hero_h)
 	_hero.position = Vector2((w - hero_w) / 2.0, stand - hero_h)
+	var side_y := _hero.position.y + hero_h * 0.34
+	_streak.size = Vector2(disc_w + 20.0, _streak.custom_minimum_size.y)
+	_gift.size = _streak.size
+	_streak.position = Vector2(maxf(left - 14.0, (_hero.position.x - _streak.size.x) / 2.0), side_y)
+	_gift.position = Vector2(w - _streak.position.x - _gift.size.x, side_y)
 	move_child(_hero, -1)
+
+
+## Avatar with an XP ring, "Level 7" and the title beside it. Tap for the profile.
+class _ProfileChip extends Control:
+	signal pressed
+
+	var _down := false
+	var _info := {}
+	var _avatar := "lemon"
+
+	func _init() -> void:
+		mouse_filter = Control.MOUSE_FILTER_STOP
+
+	func refresh() -> void:
+		_info = Wallet.level_info()
+		_avatar = str(Save.data["profile"]["avatar"])
+		queue_redraw()
+
+	func _gui_input(event: InputEvent) -> void:
+		if not (event is InputEventMouseButton) or event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		accept_event()
+		if event.is_canceled():
+			_down = false
+		elif event.pressed:
+			_down = true
+			Sfx.play("tap", 1.0, 0.05, -4.0)
+		elif _down:
+			_down = false
+			if Rect2(Vector2.ZERO, size).has_point(event.position):
+				pressed.emit()
+
+	func _draw() -> void:
+		if _info.is_empty():
+			return
+		var d := size.y
+		AvatarView.draw_avatar(self, Rect2(0, 0, d, d), _avatar, float(_info["into"]) / float(_info["need"]))
+		var f := Style.sans_heavy()
+		var fb := Style.sans_bold()
+		draw_string(f, Vector2(d + 10.0, d * 0.46), "Level %d" % _info["level"], HORIZONTAL_ALIGNMENT_LEFT, size.x - d - 10.0,
+			Style.FS_30, Style.INK)
+		draw_string(fb, Vector2(d + 10.0, d * 0.46 + 30.0), str(_info["title"]), HORIZONTAL_ALIGNMENT_LEFT, size.x - d - 10.0,
+			Style.FS_22, Color(Style.INK, 0.72))
 
 
 ## The big jar: glass, its contents, a paprika lid (gold when the room is complete) and the "Jarful" label.
@@ -142,15 +248,32 @@ class _HeroJar extends Control:
 		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
-## The wooden cabinet, with the room's name on a kraft nameplate pinned to its base.
+## The wooden cabinet, with the room's name on a kraft nameplate pinned to its base. Tap it to see the whole room.
 class _Cabinet extends Control:
+	signal pressed
+
 	var title := "":
 		set(v):
 			title = v
 			queue_redraw()
+	var _down := false
 
 	func _init() -> void:
-		mouse_filter = Control.MOUSE_FILTER_IGNORE
+		mouse_filter = Control.MOUSE_FILTER_STOP
+
+	func _gui_input(event: InputEvent) -> void:
+		if not (event is InputEventMouseButton) or event.button_index != MOUSE_BUTTON_LEFT:
+			return
+		accept_event()
+		if event.is_canceled():
+			_down = false
+		elif event.pressed:
+			_down = true
+		elif _down:
+			_down = false
+			if Rect2(Vector2.ZERO, size).has_point(event.position):
+				Sfx.play("tap", 1.0, 0.05, -4.0)
+				pressed.emit()
 
 	func _draw() -> void:
 		draw_texture_rect(Art.tex("cabinet", size, Materials.cabinet), Rect2(Vector2.ZERO, size), false)

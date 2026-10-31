@@ -7,8 +7,10 @@ extends RefCounted
 const CAP := LevelData.CAPACITY
 
 
-## Returns {solved, path: Array[Vector2i], cost, expanded, hit_cap, branching}.
-static func solve(board: BoardState, max_expanded: int = 20000, weight: float = 1.5) -> Dictionary:
+## Returns {solved, path: Array[Vector2i], cost, expanded, hit_cap, branching}. `hit_cap` means "gave up" (node
+## cap, the `deadline_ms` tick, or `cancel[0]` set by another thread), never "unsolvable".
+static func solve(board: BoardState, max_expanded: int = 20000, weight: float = 1.5, deadline_ms: int = 0,
+		cancel: Array = []) -> Dictionary:
 	var ctx := _Ctx.new(board)
 	var start := ctx.encode(board)
 	var states: Array[PackedByteArray] = [start]
@@ -28,7 +30,10 @@ static func solve(board: BoardState, max_expanded: int = 20000, weight: float = 
 				"solved": true, "path": _path(id, parent, via), "cost": g_cost[id], "expanded": expanded,
 				"hit_cap": false, "branching": float(successors) / maxi(expanded, 1),
 			}
-		if expanded >= max_expanded:
+		var give_up := expanded >= max_expanded
+		if not give_up and expanded & 255 == 255:
+			give_up = (deadline_ms > 0 and Time.get_ticks_msec() > deadline_ms) or (not cancel.is_empty() and cancel[0])
+		if give_up:
 			return {"solved": false, "path": [], "cost": -1, "expanded": expanded, "hit_cap": true, "branching": 0.0}
 		expanded += 1
 		for mv in ctx.moves(s):
@@ -66,7 +71,7 @@ class _Ctx:
 
 	func _init(b: BoardState) -> void:
 		jar_count = b.jar_count()
-		groups = b.group_count
+		groups = b.group_count - b.sealed_count()  # sealed groups have left the board
 		label = b.label_group.duplicate()
 		cork = b.corked.duplicate()
 		special.resize(jar_count)
@@ -150,7 +155,9 @@ class _Ctx:
 			ns[jar_count * CAP] = 1
 		return ns
 
-	func key(s: PackedByteArray) -> String:
+	## Two bytes per jar (special jars in place, plain jars sorted) plus the cork byte. Packed arrays hash and
+	## compare by value as dictionary keys, and stay small (a hex String cost ~10x the memory on big searches).
+	func key(s: PackedByteArray) -> PackedByteArray:
 		var fixed := PackedInt32Array()
 		var plain := PackedInt32Array()
 		for j in jar_count:
@@ -162,8 +169,13 @@ class _Ctx:
 				plain.append(code)
 		plain.sort()
 		fixed.append_array(plain)
-		fixed.append(s[jar_count * CAP])
-		return fixed.to_byte_array().hex_encode()
+		var k := PackedByteArray()
+		k.resize(fixed.size() * 2 + 1)
+		for i in fixed.size():
+			k[i * 2] = fixed[i] >> 8
+			k[i * 2 + 1] = fixed[i] & 255
+		k[fixed.size() * 2] = s[jar_count * CAP]
+		return k
 
 	## Cards above each jar's bottom run must move at least once; split runs of one group cost their smaller parts.
 	func h(s: PackedByteArray) -> float:

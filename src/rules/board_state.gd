@@ -13,11 +13,14 @@ var corked: PackedByteArray = PackedByteArray()
 ## Group printed on the jar, or -1.
 var label_group: PackedInt32Array = PackedInt32Array()
 var group_count: int = 0
+## Per group: 1 once the Complete booster has sealed it (its cards left the board).
+var sealed: PackedByteArray = PackedByteArray()
 
 
 static func from_level(level: LevelData) -> BoardState:
 	var b := BoardState.new()
 	b.group_count = level.group_count()
+	b.sealed.resize(b.group_count)
 	for jar in level.jars:
 		b.jars.append(jar.duplicate())
 	b.lidded.resize(b.jars.size())
@@ -39,7 +42,37 @@ func copy() -> BoardState:
 	b.lidded = lidded.duplicate()
 	b.corked = corked.duplicate()
 	b.label_group = label_group.duplicate()
+	b.sealed = sealed.duplicate()
 	return b
+
+
+## Takes group g's cards out of every jar, buried ones too, and seals the group. Returns the cards with where they
+## were: [{card, jar, index}] (index before any card left that jar).
+func seal(g: int) -> Array[Dictionary]:
+	var out: Array[Dictionary] = []
+	for j in jars.size():
+		var jar := jars[j]
+		for k in range(jar.size() - 1, -1, -1):
+			if LevelData.group_of(jar[k]) == g:
+				out.append({"card": jar[k], "jar": j, "index": k})
+				jar.remove_at(k)
+		jars[j] = jar
+	sealed[g] = 1
+	return out
+
+
+func sealed_count() -> int:
+	return sealed.count(1)
+
+
+## Lidded in a jar or sealed by Complete.
+func is_solved(g: int) -> bool:
+	if sealed[g] == 1:
+		return true
+	for j in jars.size():
+		if lidded[j] == 1 and LevelData.group_of(jars[j][0]) == g:
+			return true
+	return false
 
 
 func jar_count() -> int:
@@ -120,7 +153,7 @@ func lid_count() -> int:
 
 
 func is_won() -> bool:
-	return lid_count() >= group_count
+	return lid_count() + sealed_count() >= group_count
 
 
 func add_empty_jar() -> int:

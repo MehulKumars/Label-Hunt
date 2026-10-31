@@ -111,8 +111,15 @@ func proven_not_in(c: int, g: int) -> bool:
 	var t := class_tag(c)
 	if t >= 0:
 		return t != g
+	var rc := find(c)
 	for other in parent.size():
-		if class_tag(other) == g and proven_diff(c, other):
+		if class_tag(other) != g:
+			continue
+		# A full class tagged g is the whole group, so nothing else can belong to it (lidded or sealed groups).
+		var ro := find(other)
+		if class_size[ro] >= LevelData.CAPACITY and ro != rc:
+			return true
+		if proven_diff(c, other):
 			return true
 	return false
 

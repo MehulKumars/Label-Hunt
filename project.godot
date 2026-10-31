@@ -20,10 +20,13 @@ boot_splash/show_image=false
 
 Levels="*res://src/core/levels.gd"
 Save="*res://src/core/save.gd"
+Wallet="*res://src/core/wallet.gd"
 
 Sfx="*res://src/core/sfx.gd"
 Haptics="*res://src/core/haptics.gd"
 Ads="*res://src/core/ads.gd"
+Store="*res://src/core/store.gd"
+Social="*res://src/core/social.gd"
 
 
 [display]

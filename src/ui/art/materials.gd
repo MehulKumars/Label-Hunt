@@ -24,12 +24,12 @@ static func jar_neck(w: float) -> float:
 	return w * 0.09
 
 
-static func jar_back(size: Vector2) -> String:
+static func jar_back(size: Vector2, shape: Dictionary = {}) -> String:
 	var w := size.x
 	var h := size.y
 	var rim := jar_rim(h)
 	var ni := jar_neck(w)
-	var body := _jar_body(w, h, rim)
+	var body := _jar_body(w, h, rim, shape)
 	var base := clampf(h * 0.06, 10.0, 22.0)
 	var r2 := minf(w * 0.16, 34.0)
 	return _svg(size, """
@@ -49,13 +49,13 @@ static func jar_back(size: Vector2) -> String:
 		_f(r2 * 0.7), _f(h - base * 1.3), _f(w / 2.0), _f(h - base * 2.3), _f(w - r2 * 0.7), _f(h - base * 1.3), GLASS_DEEP])
 
 
-static func jar_front(size: Vector2) -> String:
+static func jar_front(size: Vector2, shape: Dictionary = {}) -> String:
 	var w := size.x
 	var h := size.y
 	var rim := jar_rim(h)
 	var ni := jar_neck(w)
 	var r1 := minf(w * 0.2, 40.0)
-	var body := _jar_body(w, h, rim)
+	var body := _jar_body(w, h, rim, shape)
 	var base := clampf(h * 0.06, 10.0, 22.0)
 	var bh := h - rim
 	var stroke := clampf(w * 0.014, 2.0, 3.0)
@@ -207,15 +207,29 @@ static func label(size: Vector2, hole: bool = false) -> String:
 """ % [KRAFT[0], KRAFT[1], _f(w - 3), _f(h - 3), SHADOW, _f(w), _f(h - 3), _f(w - 6), _f(h - 9), punch])
 
 
-## Rounded jar outline (shoulders at the top, a slightly tighter base), from the rim down.
-static func _jar_body(w: float, h: float, rim: float) -> String:
-	var r1 := minf(w * 0.2, 40.0)
-	var r2 := minf(w * 0.16, 34.0)
-	return "M %s %s L %s %s Q %s %s %s %s L %s %s Q %s %s %s %s L %s %s Q %s %s %s %s L %s %s Q %s %s %s %s Z" % [
-		_f(r1), _f(rim), _f(w - r1), _f(rim), _f(w), _f(rim), _f(w), _f(rim + r1),
-		_f(w), _f(h - r2), _f(w), _f(h), _f(w - r2), _f(h),
-		_f(r2), _f(h), _f(0), _f(h), _f(0), _f(h - r2),
-		_f(0), _f(rim + r1), _f(0), _f(rim), _f(r1), _f(rim)]
+## Rounded jar outline (shoulders at the top, a slightly tighter base), from the rim down. A room's jar style
+## (RoomArt.SHAPES) changes the shoulder and base radii and lets the walls bow out (barrel) while the shoulders and
+## base come in by that much: the card area in the middle never changes.
+static func _jar_body(w: float, h: float, rim: float, shape: Dictionary = {}) -> String:
+	var r1 := minf(w * float(shape.get("r1", 0.2)), 40.0)
+	var r2 := minf(w * float(shape.get("r2", 0.16)), 34.0)
+	var b := float(shape.get("barrel", 0.0))
+	if b <= 0.0:
+		return "M %s %s L %s %s Q %s %s %s %s L %s %s Q %s %s %s %s L %s %s Q %s %s %s %s L %s %s Q %s %s %s %s Z" % [
+			_f(r1), _f(rim), _f(w - r1), _f(rim), _f(w), _f(rim), _f(w), _f(rim + r1),
+			_f(w), _f(h - r2), _f(w), _f(h), _f(w - r2), _f(h),
+			_f(r2), _f(h), _f(0), _f(h), _f(0), _f(h - r2),
+			_f(0), _f(rim + r1), _f(0), _f(rim), _f(r1), _f(rim)]
+	# Barrel: shoulders and base sit b in from the sides; the walls bow out to the full width between them.
+	var mid1 := rim + r1 + (h - r2 - rim - r1) * 0.3
+	var mid2 := rim + r1 + (h - r2 - rim - r1) * 0.7
+	return "M %s %s L %s %s Q %s %s %s %s C %s %s %s %s %s %s Q %s %s %s %s L %s %s Q %s %s %s %s C %s %s %s %s %s %s Q %s %s %s %s Z" % [
+		_f(b + r1), _f(rim), _f(w - b - r1), _f(rim), _f(w - b), _f(rim), _f(w - b), _f(rim + r1),
+		_f(w), _f(mid1), _f(w), _f(mid2), _f(w - b), _f(h - r2),
+		_f(w - b), _f(h), _f(w - b - r2), _f(h),
+		_f(b + r2), _f(h), _f(b), _f(h), _f(b), _f(h - r2),
+		_f(0), _f(mid2), _f(0), _f(mid1), _f(b), _f(rim + r1),
+		_f(b), _f(rim), _f(b + r1), _f(rim)]
 
 
 static func _svg(size: Vector2, body: String) -> String:
@@ -260,6 +274,28 @@ static func disc(size: Vector2) -> String:
 		_f(c), _f(c), _f(c - 2)])
 
 
+## The pantry coin: a brass token with a little jar stamped in it (the currency everywhere it shows).
+static func coin(size: Vector2) -> String:
+	var d := minf(size.x, size.y)
+	var c := d / 2.0
+	var r := c - 0.5
+	var s := r * 0.82
+	var jar := "M %s %s h %s v %s h %s v %s q %s 0 %s %s v %s q 0 %s %s %s h %s q %s 0 %s %s v %s q 0 %s %s %s h %s Z" % [
+		_f(c - s * 0.2), _f(c - s * 0.5), _f(s * 0.4), _f(s * 0.14), _f(-s * 0.04), _f(s * 0.06),
+		_f(s * 0.24), _f(s * 0.24), _f(s * 0.24), _f(s * 0.42), _f(s * 0.12), _f(-s * 0.12), _f(s * 0.12),
+		_f(-s * 0.56), _f(-s * 0.12), _f(-s * 0.12), _f(-s * 0.12), _f(-s * 0.42), _f(-s * 0.24), _f(s * 0.24),
+		_f(-s * 0.24), _f(-s * 0.04)]
+	return _svg(size, """
+<defs><radialGradient id="b" cx="0.36" cy="0.3" r="0.8"><stop offset="0" stop-color="#F6DC8C"/><stop offset="0.55" stop-color="#D9A441"/><stop offset="1" stop-color="#B07E2C"/></radialGradient></defs>
+<circle cx="%s" cy="%s" r="%s" fill="#8A5F1E"/>
+<circle cx="%s" cy="%s" r="%s" fill="url(#b)"/>
+<circle cx="%s" cy="%s" r="%s" fill="none" stroke="#FBEBB5" stroke-opacity="0.55" stroke-width="%s"/>
+<path d="%s" fill="#9A6A22" fill-opacity="0.6"/>
+<path d="M %s %s A %s %s 0 0 1 %s %s" fill="none" stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="%s" stroke-linecap="round"/>
+""" % [_f(c), _f(c + 0.6), _f(r), _f(c), _f(c), _f(r * 0.9), _f(c), _f(c), _f(r * 0.74), _f(maxf(r * 0.06, 0.8)), jar,
+		_f(c - r * 0.55), _f(c - r * 0.35), _f(r * 0.62), _f(r * 0.62), _f(c - r * 0.15), _f(c - r * 0.62), _f(maxf(r * 0.08, 1.0))])
+
+
 ## Preserve colours for the layers in a solved jar on the shelf. A category always gets the same one.
 const PRESERVES := ["#7B3F61", "#E8A04A", "#8A9A4B", "#5B4A7A", "#C6553A", "#4A5A8C", "#7FA88E", "#B98A5A",
 	"#EBD3A2", "#5E7F9A", "#B5C77A", "#6D8B3A"]
@@ -284,13 +320,13 @@ static func preserve_layers(labels: Array) -> Array:
 
 ## A small shelf jar: one coloured layer per solved category (bottom up), glass over it, and a lid
 ## (`lid` = enamel colour; gold for a clean solve). Empty `layers` draws the faint outline of a slot to come.
-static func mini_jar(size: Vector2, layers: Array, lid_color: Color, outline_only: bool = false) -> String:
+static func mini_jar(size: Vector2, layers: Array, lid_color: Color, outline_only: bool = false, shape: Dictionary = {}) -> String:
 	var w := size.x
 	var h := size.y
 	var lid_h := h * 0.13
 	var neck_h := h * 0.07
 	var top := lid_h + neck_h
-	var body := _jar_body(w, h, top)
+	var body := _jar_body(w, h, top, shape)
 	var neck := '<rect x="%s" y="%s" width="%s" height="%s" rx="2" fill="%s" fill-opacity="0.16" stroke="%s" stroke-opacity="0.45" stroke-width="1.5"/>' % [
 		_f(w * 0.16), _f(lid_h - 1.0), _f(w * 0.68), _f(neck_h + 3.0), GLASS, GLASS_DEEP]
 	if outline_only:

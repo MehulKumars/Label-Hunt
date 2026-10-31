@@ -7,9 +7,9 @@ class_name Bot
 extends RefCounted
 
 const PROFILES := {
-	"novice": {"know": [0.9, 0.7, 0.5], "guess": 0.45, "herring": 0.65, "noise": 1.6, "step_learn": 0.35, "undo": 0.4},
-	"average": {"know": [0.96, 0.82, 0.62], "guess": 0.5, "herring": 0.5, "noise": 1.0, "step_learn": 0.5, "undo": 0.6},
-	"expert": {"know": [0.99, 0.92, 0.8], "guess": 0.55, "herring": 0.3, "noise": 0.4, "step_learn": 0.7, "undo": 0.8},
+	"novice": {"know": [0.9, 0.7, 0.5, 0.35], "guess": 0.45, "herring": 0.65, "noise": 1.6, "step_learn": 0.35, "undo": 0.4},
+	"average": {"know": [0.96, 0.82, 0.62, 0.48], "guess": 0.5, "herring": 0.5, "noise": 1.0, "step_learn": 0.5, "undo": 0.6},
+	"expert": {"know": [0.99, 0.92, 0.8, 0.68], "guess": 0.55, "herring": 0.3, "noise": 0.4, "step_learn": 0.7, "undo": 0.8},
 	"prober": {"random": true},
 }
 const MAX_ACTIONS := 400
@@ -21,6 +21,8 @@ var rng: RandomNumberGenerator
 var s: Session
 var belief: PackedInt32Array
 var sure: PackedByteArray
+## Beliefs about frosted words wait here until the word is first seen (a person can't read a frosted card).
+var _frosted := {}
 var _last := Vector2i(-1, -1)
 var _known_at_move := -1
 var dead_ends := 0
@@ -95,7 +97,7 @@ func _sample_beliefs() -> void:
 	var know: Array = profile["know"]
 	for c in n:
 		var g := LevelData.group_of(c)
-		var tier := clampi(int(level.groups[g].get("tier", 1)), 1, 3)
+		var tier := clampi(int(level.groups[g].get("tier", 1)), 1, 4)
 		var knows := rng.randf() < float(know[tier - 1])
 		var alts := level.also.get(c, PackedInt32Array()) as PackedInt32Array
 		if not alts.is_empty() and rng.randf() < float(profile["herring"]) * (0.6 if knows else 1.0):
@@ -108,6 +110,11 @@ func _sample_beliefs() -> void:
 		else:
 			belief[c] = _other_group(g)
 	_cap_groups()
+	for c in n:
+		if s.know.seen[c] == 0:
+			_frosted[c] = Vector2i(belief[c], sure[c])
+			belief[c] = UNSURE
+			sure[c] = 0
 
 
 ## A person expects four cards per group: unsure extras beyond four become "no idea".
@@ -119,7 +126,7 @@ func _cap_groups() -> void:
 				members.append(c)
 		if members.size() <= LevelData.CAPACITY:
 			continue
-		members.shuffle()
+		Dealer._shuffle_array(members, rng)
 		members.sort_custom(func(a: int, b: int) -> bool: return sure[a] > sure[b])
 		for i in range(LevelData.CAPACITY, members.size()):
 			if sure[members[i]] == 0:
@@ -133,6 +140,12 @@ func _other_group(g: int) -> int:
 
 ## Proven facts override guesses: tagged classes are certain, proven pairs share a belief.
 func _absorb_knowledge() -> void:
+	for c in _frosted.keys():
+		if s.know.seen[c] == 1:
+			var v: Vector2i = _frosted[c]
+			belief[c] = v.x
+			sure[c] = v.y
+			_frosted.erase(c)
 	for c in belief.size():
 		var t := s.know.class_tag(c)
 		if t >= 0:

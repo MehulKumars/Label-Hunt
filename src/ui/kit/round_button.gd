@@ -7,13 +7,17 @@ signal pressed
 
 const D := 88.0
 const ICONS := {
-	"pause": "pause", "undo": "arrow-counter-clockwise", "peek": "eye", "jar_plus": "jar-plus",
-	"tidy": "magic-wand", "gear": "gear-six", "help": "question", "home": "house", "close": "x", "play": "play",
+	"pause": "pause", "undo": "arrow-counter-clockwise", "hint": "lightbulb", "jar_plus": "jar-plus",
+	"complete": "jar-seal", "tidy": "magic-wand", "gear": "gear-six", "help": "question", "home": "house",
+	"close": "x", "play": "play", "shop": "storefront", "levels": "map-trifold", "profile": "user", "gift": "gift",
+	"streak": "fire", "back": "arrow-left",
 }
 
 var icon := ""
 var caption := ""
 var badge := ""
+## The badge is a price in coins (drawn with a coin), not a count.
+var badge_coin := false
 var enabled := true:
 	set(v):
 		enabled = v
@@ -81,11 +85,14 @@ func _draw() -> void:
 	if badge != "":
 		var f := Style.sans_heavy()
 		var ts := f.get_string_size(badge, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22)
-		var tag := Vector2(maxf(ts.x + 16.0, 32.0), 30.0)
+		var coin_w := 22.0 if badge_coin else 0.0
+		var tag := Vector2(maxf(ts.x + 16.0 + coin_w, 32.0), 30.0)
 		var at := c + Vector2(D * 0.3, -D * 0.36) - tag / 2.0
 		draw_style_box(Style.box(Color(Style.INK, 0.18), Style.R_S), Rect2(at + Vector2(0, 2), tag))
 		draw_style_box(Style.box(Color("#E7D1A8"), Style.R_S), Rect2(at, tag))
-		draw_string(f, at + Vector2((tag.x - ts.x) / 2.0, (tag.y - f.get_height(Style.FS_22)) / 2.0 + f.get_ascent(Style.FS_22)), badge,
+		if badge_coin:
+			draw_texture_rect(Art.tex("coin", Vector2(20, 20), Materials.coin), Rect2(at + Vector2(6, 5), Vector2(20, 20)), false)
+		draw_string(f, at + Vector2(coin_w + (tag.x - coin_w - ts.x) / 2.0, (tag.y - f.get_height(Style.FS_22)) / 2.0 + f.get_ascent(Style.FS_22)), badge,
 			HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_22, Style.INK)
 	if caption != "":
 		var f := Style.sans_bold()

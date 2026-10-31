@@ -1,8 +1,8 @@
 {
   "version": 2,
   "track": "room",
-  "room": 1,
-  "name": "The Larder",
+  "room": 2,
+  "name": "The Kitchen",
   "gen": {
     "seed": 1,
     "bank": "f0495d49c0c2"
@@ -42,7 +42,7 @@
     {
       "id": "r1-02",
       "kind": "normal",
-      "introduces": ["undo"],
+      "introduces": [],
       "budget": 0,
       "groups": [
         {
@@ -110,14 +110,14 @@
     {
       "id": "r1-04",
       "kind": "normal",
-      "introduces": ["jar"],
+      "introduces": [],
       "budget": 0,
       "groups": [
         {
           "label": "Things with keys",
           "key": "keys",
           "tier": 3,
-          "words": ["Map", "Laptop", "Lock", "Organ"]
+          "words": ["Piano", "Laptop", "Computer", "Organ"]
         },
         {
           "label": "Planets",
@@ -133,7 +133,7 @@
         }
       ],
       "also": {},
-      "jars": [["Skiing", "Mars", "Laptop", "Venus"], ["Organ", "Luge", "Map", "Mercury"], ["Slalom", "Lock", "Earth", "Skating"], [], []],
+      "jars": [["Skiing", "Mars", "Laptop", "Venus"], ["Organ", "Luge", "Piano", "Mercury"], ["Slalom", "Computer", "Earth", "Skating"], [], []],
       "gold": -1,
       "meta": {
         "target": 0.48,
@@ -221,7 +221,7 @@
     {
       "id": "r1-07",
       "kind": "normal",
-      "introduces": ["herring"],
+      "introduces": [],
       "budget": 0,
       "groups": [
         {
@@ -260,7 +260,7 @@
     {
       "id": "r1-08",
       "kind": "normal",
-      "introduces": ["peek"],
+      "introduces": [],
       "budget": 0,
       "groups": [
         {
@@ -375,7 +375,7 @@
     {
       "id": "r1-11",
       "kind": "rest",
-      "introduces": ["budget"],
+      "introduces": [],
       "budget": 3,
       "groups": [
         {
@@ -566,7 +566,7 @@
     {
       "id": "r1-16",
       "kind": "rest",
-      "introduces": ["four"],
+      "introduces": [],
       "budget": 4,
       "groups": [
         {
@@ -1000,7 +1000,7 @@
     {
       "id": "r1-26",
       "kind": "rest",
-      "introduces": ["herrings"],
+      "introduces": [],
       "budget": 5,
       "groups": [
         {

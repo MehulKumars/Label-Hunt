@@ -14,6 +14,8 @@ var enabled := true:
 		enabled = v
 		modulate.a = 1.0 if v else 0.45
 var _down := false
+var _press_at := Vector2.ZERO
+var _scrolling := false
 
 
 func _init(label: String = "", is_primary: bool = true, height: float = Style.TOUCH) -> void:
@@ -25,17 +27,31 @@ func _init(label: String = "", is_primary: bool = true, height: float = Style.TO
 
 
 func _gui_input(event: InputEvent) -> void:
+	# In a scrolling list, a press that becomes a drag scrolls the list instead (Scroller).
+	if event is InputEventMouseMotion and (_down or _scrolling) and Scroller.find(self) != null:
+		accept_event()
+		if not _scrolling and event.position.distance_to(_press_at) > Scroller.SLOP:
+			_scrolling = true
+			_release(false)
+		if _scrolling:
+			Scroller.drag(self, event.relative)
+		return
 	if not (event is InputEventMouseButton) or event.button_index != MOUSE_BUTTON_LEFT:
 		return
 	accept_event()
 	pivot_offset = size / 2.0
 	if event.is_canceled():
+		_scrolling = false
 		_release(false)
 	elif event.pressed:
 		_down = true
+		_scrolling = false
+		_press_at = event.position
 		create_tween().tween_property(self, "scale", Vector2.ONE * 0.96, Style.T_PRESS).set_ease(Tween.EASE_OUT)
 		if enabled:
 			Sfx.play("tap", 1.0, 0.05, -4.0)
+	elif _scrolling:
+		_scrolling = false
 	elif _down:
 		_release(Rect2(Vector2.ZERO, size).has_point(event.position))
 

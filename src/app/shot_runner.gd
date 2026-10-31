@@ -5,7 +5,9 @@
 class_name ShotRunner
 extends Node
 
-const SCENARIOS := ["home", "home_mid", "tutorial", "t01", "t03_slip", "t07", "m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "win", "lose", "pause", "test", "drag", "pick"]
+const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "gift", "tutorial", "t01", "t03_slip", "t07",
+	"m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "need_coins", "hint", "complete_pick", "complete_fly",
+	"win", "lose", "room_reveal", "pause", "test", "drag", "pick", "themes"]
 
 var out_dir := ""
 var only: PackedStringArray = []
@@ -74,6 +76,73 @@ func _run(name: String) -> void:
 				play.session.add_jar()
 				play.board.add_jar()
 			await _slips(play, 1)
+		"levels":
+			main.open_levels()
+			await _wait(0.4)
+		"room":
+			main.open_room(int(Levels.catalog.room_numbers().back()), "levels")
+			await _wait(0.4)
+		"profile":
+			Save.data["profile"]["name"] = "Mehul"
+			Save.data["xp"] = 340
+			main.open_profile()
+			await _wait(0.4)
+		"shop":
+			main.go_home()
+			await _wait(0.3)
+			MetaSheets.shop(main)
+		"gift":
+			var today := Wallet.today()
+			Save.data["streak"] = {"count": 3, "best": 5, "last_day": today, "savers": 1}
+			Save.data["gift"]["claimed_day"] = today - 1
+			main.go_home()
+			await _wait(0.3)
+			MetaSheets.gift(main)
+		"need_coins":
+			Save.data["coins"] = 20
+			Save.data["inventory"] = {"hint": 0, "complete": 0}
+			main.start_level("m01")
+			await _wait(0.5)
+			play._on_hint()
+		"hint":
+			Save.data["coins"] = 500
+			main.start_level("m01")
+			await _wait(0.5)
+			play._on_hint()
+			await _wait(0.6)
+		"complete_pick":
+			Save.data["coins"] = 500
+			main.start_level("m01")
+			await _legal(play, 4)
+			await _slips(play, 1)
+			play._on_complete()
+		"complete_fly":
+			main.close_all_sheets()
+			Save.data["coins"] = 500
+			main.start_level("m01")
+			await _wait(0.5)
+			play._on_complete()
+			main.close_all_sheets()
+			play.do_complete(0)
+			await _wait(0.32)
+			await RenderingServer.frame_post_draw
+			_save(name, play)
+			await _wait(1.4)
+			_save("complete_done", play)
+			return
+		"room_reveal":
+			main.go_home()
+			await _wait(0.2)
+			MetaSheets.room_reveal(main, int(Levels.catalog.room_numbers().back()), Levels.catalog.play_order()[0])
+		"themes":
+			for r in range(1, 18):
+				main.start_level("m01")
+				main.backdrop.set_room(r)
+				play.board.set_room(r)
+				await _wait(0.6)
+				await RenderingServer.frame_post_draw
+				_save("theme_%02d" % r, play)
+			return
 		"home":
 			main.go_home()
 			await _wait(0.4)
@@ -88,10 +157,13 @@ func _run(name: String) -> void:
 			main.start_tutorial(0)
 			await _wait(1.2)
 		"win":
+			main.close_all_sheets()
+			Save.data["xp"] = 50
 			main.start_level("r1-01")
 			await _legal(play, 99)
 			await _wait(2.5)
 		"lose":
+			Save.data["coins"] = 300
 			main.start_level("m01")
 			await _slips(play, 4)
 			await _wait(1.5)

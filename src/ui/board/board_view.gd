@@ -7,7 +7,6 @@ signal drop_requested(from: int, to: int)
 signal lift_started(jar: int)
 signal lift_cancelled
 signal buried_tapped(card: int)
-signal peek_picked(card: int)
 signal lid_finished(jar: int)
 
 const DRAG_START := 12.0
@@ -24,7 +23,10 @@ var cards: Dictionary = {} # card id -> CardView
 var backs: Array[JarView] = []
 var fronts: Array[JarView] = []
 var lifted_jar := -1
-var peek_mode := false
+## The room whose wood and jar style the board wears (Themes).
+var room := 1
+## Board ignores touches (Tidy autoplay, the Complete picker).
+var input_locked := false
 var reduce_motion := false
 var _dragging := false
 var _pressing := false
@@ -70,7 +72,6 @@ func setup(s: Session) -> void:
 	_flights.clear()
 	_wobble.clear()
 	lifted_jar = -1
-	peek_mode = false
 	_end_drag()
 	for j in s.board.jar_count():
 		_add_jar_nodes()
@@ -126,7 +127,9 @@ func deal_in() -> void:
 
 func _add_jar_nodes() -> void:
 	var b := JarView.new(JarView.Layer.BACK)
+	b.room = room
 	var f := JarView.new(JarView.Layer.FRONT)
+	f.room = room
 	add_child(b)
 	add_child(f)
 	backs.append(b)
@@ -210,8 +213,14 @@ func hover_pos(j: int) -> Vector2:
 	return BoardLayout.hover_pos(layout, layout["jars"][j])
 
 
-## Moves every card to where the board says it is.
+## Moves every card to where the board says it is. Cards of sealed groups have left the board and stay hidden.
 func sync(animate: bool = true) -> void:
+	for g in session.level.group_count():
+		if session.board.sealed[g] == 1:
+			for k in LevelData.CAPACITY:
+				var sv: CardView = cards[g * LevelData.CAPACITY + k]
+				if not _flights.has(sv):
+					sv.visible = false
 	for j in session.board.jar_count():
 		var jar := session.board.jars[j]
 		for k in jar.size():
@@ -269,7 +278,7 @@ func top_card(j: int) -> CardView:
 ##   The drop jar is the one under the card (generous column hit areas), highlighted while you hover.
 ## - Tap the lifted card's own jar again, or empty space, to put it back.
 func _gui_input(event: InputEvent) -> void:
-	if session == null or session.is_over():
+	if session == null or session.is_over() or input_locked:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_canceled():
@@ -299,11 +308,6 @@ func _on_press(pos: Vector2) -> void:
 	_dragging = false
 	_pressing = false
 	_fresh_pick = false
-	if peek_mode:
-		var c := card_at(pos)
-		if c >= 0:
-			peek_picked.emit(c)
-		return
 	var j := jar_at(pos)
 	if lifted_jar >= 0:
 		if j == lifted_jar or _on_card(top_card(lifted_jar), pos):
@@ -549,6 +553,43 @@ func show_undo() -> void:
 	sync(true)
 
 
+## Complete: the group's cards lift out of their jars (buried ones too), fly up in a stagger and shrink into the
+## label tag at `target` (board coordinates), then the cards left behind settle down. Ratchet, seat and bell.
+func show_seal(events: Array, target: Vector2) -> void:
+	lifted_jar = -1
+	for e: Dictionary in events:
+		if e["type"] != "seal":
+			continue
+		var i := 0
+		for x: Dictionary in e["cards"]:
+			var cv: CardView = cards[x["card"]]
+			_stop(cv)
+			cv.z_index = 6
+			cv.set_lifted(true)
+			cv.set_buried(false)
+			cv.pivot_offset = cv.size / 2.0
+			var delay := i * 0.07
+			var dest := target - cv.size / 2.0
+			if reduce_motion:
+				cv.visible = false
+				continue
+			var tw := _fly(cv, dest, 0.42, 60.0, false, delay)
+			_track(cv.create_tween()).tween_property(cv, "scale", Vector2.ONE * 0.3, 0.42).set_delay(delay) \
+				.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+			tw.finished.connect(func() -> void:
+				cv.visible = false
+				cv.scale = Vector2.ONE
+				cv.z_index = 1)
+			i += 1
+		Sfx.play_at(0.1, "ratchet", 1.0, 0.0)
+		get_tree().create_timer(0.62).timeout.connect(func() -> void:
+			Sfx.play("seat", 1.0, 0.0)
+			Sfx.play("bell", 1.2, 0.0, -6.0)
+			Haptics.lid())
+	refresh_cards(true)
+	get_tree().create_timer(0.0 if reduce_motion else 0.35).timeout.connect(sync.bind(true))
+
+
 func play_lid(j: int, g: int) -> void:
 	var f := fronts[j]
 	f.lid_label = session.level.groups[g]["label"]
@@ -721,4 +762,13 @@ func _draw() -> void:
 	# Wooden planks: the jars stand on the lit top surface; the plank's shadow falls on the wall below.
 	for s: Rect2 in layout["shelves"]:
 		var plank := Rect2(s.position.x, s.position.y - 6.0, s.size.x, s.size.y + 26.0)
-		draw_texture_rect(Art.tex("plank", plank.size, Materials.plank), plank, false)
+		draw_texture_rect(Art.tex("plank|%d" % room, plank.size, RoomArt.plank.bind(room)), plank, false)
+
+
+## Wears a room's look: its wood under the jars and its jar style (glass, silhouette, lids).
+func set_room(r: int) -> void:
+	room = r
+	for v: JarView in backs + fronts:
+		v.room = r
+		v.queue_redraw()
+	queue_redraw()

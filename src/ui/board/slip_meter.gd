@@ -34,17 +34,19 @@ func _draw() -> void:
 	if stars_mode:
 		var stars := 3 if slips <= 1 else (2 if slips <= 3 else 1)
 		for i in 3:
-			var c := Vector2(size.x - 22 - (2 - i) * 40, size.y / 2.0)
+			var c := Vector2(size.x / 2.0 + (i - 1) * 40, size.y / 2.0)
 			Style.draw_glyph(self, Style.Glyph.STAR, c, 15.0, Style.APRICOT if i < stars else Style.INK_SOFT)
 		return
 	if budget <= 0:
 		return
-	var w := 36.0
-	var gap := 8.0
-	var x := size.x - budget * (w + gap) + gap
+	# Centred; the jars shrink to fit long budgets and short rows (36 x 50 at most).
+	var gap := 6.0
+	var w := minf(36.0, minf((size.x + gap) / budget - gap, size.y * 0.72))
+	var h := w * 50.0 / 36.0
+	var x := (size.x - (budget * (w + gap) - gap)) / 2.0
 	for i in budget:
 		var cracked := i >= budget - slips
-		var r := Rect2(x + i * (w + gap), size.y / 2.0 - 25, w, 50)
+		var r := Rect2(x + i * (w + gap), (size.y - h) / 2.0, w, h)
 		if cracked and i == budget - slips:
 			r.position.x += sin(_shake * 30.0) * 4.0 * _shake
 		if not cracked and _warn > 0.0:
@@ -54,7 +56,8 @@ func _draw() -> void:
 
 ## A small glass jar per slip left; a used one empties, greys and shows a clean crack across its body.
 func _draw_mini_jar(r: Rect2, cracked: bool) -> void:
-	var body := Rect2(r.position + Vector2(0, 9), r.size - Vector2(0, 9))
+	var k := r.size.x / 36.0
+	var body := Rect2(r.position + Vector2(0, 9 * k), r.size - Vector2(0, 9 * k))
 	var glass := Color(Style.TEAL, 0.2 if not cracked else 0.08)
 	draw_style_box(Style.box(glass, 9, 2, Color(Style.TEAL if not cracked else Style.INK, 0.6 if not cracked else 0.35)), body)
 	if not cracked:

@@ -9,6 +9,8 @@ enum Layer { BACK, FRONT }
 const LABEL_SHARE := 0.88
 
 var layer := Layer.BACK
+## The room whose glass, silhouette and lids this jar wears (Themes).
+var room := 1
 var neck := 20.0
 var corked := false
 var labelled_text := ""
@@ -36,9 +38,9 @@ func _draw() -> void:
 		if hot:
 			var body := Rect2(0, neck, size.x, size.y - neck)
 			draw_style_box(Style.glow(Color(Style.APRICOT, 0.55), 30, 22), body.grow(-6))
-		draw_texture_rect(Art.tex("jar_back", size, Materials.jar_back), r, false)
+		draw_texture_rect(Art.tex("jar_back|%d" % room, size, RoomArt.jar_back.bind(room)), r, false)
 		return
-	draw_texture_rect(Art.tex("jar_front", size, Materials.jar_front), r, false)
+	draw_texture_rect(Art.tex("jar_front|%d" % room, size, RoomArt.jar_front.bind(room)), r, false)
 	var ni := Materials.jar_neck(size.x)
 	var mouth := Rect2(ni, 0, size.x - ni * 2, neck)
 	if corked:
@@ -69,7 +71,7 @@ func _draw_lid(mouth: Rect2) -> void:
 	var rect := Rect2(mouth.position.x - 8, -lid_size.y * 0.55 + drop, lid_size.x, lid_size.y / squash)
 	rect.position.x -= (rect.size.x * (squash - 1.0)) / 2.0
 	rect.size.x *= squash
-	var tex := Art.tex("lid_%s" % label_color.to_html(false), lid_size, Materials.lid.bind(label_color))
+	var tex := Art.tex("lid_%s|%d" % [label_color.to_html(false), room], lid_size, RoomArt.lid.bind(room, label_color))
 	draw_texture_rect(tex, rect, false)
 
 
