@@ -1,0 +1,90 @@
+{
+  "room": 2,
+  "name": "The Kitchen",
+  "seed": 1,
+  "bank": "063773f73282",
+  "levels": [
+    {
+      "number": 1,
+      "level": {
+        "id": "l2-01",
+        "kind": "normal",
+        "introduces": [],
+        "budget": 0,
+        "groups": [
+          {
+            "label": "Ways to look",
+            "key": "look",
+            "tier": 2,
+            "words": ["Glance", "Peer", "Stare", "Peek"]
+          },
+          {
+            "label": "Words before side",
+            "key": "side",
+            "tier": 3,
+            "words": ["Down", "Out", "Flip", "Country"]
+          },
+          {
+            "label": "Baby animals",
+            "key": "Baby",
+            "tier": 1,
+            "words": ["Joey", "Lamb", "Cub", "Kid"]
+          }
+        ],
+        "also": {}
+      },
+      "spec": {
+        "kind": "normal",
+        "familiar": true,
+        "budget": true,
+        "floor": 0.85,
+        "novice_floor": 0.7,
+        "target": 0.6,
+        "tiers": [1, 2, 3],
+        "herrings": 0,
+        "exclude": ["abstract", "wordplay"]
+      }
+    },
+    {
+      "number": 2,
+      "level": {
+        "id": "l2-02",
+        "kind": "normal",
+        "introduces": [],
+        "budget": 0,
+        "groups": [
+          {
+            "label": "Tennis terms",
+            "key": "Tennis",
+            "tier": 2,
+            "words": ["Smash", "Rally", "Serve", "Ace"]
+          },
+          {
+            "label": "Things that click",
+            "key": "click",
+            "tier": 3,
+            "words": ["Pen", "Tongue", "Mouse", "Switch"]
+          },
+          {
+            "label": "Directions",
+            "key": "Directions",
+            "tier": 1,
+            "words": ["West", "East", "Backward", "Sideways"]
+          }
+        ],
+        "also": {}
+      },
+      "spec": {
+        "kind": "normal",
+        "familiar": true,
+        "budget": true,
+        "floor": 0.85,
+        "novice_floor": 0.7,
+        "target": 0.65,
+        "tiers": [1, 2, 3],
+        "herrings": 0,
+        "exclude": ["abstract", "wordplay"]
+      }
+    }
+  ]
+}

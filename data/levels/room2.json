@@ -1,73 +1,89 @@
 {
-  "version": 2,
+  "version": 3,
   "track": "room",
   "room": 2,
   "name": "The Kitchen",
   "gen": {
     "seed": 1,
-    "bank": "f0495d49c0c2"
+    "bank": "063773f73282"
   },
   "levels": [
     {
-      "id": "r1-01",
+      "id": "l2-01",
       "kind": "normal",
       "introduces": [],
-      "budget": 0,
+      "budget": 3,
       "groups": [
         {
-          "label": "Organs",
-          "key": "Organs",
-          "tier": 1,
-          "words": ["Stomach", "Lung", "Liver", "Spleen"]
+          "label": "Ways to look",
+          "key": "look",
+          "tier": 2,
+          "words": ["Glance", "Peer", "Stare", "Peek"]
         },
         {
-          "label": "In the bathroom",
-          "key": "bathroom",
+          "label": "Words before side",
+          "key": "side",
+          "tier": 3,
+          "words": ["Down", "Out", "Flip", "Country"]
+        },
+        {
+          "label": "Baby animals",
+          "key": "Baby",
           "tier": 1,
-          "words": ["Mirror", "Shampoo", "Shower", "Soap"]
+          "words": ["Joey", "Lamb", "Cub", "Kid"]
         }
       ],
       "also": {},
-      "jars": [["Stomach", "Shower", "Liver", "Shampoo"], ["Spleen", "Soap", "Lung", "Mirror"], [], []],
-      "gold": -1,
+      "jars": [["Cub", "Stare", "Country", "Peer"], ["Down", "Joey", "Flip", "Peek"], ["Lamb", "Out", "Glance", "Kid"], [], []],
+      "gold": 0,
       "meta": {
-        "target": 0.1,
-        "avg_slips": 0.06,
-        "avg_win": 1,
-        "novice_win": 1,
-        "after_med": 8,
-        "aha_frac": 0
+        "target": 0.6,
+        "floor": 0.85,
+        "avg_slips": 0.5,
+        "avg_win": 0.95,
+        "novice_win": 0.87,
+        "prober_win": 0,
+        "after_med": 9,
+        "aha_frac": 0.35
       }
     },
     {
-      "id": "r1-02",
+      "id": "l2-02",
       "kind": "normal",
       "introduces": [],
-      "budget": 0,
+      "budget": 3,
       "groups": [
         {
-          "label": "Kinds of tea",
-          "key": "tea",
+          "label": "Tennis terms",
+          "key": "Tennis",
           "tier": 2,
-          "words": ["Green", "Mint", "Jasmine", "Matcha"]
+          "words": ["Smash", "Rally", "Serve", "Ace"]
         },
         {
-          "label": "On the table",
-          "key": "table",
+          "label": "Things that click",
+          "key": "click",
+          "tier": 3,
+          "words": ["Pen", "Tongue", "Mouse", "Switch"]
+        },
+        {
+          "label": "Directions",
+          "key": "Directions",
           "tier": 1,
-          "words": ["Plate", "Napkin", "Saucer", "Fork"]
+          "words": ["West", "East", "Backward", "Sideways"]
         }
       ],
       "also": {},
-      "jars": [["Green", "Fork", "Jasmine", "Napkin"], ["Matcha", "Saucer", "Mint", "Plate"], [], []],
-      "gold": -1,
+      "jars": [["Rally", "Mouse", "Sideways", "Switch"], ["East", "Tongue", "Serve", "Backward"], ["Ace", "Pen", "West", "Smash"], [], []],
+      "gold": 0,
       "meta": {
-        "target": 0.1,
-        "avg_slips": 0.1,
-        "avg_win": 1,
-        "novice_win": 1,
+        "target": 0.65,
+        "floor": 0.85,
+        "avg_slips": 0.71,
+        "avg_win": 0.92,
+        "novice_win": 0.78,
+        "prober_win": 0,
         "after_med": 8,
-        "aha_frac": 0
+        "aha_frac": 0.44
       }
     },
     {
@@ -328,13 +344,13 @@
           "label": "Things that tell time",
           "key": "time",
           "tier": 2,
-          "words": ["Alarm", "Sundial", "Hourglass", "Timer"]
+          "words": ["Clock", "Sundial", "Hourglass", "Watch"]
         }
       ],
       "also": {
         "Crab": [1]
       },
-      "jars": [["Whale", "Cup", "Alarm", "Pan"], ["Sundial", "Squid", "Timer", "Dolphin"], ["Hourglass", "Fish", "Crab", "Cream"], [], []],
+      "jars": [["Whale", "Cup", "Clock", "Pan"], ["Sundial", "Squid", "Watch", "Dolphin"], ["Hourglass", "Fish", "Crab", "Cream"], [], []],
       "gold": 0,
       "meta": {
         "target": 0.85,
@@ -357,7 +373,7 @@
           "label": "Street food",
           "key": "Street",
           "tier": 2,
-          "words": ["Churro", "Dumpling", "Nachos", "Falafel"]
+          "words": ["Samosa", "Dumpling", "Nachos", "Falafel"]
         },
         {
           "label": "Things with shells",
@@ -375,7 +391,7 @@
       "also": {
         "Taco": [0]
       },
-      "jars": [["Goblin", "Turtle", "Falafel", "Fairy"], ["Egg", "Churro", "Lobster", "Nachos"], ["Giant", "Taco", "Dumpling", "Phoenix"], [], []],
+      "jars": [["Goblin", "Turtle", "Falafel", "Fairy"], ["Egg", "Samosa", "Lobster", "Nachos"], ["Giant", "Taco", "Dumpling", "Phoenix"], [], []],
       "gold": 0,
       "meta": {
         "target": 1.48,
@@ -472,7 +488,7 @@
           "label": "Dairy",
           "key": "Dairy",
           "tier": 2,
-          "words": ["Paneer", "Butter", "Cheese", "Custard"]
+          "words": ["Paneer", "Curd", "Cheese", "Ghee"]
         },
         {
           "label": "Drinks",
@@ -490,7 +506,7 @@
       "also": {
         "Milk": [0]
       },
-      "jars": [["Juice", "Cheese", "Berlin", "Paneer"], ["Coffee", "Butter", "Milk", "Dublin"], ["Cocoa", "Tokyo", "Custard", "Athens"], [], []],
+      "jars": [["Juice", "Cheese", "Berlin", "Paneer"], ["Coffee", "Curd", "Milk", "Dublin"], ["Cocoa", "Tokyo", "Ghee", "Athens"], [], []],
       "gold": 0,
       "meta": {
         "target": 1.15,
@@ -650,11 +666,11 @@
           "label": "Things with tails",
           "key": "tails",
           "tier": 3,
-          "words": ["Tadpole", "Meteor", "Kite", "Comet"]
+          "words": ["Tadpole", "Coin", "Kite", "Comet"]
         }
       ],
       "also": {},
-      "jars": [["Comet", "Log", "Barge", "Marzipan"], ["Truffle", "Twig", "Meteor", "Canoe"], ["Tadpole", "Fern", "Tugboat", "Caramel"], ["Acorn", "Kite", "Fudge", "Raft"], [], []],
+      "jars": [["Comet", "Log", "Barge", "Marzipan"], ["Truffle", "Twig", "Coin", "Canoe"], ["Tadpole", "Fern", "Tugboat", "Caramel"], ["Acorn", "Kite", "Fudge", "Raft"], [], []],
       "gold": 0,
       "meta": {
         "target": 1.45,
@@ -1119,7 +1135,7 @@
           "label": "Things with crowns",
           "key": "crowns",
           "tier": 3,
-          "words": ["Pineapple", "Queen", "King", "Hat"]
+          "words": ["Pineapple", "Queen", "King", "Tooth"]
         },
         {
           "label": "Kinds of tea",
@@ -1137,7 +1153,7 @@
       "also": {
         "Pineapple": [0]
       },
-      "jars": [["Pepper", "Chai", "Basil", "Pineapple"], ["Jasmine", "Boxer", "King", "Dalmatian"], ["Matcha", "Ham", "Queen", "Pug"], ["Salami", "Hat", "Oolong", "Beagle"], [], []],
+      "jars": [["Pepper", "Chai", "Basil", "Pineapple"], ["Jasmine", "Boxer", "King", "Dalmatian"], ["Matcha", "Ham", "Queen", "Pug"], ["Salami", "Tooth", "Oolong", "Beagle"], [], []],
       "gold": 0,
       "meta": {
         "target": 2.28,
@@ -1209,13 +1225,13 @@
           "label": "Dairy",
           "key": "Dairy",
           "tier": 2,
-          "words": ["Butter", "Cream", "Custard", "Paneer"]
+          "words": ["Butter", "Cream", "Ghee", "Paneer"]
         },
         {
           "label": "Shades of yellow",
           "key": "yellow",
           "tier": 2,
-          "words": ["Banana", "Amber", "Honey", "Mustard"]
+          "words": ["Banana", "Amber", "Sunflower", "Mustard"]
         },
         {
           "label": "Things in a wallet",
@@ -1228,7 +1244,7 @@
         "Butter": [2],
         "Cream": [0]
       },
-      "jars": [["Pan", "Honey", "Cash", "Amber"], ["Custard", "Ticket", "Banana", "Paneer"], ["Receipt", "Cream", "Carrot", "Coin"], ["Fish", "Mustard", "Crab", "Butter"], [], []],
+      "jars": [["Pan", "Sunflower", "Cash", "Amber"], ["Ghee", "Ticket", "Banana", "Paneer"], ["Receipt", "Cream", "Carrot", "Coin"], ["Fish", "Mustard", "Crab", "Butter"], [], []],
       "gold": 0,
       "meta": {
         "target": 3.88,

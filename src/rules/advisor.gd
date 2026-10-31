@@ -1,7 +1,8 @@
-## Picks the next good move for a Hint, from the hidden truth. Cheap rules first, the solver only when needed:
-## 1. a move that finishes a lid; 2. a move onto a jar holding only that card's group (never wrong, no search);
-## 3. the first step of a solver path, within a time budget. If none (the board is lost or the search gave up), the
-## hint is "Undo a few moves" and costs nothing. Pure: runs on a worker thread with a board copy.
+## Picks the next good move for a Hint, from the hidden truth. A move that finishes a lid is always right. A move onto
+## a jar holding only that card's group reads best but can be fatal (it may fill the last free jar), so the solver
+## must confirm it first; otherwise the hint is the first step of a solver path. Each search has a time budget, and an
+## unconfirmed pure move stands in only when the search gives up. If the board is lost, the hint is "Undo a few moves"
+## and costs nothing. Pure: runs on a worker thread with a board copy.
 class_name Advisor
 extends RefCounted
 
@@ -9,19 +10,31 @@ const SOLVER_CAP := 30000
 const SOLVER_WEIGHT := 3.0
 
 
-## {move: Vector2i (-1, -1 = none), kind: "lid" | "pure" | "solver" | "none", path: Array[Vector2i]}
+## {move: Vector2i (-1, -1 = none), kind: "lid" | "pure" | "solver" | "none", path: Array[Vector2i]}. A "solver" path
+## is proven to win; "pure" is the unconfirmed stand-in.
 static func next_move(board: BoardState, budget_ms: int = 150, cancel: Array = []) -> Dictionary:
 	var lid := _lid_move(board)
 	if lid.x >= 0:
 		return {"move": lid, "kind": "lid", "path": [lid]}
 	var pure := _pure_move(board)
 	if pure.x >= 0:
-		return {"move": pure, "kind": "pure", "path": [pure]}
-	var deadline := Time.get_ticks_msec() + budget_ms if budget_ms > 0 else 0
-	var res := Solver.solve(board, SOLVER_CAP, SOLVER_WEIGHT, deadline, cancel)
+		var after := board.copy()
+		after.move(pure.x, pure.y)
+		after.check_lid(pure.y)
+		var check := _search(after, budget_ms, cancel)
+		if check["solved"]:
+			return {"move": pure, "kind": "solver", "path": [pure] + (check["path"] as Array)}
+	var res := _search(board, budget_ms, cancel)
 	if res["solved"] and not (res["path"] as Array).is_empty():
 		return {"move": res["path"][0], "kind": "solver", "path": res["path"]}
+	if res["hit_cap"] and pure.x >= 0:
+		return {"move": pure, "kind": "pure", "path": [pure]}
 	return {"move": Vector2i(-1, -1), "kind": "none", "path": []}
+
+
+static func _search(board: BoardState, budget_ms: int, cancel: Array) -> Dictionary:
+	var deadline := Time.get_ticks_msec() + budget_ms if budget_ms > 0 else 0
+	return Solver.solve(board, SOLVER_CAP, SOLVER_WEIGHT, deadline, cancel)
 
 
 ## A stable text key of the jars, to tell whether the board changed since a hint was computed.

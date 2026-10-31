@@ -1,12 +1,12 @@
 {
-  "note": "The cross-room difficulty curve (docs/plan-m3.md section 7). tools/make_specs.gd turns each row into data/rooms/roomN_spec.json with the sawtooth per pack of 10: 1-4 rise, 5 tricky, 6 rest (brings the room's new idea), 7-9 rise, 10 hard. groups/t2/t3/herrings are per kind; *_late values apply from the intro position on. Specials: {from, every, value} means positions from, from+every, ... carry it (frost value = frosted cards at the bottom of each jar). floor = the average bot's first-try win rate the budget must allow; novice_floor likewise for the novice (0 = none). t4_every: every nth level from wordplay_from swaps one tier-3 group for tier 4. Rooms 1 and 2 are hand-specified.",
+  "note": "The cross-room difficulty curve (docs/plan-m3.md section 7). tools/make_specs.gd turns each row into data/rooms/roomN_spec.json with the sawtooth per pack of 10: 1-4 rise, 5 tricky, 6 rest (brings the room's new idea), 7-9 rise, 10 hard. groups/t2/t3/herrings are per kind; *_late values apply from the intro position on. Specials: {from, every, value} means positions from, from+every, ... carry it (frost value = frosted cards at the bottom of each jar). floor = the average bot's first-try win rate the budget must allow; novice_floor likewise for the novice (0 = none). t4_every: every nth level from wordplay_from swaps one tier-3 group for tier 4. familiar: this room leaves out data/bank/hard_words.txt (rest levels always do). Rooms 1 and 2 are hand-specified.",
   "target": {"base": 0.3, "per_level": 0.016, "rest": 0.6, "normal": 1.0, "tricky": 1.35, "hard": 1.6},
   "abstract_from": 66,
   "wordplay_from": 216,
   "rooms": [
     {"room": 1, "name": "The Larder", "hand": true},
     {"room": 2, "name": "The Kitchen", "hand": true},
-    {"room": 3, "name": "The Orchard Shed", "intro": "abstract",
+    {"room": 3, "name": "The Orchard Shed", "intro": "abstract", "familiar": true,
       "groups": {"rest": 4, "normal": 4, "tricky": 4, "hard": 4},
       "t3": {"rest": 0, "normal": 1, "tricky": 1, "hard": 1}, "t2": {"rest": 1, "normal": 2, "tricky": 2, "hard": 3},
       "herrings": {"rest": 0, "normal": 1, "tricky": 1, "hard": 1},

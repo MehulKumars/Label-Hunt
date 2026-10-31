@@ -57,6 +57,19 @@ func find_label(label: String) -> int:
 
 
 
+## Words early levels avoid (data/bank/hard_words.txt): lower-case word -> true.
+var hard := {}
+
+
+func load_hard(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		return
+	for raw in FileAccess.get_file_as_string(path).split("\n", false):
+		var line := raw.strip_edges()
+		if line != "" and not line.begins_with("#"):
+			hard[line.to_lower()] = true
+
+
 ## Wordplay rules: category index -> {kind, words: PackedStringArray}. A wordplay category must not share a level
 ## with another group's word that also obeys its rule (the player would see a valid answer in another group).
 ## Kinds:

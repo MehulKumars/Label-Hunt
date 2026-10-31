@@ -62,7 +62,8 @@
       "budget": true,
       "floor": 0.76,
       "novice_floor": 0,
-      "target": 4.56
+      "target": 4.56,
+      "familiar": true
     },
     {
       "kind": "normal",
@@ -163,7 +164,8 @@
       "budget": true,
       "floor": 0.76,
       "novice_floor": 0,
-      "target": 4.65
+      "target": 4.65,
+      "familiar": true
     },
     {
       "kind": "normal",
@@ -264,7 +266,8 @@
       "budget": true,
       "floor": 0.76,
       "novice_floor": 0,
-      "target": 4.75
+      "target": 4.75,
+      "familiar": true
     },
     {
       "kind": "normal",

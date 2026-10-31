@@ -61,7 +61,8 @@
       "floor": 0.92,
       "novice_floor": 0.45,
       "target": 1.68,
-      "exclude": ["wordplay"]
+      "exclude": ["wordplay"],
+      "familiar": true
     },
     {
       "kind": "normal",
@@ -161,7 +162,8 @@
       "floor": 0.92,
       "novice_floor": 0.45,
       "target": 1.77,
-      "exclude": ["wordplay"]
+      "exclude": ["wordplay"],
+      "familiar": true
     },
     {
       "kind": "normal",
@@ -261,7 +263,8 @@
       "floor": 0.92,
       "novice_floor": 0.45,
       "target": 1.87,
-      "exclude": ["wordplay"]
+      "exclude": ["wordplay"],
+      "familiar": true
     },
     {
       "kind": "normal",

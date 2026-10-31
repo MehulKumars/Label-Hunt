@@ -62,6 +62,7 @@
       "novice_floor": 0.4,
       "target": 1.97,
       "exclude": ["wordplay"],
+      "familiar": true,
       "introduces": ["frost"],
       "frost": 1
     },
@@ -167,7 +168,8 @@
       "floor": 0.9,
       "novice_floor": 0.4,
       "target": 2.06,
-      "exclude": ["wordplay"]
+      "exclude": ["wordplay"],
+      "familiar": true
     },
     {
       "kind": "normal",
@@ -271,7 +273,8 @@
       "floor": 0.9,
       "novice_floor": 0.4,
       "target": 2.16,
-      "exclude": ["wordplay"]
+      "exclude": ["wordplay"],
+      "familiar": true
     },
     {
       "kind": "normal",

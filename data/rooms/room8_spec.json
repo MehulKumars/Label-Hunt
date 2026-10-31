@@ -63,6 +63,7 @@
       "floor": 0.9,
       "novice_floor": 0.4,
       "target": 2.25,
+      "familiar": true,
       "introduces": ["wordplay"]
     },
     {
@@ -156,7 +157,8 @@
       "budget": true,
       "floor": 0.9,
       "novice_floor": 0.4,
-      "target": 2.35
+      "target": 2.35,
+      "familiar": true
     },
     {
       "kind": "normal",
@@ -249,7 +251,8 @@
       "budget": true,
       "floor": 0.9,
       "novice_floor": 0.4,
-      "target": 2.45
+      "target": 2.45,
+      "familiar": true
     },
     {
       "kind": "normal",

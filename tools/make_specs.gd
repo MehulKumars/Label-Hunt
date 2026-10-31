@@ -87,6 +87,8 @@ static func level_spec(curve: Dictionary, row: Dictionary, pos: int) -> Dictiona
 	}
 	if not exclude.is_empty():
 		spec["exclude"] = exclude
+	if kind == "rest" or row.get("familiar", false):
+		spec["familiar"] = true
 	if is_intro:
 		spec["introduces"] = [intro]
 	for special in ["frost", "labelled", "corked"]:

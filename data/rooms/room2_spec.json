@@ -6,6 +6,7 @@
   "levels": [
     {
       "kind": "normal",
+      "familiar": true,
       "budget": true,
       "floor": 0.85,
       "novice_floor": 0.7,
@@ -16,6 +17,7 @@
     },
     {
       "kind": "normal",
+      "familiar": true,
       "budget": true,
       "floor": 0.85,
       "novice_floor": 0.7,

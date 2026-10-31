@@ -85,9 +85,16 @@ Captions only appear the first time something happens: first slip, first pair, f
   Linted (`tools/lint_bank.gd`) and reviewed by fresh-eyes reviewers for weak members and undeclared overlaps.
 - **Fairness gates for every level:**
   - **Unique cover:** there is exactly one way to split the cards into the level's groups.
-  - **No phantom groups:** a bank category outside the level must not hold 3 or more of its cards.
+  - **No phantom groups:** a bank category outside the level must not hold 3 or more of its cards drawn from two or
+    more groups. Three cards from one group mislead nobody.
   - **No label clashes:** a card must not read as naming another group's label.
   - **Pair rules:** categories that overlap too much never share a level.
+  - **Wordplay rules:** another group's card must not obey a wordplay group's rule (checked from the spelling where
+    the rule allows it), unless it is that level's declared herring.
+- **Vocabulary rises with difficulty.** Room 1, Room 3 and every rest level leave out the hard-word list
+  (`data/bank/hard_words.txt`), so early levels and breathers test thinking, not vocabulary.
+- **Reuse:** a category may appear up to 5 times in the game, normally at least 60 levels apart. A repeat shares at
+  most 2 of its 4 words with any earlier use, or 3 when that use is 150 or more levels back.
 - **Offline, deterministic bake** (`tools/room_gen.gd`, two phases):
   1. **Pick** (fast, global reuse ledger over all rooms): categories, words and herrings per level.
   2. **Settle** (one process per room, in parallel): seeded deals with special jars, proven solvable, measured by

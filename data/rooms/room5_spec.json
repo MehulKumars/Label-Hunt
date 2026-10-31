@@ -62,6 +62,7 @@
       "novice_floor": 0.5,
       "target": 1.39,
       "exclude": ["wordplay"],
+      "familiar": true,
       "introduces": ["double"]
     },
     {
@@ -162,7 +163,8 @@
       "floor": 0.92,
       "novice_floor": 0.5,
       "target": 1.49,
-      "exclude": ["wordplay"]
+      "exclude": ["wordplay"],
+      "familiar": true
     },
     {
       "kind": "normal",
@@ -262,7 +264,8 @@
       "floor": 0.92,
       "novice_floor": 0.5,
       "target": 1.58,
-      "exclude": ["wordplay"]
+      "exclude": ["wordplay"],
+      "familiar": true
     },
     {
       "kind": "normal",

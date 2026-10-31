@@ -94,3 +94,6 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 - A Session's `log` replays the attempt (`Session.replay`); every rule that changes an attempt must append to it.
 - Room looks live in `src/ui/art/themes.gd`; RoomArt textures must put the room in their `Art.tex` key.
 - Prices, rewards, XP and the gift ladder are one table: `src/rules/economy.gd`. The Wallet autoload writes at once.
+- `data/bank/wordplay_targets.txt` holds the rule of each checkable wordplay category (`hidden`, `anagram`, `palindrome`, `reverse`, `y_only`, `double2`, `roman`; see `Bank.trips`). A test checks every member obeys its own rule.
+- `data/bank/hard_words.txt` lists rare vocabulary. Spec levels marked `familiar` (Rooms 1 and 3, the two re-made Kitchen levels, every rest level) leave those words out.
+- A runtime error inside a tool's `_init` skips `quit()`, so Godot hangs forever with no output when piped. Run tools with `timeout` and write the output to a file.

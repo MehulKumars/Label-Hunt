@@ -61,6 +61,7 @@ func _init() -> void:
 	bank = Bank.load_csv(BANK)
 	bank.load_pairs(PAIRS)
 	bank.load_targets("res://data/bank/wordplay_targets.txt")
+	bank.load_hard("res://data/bank/hard_words.txt")
 	match mode:
 		"pick":
 			quit(_pick_rooms(rooms, only, dry))
@@ -154,9 +155,10 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 	var tiers: Array = (ls["tiers"] as Array).map(func(t: Variant) -> int: return int(t))  # JSON numbers are floats
 	Dealer._shuffle_array(tiers, rng)
 	var want := int(ls.get("herrings", 0))
+	var familiar: bool = ls.get("familiar", false)
 	# A level that needs a herring starts from a real crossing: two categories sharing a word.
 	if want > 0:
-		var pair := _crossing_pair(at, tiers, exclude)
+		var pair := _crossing_pair(at, tiers, exclude, familiar)
 		if pair.is_empty():
 			_reject("no crossing pair")
 			return {}
@@ -188,7 +190,7 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 	var crossings: Array = []
 	for a in cats.size():
 		for w in bank.categories[cats[a]]["words"]:
-			if w.length() > MAX_WORD or not ledger.word_ok(w, at):
+			if w.length() > MAX_WORD or not ledger.word_ok(w, at) or (familiar and bank.hard.has(w.to_lower())):
 				continue
 			for h in bank.homes(w):
 				var b := cats.find(h)
@@ -209,7 +211,7 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 		herring_words[(x[0] as String).to_lower()] = x
 	var words: Array[PackedStringArray] = []
 	for a in cats.size():
-		var chosen := _choose_words(cats, a, herrings, herring_words, at)
+		var chosen := _choose_words(cats, a, herrings, herring_words, at, familiar)
 		if chosen.is_empty():
 			return {}
 		words.append(chosen)
@@ -236,7 +238,8 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 					if lw.contains(token) or (lw.length() >= 3 and token.contains(lw)):
 						_reject("label clash")
 						return {}
-	# Phantom groups: no category outside the level (with its children's words) may hold 3 or more of its words.
+	# Phantom groups: no category outside the level (with its children's words) may hold 3 or more of its words from
+	# two or more groups (three from one group mislead nobody: they belong together anyway).
 	# A parent of a picked category may hold none outside that category's own group (Fruit next to Citrus fruit).
 	var all_words: Array = []
 	for ws in words:
@@ -250,13 +253,18 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 			if (bank.children.get(i, PackedInt32Array()) as PackedInt32Array).has(cats[a]):
 				own = a
 		var hits := 0
+		var groups_hit := 0
 		for a in words.size():
 			if a == own:
 				continue
+			var here := 0
 			for w in words[a]:
 				if family.has(w.to_lower()):
-					hits += 1
-		if hits >= (1 if own >= 0 else 3):
+					here += 1
+			hits += here
+			if here > 0:
+				groups_hit += 1
+		if (own >= 0 and hits >= 1) or (hits >= 3 and groups_hit >= 2):
 			_reject("phantom")
 			return {}
 	var also := {}
@@ -271,8 +279,9 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 
 
 ## Four words for group `a`: its herrings first, then fresh words (not in earlier uses of the category) before
-## reused ones, never a word of another picked category, and at most 2 shared with any earlier use.
-func _choose_words(cats: Array[int], a: int, herrings: Array, herring_words: Dictionary, at: int) -> PackedStringArray:
+## reused ones, never a word of another picked category, and at most 2 shared with any earlier use. A `familiar` level
+## leaves out the hard-word list (early levels and breathers test thinking, not vocabulary).
+func _choose_words(cats: Array[int], a: int, herrings: Array, herring_words: Dictionary, at: int, familiar: bool) -> PackedStringArray:
 	var idx := cats[a]
 	var chosen := PackedStringArray()
 	for x: Array in herrings:
@@ -283,6 +292,8 @@ func _choose_words(cats: Array[int], a: int, herrings: Array, herring_words: Dic
 	for w in bank.categories[idx]["words"]:
 		var lw := (w as String).to_lower()
 		if herring_words.has(lw) or w.length() > MAX_WORD or w.length() < 3 or not ledger.word_ok(w, at):
+			continue
+		if familiar and bank.hard.has(lw):
 			continue
 		if Array(bank.homes(w)).any(func(h: int) -> bool: return h != idx and cats.has(h)):
 			continue
@@ -321,7 +332,7 @@ func _level_dict(room: int, number: int, ls: Dictionary, pick: Dictionary, spec:
 
 
 ## Two allowed categories from different domains whose tiers fit the spec and that share a word, or [].
-func _crossing_pair(at: int, tiers: Array, exclude: Array) -> Array:
+func _crossing_pair(at: int, tiers: Array, exclude: Array, familiar: bool) -> Array:
 	if _crossings.is_empty():
 		# Every (word, a, b) that could ever be a herring, worked out once: the ledger and spec filter it per try.
 		for w in bank.by_word:
@@ -349,6 +360,8 @@ func _crossing_pair(at: int, tiers: Array, exclude: Array) -> Array:
 		if not left.has(int(cb["tier"])):
 			continue
 		if not ledger.word_ok(cr[0], at) or not ledger.cat_ok(a, at) or not ledger.cat_ok(b, at) or not ledger.pair_ok(a, b, at):
+			continue
+		if familiar and bank.hard.has(cr[0]):
 			continue
 		pairs.append([a, b])
 	return [] if pairs.is_empty() else pairs[rng.randi_range(0, pairs.size() - 1)]

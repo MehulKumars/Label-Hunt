@@ -118,6 +118,44 @@ func test_advisor_moves_are_legal_and_reach_the_win() -> void:
 	assert_true(s.won, "following hints alone solves the board")
 
 
+## From a real level: Rooster onto Gong looks tidy but fills the last free jar, and the board can't be won after it.
+func test_advisor_never_hints_a_fatal_tidy_move() -> void:
+	var s := _session({
+		"id": "t2",
+		"groups": [
+			{"label": "Words before storm", "key": "storm", "words": ["Thunder", "Rain", "Brain", "Dust"]},
+			{"label": "Loud things", "key": "Loud", "words": ["Rooster", "Chainsaw", "Gong", "Siren"]},
+			{"label": "Ice cream", "key": "cream", "words": ["Hazelnut", "Pistachio", "Raspberry", "Toffee"]},
+			{"label": "Musicians", "key": "Musicians", "words": ["Violinist", "Trumpeter", "Rapper", "Composer"]},
+			{"label": "In the living room", "key": "living", "words": ["Cushion", "Lamp", "Bookcase", "Ornament"]},
+		],
+		"jars": [["Hazelnut", "Bookcase", "Raspberry", "Thunder"], ["Dust", "Trumpeter", "Ornament", "Rain"], ["Gong"],
+			["Pistachio", "Cushion", "Siren", "Brain"], ["Chainsaw", "Toffee", "Rooster"],
+			["Rapper", "Composer", "Violinist"], ["Lamp"]],
+		"empty": 0,
+	})
+	var fatal := s.board.copy()
+	fatal.move(4, 2)
+	assert_false(Solver.solve(fatal, 200000)["solved"], "the tidy move really does lose")
+	var adv := Advisor.next_move(s.board, 0)
+	assert_ne(adv["move"], Vector2i(4, 2))
+	assert_eq(adv["kind"], "solver")
+	for i in 60:
+		if s.won:
+			break
+		var mv: Vector2i = Advisor.next_move(s.board, 0)["move"]
+		s.try_move(mv.x, mv.y)
+	assert_true(s.won, "following hints from here wins")
+
+
+func test_advisor_says_undo_on_a_lost_board() -> void:
+	var lvl := LEVEL.duplicate(true)
+	lvl["jars"] = [["Apple", "Cow", "Rake", "Pear"], ["Pig", "Hoe", "Plum", "Sheep"], ["Spade", "Mango", "Goat", "Saw"]]
+	lvl["empty"] = 0
+	var adv := Advisor.next_move(_session(lvl).board, 0)
+	assert_eq(adv["kind"], "none", "no free jar and nothing matches")
+
+
 func test_board_key_changes_with_the_board() -> void:
 	var s := _session()
 	var k := Advisor.board_key(s.board)

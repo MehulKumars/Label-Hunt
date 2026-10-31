@@ -97,13 +97,17 @@ func _check(id: String, lvl: LevelData, d: Dictionary, hints: bool) -> void:
 			if cats[a] >= 0 and (bank.children.get(i, PackedInt32Array()) as PackedInt32Array).has(cats[a]):
 				own = a
 		var hits: Array[String] = []
+		var groups_hit := 0
 		for a in words.size():
 			if a == own:
 				continue
+			var before := hits.size()
 			for w in words[a]:
 				if family.has(str(w).to_lower()):
 					hits.append(str(w))
-		if hits.size() >= (1 if own >= 0 else 3):
+			if hits.size() > before:
+				groups_hit += 1
+		if (own >= 0 and not hits.is_empty()) or (hits.size() >= 3 and groups_hit >= 2):
 			errors.append("%s: phantom group %s (%s)" % [id, bank.categories[i]["label"], ", ".join(hits)])
 	# Wordplay: another group's word that obeys a wordplay group's rule (its declared herring excepted).
 	var also: Dictionary = d.get("also", {})
