@@ -134,16 +134,20 @@ func _init() -> void:
 		if by_id.has(id):
 			by_id[id]["tier"] = clampi(int((t[1] as String).get_slice(",", 1)), 1, 4)
 			log.append("%s: %s is now tier %d" % [t[0], id, by_id[id]["tier"]])
+	## Labels of categories deleted here: pair rules naming them are removed from pairs.txt (they'd fail to load).
+	var gone_labels := {}
 	for dl: Array in deletions:
 		var id := str(dl[1]).strip_edges()
 		if by_id.has(id):
 			cats.erase(by_id[id])
+			gone_labels[(by_id[id]["label"] as String).to_lower()] = true
 			by_label.erase((by_id[id]["label"] as String).to_lower())
 			by_id.erase(id)
 			log.append("%s: deleted %s" % [dl[0], id])
 	for c: Dictionary in cats.duplicate():
 		if (c["words"] as Array).size() < (4 if original.has(c["id"]) else MIN_WORDS):
 			cats.erase(c)
+			gone_labels[(c["label"] as String).to_lower()] = true
 			by_label.erase((c["label"] as String).to_lower())
 			by_id.erase(c["id"])
 			log.append("dropped %s: fewer than %d members after fixes" % [c["id"], MIN_WORDS])
@@ -186,6 +190,19 @@ func _init() -> void:
 			var fp := FileAccess.open(PAIRS, FileAccess.READ_WRITE)
 			fp.seek_end()
 			fp.store_string("# Merged from data/bank/drafts\n" + "\n".join(new_pairs) + "\n")
+		if not gone_labels.is_empty():
+			var kept: Array[String] = []
+			for pl in FileAccess.get_file_as_string(PAIRS).split("\n"):
+				var dead := false
+				for op in [" < ", " | ", " ! "]:
+					if pl.contains(op) and (gone_labels.has(pl.get_slice(op, 0).strip_edges().to_lower())
+							or gone_labels.has(pl.get_slice(op, 1).strip_edges().to_lower())):
+						dead = true
+				if not dead:
+					kept.append(pl)
+			var fq := FileAccess.open(PAIRS, FileAccess.WRITE)
+			fq.store_string("\n".join(kept).strip_edges() + "\n")
+			log.append("pair rules naming deleted categories removed")
 	DirAccess.make_dir_recursive_absolute("res://reports")
 	var fr := FileAccess.open("res://reports/bank_merge.md", FileAccess.WRITE)
 	fr.store_string("# Bank merge%s\n\n" % (" (dry run)" if dry else "") + "\n".join(log.map(func(l: String) -> String: return "- " + l)) + "\n")

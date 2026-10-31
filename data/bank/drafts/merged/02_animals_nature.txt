@@ -1,0 +1,222 @@
+# Draft 02: animals and nature. New categories, extensions to existing ones, proposed pair rules.
+# Format: id,label,key,tier,domain,words | +existing_id,words | PAIR: A | B or PAIR: Parent < Child
+
+# ---------- TIER 1 ----------
+rodents,Rodents,Rodents,1,animals,Rat|Mouse|Squirrel|Beaver|Hamster|Gerbil|Vole|Chipmunk|Porcupine|Marmot|Lemming|Capybara
+pond_life,Pond life,Pond,1,nature,Frog|Toad|Newt|Tadpole|Duck|Swan|Heron|Reed|Algae|Lily|Goldfish|Carp|Minnow
+in_the_garden,In the garden,garden,1,nature,Lawn|Hedge|Shed|Patio|Gnome|Fence|Hose|Compost|Path|Weed|Sundial|Bench|Sprinkler
+jungle_animals,Jungle animals,Jungle,1,animals,Monkey|Gorilla|Tiger|Jaguar|Parrot|Sloth|Python|Chimp|Orangutan|Tapir|Anaconda|Gibbon
+polar_animals,Polar animals,Polar,1,animals,Penguin|Walrus|Seal|Narwhal|Reindeer|Beluga|Lemming|Caribou
+desert_animals,Desert animals,Desert,1,animals,Camel|Scorpion|Meerkat|Vulture|Coyote|Jackal|Lizard|Gecko|Snake|Tortoise|Armadillo|Dingo
+forest_animals,Forest animals,Forest,1,animals,Deer|Fox|Badger|Squirrel|Owl|Hedgehog|Boar|Bear|Wolf|Moose|Raccoon|Chipmunk|Stag|Elk
+parts_of_a_tree,Parts of a tree,tree,1,nature,Trunk|Branch|Leaf|Bark|Twig|Bud|Sap|Bough|Canopy|Limb
+animal_parts,Animal parts,Animal,1,animals,Hoof|Paw|Claw|Beak|Mane|Snout|Tusk|Antler|Whisker|Fin|Gill|Talon|Horn|Trunk|Hump|Udder
+creepy_crawlies,Creepy crawlies,crawlies,1,animals,Spider|Worm|Slug|Snail|Centipede|Millipede|Scorpion|Tick|Earwig|Beetle
+animals_that_hop,Animals that hop,hop,1,animals,Kangaroo|Frog|Rabbit|Hare|Wallaby|Flea|Toad|Cricket|Locust
+australian_animals,Australian animals,Australian,1,animals,Kangaroo|Koala|Wombat|Wallaby|Platypus|Dingo|Echidna|Quokka|Possum|Bandicoot
+extreme_weather,Extreme weather,Extreme,1,nature,Hurricane|Tornado|Cyclone|Typhoon|Blizzard|Monsoon|Heatwave|Drought|Hailstorm|Downpour|Gale|Squall
+
+# ---------- TIER 2 ----------
+snakes,Snakes,Snakes,2,animals,Cobra|Python|Viper|Mamba|Adder|Boa|Anaconda|Asp
+primates,Primates,Primates,2,animals,Gorilla|Chimp|Orangutan|Gibbon|Baboon|Lemur|Mandrill|Bonobo|Marmoset|Macaque|Tamarin|Monkey
+animal_groups,Animal groups,groups,2,animals,Pride|Herd|Flock|Pack|Swarm|School|Pod|Colony|Gaggle|Litter|Troop|Shoal|Brood
+male_animals,Male animals,Male,2,animals,Stag|Bull|Ram|Rooster|Boar|Drake|Gander|Stallion|Buck
+female_animals,Female animals,Female,2,animals,Ewe|Mare|Hen|Sow|Doe|Vixen|Cow|Lioness|Tigress
+birds_of_prey,Birds of prey,prey,2,animals,Eagle|Owl|Hawk|Falcon|Kite|Vulture|Buzzard|Condor|Kestrel|Harrier
+water_birds,Water birds,Water,2,animals,Duck|Swan|Goose|Heron|Pelican|Flamingo|Stork|Crane|Gull|Puffin|Penguin|Cormorant|Albatross|Teal|Egret
+horned_animals,Horned animals,Horned,2,animals,Rhino|Goat|Bull|Ram|Buffalo|Yak|Antelope|Ibex|Oryx|Gazelle|Bison|Unicorn
+sea_mammals,Sea mammals,mammals,2,animals,Whale|Dolphin|Seal|Walrus|Manatee|Otter|Narwhal|Porpoise|Dugong|Beluga
+pack_animals,Pack animals,Pack,2,animals,Donkey|Mule|Camel|Llama|Yak|Horse|Elephant|Pony
+words_for_a_horse,Words for a horse,horse,2,animals,Pony|Mare|Foal|Colt|Filly|Stallion|Mustang|Bronco|Steed|Nag
+spotted_animals,Spotted animals,Spotted,2,animals,Leopard|Cheetah|Jaguar|Giraffe|Dalmatian|Hyena|Ocelot|Fawn
+animal_coverings,Animal coverings,coverings,2,animals,Fur|Feather|Scale|Shell|Wool|Quill|Hide|Skin|Plumage
+in_a_hive,In a hive,hive,2,animals,Bee|Honey|Wax|Queen|Drone|Worker|Larva|Pollen|Nectar
+shellfish,Shellfish,Shellfish,2,animals,Oyster|Mussel|Clam|Scallop|Lobster|Crab|Cockle|Abalone
+things_birds_do,Things birds do,birds,2,animals,Peck|Perch|Soar|Swoop|Flap|Glide|Hover|Roost|Preen|Nest|Fly|Migrate|Tweet
+dog_commands,Dog commands,commands,2,animals,Sit|Stay|Fetch|Heel|Beg|Down|Come|Drop
+animal_adjectives,Animal adjectives,adjectives,2,animals,Feline|Canine|Bovine|Equine|Porcine|Avian|Simian|Reptilian
+houseplants,Houseplants,Houseplants,2,nature,Cactus|Fern|Ivy|Orchid|Aloe|Yucca|Monstera|Begonia|Succulent|Palm|Bamboo
+conifers,Conifers,Conifers,2,nature,Pine|Fir|Spruce|Cedar|Larch|Yew|Cypress|Redwood|Juniper|Sequoia
+types_of_wood,Types of wood,wood,2,nature,Teak|Mahogany|Ebony|Balsa|Oak|Pine|Cedar|Walnut|Maple|Bamboo|Cherry
+parts_of_a_flower,Parts of a flower,flower,2,nature,Petal|Stem|Pollen|Stamen|Bud|Sepal|Nectar|Pistil|Anther|Leaf
+wildflowers,Wildflowers,Wildflowers,2,nature,Buttercup|Bluebell|Daisy|Clover|Dandelion|Poppy|Thistle|Foxglove|Heather|Primrose
+fungi,Fungi,Fungi,2,nature,Mushroom|Toadstool|Truffle|Yeast|Puffball|Morel|Porcini|Shiitake|Mildew
+gardening_jobs,Gardening jobs,Gardening,2,nature,Dig|Weed|Prune|Plant|Mow|Rake|Water|Sow|Hoe|Mulch|Trim|Harvest
+habitats,Habitats,Habitats,2,nature,Jungle|Desert|Forest|Tundra|Swamp|Marsh|Prairie|Meadow|Reef|Wetland|Grassland|Bog|Mangrove
+bodies_of_water,Bodies of water,water,2,nature,Lake|Pond|Ocean|Stream|Lagoon|Bay|Gulf|Creek|Brook|Canal|Fjord|Reservoir|Estuary|Strait
+seas_of_the_world,Seas of the world,Seas,2,nature,Baltic|Caspian|Aegean|Adriatic|Caribbean|Arabian|Red|Black|North
+parts_of_a_mountain,Parts of a mountain,mountain,2,nature,Peak|Summit|Slope|Ridge|Base|Foot|Crest|Pass
+
+# ---------- EXTENSIONS to existing categories ----------
++farm_animals,Alpaca|Mule
++pets,Ferret|Tortoise|Puppy|Kitten
++birds,Duck|Penguin|Flamingo|Ostrich|Chicken
++insects,Mosquito|Locust|Mantis|Aphid|Earwig|Cicada
++sea_creatures,Walrus|Oyster|Eel|Stingray|Manatee|Urchin
++fish,Anchovy|Herring|Mackerel|Perch|Halibut|Minnow
++big_cats,Cougar
++safari_animals,Leopard|Cheetah|Antelope|Ostrich|Meerkat|Baboon
++reptiles,Python|Viper|Terrapin
++baby_animals,Joey|Fawn|Gosling|Cygnet|Kid
++dog_breeds,Bulldog|Greyhound|Corgi|Chihuahua|Dachshund
++animal_homes,Coop|Hutch|Sty|Cage|Barn|Aquarium
++animal_sounds,Baa|Cluck|Tweet|Squeak|Croak|Hoot
++flowers,Lotus|Peony|Lilac|Marigold|Dahlia|Begonia
++trees,Beech|Fir|Chestnut|Poplar
++weather,Storm|Drizzle|Breeze|Lightning|Cloud
++gems,Garnet|Amethyst|Onyx|Agate
++rocks,Slate|Limestone|Sandstone|Shale
++landforms,Hill|Cave|Gorge|Peninsula|Dune|Ridge
++rivers,Indus|Tigris|Euphrates|Zambezi
++things_in_a_forest,Toadstool|Pinecone|Bramble|Lichen|Ivy
++parts_of_a_river,Rapids|Tributary|Estuary|Meander
+# Outside my domains, added only to declare honest crossings my words create:
++mythical_creatures,Gnome
++instruments,Horn
++body_parts,Heel|Limb
++footwear,Mule
++pizza_toppings,Anchovy
+
+# ---------- PAIR RULES ----------
+# Parent < child
+PAIR: Reptiles < Snakes
+PAIR: Birds < Birds of prey
+PAIR: Birds < Water birds
+PAIR: Sea creatures < Sea mammals
+PAIR: Weather < Extreme weather
+PAIR: Flowers < Wildflowers
+PAIR: Trees < Conifers
+# Bird children inherit the existing bird pairs
+PAIR: Golf terms | Birds of prey
+PAIR: Things that fly | Birds of prey
+PAIR: Things that fly | Water birds
+PAIR: Golf terms | Water birds
+# Habitat animal groups overlap each other (Elephant, Leopard, Boa, Iguana, Baboon...)
+PAIR: Jungle animals | Big cats
+PAIR: Jungle animals | Safari animals
+PAIR: Jungle animals | Primates
+PAIR: Jungle animals | Snakes
+PAIR: Jungle animals | Reptiles
+PAIR: Desert animals | Safari animals
+PAIR: Desert animals | Reptiles
+PAIR: Desert animals | Snakes
+PAIR: Polar animals | Sea creatures
+PAIR: Polar animals | Sea mammals
+PAIR: Polar animals | Water birds
+PAIR: Forest animals | Rodents
+PAIR: Forest animals | Male animals
+PAIR: Forest animals | Female animals
+PAIR: Australian animals | Reptiles
+PAIR: Big cats | Spotted animals
+PAIR: Safari animals | Horned animals
+PAIR: Sea creatures | Shellfish
+PAIR: Creepy crawlies | Insects
+PAIR: Pond life | Creepy crawlies
+PAIR: Pond life | Water birds
+PAIR: Things with tails | Pond life
+PAIR: Things with necks | Pond life
+PAIR: Things at the beach | Water birds
+PAIR: Animal parts | Animal coverings
+PAIR: Animal sounds | Things birds do
+PAIR: Birds | Things birds do
+PAIR: Birds of prey | Things birds do
+PAIR: Water birds | Things birds do
+# Farm words: Hen, Ram, Ewe, Sow, Mare, Colt are all farm animals
+PAIR: Farm animals | Male animals
+PAIR: Farm animals | Female animals
+PAIR: Farm animals | Horned animals
+PAIR: Farm animals | Words for a horse
+PAIR: Male animals | Words for a horse
+PAIR: Female animals | Words for a horse
+PAIR: Baby animals | Words for a horse
+PAIR: Pack animals | Words for a horse
+PAIR: Words before fly | Words for a horse
+PAIR: Animal groups | Pack animals
+PAIR: Animal homes | In a hive
+# Label word appears as a member elsewhere (Desert, Forest, Jungle, Mountain, Tree, Water, Wood, Flower, Pond)
+PAIR: Desert animals | Landforms
+PAIR: Desert animals | Habitats
+PAIR: Forest animals | Habitats
+PAIR: Jungle animals | Habitats
+PAIR: Forest animals | Things in a forest
+PAIR: Things in a forest | Habitats
+PAIR: Landforms | Habitats
+PAIR: Landforms | Parts of a mountain
+PAIR: Things with faces | Parts of a mountain
+PAIR: Parts of a tree | Things with rings
+PAIR: Parts of a tree | Things with crowns
+PAIR: Parts of a tree | Words before house
+PAIR: Words after sun | Parts of a flower
+PAIR: Words after fire | Types of wood
+PAIR: Drinks | Bodies of water
+PAIR: Drinks | Water birds
+PAIR: Gardening jobs | Bodies of water
+PAIR: Gardening jobs | Water birds
+PAIR: Bodies of water | Water birds
+PAIR: Pond life | Bodies of water
+# Heavy honest overlap
+PAIR: Landforms | Bodies of water
+PAIR: Parts of a river | Bodies of water
+PAIR: Rivers | Bodies of water
+PAIR: Habitats | Bodies of water
+PAIR: Things at the beach | Bodies of water
+PAIR: Trees | Things in a forest
+PAIR: Conifers | Things in a forest
+PAIR: Parts of a tree | Things in a forest
+PAIR: Types of wood | Things in a forest
+PAIR: Fungi | Things in a forest
+PAIR: Wildflowers | Things in a forest
+PAIR: Trees | Types of wood
+PAIR: Conifers | Types of wood
+PAIR: In the garden | Garden tools
+PAIR: In the garden | Gardening jobs
+PAIR: Garden tools | Gardening jobs
+
+# SUMMARY
+# New categories: 42 (13 tier 1, 29 tier 2). Under the ~70 target on purpose: animals and nature overlap heavily,
+#   and every extra habitat or animal grouping I tried leaked into existing lists (see "Cut" below).
+# Extensions: 27 lines. 22 extend my own domains toward 12-16. 5 are outside my domains (Mythical creatures,
+#   Instruments, Body parts, Footwear, Pizza toppings), added only to declare crossings my words create.
+#   Birds is now 16. Chicken is added because notes.md lists it as a Birds crossing but the bank line lacks it.
+#
+# Crossings declared (word listed in every category it honestly fits), cross-domain herrings first:
+#   Horn (animal parts / instruments), Heel (dog commands / body parts), Limb (tree / body parts),
+#   Foot and Base (parts of a mountain / existing), Queen and Drone (hive / chess, titles, things that fly),
+#   Truffle (fungi / sweets), Prune (gardening jobs / dried fruit), Water (gardening jobs / drinks),
+#   Sow (female animals / gardening jobs), Red (seas / rainbow), Black (seas / words before board),
+#   School (animal groups / town, words before house), Cherry and Walnut (wood / fruit, nuts),
+#   Bamboo (wood / houseplants), Unicorn (horned / mythical), Gnome (garden / mythical), Mule (pack / footwear),
+#   Anchovy (fish / pizza), Mouse (rodents / desk), Cricket (hop / sports, insects), Honey (hive / yellow),
+#   Teal and Flamingo (water birds / blue, pink), Shell (coverings / beach), Skin (coverings / organs),
+#   Wool (coverings / fabrics), Perch (birds do / fish), Tweet (birds do / animal sounds), Fly, Nest, Bench, Sundial.
+#   Within animals: Frog, Toad, Kangaroo, Wallaby, Dingo, Camel, Vulture, Owl, Penguin, Seal, Walrus, Narwhal,
+#   Beluga, Lemming, Squirrel, Chipmunk, Boar, Stag, Mare, Stallion, Pony, Foal, Fawn, Ram, Bull, Yak.
+#
+# Avoided on purpose:
+#   Ox (2 letters). Koi (a fish; Fish is full). Dragonfly and Firefly (contain Fly, an Insects member).
+#   Butterfly (same). Osprey (contains the key "prey"). Rosewood (contains the key "wood"). Seahorse and Starfish
+#   (contain Sea/Fish labels). Woodlouse (UK; US says pill bug). Ladybird/Ladybug, Moult, Savannah, Plough,
+#   Mould (US/UK or spelling). Coral (animal, rock or colour: pedantry). Orca, Bat, Koala-as-bear (pedantry).
+#   Crayfish (near the key Shellfish; also freshwater). Taipan (Australian, would leak from Snakes).
+#   Toucan, Macaw, Emu, Cockatoo, Magpie (birds, and Birds is full). Leech (pond life leak, gross). Pelt (skin of a
+#   dead animal). Swing (also a dance and a music genre). Pond and River as members where labels use them
+#   (River clashes with the Rivers label). Sea (clashes with Sea creatures). Root, Ring, Crown (clash with the
+#   Things with roots/rings/crowns labels). Comb in the hive (honeycomb is a stretch). Lupine (lupin/lupine).
+#   Cut categories: On a farm (every farm animal leaks into it), Animal products (every meat and dairy word
+#   leaks), Black and white (Piano, Chess, Domino also fit), Seasons (Autumn/Fall), Natural disasters (taste),
+#   Deserts and Mountains as proper nouns (Desert and Mountain are Landforms members; few famous names),
+#   Seabirds (merged into Water birds), Parrots (clashes with the Parrot member), Marsupials (merged into
+#   Australian animals), Evergreens (Palm and Olive are evergreen: pedantry), Riding gear (sport domain).
+#
+# Unsure (least sure first):
+#   1. animal_adjectives: Simian, Porcine and Reptilian may be too learned for "widely known". Could be tier 3.
+#   2. dog_commands: Down, Come and Drop are plain words; fair once the label shows, but weak as cards.
+#   3. wildflowers: Bluebell, Primrose, Foxglove and Heather lean British. Clover, Daisy, Dandelion, Poppy are global.
+#   4. seas_of_the_world: Red, Black and North work as "___ Sea" but feel lateral. Caspian is technically a lake.
+#   5. creepy_crawlies: the label is a Commonwealth idiom (US: bugs). The members are global.
+#   Also: Snakes clashes with the existing member Snake (Reptiles, Desert animals). Both are paired, but other
+#   drafts (Chinese zodiac?) may use Snake. Ram is also computer memory, and North a compass point, if other
+#   drafts add those. Colt is also a gun brand (kept: the horse sense comes first). Habitat groups (jungle,
+#   desert, polar, forest) need many pair rules; the generator gets fewer combinations but no unfair ones.
+#   Existing bank issue spotted: Trees and Things in a forest overlap (Oak, Pine are things in a forest).
+#   I proposed PAIR: Trees | Things in a forest.

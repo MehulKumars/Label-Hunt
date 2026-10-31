@@ -1,6 +1,10 @@
-# Bank merge (dry run)
+# Bank merge
 
-- 07_compounds_abstract.txt: words_after_back dropped 'Yard' (banned word)
-- 07_compounds_abstract.txt: 85 new categories
-- 08_wordplay.txt: 41 new categories
-- 265 categories now (126 new), 323 pair rules added
+- review_0_lint.txt: 0 new categories
+- review_0_lint.txt: deleted kinds_of_wood
+- review_0_lint.txt: deleted camping_kit
+- review_0_lint.txt: deleted fishing_kit
+- review_0_lint.txt: deleted places_to_live
+- review_0_lint.txt: deleted phases_of_life
+- 514 categories now (0 new), 12 pair rules added
+- pair rules naming deleted categories removed

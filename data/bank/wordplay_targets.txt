@@ -1,0 +1,19 @@
+hidden_body_parts hidden arm ear eye lip hip toe shin chin leg rib jaw gum hand nail heel brow lash hair skin knee neck back face head foot palm sole lung liver heart thumb wrist ankle elbow tooth nose calf thigh waist chest spine bone vein navel belly cheek tongue gut lobe
+hidden_farm_animals hidden cow pig ram ewe ox hen goat bull lamb horse sheep mare colt foal hog boar llama duck mule goose donkey calf
+hidden_birds hidden owl hen emu crow tern gull wren teal rook kite dove hawk lark kiwi jay swan duck eagle robin heron crane stork raven quail finch ibis
+hidden_fish hidden cod carp eel tuna bass pike ray sole perch trout shark bream
+hidden_insects hidden ant bee moth louse bug fly flea gnat wasp mite
+hidden_numbers hidden one two three four five six seven eight nine ten eleven twelve zero
+hidden_hues hidden red tan teal rose lime plum rust cream amber navy pink gold jade ruby blue green grey gray black white brown ochre mauve cyan lilac peach coral olive mint jet
+hidden_fruit hidden fig date pear lime plum apple lemon melon peach kiwi grape mango olive berry orange cherry
+hidden_trees hidden oak elm fir ash pine yew teak palm beech birch cedar maple larch alder aspen hazel rowan willow
+hidden_vehicles hidden car van bus cab train tram taxi bike truck limo jet
+hidden_clothing hidden hat cap tie vest robe cape dress boot suit sock mitten coat belt shoe scarf glove bra sari kilt shawl gown hood bib toga tutu skirt shirt
+hidden_kitchen_items hidden pan pot cup jug mug lid tray wok bowl dish fork spoon plate tin sieve ladle whisk kettle
+hidden_weights hidden ton ounce pound gram kilo
+hidden_instruments hidden harp horn lute organ bell drum gong oboe tuba fife lyre sitar cello piano flute banjo bass
+hidden_jobs hidden vet actor maid miner cop chef nurse cook spy judge guard tutor poet pilot baker tailor agent diver medic
+anagrams_of_body_parts anagram arm
+anagrams_of_animals anagram every common animal and its plural, e.g. cat rat bat ant ape owl newt seal deer wolf wasp snake tuna flea
+anagrams_of_countries anagram peru mali oman iran laos nepal yemen tonga china
+anagrams_of_hues anagram tan rose lime teal ochre green plum peach

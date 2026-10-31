@@ -1,0 +1,182 @@
+# 01_food_drink.txt: draft categories for domains food and drink.
+# Format: id,label,key,tier,domain,Word|Word|...   /   +existing_id,Word|Word   /   PAIR: A | B   /   PAIR: Parent < Child
+# Principle used throughout: closed sets only. Open "in a X" food sets (In a salad, In a sandwich, In a burger,
+# At a restaurant) were rejected because almost any food card from another category would also fit them.
+
+# ---------- TIER 1 ----------
+baking_ingredients,Baking ingredients,Baking,1,food,Flour|Sugar|Yeast|Butter|Egg|Milk|Vanilla|Cocoa|Chocolate|Honey|Oats|Raisin|Cream|Salt|Margarine
+desserts,Desserts,Desserts,1,food,Mousse|Tiramisu|Pavlova|Trifle|Parfait|Pudding|Flan|Custard|Cake|Pie|Brownie|Meringue|Strudel|Waffle|Churro
+ways_to_cook,Ways to cook,cook,1,food,Bake|Boil|Fry|Grill|Roast|Steam|Poach|Stew|Toast|Sear|Braise|Simmer|Smoke|Barbecue|Microwave
+grains,Grains,Grains,1,food,Rice|Wheat|Oats|Barley|Rye|Corn|Maize|Millet|Quinoa|Spelt|Sorghum|Buckwheat
+meals,Meals,Meals,1,food,Brunch|Lunch|Dinner|Supper|Snack|Feast|Picnic|Banquet|Buffet|Barbecue
+fast_food,Fast food,Fast,1,food,Burger|Fries|Nugget|Wrap|Shake|Taco|Burrito|Nachos
+seafood,Seafood,Seafood,1,food,Crab|Lobster|Mussel|Oyster|Clam|Squid|Scallop|Octopus|Caviar|Calamari
+tastes,Tastes,Tastes,1,food,Sour|Salty|Bitter|Umami|Spicy|Tangy|Bland|Smoky|Zesty|Sugary|Mild
+things_to_drink_from,Things to drink from,drink,1,drink,Cup|Mug|Glass|Straw|Bottle|Flask|Can|Beaker|Tumbler|Goblet|Carton|Canteen
+places_to_eat,Places to eat,eat,1,food,Cafe|Diner|Bistro|Canteen|Buffet|Pizzeria|Cafeteria|Brasserie|Deli|Trattoria
+mexican_food,Mexican food,Mexican,1,food,Taco|Burrito|Nachos|Churro|Salsa|Tortilla|Fajita|Enchilada|Guacamole|Tamale|Tostada|Flan
+ways_to_cut_food,Ways to cut food,cut,1,food,Chop|Dice|Slice|Mince|Shred|Julienne|Carve|Cube|Fillet|Trim|Halve|Quarter
+
+# ---------- TIER 2 ----------
+root_vegetables,Root vegetables,Root,2,food,Carrot|Potato|Turnip|Parsnip|Radish|Yam|Cassava|Taro|Celeriac
+cuts_of_meat,Cuts of meat,meat,2,food,Rib|Shoulder|Loin|Brisket|Rump|Flank|Shank|Chop|Fillet|Sirloin|Belly|Knuckle
+kinds_of_bean,Kinds of bean,bean,2,food,Kidney|Navy|Lima|Butter|Pinto|Mung|Soy|Fava|Black|Green|White|Red|Coffee|Cocoa|Vanilla
+kinds_of_rice,Kinds of rice,rice,2,food,Basmati|Jasmine|Arborio|Brown|White|Black|Wild|Sticky|Sushi
+kinds_of_milk,Kinds of milk,milk,2,drink,Oat|Soy|Almond|Cashew|Rice|Cow|Goat|Sheep|Camel|Buffalo|Whole|Condensed|Powdered|Chocolate
+cooking_oils,Cooking oils,oils,2,food,Olive|Sunflower|Palm|Sesame|Corn|Walnut|Almond|Truffle|Mustard
+kinds_of_mushroom,Kinds of mushroom,mushroom,2,food,Button|Oyster|Shiitake|Truffle|Porcini|Morel|Enoki|Chestnut
+ways_to_drink,Ways to drink,drink,2,drink,Sip|Gulp|Slurp|Swig|Guzzle|Swallow|Drain|Glug
+food_textures,Food textures,textures,2,food,Crunchy|Crispy|Chewy|Creamy|Fluffy|Gooey|Soggy|Tender|Flaky|Juicy|Mushy|Crumbly
+soups,Soups,Soups,2,food,Gazpacho|Chowder|Broth|Bisque|Ramen|Pho|Laksa|Miso
+japanese_food,Japanese food,Japanese,2,food,Sushi|Ramen|Tempura|Miso|Udon|Soba|Teriyaki|Wasabi|Tofu|Sashimi|Gyoza|Bento|Matcha
+indian_food,Indian food,Indian,2,food,Curry|Naan|Samosa|Biryani|Tikka|Korma|Chutney|Paneer|Roti|Pakora|Dosa|Paratha|Ghee|Chai
+italian_food,Italian food,Italian,2,food,Risotto|Gnocchi|Polenta|Calzone|Panini|Pesto|Tiramisu|Focaccia|Ciabatta|Salami|Parmesan|Ricotta|Arancini|Espresso|Marinara
+french_food,French food,French,2,food,Croissant|Baguette|Brioche|Crepe|Quiche|Eclair|Macaron|Brie|Camembert|Escargot|Gratin|Bisque|Cassoulet|Roquefort
+spanish_food,Spanish food,Spanish,2,food,Paella|Tapas|Churro|Chorizo|Gazpacho|Tortilla|Flan|Aioli|Manchego
+rice_dishes,Rice dishes,Rice,2,food,Risotto|Paella|Biryani|Sushi|Jambalaya|Congee|Bibimbap|Arancini|Jollof
+recipe_amounts,Recipe amounts,Recipe,2,food,Pinch|Dash|Cup|Handful|Splash|Drop|Spoonful|Teaspoon|Sprig|Clove|Slice|Glug
+ways_to_mix,Ways to mix,mix,2,food,Stir|Whisk|Beat|Fold|Blend|Whip|Toss|Churn|Shake|Swirl|Knead
+seeds_you_eat,Seeds you eat,Seeds,2,food,Sesame|Sunflower|Pumpkin|Chia|Poppy|Flax|Hemp|Mustard
+sweeteners,Sweeteners,Sweeteners,2,food,Sugar|Honey|Syrup|Stevia|Agave|Molasses|Jaggery|Aspartame|Saccharin
+preserves,Preserves,Preserves,2,food,Jam|Marmalade|Chutney|Pickle|Relish|Compote|Curd|Conserve
+parts_of_a_fruit,Parts of a fruit,fruit,2,food,Peel|Pip|Stone|Core|Flesh|Rind|Skin|Zest|Pith|Stalk|Segment
+fermented_foods,Fermented foods,Fermented,2,food,Kimchi|Miso|Tempeh|Kefir|Kombucha|Pickle|Sourdough|Vinegar|Cheese
+
+# ---------- EXTENSIONS to existing food/drink categories ----------
++fruit,Grape|Melon|Nectarine|Raspberry|Blueberry|Apricot
++vegetables,Broccoli|Lettuce|Radish|Kale|Parsnip|Corn
++herbs,Tarragon|Bay|Marjoram
++spices,Allspice|Anise|Caraway
++cheeses,Halloumi|Emmental|Provolone|Roquefort|Manchego
++breads,Tortilla|Paratha|Pretzel
++sauces,Hoisin|Teriyaki|Satay|Marinara|Mayo|Guacamole
++drinks,Cola|Shake|Tonic
++coffee_drinks,Ristretto|Decaf|Frappe
++kinds_of_tea,Black|White|Herbal|Iced|Ginger|Lemon|Bubble|Rooibos
++dairy,Ghee|Kefir|Whey|Curd
++sweet_treats,Scone|Macaron|Pastry|Churro|Baklava|Eclair
++sweets,Bonbon|Brittle|Gummy|Fondant
++breakfast_foods,Sausage|Muffin
++ice_cream,Hazelnut|Raspberry|Cherry
++citrus_fruit,Kumquat|Yuzu
++tropical_fruit,Durian|Rambutan
++nuts,Acorn
++pasta,Orzo
++meats,Goat|Rabbit|Sausage|Steak|Chorizo|Pepperoni
++pizza_toppings,Pepperoni|Sausage|Chicken|Bacon|Spinach
++street_food,Crepe|Satay|Shawarma|Pakora
+
+# ---------- CROSS-DOMAIN declarations (other domains' categories; added only to declare an honest crossing) ----------
+# Swallow is a way to drink and plainly a bird. Bay is a herb and a coastal landform. Sunflower is a cooking oil, an
+# edible seed and plainly a flower. Without these lines the generator would not know the second meaning.
++birds,Swallow
++landforms,Bay
++flowers,Sunflower
+
+# ---------- PAIR rules ----------
+# Children / heavy overlap
+PAIR: Vegetables < Root vegetables
+PAIR: Sweet treats | Desserts
+PAIR: French food | Sweet treats
+PAIR: French food | Desserts
+PAIR: Street food | Fast food
+PAIR: Mexican food | Spanish food
+PAIR: Italian food | Pasta
+PAIR: Indian food | Spices
+PAIR: Fish | Seafood
+PAIR: Sea creatures | Seafood
+PAIR: Things with shells | Seafood
+PAIR: Things with roots | Root vegetables
+PAIR: Body parts | Cuts of meat
+PAIR: Meats | Cuts of meat
+PAIR: Cuts of meat | Ways to cut food
+PAIR: Parts of a fruit | Ways to cut food
+PAIR: Tastes | Food textures
+PAIR: Places in a town | Places to eat
+PAIR: On the table | Things to drink from
+PAIR: Units of measure | Recipe amounts
+PAIR: Spices | Baking ingredients
+PAIR: Nuts | Baking ingredients
+PAIR: Dried fruit | Baking ingredients
+PAIR: Grains | Seeds you eat
+PAIR: Spices | Seeds you eat
+PAIR: Kinds of rice | Rice dishes
+PAIR: Kinds of rice | Kinds of mushroom
+# Label word = a card word in the other category (Rice, Milk, Mushroom, Meat, Cake, Mixer, drink/Drinks)
+PAIR: Grains | Kinds of rice
+PAIR: Grains | Rice dishes
+PAIR: Words before cake | Kinds of rice
+PAIR: Words before cake | Rice dishes
+PAIR: Words before cake | Desserts
+PAIR: Kinds of milk | Rice dishes
+PAIR: Kinds of milk | Grains
+PAIR: Kinds of milk | Baking ingredients
+PAIR: Drinks | Kinds of milk
+PAIR: Dairy | Kinds of milk
+PAIR: Pizza toppings | Kinds of mushroom
+PAIR: Things in a forest | Kinds of mushroom
+PAIR: Words before ball | Cuts of meat
+PAIR: Kitchen appliances | Ways to mix
+PAIR: Drinks | Ways to drink
+PAIR: Drinks | Things to drink from
+PAIR: Things to drink from | Ways to drink
+
+# SUMMARY
+# Counts: 35 new categories: 12 tier 1, 23 tier 2 (32 food, 3 drink). 22 extensions to existing food/drink
+#   categories, 3 cross-domain declaration lines, 44 PAIR rules.
+# Short of the ~70 target on purpose. Most tier-1 food/drink sets already exist (Fruit, Vegetables, Meats, Breads, Sauces,
+#   Breakfast foods...). The remaining candidates were open-ended ("In a salad", "In a sandwich", "At a restaurant",
+#   "Snacks", "Things on toast") and would create undeclared overlaps with almost every food card, or were near-duplicates
+#   (Berries gives itself away, Hot drinks = Drinks + Coffee + Tea, Flatbreads = Breads, Shellfish = Things with shells).
+#
+# Crossings declared (word: categories it now sits in; * = with existing bank categories):
+#   Herrings into other domains: Kidney* (organs), Navy* (shades of blue), Lima* (capitals, phonetic), Palm* (trees,
+#   body), Button* (sewing kit, pop), Dice*/Cube* (faces), Rib* (bones), Shoulder*/Knuckle* (joints), Skin* (organs),
+#   Straw* (draw), Bottle* (necks), Cup*/Glass*/Mug* (on the table), Dash*/Black* (words before board), Red*/Green*
+#   (rainbow), Poppy* (flowers, red), Rabbit* (pets), Cow*/Goat*/Sheep* (farm), Buffalo* (safari), Acorn* (forest),
+#   Corn* (pop), Rice*/Cheese*/Cream*/Carrot*/Crab* (words before cake), Whip* (crack), Whisk* (kitchen tools),
+#   Microwave* (appliances), Salsa* (dances), Swallow (birds, new), Bay (landforms, new), Sunflower (flowers, new),
+#   Chestnut* (nuts, brown), Oyster (seafood, mushroom), Truffle* (sweets, mushroom, oils), Mustard* (yellow, sauces,
+#   oils, seeds), Butter* (dairy, yellow, fly, baking, bean), Jasmine* (flowers, tea, rice), Canteen (drink from,
+#   places to eat), Glug (ways to drink, recipe amounts), Clove* (spices, recipe amounts).
+#   Within food/drink: Churro (street, sweet treats, desserts, Mexican, Spanish), Tortilla (breads, Mexican, Spanish),
+#   Flan (desserts, Mexican, Spanish), Sushi (rice, rice dishes, Japanese), Miso (soups, Japanese, fermented),
+#   Pickle (preserves, fermented), Chutney (sauces, preserves, Indian), Curd/Kefir/Ghee (dairy + preserves/fermented/
+#   Indian), Black/White (tea, bean, rice), Coffee/Cocoa/Vanilla (bean + drinks/ice cream/baking), Soy (bean, milk),
+#   Almond/Cashew/Walnut (nuts + milk/oils), Chocolate (brown, ice cream, baking, milk), Oats (grains, baking),
+#   Toast (breakfast, ways to cook), Barbecue (meals, ways to cook), Buffet (meals, places to eat), Chop/Fillet (cuts of
+#   meat, ways to cut), Slice (ways to cut, recipe amounts), Shake (drinks, fast food, ways to mix), Pepperoni/Sausage/
+#   Chorizo/Salami (meats + pizza/breakfast/Spanish/Italian), cheeses in French/Italian/Spanish, breads in French/
+#   Italian/Indian, Chai (tea, Indian), Matcha (tea, Japanese), Espresso (coffee, Italian), Teriyaki/Marinara/Guacamole/
+#   Satay (sauces + cuisine/street food), Raspberry/Cherry/Hazelnut (fruit or nuts + ice cream), Waffle (desserts too).
+#
+# Words deliberately avoided:
+#   Contested or regional: Tomato, Avocado, Coconut, Peanut, Strawberry (fruit/veg/nut disputes); Beet/Beetroot,
+#   Rocket/Arugula, Prawn/Shrimp, Courgette, Swede, Mince as a noun, Skim/Skimmed, Caster/Icing sugar, Broad and Runner
+#   bean, Canola/Rapeseed, Pit (US for Stone), Crumble, Cobbler, Ziti, Chuck.
+#   Spelling variants: Dal/Dhal, Pita/Pitta, Pilaf/Pilau, Borscht/Borsch, Yogurt, Lasagna, Chili/Chilli, Kebab,
+#   Souffle and Pate (accents).
+#   Label-word clashes: Sweet (Sweet treats), Pizza (Pizza toppings), Breakfast (Breakfast foods), Seed (Seeds you
+#   eat), Stew in a "Soups and stews" label (merged label dropped), Eatery (contains "eat"), Jellybean (contains bean),
+#   Fruity/Nutty (contain Fruit/Nut).
+#   Hidden second memberships left undeclared, so dropped: Gelato, Sundae, Sorbet (are ice cream), Wings (a cut of meat
+#   and fast food), Edamame (a bean), Mochi, Kulfi, Cannoli, Biscotti (desserts or sweet treats), Lassi (drink and
+#   Indian food), Fennel (vegetable and herb and spice), Garlic (vegetable or spice), Lavender (herb and flower),
+#   Duck/Goose/Turkey (meat and bird), Leg/Thigh (cut and body part), Skirt (steak and clothing), Grate (kitchen tool),
+#   Kinds of water (open "words before water" set).
+#   Taste: all alcohol (Punch, Cider, Sangria, Chug), Ghost pepper, Tomahawk.
+#
+# Least sure:
+#   1. Kinds of bean: 15 members with four colour words and three non-legumes (Coffee, Cocoa, Vanilla). Every one is
+#      honest, but colour cards are bland. Risk words not dealt anywhere yet: Runner, String, Jelly, Broad.
+#   2. Kinds of milk: Butter (buttermilk) and Banana (banana milk) are undeclared near-misses. Needs four label-collision
+#      pairs (Drinks, Dairy, Baking, Grains).
+#   3. Seafood: shares 5 of 10 words with Sea creatures. Kept as a food-domain cousin, paired away from Fish, Sea
+#      creatures and Things with shells. Could be cut.
+#   4. Seeds you eat: only 8 members; Hemp (cannabis association) and Flax are the weakest.
+#   5. Tastes: no Sweet (clashes with Sweet treats); Umami may be tier-2 knowledge; Bitter has a mild beer echo.
+#   Also watch: Preserves (8, Curd and Conserve weaker), Fermented foods (Cheese and Kombucha feel "technically" to some),
+#   Kinds of mushroom (8; White/Wild/King/Honey are rare undeclared near-misses), Places to eat (Deli), Rice dishes
+#   (Jollof less known outside Africa/UK), Trifle and Pavlova (better known in the Commonwealth).
+#   Generator check suggested: a card word equal to another level label's key (Rice, Milk, Mushroom, Meat, Cake, Fish, Pizza)
+#   is confusing even when not a member. I paired the cases I found; a tool-side check would catch the rest.
