@@ -25,9 +25,12 @@ func _init() -> void:
 	var cats: Array = LINT.read_rows(BANK, errs)
 	var by_id := {}
 	var by_label := {}
+	## Categories that were in the bank before this merge: never dropped for being small (Card suits has 4).
+	var original := {}
 	for c: Dictionary in cats:
 		by_id[c["id"]] = c
 		by_label[(c["label"] as String).to_lower()] = c
+		original[c["id"]] = true
 	var log: Array[String] = []
 	var pairs: Array[String] = []
 	var weak: Array = []
@@ -130,7 +133,7 @@ func _init() -> void:
 			by_id.erase(id)
 			log.append("%s: deleted %s" % [dl[0], id])
 	for c: Dictionary in cats.duplicate():
-		if (c["words"] as Array).size() < MIN_WORDS:
+		if (c["words"] as Array).size() < (4 if original.has(c["id"]) else MIN_WORDS):
 			cats.erase(c)
 			by_label.erase((c["label"] as String).to_lower())
 			by_id.erase(c["id"])
@@ -175,7 +178,9 @@ func _init() -> void:
 ## and wordplay categories) not containing their own key.
 func _clean(c: Dictionary, words: Array, log: Array[String], f: String) -> Array:
 	var out: Array = []
-	var tokens: Array[String] = LINT.own_tokens(c) if int(c["tier"]) >= 3 else []
+	var tokens: Array[String] = []
+	if int(c["tier"]) >= 3:
+		tokens = LINT.own_tokens(c)
 	for raw: String in words:
 		var w := raw.strip_edges()
 		if w == "":
