@@ -1,0 +1,348 @@
+# Jarful bank draft 07: compound-word links (tier 3, lateral) and abstract property groups (tier 2-3, abstract).
+# Format: id,label,key,tier,domain,Word|Word|...   +existing_id,Word|Word   PAIR: A | B   (A ! domain)
+# Every compound card forms a real, common compound with the key (closed word or very common two-word phrase),
+# and no card contains its own key. Members beyond the first dozen are mostly declared crossings: honest
+# members that are also cards elsewhere in this file or in the bank.
+
+# --- Words before X (card + key) ---
+words_before_light,Words before light,light,3,lateral,Moon|Sun|Star|Day|Head|Tail|Spot|Flash|Lime|Candle|Fire|High|Night|Green|Red|Fog
+words_before_man,Words before man,man,3,lateral,Snow|Post|Fire|Police|Cave|Chair|Space|Milk|Door|Weather|Handy|Frog|Middle|Iron|Fore|Business
+words_before_room,Words before room,room,3,lateral,Bed|Bath|Class|Ball|Show|Store|Board|Dining|Living|Guest|Leg|Elbow|Court|Tea|News|Engine
+words_before_ship,Words before ship,ship,3,lateral,Friend|Leader|Member|Owner|Champion|Space|Flag|Air|Partner|Scholar|Sponsor|Hard|Court|Steam|Star
+words_before_fall,Words before fall,fall,3,lateral,Rain|Snow|Water|Night|Land|Foot|Down|Pit|Wind|Short|Free
+words_before_work,Words before work,work,3,lateral,Home|Net|Frame|Fire|Ground|Clock|Wood|Patch|Paper|Guess|Foot|House|Needle|School|Leg
+words_before_book,Words before book,book,3,lateral,Cook|Note|Text|Hand|Guide|Story|Scrap|Phrase|Sketch|Song|Comic|Work|Log|Year|Phone|Guest
+words_before_storm,Words before storm,storm,3,lateral,Snow|Rain|Thunder|Sand|Hail|Brain|Fire|Dust|Wind|Ice
+words_before_stick,Words before stick,stick,3,lateral,Lip|Chop|Drum|Joy|Candle|Broom|Match|Pogo|Slap|Glue|Walking|Hockey|Selfie|Cinnamon|Bread
+words_before_hole,Words before hole,hole,3,lateral,Key|Man|Pot|Port|Button|Rabbit|Black|Loop|Pin|Peep|Pigeon|Sink|Blow|Worm
+words_before_mark,Words before mark,mark,3,lateral,Book|Land|Bench|Birth|Hall|Trade|Water|Post|Question|Tide|Skid|Stretch|Bite|Ear
+words_before_side,Words before side,side,3,lateral,Sea|Country|Road|Fire|Bed|Lake|River|Hill|Pool|Ring|Flip|Down|Out|Off|Mountain|Back
+words_before_way,Words before way,way,3,lateral,High|Rail|Run|Path|Gate|Door|Hall|Stair|Drive|Walk|Gang|Head|Water|Air|Fair|Free
+words_before_time,Words before time,time,3,lateral,Bed|Lunch|Tea|Bath|Play|Story|Spring|Summer|Winter|Day|Night|Over|Life|Down|Show
+words_before_top,Words before top,top,3,lateral,Lap|Desk|Table|Tree|Roof|Hill|Tank|Counter|Cliff|Mountain|Tip|Crop
+words_before_print,Words before print,print,3,lateral,Foot|Finger|Hand|Paw|Blue|News|Thumb|Fine
+words_before_wood,Words before wood,wood,3,lateral,Fire|Drift|Hard|Soft|Sandal|Red|Rose|Dog|Box|Brush
+words_before_stone,Words before stone,stone,3,lateral,Mile|Hail|Lime|Sand|Corner|Key|Step|Gem|Flag|Touch|Moon|Cobble|Birth|Curling|Mill
+words_before_bird,Words before bird,bird,3,lateral,Black|Blue|Song|Sea|Jail|Early|Love|Shore|Water|Mocking|Humming|Game
+words_before_coat,Words before coat,coat,3,lateral,Rain|Over|Under|Top|Waist|Lab|Fur|Pea|Tail|Turn|Sugar|Trench|Base
+words_before_land,Words before land,land,3,lateral,Wonder|Home|Main|Fairy|Dream|Farm|Grass|Wood|Wet|High|Low|Waste|Mother|Heart
+words_before_paper,Words before paper,paper,3,lateral,News|Sand|Wall|Tissue|Toilet|Fly|Wrapping|Rice|Tracing|Waste|Wax|Graph|Baking|Printer
+words_before_bone,Words before bone,bone,3,lateral,Back|Jaw|Cheek|Wish|Funny|Collar|Hip|Shin|Whale|Herring
+words_before_guard,Words before guard,guard,3,lateral,Life|Body|Coast|Shin|Fire|Mud|Safe|Mouth|Rear
+words_before_proof,Words before proof,proof,3,lateral,Water|Fire|Sound|Fool|Child|Rain|Wind|Shower|Weather|Rust|Heat|Shatter|Leak
+words_before_keeper,Words before keeper,keeper,3,lateral,Goal|Book|Shop|House|Zoo|Bee|Time|Gate|Score|Peace|Inn|Game
+words_before_ground,Words before ground,ground,3,lateral,Play|Back|Under|Fair|Camp|Middle|Fore|Home|Common
+words_before_yard,Words before yard,yard,3,lateral,Back|Ship|Court|School|Junk|Farm|Barn|Vine|Stock|Scrap|Dock|Brick
+words_before_bean,Words before bean,bean,3,lateral,Coffee|Cocoa|Kidney|Baked|Green|Soy|Butter|Vanilla|Black|Mung|Lima|Navy
+words_before_drop,Words before drop,drop,3,lateral,Rain|Dew|Tear|Snow|Back|Gum|Air|Eaves|Name|Lemon|Eye
+
+# --- Words after X (key + card) ---
+words_after_rain,Words after rain,rain,3,lateral,Bow|Coat|Drop|Fall|Forest|Storm|Water|Cloud|Maker|Dance|Proof
+words_after_snow,Words after snow,snow,3,lateral,Ball|Man|Flake|Fall|Storm|Board|Drift|Drop|Shoe|Mobile|Boot|Globe|Cap|Suit
+words_after_star,Words after star,star,3,lateral,Fish|Light|Dust|Ship|Board|Fruit|Burst|Sign|Map|Gazer|Struck
+words_after_foot,Words after foot,foot,3,lateral,Ball|Print|Step|Path|Note|Hold|Wear|Bridge|Work|Rest|Stool|Hill|Loose|Fall
+words_after_hand,Words after hand,hand,3,lateral,Bag|Shake|Book|Made|Rail|Brake|Ball|Set|Saw|Stand|Towel|Cream|Out|Over|Print
+words_after_water,Words after water,water,3,lateral,Fall|Melon|Proof|Mark|Front|Bed|Park|Slide|Lily|Polo|Bottle|Buffalo|Chestnut|Way|Wheel|Mill
+words_after_back,Words after back,back,3,lateral,Pack|Bone|Ground|Fire|Yard|Hand|Log|Lash|Side|Flip|Drop|Door|Water|Space|Rest
+words_after_head,Words after head,head,3,lateral,Line|Light|Band|Board|Phone|Rest|Stand|Way|Wind|Land|Scarf|Dress|Set|Lamp|Count
+words_after_moon,Words after moon,moon,3,lateral,Light|Beam|Shine|Walk|Stone|Struck|Rise|Cake|Lit|Roof|Boot
+words_after_eye,Words after eye,eye,3,lateral,Ball|Brow|Lash|Lid|Sight|Liner|Witness|Opener|Glass|Patch|Shadow|Piece|Sore|Wear|Drop
+words_after_ear,Words after ear,ear,3,lateral,Ring|Phone|Plug|Lobe|Wax|Drum|Mark|Muff|Wig|Piece|Bud
+words_after_air,Words after air,air,3,lateral,Port|Plane|Line|Bag|Bed|Ship|Lock|Mail|Show|Space|Brush|Drop|Horn|Way
+words_after_life,Words after life,life,3,lateral,Boat|Guard|Style|Time|Line|Jacket|Belt|Saver|Long|Like|Size|Span|Raft
+words_after_tea,Words after tea,tea,3,lateral,Pot|Cup|Spoon|Bag|Towel|Time|Party|Room|Cake|Leaf|Set|Shop|Light|Kettle
+words_after_hair,Words after hair,hair,3,lateral,Cut|Brush|Dryer|Spray|Pin|Line|Style|Band|Net|Piece|Clip|Dresser|Gel|Tie|Ball
+words_after_night,Words after night,night,3,lateral,Club|Fall|Gown|Light|Life|Cap|Time|Dress|Owl|School|Watch|Shirt|Market|Shift|Stand
+words_after_day,Words after day,day,3,lateral,Light|Dream|Break|Time|Care|Trip|Bed|Shift|Job|Spa|Pack|Lily|Off
+words_after_sand,Words after sand,sand,3,lateral,Castle|Paper|Stone|Storm|Bag|Box|Bank|Bar|Pit|Dune|Fly|Piper|Blast|Trap|Dollar
+words_after_book,Words after book,book,3,lateral,Case|Mark|Shelf|Worm|Keeper|Store|Shop|End|Club|Fair|Binder|Stall
+words_after_house,Words after house,house,3,lateral,Boat|Hold|Work|Plant|Keeper|Guest|Mate|Fly|Party|Warming|Coat|Proud|Sitter
+words_after_fish,Words after fish,fish,3,lateral,Bowl|Cake|Net|Bone|Tank|Pond|Food|Tail|Eye|Market|Bait|Farm|Shop|Oil|Sauce
+words_after_horse,Words after horse,horse,3,lateral,Shoe|Power|Fly|Back|Radish|Play|Man|Hair|Box|Race|Whip|Chestnut
+words_after_hot,Words after hot,hot,3,lateral,Dog|Pot|Spot|Cake|House|Plate|Head|Rod|Tub|Sauce|Spring|Line|Water|Chocolate|Air
+words_after_under,Words after under,under,3,lateral,Ground|Water|Wear|Line|Dog|Cover|Pass|Stand|Take|World|Arm|Coat|Current|Cut|Study|Score
+words_after_door,Words after door,door,3,lateral,Bell|Step|Way|Mat|Knob|Man|Frame|Stop|Handle|Post
+words_after_play,Words after play,play,3,lateral,Ground|Time|House|Mate|Room|Pen|School|Group|List|Thing|Off|Date|Back
+words_after_home,Words after home,home,3,lateral,Work|Made|Town|Land|Page|Coming|Grown|Owner|Run|School
+words_after_wind,Words after wind,wind,3,lateral,Mill|Screen|Fall|Pipe|Sock|Bag|Surf|Farm|Burn|Break|Storm|Turbine|Power|Tunnel
+words_after_show,Words after show,show,3,lateral,Case|Room|Man|Down|Off|Time|Stopper|Boat|Piece|Business|Girl|Ground
+words_after_road,Words after road,road,3,lateral,Map|Side|Block|Trip|Rage|Runner|Sign|Hog|Show|Test|Way
+
+# --- Abstract properties ---
+things_that_melt,Things that melt,melt,2,abstract,Ice|Snow|Butter|Chocolate|Candle|Wax|Icicle|Glacier|Crayon|Frost|Cheese|Sorbet|Hail
+sticky_things,Sticky things,Sticky,2,abstract,Glue|Honey|Tape|Syrup|Bubblegum|Jam|Toffee|Caramel|Sap|Resin|Paste|Tar|Slime|Web
+smelly_things,Smelly things,Smelly,2,abstract,Skunk|Garlic|Sock|Sewer|Compost|Manure|Durian|Drain|Onion|Pigsty
+loud_things,Loud things,Loud,2,abstract,Thunder|Siren|Drum|Alarm|Horn|Jet|Trumpet|Whistle|Gong|Cymbal|Drill|Chainsaw|Megaphone|Rooster
+sharp_things,Sharp things,Sharp,2,abstract,Needle|Pin|Thorn|Razor|Claw|Scissors|Spike|Tack|Fang|Cactus|Talon|Chisel|Saw|Dart
+things_that_glow,Things that glow,glow,2,abstract,Lava|Ember|Candle|Lantern|Neon|Lamp|Bulb|Moon|Star|Screen|Beacon|Sun|Light|Fire
+things_that_spin,Things that spin,spin,2,abstract,Wheel|Top|Fan|Propeller|Globe|Tornado|Carousel|Turbine|Record|Whirlpool|Gear|Drill
+fragile_things,Fragile things,Fragile,2,abstract,Glass|Egg|Vase|Mirror|Bubble|Bulb|Crystal|Porcelain
+slow_things,Slow things,Slow,2,abstract,Snail|Sloth|Tortoise|Glacier|Slug|Turtle|Manatee|Koala
+things_that_buzz,Things that buzz,buzz,3,abstract,Bee|Wasp|Fly|Hornet|Mosquito|Phone|Kazoo|Razor|Drone
+stretchy_things,Stretchy things,Stretchy,2,abstract,Elastic|Spandex|Bubblegum|Dough|Slime|Balloon|Tights|Leggings|Spring|Bungee
+hot_things,Things that are hot,hot,2,abstract,Sun|Fire|Oven|Lava|Stove|Kettle|Desert|Sauna|Volcano|Furnace|Radiator|Toaster|Grill|Ember|Steam|Candle
+sour_things,Sour things,Sour,2,abstract,Lemon|Lime|Vinegar|Pickle|Cranberry|Tamarind|Kimchi|Crabapple
+transparent_things,Transparent things,Transparent,2,abstract,Glass|Window|Water|Air|Lens|Bubble|Jellyfish|Crystal|Prism|Ice
+things_that_float,Things that float,float,2,abstract,Cork|Buoy|Log|Raft|Bubble|Feather|Leaf|Cloud|Balloon|Boat|Ship|Ice|Oil
+soft_things,Soft things,Soft,2,abstract,Pillow|Cushion|Feather|Teddy|Blanket|Fleece|Velvet|Wool|Cotton|Fur|Moss|Sponge|Towel|Tissue|Fluff
+slippery_things,Slippery things,Slippery,2,abstract,Ice|Soap|Eel|Oil|Grease|Mud|Slug|Seaweed
+things_that_sparkle,Things that sparkle,sparkle,2,abstract,Glitter|Sequin|Tinsel|Crystal|Star|Tiara|Jewel|Dew|Frost
+spicy_things,Spicy things,Spicy,2,abstract,Wasabi|Curry|Salsa|Mustard|Ginger|Pepper|Cayenne|Vindaloo|Kimchi
+tiny_things,Tiny things,Tiny,2,abstract,Atom|Germ|Seed|Crumb|Speck|Grain|Pixel|Dot|Molecule|Flea|Mite
+cold_things,Things that are cold,cold,2,abstract,Fridge|Freezer|Igloo|Glacier|Icicle|Frost|Winter|Blizzard|Tundra|Ice|Snow|Hail|Sleet
+squeaky_things,Squeaky things,Squeaky,3,abstract,Mouse|Hinge|Wheel|Chalk|Brake|Swing|Gate|Door
+virtues,Virtues,Virtues,2,abstract,Patience|Courage|Honesty|Kindness|Humility|Wisdom|Loyalty|Justice|Mercy|Modesty|Prudence
+things_that_sting,Things that sting,sting,2,abstract,Bee|Wasp|Hornet|Nettle|Jellyfish|Scorpion|Urchin|Ant
+rough_things,Rough things,Rough,2,abstract,Bark|Gravel|Brick|Concrete|Pumice|Stubble|Tweed|Coral
+
+# --- Extensions to existing bank categories (declared crossings) ---
+# Compound categories already in the bank:
++words_after_fire,Man|Guard|Storm|Wall|Engine|Alarm|Drill|Station|Pit|Ant
++words_after_sun,Beam|Lit|Roof|Spot|Tan|Hat|Dress
++words_before_ball,Hand|Soft|Hard|Net|Paint|Moth|Cotton|Hair|Crystal|Gum
++words_before_board,Key|Side|Head|Star|Spring|Score|Dart|Chalk
++words_before_cake,Tea|Moon|Short|Fruit|Chocolate|Coffee
++words_before_fish,Clown|Blow
++words_before_house,Club|Boat|Court|Guest|Play|Power|Coffee
+# Other bank categories:
++animal_homes,Pigsty|Barn
++at_the_circus,Ring
++birds,Pigeon
++boats,Ship
++body_parts,Hand|Head|Leg|Arm|Jaw|Shin|Finger|Back|Hair
++card_games,Patience
++chess_pieces,Castle
++dances,Swing
++fabrics,Fleece|Spandex
++farm_animals,Hog
++fish,Herring|Eel
++footwear,Shoe
++fruit,Melon|Crabapple
++golf_terms,Club
++in_the_bathroom,Razor
++insects,Mosquito
++instruments,Horn|Kazoo
++kinds_of_tea,Black
++kitchen_appliances,Grill
++kitchen_tools,Pot
++landforms,Hill
++music_genres,Swing|House|Country
++places_in_a_town,Shop|Zoo
++sea_creatures,Eel|Manatee
++shades_of_pink,Coral
++spices,Cayenne|Vanilla
++sports_gear,Ball
++sweet_treats,Sorbet
++sweets,Bubblegum
++things_at_the_beach,Seaweed
++things_that_fly,Pigeon|Owl
++things_with_roots,Radish
++things_you_can_break,Bone|Leg
++things_you_can_catch,Fish|Plane
++things_you_wear,Gown|Tights|Leggings|Suit|Tie|Wig|Fleece
++toys,Top|Ball
++tropical_fruit,Durian|Tamarind
++vegetables,Radish|Garlic
++ways_to_travel,Ship|Boat
++weather,Storm|Cloud|Blizzard|Tornado
+
+# ---------------------------------------------------------------------------------------------------------------
+# PAIR RULES
+# Real ambiguities only. Key leaks (one category's card is literally another category's hidden key word, e.g.
+# the card Fall from Words after rain in the same level as Words before fall) are NOT listed one by one: there
+# are ~290 of them across this file and the bank. Recommend a generic generator check instead:
+#   never deal two categories together when a card (case-insensitive, also +s/-s) equals the other's key.
+# ---------------------------------------------------------------------------------------------------------------
+# Abstract: heavy overlaps or fuzzy edges
+PAIR: Things that melt | Things that are cold
+PAIR: Things that melt | Weather
+PAIR: Things that melt | Cheeses
+PAIR: Things that are cold | Weather
+PAIR: Things that are cold | Things you can catch
+PAIR: Things that are hot | Things that glow
+PAIR: Things that are hot | Kitchen appliances
+PAIR: Things that are hot | Drinks
+PAIR: Things that are hot | Coffee drinks
+PAIR: Things that are hot | Kinds of tea
+PAIR: Things that are hot | Spices
+PAIR: Things that are hot | Sauces
+PAIR: Things that are hot | Pizza toppings
+PAIR: Things that are hot | Spicy things
+PAIR: Things that are hot | Words after hot
+PAIR: Things that glow | Things in space
+PAIR: Things that glow | Words before light
+PAIR: Sharp things | Sewing kit
+PAIR: Sharp things | Things in a toolbox
+PAIR: Sharp things | Things with teeth
+PAIR: Sharp things | Things with spines
+PAIR: Sharp things | Kitchen tools
+PAIR: Sharp things | Garden tools
+PAIR: Loud things | Instruments
+PAIR: Loud things | Things that fly
+PAIR: Loud things | Animal sounds
+PAIR: Loud things ! animals
+PAIR: Soft things | Fabrics
+PAIR: Soft things | Baby animals
+PAIR: Soft things | Cheeses
+PAIR: Soft things | Dairy
+PAIR: Soft things ! animals
+PAIR: Rough things | Fabrics
+PAIR: Rough things | Rocks
+PAIR: Things that spin | Planets
+PAIR: Things that spin | Things in space
+PAIR: Things that spin | Kitchen appliances
+PAIR: Things that spin | Sports gear
+PAIR: Fragile things | Things you can break
+PAIR: Fragile things | Things you can crack
+PAIR: Fragile things | On the table
+PAIR: Fragile things | Transparent things
+PAIR: Transparent things | Things you can break
+PAIR: Transparent things | Gases
+PAIR: Transparent things | Parts of the eye
+PAIR: Transparent things | Words before fish
+PAIR: Transparent things | Words after fish
+PAIR: Slow things | Things with shells
+PAIR: Slow things | Reptiles
+PAIR: Things that buzz | Insects
+PAIR: Things that buzz | Animal sounds
+PAIR: Things that buzz | Things that sting
+PAIR: Things that buzz | Things that fly
+PAIR: Things that sting | Insects
+PAIR: Things that sting | Words before fish
+PAIR: Things that sting | Words after fish
+PAIR: Things that float | Boats
+PAIR: Things that float | Things that fly
+PAIR: Things that float | Ways across a river
+PAIR: Things that sparkle | Gems
+PAIR: Things that sparkle | Card suits
+PAIR: Spicy things | Spices
+PAIR: Spicy things | Sauces
+PAIR: Tiny things | Insects
+PAIR: Sticky things | Sweets
+# Compounds: shared key word, heavy overlap, or a card that names the other category's label
+PAIR: Rooms in a house | Words before room
+PAIR: Rooms in a house | Words before way
+PAIR: Rooms in a house | Words after play
+PAIR: Rooms in a house | Words after show
+PAIR: Rooms in a house | Words after tea
+PAIR: Weather | Words before storm
+PAIR: Weather | Words before man
+PAIR: Weather | Words before proof
+PAIR: Words after sun | Words after moon
+PAIR: Words before fish | Words after fish
+PAIR: Words before house | Words after house
+PAIR: Fish | Words after fish
+PAIR: Pets | Words after fish
+PAIR: Sea creatures | Words after fish
+PAIR: Fish | Words after star
+PAIR: Fruit | Words after star
+PAIR: Bones | Words before bone
+PAIR: Body parts | Words before bone
+PAIR: Bones | Words after back
+PAIR: Bones | Words after fish
+PAIR: Units of time | Words before time
+PAIR: Things that tell time | Words before time
+PAIR: Kinds of tea | Words before time
+PAIR: Kinds of tea | Words after tea
+PAIR: Drinks | Words after tea
+PAIR: At the airport | Words after air
+PAIR: At the airport | Words before way
+PAIR: Golf terms | Words before way
+PAIR: Ways across a river | Words before way
+PAIR: Parts of the eye | Words after eye
+PAIR: Boats | Words after life
+PAIR: Boats | Words after house
+PAIR: Boats | Words after show
+PAIR: On a desk | Words before top
+PAIR: On the table | Words before top
+PAIR: Things with keys | Words before top
+PAIR: Trees | Words before top
+PAIR: Things that fly | Words after horse
+PAIR: Things that fly | Words after house
+PAIR: Things that fly | Words after sand
+PAIR: Things that fly | Words before paper
+PAIR: Things that fly | Words after fire
+PAIR: Breads | Words before stick
+PAIR: Coffee drinks | Words before bean
+PAIR: Dances | Words after rain
+PAIR: Dog breeds | Words after hot
+PAIR: Dog breeds | Words after under
+PAIR: Dog breeds | Words before wood
+PAIR: Gems | Words before stone
+PAIR: Jobs | Words after day
+PAIR: Rivers | Words before side
+PAIR: Sauces | Words after fish
+PAIR: Sauces | Words after hot
+PAIR: Shades of blue | Words before bird
+PAIR: Shades of blue | Words before print
+PAIR: Shades of green | Words before bean
+PAIR: Shades of green | Words before light
+PAIR: Shades of red | Words before light
+PAIR: Shades of red | Words before wood
+
+# ---------------------------------------------------------------------------------------------------------------
+# SUMMARY
+# ---------------------------------------------------------------------------------------------------------------
+# Counts: 85 new categories.
+#   Tier 3: 62 (60 compounds, all domain lateral: 30 "Words before X" + 30 "Words after X"; plus Things that buzz
+#           and Squeaky things, domain abstract).
+#   Tier 2: 23 (abstract properties, plus Virtues as one abstract concept group).
+#   Tier 1 and 4: none.
+#   Extensions: 7 existing compound categories (+words_before_ball/board/cake/fish/house, +words_after_fire/sun)
+#   and 40 other bank categories, to declare crossings.
+#
+# How crossings were built: each compound key was brainstormed exhaustively. Every strong compound whose first or
+# second word appears anywhere (a card in this file or any bank word) is listed in that category, so overlaps
+# between the compound categories themselves are declared. Moderate compounds were left out on purpose, both as
+# members and as declarations: snowline, treeline, waterside, wayside, headroom, tearoom-style "X room" variants,
+# boatman, seaman, footman, iceman, lamplight, sidelight, backlight, fog lamp, hotbed, hot pepper, firebreak,
+# summerhouse, soundboard, storyboard, sandfly, cheeseboard, breadboard, soapstone, dustproof, backbite, bookplate.
+# A player could still think of one, but none is top of mind.
+#
+# Biggest crossing words (all declared): Fire (14 categories), Water, Ball (11), Light (10), Snow (9), Star, Bed,
+# Back (8), Ice, Time, School, Line, Fly (7).
+# Fun cross-domain herrings: Drum (instrument, stick, ear, loud), Sandal (footwear, wood), Pea (vegetable, coat),
+# Kidney (organ, bean), Vanilla and Coffee (ice cream, bean), Radish (vegetable, horse, roots), Chestnut (nut,
+# brown, horse, water), Buffalo (safari, water), Lily (flower, water, day), Polo (sport, water), Lime (citrus,
+# green, light, stone, sour), Patience (card game, virtue), Castle (chess, sand), Swing (dance, music, squeaky),
+# Country and House (music genres), Mile (unit, stone), Curling (winter sport, stone), Bow (tie, rain),
+# Whip (crack, horse), Neon (gas, glow), Crayon (art, melt), Glacier (landform, melt, slow, cold), Skunk (stripes,
+# smelly), Web (animal home, sticky), Bubblegum (pink, sweets, sticky, stretchy), Jet (gem, loud), Coral (pink, rough),
+# Club (golf, night, book), Shop/Zoo (town), Pigsty/Barn (animal homes).
+#
+# Non-lateral extensions, and why: body_parts gets Hand, Head, Leg, Arm, Jaw, Shin, Finger, Back, Hair because the
+# compounds use them constantly. Weather gets Storm, Cloud, Blizzard, Tornado. Things you wear gets Gown, Tights,
+# Leggings, Suit, Tie, Wig, Fleece. Each other + line adds a word this file uses that a player would accept there.
+#
+# Words deliberately avoided:
+#   - Cards that contain another category's key, which would leak it: Firework (fire+work), Windmill, Sandpaper,
+#     Snowflake, Snowman (with Snow), Iceberg (with Ice), Teacup, Landfill, Shot (hotshot has "hot" inside), Breaker
+#     (with Break), Lifebelt.
+#   - Regional words: Motorway and Freeway (Free is kept only as a declared crossing), Sidewalk and Crosswalk (so no
+#     "Words before walk"), Windshield, Head teacher, Headmaster, Eggplant, Raincheck, Snow pea, Snow day, Worktop,
+#     Stovetop, fruit "stones", Runner bean, Broad bean, String bean, Wicket. Rubber is out (UK eraser).
+#   - Spelling and length: Chilli, Yoghurt, Gooseberry (10 letters), Crepe (accent varies).
+#   - Taste: Dead (deadline), Headstone, Gravestone, Kidney stone, Gun, Sword, Bomb, War and Battle compounds,
+#     Watergate, Homebrew, Bum bag, Nightmare, Roadkill.
+#   - Disputes: Rhubarb (fruit or vegetable), Diamond (clashes with the Diamonds suit), Rock (Rocks label), Koala
+#     kept only in Slow things.
+#   - Gum is out; Bubblegum is used instead, so it declares the crossing with Shades of pink.
+#
+# Keys dropped as too generic or too promiscuous (they would need 20+ declared members):
+#   - before line (base, side, neck, hair, bee, time, land, under, guide, waist, phone, front all qualify);
+#   - before bag, box, pot, cup, bowl, brush, bell ("X bag" is open-ended: laptop bag, golf bag...);
+#   - after black, blue, sea ("black tea", "sea turtle" and so on are endless colour or place adjectives);
+#   - after ice (needs both Skate and Skating); Round things, Invisible things, Cold-only things.
+#
+# Accidental substrings kept, because they carry no clue: Rain/Brain, Air/Stair/Fair, Pot/Spot.
+#
+# Unsure, least sure first:
+#   1. soft_things: soft is graded, and many bank words are arguably soft (Kitten, Brie, Butter, Silk, Slipper).
+#      It leans on its PAIR rules and "! animals". Cut it if playtests argue.
+#   2. hot_things: "hot" also means spicy, and Iron (Metals, Golf terms) is a hot clothes iron that is NOT declared.
+#      It has 9 PAIR rules. Consider a PAIR with Metals and with Golf terms too.
+#   3. squeaky_things: fuzzy (Shoe, Floor, Bed squeak too); tier 3 for that reason.
+#   4. things_that_float: Balloon and Cloud float in air, not water; Leaf is a little weak.
+#   5. words_before_wood: Dogwood, Boxwood, Brushwood and Rosewood are less known than Driftwood or Firewood.
+#   Also watch: slow_things (Koala, Manatee), things_that_sparkle (Dew, Frost), words_before_man (Iron counts only via
+#   Iron Man), virtues (abstract and a little earnest), words_before_print (only 8 members).

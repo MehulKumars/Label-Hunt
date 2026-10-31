@@ -56,6 +56,47 @@ func find_label(label: String) -> int:
 	return -1
 
 
+## Wordplay targets: category index -> {kind: "hidden" | "anagram", words: PackedStringArray}. A hidden-word
+## category ("Hidden body parts") must not share a level with any word that hides one of its targets, nor an anagram
+## category with an anagram of one (the player would see a valid answer in another group).
+var targets := {}
+
+
+## Reads data/bank/wordplay_targets.txt: "id hidden|anagram word word ...", one category per line.
+func load_targets(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		return
+	for raw in FileAccess.get_file_as_string(path).split("\n", false):
+		var parts := raw.strip_edges().split(" ", false)
+		if parts.size() < 3 or not by_id.has(parts[0]):
+			continue
+		targets[int(by_id[parts[0]])] = {"kind": parts[1], "words": parts.slice(2)}
+
+
+## True if `word` trips wordplay category `idx`'s rule (hides or anagrams one of its targets).
+func trips(idx: int, word: String) -> bool:
+	var t: Dictionary = targets.get(idx, {})
+	if t.is_empty():
+		return false
+	var lw := word.to_lower()
+	if t["kind"] == "anagram":
+		var key := sorted_letters(lw)
+		for x: String in t["words"]:
+			if sorted_letters(x) == key:
+				return true
+		return false
+	for x: String in t["words"]:
+		if lw.contains(x):
+			return true
+	return false
+
+
+static func sorted_letters(w: String) -> String:
+	var a := Array(w.split(""))
+	a.sort()
+	return "".join(a)
+
+
 ## Reads data/bank/pairs.txt: "A < B" (B is part of A), "A | B" (never together), "A ! domain".
 func load_pairs(path: String) -> void:
 	for raw in FileAccess.get_file_as_string(path).split("\n", false):

@@ -1,0 +1,387 @@
+# 08_wordplay.txt: tier 4, domain wordplay. Drafted against categories.txt (139 categories), notes.md and pairs.txt.
+#
+# HOW TO READ THIS FILE
+# - Members are listed core first; words that already live in the bank come after the core and are there because
+#   they honestly satisfy the rule (declared crossings). Hidden-word categories are long for that reason.
+# - "Hidden X" means X appears as consecutive letters inside a longer word (sHINe, cHAIR). A word that simply IS
+#   an X (Palm, Lime) is not a hidden X; pair rules keep the direct source categories out of the level anyway.
+# - Every family below is mutually paired (see PAIR lines at the end), so sibling overlaps never meet in a level.
+# - "# TARGETS" lines list the exact words each hidden/anagram rule looks for, so the merge step can rescan
+#   the merged bank mechanically (substring for hidden, sorted letters for anagrams).
+
+# ---------------------------------------------------------------------------------------------------------------
+# SOUND FAMILY (homophones). Accent-dependent pairs were left out (aunt/ant, mare/mayor, sauce/source, been/bean,
+# berry/bury, ferry/fairy, easy=EZ, row). All five are paired with each other.
+# ---------------------------------------------------------------------------------------------------------------
+sound_like_letters,Sound like letters,letters,4,wordplay,Bee|Sea|See|Tea|Tee|Pea|Eye|Queue|Why|You|Owe
+sound_like_two_letters,Sound like two letters,letters,4,wordplay,Envy|Essay|Excel|Icy|Decay|Empty|Seedy|Arty|Beady|Okay
+sound_like_animals,Sound like animals,animals,4,wordplay,Bare|Dear|Hoarse|Bore|Wail|Towed|Dough|Links|Flee|Soul
+sound_like_body_parts,Sound like body parts,body,4,wordplay,Hare|Heal|Knows|Tow|Feat|Sighed|Naval|Browse|Waste|Vain|Soul
+sound_like_foods,Sound like foods,foods,4,wordplay,Leak|Serial|Stake|Pair|Role|Maze|Chilly|Current|Flower
+
+# ---------------------------------------------------------------------------------------------------------------
+# HIDDEN FAMILY. All 15 are paired with each other. No generic "Hidden animals": about 45 bank words already hide
+# cat/rat/bat/ant/ape/bee/ram/hen/owl/cod, so it is split into farm animals, birds, fish and insects, whose
+# narrower labels stop most accidental claims (Grater hides rat, but a rat is not a farm animal, bird or fish).
+# ---------------------------------------------------------------------------------------------------------------
+# TARGETS hidden_body_parts: arm ear eye lip hip toe shin chin leg rib jaw gum hand nail heel brow lash hair skin knee neck back face head foot palm sole lung liver heart thumb wrist ankle elbow tooth nose calf thigh waist chest spine bone vein navel belly cheek tongue gut lobe
+hidden_body_parts,Hidden body parts,body,4,wordplay,Charm|Legend|Tribe|Machine|Flash|Handle|Surface|Wheel|Shine|Tulip|Chair|Snail|Earth|Pearl|Whip|Hippo|Ribbon|Urchin|Year|Pear|Shears|Gear|Earl|Hearts|Alarm|Farm|Farmer|Parmesan|Brownie|Bubblegum|Chestnut|Clip|Lollipop|Slipper|Dear
+# TARGETS hidden_farm_animals: cow pig ram ewe ox hen goat bull lamb horse sheep mare colt foal hog boar llama duck mule goose donkey calf (yak and ass handled by pair rules)
+hidden_farm_animals,Hidden farm animals,farm,4,wordplay,Scowl|Coward|Pigment|Drama|Ceramic|Jewel|Toxic|Goatee|Bulldozer|When|Kitchen|Tram|Gram|Caramel|Oxygen|Foxtrot|Hedgehog|Keyboard
+# TARGETS hidden_birds: owl hen emu crow tern gull wren teal rook kite dove hawk lark kiwi jay swan duck eagle robin heron crane stork raven quail finch ibis
+hidden_birds,Hidden birds,birds,4,wordplay,Scowl|When|Pattern|Lantern|Steal|Crook|Ravenous|Gullible|Bowl|Kitchen|Crowd|Microwave|Wrench|Bowler
+# TARGETS hidden_fish: cod carp eel tuna bass pike ray sole perch trout shark bream
+hidden_fish,Hidden fish,fish,4,wordplay,Carpet|Feel|Wheel|Fortunate|Solemn|Spike|Embassy|Spray|Code|Barcode|Peeler|Crayon|Crocodile
+# TARGETS hidden_insects: ant bee moth louse bug fly flea gnat wasp mite
+hidden_insects,Hidden insects,insects,4,wordplay,Plant|Elegant|Smother|Blouse|Fantasy|Giant|Pantry|Croissant|Currant|Plantain|Beef|Mother
+# TARGETS hidden_numbers: one two three four five six seven eight nine ten eleven twelve zero (nil handled by pair rules)
+hidden_numbers,Hidden numbers,numbers,4,wordplay,Often|Weight|Height|Freight|Canine|Network|Listen|Alone|Lonely|Attend|Phone|Honey|Kitten|Tennis|Tent|Drone|Ozone
+# TARGETS hidden_hues: red tan teal rose lime plum rust cream amber navy pink gold jade ruby blue green grey gray black white brown ochre mauve cyan lilac peach coral olive mint jet (ash, sand, buff deliberately not counted)
+hidden_hues,Hidden hues,hues,4,wordplay,Scream|Chamber|Steal|Slime|Trust|Crust|Prose|Shred|Credit|Titan|Predict|Blackjack|Blues|Brownie|Goldfish|Plumber|Rectangle|Rosemary|Tangerine|Tango
+# TARGETS hidden_fruit: fig date pear lime plum apple lemon melon peach kiwi grape mango olive berry orange cherry
+hidden_fruit,Hidden fruit,fruit,4,wordplay,Figure|Figment|Update|Candidate|Mandate|Appear|Slime|Climate|Sublime|Plump|Pearl|Plumber|Pineapple
+# TARGETS hidden_trees: oak elm fir ash pine yew teak palm beech birch cedar maple larch alder aspen hazel rowan willow (lime and box deliberately not counted)
+hidden_trees,Hidden trees,trees,4,wordplay,Soak|First|Firm|Confirm|Fashion|Alpine|Ashore|Ashamed|Overwhelm|Helmet|Cash|Cashew|Dash|Squash|Fire|Hazelnut|Pineapple|Porcupine|Lash
+# TARGETS hidden_vehicles: car van bus cab train tram taxi bike truck limo jet (land vehicles; ark, raft, ship deliberately not counted)
+hidden_vehicles,Hidden vehicles,vehicles,4,wordplay,Busy|Strain|Advance|Cabin|Struck|Robust|Carpet|Vanish|Scarf|Card|Carrot|Scarlet|Caramel|Cardamom|Carp|Macaroni|Mascara|Cabbage|Cabinet|Vanilla
+# TARGETS hidden_clothing: hat cap tie vest robe cape dress boot suit sock mitten coat belt shoe scarf glove bra sari kilt shawl gown hood bib toga tutu skirt shirt
+hidden_clothing,Hidden clothing,clothing,4,wordplay,Harvest|Probe|Escape|Address|Booth|Pursuit|Shatter|Socket|Smitten|Whatever|Patient|Bravo|Library|Zebra|Shoelace|Suitcase|Wardrobe
+# TARGETS hidden_kitchen_items: pan pot cup jug mug lid tray wok bowl dish fork spoon plate tin sieve ladle whisk kettle
+hidden_kitchen_items,Hidden kitchen items,kitchen,4,wordplay,Company|Panic|Expand|Solid|Stray|Template|Dishonest|Whiskers|Bowler|Glider|Juggler|Marzipan|Panama|Pancake|Paneer|Pantry|Plateau|Porcupine|Potato|Satin|Skating
+# TARGETS hidden_weights: ton ounce pound gram kilo
+hidden_weights,Hidden units of weight,weight,4,wordplay,Bounce|Pounce|Announce|Compound|Diagram|Telegram|Hologram|Carton|Piston|Tonic|Baton|Button|Cotton|Mutton|Rigatoni|Tongs
+# TARGETS hidden_instruments: harp horn lute organ bell drum gong oboe tuba fife lyre sitar cello piano flute banjo bass (uke handled by a pair rule)
+hidden_instruments,Hidden instruments,instruments,4,wordplay,Sharp|Thorn|Absolute|Salute|Organic|Bellow|Humdrum|Conundrum|Embassy|Hornet
+# TARGETS hidden_jobs: vet actor maid miner cop chef nurse cook spy judge guard tutor poet pilot baker tailor agent diver medic
+hidden_jobs,Hidden jobs,jobs,4,wordplay,Tractor|Mineral|Diverse|Poetry|Maiden|Velvet|Mermaid|Copper|Bakery
+
+# ---------------------------------------------------------------------------------------------------------------
+# ANAGRAM FAMILY. Same letters, rearranged; the member is never the source word itself. Paired with each other and
+# with "New word backwards" (a reversal is a special anagram: Mug/gum, Flow/wolf).
+# ---------------------------------------------------------------------------------------------------------------
+# TARGETS anagrams_of_body_parts: arm(s) ear(s) eye(s) lip(s) hip(s) toe(s) shin chin leg(s) rib(s) gum(s) hand(s) nail(s) heel(s) brow(s) skin knee(s) neck back face head foot feet palm(s) sole lung(s) liver heart thumb wrist ankle elbow tooth teeth nose calf thigh waist chest spine bone(s) vein navel belly cheek tongue lobe skull hair(s)
+anagrams_of_body_parts,Anagrams of body parts,body,4,wordplay,Below|Keen|Slip|Earth|Lamp|Inch|Mars|Snail|Sink|Mug
+# TARGETS anagrams_of_animals: every common animal and its plural, e.g. cat rat bat ant ape owl newt seal deer wolf wasp snake tuna flea (rams, rats count)
+anagrams_of_animals,Anagrams of animals,animals,4,wordplay,Act|Flow|Sneak|Low|Swap|Reed|Sale|Went|Tab|Tan|Pea|Aunt|Leaf|Mars|Star
+# TARGETS anagrams_of_countries: Peru Mali Oman Iran Laos Nepal Yemen Tonga China (+ every UN member; Burma handled by a pair rule)
+anagrams_of_countries,Anagrams of countries,countries,4,wordplay,Mail|Pure|Moan|Enemy|Also|Chain|Rain|Plane|Tango|Lima
+# TARGETS anagrams_of_hues: tan rose lime teal ochre green plum peach (+ the hidden_hues list)
+anagrams_of_hues,Anagrams of hues,hues,4,wordplay,Sore|Late|Tale|Chore|Genre|Lump|Cheap|Ant|Mile
+
+# ---------------------------------------------------------------------------------------------------------------
+# LETTER-PATTERN FAMILY. Rules a player can check card by card. Bank scans: palindromes = Bob Eye Kayak Naan Pop;
+# no AEIOU = Fly Lynx; two doubled letters = Balloon Coffee Toffee; only IVXLCDM = Dill. All declared below.
+# Rejected after scanning: "Letters in ABC order" (30 bank words qualify by accident: Ant, Bee, Chin, Floor...),
+# "Top keyboard row only" (20 bank words, and it assumes QWERTY), Silent T (is the t silent in kitchen, watch?),
+# Silent H (wh- words), Silent G (light, night, weight).
+# ---------------------------------------------------------------------------------------------------------------
+palindromes,Palindromes,Palindromes,4,wordplay,Level|Radar|Civic|Rotor|Refer|Madam|Noon|Deed|Wow|Gig|Kayak|Eye|Pop|Bob|Naan
+new_word_backwards,New word backwards,backwards,4,wordplay,Stop|Drawer|Stressed|Wolf|Loop|Mood|Gulp|Diva|Live|Straw|Star|Denim|Edam|Leek|Tin|Tram|Rap|Par|Pan|Net|Bus|Saw|Pin|Mug|Golf|Cod|Stool|Dial|Bun
+y_only_vowel,Y is the only vowel,vowel,4,wordplay,Rhythm|Myth|Sky|Dry|Cry|Shy|Try|Sly|Fry|Why|Lynx|Fly
+two_double_letters,Two double letters,double,4,wordplay,Success|Succeed|Possess|Tattoo|Access|Goodness|Bookworm|Address|Coffee|Toffee|Balloon
+silent_k,Silent K,Silent,4,wordplay,Knock|Knit|Knows|Knack|Knead|Knee|Knot|Knight|Knuckle
+silent_w,Silent W,Silent,4,wordplay,Write|Wrap|Wrong|Wreck|Wrinkle|Wrestle|Answer|Whole|Who|Wrist|Wrench
+silent_b,Silent B,Silent,4,wordplay,Climb|Crumb|Debt|Doubt|Numb|Subtle|Lamb|Thumb|Comb|Plumber
+silent_l,Silent L,Silent,4,wordplay,Half|Walk|Talk|Yolk|Could|Would|Should|Stalk|Calf|Chalk|Salmon|Folk
+silent_u,Silent U,Silent,4,wordplay,Guest|Guess|Build|Guilt|League|Rogue|Circuit|Unique|Guitar|Baguette|Meringue
+roman_numeral_letters,Roman numeral letters,Roman,4,wordplay,Civil|Livid|Vivid|Mimic|Mild|Mix|Mill|Civic|Dill
+
+# ---------------------------------------------------------------------------------------------------------------
+# WORD-FORMATION AND GRAMMAR
+# ---------------------------------------------------------------------------------------------------------------
+two_pronunciations,Two pronunciations,pronunciations,4,wordplay,Close|Present|Refuse|Object|Produce|Entrance|Live|Bow|Lead|Wind|Minute|Record|Desert|August
+onomatopoeia,Onomatopoeia,Onomatopoeia,4,wordplay,Bang|Fizz|Boom|Thud|Click|Sizzle|Clang|Crunch|Splat|Thump|Ping|Pop|Rattle|Bark
+blended_words,Blended words,Blended,4,wordplay,Brunch|Motel|Emoticon|Glamping|Frenemy|Hangry|Webinar|Bromance|Camcorder|Malware|Cosplay|Sitcom
+shortened_words,Shortened words,Shortened,4,wordplay,Exam|Memo|Typo|Info|Phone|Flu|Plane|Bus|Fridge|Photo|Hippo|Rhino|Taxi|Metro|Piano|Disco|Kilo|Pop
+swap_halves,Swap halves: new word,halves,4,wordplay,Lookout|Outlook|Upset|Layout|Takeover|Overtake|Turnover|Overturn|Houseboat|Boathouse|Overlay
+plurals_without_s,Plurals without S,Plurals,4,wordplay,Mice|Geese|Feet|Children|Women|Men|Cacti|Fungi|People|Criteria|Dice
+always_plural,Always plural,plural,4,wordplay,Jeans|Shorts|Trousers|Clothes|Thanks|Riches|Scissors|Pliers|Tongs|Shears|Goggles|Glasses
+
+# ---------------------------------------------------------------------------------------------------------------
+# PAIR RULES. 'A | B' = never in one level. 'A ! d' = never with any category of domain d (same syntax as pairs.txt).
+# ---------------------------------------------------------------------------------------------------------------
+# Sound family: every homophone category with every other (You sounds like U and ewe; Soul like sole twice).
+PAIR: Sound like letters | Sound like two letters
+PAIR: Sound like letters | Sound like animals
+PAIR: Sound like letters | Sound like body parts
+PAIR: Sound like letters | Sound like foods
+PAIR: Sound like two letters | Sound like animals
+PAIR: Sound like two letters | Sound like body parts
+PAIR: Sound like two letters | Sound like foods
+PAIR: Sound like animals | Sound like body parts
+PAIR: Sound like animals | Sound like foods
+PAIR: Sound like body parts | Sound like foods
+# Hidden family: every hidden category with every other (Wheel hides heel and eel; Kitchen hides hen twice).
+PAIR: Hidden body parts | Hidden farm animals
+PAIR: Hidden body parts | Hidden birds
+PAIR: Hidden body parts | Hidden fish
+PAIR: Hidden body parts | Hidden insects
+PAIR: Hidden body parts | Hidden numbers
+PAIR: Hidden body parts | Hidden hues
+PAIR: Hidden body parts | Hidden fruit
+PAIR: Hidden body parts | Hidden trees
+PAIR: Hidden body parts | Hidden vehicles
+PAIR: Hidden body parts | Hidden clothing
+PAIR: Hidden body parts | Hidden kitchen items
+PAIR: Hidden body parts | Hidden units of weight
+PAIR: Hidden body parts | Hidden instruments
+PAIR: Hidden body parts | Hidden jobs
+PAIR: Hidden farm animals | Hidden birds
+PAIR: Hidden farm animals | Hidden fish
+PAIR: Hidden farm animals | Hidden insects
+PAIR: Hidden farm animals | Hidden numbers
+PAIR: Hidden farm animals | Hidden hues
+PAIR: Hidden farm animals | Hidden fruit
+PAIR: Hidden farm animals | Hidden trees
+PAIR: Hidden farm animals | Hidden vehicles
+PAIR: Hidden farm animals | Hidden clothing
+PAIR: Hidden farm animals | Hidden kitchen items
+PAIR: Hidden farm animals | Hidden units of weight
+PAIR: Hidden farm animals | Hidden instruments
+PAIR: Hidden farm animals | Hidden jobs
+PAIR: Hidden birds | Hidden fish
+PAIR: Hidden birds | Hidden insects
+PAIR: Hidden birds | Hidden numbers
+PAIR: Hidden birds | Hidden hues
+PAIR: Hidden birds | Hidden fruit
+PAIR: Hidden birds | Hidden trees
+PAIR: Hidden birds | Hidden vehicles
+PAIR: Hidden birds | Hidden clothing
+PAIR: Hidden birds | Hidden kitchen items
+PAIR: Hidden birds | Hidden units of weight
+PAIR: Hidden birds | Hidden instruments
+PAIR: Hidden birds | Hidden jobs
+PAIR: Hidden fish | Hidden insects
+PAIR: Hidden fish | Hidden numbers
+PAIR: Hidden fish | Hidden hues
+PAIR: Hidden fish | Hidden fruit
+PAIR: Hidden fish | Hidden trees
+PAIR: Hidden fish | Hidden vehicles
+PAIR: Hidden fish | Hidden clothing
+PAIR: Hidden fish | Hidden kitchen items
+PAIR: Hidden fish | Hidden units of weight
+PAIR: Hidden fish | Hidden instruments
+PAIR: Hidden fish | Hidden jobs
+PAIR: Hidden insects | Hidden numbers
+PAIR: Hidden insects | Hidden hues
+PAIR: Hidden insects | Hidden fruit
+PAIR: Hidden insects | Hidden trees
+PAIR: Hidden insects | Hidden vehicles
+PAIR: Hidden insects | Hidden clothing
+PAIR: Hidden insects | Hidden kitchen items
+PAIR: Hidden insects | Hidden units of weight
+PAIR: Hidden insects | Hidden instruments
+PAIR: Hidden insects | Hidden jobs
+PAIR: Hidden numbers | Hidden hues
+PAIR: Hidden numbers | Hidden fruit
+PAIR: Hidden numbers | Hidden trees
+PAIR: Hidden numbers | Hidden vehicles
+PAIR: Hidden numbers | Hidden clothing
+PAIR: Hidden numbers | Hidden kitchen items
+PAIR: Hidden numbers | Hidden units of weight
+PAIR: Hidden numbers | Hidden instruments
+PAIR: Hidden numbers | Hidden jobs
+PAIR: Hidden hues | Hidden fruit
+PAIR: Hidden hues | Hidden trees
+PAIR: Hidden hues | Hidden vehicles
+PAIR: Hidden hues | Hidden clothing
+PAIR: Hidden hues | Hidden kitchen items
+PAIR: Hidden hues | Hidden units of weight
+PAIR: Hidden hues | Hidden instruments
+PAIR: Hidden hues | Hidden jobs
+PAIR: Hidden fruit | Hidden trees
+PAIR: Hidden fruit | Hidden vehicles
+PAIR: Hidden fruit | Hidden clothing
+PAIR: Hidden fruit | Hidden kitchen items
+PAIR: Hidden fruit | Hidden units of weight
+PAIR: Hidden fruit | Hidden instruments
+PAIR: Hidden fruit | Hidden jobs
+PAIR: Hidden trees | Hidden vehicles
+PAIR: Hidden trees | Hidden clothing
+PAIR: Hidden trees | Hidden kitchen items
+PAIR: Hidden trees | Hidden units of weight
+PAIR: Hidden trees | Hidden instruments
+PAIR: Hidden trees | Hidden jobs
+PAIR: Hidden vehicles | Hidden clothing
+PAIR: Hidden vehicles | Hidden kitchen items
+PAIR: Hidden vehicles | Hidden units of weight
+PAIR: Hidden vehicles | Hidden instruments
+PAIR: Hidden vehicles | Hidden jobs
+PAIR: Hidden clothing | Hidden kitchen items
+PAIR: Hidden clothing | Hidden units of weight
+PAIR: Hidden clothing | Hidden instruments
+PAIR: Hidden clothing | Hidden jobs
+PAIR: Hidden kitchen items | Hidden units of weight
+PAIR: Hidden kitchen items | Hidden instruments
+PAIR: Hidden kitchen items | Hidden jobs
+PAIR: Hidden units of weight | Hidden instruments
+PAIR: Hidden units of weight | Hidden jobs
+PAIR: Hidden instruments | Hidden jobs
+# Anagram family, plus reversal (a reversal is an anagram: Mug/gum, Star/rats, Flow/wolf, Swap/wasp).
+PAIR: Anagrams of body parts | Anagrams of animals
+PAIR: Anagrams of body parts | Anagrams of countries
+PAIR: Anagrams of body parts | Anagrams of hues
+PAIR: Anagrams of body parts | New word backwards
+PAIR: Anagrams of animals | Anagrams of countries
+PAIR: Anagrams of animals | Anagrams of hues
+PAIR: Anagrams of animals | New word backwards
+PAIR: Anagrams of countries | Anagrams of hues
+PAIR: Anagrams of countries | New word backwards
+PAIR: Anagrams of hues | New word backwards
+PAIR: Palindromes | New word backwards
+# Cross-family overlaps found by scanning every member against every rule.
+PAIR: Hidden body parts | Anagrams of body parts
+PAIR: Sound like body parts | Hidden body parts
+PAIR: Sound like animals | Anagrams of animals
+PAIR: Sound like foods | Anagrams of countries
+PAIR: Hidden farm animals | Palindromes
+PAIR: Hidden farm animals | Always plural
+PAIR: Silent U | Sound like letters
+# Direct source categories: their members ARE the hidden thing (Ash, Lime, Cap), so a player could argue for them.
+PAIR: Hidden body parts ! body
+PAIR: Hidden farm animals ! animals
+PAIR: Hidden birds ! animals
+PAIR: Hidden fish ! animals
+PAIR: Hidden insects ! animals
+PAIR: Hidden hues ! colour
+PAIR: Hidden fruit | Fruit
+PAIR: Hidden fruit | Citrus fruit
+PAIR: Hidden fruit | Tropical fruit
+PAIR: Hidden fruit | Dried fruit
+PAIR: Hidden trees | Trees
+PAIR: Hidden vehicles | Ways to travel
+PAIR: Hidden clothing ! clothing
+PAIR: Hidden kitchen items | Kitchen tools
+PAIR: Hidden kitchen items | Kitchen appliances
+PAIR: Hidden kitchen items | On the table
+PAIR: Hidden units of weight | Units of measure
+PAIR: Hidden instruments ! music
+PAIR: Hidden instruments | Things with keys
+PAIR: Hidden jobs | Jobs
+PAIR: Anagrams of countries | Countries
+PAIR: Onomatopoeia | Animal sounds
+# Bank words that would be borderline or tasteless claims, kept apart instead of declared.
+PAIR: Hidden body parts | Things that pop
+PAIR: Hidden farm animals ! body
+PAIR: Hidden farm animals | Gems
+PAIR: Hidden farm animals | Art supplies
+PAIR: Hidden farm animals | Boats
+PAIR: Hidden farm animals | Capital cities
+PAIR: Hidden farm animals | On the table
+PAIR: Hidden farm animals | Words before house
+PAIR: Hidden farm animals | Words after sun
+PAIR: Hidden farm animals | Things that tell time
+PAIR: Hidden farm animals | At the airport
+PAIR: Hidden birds ! body
+PAIR: Hidden birds | Capital cities
+PAIR: Hidden insects ! clothing
+PAIR: Hidden numbers ! body
+PAIR: Hidden numbers | Rivers
+PAIR: Hidden numbers | Ice cream
+PAIR: Hidden clothing ! animals
+PAIR: Hidden clothing ! body
+PAIR: Hidden kitchen items ! animals
+PAIR: Hidden kitchen items | Parts of the eye
+PAIR: Hidden units of weight | Currencies
+PAIR: Hidden instruments | Titles
+PAIR: Hidden jobs | Rocks
+PAIR: Anagrams of countries | Dances
+PAIR: New word backwards | Pets
+PAIR: New word backwards | Words before house
+PAIR: New word backwards | Instruments
+PAIR: Sound like animals | Family
+PAIR: Sound like body parts ! animals
+PAIR: Silent L | Trees
+PAIR: Silent L | Body parts
+PAIR: Silent L | Nuts
+PAIR: Silent U | Gems
+PAIR: Silent U | Shades of blue
+PAIR: Onomatopoeia | Things that pop
+PAIR: Onomatopoeia | Sports gear
+PAIR: Plurals without S ! animals
+PAIR: Plurals without S ! body
+PAIR: Plurals without S | Family
+PAIR: Plurals without S | Things in a forest
+PAIR: Always plural ! clothing
+PAIR: Blended words | Places in a town
+PAIR: Blended words | Breakfast foods
+
+# ---------------------------------------------------------------------------------------------------------------
+# SUMMARY
+# ---------------------------------------------------------------------------------------------------------------
+# Counts: 41 new categories, all tier 4, domain wordplay. 0 extensions (no existing wordplay categories).
+#   Sound 5 | Hidden 15 | Anagram 4 | Letter pattern 10 | Word formation/grammar 7. 199 PAIR lines.
+#
+# Method: every member of every category here, and every word in categories.txt, was scanned mechanically against
+#   each hidden-word target list (substring), each anagram source list (sorted letters), palindrome, no-AEIOU,
+#   two-doubled-letters, Roman-letters and kn-/wr-/mb/bt patterns. Reversals and homophones were checked by eye.
+#   Every hit is either declared (listed in both categories) or kept apart by a PAIR rule. The merged bank must be
+#   rescanned the same way: the TARGETS lines above are the exact lists, and other drafts will add new hits
+#   ("ear", "arm", "lip", "pan", "car", "ton", "ant" and "hen" are everywhere).
+#
+# Declared crossings (bank word -> its bank categories), the herrings these categories bring:
+#   Hidden body parts: Shine Tulip Chair Snail Earth Pearl Whip Hippo Ribbon Urchin Year Pear Shears Gear Earl Hearts
+#     Alarm Farm Farmer Parmesan Brownie Bubblegum Chestnut Clip Lollipop Slipper. Hidden farm animals: Kitchen Tram
+#     Gram Caramel Oxygen Foxtrot Hedgehog Keyboard. Hidden birds: Bowl Kitchen Crowd Microwave Wrench Bowler.
+#     Hidden fish: Code Barcode Peeler Crayon Crocodile. Hidden insects: Giant Pantry Croissant Currant Plantain Beef
+#     Mother. Hidden numbers: Phone Honey Kitten Tennis Tent Drone Ozone. Hidden hues: Blackjack Blues Brownie
+#     Goldfish Plumber Rectangle Rosemary Tangerine Tango. Hidden fruit: Pearl Plumber Pineapple. Hidden trees: Helmet
+#     Cash Cashew Dash Squash Fire Hazelnut Pineapple Porcupine Lash. Hidden vehicles: Scarf Card Carrot Scarlet
+#     Caramel Cardamom Carp Macaroni Mascara Cabbage Cabinet Vanilla. Hidden clothing: Bravo Library Zebra Shoelace
+#     Suitcase Wardrobe. Hidden kitchen items: Bowler Glider Juggler Marzipan Panama Pancake Paneer Pantry Plateau
+#     Porcupine Potato Satin Skating. Hidden units of weight: Baton Button Cotton Mutton Rigatoni Tongs. Hidden
+#     instruments: Hornet. Hidden jobs: Velvet Mermaid Copper Bakery.
+#   Sound like letters: Bee Tea Tee Pea Eye. Sound like animals/body parts: Soul (Music genres). Sound like foods:
+#     Current Flower. Anagrams: Earth Mars Lamp Inch Snail Sink Mug (body); Aunt Leaf Mars Star Tan Pea (animals);
+#     Rain Plane Tango Lima (countries); Ant Mile (hues). Palindromes: Kayak Eye Pop Bob Naan. New word backwards:
+#     Star Denim Edam Leek Tin Tram Rap Par Pan Net Bus Saw Pin Mug Golf Cod Stool Dial Bun. Y only: Lynx Fly.
+#     Two doubles: Coffee Toffee Balloon. Silent K: Knee Knot Knight Knuckle. Silent W: Wrist Wrench. Silent B: Lamb
+#     Thumb Comb Plumber. Silent L: Calf Chalk Salmon Folk. Silent U: Guitar Baguette Meringue. Roman: Dill.
+#     Two pronunciations: Bow Lead Wind Minute Record Desert August. Onomatopoeia: Pop Rattle Bark. Shortened: Phone
+#     Flu Plane Bus Fridge Photo Hippo Rhino Taxi Metro Piano Disco Kilo Pop. Always plural: Scissors Pliers Tongs
+#     Shears Goggles Glasses. Plurals without S: Dice.
+#   Wordplay-to-wordplay crossings (declared in both): Eye, Why, Civic, Pop, Live, Address, Knows, Dear, Soul, Pea,
+#     Plane, Tango, Phone, Shears, Tongs, Wrench, Plumber, Mars, Star, Mug, Bus.
+#
+# Rejected categories: generic "Hidden animals" (about 45 bank words hide one; split into four narrower ones);
+#   "Words that are also names" (Rose Ruby Iris Basil Robin April June Cliff Chad Hazel... would phantom everywhere);
+#   "Rhymes with X" (can't be scanned by spelling); "Hidden weather" (is ice or sun weather? Dice Rice Juice Sundial);
+#   "Hidden drinks" (Engine/gin, Drum/rum, Whale/ale invite alcohol claims); "Letters in ABC order" and "Top keyboard
+#   row" (20-30 bank words qualify by accident); Silent T/H/G (kitchen, whale, light are arguable); "Sound like
+#   numbers" (only Won Too For Fore Ate); "Anagrams of fruit" (7 words); "Begins with a body part" (duplicates
+#   Hidden body parts); eponyms and place-name words (trivia, not wordplay).
+#
+# Words deliberately avoided, and why:
+#   Phantoms in a bank category: Jay (bird), Ewe (farm), Yew (tree), Cue (sports gear), Mussel, Mousse, Hair, Ivy
+#   (forest), Ship (boat), Steak (meat), Cloak, Toga (worn), Croak (animal sound), Stone (rock), Money (wallet),
+#   Mitten, Pyramid (shape), Steel (metal), Bugle (instrument), Belly (body), Factory (town), Nursery (room), Spork
+#   (table), Smog (weather), Liger (big cat), Gym, Zoo (town), Limo (travel), Vet, Spy, Guard, Tutor (jobs), Tick
+#   (thought an insect), Era (unit of time), Shore (beach), Loin (meat), Mattress (furniture), Football (sport),
+#   Bassoon (instrument), Raccoon, Nymph, Gnome, Gnat, Wren, Dove, Sow, Limb, Tweezers (bathroom), Dad.
+#   Would satisfy a second rule: Are (backwards: era), Meet (teem), Dim (mid), Know (wonk), Carat (hides car), Bred
+#   (red), Plumb (plum), Tenet and Content (ten), Tear and Hear (ear), Sliver (liver), Leggings (leg), Outskirts
+#   (skirt), Cutie (tie), Beep (bee), Cookbook (cook), Smug (mug), Knowledge (silent K), Antique (ant), Committee
+#   (mitt), Doorbell (bell), Assess (ass), Crash and Splash (onomatopoeia vs hidden ash), Hiccup, Snap, Toot, Peep,
+#   Wry (no AEIOU), Panel (pan), Console (two pronunciations), Opinion (does not contain pine).
+#   Taste or region: Carol, Bury, Lube, Crypt, Wound, Pygmy, Hymn, Psalm, Tomb, Bomb, Dumb, Mum, Row (argument is
+#   mostly UK), Easy (EZ needs "zee"), Aunt/ant (US only), Tepee and Woolly (spelling variants), Lemonade, Prawn,
+#   Pram, Racecar (often two words), Balm, Palm and Almond (the L is silent only in some accents).
+#
+# Judgment calls for review:
+#   - "ash", "sand", "buff" are not counted as hues; "ark", "raft", "ship" are not counted as vehicles (vehicles =
+#     land); "box" and "lime" are not counted as trees; "nil", "yak", "ass" and "uke" are handled by PAIR rules.
+#   - Silent-letter keys are "Silent", not the letter, so the key word never appears inside a member.
+#   - Hidden body parts has 35 members and New word backwards 29, because every honest bank member is declared. If
+#     the generator caps list length, the core members come first on each line.
+#
+# Least sure (most to least):
+#   1. Shortened words: Piano (pianoforte), Bus (omnibus) and Taxi (taxicab) are true but not universally known,
+#      and it is a big crossing sink.
+#   2. Blended words: compounds (Goldfish, Keyboard) are a fuzzy neighbour; Hangry, Frenemy, Bromance are slangy.
+#   3. Hidden kitchen items: leans on "pan" and on "tin" counting as kitchenware (Satin, Skating declared for safety).
+#   4. Two pronunciations: stress-shift pairs (Present, Object) are hard to scan for in the merged bank, and the
+#      adjective "august" is not known to everyone.
+#   5. Hidden farm animals: needs 8 pair rules just for yak (Kayak) and ass (Glass, Passport); drop it if that is too
+#      costly.
+#   Also watch: Onomatopoeia (is the word itself known worldwide?), Swap halves (Layover/Overlay less common),
+#   Anagrams of countries (relies on knowing Laos, Yemen, Tonga).

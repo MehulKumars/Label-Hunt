@@ -32,6 +32,7 @@ func _init() -> void:
 			hints = false
 	bank = Bank.load_csv(BANK)
 	bank.load_pairs(PAIRS)
+	bank.load_targets("res://data/bank/wordplay_targets.txt")
 	var cat := Catalog.from_files(LEVELS.files())
 	var uses := {}
 	var checked := 0
@@ -104,6 +105,16 @@ func _check(id: String, lvl: LevelData, d: Dictionary, hints: bool) -> void:
 					hits.append(str(w))
 		if hits.size() >= (1 if own >= 0 else 3):
 			errors.append("%s: phantom group %s (%s)" % [id, bank.categories[i]["label"], ", ".join(hits)])
+	# Wordplay: another group's word that hides (or anagrams) a wordplay group's target.
+	for a in cats.size():
+		if cats[a] < 0 or not bank.targets.has(cats[a]):
+			continue
+		for b in words.size():
+			if b == a:
+				continue
+			for w in words[b]:
+				if bank.trips(cats[a], str(w)):
+					errors.append("%s: '%s' also fits %s" % [id, w, d["groups"][a]["label"]])
 	# A card that reads as naming another group's label.
 	for a in words.size():
 		for b in d["groups"].size():

@@ -59,6 +59,7 @@ func _init() -> void:
 			"--final": n_final = int(v)
 	bank = Bank.load_csv(BANK)
 	bank.load_pairs(PAIRS)
+	bank.load_targets("res://data/bank/wordplay_targets.txt")
 	match mode:
 		"pick":
 			quit(_pick_rooms(rooms, only, dry))
@@ -211,6 +212,17 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 		if chosen.is_empty():
 			return {}
 		words.append(chosen)
+	# Wordplay: no other group's word may hide (or anagram) one of a wordplay group's targets.
+	for a in cats.size():
+		if not bank.targets.has(cats[a]):
+			continue
+		for b in words.size():
+			if b == a:
+				continue
+			for w in words[b]:
+				if bank.trips(cats[a], w):
+					_reject("wordplay overlap")
+					return {}
 	# Label clashes: a card must not read as naming another group's jar ("Gear" beside "Sports gear").
 	for a in words.size():
 		for b in cats.size():

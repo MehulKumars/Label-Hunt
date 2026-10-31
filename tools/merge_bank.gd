@@ -12,6 +12,7 @@ const LINT := preload("res://tools/lint_bank.gd")
 const BANK := "res://data/bank/categories.txt"
 const PAIRS := "res://data/bank/pairs.txt"
 const DRAFTS := "res://data/bank/drafts"
+const TARGETS := "res://data/bank/wordplay_targets.txt"
 const MIN_WORDS := 6
 
 
@@ -34,6 +35,8 @@ func _init() -> void:
 	var log: Array[String] = []
 	var pairs: Array[String] = []
 	var weak: Array = []
+	## Wordplay targets from "# TARGETS id: words" lines, written to data/bank/wordplay_targets.txt.
+	var targets := {}
 	var extends_: Array = []
 	var removals: Array = []
 	var tiers: Array = []
@@ -47,6 +50,12 @@ func _init() -> void:
 		for raw in FileAccess.get_file_as_string(DRAFTS + "/" + f).split("\n"):
 			var line := raw.strip_edges()
 			if line == "":
+				continue
+			if line.begins_with("# TARGETS "):
+				var tid := line.substr(10).get_slice(":", 0).strip_edges()
+				var tw := line.get_slice(":", 1).get_slice("(", 0).strip_edges()
+				if tid.begins_with("hidden_") or tid.begins_with("anagram"):
+					targets[tid] = "%s %s %s" % [tid, "anagram" if tid.begins_with("anagram") else "hidden", tw.to_lower()]
 				continue
 			if line.begins_with("# WEAK:"):
 				weak.append([f, line.substr(7).strip_edges()])
@@ -163,6 +172,16 @@ func _init() -> void:
 			out.append("%s,%s,%s,%d,%s,%s" % [c["id"], c["label"], c["key"], c["tier"], c["domain"], "|".join(c["words"])])
 		var fb := FileAccess.open(BANK, FileAccess.WRITE)
 		fb.store_string("\n".join(out) + "\n")
+		if not targets.is_empty():
+			var lines := {}
+			if FileAccess.file_exists(TARGETS):
+				for l in FileAccess.get_file_as_string(TARGETS).split("\n", false):
+					lines[l.get_slice(" ", 0)] = l
+			for k in targets:
+				if by_id.has(k):
+					lines[k] = targets[k]
+			var ft := FileAccess.open(TARGETS, FileAccess.WRITE)
+			ft.store_string("\n".join(lines.values()) + "\n")
 		if not new_pairs.is_empty():
 			var fp := FileAccess.open(PAIRS, FileAccess.READ_WRITE)
 			fp.seek_end()
