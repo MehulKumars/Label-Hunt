@@ -542,15 +542,37 @@ func do_complete(g: int) -> void:
 
 # --- Tidy up -------------------------------------------------------------------------------------------------------
 
+## Tidy up: the path is found on a worker (6-group boards can take a moment), then played move by move with the
+## board locked against taps.
 func _on_tidy() -> void:
-	board.cancel_lift()
-	var res := Solver.solve(session.board, 20000, 2.0)
-	if not res["solved"]:
+	if _tidying or _hint_task >= 0:
 		return
+	board.cancel_lift()
 	_tidying = true
 	board.input_locked = true
 	tidy_btn.visible = false
 	_layout()
+	_hint_token += 1
+	_hint_cancel = [false]
+	var token := _hint_token
+	var copy := session.board.copy()
+	var cancel := _hint_cancel
+	_hint_task = WorkerThreadPool.add_task(func() -> void:
+		var res := Solver.solve(copy, 40000, 2.0, Time.get_ticks_msec() + 1500, cancel)
+		_tidy_ready.call_deferred(token, res))
+
+
+func _tidy_ready(token: int, res: Dictionary) -> void:
+	if _hint_task >= 0:
+		WorkerThreadPool.wait_for_task_completion(_hint_task)
+		_hint_task = -1
+	if token != _hint_token or session == null or session.is_over():
+		return
+	if not res["solved"]:
+		_tidying = false
+		board.input_locked = false
+		_refresh()
+		return
 	_play_path(res["path"], 0)
 
 
