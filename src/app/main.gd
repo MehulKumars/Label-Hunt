@@ -164,6 +164,7 @@ func _show(target: Control, name: String) -> void:
 	if not target.visible:
 		Sfx.play("whoosh", 1.0, 0.05)
 	screen = name
+	backdrop.props_visible = name == "home"
 	# Menus are mostly still: let the engine sleep between redraws there (battery). Play keeps full frame pacing.
 	OS.low_processor_usage_mode = name not in ["play", "tutorial"]
 	for s: Control in [home, levels, room_view, profile, play]:

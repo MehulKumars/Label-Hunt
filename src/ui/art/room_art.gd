@@ -108,6 +108,75 @@ static func pattern(kind: String, t: float, ink: String) -> String:
 	return s
 
 
+## The room's decoration along the top of the wall (later rooms are richer): hanging herbs, bunting, a high shelf of
+## pots, a leafy garland, lanterns, a chandelier. Quiet (it sits behind the HUD), never over the cards.
+static func props(size: Vector2, room: int) -> String:
+	var th := Themes.of(room)
+	var w := size.x
+	var h := size.y
+	var acc := str(th["accent"])
+	var lid := str(th["lid_color"])
+	var wood: Array = th["wood"]
+	var s := ""
+	match str(th["props"]):
+		"herbs":
+			s += '<path d="M 0 %s Q %s %s %s %s" fill="none" stroke="#8C6440" stroke-opacity="0.55" stroke-width="2"/>' % [_f(h * 0.22), _f(w / 2), _f(h * 0.34), _f(w), _f(h * 0.22)]
+			for i in 5:
+				var x := w * (0.1 + i * 0.2)
+				var y := h * 0.22 + sin(PI * x / w) * h * 0.1
+				s += '<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="#8C6440" stroke-opacity="0.5" stroke-width="1.5"/>' % [_f(x), _f(y), _f(x), _f(y + 14)]
+				for k in 5:
+					var a := -0.9 + k * 0.45
+					s += '<ellipse cx="%s" cy="%s" rx="5" ry="13" transform="rotate(%s %s %s)" fill="#6D8B3A" fill-opacity="0.5"/>' % [
+						_f(x + sin(a) * 8), _f(y + 30), _f(rad_to_deg(a)), _f(x + sin(a) * 8), _f(y + 30)]
+		"bunting":
+			s += '<path d="M 0 %s Q %s %s %s %s" fill="none" stroke="#3D2C2E" stroke-opacity="0.3" stroke-width="1.5"/>' % [_f(h * 0.25), _f(w / 2), _f(h * 0.5), _f(w), _f(h * 0.25)]
+			var n := 11
+			for i in n:
+				var t := (i + 0.5) / n
+				var x := w * t
+				var y := h * 0.25 + 4.0 * t * (1.0 - t) * h * 0.25 * 2.0 - 2.0
+				var c: String = [acc, lid, "#FFF8EC"][i % 3]
+				s += '<path d="M %s %s L %s %s L %s %s Z" fill="%s" fill-opacity="0.6"/>' % [_f(x - 14), _f(y), _f(x + 14), _f(y), _f(x), _f(y + 30), c]
+		"shelf":
+			s += '<rect x="0" y="%s" width="%s" height="10" fill="%s" fill-opacity="0.55"/>' % [_f(h * 0.62), _f(w), wood[1]]
+			var x := 28.0
+			var k := 0
+			while x < w - 30:
+				var ph := 22.0 + (k % 3) * 8.0
+				var pc: String = [acc, lid, str(th["glass"])][k % 3]
+				s += '<rect x="%s" y="%s" width="%s" height="%s" rx="5" fill="%s" fill-opacity="0.45"/>' % [_f(x), _f(h * 0.62 - ph), _f(20 + (k % 2) * 8), _f(ph), pc]
+				x += 58.0 + (k % 4) * 9.0
+				k += 1
+		"garland":
+			var pts := 14
+			s += '<path d="M 0 %s Q %s %s %s %s" fill="none" stroke="#5E7F4A" stroke-opacity="0.45" stroke-width="2.5"/>' % [_f(h * 0.18), _f(w / 2), _f(h * 0.62), _f(w), _f(h * 0.18)]
+			for i in pts:
+				var t := (i + 0.5) / pts
+				var x := w * t
+				var y := h * 0.18 + 4.0 * t * (1.0 - t) * h * 0.22 * 2.0
+				s += '<ellipse cx="%s" cy="%s" rx="10" ry="5" transform="rotate(%s %s %s)" fill="#6D8B3A" fill-opacity="0.5"/>' % [_f(x), _f(y), _f(25 if i % 2 == 0 else -25), _f(x), _f(y)]
+				if i % 3 == 1:
+					s += '<circle cx="%s" cy="%s" r="4" fill="%s" fill-opacity="0.6"/>' % [_f(x + 6), _f(y + 7), acc]
+		"lanterns":
+			for i in 3:
+				var x := w * (0.2 + i * 0.3)
+				var top := h * (0.08 + (i % 2) * 0.1)
+				s += '<line x1="%s" y1="0" x2="%s" y2="%s" stroke="#3D2C2E" stroke-opacity="0.3" stroke-width="1.5"/>' % [_f(x), _f(x), _f(top)]
+				s += '<circle cx="%s" cy="%s" r="30" fill="%s" fill-opacity="0.16"/>' % [_f(x), _f(top + 26), acc]
+				s += '<rect x="%s" y="%s" width="26" height="36" rx="11" fill="%s" fill-opacity="0.55"/>' % [_f(x - 13), _f(top + 8), acc]
+				s += '<rect x="%s" y="%s" width="18" height="5" rx="2" fill="#3D2C2E" fill-opacity="0.35"/>' % [_f(x - 9), _f(top + 5)]
+		"chandelier":
+			var cx := w / 2
+			s += '<line x1="%s" y1="0" x2="%s" y2="%s" stroke="#B07E2C" stroke-opacity="0.55" stroke-width="2"/>' % [_f(cx), _f(cx), _f(h * 0.3)]
+			s += '<path d="M %s %s Q %s %s %s %s" fill="none" stroke="#D9A441" stroke-opacity="0.6" stroke-width="3"/>' % [_f(cx - 70), _f(h * 0.45), _f(cx), _f(h * 0.75), _f(cx + 70), _f(h * 0.45)]
+			for dx in [-70, -35, 0, 35, 70]:
+				var y := h * 0.45 + (0.3 if absi(dx) < 40 else 0.0) * h * 0.25
+				s += '<rect x="%s" y="%s" width="6" height="16" rx="2" fill="#FFF8EC" fill-opacity="0.8"/><circle cx="%s" cy="%s" r="9" fill="#F6DC8C" fill-opacity="0.45"/>' % [
+					_f(cx + dx - 3), _f(y - 16), _f(cx + dx), _f(y - 20)]
+	return Materials._svg(size, s)
+
+
 ## A shelf plank in the room's wood.
 static func plank(size: Vector2, room: int) -> String:
 	return _wood(Materials.plank(size), room)

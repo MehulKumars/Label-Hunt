@@ -89,6 +89,9 @@ func refresh() -> void:
 	var ids := cat.room_ids(room)
 	var solved := Progression.solved_count(cat, save, room)
 	_cabinet.title = cat.room_name(room)
+	_cabinet.room = room
+	_shelf.room = room
+	_hero.room = room
 	_count.text = "%d of %d jars filled" % [solved, ids.size()]
 	var resume := str(save["board"].get("id", "")) == next_id and next_id != ""
 	if next_id == "":
@@ -219,6 +222,7 @@ class _ProfileChip extends Control:
 ## The big jar: glass, its contents, a paprika lid (gold when the room is complete) and the "Jarful" label.
 class _HeroJar extends Control:
 	var layers: Array = []
+	var room := 1
 	var frac := 0.0
 
 	func _init() -> void:
@@ -229,14 +233,14 @@ class _HeroJar extends Control:
 		var neck := Materials.jar_rim(size.y)
 		var foot := Rect2(Vector2(size.x * 0.08, size.y - 10.0), Vector2(size.x * 0.84, 14.0))
 		draw_style_box(Style.glow(Color(Style.INK, 0.3), 8, 10), foot)
-		draw_texture_rect(Art.tex("hero_back", size, Materials.jar_back), r, false)
+		draw_texture_rect(Art.tex("hero_back|%d" % room, size, RoomArt.jar_back.bind(room)), r, false)
 		var key := "hero_fill|%d|%.3f|%d" % [layers.size(), frac, hash(layers)]
 		draw_texture_rect(Art.tex(key, size, Materials.jar_contents.bind(layers, frac)), r, false)
-		draw_texture_rect(Art.tex("hero_front", size, Materials.jar_front), r, false)
+		draw_texture_rect(Art.tex("hero_front|%d" % room, size, RoomArt.jar_front.bind(room)), r, false)
 		var ni := Materials.jar_neck(size.x)
 		var lid := Vector2(size.x - ni * 2.0 + 18.0, neck * 1.3)
 		var lid_color := Style.GOLD if frac >= 1.0 else Style.PAPRIKA
-		draw_texture_rect(Art.tex("hero_lid_" + lid_color.to_html(false), lid, Materials.lid.bind(lid_color)),
+		draw_texture_rect(Art.tex("hero_lid_%s|%d" % [lid_color.to_html(false), room], lid, RoomArt.lid.bind(room, lid_color)),
 			Rect2(Vector2(ni - 9.0, -lid.y * 0.5), lid), false)
 		var f := Style.hand()
 		var fs := clampi(roundi(size.x * 0.27), 56, 96)
@@ -257,6 +261,7 @@ class _Cabinet extends Control:
 			title = v
 			queue_redraw()
 	var _down := false
+	var room := 1
 
 	func _init() -> void:
 		mouse_filter = Control.MOUSE_FILTER_STOP
@@ -276,7 +281,7 @@ class _Cabinet extends Control:
 				pressed.emit()
 
 	func _draw() -> void:
-		draw_texture_rect(Art.tex("cabinet", size, Materials.cabinet), Rect2(Vector2.ZERO, size), false)
+		draw_texture_rect(Art.tex("cabinet|%d" % room, size, RoomArt.cabinet.bind(room)), Rect2(Vector2.ZERO, size), false)
 		var f := Style.hand()
 		var fs := Style.FS_44
 		var ts := f.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)

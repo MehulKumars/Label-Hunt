@@ -30,10 +30,17 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 | Rebuild `main.tscn` | `godot.cmd --headless --path . -s res://tools/make_scenes.gd` |
 | Tests (GUT 9.7.1) | `godot.cmd --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json` |
 | Run the game (desktop window = a 20:9 phone fitted to the monitor) | `godot.cmd --path . [-- --phone=1080x2520]` |
-| Generate a room from the bank + spec → `data/levels/roomN.json`, `reports/roomN_gen.md` (~90 s) | `godot.cmd --headless --path . -s res://tools/room_gen.gd -- --room=1` |
-| Check a level file (deal seeded boards, unique cover, solvable, no pre-built pairs) | `godot.cmd --headless --path . -s res://tools/check_levels.gd -- --file=res://data/levels/room1.json` |
+
+| Check a level file (deal seeded boards, unique cover, solvable, no pre-built pairs) | `godot.cmd --headless --path . -s res://tools/check_levels.gd -- --file=res://data/levels/room2.json` |
+| Room specs from the difficulty curve (`data/rooms/curve.json`) → `data/rooms/roomN_spec.json` | `godot.cmd --headless --path . -s res://tools/make_specs.gd` |
+| Pick categories for rooms (global reuse ledger; `--dry` = shortfall report only) → `data/rooms/picks/`, `reports/pick.md` | `godot.cmd --headless --path . -s res://tools/room_gen.gd -- --pick --rooms=1,3-17 [--dry] [--only=1,2]` |
+| Deal, measure and budget one room (run several at once) → `data/levels/roomN.json`, `index.json`, report | `godot.cmd --headless --path . -s res://tools/room_gen.gd -- --settle --room=3 [--only=1,2]` |
+| Re-settle budgets and gold of baked levels | `godot.cmd --headless --path . -s res://tools/room_gen.gd -- --rebudget --room=2 --levels=1-10` |
+| Merge bank drafts (`data/bank/drafts/*.txt`), then lint the bank → `reports/bank_merge.md`, `reports/lint_bank.md` | `-s res://tools/merge_bank.gd [-- --dry]`, then `-s res://tools/lint_bank.gd` |
+| Re-check every baked level against the bank (phantoms, clashes, cover, a Hint-only walk) → `reports/audit_content.md` | `godot.cmd --headless --path . -s res://tools/audit_content.gd [-- --rooms=1-3 --no-hints]` |
+| Coin economy over all levels (free, ad and one-purchase players) → `reports/economy.md` | `godot.cmd --headless --path . -s res://tools/economy_sim.gd` |
 | Bot sims + bake benchmark → `reports/sim_*.md/csv` | `godot.cmd --headless --path . -s res://tools/sim.gd -- --n=200` |
-| Trace one bot game | `godot.cmd --headless --path . -s res://tools/trace_bot.gd -- --level=r1-01 --profile=average --seed=1` |
+| Trace one bot game | `godot.cmd --headless --path . -s res://tools/trace_bot.gd -- --level=l1-01 --profile=average --seed=1` |
 | Screenshots (needs a window; fitted to the monitor, same layout as the phone) | `godot.cmd --path . -- --shots=shots/m1 --size=1080x2400 [--only=home,win] [--safe=60,40] [--true-size]` |
 | Record video + audio of a scenario (Movie Maker), then a contact sheet | `godot.cmd --path . --write-movie shots/movie/win.avi --fixed-fps 60 -- --shots=shots/movie --only=win --with-audio` |
 | Material art preview PNG (headless) / type lab (window) | `-s res://tools/art_preview.gd` / `-s res://tools/type_lab.gd -- --fonts=<dir>` |
@@ -80,3 +87,10 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 - Material art is SVG built in code (`src/ui/art/materials.gd`) and rasterised at device scale by `Art`; nothing
   imports it. Icons are raw Phosphor SVGs, shipped as text via the export `include_filter`.
 - Screenshot runs use their own fresh save (`user://shots_save.json`) and mute audio unless `--with-audio`.
+- Level ids are stable and opaque: `r1-NN` is the v0.2 room, now Room 2 ("The Kitchen"); new levels are `l<room>-NN`.
+  Never reuse an id for different content (saves and playtest logs key on it).
+- `Levels` loads the files listed in `data/levels/index.json` (room_gen rewrites it). A new level file must be listed.
+- A var named `ready` on a Control clashes with Node's `ready` signal ("could not resolve external class member").
+- A Session's `log` replays the attempt (`Session.replay`); every rule that changes an attempt must append to it.
+- Room looks live in `src/ui/art/themes.gd`; RoomArt textures must put the room in their `Art.tex` key.
+- Prices, rewards, XP and the gift ladder are one table: `src/rules/economy.gd`. The Wallet autoload writes at once.
