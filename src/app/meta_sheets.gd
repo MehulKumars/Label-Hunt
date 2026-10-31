@@ -121,6 +121,9 @@ static func gift(main: Node) -> void:
 		s.add_button("Claim %s" % what, true, func() -> void:
 			s.close()
 			var got := Wallet.claim_gift(false)
+			Sfx.play("gift", 1.0, 0.0)
+			Sfx.play_at(0.25, "coin", 1.0, 0.03)
+			Haptics.coin()
 			main.toast(_reward_text(got))
 			main.refresh_home(), Style.TOUCH_PRIMARY)
 		if Ads.rewarded_ready("gift_double"):

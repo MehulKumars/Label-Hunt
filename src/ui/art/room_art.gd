@@ -36,7 +36,7 @@ static func pattern_tile(size: Vector2, room: int) -> String:
 ## so cards and text stay the loudest thing on screen).
 static func pattern(kind: String, t: float, ink: String) -> String:
 	var s := ""
-	var op := "0.28"
+	var op := "0.13"
 	match kind:
 		"plaster":
 			s = '<ellipse cx="%s" cy="%s" rx="%s" ry="%s" fill="%s" fill-opacity="0.10"/><ellipse cx="%s" cy="%s" rx="%s" ry="%s" fill="%s" fill-opacity="0.07"/>' % [
@@ -54,7 +54,7 @@ static func pattern(kind: String, t: float, ink: String) -> String:
 				var c := p * t
 				for a in 4:
 					var d := Vector2(7, 0).rotated(a * PI / 2.0)
-					s += '<circle cx="%s" cy="%s" r="5" fill="%s" fill-opacity="0.22"/>' % [_f(c.x + d.x), _f(c.y + d.y), ink]
+					s += '<circle cx="%s" cy="%s" r="5" fill="%s" fill-opacity="0.12"/>' % [_f(c.x + d.x), _f(c.y + d.y), ink]
 				s += '<circle cx="%s" cy="%s" r="3" fill="%s" fill-opacity="0.35"/>' % [_f(c.x), _f(c.y), ink]
 		"scallop":
 			for i in 2:
@@ -71,13 +71,13 @@ static func pattern(kind: String, t: float, ink: String) -> String:
 					var x := off + k * t / 2.0
 					s += '<line x1="%s" y1="%s" x2="%s" y2="%s" stroke="%s" stroke-opacity="%s" stroke-width="2"/>' % [_f(x), _f(r * bh), _f(x), _f((r + 1) * bh), ink, op]
 		"stone":
-			s = '<rect x="3" y="3" width="%s" height="%s" rx="12" fill="none" stroke="%s" stroke-opacity="0.24" stroke-width="2"/><rect x="%s" y="%s" width="%s" height="%s" rx="10" fill="none" stroke="%s" stroke-opacity="0.24" stroke-width="2"/><rect x="3" y="%s" width="%s" height="%s" rx="10" fill="none" stroke="%s" stroke-opacity="0.24" stroke-width="2"/>' % [
+			s = '<rect x="3" y="3" width="%s" height="%s" rx="12" fill="none" stroke="%s" stroke-opacity="0.13" stroke-width="2"/><rect x="%s" y="%s" width="%s" height="%s" rx="10" fill="none" stroke="%s" stroke-opacity="0.13" stroke-width="2"/><rect x="3" y="%s" width="%s" height="%s" rx="10" fill="none" stroke="%s" stroke-opacity="0.13" stroke-width="2"/>' % [
 				_f(t * 0.55), _f(t * 0.42), ink, _f(t * 0.62), _f(3), _f(t * 0.35), _f(t * 0.42), ink, _f(t * 0.5), _f(t * 0.9), _f(t * 0.45), ink]
 		"panes":
 			s = '<rect x="2" y="2" width="%s" height="%s" rx="3" fill="#FFFFFF" fill-opacity="0.18" stroke="%s" stroke-opacity="%s" stroke-width="3"/><line x1="%s" y1="2" x2="%s" y2="%s" stroke="%s" stroke-opacity="0.2" stroke-width="2"/>' % [
 				_f(t - 4), _f(t - 4), ink, op, _f(t / 2), _f(t / 2), _f(t - 2), ink]
 		"damask":
-			s = '<path d="M %s 4 L %s %s L %s %s L 4 %s Z" fill="none" stroke="%s" stroke-opacity="0.24" stroke-width="2"/><circle cx="%s" cy="%s" r="5" fill="%s" fill-opacity="0.24"/><circle cx="0" cy="0" r="4" fill="%s" fill-opacity="0.2"/><circle cx="%s" cy="%s" r="4" fill="%s" fill-opacity="0.2"/>' % [
+			s = '<path d="M %s 4 L %s %s L %s %s L 4 %s Z" fill="none" stroke="%s" stroke-opacity="0.13" stroke-width="2"/><circle cx="%s" cy="%s" r="5" fill="%s" fill-opacity="0.13"/><circle cx="0" cy="0" r="4" fill="%s" fill-opacity="0.2"/><circle cx="%s" cy="%s" r="4" fill="%s" fill-opacity="0.2"/>' % [
 				_f(t / 2), _f(t - 4), _f(t / 2), _f(t / 2), _f(t - 4), _f(t / 2), ink, _f(t / 2), _f(t / 2), ink, ink, _f(t), _f(t), ink]
 		"hex":
 			var r := t / 4.0
@@ -88,11 +88,11 @@ static func pattern(kind: String, t: float, ink: String) -> String:
 					pts.append("%s,%s" % [_f(v.x), _f(v.y)])
 				s += '<polygon points="%s" fill="none" stroke="%s" stroke-opacity="%s" stroke-width="2"/>' % [" ".join(pts), ink, op]
 		"stripes":
-			s = '<rect x="0" y="0" width="%s" height="%s" fill="%s" fill-opacity="0.12"/>' % [_f(t / 4), _f(t), ink]
+			s = '<rect x="0" y="0" width="%s" height="%s" fill="%s" fill-opacity="0.07"/>' % [_f(t / 4), _f(t), ink]
 			s += '<rect x="%s" y="0" width="%s" height="%s" fill="%s" fill-opacity="0.12"/>' % [_f(t / 2), _f(t / 4), _f(t), ink]
 		"dots":
 			for c: Vector2 in [Vector2(0.25, 0.25), Vector2(0.75, 0.75)]:
-				s += '<circle cx="%s" cy="%s" r="4" fill="%s" fill-opacity="0.28"/>' % [_f(c.x * t), _f(c.y * t), ink]
+				s += '<circle cx="%s" cy="%s" r="4" fill="%s" fill-opacity="0.15"/>' % [_f(c.x * t), _f(c.y * t), ink]
 		"checks":
 			s = '<rect x="0" y="0" width="%s" height="%s" fill="%s" fill-opacity="0.1"/><rect x="%s" y="%s" width="%s" height="%s" fill="%s" fill-opacity="0.1"/>' % [
 				_f(t / 2), _f(t / 2), ink, _f(t / 2), _f(t / 2), _f(t / 2), _f(t / 2), ink]

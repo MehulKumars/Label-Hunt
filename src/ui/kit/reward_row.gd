@@ -37,7 +37,9 @@ func play(delay: float) -> void:
 	var tw := create_tween()
 	tw.tween_interval(delay)
 	if coins > 0:
-		tw.tween_callback(Sfx.play.bind("coin", 1.0, 0.03))
+		tw.tween_callback(func() -> void:
+			Sfx.play("coin", 1.0, 0.03)
+			Haptics.coin())
 		tw.tween_method(func(v: float) -> void:
 			_coin_t = v
 			queue_redraw(), 0.0, 1.0, 0.45).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)

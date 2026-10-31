@@ -38,7 +38,7 @@ func refresh() -> void:
 	_top = _Top.new()
 	_top.avatar_pressed.connect(func() -> void: avatar_pressed.emit())
 	_top.name_pressed.connect(func() -> void: name_pressed.emit())
-	_top.custom_minimum_size = Vector2(0, 300)
+	_top.custom_minimum_size = Vector2(0, 336)
 	list.add_child(_top)
 	var solved := 0
 	var categories := {}

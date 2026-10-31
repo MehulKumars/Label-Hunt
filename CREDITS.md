@@ -24,9 +24,9 @@ there was one). Only `frost.wav` is still synthesised for this game by `tools/ma
 | Used as | Source | Author | Licence |
 |---|---|---|---|
 | Card lift, card place | https://opengameart.org/content/54-casino-sound-effects-cards-dice-chips | Kenney | CC0 |
-| Glass drop clinks, refusal tock, pencil tick, UI tap, screen whoosh | https://opengameart.org/content/interface-sounds | Kenney | CC0 |
-| Jar onto shelf | https://opengameart.org/content/50-rpg-sound-effects | Kenney | CC0 |
-| Win jingle | https://opengameart.org/content/85-short-music-jingles | Kenney | CC0 |
+| Glass drop clinks, refusal tock, pencil tick, UI tap, screen whoosh, gift opening | https://opengameart.org/content/interface-sounds | Kenney | CC0 |
+| Jar onto shelf, coins | https://opengameart.org/content/50-rpg-sound-effects | Kenney | CC0 |
+| Win and level-up jingles | https://opengameart.org/content/85-short-music-jingles | Kenney | CC0 |
 | Glass clink (variant) | https://opengameart.org/content/100-cc0-sfx-2 | rubberduck | CC0 |
 | Slip knocks | https://opengameart.org/content/100-cc0-metal-and-wood-sfx, https://opengameart.org/content/75-cc0-breaking-falling-hit-sfx | rubberduck | CC0 |
 | Lid seat | https://opengameart.org/content/glass-bottle-open-close | sinny | CC0 |
@@ -38,8 +38,9 @@ there was one). Only `frost.wav` is still synthesised for this game by `tools/ma
 
 ## Art
 All art is original and made for this game: jars, cards, lids, corks, shelves, labels, the cabinet, the hand pointer,
-the jar-plus icon and the app icon. They are built as SVG in code (`src/ui/art/materials.gd`) or written as SVG
-(`assets/icon/*.svg`, `assets/icons/jar-plus.svg`).
+the jar-plus and jar-seal icons, the brass coin, the room walls and jar styles, and the app icon. They are built as SVG
+in code (`src/ui/art/materials.gd`, `src/ui/art/room_art.gd`) or written as SVG
+(`assets/icon/*.svg`, `assets/icons/jar-plus.svg`, `assets/icons/jar-seal.svg`).
 
 | Icons | Source | License |
 |---|---|---|
