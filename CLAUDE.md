@@ -73,7 +73,8 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 - PowerShell 5.1 has no `&&` and drops quotes on native arguments. Use Git Bash for those.
 - `godot --doctool <dir>` dumps the exact 4.7.2 API. Use it before trusting your memory of an API.
 - Godot imports any `.csv` as a translation table (and makes `.translation` files that would ship). The bank is
-  `data/bank/categories.txt` in CSV format for that reason.
+  `data/bank/categories.txt` in CSV format for that reason. `reports/` and `docs/screenshots/` carry a `.gdignore`,
+  so Godot skips them (tools still write there with `FileAccess`).
 - JSON numbers are floats, and `[1.0].has(1)` is false: cast before `has`, `find` or `erase` (bit the room spec).
 - A SceneTree tool script can't define `_finalize()`: it's a MainLoop virtual.
 - Material art is SVG built in code (`src/ui/art/materials.gd`) and rasterised at device scale by `Art`; nothing
