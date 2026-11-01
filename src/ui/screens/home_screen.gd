@@ -143,8 +143,9 @@ func _layout() -> void:
 	_profile.size = Vector2(230, RoundButton.D)
 	_gear.position = Vector2(w - left - RoundButton.D, top)
 	_gear.size = _gear.custom_minimum_size
-	_coins.size = Vector2(160, CoinPill.H)
-	_coins.position = Vector2(_gear.position.x - 12.0 - 160.0, top + (RoundButton.D - CoinPill.H) / 2.0)
+	var coin_w := _coins.wanted_width()
+	_coins.size = Vector2(coin_w, CoinPill.H)
+	_coins.position = Vector2(_gear.position.x - 12.0 - coin_w, top + (RoundButton.D - CoinPill.H) / 2.0)
 	# Thumb row: Levels, Play, Shop.
 	var disc_w := RoundButton.D + 12.0
 	var play_h := Style.TOUCH_PRIMARY + 8.0

@@ -191,7 +191,7 @@ func _layout() -> void:
 	var left := (w - content_w) / 2.0
 	pause_btn.position = Vector2(left, top)
 	pause_btn.size = pause_btn.custom_minimum_size
-	var coin_w := 150.0
+	var coin_w := coins.wanted_width()
 	coins.size = Vector2(coin_w, CoinPill.H)
 	coins.position = Vector2(left + content_w - coin_w, top + (RoundButton.D - CoinPill.H) / 2.0)
 	skip_btn.size = Vector2(130, 72)

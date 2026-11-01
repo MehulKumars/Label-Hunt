@@ -18,7 +18,14 @@ const GIFT_LADDER := [
 ]
 const STREAK_SAVER_EVERY := 7
 const MAX_SAVERS := 2
-const STREAK_MILESTONES := {30: {"coins": 400, "avatar": "trophy"}, 100: {"coins": 800, "avatar": "crown"}}
+## Bonuses for reaching a streak length, on top of the week's gifts (day 7 is the top of that week). The whole road is
+## shown in advance, and a broken streak can earn them again. Past the table, every 50 days pays STREAK_LATE.
+const STREAK_MILESTONES := {
+	10: {"coins": 150}, 15: {"coins": 200}, 20: {"coins": 250}, 30: {"coins": 400, "avatar": "trophy"}, 45: {"coins": 500},
+	60: {"coins": 600, "complete": 1}, 75: {"coins": 700}, 100: {"coins": 1000, "avatar": "crown"},
+}
+const STREAK_LATE_EVERY := 50
+const STREAK_LATE := {"coins": 1000, "complete": 1}
 ## Free samples when a booster is first introduced (by the level's `introduces` tag).
 const INTRO_GIFTS := {"hint": {"hint": 3}, "complete": {"complete": 1}}
 ## Coin packs (USD base; the store sets local prices). The largest is $9.99: a calm game has no big-spender pack.
@@ -91,6 +98,26 @@ static func level_rewards(level: int) -> Dictionary:
 ## The gift for a streak day (1-based).
 static func gift_for_day(streak_day: int) -> Dictionary:
 	return GIFT_LADDER[(maxi(streak_day, 1) - 1) % GIFT_LADDER.size()]
+
+
+## What reaching a streak length pays ({} if nothing).
+static func streak_bonus(days: int) -> Dictionary:
+	if STREAK_MILESTONES.has(days):
+		return STREAK_MILESTONES[days]
+	if days > 100 and days % STREAK_LATE_EVERY == 0:
+		return STREAK_LATE
+	return {}
+
+
+## The next `n` streak lengths after `days` that pay a bonus.
+static func next_streak_bonuses(days: int, n: int) -> Array[int]:
+	var out: Array[int] = []
+	var d := maxi(days, 0) + 1
+	while out.size() < n:
+		if not streak_bonus(d).is_empty():
+			out.append(d)
+		d += 1
+	return out
 
 
 ## The avatars unlocked from the start.

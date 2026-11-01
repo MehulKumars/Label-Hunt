@@ -149,15 +149,12 @@ static func gift(main: Node) -> void:
 	var s := Sheet.new("Daily gift")
 	var view := GiftLadderView.new()
 	var today: Dictionary = Wallet.gift_today()
+	var claimed := int(Save.data["gift"]["claimed_day"]) == Wallet.today()
 	view.today = today["rung"]
 	view.waiting = Wallet.gift_ready()
+	view.claimed = claimed
 	s.body.add_child(view)
-	var streak := Wallet.streak_shown()
-	var savers := int(Save.data["streak"]["savers"])
-	s.add_label("%d-day streak%s" % [streak, (", %d streak saver%s" % [savers, "" if savers == 1 else "s"]) if savers > 0 else ""],
-		Style.FS_26, true)
-	s.add_label("Miss a day and a streak saver covers it. You earn one every 7 days." if savers > 0
-		else "Win a level each day to grow the gift. Every 7 days earns a streak saver.", Style.FS_26)
+	_add_bonus_road(s, Wallet.streak_shown())
 	if view.waiting:
 		var r: Dictionary = today["rewards"]
 		var what := "%d coins" % int(r.get("coins", 0)) + (" and a Complete" if r.has("complete") else "")
@@ -177,20 +174,24 @@ static func gift(main: Node) -> void:
 					main.toast(_reward_text(got))
 					main.refresh_home()))
 	else:
-		var claimed := int(Save.data["gift"]["claimed_day"]) == Wallet.today()
 		s.add_label("Claimed today. Come back tomorrow." if claimed else "Win any level today to open it.", Style.FS_26)
 	main.open_sheet(s)
 
 
-## The streak explained in two lines (no guilt): what counts, and what savers do.
+## The streak at a glance (no guilt): the count, the best and the savers, then the bonuses ahead.
 static func streak(main: Node) -> void:
 	var s := Sheet.new("Play streak")
 	var n := Wallet.streak_shown()
-	var best := int(Save.data["streak"]["best"])
-	s.add_label("%d day%s in a row. Best: %d." % [n, "" if n == 1 else "s", best], Style.FS_30, true)
-	s.add_label("Win any level on a day to count it. Every 7 days earns a streak saver, which covers a missed day.", Style.FS_26)
-	s.add_label("Longer streaks grow the daily gift.", Style.FS_26)
+	s.body.add_child(_StreakHero.new(n, int(Save.data["streak"]["best"]), int(Save.data["streak"]["savers"])))
+	_add_bonus_road(s, n)
+	s.add_label("Every 7 days earns a saver, which covers a missed day.", Style.FS_26)
 	main.open_sheet(s)
+
+
+static func _add_bonus_road(s: Sheet, streak_days: int) -> void:
+	var left: int = Economy.next_streak_bonuses(streak_days, 1)[0] - streak_days
+	s.add_label("Next streak bonus in %d day%s" % [left, "" if left == 1 else "s"], Style.FS_26, true)
+	s.body.add_child(StreakBonusView.new(streak_days))
 
 
 static func avatar_picker(main: Node) -> void:
@@ -285,7 +286,44 @@ static func _reward_text(r: Dictionary) -> String:
 		parts.append("+%d Complete" % int(r["complete"]))
 	if int(r.get("hint", 0)) > 0:
 		parts.append("+%d Hints" % int(r["hint"]))
+	if r.has("avatar"):
+		parts.append("a new avatar")
 	return ", ".join(parts)
+
+
+## A flame disc with the streak beside it in big numerals; the best streak and the savers sit at the right.
+class _StreakHero extends Control:
+	var count := 0
+	var best := 0
+	var savers := 0
+
+	func _init(c: int, b: int, s: int) -> void:
+		count = c
+		best = b
+		savers = s
+		custom_minimum_size = Vector2(0, 124)
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	func _draw() -> void:
+		var c := Vector2(56, 60)
+		draw_circle(c, 54.0, Color(Style.APRICOT, 0.25) if count == 0 else Style.APRICOT, true, -1.0, true)
+		draw_texture_rect(Art.icon("fire", 60, Style.INK), Rect2(c - Vector2(30, 30), Vector2(60, 60)), false)
+		var fh := Style.sans_heavy()
+		var fb := Style.sans_bold()
+		draw_string(fh, Vector2(128, 70), str(count), HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_72, Style.INK)
+		var note := "Win a level to start" if count == 0 else ("day in a row" if count == 1 else "days in a row")
+		draw_string(fb, Vector2(128, 108), note, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Color(Style.INK, 0.72))
+		_stat("Best", best, 38.0)
+		_stat("Savers", savers, 82.0)
+
+	func _stat(label: String, value: int, y: float) -> void:
+		var fh := Style.sans_heavy()
+		var fb := Style.sans_bold()
+		var v := str(value)
+		var vs := fh.get_string_size(v, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_36)
+		draw_string(fh, Vector2(size.x - vs.x, y), v, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_36, Style.INK)
+		var ls := fb.get_string_size(label, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26)
+		draw_string(fb, Vector2(size.x - 52.0 - ls.x, y), label, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Color(Style.INK, 0.72))
 
 
 class _AvatarCell extends Control:

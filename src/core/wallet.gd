@@ -86,8 +86,8 @@ func record_win(entry: Dictionary, progress: Dictionary) -> Dictionary:
 	var rec := Streak.record(Save.data["streak"], day, Economy.STREAK_SAVER_EVERY, Economy.MAX_SAVERS)
 	Save.data["streak"] = rec["state"]
 	out["streak"] = {"count": rec["state"]["count"], "kind": rec["kind"], "saver_earned": rec["saver_earned"]}
-	if rec["kind"] != "same_day" and Economy.STREAK_MILESTONES.has(int(rec["state"]["count"])):
-		out["milestone"] = Economy.STREAK_MILESTONES[int(rec["state"]["count"])]
+	if rec["kind"] != "same_day" and not Economy.streak_bonus(int(rec["state"]["count"])).is_empty():
+		out["milestone"] = Economy.streak_bonus(int(rec["state"]["count"]))
 		Economy.grant(Save.data, out["milestone"])
 	out["gift_ready"] = gift_ready()
 	_commit()

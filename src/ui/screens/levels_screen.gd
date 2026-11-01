@@ -47,13 +47,14 @@ func refresh() -> void:
 		card.total = ids.size()
 		card.gold = Progression.gold_count(cat, save, room)
 		card.first_level = cat.order_index(ids[0]) + 1 if not ids.is_empty() else 0
+		card.last_level = card.first_level + ids.size() - 1
 		card.locked = ids.is_empty() or not Progression.is_unlocked(cat, save, ids[0])
 		card.current = room == _current
 		card.custom_minimum_size = Vector2(0, CARD_H)
 		card.pressed.connect(func() -> void: room_pressed.emit(room))
 		list.add_child(card)
 	var end := Label.new()
-	end.text = "More rooms are being stocked."
+	end.text = "%d levels so far.\nMore rooms are being stocked." % cat.play_order().size()
 	end.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	end.add_theme_font_override("font", Style.hand())
 	end.add_theme_font_size_override("font_size", Style.FS_36)
@@ -89,6 +90,7 @@ class RoomCard extends Control:
 	var total := 30
 	var gold := 0
 	var first_level := 1
+	var last_level := 30
 	var locked := false
 	var current := false
 	var _down := false
@@ -149,7 +151,7 @@ class RoomCard extends Control:
 		var x := r.size.x * 0.5
 		var w := r.size.x - x - 22
 		var f := Style.sans_bold()
-		draw_string(f, Vector2(x, 46), "Room %d" % room, HORIZONTAL_ALIGNMENT_LEFT, w, Style.FS_26, Color(Style.INK, 0.72))
+		draw_string(f, Vector2(x, 46), "Levels %d to %d" % [first_level, last_level], HORIZONTAL_ALIGNMENT_LEFT, w, Style.FS_26, Color(Style.INK, 0.72))
 		var hand := Style.hand()
 		var fs := Style.FS_44
 		while fs > Style.FS_30 and hand.get_string_size(name_text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > w:
@@ -159,8 +161,7 @@ class RoomCard extends Control:
 			draw_style_box(Style.box(Color(Style.PAPER, 0.55), Style.R_XL), r)
 			var isz := 34.0
 			draw_texture_rect(Art.icon("lock-simple", isz, Style.INK_SOFT), Rect2(x, r.size.y - 74, isz, isz), false)
-			draw_string(f, Vector2(x + isz + 10, r.size.y - 48), "Opens at level %d" % first_level, HORIZONTAL_ALIGNMENT_LEFT,
-				w - isz - 10, Style.FS_26, Style.INK)
+			draw_string(f, Vector2(x + isz + 10, r.size.y - 48), "Locked", HORIZONTAL_ALIGNMENT_LEFT, w - isz - 10, Style.FS_26, Style.INK)
 			return
 		var bar := Rect2(x, r.size.y - 66, w, 14)
 		draw_style_box(Style.box(Color(Style.INK, 0.1), 7), bar)

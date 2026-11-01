@@ -77,7 +77,8 @@ Captions only appear the first time something happens: first slip, first pair, f
   one ad is worth one Hint), and coin packs ($0.99–$9.99, mock until Play Billing). Spent on Hint, Complete, Continue.
   No energy, no timers, no paywalls, no loot boxes.
 - **Play streak:** a day counts once you win any level. The daily gift opens after the first win of the day and
-  grows over a 7-day ladder. Every 7 days earns a streak saver (at most 2) that covers a missed day.
+  grows over a 7-day ladder. Every 7 days earns a streak saver (at most 2) that covers a missed day. Bonuses at 10,
+  15, 20, 30, 45, 60, 75 and 100 days, then every 50 days, are shown in advance on the Streak and Daily gift sheets.
 - **Rank:** XP from first solves, hard levels and gold lids; titles and avatars unlock as you rank up.
 - **Jar of the Day** (deferred): a daily puzzle will count toward the same streak.
 
@@ -109,7 +110,7 @@ Captions only appear the first time something happens: first slip, first pair, f
 - **Home, Levels (rooms), a Room (3 shelves of 10), Profile (avatar, name, rank, pantry ledger), Play.**
 - **Play:** pause, the level number with the slip meter under it, coins; the label rail; the board (3 columns,
   within thumb reach); Undo, Hint, +Jar, Complete (and Tidy up when every card is proven).
-- **Sheets:** Win (jar, shelf, coin and XP chips), Lose, Pause, Settings, Shop, Daily gift, Streak, avatar picker,
+- **Sheets:** Win (jar, shelf, coin and XP chips, one line of news; test builds add a star to rate the level), Lose, Pause, Settings, Shop, Daily gift, Streak, avatar picker,
   a solved level's card, the room reveal.
 - **Launch:** the tutorial on first launch, then Home. A level interrupted when the app is killed resumes exactly.
 - **Back button:** puts down a lifted card or leaves Complete's choice; closes the open sheet; in Play opens Pause;
