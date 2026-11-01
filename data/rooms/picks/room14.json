@@ -1,7 +1,7 @@
 {
   "room": 14,
   "name": "The Chocolatier",
-  "seed": 1,
+  "seed": 3,
   "bank": "96805857cd82",
   "levels": [
     {
@@ -1162,45 +1162,45 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Things you can sharpen",
-            "key": "sharpen",
-            "tier": 3,
-            "words": ["Shears", "Pencil", "Crayon", "Claw"]
+            "label": "People at sea",
+            "key": "sea",
+            "tier": 2,
+            "words": ["Lookout", "Captain", "Mariner", "Pirate"]
           },
           {
-            "label": "Things with teeth",
-            "key": "teeth",
-            "tier": 3,
-            "words": ["Saw", "Rake", "Dentures", "Gear"]
-          },
-          {
-            "label": "Hidden vehicles",
-            "key": "vehicles",
+            "label": "Swapped halves",
+            "key": "Swapped",
             "tier": 4,
-            "words": ["Busy", "Struck", "Scarf", "Strain"]
+            "words": ["Outlook", "Takeover", "Houseboat", "Boathouse"]
           },
           {
-            "label": "On a film set",
-            "key": "film",
-            "tier": 2,
-            "words": ["Extra", "Script", "Producer", "Trailer"]
+            "label": "Things that drift",
+            "key": "drift",
+            "tier": 3,
+            "words": ["Sand", "Iceberg", "Mind", "Continent"]
           },
           {
-            "label": "Leafy greens",
-            "key": "greens",
+            "label": "Words after rain",
+            "key": "rain",
+            "tier": 3,
+            "words": ["Cloud", "Proof", "Drop", "Forest"]
+          },
+          {
+            "label": "Songbirds",
+            "key": "Songbirds",
             "tier": 2,
-            "words": ["Cabbage", "Iceberg", "Chard", "Lettuce"]
+            "words": ["Wren", "Robin", "Sparrow", "Finch"]
           },
           {
             "label": "Science units",
             "key": "units",
             "tier": 2,
-            "words": ["Amp", "Watt", "Calorie", "Volt"]
+            "words": ["Volt", "Calorie", "Amp", "Watt"]
           }
         ],
         "also": {
-          "Cabbage": [2],
-          "Saw": [0]
+          "Lookout": [1],
+          "Cloud": [2]
         }
       },
       "spec": {
@@ -1767,45 +1767,45 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Words before side",
-            "key": "side",
-            "tier": 3,
-            "words": ["Mountain", "Flip", "Back", "Pool"]
-          },
-          {
             "label": "Words after day",
             "key": "day",
             "tier": 3,
-            "words": ["Bed", "Off", "Trip", "Lily"]
+            "words": ["Trip", "Lily", "Job", "Spa"]
           },
           {
-            "label": "Y is the only vowel",
-            "key": "vowel",
+            "label": "Words before side",
+            "key": "side",
+            "tier": 3,
+            "words": ["Off", "Mountain", "Flip", "Country"]
+          },
+          {
+            "label": "Words for dirty",
+            "key": "dirty",
+            "tier": 2,
+            "words": ["Greasy", "Sooty", "Muddy", "Dingy"]
+          },
+          {
+            "label": "Hidden vehicles",
+            "key": "vehicles",
             "tier": 4,
-            "words": ["Fry", "Cry", "Shy", "Myth"]
+            "words": ["Cardamom", "Carbon", "Macaroni", "Strain"]
           },
           {
-            "label": "Works of art",
-            "key": "art",
+            "label": "Kinds of book",
+            "key": "book",
             "tier": 2,
-            "words": ["Mural", "Fresco", "Etching", "Collage"]
+            "words": ["Diary", "Hardback", "Manual", "Almanac"]
           },
           {
-            "label": "Game results",
-            "key": "results",
+            "label": "Leafy greens",
+            "key": "greens",
             "tier": 2,
-            "words": ["Deadlock", "Victory", "Tie", "Win"]
-          },
-          {
-            "label": "Things birds do",
-            "key": "birds",
-            "tier": 2,
-            "words": ["Warble", "Hover", "Nest", "Peck"]
+            "words": ["Cabbage", "Chard", "Kale", "Cress"]
           }
         ],
         "also": {
-          "Bed": [0],
-          "Off": [0]
+          "Off": [0],
+          "Cabbage": [3]
         }
       },
       "spec": {

@@ -4,7 +4,7 @@
   "room": 16,
   "name": "The Royal Kitchen",
   "gen": {
-    "seed": 1,
+    "seed": 2,
     "bank": "96805857cd82"
   },
   "levels": [
@@ -1110,125 +1110,125 @@
       "id": "l16-19",
       "kind": "normal",
       "introduces": [],
-      "budget": 20,
+      "budget": 6,
       "groups": [
         {
-          "label": "Things with eyes",
-          "key": "eyes",
-          "tier": 3,
-          "words": ["Storm", "Snowman", "Puppet", "Cyclone"]
-        },
-        {
-          "label": "Words after fire",
-          "key": "fire",
-          "tier": 3,
-          "words": ["Escape", "Drill", "Door", "Wood"]
-        },
-        {
-          "label": "Words for a mess",
-          "key": "mess",
-          "tier": 2,
-          "words": ["Mayhem", "Pigsty", "Tangle", "Havoc"]
-        },
-        {
-          "label": "Emotions",
-          "key": "Emotions",
+          "label": "Computer parts",
+          "key": "Computer",
           "tier": 1,
-          "words": ["Surprise", "Joy", "Love", "Jealousy"]
+          "words": ["Keyboard", "Mouse", "Port", "Drive"]
         },
         {
-          "label": "Exercises",
-          "key": "Exercises",
-          "tier": 2,
-          "words": ["Press", "Shrug", "Squat", "Deadlift"]
+          "label": "Things that click",
+          "key": "click",
+          "tier": 3,
+          "words": ["Lock", "Seatbelt", "Latch", "Switch"]
         },
         {
-          "label": "Computer keys",
-          "key": "keys",
+          "label": "Things with sleeves",
+          "key": "sleeves",
+          "tier": 3,
+          "words": ["Gown", "Kimono", "Jacket", "Sweater"]
+        },
+        {
+          "label": "Ways to mix",
+          "key": "mix",
           "tier": 2,
-          "words": ["Pause", "Enter", "Shift", "Control"]
+          "words": ["Beat", "Fold", "Whisk", "Blend"]
+        },
+        {
+          "label": "Words for a horse",
+          "key": "horse",
+          "tier": 2,
+          "words": ["Bronco", "Foal", "Nag", "Mare"]
+        },
+        {
+          "label": "Works of art",
+          "key": "art",
+          "tier": 2,
+          "words": ["Collage", "Etching", "Mural", "Fresco"]
         }
       ],
       "also": {
-        "Storm": [1],
-        "Escape": [5]
+        "Keyboard": [1],
+        "Mouse": [1]
       },
-      "jars": [["Press", "Storm", "Control", "Pigsty"], ["Enter", "Shrug", "Wood", "Joy"], ["Deadlift", "Love", "Door", "Squat"], ["Puppet", "Pause", "Escape", "Tangle"], ["Surprise", "Snowman", "Havoc", "Shift"], ["Cyclone", "Jealousy", "Mayhem", "Drill"], [], []],
-      "frost": ["Press", "Storm", "Enter", "Shrug", "Deadlift", "Love", "Puppet", "Pause", "Surprise", "Snowman", "Cyclone", "Jealousy"],
-      "corked": [5],
-      "gold": 7,
+      "jars": [["Port", "Jacket", "Fresco", "Kimono"], ["Mare", "Drive", "Nag", "Mouse"], ["Lock", "Sweater", "Blend", "Switch"], ["Collage", "Gown", "Seatbelt", "Mural"], ["Whisk", "Etching", "Foal", "Beat"], ["Fold", "Latch", "Keyboard", "Bronco"], [], []],
+      "frost": ["Port", "Jacket", "Mare", "Drive", "Lock", "Sweater", "Collage", "Gown", "Whisk", "Etching", "Fold", "Latch"],
+      "corked": [4],
+      "gold": 3,
       "meta": {
         "target": 7.8,
         "floor": 0.62,
-        "avg_slips": 5.06,
-        "avg_win": 0.68,
-        "novice_win": 0.75,
+        "avg_slips": 4.71,
+        "avg_win": 0.62,
+        "novice_win": 0.39,
         "prober_win": 0,
-        "after_med": 3,
-        "aha_frac": 0.98
+        "after_med": 2,
+        "aha_frac": 0.96
       }
     },
     {
       "id": "l16-20",
       "kind": "hard",
       "introduces": [],
-      "budget": 5,
+      "budget": 6,
       "groups": [
         {
-          "label": "Kinds of bean",
-          "key": "bean",
+          "label": "Things with eyes",
+          "key": "eyes",
+          "tier": 3,
+          "words": ["Puppet", "Teddy", "Cyclone", "Snowman"]
+        },
+        {
+          "label": "Words after fire",
+          "key": "fire",
+          "tier": 3,
+          "words": ["Escape", "Storm", "Drill", "Door"]
+        },
+        {
+          "label": "Computer keys",
+          "key": "keys",
           "tier": 2,
-          "words": ["Green", "Pinto", "Kidney", "Black"]
+          "words": ["Insert", "Enter", "Shift", "Pause"]
         },
         {
-          "label": "Words before land",
-          "key": "land",
-          "tier": 3,
-          "words": ["Grass", "Wonder", "Ice", "Mother"]
+          "label": "Tropical fruit",
+          "key": "Tropical",
+          "tier": 2,
+          "words": ["Tamarind", "Plantain", "Starfruit", "Pineapple"]
         },
         {
-          "label": "Things with needles",
-          "key": "needles",
-          "tier": 3,
-          "words": ["Cactus", "Pine", "Spruce", "Cedar"]
+          "label": "Arithmetic",
+          "key": "Arithmetic",
+          "tier": 2,
+          "words": ["Sum", "Divide", "Minus", "Add"]
         },
         {
-          "label": "Onomatopoeia",
-          "key": "Onomatopoeia",
+          "label": "Silent U",
+          "key": "Silent",
           "tier": 4,
-          "words": ["Splash", "Boom", "Bark", "Crunch"]
-        },
-        {
-          "label": "People in charge",
-          "key": "charge",
-          "tier": 2,
-          "words": ["Mayor", "Ruler", "Captain", "Director"]
-        },
-        {
-          "label": "In the Wild West",
-          "key": "Wild",
-          "tier": 2,
-          "words": ["Rodeo", "Canyon", "Saddle", "Wagon"]
+          "words": ["Meringue", "Guilt", "Unique", "Brogue"]
         }
       ],
       "also": {
-        "Green": [1],
-        "Cactus": [5]
+        "Escape": [2],
+        "Storm": [0]
       },
-      "jars": [["Kidney", "Crunch", "Wagon", "Pine"], ["Ruler", "Pinto", "Director", "Grass"], ["Black", "Mother", "Rodeo", "Green"], ["Canyon", "Splash", "Captain", "Saddle"], ["Bark", "Mayor", "Spruce", "Wonder"], ["Ice", "Cedar", "Boom", "Cactus"], [], []],
+      "jars": [["Pause", "Starfruit", "Drill", "Divide"], ["Add", "Pineapple", "Escape", "Puppet"], ["Door", "Teddy", "Meringue", "Insert"], ["Brogue", "Tamarind", "Snowman", "Guilt"], ["Plantain", "Unique", "Storm", "Cyclone"], ["Sum", "Shift", "Minus", "Enter"], [], []],
       "labelled": {
-        "7": 3
+        "7": 5
       },
-      "gold": 2,
+      "gold": 4,
       "meta": {
         "target": 12.51,
         "floor": 0.5,
-        "avg_slips": 3.87,
-        "avg_win": 0.65,
-        "novice_win": 0.23,
+        "avg_slips": 4.82,
+        "avg_win": 0.52,
+        "novice_win": 0.33,
         "prober_win": 0,
-        "after_med": 2,
-        "aha_frac": 0.94
+        "after_med": 11,
+        "aha_frac": 0.88
       }
     },
     {
@@ -1782,60 +1782,60 @@
       "id": "l16-30",
       "kind": "hard",
       "introduces": [],
-      "budget": 5,
+      "budget": 6,
       "groups": [
-        {
-          "label": "Words before paper",
-          "key": "paper",
-          "tier": 3,
-          "words": ["News", "Fly", "Waste", "Graph"]
-        },
         {
           "label": "Silent W",
           "key": "Silent",
           "tier": 4,
-          "words": ["Wrapping", "Wrestling", "Wrist", "Who"]
+          "words": ["Wrapping", "Wrestler", "Wrist", "Who"]
         },
         {
-          "label": "Groups of people",
-          "key": "Groups",
-          "tier": 2,
-          "words": ["Choir", "Jury", "Tribe", "Clan"]
-        },
-        {
-          "label": "Words for dirty",
-          "key": "dirty",
-          "tier": 2,
-          "words": ["Filthy", "Greasy", "Dingy", "Grimy"]
+          "label": "Words before paper",
+          "key": "paper",
+          "tier": 3,
+          "words": ["News", "Fly", "Rice", "Tissue"]
         },
         {
           "label": "Building materials",
           "key": "Building",
           "tier": 2,
-          "words": ["Concrete", "Cement", "Brick", "Plaster"]
+          "words": ["Concrete", "Brick", "Asphalt", "Cement"]
+        },
+        {
+          "label": "Kinds of bean",
+          "key": "bean",
+          "tier": 2,
+          "words": ["Kidney", "Green", "Pinto", "Fava"]
+        },
+        {
+          "label": "Kinds of poem",
+          "key": "poem",
+          "tier": 2,
+          "words": ["Lyric", "Sonnet", "Elegy", "Ode"]
         },
         {
           "label": "Things you can break",
           "key": "break",
           "tier": 3,
-          "words": ["Bone", "Egg", "Spell", "Silence"]
+          "words": ["Bone", "Spell", "Egg", "Rule"]
         }
       ],
       "also": {
-        "Wrapping": [0],
-        "News": [5]
+        "News": [5],
+        "Wrapping": [1]
       },
-      "jars": [["Egg", "Jury", "Wrestling", "News"], ["Dingy", "Spell", "Plaster", "Filthy"], ["Fly", "Wrapping", "Bone", "Graph"], ["Clan", "Brick", "Greasy", "Waste"], ["Cement", "Who", "Silence", "Choir"], ["Wrist", "Grimy", "Concrete", "Tribe"], [], []],
-      "gold": 3,
+      "jars": [["Wrist", "Tissue", "Fava", "News"], ["Concrete", "Sonnet", "Cement", "Wrestler"], ["Wrapping", "Fly", "Elegy", "Spell"], ["Who", "Egg", "Brick", "Lyric"], ["Ode", "Asphalt", "Green", "Bone"], ["Rice", "Kidney", "Rule", "Pinto"], [], []],
+      "gold": 4,
       "meta": {
         "target": 12.77,
         "floor": 0.5,
-        "avg_slips": 3.88,
-        "avg_win": 0.71,
-        "novice_win": 0.32,
+        "avg_slips": 4.74,
+        "avg_win": 0.74,
+        "novice_win": 0.41,
         "prober_win": 0,
-        "after_med": 10,
-        "aha_frac": 0.69
+        "after_med": 12,
+        "aha_frac": 0.7
       }
     }
   ]

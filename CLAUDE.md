@@ -38,6 +38,7 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 | Re-settle budgets and gold of baked levels | `godot.cmd --headless --path . -s res://tools/room_gen.gd -- --rebudget --room=2 --levels=1-10` |
 | Merge bank drafts (`data/bank/drafts/*.txt`), then lint the bank → `reports/bank_merge.md`, `reports/lint_bank.md` | `-s res://tools/merge_bank.gd [-- --dry]`, then `-s res://tools/lint_bank.gd` |
 | Re-check every baked level against the bank (phantoms, clashes, cover, a Hint-only walk) → `reports/audit_content.md` | `godot.cmd --headless --path . -s res://tools/audit_content.gd [-- --rooms=1-3 --no-hints]` |
+| Difficulty curve over all levels: floors missed and levels out of shape (a hard level under its room's normal, a slip limit above 8) → `reports/curve.md` | `godot.cmd --headless --path . -s res://tools/curve_report.gd` |
 | Coin economy over all levels (free, ad and one-purchase players) → `reports/economy.md` | `godot.cmd --headless --path . -s res://tools/economy_sim.gd` |
 | Bot sims + bake benchmark → `reports/sim_*.md/csv` | `godot.cmd --headless --path . -s res://tools/sim.gd -- --n=200` |
 | Trace one bot game | `godot.cmd --headless --path . -s res://tools/trace_bot.gd -- --level=l1-01 --profile=average --seed=1` |

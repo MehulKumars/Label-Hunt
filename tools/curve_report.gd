@@ -5,6 +5,7 @@
 extends SceneTree
 
 const LEVELS := preload("res://src/core/levels.gd")
+const MAX_BUDGET := 8
 
 
 func _init() -> void:
@@ -15,6 +16,7 @@ func _init() -> void:
 		"|---|---|---|---|---|---|---|---|"]
 	var csv: Array[String] = ["level,id,room,kind,groups,budget,gold,target,avg_slips,floor,avg_win,novice_win,prober_win,after_med,aha_frac"]
 	var misses: Array[String] = []
+	var shape: Array[String] = []
 	var n := 0
 	for r in cat.room_numbers():
 		var ids := cat.room_ids(r)
@@ -43,6 +45,14 @@ func _init() -> void:
 			csv.append("%d,%s,%d,%s,%d,%d,%d,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%d,%.2f" % [n, id, r, e["kind"], g, int(d.get("budget", 0)),
 				int(d.get("gold", -1)), float(m.get("target", 0.0)), float(m.get("avg_slips", 0.0)), fl, win,
 				float(m.get("novice_win", 1.0)), float(m.get("prober_win", 0.0)), int(m.get("after_med", 0)), float(m.get("aha_frac", 0.0))])
+		var normal := _mean(slips["normal"])
+		for id in ids:
+			var d: Dictionary = cat.entry(id)["data"]
+			var s := float(d.get("meta", {}).get("avg_slips", 0.0))
+			if str(cat.entry(id)["kind"]) == "hard" and s < normal:
+				shape.append("- %s: a hard level at %.1f slips, under its room's normal %.1f" % [id, s, normal])
+			if int(d.get("budget", 0)) > MAX_BUDGET:
+				shape.append("- %s: a slip limit of %d reads as no limit" % [id, int(d["budget"])])
 		var gk := groups.keys()
 		gk.sort()
 		md.append("| %d %s | %d-%d | %s | %.1f / %.1f / %.1f | %d%% | %d | %d%% | %d%% |" % [r, cat.room_name(r), n - ids.size() + 1, n,
@@ -50,12 +60,14 @@ func _init() -> void:
 			roundi(min_win * 100), miss, roundi(nov / maxf(ids.size(), 1) * 100), roundi(pro * 100)])
 	md.append_array(["", "## Levels under their floor (3-point tolerance)", ""])
 	md.append_array(misses if not misses.is_empty() else ["None."])
+	md.append_array(["", "## Levels out of shape", ""])
+	md.append_array(shape if not shape.is_empty() else ["None."])
 	DirAccess.make_dir_recursive_absolute("res://reports")
 	var f := FileAccess.open("res://reports/curve.md", FileAccess.WRITE)
 	f.store_string("\n".join(md) + "\n")
 	var c := FileAccess.open("res://reports/curve.csv", FileAccess.WRITE)
 	c.store_string("\n".join(csv) + "\n")
-	print("%d levels, %d under their floor" % [n, misses.size()])
+	print("%d levels, %d under their floor, %d out of shape" % [n, misses.size(), shape.size()])
 	quit()
 
 

@@ -143,6 +143,7 @@ func _run(name: String) -> void:
 			MetaSheets.room_reveal(main, int(Levels.catalog.room_numbers().back()), Levels.catalog.play_order()[0])
 		"themes":
 			# Every room's look on its own hardest level, a few moves in: the fullest boards and rails it has.
+			Save.data["coins"] = 340
 			for r in Levels.catalog.room_numbers():
 				main.close_all_sheets()
 				var ids := Levels.catalog.room_ids(r)

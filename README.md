@@ -12,7 +12,7 @@ Guess wrong and the jar gives away part of the label. Fill a jar and the lid scr
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/version-0.2.0--alpha-3B6E6E" alt="Version 0.2.0-alpha">
+<img src="https://img.shields.io/badge/version-0.3.1--alpha-3B6E6E" alt="Version 0.3.1-alpha">
 <img src="https://img.shields.io/badge/Godot-4.7.2-478CBF?logo=godotengine&logoColor=white" alt="Godot 4.7.2">
 <img src="https://img.shields.io/badge/platform-Android%20(arm64)-3DDC84?logo=android&logoColor=white" alt="Android arm64">
 <img src="https://img.shields.io/badge/orientation-portrait-F28F3B" alt="Portrait">
@@ -20,15 +20,15 @@ Guess wrong and the jar gives away part of the label. Fill a jar and the lid scr
 
 <table align="center">
 <tr>
-<td><img src="docs/screenshots/v0.2/home.png" width="200" alt="Home: the big Jarful jar on the pantry cabinet, four levels solved"></td>
-<td><img src="docs/screenshots/v0.2/play.png" width="200" alt="Level 4 mid-game: hint tags on the label rail, cards in glass jars"></td>
-<td><img src="docs/screenshots/v0.2/slip.png" width="200" alt="A wrong drop writes part of the label: '______ in the body'"></td>
-<td><img src="docs/screenshots/v0.2/win.png" width="200" alt="Win card: the level's jar joins the shelf"></td>
+<td><img src="docs/screenshots/v0.3/home.png" width="200" alt="Home: the big Jarful jar on the pantry cabinet, with the profile chip, coins, streak and daily gift"></td>
+<td><img src="docs/screenshots/v0.3/play.png" width="200" alt="Level 360 mid-game: six groups, a labelled jar and hint tags on the label rail"></td>
+<td><img src="docs/screenshots/v0.3/levels.png" width="200" alt="Levels map: room cards with their own walls and jars"></td>
+<td><img src="docs/screenshots/v0.3/win.png" width="200" alt="Win card: the level's jar joins the shelf, with coins and XP"></td>
 </tr>
 <tr>
 <td align="center"><sub>Your pantry fills up</sub></td>
 <td align="center"><sub>Sort by hidden category</sub></td>
-<td align="center"><sub>A slip reveals the label</sub></td>
+<td align="center"><sub>17 rooms, each its own look</sub></td>
 <td align="center"><sub>Every level is a jar</sub></td>
 </tr>
 </table>
@@ -40,26 +40,30 @@ Guess wrong and the jar gives away part of the label. Fill a jar and the lid scr
   blank → `Things with ▢▢▢▢` → the first letter → the full label.
 - Your first **pair** in a group also moves its label on, so careful play earns hints for free.
 - **Four of a kind** in one jar puts the lid on. Lids are permanent and always right.
-- **Undo** is free. From level 11 each level has a slip budget. If you run out, one tap retries.
+- **Undo** and **+Jar** are free. From level 11 each level has a slip budget. If you run out, one tap retries.
+- **Hint** (50 coins) shows a good next move. **Complete** (250 coins) seals a label you pick from the rail.
 
 The full rules, the level pipeline and the roadmap are in the design doc: [docs/DESIGN.md](docs/DESIGN.md).
 
-## What's in 0.2.0-alpha
-- **Home:** a big jar that fills with a coloured layer for every category you solve, a pantry cabinet where each
-  finished level becomes a little jar (gold lid for a clean sort), and one big **Play** button.
-- **Tutorial:** three short boards on first launch, with **Skip** top right. **?** on Home replays it.
-- **Room 1, "The Larder":** 30 levels that rise and dip in packs of ten. Slip budgets start at level 11,
-  four groups at 16 and red herrings at 26.
-- **Look and sound:** glass jars, paper cards, wooden shelves, enamel lids and hand-lettered labels, all drawn in
-  code. Glass, wood and paper sounds plus a calm piano loop, all CC0. Haptics only on the moments that matter.
-- **Settings:** sound, music, haptics, reduce motion, How to play and Credits.
+## What's in 0.3
+- **510 levels in 17 rooms of 30:** a medium start, then a long climb to very hard. New ideas arrive along the way:
+  herrings, abstract categories, 5 and 6 groups, frosted, labelled and corked jars, and wordplay.
+- **A look for each room:** its own walls, wood and jar shape, getting richer as you go.
+- **Home, Levels map and room view:** the big jar and the pantry cabinet, plus a card for every room. Tap a solved
+  level to replay it.
+- **Coins and boosters:** earned from first solves, the daily gift, rank-ups and finished rooms, and harder rooms pay
+  more. No energy, no timers, no forced ads, and Retry is always free.
+- **Play streak and daily gift:** the gift opens after the day's first win and grows over 7 days. Streak savers cover
+  a missed day.
+- **Profile:** rank, XP, titles, avatars and a pantry ledger.
+- **Exact resume:** a level interrupted when the app is killed picks up where it left off.
 
 <details>
 <summary><b>Known gaps</b></summary>
 
-- Killing the app mid-level restarts that level. Exact resume is next.
-- The full room view (tapping the cabinet) isn't built yet.
-- Jar of the Day and coins arrive in M2b.
+- Ads, coin packs and friends are simulated. The real ones need AdMob, Play Console and Play Games accounts.
+- Difficulty was tuned with bots and hasn't been calibrated against human players yet.
+- Jar of the Day (the daily puzzle) and levels 511 to 720 are still to come.
 </details>
 
 ## Install on Android
@@ -68,7 +72,7 @@ The full rules, the level pipeline and the roadmap are in the design doc: [docs/
 2. Open it on the phone and allow installs from your browser or file manager.
 3. It installs as **Jarful** (`com.mehulkumars.jarful`). New builds install over old ones and keep your progress.
 
-Over USB instead: `adb install -r jarful-0.2.0-alpha-arm64.apk`
+Over USB instead: `adb install -r jarful-0.3.1-alpha-arm64.apk`
 
 Older builds are on the [releases page](https://github.com/MehulKumars/jarful/releases).
 
@@ -76,20 +80,18 @@ Older builds are on the [releases page](https://github.com/MehulKumars/jarful/re
 | Milestone | Version | Contents | |
 |---|---|---|---|
 | M1 | v0.1 | Find the fun: grey-box board, rule toggles, bot players | ✅ |
-| M2 | v0.2 | Home, tutorial, Room 1 progression, the art and sound direction | 🧪 alpha |
-| M2b | v0.2.x | Jar of the Day (daily puzzle with a streak) and coins/boosters | |
-| M3a | v0.3 | Content: rooms 2–5 (150 levels), dailies | |
-| M3b | v0.4 | Sound and music pass, remaining rooms' art, juice pass | |
-| M4 | v1.0-rc | Polish, performance, store kit | |
+| M2 | v0.2 | Home, tutorial, the first room's progression, the art and sound direction | ✅ |
+| M3 | v0.3 | Coins, boosters, streak, profile, Levels map, room themes, 510 levels | 🧪 alpha |
+| M4 | v1.0-rc | Real ads, billing and Play Games, Jar of the Day, polish, store kit | |
 
 ## How it's made
 - **Engine:** Godot 4.7.2 and GDScript. The UI is built in code, and all art is SVG built in code and rasterised
   at the device's scale, so it stays sharp on any phone.
 - **Levels are baked offline**, never generated on the phone. A generator picks categories from a hand-reviewed
-  bank (139 so far) and deals each board. Every level is then checked:
+  bank (769 so far) and deals each board. Every level is then checked:
   - exactly one way to sort the cards into its groups;
-  - no other category hides three or more of its cards;
-  - a solver proves it solvable;
+  - no other category hides three or more of its cards across its groups;
+  - a solver proves it solvable, and following Hints alone wins it;
   - a human-like bot plays it hundreds of times to measure difficulty against the target curve.
 - **Tests** run on [GUT](https://github.com/bitwes/Gut). All tooling is headless GDScript in [tools/](tools/).
 
@@ -109,7 +111,8 @@ Level generation, checks, bot sims, screenshots and the APK audit each have a to
 | | |
 |---|---|
 | [docs/DESIGN.md](docs/DESIGN.md) | Rules, progression, difficulty pipeline, screens, art and feel, scope |
-| [docs/plan-m2.md](docs/plan-m2.md) | The M2 plan: Home, tutorial, Room 1 and the quality bar |
+| [docs/plan-m3.md](docs/plan-m3.md) | The M3 plan: economy, boosters, streak, profile, rooms and levels |
+| [docs/plan-m2.md](docs/plan-m2.md) | The M2 plan: Home, tutorial, the first room and the quality bar |
 | [docs/research-ux.md](docs/research-ux.md) | Research on casual-puzzle UX (Home, onboarding, HUD, feel) that shaped M2 |
 | [CREDITS.md](CREDITS.md) | Every third-party font, sound, icon and tool, with its licence |
 

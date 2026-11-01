@@ -4,7 +4,7 @@
   "room": 14,
   "name": "The Chocolatier",
   "gen": {
-    "seed": 1,
+    "seed": 3,
     "bank": "96805857cd82"
   },
   "levels": [
@@ -1171,63 +1171,63 @@
       "id": "l14-20",
       "kind": "hard",
       "introduces": [],
-      "budget": 4,
+      "budget": 6,
       "groups": [
         {
-          "label": "Things you can sharpen",
-          "key": "sharpen",
-          "tier": 3,
-          "words": ["Shears", "Pencil", "Crayon", "Claw"]
+          "label": "People at sea",
+          "key": "sea",
+          "tier": 2,
+          "words": ["Lookout", "Captain", "Mariner", "Pirate"]
         },
         {
-          "label": "Things with teeth",
-          "key": "teeth",
-          "tier": 3,
-          "words": ["Saw", "Rake", "Dentures", "Gear"]
-        },
-        {
-          "label": "Hidden vehicles",
-          "key": "vehicles",
+          "label": "Swapped halves",
+          "key": "Swapped",
           "tier": 4,
-          "words": ["Busy", "Struck", "Scarf", "Strain"]
+          "words": ["Outlook", "Takeover", "Houseboat", "Boathouse"]
         },
         {
-          "label": "On a film set",
-          "key": "film",
-          "tier": 2,
-          "words": ["Extra", "Script", "Producer", "Trailer"]
+          "label": "Things that drift",
+          "key": "drift",
+          "tier": 3,
+          "words": ["Sand", "Iceberg", "Mind", "Continent"]
         },
         {
-          "label": "Leafy greens",
-          "key": "greens",
+          "label": "Words after rain",
+          "key": "rain",
+          "tier": 3,
+          "words": ["Cloud", "Proof", "Drop", "Forest"]
+        },
+        {
+          "label": "Songbirds",
+          "key": "Songbirds",
           "tier": 2,
-          "words": ["Cabbage", "Iceberg", "Chard", "Lettuce"]
+          "words": ["Wren", "Robin", "Sparrow", "Finch"]
         },
         {
           "label": "Science units",
           "key": "units",
           "tier": 2,
-          "words": ["Amp", "Watt", "Calorie", "Volt"]
+          "words": ["Volt", "Calorie", "Amp", "Watt"]
         }
       ],
       "also": {
-        "Cabbage": [2],
-        "Saw": [0]
+        "Lookout": [1],
+        "Cloud": [2]
       },
-      "jars": [["Script", "Pencil", "Extra", "Struck"], ["Amp", "Lettuce", "Volt", "Crayon"], ["Iceberg", "Scarf", "Cabbage", "Strain"], ["Busy", "Dentures", "Claw", "Calorie"], ["Trailer", "Chard", "Watt", "Rake"], ["Shears", "Saw", "Producer", "Gear"], [], []],
+      "jars": [["Proof", "Houseboat", "Mariner", "Volt"], ["Drop", "Sparrow", "Outlook", "Watt"], ["Pirate", "Boathouse", "Continent", "Takeover"], ["Captain", "Wren", "Forest", "Finch"], ["Iceberg", "Amp", "Cloud", "Mind"], ["Calorie", "Robin", "Lookout", "Sand"], [], []],
       "labelled": {
-        "7": 3
+        "7": 4
       },
-      "gold": 2,
+      "gold": 4,
       "meta": {
         "target": 10.98,
         "floor": 0.5,
-        "avg_slips": 3.68,
-        "avg_win": 0.52,
-        "novice_win": 0.13,
+        "avg_slips": 4.97,
+        "avg_win": 0.61,
+        "novice_win": 0.32,
         "prober_win": 0,
-        "after_med": 3,
-        "aha_frac": 0.93
+        "after_med": 8,
+        "aha_frac": 0.8
       }
     },
     {
@@ -1781,61 +1781,61 @@
       "id": "l14-30",
       "kind": "hard",
       "introduces": [],
-      "budget": 5,
+      "budget": 7,
       "groups": [
-        {
-          "label": "Words before side",
-          "key": "side",
-          "tier": 3,
-          "words": ["Mountain", "Flip", "Back", "Pool"]
-        },
         {
           "label": "Words after day",
           "key": "day",
           "tier": 3,
-          "words": ["Bed", "Off", "Trip", "Lily"]
+          "words": ["Trip", "Lily", "Job", "Spa"]
         },
         {
-          "label": "Y is the only vowel",
-          "key": "vowel",
+          "label": "Words before side",
+          "key": "side",
+          "tier": 3,
+          "words": ["Off", "Mountain", "Flip", "Country"]
+        },
+        {
+          "label": "Words for dirty",
+          "key": "dirty",
+          "tier": 2,
+          "words": ["Greasy", "Sooty", "Muddy", "Dingy"]
+        },
+        {
+          "label": "Hidden vehicles",
+          "key": "vehicles",
           "tier": 4,
-          "words": ["Fry", "Cry", "Shy", "Myth"]
+          "words": ["Cardamom", "Carbon", "Macaroni", "Strain"]
         },
         {
-          "label": "Works of art",
-          "key": "art",
+          "label": "Kinds of book",
+          "key": "book",
           "tier": 2,
-          "words": ["Mural", "Fresco", "Etching", "Collage"]
+          "words": ["Diary", "Hardback", "Manual", "Almanac"]
         },
         {
-          "label": "Game results",
-          "key": "results",
+          "label": "Leafy greens",
+          "key": "greens",
           "tier": 2,
-          "words": ["Deadlock", "Victory", "Tie", "Win"]
-        },
-        {
-          "label": "Things birds do",
-          "key": "birds",
-          "tier": 2,
-          "words": ["Warble", "Hover", "Nest", "Peck"]
+          "words": ["Cabbage", "Chard", "Kale", "Cress"]
         }
       ],
       "also": {
-        "Bed": [0],
-        "Off": [0]
+        "Off": [0],
+        "Cabbage": [3]
       },
-      "jars": [["Flip", "Victory", "Nest", "Collage"], ["Back", "Lily", "Mural", "Off"], ["Shy", "Hover", "Fresco", "Deadlock"], ["Peck", "Etching", "Mountain", "Bed"], ["Pool", "Warble", "Tie", "Fry"], ["Trip", "Cry", "Win", "Myth"], [], []],
+      "jars": [["Hardback", "Trip", "Kale", "Country"], ["Spa", "Mountain", "Sooty", "Cabbage"], ["Manual", "Cardamom", "Dingy", "Macaroni"], ["Job", "Diary", "Muddy", "Lily"], ["Flip", "Cress", "Carbon", "Chard"], ["Greasy", "Strain", "Off", "Almanac"], [], []],
       "corked": [0],
-      "gold": 3,
+      "gold": 5,
       "meta": {
         "target": 11.23,
         "floor": 0.5,
-        "avg_slips": 3.87,
-        "avg_win": 0.59,
-        "novice_win": 0.31,
+        "avg_slips": 4.76,
+        "avg_win": 0.53,
+        "novice_win": 0.21,
         "prober_win": 0,
-        "after_med": 14,
-        "aha_frac": 0.67
+        "after_med": 21,
+        "aha_frac": 0.39
       }
     }
   ]
