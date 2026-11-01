@@ -4,7 +4,7 @@
   "room": 17,
   "name": "The Grand Pantry",
   "gen": {
-    "seed": 1,
+    "seed": 2,
     "bank": "96805857cd82"
   },
   "levels": [
@@ -809,62 +809,62 @@
       "id": "l17-14",
       "kind": "normal",
       "introduces": [],
-      "budget": 16,
+      "budget": 7,
       "groups": [
         {
-          "label": "Things that expire",
-          "key": "expire",
+          "label": "Things you can shed",
+          "key": "shed",
           "tier": 3,
-          "words": ["Permit", "Voucher", "Passport", "Password"]
+          "words": ["Pound", "Hair", "Layer", "Skin"]
         },
         {
-          "label": "Hidden vehicles",
-          "key": "vehicles",
+          "label": "Text symbols",
+          "key": "symbols",
+          "tier": 2,
+          "words": ["Asterisk", "Plus", "Slash", "Dollar"]
+        },
+        {
+          "label": "Songbirds",
+          "key": "Songbirds",
+          "tier": 2,
+          "words": ["Warbler", "Robin", "Finch", "Thrush"]
+        },
+        {
+          "label": "Hidden numbers",
+          "key": "numbers",
           "tier": 4,
-          "words": ["Card", "Cabinet", "Busker", "Cable"]
+          "words": ["Weight", "Height", "Tennis", "Baritone"]
+        },
+        {
+          "label": "Words for a mess",
+          "key": "mess",
+          "tier": 2,
+          "words": ["Muddle", "Pigsty", "Chaos", "Clutter"]
         },
         {
           "label": "Types of wood",
           "key": "wood",
           "tier": 2,
-          "words": ["Beech", "Hickory", "Bamboo", "Teak"]
-        },
-        {
-          "label": "Volcano words",
-          "key": "Volcano",
-          "tier": 2,
-          "words": ["Molten", "Ash", "Dormant", "Eruption"]
-        },
-        {
-          "label": "Mountain ranges",
-          "key": "ranges",
-          "tier": 2,
-          "words": ["Andes", "Alps", "Caucasus", "Urals"]
-        },
-        {
-          "label": "Things with scales",
-          "key": "scales",
-          "tier": 2,
-          "words": ["Carp", "Trout", "Tuna", "Python"]
+          "words": ["Hickory", "Beech", "Teak", "Mahogany"]
         }
       ],
       "also": {
-        "Carp": [1],
-        "Card": [0]
+        "Pound": [1],
+        "Weight": [0]
       },
-      "jars": [["Teak", "Dormant", "Python", "Password"], ["Eruption", "Beech", "Cable", "Hickory"], ["Molten", "Urals", "Permit", "Caucasus"], ["Carp", "Bamboo", "Alps", "Tuna"], ["Passport", "Busker", "Trout", "Ash"], ["Card", "Andes", "Voucher", "Cabinet"], [], []],
-      "frost": ["Teak", "Dormant", "Eruption", "Beech", "Molten", "Urals", "Carp", "Bamboo", "Passport", "Busker", "Card", "Andes"],
-      "corked": [0],
-      "gold": 9,
+      "jars": [["Thrush", "Teak", "Finch", "Mahogany"], ["Tennis", "Pigsty", "Skin", "Warbler"], ["Plus", "Baritone", "Muddle", "Weight"], ["Robin", "Layer", "Height", "Dollar"], ["Hair", "Hickory", "Slash", "Chaos"], ["Pound", "Clutter", "Beech", "Asterisk"], [], []],
+      "frost": ["Thrush", "Teak", "Tennis", "Pigsty", "Plus", "Baritone", "Robin", "Layer", "Hair", "Hickory", "Pound", "Clutter"],
+      "corked": [4],
+      "gold": 4,
       "meta": {
         "target": 8.2,
         "floor": 0.6,
-        "avg_slips": 5.67,
-        "avg_win": 0.61,
-        "novice_win": 0.67,
+        "avg_slips": 5.2,
+        "avg_win": 0.77,
+        "novice_win": 0.28,
         "prober_win": 0,
-        "after_med": 4,
-        "aha_frac": 0.97
+        "after_med": 3,
+        "aha_frac": 0.94
       }
     },
     {

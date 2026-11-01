@@ -1,6 +1,6 @@
 # Content audit
 
-510 levels checked in 5 s: 0 errors, 5 warnings.
+510 levels checked in 4 s: 0 errors, 5 warnings.
 
 ## Errors
 

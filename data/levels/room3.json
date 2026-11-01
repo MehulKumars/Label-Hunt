@@ -4,8 +4,8 @@
   "room": 3,
   "name": "The Orchard Shed",
   "gen": {
-    "seed": 1,
-    "bank": "063773f73282"
+    "seed": 2,
+    "bank": "96805857cd82"
   },
   "levels": [
     {
@@ -904,44 +904,44 @@
       "budget": 4,
       "groups": [
         {
-          "label": "Words before ship",
-          "key": "ship",
+          "label": "Coding words",
+          "key": "Coding",
+          "tier": 2,
+          "words": ["Script", "Function", "Method", "Class"]
+        },
+        {
+          "label": "Things you can wind",
+          "key": "wind",
           "tier": 3,
-          "words": ["Steam", "Flag", "Scholar", "Space"]
+          "words": ["Hose", "Watch", "Cable", "Bandage"]
         },
         {
-          "label": "Things that are hot",
-          "key": "hot",
+          "label": "On a film set",
+          "key": "film",
           "tier": 2,
-          "words": ["Toaster", "Sun", "Oven", "Sauna"]
+          "words": ["Director", "Scene", "Extra", "Trailer"]
         },
         {
-          "label": "Words for a friend",
-          "key": "friend",
+          "label": "Polygons",
+          "key": "Polygons",
           "tier": 2,
-          "words": ["Mate", "Pal", "Companion", "Ally"]
-        },
-        {
-          "label": "Ways to mix",
-          "key": "mix",
-          "tier": 2,
-          "words": ["Fold", "Beat", "Whip", "Toss"]
+          "words": ["Triangle", "Octagon", "Pentagon", "Square"]
         }
       ],
       "also": {
-        "Steam": [1]
+        "Script": [2]
       },
-      "jars": [["Sun", "Scholar", "Fold", "Space"], ["Mate", "Flag", "Ally", "Toaster"], ["Sauna", "Whip", "Oven", "Pal"], ["Toss", "Steam", "Beat", "Companion"], [], []],
+      "jars": [["Triangle", "Scene", "Octagon", "Method"], ["Director", "Bandage", "Trailer", "Watch"], ["Function", "Square", "Hose", "Script"], ["Class", "Pentagon", "Cable", "Extra"], [], []],
       "gold": 0,
       "meta": {
         "target": 2.53,
         "floor": 0.65,
-        "avg_slips": 1.25,
-        "avg_win": 0.93,
-        "novice_win": 0.75,
+        "avg_slips": 1.7,
+        "avg_win": 0.88,
+        "novice_win": 0.66,
         "prober_win": 0,
-        "after_med": 10,
-        "aha_frac": 0.57
+        "after_med": 12,
+        "aha_frac": 0.46
       }
     },
     {

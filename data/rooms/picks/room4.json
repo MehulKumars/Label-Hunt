@@ -1,7 +1,7 @@
 {
   "room": 4,
   "name": "The Tea Room",
-  "seed": 1,
+  "seed": 4,
   "bank": "96805857cd82",
   "levels": [
     {
@@ -469,38 +469,38 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Things with blades",
-            "key": "blades",
+            "label": "Fabric patterns",
+            "key": "patterns",
+            "tier": 2,
+            "words": ["Check", "Pinstripe", "Gingham", "Paisley"]
+          },
+          {
+            "label": "Chess terms",
+            "key": "Chess",
+            "tier": 2,
+            "words": ["Blunder", "Promotion", "Endgame", "Stalemate"]
+          },
+          {
+            "label": "Things with teeth",
+            "key": "teeth",
             "tier": 3,
-            "words": ["Mower", "Saw", "Shoulder", "Turbine"]
+            "words": ["Comb", "Beaver", "Piranha", "Gear"]
           },
           {
-            "label": "Sewing kit",
-            "key": "Sewing",
+            "label": "Branches of science",
+            "key": "science",
             "tier": 2,
-            "words": ["Scissors", "Elastic", "Ribbon", "Thread"]
+            "words": ["Botany", "Acoustics", "Forensics", "Biology"]
           },
           {
-            "label": "Text symbols",
-            "key": "symbols",
-            "tier": 2,
-            "words": ["Minus", "Ampersand", "Plus", "Asterisk"]
-          },
-          {
-            "label": "Family",
-            "key": "Family",
+            "label": "Cosmetics",
+            "key": "Cosmetics",
             "tier": 1,
-            "words": ["Parent", "Niece", "Husband", "Mother"]
-          },
-          {
-            "label": "Fermented foods",
-            "key": "Fermented",
-            "tier": 2,
-            "words": ["Pickle", "Kefir", "Sourdough", "Cheese"]
+            "words": ["Gloss", "Kohl", "Bronzer", "Rouge"]
           }
         ],
         "also": {
-          "Scissors": [0]
+          "Check": [1]
         }
       },
       "spec": {

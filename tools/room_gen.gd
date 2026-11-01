@@ -28,6 +28,7 @@ const MAX_WORD := 9
 const STUCK := 999
 ## Sampling noise allowed when checking a budget against its floor (the curve report allows the same).
 const FLOOR_TOLERANCE := 0.03
+const MAX_BUDGET := 8
 ## When a level can't be picked the gaps relax step by step: (category gap, word gap, tries).
 const RELAX := [Vector3i(60, 30, 60), Vector3i(40, 20, 120), Vector3i(25, 12, 160), Vector3i(15, 8, 240)]
 ## Domains whose categories cut across every other domain: two of them share a level only with different patterns.
@@ -452,6 +453,9 @@ func _settle_level(room: int, number: int, level: Dictionary, ls: Dictionary) ->
 		var score := absf(m["slips_mean"] - target)
 		# A deal that strands players (stuck past Undo and +Jar) can't meet its floor at any slip limit.
 		score += maxf(0.0, float(ls.get("floor", 0.8)) + 0.05 - m["win"]) * 10.0
+		# A slip limit far above the others reads as no limit at all.
+		if ls.get("budget", false) and _floor_slips(m["slips"], float(ls.get("floor", 0.8))) + 1 > MAX_BUDGET:
+			score += 3.0
 		if number >= 3 and ls["kind"] != "rest" and m["aha_frac"] < 0.4:
 			score += 1.5
 		score += maxf(0.0, m["after_med"] - 8.0) * 0.25

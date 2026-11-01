@@ -1,7 +1,7 @@
 {
   "room": 17,
   "name": "The Grand Pantry",
-  "seed": 1,
+  "seed": 2,
   "bank": "96805857cd82",
   "levels": [
     {
@@ -801,45 +801,45 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Things that expire",
-            "key": "expire",
+            "label": "Things you can shed",
+            "key": "shed",
             "tier": 3,
-            "words": ["Permit", "Voucher", "Passport", "Password"]
+            "words": ["Pound", "Hair", "Layer", "Skin"]
           },
           {
-            "label": "Hidden vehicles",
-            "key": "vehicles",
+            "label": "Text symbols",
+            "key": "symbols",
+            "tier": 2,
+            "words": ["Asterisk", "Plus", "Slash", "Dollar"]
+          },
+          {
+            "label": "Songbirds",
+            "key": "Songbirds",
+            "tier": 2,
+            "words": ["Warbler", "Robin", "Finch", "Thrush"]
+          },
+          {
+            "label": "Hidden numbers",
+            "key": "numbers",
             "tier": 4,
-            "words": ["Card", "Cabinet", "Busker", "Cable"]
+            "words": ["Weight", "Height", "Tennis", "Baritone"]
+          },
+          {
+            "label": "Words for a mess",
+            "key": "mess",
+            "tier": 2,
+            "words": ["Muddle", "Pigsty", "Chaos", "Clutter"]
           },
           {
             "label": "Types of wood",
             "key": "wood",
             "tier": 2,
-            "words": ["Beech", "Hickory", "Bamboo", "Teak"]
-          },
-          {
-            "label": "Volcano words",
-            "key": "Volcano",
-            "tier": 2,
-            "words": ["Molten", "Ash", "Dormant", "Eruption"]
-          },
-          {
-            "label": "Mountain ranges",
-            "key": "ranges",
-            "tier": 2,
-            "words": ["Andes", "Alps", "Caucasus", "Urals"]
-          },
-          {
-            "label": "Things with scales",
-            "key": "scales",
-            "tier": 2,
-            "words": ["Carp", "Trout", "Tuna", "Python"]
+            "words": ["Hickory", "Beech", "Teak", "Mahogany"]
           }
         ],
         "also": {
-          "Carp": [1],
-          "Card": [0]
+          "Pound": [1],
+          "Weight": [0]
         }
       },
       "spec": {
