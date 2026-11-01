@@ -7,7 +7,8 @@ const PRICES := {"hint": 50, "complete": 250, "continue": 150}
 ## Boosters that can sit in the inventory (gifts, level-ups, intros). +Jar and Undo stay free.
 const ITEMS := ["hint", "complete"]
 const STARTER_COINS := 150
-const AD_COINS := 25
+## One optional ad is worth one Hint, here and at the not-enough-coins sheet.
+const AD_COINS := 50
 const LEVEL_UP_COINS := 20
 const ROOM_COINS := 150
 ## The 7-day daily gift, by streak day (repeats after day 7).
@@ -38,9 +39,11 @@ const AVATARS := [
 ]
 
 
-## First-solve coins: 10 + 4 per group above 2; tricky +4, hard +8. Replays and gold lids pay no coins.
-static func win_coins(groups: int, kind: String) -> int:
-	return 10 + 4 * maxi(groups - 2, 0) + {"tricky": 4, "hard": 8}.get(kind, 0)
+## First-solve coins: 10 + 4 per group above 2; tricky +4, hard +8; +1 per room after the first, since help is wanted
+## more often as rooms get harder while groups stop at 6. A hard level in Room 17 pays one Hint. Replays and gold lids
+## pay no coins.
+static func win_coins(groups: int, kind: String, room: int = 1) -> int:
+	return 10 + 4 * maxi(groups - 2, 0) + {"tricky": 4, "hard": 8}.get(kind, 0) + maxi(room - 1, 0)
 
 
 ## First-solve XP: 10 + 5 per group above 2; tricky +5, hard +10. A first gold lid adds GOLD_XP.

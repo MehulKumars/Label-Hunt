@@ -1,0 +1,1842 @@
+{
+  "version": 3,
+  "track": "room",
+  "room": 16,
+  "name": "The Royal Kitchen",
+  "gen": {
+    "seed": 1,
+    "bank": "96805857cd82"
+  },
+  "levels": [
+    {
+      "id": "l16-01",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 7,
+      "groups": [
+        {
+          "label": "Things you can set",
+          "key": "set",
+          "tier": 3,
+          "words": ["Trap", "Scene", "Sail", "Table"]
+        },
+        {
+          "label": "Kinds of door",
+          "key": "door",
+          "tier": 2,
+          "words": ["Garage", "Back", "Patio", "Screen"]
+        },
+        {
+          "label": "At a concert",
+          "key": "concert",
+          "tier": 1,
+          "words": ["Spotlight", "Fan", "Amp", "Backstage"]
+        },
+        {
+          "label": "Kinds of clock",
+          "key": "clock",
+          "tier": 2,
+          "words": ["Chess", "Wall", "Digital", "Body"]
+        },
+        {
+          "label": "Worn on the neck",
+          "key": "neck",
+          "tier": 2,
+          "words": ["Lanyard", "Pendant", "Garland", "Bandana"]
+        },
+        {
+          "label": "Things that roar",
+          "key": "roar",
+          "tier": 3,
+          "words": ["Crowd", "Tiger", "Waterfall", "Dinosaur"]
+        }
+      ],
+      "also": {
+        "Crowd": [2],
+        "Trap": [1]
+      },
+      "jars": [["Back", "Trap", "Tiger", "Patio"], ["Chess", "Waterfall", "Backstage", "Screen"], ["Sail", "Wall", "Scene", "Digital"], ["Fan", "Crowd", "Garage", "Garland"], ["Lanyard", "Table", "Bandana", "Spotlight"], ["Dinosaur", "Pendant", "Body", "Amp"], [], []],
+      "frost": ["Back", "Trap", "Chess", "Waterfall", "Sail", "Wall", "Fan", "Crowd", "Lanyard", "Table", "Dinosaur", "Pendant"],
+      "corked": [1],
+      "gold": 3,
+      "meta": {
+        "target": 7.52,
+        "floor": 0.62,
+        "avg_slips": 4.67,
+        "avg_win": 0.81,
+        "novice_win": 0.38,
+        "prober_win": 0,
+        "after_med": 3,
+        "aha_frac": 0.93
+      }
+    },
+    {
+      "id": "l16-02",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Hidden instruments",
+          "key": "instruments",
+          "tier": 4,
+          "words": ["Greenhorn", "Sharp", "Bellow", "Salute"]
+        },
+        {
+          "label": "Things that buzz",
+          "key": "buzz",
+          "tier": 3,
+          "words": ["Hornet", "Mosquito", "Bee", "Wasp"]
+        },
+        {
+          "label": "Fashion show",
+          "key": "Fashion",
+          "tier": 2,
+          "words": ["Label", "Trend", "Outfit", "Runway"]
+        },
+        {
+          "label": "Learners",
+          "key": "Learners",
+          "tier": 2,
+          "words": ["Trainee", "Recruit", "Rookie", "Cadet"]
+        },
+        {
+          "label": "Biology words",
+          "key": "Biology",
+          "tier": 2,
+          "words": ["Mutation", "Fossil", "Evolution", "Cell"]
+        },
+        {
+          "label": "Kinds of story",
+          "key": "story",
+          "tier": 2,
+          "words": ["Fable", "Romance", "Allegory", "Satire"]
+        }
+      ],
+      "also": {
+        "Greenhorn": [3],
+        "Hornet": [0]
+      },
+      "jars": [["Allegory", "Cell", "Wasp", "Outfit"], ["Rookie", "Bee", "Evolution", "Recruit"], ["Bellow", "Satire", "Trend", "Hornet"], ["Sharp", "Trainee", "Greenhorn", "Mosquito"], ["Label", "Mutation", "Cadet", "Runway"], ["Fable", "Fossil", "Romance", "Salute"], [], []],
+      "labelled": {
+        "7": 4
+      },
+      "gold": 2,
+      "meta": {
+        "target": 7.53,
+        "floor": 0.62,
+        "avg_slips": 3.38,
+        "avg_win": 0.71,
+        "novice_win": 0.38,
+        "prober_win": 0,
+        "after_med": 2,
+        "aha_frac": 0.93
+      }
+    },
+    {
+      "id": "l16-03",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 7,
+      "groups": [
+        {
+          "label": "Words after moon",
+          "key": "moon",
+          "tier": 3,
+          "words": ["Walk", "Struck", "Roof", "Lit"]
+        },
+        {
+          "label": "Facial expressions",
+          "key": "expressions",
+          "tier": 1,
+          "words": ["Sneer", "Leer", "Grin", "Scowl"]
+        },
+        {
+          "label": "Things that glow",
+          "key": "glow",
+          "tier": 2,
+          "words": ["Star", "Sun", "Bulb", "Lamp"]
+        },
+        {
+          "label": "Household staff",
+          "key": "Household",
+          "tier": 2,
+          "words": ["Valet", "Gardener", "Maid", "Footman"]
+        },
+        {
+          "label": "Words before fish",
+          "key": "fish",
+          "tier": 3,
+          "words": ["Silver", "Dog", "Parrot", "Cat"]
+        },
+        {
+          "label": "Words for old",
+          "key": "old",
+          "tier": 2,
+          "words": ["Antique", "Retro", "Bygone", "Aged"]
+        }
+      ],
+      "also": {
+        "Star": [4],
+        "Sun": [4]
+      },
+      "jars": [["Scowl", "Gardener", "Retro", "Leer"], ["Struck", "Silver", "Valet", "Aged"], ["Lit", "Bulb", "Cat", "Roof"], ["Grin", "Dog", "Maid", "Sun"], ["Star", "Parrot", "Bygone", "Sneer"], ["Walk", "Footman", "Antique", "Lamp"], [], []],
+      "frost": ["Scowl", "Gardener", "Struck", "Silver", "Lit", "Bulb", "Grin", "Dog", "Star", "Parrot", "Walk", "Footman"],
+      "gold": 3,
+      "meta": {
+        "target": 7.55,
+        "floor": 0.62,
+        "avg_slips": 4.79,
+        "avg_win": 0.72,
+        "novice_win": 0.36,
+        "prober_win": 0,
+        "after_med": 2,
+        "aha_frac": 0.96
+      }
+    },
+    {
+      "id": "l16-04",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Places to stay",
+          "key": "stay",
+          "tier": 2,
+          "words": ["Campsite", "Hostel", "Cabin", "Hut"]
+        },
+        {
+          "label": "Blended words",
+          "key": "Blended",
+          "tier": 4,
+          "words": ["Frenemy", "Pixel", "Emoticon", "Camcorder"]
+        },
+        {
+          "label": "Sweeteners",
+          "key": "Sweeteners",
+          "tier": 2,
+          "words": ["Stevia", "Glucose", "Molasses", "Fructose"]
+        },
+        {
+          "label": "Things with handles",
+          "key": "handles",
+          "tier": 3,
+          "words": ["Hammer", "Bag", "Drawer", "Broom"]
+        },
+        {
+          "label": "Kinds of medicine",
+          "key": "medicine",
+          "tier": 2,
+          "words": ["Syrup", "Vaccine", "Balm", "Lozenge"]
+        },
+        {
+          "label": "Internet words",
+          "key": "Internet",
+          "tier": 2,
+          "words": ["Podcast", "Username", "Forum", "Online"]
+        }
+      ],
+      "also": {
+        "Podcast": [1],
+        "Syrup": [2]
+      },
+      "jars": [["Username", "Emoticon", "Broom", "Forum"], ["Balm", "Fructose", "Campsite", "Hammer"], ["Frenemy", "Lozenge", "Online", "Hostel"], ["Drawer", "Camcorder", "Cabin", "Stevia"], ["Bag", "Podcast", "Pixel", "Vaccine"], ["Molasses", "Hut", "Syrup", "Glucose"], [], []],
+      "corked": [5],
+      "gold": 3,
+      "meta": {
+        "target": 7.56,
+        "floor": 0.62,
+        "avg_slips": 3.83,
+        "avg_win": 0.63,
+        "novice_win": 0.24,
+        "prober_win": 0,
+        "after_med": 17,
+        "aha_frac": 0.58
+      }
+    },
+    {
+      "id": "l16-05",
+      "kind": "tricky",
+      "introduces": [],
+      "budget": 6,
+      "groups": [
+        {
+          "label": "Parts of a river",
+          "key": "river",
+          "tier": 3,
+          "words": ["Source", "Tributary", "Estuary", "Current"]
+        },
+        {
+          "label": "Words after sun",
+          "key": "sun",
+          "tier": 3,
+          "words": ["Bed", "Dress", "Flower", "Dial"]
+        },
+        {
+          "label": "Shades of purple",
+          "key": "purple",
+          "tier": 2,
+          "words": ["Heather", "Orchid", "Lilac", "Amethyst"]
+        },
+        {
+          "label": "Parts of a bottle",
+          "key": "bottle",
+          "tier": 2,
+          "words": ["Mouth", "Neck", "Stopper", "Cap"]
+        },
+        {
+          "label": "Words for a fight",
+          "key": "fight",
+          "tier": 2,
+          "words": ["Showdown", "Brawl", "Bout", "Battle"]
+        },
+        {
+          "label": "Things with fins",
+          "key": "fins",
+          "tier": 3,
+          "words": ["Trout", "Whale", "Plane", "Goldfish"]
+        }
+      ],
+      "also": {
+        "Bed": [0],
+        "Mouth": [0]
+      },
+      "jars": [["Bout", "Cap", "Estuary", "Dress"], ["Flower", "Trout", "Brawl", "Plane"], ["Current", "Lilac", "Neck", "Heather"], ["Mouth", "Battle", "Bed", "Goldfish"], ["Showdown", "Stopper", "Source", "Dial"], ["Orchid", "Whale", "Amethyst", "Tributary"], [], []],
+      "frost": ["Bout", "Cap", "Flower", "Trout", "Current", "Lilac", "Mouth", "Battle", "Showdown", "Stopper", "Orchid", "Whale"],
+      "labelled": {
+        "7": 2
+      },
+      "gold": 4,
+      "meta": {
+        "target": 10.23,
+        "floor": 0.55,
+        "avg_slips": 5.12,
+        "avg_win": 0.61,
+        "novice_win": 0.23,
+        "prober_win": 0,
+        "after_med": 1,
+        "aha_frac": 0.97
+      }
+    },
+    {
+      "id": "l16-06",
+      "kind": "rest",
+      "introduces": [],
+      "budget": 3,
+      "groups": [
+        {
+          "label": "Seats",
+          "key": "Seats",
+          "tier": 1,
+          "words": ["Sofa", "Stool", "Recliner", "Armchair"]
+        },
+        {
+          "label": "Baby gear",
+          "key": "Baby",
+          "tier": 1,
+          "words": ["Highchair", "Stroller", "Cradle", "Crib"]
+        },
+        {
+          "label": "Virtues",
+          "key": "Virtues",
+          "tier": 2,
+          "words": ["Honesty", "Patience", "Courage", "Kindness"]
+        },
+        {
+          "label": "Chemistry words",
+          "key": "Chemistry",
+          "tier": 2,
+          "words": ["Proton", "Mixture", "Electron", "Compound"]
+        },
+        {
+          "label": "Organs",
+          "key": "Organs",
+          "tier": 1,
+          "words": ["Lung", "Heart", "Appendix", "Liver"]
+        }
+      ],
+      "also": {
+        "Highchair": [0]
+      },
+      "jars": [["Cradle", "Liver", "Stool", "Heart"], ["Electron", "Stroller", "Sofa", "Appendix"], ["Kindness", "Compound", "Armchair", "Proton"], ["Mixture", "Courage", "Crib", "Honesty"], ["Recliner", "Highchair", "Lung", "Patience"], [], []],
+      "gold": 0,
+      "meta": {
+        "target": 4.56,
+        "floor": 0.76,
+        "avg_slips": 0.89,
+        "avg_win": 0.92,
+        "novice_win": 0.63,
+        "prober_win": 0,
+        "after_med": 15,
+        "aha_frac": 0.39
+      }
+    },
+    {
+      "id": "l16-07",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 6,
+      "groups": [
+        {
+          "label": "Words before work",
+          "key": "work",
+          "tier": 3,
+          "words": ["Fire", "School", "House", "Frame"]
+        },
+        {
+          "label": "Words after back",
+          "key": "back",
+          "tier": 3,
+          "words": ["Pack", "Flip", "Rest", "Lash"]
+        },
+        {
+          "label": "Pottery words",
+          "key": "Pottery",
+          "tier": 2,
+          "words": ["Potter", "Ceramic", "Stoneware", "Porcelain"]
+        },
+        {
+          "label": "Water birds",
+          "key": "Water",
+          "tier": 2,
+          "words": ["Egret", "Crane", "Cormorant", "Swan"]
+        },
+        {
+          "label": "First aid kit",
+          "key": "aid",
+          "tier": 1,
+          "words": ["Gauze", "Swab", "Iodine", "Ointment"]
+        },
+        {
+          "label": "Old trades",
+          "key": "trades",
+          "tier": 2,
+          "words": ["Cooper", "Tanner", "Tinker", "Cobbler"]
+        }
+      ],
+      "also": {
+        "Fire": [1],
+        "Potter": [5]
+      },
+      "jars": [["Cooper", "Ointment", "Porcelain", "Rest"], ["Ceramic", "House", "Cobbler", "School"], ["Gauze", "Potter", "Swab", "Fire"], ["Flip", "Frame", "Tinker", "Crane"], ["Lash", "Egret", "Iodine", "Swan"], ["Pack", "Stoneware", "Cormorant", "Tanner"], [], []],
+      "frost": ["Cooper", "Ointment", "Ceramic", "House", "Gauze", "Potter", "Flip", "Frame", "Lash", "Egret", "Pack", "Stoneware"],
+      "corked": [5],
+      "gold": 3,
+      "meta": {
+        "target": 7.61,
+        "floor": 0.62,
+        "avg_slips": 4.3,
+        "avg_win": 0.67,
+        "novice_win": 0.37,
+        "prober_win": 0,
+        "after_med": 5,
+        "aha_frac": 0.92
+      }
+    },
+    {
+      "id": "l16-08",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Words after fish",
+          "key": "fish",
+          "tier": 3,
+          "words": ["Tail", "Farm", "Food", "Pond"]
+        },
+        {
+          "label": "Ways to throw",
+          "key": "throw",
+          "tier": 2,
+          "words": ["Bowl", "Lob", "Sling", "Fling"]
+        },
+        {
+          "label": "Sound like letters",
+          "key": "letters",
+          "tier": 4,
+          "words": ["Tea", "Sea", "Owe", "Queue"]
+        },
+        {
+          "label": "Words for terrible",
+          "key": "terrible",
+          "tier": 2,
+          "words": ["Appalling", "Horrible", "Ghastly", "Dreadful"]
+        },
+        {
+          "label": "Patterns",
+          "key": "Patterns",
+          "tier": 2,
+          "words": ["Paisley", "Plaid", "Argyle", "Pinstripe"]
+        },
+        {
+          "label": "Cuts of meat",
+          "key": "meat",
+          "tier": 2,
+          "words": ["Chuck", "Ribeye", "Cutlet", "Knuckle"]
+        }
+      ],
+      "also": {
+        "Bowl": [0],
+        "Chuck": [1]
+      },
+      "jars": [["Food", "Queue", "Dreadful", "Fling"], ["Chuck", "Tea", "Appalling", "Pond"], ["Argyle", "Owe", "Paisley", "Horrible"], ["Pinstripe", "Ribeye", "Ghastly", "Tail"], ["Lob", "Sea", "Farm", "Cutlet"], ["Sling", "Plaid", "Knuckle", "Bowl"], [], []],
+      "labelled": {
+        "7": 5
+      },
+      "gold": 3,
+      "meta": {
+        "target": 7.63,
+        "floor": 0.62,
+        "avg_slips": 4.04,
+        "avg_win": 0.6,
+        "novice_win": 0.29,
+        "prober_win": 0,
+        "after_med": 4,
+        "aha_frac": 0.91
+      }
+    },
+    {
+      "id": "l16-09",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 6,
+      "groups": [
+        {
+          "label": "Things you can crack",
+          "key": "crack",
+          "tier": 3,
+          "words": ["Mystery", "Safe", "Joke", "Nut"]
+        },
+        {
+          "label": "Film genres",
+          "key": "Film",
+          "tier": 1,
+          "words": ["Musical", "Thriller", "Comedy", "Western"]
+        },
+        {
+          "label": "Houseplants",
+          "key": "Houseplants",
+          "tier": 2,
+          "words": ["Yucca", "Aloe", "Bonsai", "Begonia"]
+        },
+        {
+          "label": "Birds of prey",
+          "key": "prey",
+          "tier": 2,
+          "words": ["Osprey", "Peregrine", "Owl", "Falcon"]
+        },
+        {
+          "label": "Things that spread",
+          "key": "spread",
+          "tier": 3,
+          "words": ["Ivy", "Butter", "Honey", "Margarine"]
+        },
+        {
+          "label": "Polygons",
+          "key": "Polygons",
+          "tier": 2,
+          "words": ["Rhombus", "Nonagon", "Hexagon", "Rectangle"]
+        }
+      ],
+      "also": {
+        "Ivy": [2],
+        "Mystery": [1]
+      },
+      "jars": [["Margarine", "Osprey", "Comedy", "Butter"], ["Hexagon", "Aloe", "Joke", "Rectangle"], ["Mystery", "Begonia", "Western", "Yucca"], ["Honey", "Bonsai", "Nonagon", "Peregrine"], ["Rhombus", "Safe", "Falcon", "Musical"], ["Ivy", "Nut", "Thriller", "Owl"], [], []],
+      "frost": ["Margarine", "Osprey", "Hexagon", "Aloe", "Mystery", "Begonia", "Honey", "Bonsai", "Rhombus", "Safe", "Ivy", "Nut"],
+      "gold": 3,
+      "meta": {
+        "target": 7.64,
+        "floor": 0.62,
+        "avg_slips": 4.99,
+        "avg_win": 0.64,
+        "novice_win": 0.31,
+        "prober_win": 0,
+        "after_med": 5,
+        "aha_frac": 0.94
+      }
+    },
+    {
+      "id": "l16-10",
+      "kind": "hard",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Words before stick",
+          "key": "stick",
+          "tier": 3,
+          "words": ["Glue", "Slap", "Pogo", "Cinnamon"]
+        },
+        {
+          "label": "Parts of the mouth",
+          "key": "mouth",
+          "tier": 2,
+          "words": ["Lip", "Palate", "Cheek", "Jaw"]
+        },
+        {
+          "label": "Astronomy words",
+          "key": "Astronomy",
+          "tier": 2,
+          "words": ["Telescope", "Solstice", "Horizon", "Phase"]
+        },
+        {
+          "label": "Silent K",
+          "key": "Silent",
+          "tier": 4,
+          "words": ["Knot", "Knob", "Knead", "Knitting"]
+        },
+        {
+          "label": "Words for beautiful",
+          "key": "beautiful",
+          "tier": 2,
+          "words": ["Gorgeous", "Striking", "Glamorous", "Lovely"]
+        },
+        {
+          "label": "Things you can tie",
+          "key": "tie",
+          "tier": 3,
+          "words": ["String", "Shoelace", "Bow", "Ribbon"]
+        }
+      ],
+      "also": {
+        "Lip": [0],
+        "Knot": [5]
+      },
+      "jars": [["Telescope", "Knitting", "Striking", "Knob"], ["Glue", "String", "Palate", "Phase"], ["Shoelace", "Lip", "Knot", "Slap"], ["Gorgeous", "Horizon", "Cinnamon", "Jaw"], ["Lovely", "Pogo", "Solstice", "Glamorous"], ["Knead", "Bow", "Cheek", "Ribbon"], [], []],
+      "corked": [2],
+      "gold": 3,
+      "meta": {
+        "target": 12.26,
+        "floor": 0.5,
+        "avg_slips": 4.39,
+        "avg_win": 0.51,
+        "novice_win": 0.23,
+        "prober_win": 0,
+        "after_med": 14,
+        "aha_frac": 0.71
+      }
+    },
+    {
+      "id": "l16-11",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Things with branches",
+          "key": "branches",
+          "tier": 3,
+          "words": ["Coral", "Bush", "Antler", "Shrub"]
+        },
+        {
+          "label": "Shades of orange",
+          "key": "orange",
+          "tier": 2,
+          "words": ["Mango", "Peach", "Saffron", "Apricot"]
+        },
+        {
+          "label": "Words before top",
+          "key": "top",
+          "tier": 3,
+          "words": ["Lap", "Desk", "Mountain", "Cliff"]
+        },
+        {
+          "label": "Root vegetables",
+          "key": "Root",
+          "tier": 2,
+          "words": ["Parsnip", "Potato", "Taro", "Beet"]
+        },
+        {
+          "label": "Punctuation",
+          "key": "Punctuation",
+          "tier": 2,
+          "words": ["Dash", "Hyphen", "Ellipsis", "Bracket"]
+        },
+        {
+          "label": "Metals",
+          "key": "Metals",
+          "tier": 1,
+          "words": ["Copper", "Gold", "Tin", "Steel"]
+        }
+      ],
+      "also": {
+        "Coral": [1],
+        "Copper": [1]
+      },
+      "jars": [["Mountain", "Coral", "Dash", "Apricot"], ["Lap", "Shrub", "Hyphen", "Parsnip"], ["Steel", "Desk", "Ellipsis", "Saffron"], ["Gold", "Beet", "Tin", "Mango"], ["Peach", "Cliff", "Bush", "Copper"], ["Taro", "Bracket", "Antler", "Potato"], [], []],
+      "frost": ["Mountain", "Coral", "Lap", "Shrub", "Steel", "Desk", "Gold", "Beet", "Peach", "Cliff", "Taro", "Bracket"],
+      "labelled": {
+        "7": 0
+      },
+      "gold": 2,
+      "meta": {
+        "target": 7.68,
+        "floor": 0.62,
+        "avg_slips": 3.76,
+        "avg_win": 0.62,
+        "novice_win": 0.23,
+        "prober_win": 0,
+        "after_med": 2,
+        "aha_frac": 0.96
+      }
+    },
+    {
+      "id": "l16-12",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Words for evil",
+          "key": "evil",
+          "tier": 2,
+          "words": ["Mean", "Sinister", "Fiendish", "Wicked"]
+        },
+        {
+          "label": "Statistics",
+          "key": "Statistics",
+          "tier": 2,
+          "words": ["Sample", "Median", "Ratio", "Outlier"]
+        },
+        {
+          "label": "Things that crash",
+          "key": "crash",
+          "tier": 3,
+          "words": ["Market", "Wave", "Cymbal", "Computer"]
+        },
+        {
+          "label": "Solid shapes",
+          "key": "Solid",
+          "tier": 2,
+          "words": ["Cuboid", "Dome", "Prism", "Cone"]
+        },
+        {
+          "label": "Shortened words",
+          "key": "Shortened",
+          "tier": 4,
+          "words": ["Bus", "Champ", "Deli", "Gym"]
+        },
+        {
+          "label": "Music releases",
+          "key": "releases",
+          "tier": 2,
+          "words": ["Demo", "Reissue", "Remix", "Album"]
+        }
+      ],
+      "also": {
+        "Demo": [4],
+        "Mean": [1]
+      },
+      "jars": [["Market", "Album", "Computer", "Demo"], ["Wave", "Ratio", "Champ", "Mean"], ["Dome", "Reissue", "Bus", "Fiendish"], ["Gym", "Cymbal", "Cuboid", "Sinister"], ["Prism", "Deli", "Outlier", "Remix"], ["Median", "Wicked", "Cone", "Sample"], [], []],
+      "gold": 2,
+      "meta": {
+        "target": 7.69,
+        "floor": 0.62,
+        "avg_slips": 3.57,
+        "avg_win": 0.71,
+        "novice_win": 0.34,
+        "prober_win": 0,
+        "after_med": 7,
+        "aha_frac": 0.75
+      }
+    },
+    {
+      "id": "l16-13",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 7,
+      "groups": [
+        {
+          "label": "Animal coverings",
+          "key": "coverings",
+          "tier": 2,
+          "words": ["Coat", "Scale", "Plumage", "Bristle"]
+        },
+        {
+          "label": "Things at the beach",
+          "key": "beach",
+          "tier": 1,
+          "words": ["Sand", "Bucket", "Surfboard", "Sunscreen"]
+        },
+        {
+          "label": "Japanese food",
+          "key": "Japanese",
+          "tier": 2,
+          "words": ["Wasabi", "Onigiri", "Tempura", "Sushi"]
+        },
+        {
+          "label": "Habitats",
+          "key": "Habitats",
+          "tier": 2,
+          "words": ["Grassland", "Desert", "Marsh", "Jungle"]
+        },
+        {
+          "label": "Words after eye",
+          "key": "eye",
+          "tier": 3,
+          "words": ["Ball", "Opener", "Liner", "Lid"]
+        },
+        {
+          "label": "Words before stone",
+          "key": "stone",
+          "tier": 3,
+          "words": ["Moon", "Mile", "Key", "Cobble"]
+        }
+      ],
+      "also": {
+        "Sand": [5],
+        "Ball": [1]
+      },
+      "jars": [["Sushi", "Jungle", "Lid", "Desert"], ["Plumage", "Moon", "Marsh", "Surfboard"], ["Bucket", "Ball", "Scale", "Sand"], ["Bristle", "Sunscreen", "Liner", "Key"], ["Grassland", "Onigiri", "Mile", "Wasabi"], ["Cobble", "Coat", "Tempura", "Opener"], [], []],
+      "frost": ["Sushi", "Jungle", "Plumage", "Moon", "Bucket", "Ball", "Bristle", "Sunscreen", "Grassland", "Onigiri", "Cobble", "Coat"],
+      "corked": [3],
+      "gold": 4,
+      "meta": {
+        "target": 7.71,
+        "floor": 0.62,
+        "avg_slips": 5.11,
+        "avg_win": 0.68,
+        "novice_win": 0.33,
+        "prober_win": 0,
+        "after_med": 5,
+        "aha_frac": 0.92
+      }
+    },
+    {
+      "id": "l16-14",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Tiny things",
+          "key": "Tiny",
+          "tier": 2,
+          "words": ["Flea", "Mite", "Molecule", "Germ"]
+        },
+        {
+          "label": "Things in a pod",
+          "key": "pod",
+          "tier": 3,
+          "words": ["Seed", "Coffee", "Bean", "Cocoa"]
+        },
+        {
+          "label": "Silent B",
+          "key": "Silent",
+          "tier": 4,
+          "words": ["Crumb", "Dumbbell", "Thumb", "Plumber"]
+        },
+        {
+          "label": "Schoolwork",
+          "key": "Schoolwork",
+          "tier": 2,
+          "words": ["Exercise", "Dictation", "Spelling", "Quiz"]
+        },
+        {
+          "label": "Words for fast",
+          "key": "fast",
+          "tier": 2,
+          "words": ["Snappy", "Quick", "Prompt", "Swift"]
+        },
+        {
+          "label": "Chemical elements",
+          "key": "elements",
+          "tier": 2,
+          "words": ["Calcium", "Potassium", "Boron", "Radium"]
+        }
+      ],
+      "also": {
+        "Crumb": [0],
+        "Seed": [0]
+      },
+      "jars": [["Cocoa", "Quiz", "Bean", "Spelling"], ["Molecule", "Dumbbell", "Snappy", "Coffee"], ["Boron", "Quick", "Germ", "Seed"], ["Swift", "Mite", "Crumb", "Potassium"], ["Dictation", "Calcium", "Plumber", "Exercise"], ["Radium", "Prompt", "Flea", "Thumb"], [], []],
+      "labelled": {
+        "7": 0
+      },
+      "gold": 2,
+      "meta": {
+        "target": 7.72,
+        "floor": 0.62,
+        "avg_slips": 3.32,
+        "avg_win": 0.66,
+        "novice_win": 0.36,
+        "prober_win": 0,
+        "after_med": 3,
+        "aha_frac": 0.91
+      }
+    },
+    {
+      "id": "l16-15",
+      "kind": "tricky",
+      "introduces": [],
+      "budget": 7,
+      "groups": [
+        {
+          "label": "Computer commands",
+          "key": "commands",
+          "tier": 2,
+          "words": ["Paste", "Copy", "Cut", "Find"]
+        },
+        {
+          "label": "Words for brave",
+          "key": "brave",
+          "tier": 2,
+          "words": ["Bold", "Gutsy", "Valiant", "Unafraid"]
+        },
+        {
+          "label": "Words before wood",
+          "key": "wood",
+          "tier": 3,
+          "words": ["Drift", "Brush", "Rose", "Hard"]
+        },
+        {
+          "label": "Ways to learn",
+          "key": "learn",
+          "tier": 2,
+          "words": ["Tuition", "Workshop", "Seminar", "Coaching"]
+        },
+        {
+          "label": "Things that ring",
+          "key": "ring",
+          "tier": 3,
+          "words": ["Cowbell", "Phone", "Triangle", "Gong"]
+        },
+        {
+          "label": "Words after snow",
+          "key": "snow",
+          "tier": 3,
+          "words": ["Drop", "Fall", "Mobile", "Globe"]
+        }
+      ],
+      "also": {
+        "Bold": [0],
+        "Drift": [5]
+      },
+      "jars": [["Mobile", "Drift", "Paste", "Cowbell"], ["Fall", "Hard", "Tuition", "Gutsy"], ["Coaching", "Unafraid", "Gong", "Valiant"], ["Copy", "Bold", "Find", "Globe"], ["Drop", "Triangle", "Workshop", "Rose"], ["Seminar", "Phone", "Cut", "Brush"], [], []],
+      "frost": ["Mobile", "Drift", "Fall", "Hard", "Coaching", "Unafraid", "Copy", "Bold", "Drop", "Triangle", "Seminar", "Phone"],
+      "gold": 5,
+      "meta": {
+        "target": 10.45,
+        "floor": 0.55,
+        "avg_slips": 5.69,
+        "avg_win": 0.72,
+        "novice_win": 0.26,
+        "prober_win": 0,
+        "after_med": 2,
+        "aha_frac": 0.97
+      }
+    },
+    {
+      "id": "l16-16",
+      "kind": "rest",
+      "introduces": [],
+      "budget": 3,
+      "groups": [
+        {
+          "label": "In the lab",
+          "key": "lab",
+          "tier": 2,
+          "words": ["Tongs", "Goggles", "Clamp", "Funnel"]
+        },
+        {
+          "label": "Things to drink from",
+          "key": "drink",
+          "tier": 1,
+          "words": ["Beaker", "Glass", "Teacup", "Bottle"]
+        },
+        {
+          "label": "Fast food",
+          "key": "Fast",
+          "tier": 1,
+          "words": ["Burrito", "Fries", "Nachos", "Taco"]
+        },
+        {
+          "label": "Team sports",
+          "key": "Team",
+          "tier": 1,
+          "words": ["Hockey", "Football", "Netball", "Polo"]
+        },
+        {
+          "label": "Trimmings",
+          "key": "Trimmings",
+          "tier": 2,
+          "words": ["Patch", "Lace", "Feather", "Bead"]
+        }
+      ],
+      "also": {
+        "Beaker": [0]
+      },
+      "jars": [["Teacup", "Lace", "Burrito", "Bottle"], ["Fries", "Funnel", "Beaker", "Polo"], ["Glass", "Football", "Goggles", "Hockey"], ["Patch", "Tongs", "Bead", "Clamp"], ["Taco", "Feather", "Nachos", "Netball"], [], []],
+      "gold": 0,
+      "meta": {
+        "target": 4.65,
+        "floor": 0.76,
+        "avg_slips": 1.03,
+        "avg_win": 0.89,
+        "novice_win": 0.6,
+        "prober_win": 0,
+        "after_med": 16,
+        "aha_frac": 0.41
+      }
+    },
+    {
+      "id": "l16-17",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 8,
+      "groups": [
+        {
+          "label": "Ways to write",
+          "key": "write",
+          "tier": 2,
+          "words": ["Text", "Note", "Draft", "Pen"]
+        },
+        {
+          "label": "Ways to communicate",
+          "key": "communicate",
+          "tier": 1,
+          "words": ["Telegram", "Call", "Voicemail", "Memo"]
+        },
+        {
+          "label": "Knitting words",
+          "key": "Knitting",
+          "tier": 2,
+          "words": ["Purl", "Row", "Needle", "Yarn"]
+        },
+        {
+          "label": "Words after hot",
+          "key": "hot",
+          "tier": 3,
+          "words": ["Plate", "Spot", "Chocolate", "Spring"]
+        },
+        {
+          "label": "Words before ground",
+          "key": "ground",
+          "tier": 3,
+          "words": ["Common", "Home", "Middle", "Play"]
+        },
+        {
+          "label": "Words for happy",
+          "key": "happy",
+          "tier": 2,
+          "words": ["Jovial", "Merry", "Ecstatic", "Thrilled"]
+        }
+      ],
+      "also": {
+        "Text": [1],
+        "Note": [1]
+      },
+      "jars": [["Call", "Home", "Merry", "Row"], ["Text", "Middle", "Needle", "Spring"], ["Draft", "Purl", "Ecstatic", "Memo"], ["Telegram", "Common", "Thrilled", "Note"], ["Spot", "Yarn", "Chocolate", "Play"], ["Voicemail", "Jovial", "Pen", "Plate"], [], []],
+      "frost": ["Call", "Home", "Text", "Middle", "Draft", "Purl", "Telegram", "Common", "Spot", "Yarn", "Voicemail", "Jovial"],
+      "labelled": {
+        "7": 0
+      },
+      "gold": 4,
+      "meta": {
+        "target": 7.77,
+        "floor": 0.62,
+        "avg_slips": 4.17,
+        "avg_win": 0.74,
+        "novice_win": 0.57,
+        "prober_win": 0,
+        "after_med": 1,
+        "aha_frac": 0.99
+      }
+    },
+    {
+      "id": "l16-18",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Things with spines",
+          "key": "spines",
+          "tier": 3,
+          "words": ["Book", "Thistle", "Porcupine", "Diary"]
+        },
+        {
+          "label": "Hidden farm animals",
+          "key": "farm",
+          "tier": 4,
+          "words": ["Backboard", "Pyramid", "Pigment", "Gram"]
+        },
+        {
+          "label": "Basketball terms",
+          "key": "Basketball",
+          "tier": 2,
+          "words": ["Buzzer", "Swish", "Dribble", "Steal"]
+        },
+        {
+          "label": "Kinds of trip",
+          "key": "trip",
+          "tier": 2,
+          "words": ["Trek", "Commute", "Cruise", "Quest"]
+        },
+        {
+          "label": "Sweets",
+          "key": "Sweets",
+          "tier": 2,
+          "words": ["Caramel", "Nougat", "Lollipop", "Marzipan"]
+        },
+        {
+          "label": "Parts of a roof",
+          "key": "roof",
+          "tier": 2,
+          "words": ["Rafter", "Gable", "Eaves", "Ridge"]
+        }
+      ],
+      "also": {
+        "Caramel": [1],
+        "Backboard": [2]
+      },
+      "jars": [["Quest", "Pyramid", "Rafter", "Swish"], ["Commute", "Backboard", "Buzzer", "Nougat"], ["Eaves", "Diary", "Marzipan", "Book"], ["Porcupine", "Cruise", "Lollipop", "Dribble"], ["Caramel", "Gable", "Gram", "Steal"], ["Thistle", "Ridge", "Trek", "Pigment"], [], []],
+      "gold": 2,
+      "meta": {
+        "target": 7.79,
+        "floor": 0.62,
+        "avg_slips": 3.2,
+        "avg_win": 0.73,
+        "novice_win": 0.34,
+        "prober_win": 0,
+        "after_med": 12,
+        "aha_frac": 0.7
+      }
+    },
+    {
+      "id": "l16-19",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 20,
+      "groups": [
+        {
+          "label": "Things with eyes",
+          "key": "eyes",
+          "tier": 3,
+          "words": ["Storm", "Snowman", "Puppet", "Cyclone"]
+        },
+        {
+          "label": "Words after fire",
+          "key": "fire",
+          "tier": 3,
+          "words": ["Escape", "Drill", "Door", "Wood"]
+        },
+        {
+          "label": "Words for a mess",
+          "key": "mess",
+          "tier": 2,
+          "words": ["Mayhem", "Pigsty", "Tangle", "Havoc"]
+        },
+        {
+          "label": "Emotions",
+          "key": "Emotions",
+          "tier": 1,
+          "words": ["Surprise", "Joy", "Love", "Jealousy"]
+        },
+        {
+          "label": "Exercises",
+          "key": "Exercises",
+          "tier": 2,
+          "words": ["Press", "Shrug", "Squat", "Deadlift"]
+        },
+        {
+          "label": "Computer keys",
+          "key": "keys",
+          "tier": 2,
+          "words": ["Pause", "Enter", "Shift", "Control"]
+        }
+      ],
+      "also": {
+        "Storm": [1],
+        "Escape": [5]
+      },
+      "jars": [["Press", "Storm", "Control", "Pigsty"], ["Enter", "Shrug", "Wood", "Joy"], ["Deadlift", "Love", "Door", "Squat"], ["Puppet", "Pause", "Escape", "Tangle"], ["Surprise", "Snowman", "Havoc", "Shift"], ["Cyclone", "Jealousy", "Mayhem", "Drill"], [], []],
+      "frost": ["Press", "Storm", "Enter", "Shrug", "Deadlift", "Love", "Puppet", "Pause", "Surprise", "Snowman", "Cyclone", "Jealousy"],
+      "corked": [5],
+      "gold": 7,
+      "meta": {
+        "target": 7.8,
+        "floor": 0.62,
+        "avg_slips": 5.06,
+        "avg_win": 0.68,
+        "novice_win": 0.75,
+        "prober_win": 0,
+        "after_med": 3,
+        "aha_frac": 0.98
+      }
+    },
+    {
+      "id": "l16-20",
+      "kind": "hard",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Kinds of bean",
+          "key": "bean",
+          "tier": 2,
+          "words": ["Green", "Pinto", "Kidney", "Black"]
+        },
+        {
+          "label": "Words before land",
+          "key": "land",
+          "tier": 3,
+          "words": ["Grass", "Wonder", "Ice", "Mother"]
+        },
+        {
+          "label": "Things with needles",
+          "key": "needles",
+          "tier": 3,
+          "words": ["Cactus", "Pine", "Spruce", "Cedar"]
+        },
+        {
+          "label": "Onomatopoeia",
+          "key": "Onomatopoeia",
+          "tier": 4,
+          "words": ["Splash", "Boom", "Bark", "Crunch"]
+        },
+        {
+          "label": "People in charge",
+          "key": "charge",
+          "tier": 2,
+          "words": ["Mayor", "Ruler", "Captain", "Director"]
+        },
+        {
+          "label": "In the Wild West",
+          "key": "Wild",
+          "tier": 2,
+          "words": ["Rodeo", "Canyon", "Saddle", "Wagon"]
+        }
+      ],
+      "also": {
+        "Green": [1],
+        "Cactus": [5]
+      },
+      "jars": [["Kidney", "Crunch", "Wagon", "Pine"], ["Ruler", "Pinto", "Director", "Grass"], ["Black", "Mother", "Rodeo", "Green"], ["Canyon", "Splash", "Captain", "Saddle"], ["Bark", "Mayor", "Spruce", "Wonder"], ["Ice", "Cedar", "Boom", "Cactus"], [], []],
+      "labelled": {
+        "7": 3
+      },
+      "gold": 2,
+      "meta": {
+        "target": 12.51,
+        "floor": 0.5,
+        "avg_slips": 3.87,
+        "avg_win": 0.65,
+        "novice_win": 0.23,
+        "prober_win": 0,
+        "after_med": 2,
+        "aha_frac": 0.94
+      }
+    },
+    {
+      "id": "l16-21",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 6,
+      "groups": [
+        {
+          "label": "Things that run",
+          "key": "run",
+          "tier": 3,
+          "words": ["Paint", "River", "Ink", "Mascara"]
+        },
+        {
+          "label": "Parts of a plane",
+          "key": "plane",
+          "tier": 2,
+          "words": ["Nose", "Engine", "Window", "Aisle"]
+        },
+        {
+          "label": "Words before ship",
+          "key": "ship",
+          "tier": 3,
+          "words": ["Friend", "Leader", "Owner", "Flag"]
+        },
+        {
+          "label": "Gases",
+          "key": "Gases",
+          "tier": 2,
+          "words": ["Krypton", "Oxygen", "Neon", "Argon"]
+        },
+        {
+          "label": "Kinds of line",
+          "key": "line",
+          "tier": 2,
+          "words": ["Solid", "Curved", "Dashed", "Diagonal"]
+        },
+        {
+          "label": "Parts of a tree",
+          "key": "tree",
+          "tier": 1,
+          "words": ["Branch", "Crown", "Foliage", "Root"]
+        }
+      ],
+      "also": {
+        "Nose": [0],
+        "Engine": [0]
+      },
+      "jars": [["Aisle", "Paint", "Friend", "Neon"], ["Branch", "Mascara", "Argon", "Ink"], ["River", "Curved", "Engine", "Leader"], ["Nose", "Root", "Krypton", "Flag"], ["Solid", "Oxygen", "Foliage", "Window"], ["Diagonal", "Crown", "Owner", "Dashed"], [], []],
+      "frost": ["Aisle", "Paint", "Branch", "Mascara", "River", "Curved", "Nose", "Root", "Solid", "Oxygen", "Diagonal", "Crown"],
+      "gold": 2,
+      "meta": {
+        "target": 7.84,
+        "floor": 0.62,
+        "avg_slips": 3.8,
+        "avg_win": 0.7,
+        "novice_win": 0.48,
+        "prober_win": 0,
+        "after_med": 3,
+        "aha_frac": 0.94
+      }
+    },
+    {
+      "id": "l16-22",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 6,
+      "groups": [
+        {
+          "label": "Things that lift",
+          "key": "lift",
+          "tier": 3,
+          "words": ["Jack", "Haze", "Lever", "Mood"]
+        },
+        {
+          "label": "Playing card terms",
+          "key": "card",
+          "tier": 2,
+          "words": ["Trick", "Bluff", "Joker", "Queen"]
+        },
+        {
+          "label": "Ways to walk",
+          "key": "walk",
+          "tier": 2,
+          "words": ["Shuffle", "Step", "Stomp", "March"]
+        },
+        {
+          "label": "Ways to cry",
+          "key": "cry",
+          "tier": 2,
+          "words": ["Snivel", "Whine", "Howl", "Bawl"]
+        },
+        {
+          "label": "Words for a problem",
+          "key": "problem",
+          "tier": 2,
+          "words": ["Headache", "Jam", "Pickle", "Obstacle"]
+        },
+        {
+          "label": "Anagrams of hues",
+          "key": "hues",
+          "tier": 4,
+          "words": ["Ant", "Late", "Tale", "Cheap"]
+        }
+      ],
+      "also": {
+        "Jack": [1],
+        "Shuffle": [1]
+      },
+      "jars": [["Bluff", "Lever", "Howl", "Headache"], ["Cheap", "Bawl", "Stomp", "Joker"], ["Pickle", "Snivel", "Ant", "Mood"], ["Late", "Jam", "March", "Queen"], ["Haze", "Tale", "Whine", "Jack"], ["Shuffle", "Trick", "Obstacle", "Step"], [], []],
+      "corked": [1],
+      "gold": 3,
+      "meta": {
+        "target": 7.85,
+        "floor": 0.62,
+        "avg_slips": 4.22,
+        "avg_win": 0.72,
+        "novice_win": 0.42,
+        "prober_win": 0,
+        "after_med": 16,
+        "aha_frac": 0.6
+      }
+    },
+    {
+      "id": "l16-23",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 6,
+      "groups": [
+        {
+          "label": "Things you can sharpen",
+          "key": "sharpen",
+          "tier": 3,
+          "words": ["Mind", "Razor", "Focus", "Skate"]
+        },
+        {
+          "label": "School supplies",
+          "key": "School",
+          "tier": 1,
+          "words": ["Crayon", "Textbook", "Notebook", "Stapler"]
+        },
+        {
+          "label": "Ways to eat",
+          "key": "eat",
+          "tier": 2,
+          "words": ["Swallow", "Dine", "Peck", "Munch"]
+        },
+        {
+          "label": "Classical pieces",
+          "key": "pieces",
+          "tier": 2,
+          "words": ["Sonata", "Opera", "Rhapsody", "Prelude"]
+        },
+        {
+          "label": "Things that drift",
+          "key": "drift",
+          "tier": 3,
+          "words": ["Leaf", "Iceberg", "Boat", "Balloon"]
+        },
+        {
+          "label": "Wildflowers",
+          "key": "Wildflowers",
+          "tier": 2,
+          "words": ["Clover", "Buttercup", "Dandelion", "Poppy"]
+        }
+      ],
+      "also": {
+        "Mind": [4],
+        "Crayon": [0]
+      },
+      "jars": [["Buttercup", "Munch", "Poppy", "Notebook"], ["Leaf", "Razor", "Balloon", "Clover"], ["Peck", "Sonata", "Swallow", "Rhapsody"], ["Crayon", "Dandelion", "Textbook", "Skate"], ["Dine", "Prelude", "Boat", "Stapler"], ["Mind", "Iceberg", "Opera", "Focus"], [], []],
+      "frost": ["Buttercup", "Munch", "Leaf", "Razor", "Peck", "Sonata", "Crayon", "Dandelion", "Dine", "Prelude", "Mind", "Iceberg"],
+      "labelled": {
+        "7": 0
+      },
+      "gold": 3,
+      "meta": {
+        "target": 7.87,
+        "floor": 0.62,
+        "avg_slips": 4.26,
+        "avg_win": 0.68,
+        "novice_win": 0.3,
+        "prober_win": 0,
+        "after_med": 2,
+        "aha_frac": 0.96
+      }
+    },
+    {
+      "id": "l16-24",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Geology words",
+          "key": "Geology",
+          "tier": 2,
+          "words": ["Fault", "Rift", "Bedrock", "Crust"]
+        },
+        {
+          "label": "Hidden jobs",
+          "key": "jobs",
+          "tier": 4,
+          "words": ["Maiden", "Poetry", "Bakery", "Tractor"]
+        },
+        {
+          "label": "Spacecraft",
+          "key": "Spacecraft",
+          "tier": 2,
+          "words": ["Satellite", "Capsule", "Shuttle", "Starship"]
+        },
+        {
+          "label": "Words for a mistake",
+          "key": "mistake",
+          "tier": 2,
+          "words": ["Fumble", "Blunder", "Misstep", "Glitch"]
+        },
+        {
+          "label": "Countries",
+          "key": "Countries",
+          "tier": 2,
+          "words": ["Spain", "Chad", "Brazil", "Fiji"]
+        },
+        {
+          "label": "Kinds of knot",
+          "key": "knot",
+          "tier": 3,
+          "words": ["Slip", "Bowline", "Granny", "Windsor"]
+        }
+      ],
+      "also": {
+        "Slip": [3],
+        "Fault": [3]
+      },
+      "jars": [["Rift", "Bakery", "Starship", "Brazil"], ["Bowline", "Fiji", "Granny", "Poetry"], ["Maiden", "Spain", "Capsule", "Misstep"], ["Slip", "Bedrock", "Tractor", "Glitch"], ["Shuttle", "Blunder", "Windsor", "Satellite"], ["Chad", "Crust", "Fumble", "Fault"], [], []],
+      "gold": 2,
+      "meta": {
+        "target": 7.88,
+        "floor": 0.62,
+        "avg_slips": 3.45,
+        "avg_win": 0.66,
+        "novice_win": 0.33,
+        "prober_win": 0,
+        "after_med": 11,
+        "aha_frac": 0.69
+      }
+    },
+    {
+      "id": "l16-25",
+      "kind": "tricky",
+      "introduces": [],
+      "budget": 8,
+      "groups": [
+        {
+          "label": "Words for boring",
+          "key": "boring",
+          "tier": 2,
+          "words": ["Bland", "Dreary", "Lifeless", "Tiresome"]
+        },
+        {
+          "label": "Ways to preserve food",
+          "key": "preserve",
+          "tier": 2,
+          "words": ["Jar", "Cure", "Brine", "Dehydrate"]
+        },
+        {
+          "label": "Things with lids",
+          "key": "lids",
+          "tier": 3,
+          "words": ["Kettle", "Saucepan", "Eye", "Chest"]
+        },
+        {
+          "label": "Italian music words",
+          "key": "Italian",
+          "tier": 3,
+          "words": ["Piano", "Presto", "Legato", "Allegro"]
+        },
+        {
+          "label": "Kinds of water",
+          "key": "water",
+          "tier": 2,
+          "words": ["Sparkling", "Bottled", "Tap", "Rain"]
+        },
+        {
+          "label": "Things that charge",
+          "key": "charge",
+          "tier": 3,
+          "words": ["Boar", "Battery", "Buffalo", "Ram"]
+        }
+      ],
+      "also": {
+        "Jar": [2],
+        "Piano": [2]
+      },
+      "jars": [["Legato", "Lifeless", "Buffalo", "Brine"], ["Piano", "Bland", "Ram", "Tap"], ["Cure", "Presto", "Saucepan", "Dreary"], ["Battery", "Rain", "Tiresome", "Dehydrate"], ["Jar", "Boar", "Kettle", "Allegro"], ["Bottled", "Chest", "Sparkling", "Eye"], [], []],
+      "frost": ["Legato", "Lifeless", "Piano", "Bland", "Cure", "Presto", "Battery", "Rain", "Jar", "Boar", "Bottled", "Chest"],
+      "corked": [3],
+      "gold": 6,
+      "meta": {
+        "target": 10.67,
+        "floor": 0.55,
+        "avg_slips": 6.12,
+        "avg_win": 0.66,
+        "novice_win": 0.36,
+        "prober_win": 0,
+        "after_med": 5,
+        "aha_frac": 0.95
+      }
+    },
+    {
+      "id": "l16-26",
+      "kind": "rest",
+      "introduces": [],
+      "budget": 2,
+      "groups": [
+        {
+          "label": "Plumbing",
+          "key": "Plumbing",
+          "tier": 2,
+          "words": ["Pipe", "Boiler", "Plug", "Drain"]
+        },
+        {
+          "label": "Ways water moves",
+          "key": "water",
+          "tier": 2,
+          "words": ["Leak", "Flow", "Stream", "Pour"]
+        },
+        {
+          "label": "Quiz show",
+          "key": "Quiz",
+          "tier": 1,
+          "words": ["Question", "Host", "Hint", "Clue"]
+        },
+        {
+          "label": "At a wedding",
+          "key": "wedding",
+          "tier": 1,
+          "words": ["Cake", "Confetti", "Veil", "Vows"]
+        },
+        {
+          "label": "At the supermarket",
+          "key": "supermarket",
+          "tier": 1,
+          "words": ["Price", "Discount", "Barcode", "Checkout"]
+        }
+      ],
+      "also": {
+        "Leak": [0]
+      },
+      "jars": [["Question", "Confetti", "Pour", "Host"], ["Vows", "Clue", "Boiler", "Hint"], ["Barcode", "Stream", "Plug", "Discount"], ["Cake", "Drain", "Flow", "Checkout"], ["Leak", "Veil", "Pipe", "Price"], [], []],
+      "gold": 0,
+      "meta": {
+        "target": 4.75,
+        "floor": 0.76,
+        "avg_slips": 0.72,
+        "avg_win": 0.78,
+        "novice_win": 0.43,
+        "prober_win": 0,
+        "after_med": 18,
+        "aha_frac": 0.28
+      }
+    },
+    {
+      "id": "l16-27",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 6,
+      "groups": [
+        {
+          "label": "Things that are hot",
+          "key": "hot",
+          "tier": 2,
+          "words": ["Sauna", "Heatwave", "Kiln", "Toaster"]
+        },
+        {
+          "label": "At the gym",
+          "key": "gym",
+          "tier": 1,
+          "words": ["Mirror", "Bench", "Stepper", "Treadmill"]
+        },
+        {
+          "label": "Words before time",
+          "key": "time",
+          "tier": 3,
+          "words": ["Day", "Over", "Story", "Bath"]
+        },
+        {
+          "label": "Things you can lead",
+          "key": "lead",
+          "tier": 3,
+          "words": ["Life", "Way", "Race", "Team"]
+        },
+        {
+          "label": "Ways to sing",
+          "key": "sing",
+          "tier": 2,
+          "words": ["Rap", "Warble", "Chant", "Trill"]
+        },
+        {
+          "label": "Animal groups",
+          "key": "groups",
+          "tier": 2,
+          "words": ["Brood", "Pride", "Flock", "Swarm"]
+        }
+      ],
+      "also": {
+        "Life": [2],
+        "Sauna": [1]
+      },
+      "jars": [["Rap", "Over", "Race", "Heatwave"], ["Flock", "Bath", "Swarm", "Treadmill"], ["Toaster", "Story", "Way", "Pride"], ["Warble", "Mirror", "Chant", "Brood"], ["Life", "Stepper", "Sauna", "Bench"], ["Team", "Trill", "Kiln", "Day"], [], []],
+      "frost": ["Rap", "Over", "Flock", "Bath", "Toaster", "Story", "Warble", "Mirror", "Life", "Stepper", "Team", "Trill"],
+      "gold": 3,
+      "meta": {
+        "target": 7.93,
+        "floor": 0.62,
+        "avg_slips": 4.43,
+        "avg_win": 0.59,
+        "novice_win": 0.39,
+        "prober_win": 0,
+        "after_med": 2,
+        "aha_frac": 0.96
+      }
+    },
+    {
+      "id": "l16-28",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 6,
+      "groups": [
+        {
+          "label": "Hidden units of weight",
+          "key": "weight",
+          "tier": 4,
+          "words": ["Cotton", "Button", "Piston", "Announce"]
+        },
+        {
+          "label": "Science units",
+          "key": "units",
+          "tier": 2,
+          "words": ["Newton", "Joule", "Ohm", "Kelvin"]
+        },
+        {
+          "label": "Words before ball",
+          "key": "ball",
+          "tier": 3,
+          "words": ["Pin", "Disco", "Fur", "Soft"]
+        },
+        {
+          "label": "Surfing terms",
+          "key": "Surfing",
+          "tier": 2,
+          "words": ["Wax", "Reef", "Wipeout", "Fin"]
+        },
+        {
+          "label": "Italian food",
+          "key": "Italian",
+          "tier": 2,
+          "words": ["Marinara", "Ricotta", "Focaccia", "Polenta"]
+        },
+        {
+          "label": "Horned animals",
+          "key": "Horned",
+          "tier": 2,
+          "words": ["Yak", "Gazelle", "Unicorn", "Bull"]
+        }
+      ],
+      "also": {
+        "Newton": [0],
+        "Cotton": [2]
+      },
+      "jars": [["Cotton", "Gazelle", "Wipeout", "Announce"], ["Wax", "Polenta", "Joule", "Disco"], ["Reef", "Bull", "Ricotta", "Yak"], ["Button", "Fin", "Soft", "Ohm"], ["Unicorn", "Kelvin", "Piston", "Pin"], ["Marinara", "Fur", "Newton", "Focaccia"], [], []],
+      "corked": [3],
+      "gold": 3,
+      "meta": {
+        "target": 7.95,
+        "floor": 0.62,
+        "avg_slips": 3.75,
+        "avg_win": 0.73,
+        "novice_win": 0.43,
+        "prober_win": 0,
+        "after_med": 14,
+        "aha_frac": 0.65
+      }
+    },
+    {
+      "id": "l16-29",
+      "kind": "normal",
+      "introduces": [],
+      "budget": 6,
+      "groups": [
+        {
+          "label": "Chess pieces",
+          "key": "Chess",
+          "tier": 1,
+          "words": ["Knight", "King", "Bishop", "Rook"]
+        },
+        {
+          "label": "Words after sand",
+          "key": "sand",
+          "tier": 3,
+          "words": ["Castle", "Bank", "Pit", "Stone"]
+        },
+        {
+          "label": "Ways to shine",
+          "key": "shine",
+          "tier": 2,
+          "words": ["Dazzle", "Glisten", "Glare", "Radiate"]
+        },
+        {
+          "label": "Branches of science",
+          "key": "science",
+          "tier": 2,
+          "words": ["Optics", "Zoology", "Astronomy", "Ecology"]
+        },
+        {
+          "label": "Parts of a guitar",
+          "key": "guitar",
+          "tier": 2,
+          "words": ["Peg", "Tuner", "Fret", "Soundhole"]
+        },
+        {
+          "label": "Things that pinch",
+          "key": "pinch",
+          "tier": 3,
+          "words": ["Pliers", "Scorpion", "Tweezers", "Earwig"]
+        }
+      ],
+      "also": {
+        "Peg": [5],
+        "Castle": [0]
+      },
+      "jars": [["Fret", "Castle", "Soundhole", "Glare"], ["Tweezers", "Astronomy", "Peg", "Knight"], ["Bank", "Optics", "Pliers", "Tuner"], ["Rook", "Scorpion", "Ecology", "Dazzle"], ["Radiate", "Pit", "Glisten", "Bishop"], ["Zoology", "Stone", "Earwig", "King"], [], []],
+      "frost": ["Fret", "Castle", "Tweezers", "Astronomy", "Bank", "Optics", "Rook", "Scorpion", "Radiate", "Pit", "Zoology", "Stone"],
+      "labelled": {
+        "7": 0
+      },
+      "gold": 4,
+      "meta": {
+        "target": 7.96,
+        "floor": 0.62,
+        "avg_slips": 4.75,
+        "avg_win": 0.69,
+        "novice_win": 0.44,
+        "prober_win": 0,
+        "after_med": 2,
+        "aha_frac": 0.96
+      }
+    },
+    {
+      "id": "l16-30",
+      "kind": "hard",
+      "introduces": [],
+      "budget": 5,
+      "groups": [
+        {
+          "label": "Words before paper",
+          "key": "paper",
+          "tier": 3,
+          "words": ["News", "Fly", "Waste", "Graph"]
+        },
+        {
+          "label": "Silent W",
+          "key": "Silent",
+          "tier": 4,
+          "words": ["Wrapping", "Wrestling", "Wrist", "Who"]
+        },
+        {
+          "label": "Groups of people",
+          "key": "Groups",
+          "tier": 2,
+          "words": ["Choir", "Jury", "Tribe", "Clan"]
+        },
+        {
+          "label": "Words for dirty",
+          "key": "dirty",
+          "tier": 2,
+          "words": ["Filthy", "Greasy", "Dingy", "Grimy"]
+        },
+        {
+          "label": "Building materials",
+          "key": "Building",
+          "tier": 2,
+          "words": ["Concrete", "Cement", "Brick", "Plaster"]
+        },
+        {
+          "label": "Things you can break",
+          "key": "break",
+          "tier": 3,
+          "words": ["Bone", "Egg", "Spell", "Silence"]
+        }
+      ],
+      "also": {
+        "Wrapping": [0],
+        "News": [5]
+      },
+      "jars": [["Egg", "Jury", "Wrestling", "News"], ["Dingy", "Spell", "Plaster", "Filthy"], ["Fly", "Wrapping", "Bone", "Graph"], ["Clan", "Brick", "Greasy", "Waste"], ["Cement", "Who", "Silence", "Choir"], ["Wrist", "Grimy", "Concrete", "Tribe"], [], []],
+      "gold": 3,
+      "meta": {
+        "target": 12.77,
+        "floor": 0.5,
+        "avg_slips": 3.88,
+        "avg_win": 0.71,
+        "novice_win": 0.32,
+        "prober_win": 0,
+        "after_med": 10,
+        "aha_frac": 0.69
+      }
+    }
+  ]
+}

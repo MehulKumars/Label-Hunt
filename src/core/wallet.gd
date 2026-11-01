@@ -73,7 +73,7 @@ func record_win(entry: Dictionary, progress: Dictionary) -> Dictionary:
 	var groups := (entry["data"]["groups"] as Array).size()
 	var kind := str(entry["kind"])
 	if progress.get("first_solve", false):
-		out["coins"] = Economy.win_coins(groups, kind)
+		out["coins"] = Economy.win_coins(groups, kind, int(entry.get("room", 1)))
 		out["xp"] = Economy.win_xp(groups, kind)
 	if progress.get("new_gold", false):
 		out["xp"] += Economy.GOLD_XP

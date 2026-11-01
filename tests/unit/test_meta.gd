@@ -10,6 +10,7 @@ func _save() -> Dictionary:
 func test_win_rewards_grow_with_size_and_kind() -> void:
 	assert_eq(Economy.win_coins(3, "normal"), 14)
 	assert_eq(Economy.win_coins(6, "hard"), 34)
+	assert_eq(Economy.win_coins(6, "hard", 17), Economy.PRICES["hint"])
 	assert_true(Economy.win_xp(5, "tricky") > Economy.win_xp(5, "normal"))
 
 

@@ -149,10 +149,10 @@ daily win counts toward the same streak.
 **Earning**
 | Source | Coins |
 |---|---|
-| First solve | 10 + 4 per group above 2 (10–26); tricky +4, hard +8 |
+| First solve | 10 + 4 per group above 2; tricky +4, hard +8; +1 per room after the first (10–50) |
 | ×2 win coins | optional ad, as a chip in the Win card's coin row |
 | Daily gift (§4) | 20, 25, 30, 40, 50, 60, then 100 + 1 Complete on day 7; repeats |
-| Free coins (Shop) | +25 per optional ad, 5 a day |
+| Free coins (Shop) | +50 per optional ad (one ad = one Hint), 5 a day |
 | Player level-up (§5) | 20; every 5th level +2 Hints and an avatar |
 | Room complete | 150, plus the room reveal |
 | Streak milestones | 7 days: a streak saver; 30 days: 400 + avatar; 100 days: 800 + avatar |

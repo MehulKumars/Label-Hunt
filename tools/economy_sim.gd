@@ -19,7 +19,7 @@ func _init() -> void:
 	var order := cat.play_order()
 	var players := {"free": _player(), "ads": _player(), "once": _player()}
 	var rows: Array[String] = []
-	var per_room := {}
+	var worst_free_share := 1.0
 	for i in order.size():
 		var id := order[i]
 		var e := cat.entry(id)
@@ -37,21 +37,25 @@ func _init() -> void:
 			p["start_afford"].append(Economy.can_afford(p["save"], "hint"))
 			for k in want:
 				p["wanted"] += 1
+				p["room_wanted"] += 1
+				var got := false
 				if Economy.spend(p["save"], "hint") != "":
-					p["used"] += 1
+					got = true
 				elif name == "ads" and p["ads"] < AdPolicy.DAILY_CAP and p["free_hint"] < 3:
 					p["ads"] += 1
 					p["free_hint"] += 1
-					p["used"] += 1
+					got = true
 				elif name == "once" and not p["bought"]:
 					p["bought"] = true
 					Economy.grant(p["save"], {"coins": 500})
-					if Economy.spend(p["save"], "hint") != "":
-						p["used"] += 1
+					got = Economy.spend(p["save"], "hint") != ""
+				if got:
+					p["used"] += 1
+					p["room_used"] += 1
 			var short := not Economy.can_afford(p["save"], "hint")
 			p["short_run"] = p["short_run"] + 1 if short else 0
 			p["worst_run"] = maxi(p["worst_run"], p["short_run"])
-			var coins := Economy.win_coins(groups, kind)
+			var coins := Economy.win_coins(groups, kind, int(e["room"]))
 			if name == "ads" and p["ads"] < AdPolicy.DAILY_CAP:
 				p["ads"] += 1
 				coins *= 2
@@ -66,12 +70,17 @@ func _init() -> void:
 					Economy.grant(p["save"], {"coins": Economy.AD_COINS})
 			p["balances"].append(int(p["save"]["coins"]))
 		if (i + 1) % 30 == 0 or i == order.size() - 1:
-			rows.append("| %d | %s | %d | %d | %d |" % [i + 1, cat.room_name(int(e["room"])), players["free"]["save"]["coins"],
-				players["ads"]["save"]["coins"], players["once"]["save"]["coins"]])
+			rows.append("| %d | %s | %d | %d | %d | %s | %s |" % [i + 1, cat.room_name(int(e["room"])), players["free"]["save"]["coins"],
+				players["ads"]["save"]["coins"], players["once"]["save"]["coins"], _room_share(players["free"]), _room_share(players["ads"])])
+			worst_free_share = minf(worst_free_share, float(players["free"]["room_used"]) / maxi(players["free"]["room_wanted"], 1))
+			for name in players:
+				players[name]["room_wanted"] = 0
+				players[name]["room_used"] = 0
 	var md: Array[String] = ["# Economy simulation", "",
 		"%d levels, %d a day. Prices: Hint %d, Complete %d, Continue %d. Ads: %d a day at most." % [order.size(), PER_DAY,
 			Economy.PRICES["hint"], Economy.PRICES["complete"], Economy.PRICES["continue"], AdPolicy.DAILY_CAP], "",
-		"| after level | room | free player coins | ad player coins | one-purchase coins |", "|---|---|---|---|---|"]
+		"| after level | room | free player coins | ad player coins | one-purchase coins | free: Hints got | ads: Hints got |",
+		"|---|---|---|---|---|---|---|"]
 	md.append_array(rows)
 	md.append("")
 	var gates: Array[String] = []
@@ -106,7 +115,11 @@ func _player() -> Dictionary:
 	s["inventory"]["hint"] = 3
 	s["inventory"]["complete"] = 1
 	return {"save": s, "day": -1, "ads": 0, "free_hint": 0, "shop": 0, "wanted": 0, "used": 0, "bought": false,
-		"short_run": 0, "worst_run": 0, "balances": [], "start_afford": [], "streak": 0}
+		"short_run": 0, "worst_run": 0, "balances": [], "start_afford": [], "streak": 0, "room_wanted": 0, "room_used": 0}
+
+
+func _room_share(p: Dictionary) -> String:
+	return "%d%%" % roundi(100.0 * p["room_used"] / maxi(p["room_wanted"], 1))
 
 
 ## A new day: the daily gift by streak day (the simulated player plays every day), and the ad caps reset.

@@ -133,14 +133,18 @@ func _check(id: String, lvl: LevelData, d: Dictionary, hints: bool) -> void:
 				if key.length() >= 3 and (lw.contains(key) or (stem.length() >= 3 and lw.contains(stem))):
 					errors.append("%s: '%s' reads as naming '%s'" % [id, w, d["groups"][b]["label"]])
 	if hints:
+		# As the play screen does: a solver path is followed to its end, not searched again at every step.
 		var s := Session.new(lvl, {})
+		var path: Array = []
 		for step in 400:
 			if s.won:
 				break
-			var adv := Advisor.next_move(s.board, 0)
-			if adv["kind"] == "none":
-				break
-			var mv: Vector2i = adv["move"]
+			if path.is_empty():
+				var adv := Advisor.next_move(s.board, 0)
+				if adv["kind"] == "none":
+					break
+				path = adv["path"]
+			var mv: Vector2i = path.pop_front()
 			s.try_move(mv.x, mv.y)
 		if not s.won:
 			errors.append("%s: following Hints alone doesn't win" % id)
