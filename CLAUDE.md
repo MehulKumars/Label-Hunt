@@ -61,7 +61,7 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 - **Off limits:** don't read or copy `../godot-mobile-template`, `../halves` or `../sushi-loop`. Leave every
   other folder in `GameDev` untouched.
 
-- **Bot:** about 5 ms per game. A full bake (515 levels) is about 28 min on one process, about 5 min on 6.
+- **Bot:** about 5 ms per game on small boards. Baking is slower on late rooms: rooms 11-17 (210 levels, 5-6 groups) took about 18 min on 6 processes.
   Post-aha busywork on 5-group boards runs 5–18 moves, above the ≤8 target. Tidy up only appears when the
   board *proves* every group, which is rare.
 - **Sounds:** `kenney.nl` blocks scripted downloads, so the placeholder SFX are synthesised. Kenney packs must be

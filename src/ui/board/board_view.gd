@@ -147,6 +147,7 @@ func relayout() -> void:
 			v.size = rects[j].size
 			v.neck = layout["neck"]
 			v.pivot_offset = Vector2(rects[j].size.x / 2.0, rects[j].size.y)
+		fronts[j].label_bottom = slot_pos(j, LevelData.CAPACITY - 2).y - rects[j].position.y
 	var font := _board_font((layout["card_size"] as Vector2).x, layout["font"])
 	for c in cards:
 		var cv: CardView = cards[c]

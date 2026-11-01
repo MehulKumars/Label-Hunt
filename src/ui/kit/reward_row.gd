@@ -75,9 +75,10 @@ func _coin_chip() -> Rect2:
 	return Rect2(0, 0, (size.x - 14.0) * 0.46, CHIP_H)
 
 
+## The whole row when no coins were earned (a first gold lid on a replay pays XP only).
 func _xp_chip() -> Rect2:
-	var c := _coin_chip()
-	return Rect2(c.end.x + 14.0, 0, size.x - c.size.x - 14.0, CHIP_H)
+	var x := _coin_chip().end.x + 14.0 if coins > 0 else 0.0
+	return Rect2(x, 0, size.x - x, CHIP_H)
 
 
 func _notification(what: int) -> void:
@@ -95,11 +96,12 @@ func _draw() -> void:
 		draw_string(fb, Vector2((size.x - ts.x) / 2.0, 44), t, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Color(Style.INK, 0.72))
 		return
 	# Coin chip: brass coin and the count.
-	var cc := _coin_chip()
-	_chip_bg(cc, Color("#F7E7BE"))
-	draw_texture_rect(Art.tex("coin", Vector2(52, 52), Materials.coin), Rect2(cc.position + Vector2(14, (CHIP_H - 52) / 2.0), Vector2(52, 52)), false)
-	draw_string(f, Vector2(cc.position.x + 76, CHIP_H / 2.0 + 14), "+%d" % roundi(coins * _coin_t), HORIZONTAL_ALIGNMENT_LEFT,
-		cc.size.x - 84, Style.FS_44, Style.INK)
+	if coins > 0:
+		var cc := _coin_chip()
+		_chip_bg(cc, Color("#F7E7BE"))
+		draw_texture_rect(Art.tex("coin", Vector2(52, 52), Materials.coin), Rect2(cc.position + Vector2(14, (CHIP_H - 52) / 2.0), Vector2(52, 52)), false)
+		draw_string(f, Vector2(cc.position.x + 76, CHIP_H / 2.0 + 14), "+%d" % roundi(coins * _coin_t), HORIZONTAL_ALIGNMENT_LEFT,
+			cc.size.x - 84, Style.FS_44, Style.INK)
 	# XP chip: the XP and the rank bar.
 	var xc := _xp_chip()
 	_chip_bg(xc, Color("#DCEAE7"))

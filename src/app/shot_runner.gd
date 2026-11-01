@@ -142,13 +142,17 @@ func _run(name: String) -> void:
 			await _wait(0.2)
 			MetaSheets.room_reveal(main, int(Levels.catalog.room_numbers().back()), Levels.catalog.play_order()[0])
 		"themes":
-			for r in range(1, 18):
-				main.start_level("m01")
-				main.backdrop.set_room(r)
-				play.board.set_room(r)
+			# Every room's look on its own hardest level, a few moves in: the fullest boards and rails it has.
+			for r in Levels.catalog.room_numbers():
+				main.close_all_sheets()
+				var ids := Levels.catalog.room_ids(r)
+				main.start_level(ids[ids.size() - 1])
+				await _legal(play, 5)
 				await _wait(0.6)
 				await RenderingServer.frame_post_draw
 				_save("theme_%02d" % r, play)
+				for line in play.board.misplaced():
+					print("  MISPLACED ", line)
 			return
 		"home":
 			main.go_home()

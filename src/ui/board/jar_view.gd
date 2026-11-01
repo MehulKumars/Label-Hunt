@@ -14,6 +14,8 @@ var room := 1
 var neck := 20.0
 var corked := false
 var labelled_text := ""
+## Where an open labelled jar's label must end: the top edge of the third card's slot.
+var label_bottom := 0.0
 ## 0 = no lid, 1 = lid fully screwed on.
 var lid_t := 0.0
 var lid_label := ""
@@ -79,14 +81,17 @@ func _draw_label(text: String) -> void:
 	var font := Style.hand()
 	var w := size.x * LABEL_SHARE
 	var max_w := w - 20.0
-	var fs := Style.FS_30
+	# An open labelled jar never holds 4 cards (the 4th brings the lid), so its label rests in the free top slot.
+	var open := lid_t < 1.0
+	var fs := Style.FS_26 if open else Style.FS_30
 	var lines := _wrap(text, font, fs, max_w)
 	if lines.size() > 1 or font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > max_w:
-		fs = Style.FS_26
+		fs = Style.FS_22 if open else Style.FS_26
 		lines = _wrap(text, font, fs, max_w)
 	var line_h := fs * 1.08
-	var box := Vector2(w, line_h * lines.size() + 20.0)
-	var centre := Vector2(size.x / 2.0, neck + (size.y - neck) * 0.46)
+	var pad := 8.0 if open else 20.0
+	var box := Vector2(w, line_h * lines.size() + pad)
+	var centre := Vector2(size.x / 2.0, label_bottom - box.y / 2.0 - 1.0 if open else neck + (size.y - neck) * 0.46)
 	draw_set_transform(centre, deg_to_rad(-2.0), Vector2.ONE)
 	var local := Rect2(-box / 2.0, box)
 	draw_texture_rect(Art.tex("label", box, Materials.label.bind(false)), local, false)
@@ -97,7 +102,7 @@ func _draw_label(text: String) -> void:
 		var visible := clampi(shown - used, 0, line.length())
 		used += line.length() + 1
 		var ts := font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-		var y := local.position.y + 9.0 + line_h * i + font.get_ascent(fs) * 0.92
+		var y := local.position.y + pad * 0.45 + line_h * i + font.get_ascent(fs) * 0.92
 		draw_string(font, Vector2(-ts.x / 2.0, y), line.substr(0, visible), HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
 	if shine_t >= 0.0 and shine_t <= 1.0:
 		var sx := lerpf(local.position.x - 30, local.end.x + 30, shine_t)
