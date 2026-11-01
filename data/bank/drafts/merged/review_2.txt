@@ -1,0 +1,93 @@
+# Review 2: fairness pass over categories.txt lines 173-343 (preserves .. computer_parts), cross-checked against the
+# whole bank. Note: room_gen already keeps one category per domain per level and rejects label clashes and wordplay
+# overlaps automatically, so overlaps below are only flagged across different domains.
+
+# ---------- food tail ----------
+-preserves,Curd # weak: Curd alone reads as dairy (yogurt in India); only "lemon curd" is a preserve
+-fermented_foods,Kombucha # a drink: fits Drinks and Kinds of tea (drink domain, no pair rule)
++parts_of_a_fruit,Seed # strongest missing member (Pip is UK-only); declares a crossing with Tiny things
+PAIR: Parts of a fruit | Parts of a flower # Stem and Stalk fit both (an apple has a stem)
+
+# ---------- animals ----------
+PAIR: Animal groups | Groups of people # Troop (a troop of scouts, and Troupe is listed there), Colony, Herd, Flock all name groups of people too
+PAIR: Things birds do | Social media words # Tweet and Feed fit both
+PAIR: Things birds do | Ways to move # Fly, Glide, Soar vs Hop, Dive, Swim: birds do all of them
+PAIR: Body parts | Animal parts # animals have necks, teeth, tongues; Paw and Claw read as body parts
+PAIR: Parts of the face | Animal parts # Snout, Beak, Whisker are faces; Nose, Mouth, Ear are animal parts
+PAIR: Pond life | Reptiles # Newt is widely taken for a reptile; Terrapin and Turtle are pond life
+
+# ---------- nature ----------
++parts_of_a_tree,Root # the most obvious missing part of a tree (not in the bank yet)
++hot_things,Heatwave # a heatwave is plainly hot; declares the crossing with Extreme weather
++bodies_of_water,River # River (Things that run) is plainly a body of water; declare it
+PAIR: In the garden | In the park # Lawn, Bench, Path, Pond, Fountain, Statue, Hedge fit both
+PAIR: In the garden | On a farm # Fence, Shed, Hose, Compost, Scarecrow, Orchard fit both
+PAIR: Gardening jobs | Garden jobs # near-duplicates (Weed/Weeding, Mow/Mowing) in different domains
+
+# ---------- home ----------
+-parts_of_a_door,Knob # UK vulgar slang (house list bans slang like Tart and Bogey); Handle covers it
+-words_after_door,Knob # same slang problem (Doorknob), outside my slice
++things_at_the_beach,Deckchair # the classic beach seat; declares the crossing with Seats
+PAIR: On the wall | Works of art # Mural, Fresco, Portrait, Landscape, Etching all hang on a wall
+PAIR: Parts of a house | Parts of a castle # a castle has a Roof, Door, Window, Stairs, Floor too
+PAIR: Floor coverings | Music releases # Vinyl reads as a record
+PAIR: At a picnic | Laundry day # Hamper is a laundry basket in US English (Basket is already in both)
+
+# ---------- objects ----------
+-bags,Duffel|Sack # Duffel/Duffle spelling variant; Sack sits inside Rucksack (clue substring)
++bags,Handbag # strong missing member (In a handbag is the same domain, so no clash)
+-stationery,Sharpener # contains Pen (clue substring within a category); still in School supplies
++stationery,Journal # a journal is a notebook in stationery shops; declares the crossing with Kinds of book
+-things_you_light,Fire # sits inside Bonfire and Firework (clue substring)
+-things_with_pages,Notebook # contains Book (clue substring); still in School supplies
+PAIR: Things with pages | Things with spines # Diary, Atlas, Comic, Manual, Album all have spines
+PAIR: Things with pages | Kinds of book # every kind of book has pages
+PAIR: School supplies | Things with pages # Notebook and Textbook have pages
+PAIR: Things you light | Things that are hot # Bonfire, Barbecue, Match are hot once lit
+PAIR: Things you light | Things that glow # Bonfire, Firework, Match glow once lit
+PAIR: Parts of a book | In a newspaper # Page (front page), Index, Cover fit a newspaper
+PAIR: Building materials | Metals # Steel, Iron, Copper, Lead are building materials
+PAIR: Containers | Things to drink from # Can, Flask, Canteen, Beaker are containers (Bottle and Carton already cross)
+PAIR: Containers | On a pirate ship # Chest (treasure chest) and Barrel belong on a pirate ship
+PAIR: Materials | Things that float # Wood, Foam, Paper float (Cork is already in both)
+PAIR: Materials | Fragile things # Ceramic is plainly fragile (Glass is already in both)
++soft_things,Foam # foam is plainly soft; declares the crossing with Materials
++sharp_things,Nail # as sharp as Tack, which is listed; declares the crossing with Fasteners
+-measuring_tools,Scales # swap for the singular: "Scale" (US weighing scale) sits in Music terms and Animal coverings
++measuring_tools,Scale # declares the crossings with Music terms and Animal coverings
+PAIR: Baby gear | Gadgets # Mobile is a phone in UK and Indian English
+PAIR: In the bathroom | At the hairdresser # Shampoo, Mirror, Towel fit both (Razor already crosses)
+PAIR: Things you wear | At the hairdresser # Cape is a garment
+
+# ---------- clothing ----------
+-traditional_clothes,Kaftan # Kaftan/Caftan spelling variant
+-parts_of_a_shoe,Insole # contains Sole (clue substring within a category)
++body_parts,Sole # sole of the foot; declares the crossing with Parts of a shoe (Heel, Toe, Tongue already cross)
+-fabric_patterns,Spot # weak and regional: the pattern is "spots" or "polka dot"
+
+# ---------- culture ----------
++magic_show,Hat # the top hat is the signature prop; declares crossings with Things you wear and Things with crowns
+PAIR: Things you wear | Magic show # Cape and Cloak are plainly things you wear
++photography,Camera # missing core member; declares the crossing with Gadgets and On a phone
+PAIR: In fairy tales | Titles # King, Queen, Emperor fit fairy tales (Prince already crosses)
+PAIR: In fairy tales | Medieval people # Knight, Jester, Peasant fit fairy tales
+PAIR: In fairy tales | Kinds of home # Castle, Palace, Hut fit fairy tales (Cottage already crosses)
+PAIR: In fairy tales | Things with crowns # King and Queen fit fairy tales
+PAIR: In fairy tales ! animals # Bear, Pig, Fox, Cat, Swan, Goose all star in fairy tales (domain rule)
+PAIR: On a pirate ship | Parts of a ship # Mast, Sail, Helm, Hull, Cabin fit a pirate ship
+PAIR: At a wedding | At a hotel # Reception, Guest, Suite fit both
+PAIR: At a party | At a wedding # Guest, Speech, Toast, Dress, Garland fit both
+PAIR: Indoor games | Black and white # Chess is black and white; Domino vs Dominoes
+PAIR: Languages | School subjects # French, Spanish, German, Latin are school subjects
+PAIR: Writers | In a newspaper # Reporter and Columnist read as newspaper things
+-singing_voices,Contralto # contains Alto (clue substring within a category)
+
+# ---------- people, school, sport ----------
+-experts,Pro # sits inside Prodigy (clue substring); also slangy
+-grammar_words,Adverb|Pronoun # contain Verb and Noun (clue substrings within a category)
+-punctuation,Semicolon # contains Colon (clue substring within a category)
++at_university,Student # plainly at university; declares crossings with Learners and People at school
+PAIR: People at school | At university # Tutor, Librarian, Classmate, Coach fit university too
+PAIR: Gymnastics moves | Ways to move # Roll and Jump are gymnastics moves; Flip and Vault are ways to move (Leap already crosses)
+-on_the_slopes,Skier # contains Ski (clue substring within a category); still in Sportspeople
++sports_venues,Gym # a gym is a sports venue; declares the crossing with Places in a town

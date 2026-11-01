@@ -4,7 +4,7 @@
 class_name ShelfView
 extends Control
 
-## [{state: "solved"|"next"|"locked", layers: Array[Color], gold: bool}]
+## [{state: "solved"|"next"|"locked", layers: Array[Color], gold: bool, number: int}]
 var slots: Array = []
 var cols := 5
 ## The slot whose jar is dropping in (Win), and how far it has fallen (0..1).
@@ -17,10 +17,56 @@ var glow := 0.0:
 	set(v):
 		glow = v
 		queue_redraw()
+## The room whose wood and jars to draw (Themes).
+var room := 1
+## In the room view, slots are tappable.
+var tappable := false:
+	set(v):
+		tappable = v
+		mouse_filter = Control.MOUSE_FILTER_STOP if v else Control.MOUSE_FILTER_IGNORE
+
+signal slot_pressed(index: int)
+
+var _down := -1
 
 
 func _init() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+func slot_at(pos: Vector2) -> int:
+	if slots.is_empty():
+		return -1
+	var rows := ceili(slots.size() / float(cols))
+	var cell := Vector2(size.x / cols, size.y / rows)
+	var i := int(pos.y / cell.y) * cols + int(pos.x / cell.x)
+	return i if i >= 0 and i < slots.size() and Rect2(Vector2.ZERO, size).has_point(pos) else -1
+
+
+## Where slot i's jar stands (for flights and highlights), in local coordinates.
+func slot_rect(i: int) -> Rect2:
+	var rows := ceili(slots.size() / float(cols))
+	var cell := Vector2(size.x / cols, size.y / rows)
+	var jar := Vector2(minf(cell.x * 0.74, 104.0), 0.0)
+	jar.y = minf(jar.x * 1.4, cell.y - 34.0)
+	var base := Vector2((i % cols + 0.5) * cell.x, cell.y * (i / cols + 1) - 14.0)
+	return Rect2(base - Vector2(jar.x / 2.0, jar.y), jar)
+
+
+func _gui_input(event: InputEvent) -> void:
+	if not tappable or not (event is InputEventMouseButton) or event.button_index != MOUSE_BUTTON_LEFT:
+		return
+	accept_event()
+	if event.is_canceled():
+		_down = -1
+	elif event.pressed:
+		_down = slot_at(event.position)
+	elif _down >= 0:
+		var i := slot_at(event.position)
+		if i == _down:
+			Sfx.play("tap", 1.0, 0.05, -4.0)
+			slot_pressed.emit(i)
+		_down = -1
 
 
 ## Three slow breaths on the next slot, then rest (no endless redraws on an idle screen).
@@ -41,21 +87,19 @@ func _draw() -> void:
 	jar.y = minf(jar.x * 1.4, cell.y - 34.0)
 	for r in rows:
 		var plank := Rect2(-6.0, cell.y * (r + 1) - 16.0, size.x + 12.0, 34.0)
-		draw_texture_rect(Art.tex("shelf_plank", plank.size, Materials.plank), plank, false)
+		draw_texture_rect(Art.tex("shelf_plank|%d" % room, plank.size, RoomArt.plank.bind(room)), plank, false)
 	for i in slots.size():
 		var s: Dictionary = slots[i]
-		var base := Vector2((i % cols + 0.5) * cell.x, cell.y * (i / cols + 1) - 14.0)
-		var rect := Rect2(base - Vector2(jar.x / 2.0, jar.y), jar)
+		var rect := slot_rect(i)
 		match str(s["state"]):
 			"solved":
 				if i == drop_index:
 					rect.position.y -= (1.0 - _bounce(clampf(drop_t, 0.0, 1.0))) * cell.y * 0.9
 				var layers: Array = s["layers"]
-				var lid: Color = Style.GOLD if s["gold"] else Style.PAPRIKA
-				var key := "mini|%s|%s" % [",".join(layers.map(func(c: Color) -> String: return c.to_html(false))), lid.to_html(false)]
-				draw_texture_rect(Art.tex(key, jar, Materials.mini_jar.bind(layers, lid)), rect, false)
+				var key := "mini|%d|%s|%s" % [room, ",".join(layers.map(func(c: Color) -> String: return c.to_html(false))), s["gold"]]
+				draw_texture_rect(Art.tex(key, jar, RoomArt.mini_jar.bind(room, layers, false, bool(s["gold"]))), rect, false)
 			_:
-				draw_texture_rect(Art.tex("mini_outline", jar, Materials.mini_jar.bind([], Style.PAPRIKA, true)), rect, false)
+				draw_texture_rect(Art.tex("mini_outline|%d" % room, jar, RoomArt.mini_jar.bind(room, [], true)), rect, false)
 				_number(rect, s, str(s["state"]) == "next")
 
 
@@ -73,13 +117,14 @@ static func slots_for(ids: PackedStringArray, save: Dictionary, next_id: String)
 		var s: Dictionary = save["solved"].get(id, {})
 		if s.is_empty():
 			out.append({"state": "next" if id == next_id else "locked", "layers": [], "gold": false,
-				"number": Levels.catalog.play_order().find(id) + 1})
+				"number": Levels.catalog.order_index(id) + 1})
 			continue
 		var labels: Array = []
 		for g: Dictionary in Levels.catalog.entry(id)["data"].get("groups", []):
 			labels.append(str(g.get("label", "")))
 		var layers := Materials.preserve_layers(labels)
-		out.append({"state": "solved", "layers": layers, "gold": bool(s.get("gold", false))})
+		out.append({"state": "solved", "layers": layers, "gold": bool(s.get("gold", false)),
+			"number": Levels.catalog.order_index(id) + 1})
 	return out
 
 

@@ -50,10 +50,92 @@ func homes(word: String) -> PackedInt32Array:
 
 ## The bank category with this label, or -1 (levels written before the bank name categories by label).
 func find_label(label: String) -> int:
-	for i in categories.size():
-		if (categories[i]["label"] as String).to_lower() == label.to_lower():
-			return i
-	return -1
+	if _by_label.is_empty():
+		for i in categories.size():
+			_by_label[(categories[i]["label"] as String).to_lower()] = i
+	return int(_by_label.get(label.to_lower(), -1))
+
+
+
+## Words early levels avoid (data/bank/hard_words.txt): lower-case word -> true.
+var hard := {}
+
+
+func load_hard(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		return
+	for raw in FileAccess.get_file_as_string(path).split("\n", false):
+		var line := raw.strip_edges()
+		if line != "" and not line.begins_with("#"):
+			hard[line.to_lower()] = true
+
+
+## Wordplay rules: category index -> {kind, words: PackedStringArray}. A wordplay category must not share a level
+## with another group's word that also obeys its rule (the player would see a valid answer in another group).
+## Kinds:
+## - hidden: the word contains a target ("^kn" = starts with, "mb$" = ends with);
+## - anagram: the word is an anagram of a target;
+## - palindrome: the word reads the same backwards;
+## - reverse: backwards it is another word (a bank word or one of the targets);
+## - y_only: Y is its only vowel;
+## - double2: it has two double letters;
+## - roman: every letter is a Roman numeral.
+var targets := {}
+
+
+## Reads data/bank/wordplay_targets.txt: "id kind [word word ...]", one category per line.
+func load_targets(path: String) -> void:
+	if not FileAccess.file_exists(path):
+		return
+	for raw in FileAccess.get_file_as_string(path).split("\n", false):
+		var parts := raw.strip_edges().split(" ", false)
+		if parts.size() < 2 or not by_id.has(parts[0]):
+			continue
+		targets[int(by_id[parts[0]])] = {"kind": parts[1], "words": parts.slice(2)}
+
+
+## True if `word` obeys wordplay category `idx`'s rule.
+func trips(idx: int, word: String) -> bool:
+	var t: Dictionary = targets.get(idx, {})
+	if t.is_empty():
+		return false
+	var lw := word.to_lower()
+	match t["kind"]:
+		"anagram":
+			var key := sorted_letters(lw)
+			for x: String in t["words"]:
+				if sorted_letters(x) == key:
+					return true
+			return false
+		"palindrome":
+			return lw.length() >= 3 and lw == lw.reverse()
+		"reverse":
+			var r := lw.reverse()
+			return r != lw and (by_word.has(r) or (t["words"] as PackedStringArray).has(r))
+		"y_only":
+			return lw.contains("y") and not Array("aeiou".split("")).any(func(v: String) -> bool: return lw.contains(v))
+		"double2":
+			var doubles := 0
+			for i in range(1, lw.length()):
+				if lw[i] == lw[i - 1] and (i < 2 or lw[i - 2] != lw[i]):
+					doubles += 1
+			return doubles == 2
+		"roman":
+			return Array(lw.split("")).all(func(ch: String) -> bool: return "ivxlcdm".contains(ch))
+	for x: String in t["words"]:
+		if x.begins_with("^") and lw.begins_with(x.substr(1)):
+			return true
+		if x.ends_with("$") and lw.ends_with(x.trim_suffix("$")):
+			return true
+		if not x.begins_with("^") and not x.ends_with("$") and lw.contains(x):
+			return true
+	return false
+
+
+static func sorted_letters(w: String) -> String:
+	var a := Array(w.split(""))
+	a.sort()
+	return "".join(a)
 
 
 ## Reads data/bank/pairs.txt: "A < B" (B is part of A), "A | B" (never together), "A ! domain".
@@ -84,6 +166,9 @@ func load_pairs(path: String) -> void:
 				var kids: PackedInt32Array = children.get(a, PackedInt32Array())
 				kids.append(b)
 				children[a] = kids
+				var ps: Array = _parents.get(b, [])
+				ps.append(a)
+				_parents[b] = ps
 			break
 
 
@@ -94,12 +179,33 @@ func compatible(a: int, b: int) -> bool:
 		and not (never_domain.get(b, []) as Array).has(categories[a]["domain"])
 
 
-## A category's words plus its children's, for phantom checks.
+## A category's words plus its children's, for phantom checks (cached: the bank doesn't change during a run).
 func family_words(i: int) -> Dictionary:
+	if _family.has(i):
+		return _family[i]
 	var out := {}
 	for w in categories[i]["words"]:
 		out[(w as String).to_lower()] = true
 	for k in children.get(i, PackedInt32Array()):
 		for w in categories[k]["words"]:
 			out[(w as String).to_lower()] = true
+	_family[i] = out
 	return out
+
+
+## Categories that hold any of `words` in their family (phantom candidates), so a phantom check looks at a handful
+## of categories instead of the whole bank.
+func families_holding(words: Array) -> Dictionary:
+	var out := {}
+	for w in words:
+		for h in homes(str(w)):
+			out[h] = true
+			for p in _parents.get(h, []):
+				out[p] = true
+	return out
+
+
+var _family := {}
+var _by_label := {}
+## child index -> Array of parent indices (built by load_pairs).
+var _parents := {}

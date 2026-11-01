@@ -30,6 +30,47 @@ static func deal(group_count: int, empties: int, rng: RandomNumberGenerator, att
 	return []
 
 
+## Deals `lvl` in place from a deal spec, with its special jars, until the solver proves the deal:
+## {empties = 2, frost = k (the bottom k cards of every filled jar start frosted), labelled = n (n of the empty jars
+## come printed with a group's label), corked = n (n filled jars start corked)}. Returns false if no proven deal.
+static func deal_spec(lvl: LevelData, spec: Dictionary, rng: RandomNumberGenerator, solver_cap: int = 200000) -> bool:
+	var groups := lvl.group_count()
+	var empties := int(spec.get("empties", 2))
+	var n_label := mini(int(spec.get("labelled", 0)), empties)
+	var n_cork := mini(int(spec.get("corked", 0)), groups - 1)
+	var frost_k := int(spec.get("frost", 0))
+	for _attempt in 50:
+		var jars := deal(groups, empties, rng)
+		if jars.is_empty():
+			return false
+		lvl.jars = jars
+		lvl.labelled = {}
+		var label_groups := range(groups)
+		_shuffle_array(label_groups, rng)
+		for k in n_label:
+			lvl.labelled[groups + empties - 1 - k] = label_groups[k]
+		lvl.corked = PackedInt32Array()
+		var cork_jars := range(groups)
+		_shuffle_array(cork_jars, rng)
+		for k in n_cork:
+			lvl.corked.append(cork_jars[k])
+		lvl.frost = PackedInt32Array()
+		for j in groups:
+			for k in mini(frost_k, jars[j].size() - 1):
+				lvl.frost.append(jars[j][k])
+		if Solver.solve(BoardState.from_level(lvl), solver_cap)["solved"]:
+			return true
+	return false
+
+
+static func _shuffle_array(a: Array, rng: RandomNumberGenerator) -> void:
+	for i in range(a.size() - 1, 0, -1):
+		var j := rng.randi_range(0, i)
+		var t: Variant = a[i]
+		a[i] = a[j]
+		a[j] = t
+
+
 static func _jar_ok(jar: PackedInt32Array) -> bool:
 	var counts := {}
 	for k in jar.size():

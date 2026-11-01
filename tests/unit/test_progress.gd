@@ -48,7 +48,7 @@ func test_features_accumulate_in_play_order() -> void:
 	assert_true(c.features_at("r02").has("undo"))
 	assert_false(c.features_at("r03").has("jar"))
 	assert_true(c.features_at("r12").has("jar"))
-	assert_true(c.features_at("m01").has("peek"), "test boards get every tool")
+	assert_true(c.features_at("m01").has("hint") and c.features_at("m01").has("complete"), "test boards get every tool")
 
 
 # --- progression -------------------------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ func test_v1_save_migrates() -> void:
 		"settings": {"sound": false, "haptics": true, "reduce_motion": true, "fps": false},
 		"rules": {"mode": "stars", "pour": true}, "seen_captions": {"budget": true}}
 	var s := SaveSchema.sanitize(v1, {})
-	assert_eq(s["version"], 2)
+	assert_eq(s["version"], SaveSchema.VERSION)
 	assert_true(s["tutorial"]["done"], "past the old tutorial levels")
 	assert_eq(s["settings"]["sound"], 0.0)
 	assert_eq(s["settings"]["music"], 0.7)

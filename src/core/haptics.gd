@@ -1,6 +1,7 @@
 ## Light haptics (autoload "Haptics"). Needs the VIBRATE permission in the Android export.
 ## Godot has only vibrate_handheld, and cheap phones' motors buzz on very short pulses, so every pulse is at least
-## 15 ms and only the moments that matter vibrate: lift, drop, slip, lid and win (never hovers or UI taps).
+## 15 ms and only the moments that matter vibrate: lift, drop, slip, lid, win and coins landing (never hovers or UI
+## taps).
 extends Node
 
 const MIN_MS := 15
@@ -33,3 +34,8 @@ func win() -> void:
 	tick(20, 0.5)
 	get_tree().create_timer(0.1).timeout.connect(tick.bind(40, 0.8))
 	get_tree().create_timer(0.24).timeout.connect(tick.bind(20, 0.5))
+
+
+## Coins landing (a reward counted up, a purchase, a gift).
+func coin() -> void:
+	tick(15, 0.3)

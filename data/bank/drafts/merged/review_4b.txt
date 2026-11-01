@@ -1,0 +1,230 @@
+# review_4b: fairness review of drafts/merged/09c_food_nature.txt (new categories and + extensions).
+# Note: abstract "Words for X" sets share the pattern key "words for" and never meet each other. The blur that matters is
+# against Ways to, Emotions, Virtues, and the "Words for" sets in other domains (fast, slow, new, old, dark, friend, expert).
+
+# ---------- Deleted categories ----------
+DEL: words_for_pale # nearly all rare vocabulary (Wan, Pallid, Sallow, Waxen, Ashen); the rest are not clean synonyms
+DEL: words_for_a_fuss # UK/US slang mix (Palaver, Kerfuffle, Hoopla, Tizzy, Ruckus); weak cards Stir, Flap, Ado; samey with Words for a mess
+DEL: words_for_courage # weaker twin of Words for brave; core is Moxie, Chutzpah, Gumption, Mettle, Fortitude
+DEL: words_for_rude # blurred inside itself: Gruff and Surly mean bad-tempered, Cheeky and Sassy are playful; the rest are rare
+DEL: seabirds # 8 of 14 too niche (Skua, Fulmar, Kittiwake, Auk...); what survives is a subset of Water birds
+
+# ---------- Tier changes ----------
+TIER: kinds_of_shark,3 # outside Tiger and Whale this is shark trivia; it works as a late-game herring set
+TIER: kinds_of_knot,3 # needs idiom knowledge (Granny, Reef, Windsor); not a familiar set worldwide
+TIER: words_for_nonsense,3 # only Rubbish and Gibberish are known worldwide; the rest are for strong English readers
+
+# ---------- Tier 1 abstract sets ----------
+-words_for_yes,Yup # spelling variant of Yep
+-words_for_yes,Roger # radio jargon; reads as a first name, not a yes
+-words_for_hello,Evening # "Good evening" is the greeting; alone it reads only as a time of day
+-words_for_hello,Salaam # religious greeting (house rule)
+-words_for_goodbye,Cheerio # UK-only (named in the house rules)
+-words_for_goodbye,Cheers # UK-only as goodbye; elsewhere a drinking toast
+-words_for_goodbye,Toodles # rare slang, unplaceable for school English
+-words_for_big,Hulking # means big and clumsy; rare
+-words_for_big,Titanic # known as the ship and film; few learners know the adjective
+-words_for_small,Wee # Scottish, and UK slang for urine
+-words_for_small,Pocket # only works as "pocket-sized"; plainly a coat part or snooker word
+-words_for_small,Dinky|Weeny|Elfin # rare or regional; Dinky is also a toy brand
++words_for_small,Tiny|Micro # the most obvious synonyms were missing; set is down to 8 after the cuts
+
+# ---------- Tier 2 abstract, moods and qualities ----------
+-words_for_happy,Chirpy # UK-flavoured; rare elsewhere
+-words_for_sad,Doleful|Heartsick|Woebegone # rare vocabulary
+-words_for_angry,Irked|Peeved|Riled|Huffy|Wrathful # rare or regional; the set stays strong without them
+-words_for_scared,Aghast|Rattled # rare; Rattled also reads as shaken
+-words_for_scared,Startled # means surprised, not scared; Startle sits in Reflexes
+-words_for_tired,Beat # US slang; players see Beat in music and whisking
+-words_for_tired,Spent # past tense of spend to most players; the tired sense is thin
+-words_for_tired,Jaded # means cynical or bored, not tired
+-words_for_tired,Haggard|Bleary # rare; describe looks and eyes rather than tiredness
+-words_for_clever,Erudite|Canny # rare; Canny is regional
+-words_for_clever,Learned # reads as the past tense of learn; means educated, not clever
+-words_for_brave,Dauntless # rare vocabulary
+-words_for_brave,Gritty # means rough or realistic to most players
+-words_for_brave,Spirited|Feisty # mean lively, not brave
+-words_for_great,Ace # UK slang as an adjective; players know it as a card, a serve and an expert
+-words_for_great,Wicked # UK slang sense; its plain meaning is the opposite and it sits in Words for evil
+-words_for_great,Neat # means tidy to most players; US slang sense
+-words_for_terrible,Shoddy # means badly made; rare
+-words_for_terrible,Crummy # US slang
+-words_for_terrible,Pathetic # means pitiful, not terrible
+-words_for_strange,Curious # means inquisitive to school English
+-words_for_strange,Offbeat # rare; also reads as a music word
+-words_for_beautiful,Comely|Winsome|Ravishing|Fetching # archaic or rare; Fetching reads as a dog command
+-words_for_boring,Prosaic|Vapid|Trite # rare vocabulary
+-words_for_wet,Sodden|Sopping|Squelchy # rare; Sopping and Squelchy are regional
+-words_for_wet,Dank # means cold and musty, not wet; also drug slang
+-words_for_wet,Clammy # rare and slightly gross
+-words_for_dirty,Mucky # UK-flavoured
+-words_for_dirty,Squalid # rare; describes living conditions
+-words_for_dirty,Soiled # gross sense
+-words_for_calm,Halcyon|Unruffled # rare vocabulary
+-words_for_calm,Collected # needs the idiom "cool, calm and collected"; reads as a verb
+-words_for_calm,Poised # means balanced or ready; weak fit
+-words_for_evil,Heinous|Malign|Dastardly|Baleful # rare vocabulary
+-words_for_funny,Droll|Waggish|Wry|Riotous|Jokey # rare; Riotous and Jokey are weak fits
+-words_for_funny,Priceless # means extremely valuable to almost everyone
+-words_for_fancy,Swanky|Ritzy|Upmarket|Sumptuous # regional or rare; Ritzy echoes a brand
+-words_for_fancy,Plush # known as soft fabric or soft toys; fits Soft things
+
+# ---------- Tier 2 abstract, nouns ----------
+-words_for_a_mess,Shambles # UK idiom
+-words_for_a_mistake,Flub|Howler|Bungle # US slang, UK slang and a verb for doing badly
+-words_for_nonsense,Tosh|Piffle|Bunkum|Hooey|Twaddle # Tosh is banned; the rest are the regional or dated end of a mixed UK/US set
+-words_for_lots,Reams|Umpteen|Myriad # UK-flavoured or rare; Reams needs the paper sense
+-words_for_a_problem,Quandary # rare vocabulary
+-words_for_a_problem,Bind # needs the idiom "in a bind"; weak on a card
+-words_for_a_speech,Harangue|Diatribe|Soliloquy|Spiel # rare vocabulary
+-words_for_a_speech,Discourse # means discussion; weak fit
+-words_for_a_fight,Fracas|Melee|Fray # rare vocabulary; Fray reads as worn fabric
+-words_for_a_fight,Scrap # UK slang sense
+-words_for_a_fight,Joust # a lance contest, not a word for a fight (weapons)
+
+# ---------- Tier 2 abstract, verbs ----------
+-ways_to_steal,Filch|Purloin # rare vocabulary
+-ways_to_steal,Lift # dated sense; plainly raising or a ski lift
+-ways_to_steal,Pocket # barely fits; plainly a noun in coats and snooker
+-ways_to_steal,Snatch # vulgar slang sense; also means grab and sits in Ways to hold
+-ways_to_throw,Propel # means push forward, not throw
+-ways_to_throw,Catapult # a siege weapon (house rule)
+-ways_to_throw,Flick # weak for a throw; fits Ways to touch and Touchscreen moves
+-ways_to_cry,Keen|Mewl # rare senses, unplaceable
+-ways_to_cry,Lament # means express grief; weak fit
+
+# ---------- Tier 1 nature and objects ----------
+-parts_of_a_plant,Runner # niche botanical sense; plainly an athlete
+-cosmetics,Contour # a technique, not a product; plainly a map word
+-first_aid_kit,Compress # niche noun; reads as a verb
+
+# ---------- Food ----------
+-middle_eastern_food,Fattoush|Dolma|Mezze|Sumac # too niche; the set keeps its well-known core
+-kinds_of_pepper,Banana|Pink # barely accepted as peppers (herring bait)
+-kinds_of_pepper,Paprika # a ground spice, not a kind of pepper to most players
+-kinds_of_pepper,Poblano|Serrano|Pimento # too niche outside the Americas
+-stone_fruit,Damson|Greengage|Sloe|Mirabelle # too niche, regional fruit
+-ways_to_eat,Scoff # UK sense; elsewhere it means to mock
+-ways_to_eat,Bolt # needs the idiom "bolt down"; plainly a fastener or a sprint
+-leafy_greens,Escarole|Frisee|Radicchio|Collard # too niche or US-only
+-ways_to_preserve_food,Chill # short-term cooling, not preserving
++containers,Can # Jar and Bottle are declared; Can fits Containers just as honestly when it meets Ways to preserve food
+
+# ---------- Animals ----------
+-kinds_of_whale,Sperm|Killer # vetoed words
+-kinds_of_whale,Right|Pilot|Beaked|Pygmy|Fin # too niche; these only read as ordinary words
++kinds_of_whale,Orca # the clean name for the killer whale; set keeps 6 well-spread members
+-kinds_of_shark,Goblin|Zebra|Sand|Thresher # too niche; unplaceable even by elimination
+-songbirds,Linnet|Oriole|Nuthatch # too niche
+-cat_breeds,Birman|Tonkinese|Bombay|Balinese|Himalayan|Munchkin # too niche; several read only as places
+-parts_of_a_bird,Gizzard # vetoed word, gross
+-parts_of_a_bird,Wattle|Crop|Comb # niche anatomy; each reads as something else
+
+# ---------- Nature ----------
+-kinds_of_cloud,Mammatus|Contrail|Funnel|Anvil # niche; a contrail is not a cloud to most players
+-kinds_of_cloud,Mushroom # a nuclear blast (weapons house rule)
+-kinds_of_wind,Mistral|Sirocco|Chinook # too niche; named regional winds
+-kinds_of_wind,Blast # a burst of anything; not a kind of wind
+-ways_water_moves,Ooze # thick liquids, slightly gross
+-ways_water_moves,Spurt # same as Squirt, and the weaker card
+
+# ---------- Objects ----------
+-kinds_of_knot,Surgeon|Fisherman|Clove # the knot names are Surgeon's, Fisherman's and Clove hitch; none works alone
+-kinds_of_knot,Butterfly|Celtic # niche as knots; plainly an insect and a culture
+-parts_of_a_bottle,Shoulder|Body|Lip # body-word stretches a player wouldn't accept
+-parts_of_a_bottle,Lid|Rim # bottles have caps; weak fits
+
+# ---------- Words for dark ----------
+-words_for_dark,Stygian|Twilit # rare vocabulary
+
+# ---------- Extensions: birds, animals ----------
+-birds,Cassowary # too niche for tier 1 Birds
+-australian_animals,Bilby|Cassowary # too niche
+-spices,Sumac # too niche
+-words_for_a_horse,Gelding|Yearling|Pinto # too niche
+-words_for_a_horse,Charger # a phone accessory to everyone now; the horse sense is archaic
+-snakes,Krait|Moccasin # too niche; Moccasin reads only as footwear
+-shellfish,Whelk|Winkle|Limpet # UK-only or niche; Winkle is also crude slang
+-pack_animals,Burro # too niche
+-in_a_hive,Propolis # specialist word
+-male_animals,Cockerel # UK word; Rooster is there
+-male_animals,Jack|Cob # too niche for donkeys and swans
+-female_animals,Jenny|Hind # too niche; Hind reads as "rear"
+-animal_adjectives,Ovine|Ursine|Vulpine|Piscine|Leonine # specialist Latin; unplaceable
+-dog_commands,Leave # needs "leave it"; reads as a plain verb
+-things_in_a_nest,Lichen # too niche for a nest
+-things_in_a_nest,Wool # weak fit
+-birds_of_prey,Merlin # reads as the wizard; too niche as a falcon
+-creepy_crawlies,Leech # vetoed word
+-creepy_crawlies,Woodlouse # UK word; pill bug elsewhere
+
+# ---------- Extensions: colour ----------
+-shades_of_beige,Ecru|Buff|Flax # too niche; Buff reads as muscular
+-shades_of_black,Sable # too niche
+-shades_of_purple,Damson|Puce|Thistle|Iris # too niche or barely a shade
+-shades_of_red,Carmine # too niche
+-shades_of_red,Lipstick # comes in every colour; not a shade
+-shades_of_pink,Carnation|Blossom|Peony # flowers, not recognised shades
+
+# ---------- Extensions: food and drink ----------
+-nuts,Filbert # too niche, regional
+-cuts_of_meat,Skirt # niche cut; plainly clothing
+-pasta,Ziti|Rotini|Bucatini|Capellini # too niche for tier 1 Pasta
+-seafood,Cockle|Whelk|Abalone # UK-flavoured or niche for tier 1
+-kinds_of_mushroom,Cremini|Cep|Maitake # too niche
+-root_vegetables,Jicama|Salsify # too niche
+-kinds_of_rice,Carnaroli|Patna # too niche
+-rice_dishes,Kedgeree|Onigiri # UK-only; Onigiri is too niche away from Japanese food
+-sweeteners,Xylitol # specialist word
+-cooking_oils,Rapeseed # unfortunate hidden word; canola elsewhere
+-cooking_oils,Hazelnut # a finishing oil, not a cooking oil
+-citrus_fruit,Citron|Bergamot # too niche
+-herbs,Chervil|Lovage # too niche for tier 1 Herbs
+-tastes,Earthy # wine-tasting word; weak for tier 1
+-places_to_eat,Eatery # contains the key "eat" and gives the group away
+-places_to_eat,Taqueria|Creperie # too niche
+-coffee_drinks,Lungo|Doppio|Piccolo # too niche for tier 1; Piccolo is plainly a flute
+
+# ---------- Extensions: nature ----------
+-wildflowers,Cowslip|Yarrow|Harebell # too niche
+-conifers,Hemlock # known as the poison plant, not the tree
+-parts_of_a_flower,Carpel # specialist word
+-houseplants,Pothos # too niche
+-parts_of_a_mountain,Flank|Spur|Saddle|Shoulder # body and riding words stretched; not parts a player would accept
+-fungi,Bracket|Cep # too niche; Bracket is plainly punctuation
+-seas_of_the_world,Dead # vetoed word on a card, even for the Dead Sea
+-seas_of_the_world,Ionian # too niche
+-seas_of_the_world,Coral # few can name the Coral Sea; plainly a reef or a pink
+
+# ---------- Extensions: objects ----------
+-baby_gear,Pram # UK-only (named in the house rules); Stroller stays
+-at_a_party,Bunting # UK-only
+-at_a_party,Popper # UK-flavoured; also drug slang
+-bags,Holdall # UK-only (named in the house rules)
+-fishing_gear,Creel|Swivel|Bobber # too niche
+-at_the_hairdresser,Foils # specialist; plainly kitchen foil or fencing
+-building_materials,Rebar # specialist word
+-sewing_kit,Yarn # for knitting; a sewing kit has thread
+-prizes,Pennant # US sports word
+-things_in_a_wallet,Token # weak fit; plainly a board game piece
+-measuring_tools,Level # needs "spirit level"; plainly a video game word
+
+# ---------- Pair rules: synonym sets that blur across domains ----------
+PAIR: Words for tired | Sleep words # Sleepy, Drowsy and Groggy honestly fit both
+PAIR: Words for tired | Words for slow # Sluggish, Lethargic, Languid and Torpid mean both
+PAIR: Words for calm | Words for slow # Sedate, Leisurely and Unhurried fit calm; Mellow and Relaxed fit slow
+PAIR: Words for clever | Words for an expert # Sage, Adept and Genius blur across
+PAIR: Words for evil | Words for dark # Sinister and dark overlap; Shady and Shadowy read as evil
+PAIR: Words for boring | Words for dark # Dreary and Dull both mean dim and gloomy
+PAIR: Weather forecast | Words for boring # Dry, Dreary and Dull are all forecasts
+PAIR: Ways to cry | Words for sad # Tearful and Whimper; the same feeling on both sides
+PAIR: Emotions | Virtues # Gratitude is plainly an emotion; Love and Pride read as either
+PAIR: Emotions | Things you can spread # Joy and Love are declared, but Fear and Hate spread just as well
+PAIR: Ways to steal | Ways to hold # Nab, Grab and Seize blur across
+PAIR: Units of measure | Words for lots # Tons reads as a unit
+PAIR: In the Wild West | Words for a fight # Showdown and Duel are plainly Wild West
+
+# ---------- Pair rules: food, nature and objects ----------
+PAIR: At the hospital | First aid kit # Gauze, Swab, Dressing and Ointment fit a hospital; only three cards are declared
+PAIR: Kinds of medicine | First aid kit # Cream, Balm and Salve fit a first aid kit; only Ointment is declared
+PAIR: Kinds of wind | Things that blow # Gale, Gust and Squall blow; only Breeze is declared

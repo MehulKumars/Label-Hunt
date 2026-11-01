@@ -8,7 +8,7 @@ var _ripple := 0.0
 
 func _init() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	size = Vector2(90, 110)
+	size = Vector2(126, 154)
 	z_index = 20
 	visible = false
 
@@ -41,9 +41,12 @@ func _set_ripple(v: float) -> void:
 
 
 func _draw() -> void:
-	# The fingertip sits at (0, 0).
+	# The fingertip sits at (0, 0). Drawn 1.4x with a paper halo so it reads on cream jars and paper cards alike.
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE * 1.4)
 	if _ripple > 0.0 and _ripple < 1.0:
 		draw_arc(Vector2.ZERO, 14.0 + 26.0 * _ripple, 0, TAU, 32, Color(Style.APRICOT, 1.0 - _ripple), 5.0, true)
+	for halo in [Rect2(Vector2(-15, -6), Vector2(30, 58)), Rect2(Vector2(-26, 30), Vector2(62, 64))]:
+		draw_style_box(Style.box(Color(Style.PAPER, 0.9), 16), halo)
 	var skin := Color("#F6D2B5")
 	var finger := Rect2(Vector2(-11, -2), Vector2(22, 50))
 	draw_style_box(Style.box(skin, 11, 3, Style.INK), finger)
@@ -51,3 +54,4 @@ func _draw() -> void:
 	draw_style_box(Style.box(skin, 20, 3, Style.INK), palm)
 	draw_style_box(Style.box(skin, 9, 0), Rect2(Vector2(-8, 30), Vector2(16, 16)))
 	draw_line(Vector2(-22, 62), Vector2(-30, 50), Style.INK, 3.0, true)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)

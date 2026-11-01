@@ -1,0 +1,18 @@
+# Lint fixes after the first merge: true duplicates deleted, heavy overlaps paired.
+DEL: kinds_of_wood  # same set as Types of wood
+DEL: camping_kit  # same set as Camping gear
+DEL: fishing_kit  # same set as Fishing gear
+DEL: places_to_live  # same set as Kinds of home
+DEL: phases_of_life  # same set as Stages of life
+PAIR: Stationery | School supplies
+PAIR: At a party | Birthday party
+PAIR: Extreme weather | Storms
+PAIR: Fabric patterns | Patterns
+PAIR: Kinds of bean | Words before bean
+PAIR: Seafood | Shellfish
+PAIR: Kinds of mushroom | Fungi
+PAIR: Farm animals | Pack animals
+PAIR: Body parts | Words before print
+PAIR: Safari animals | Spotted animals
+PAIR: Card suits | Card games
+PAIR: Flowers | Shades of purple

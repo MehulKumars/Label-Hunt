@@ -44,24 +44,18 @@ func _deal_if_needed(d: Dictionary) -> void:
 	var shell := LevelData.from_dict(d)
 	var rng := RandomNumberGenerator.new()
 	rng.seed = int(spec["seed"])
-	# Re-deal until the solver proves it (corks and labels can make a deal impossible).
+	# Hand-made boards fix their corks and labels by jar index; the dealer then only shuffles the cards.
+	var fixed_corks: Array = d.get("corked", [])
+	var fixed_labels: Dictionary = d.get("labelled", {})
 	for attempt in 50:
-		var jars := Dealer.deal(shell.group_count(), int(spec.get("empties", 2)), rng)
-		shell.jars = jars
-		var corked := PackedInt32Array()
-		for j in d.get("corked", []):
-			corked.append(int(j))
-		shell.corked = corked
-		var labelled := {}
-		for j in d.get("labelled", {}):
-			labelled[int(j)] = int(d["labelled"][j])
-		shell.labelled = labelled
+		shell.jars = Dealer.deal(shell.group_count(), int(spec.get("empties", 2)), rng)
+		shell.corked = PackedInt32Array(fixed_corks.map(func(j: Variant) -> int: return int(j)))
+		shell.labelled = {}
+		for j in fixed_labels:
+			shell.labelled[int(j)] = int(fixed_labels[j])
 		if Solver.solve(BoardState.from_level(shell), 200000)["solved"]:
 			break
-	var words: Array = []
-	for jar in shell.jars:
-		words.append(Array(jar).map(func(c): return shell.word(c)))
-	d["jars"] = words
+	d["jars"] = level_jar_words(shell)
 	var frost_bottom := int(spec.get("frost_bottom", 0))
 	if frost_bottom > 0:
 		var frost: Array = []
@@ -69,3 +63,10 @@ func _deal_if_needed(d: Dictionary) -> void:
 			for k in mini(frost_bottom, jar.size() - 1):
 				frost.append(shell.word(jar[k]))
 		d["frost"] = frost
+
+
+static func level_jar_words(l: LevelData) -> Array:
+	var words: Array = []
+	for jar in l.jars:
+		words.append(Array(jar).map(func(c: int) -> String: return l.word(c)))
+	return words

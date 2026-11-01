@@ -1,0 +1,235 @@
+# Draft 05: science, body, travel, places, time, colour, tech, shapes
+# Format: id,label,key,tier,domain,Word|Word|...   /   +existing_id,Word|Word   /   PAIR: A | B   /   PAIR: Parent < Child
+# Every word that honestly fits a second category is listed in both (new or +extension) so crossings are declared.
+
+# ---------------------------------------------------------------- TIER 1
+directions,Directions,Directions,1,places,North|South|East|West|Left|Right|Forward|Ahead|Upward|Downward|Backward|Sideways
+numbers,Numbers,Numbers,1,science,One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Twenty|Hundred|Thousand|Million
+times_of_day,Times of day,day,1,time,Morning|Noon|Evening|Dawn|Dusk|Midnight|Sunrise|Sunset|Twilight|Nightfall
+stages_of_life,Stages of life,life,1,time,Baby|Toddler|Child|Teenager|Adult|Infant|Youth|Newborn|Senior|Tween
+facial_expressions,Facial expressions,expressions,1,body,Smile|Frown|Wink|Grin|Pout|Sneer|Scowl|Smirk|Grimace|Glare|Squint
+gestures,Gestures,Gestures,1,body,Wave|Nod|Shrug|Point|Clap|Salute|Bow|Wink|Beckon
+ways_to_move,Ways to move,move,1,body,Jump|Skip|Hop|Crawl|Climb|Swim|Leap|Roll|Dash|Sprint|Jog|Slide|Dive|Skate
+ways_to_talk,Ways to talk,talk,1,body,Whisper|Shout|Mumble|Mutter|Yell|Chat|Babble|Stammer|Murmur|Gossip|Bellow|Shriek|Lecture
+at_the_station,At the station,station,1,travel,Platform|Ticket|Carriage|Timetable|Track|Signal|Barrier|Porter|Whistle|Engine|Rail|Conductor|Guard
+at_a_hotel,At a hotel,hotel,1,travel,Lobby|Suite|Porter|Minibar|Reception|Concierge|Balcony|Spa|Keycard|Doorman
+camping_kit,Camping kit,Camping,1,travel,Tent|Lantern|Compass|Hammock|Flask|Map|Rope|Mallet|Tarp|Peg|Stove|Backpack
+places_to_live,Places to live,live,1,places,Cottage|Igloo|Hut|Mansion|Bungalow|Cabin|Palace|Villa|Chalet|Apartment|Yurt|Penthouse|Lodge
+in_the_park,In the park,park,1,places,Swing|Slide|Seesaw|Bench|Fountain|Pond|Picnic|Statue|Lawn|Bandstand
+on_a_farm,On a farm,farm,1,places,Barn|Tractor|Silo|Stable|Haystack|Field|Coop|Trough|Scarecrow|Orchard|Meadow
+bodies_of_water,Bodies of water,water,1,nature,Lake|Pond|Sea|Ocean|River|Lagoon|Bay|Stream|Canal|Reservoir|Puddle|Gulf
+computer_parts,Computer parts,Computer,1,tech,Mouse|Keyboard|Monitor|Screen|Chip|Memory|Webcam|Speaker|Fan|Cable|Drive|Port|Processor
+on_a_phone,On a phone,phone,1,tech,App|Screen|Camera|Battery|Ringtone|Contacts|Emoji|Alarm|Wallpaper|Signal|Speaker
+gadgets,Gadgets,Gadgets,1,tech,Tablet|Laptop|Camera|Drone|Console|Router|Printer|Remote|Scanner|Projector|Headset
+parts_of_a_car,Parts of a car,car,1,tech,Wheel|Engine|Brake|Mirror|Horn|Wiper|Clutch|Gear|Bumper|Exhaust|Pedal|Airbag|Dashboard|Headlight|Axle|Radiator
+parts_of_a_bike,Parts of a bike,bike,1,tech,Pedal|Chain|Saddle|Spoke|Bell|Handlebar|Frame|Gear|Brake|Wheel|Basket|Kickstand|Reflector|Crossbar
+storms,Storms,Storms,1,science,Hurricane|Tornado|Typhoon|Cyclone|Blizzard|Tempest|Squall|Gale|Whirlwind
+places_to_eat,Places to eat,eat,1,places,Cafe|Diner|Bistro|Canteen|Buffet|Pizzeria|Brasserie|Grill|Teahouse|Trattoria
+at_the_pool,At the pool,pool,1,places,Lane|Float|Goggles|Lifeguard|Locker|Slide|Towel|Flippers|Snorkel|Whistle
+bags,Bags,Bags,1,objects,Suitcase|Backpack|Briefcase|Satchel|Tote|Duffel|Clutch|Pouch|Sack
+
+# ---------------------------------------------------------------- TIER 2: colour
+shades_of_purple,Shades of purple,purple,2,colour,Lilac|Lavender|Plum|Violet|Mauve|Grape|Orchid|Amethyst
+shades_of_orange,Shades of orange,orange,2,colour,Tangerine|Apricot|Peach|Coral|Copper|Ginger|Carrot|Mango|Amber|Rust|Saffron
+shades_of_white,Shades of white,white,2,colour,Ivory|Cream|Pearl|Snow|Linen|Chalk|Vanilla|Eggshell|Alabaster
+shades_of_black,Shades of black,black,2,colour,Jet|Ebony|Onyx|Coal|Ink|Raven|Soot|Obsidian
+shades_of_beige,Shades of beige,beige,2,colour,Sand|Khaki|Taupe|Fawn|Camel|Oatmeal|Stone|Mushroom|Wheat|Latte
+black_and_white,Black and white,white,2,abstract,Zebra|Panda|Skunk|Domino|Magpie|Dalmatian|Badger|Barcode|Tuxedo|Penguin
+
+# ---------------------------------------------------------------- TIER 2: body
+ways_to_walk,Ways to walk,walk,2,body,Stroll|Stride|March|Tiptoe|Shuffle|Stomp|Strut|Hike|Wander|Trudge|Amble|Plod|Waddle|Stagger|Trek
+ways_to_laugh,Ways to laugh,laugh,2,body,Giggle|Chuckle|Cackle|Guffaw|Chortle|Hoot|Snort|Roar|Howl
+ways_to_look,Ways to look,look,2,body,Glance|Stare|Peek|Peer|Gaze|Glimpse|Squint|Gape|Glare|Scan|Peep|Watch
+hair_textures,Hair textures,Hair,2,body,Curly|Wavy|Straight|Frizzy|Silky|Shaggy|Spiky|Fluffy|Glossy|Greasy
+reflexes,Reflexes,Reflexes,2,body,Sneeze|Yawn|Blink|Hiccup|Shiver|Cough|Flinch|Twitch|Gasp
+ways_to_touch,Ways to touch,touch,2,body,Tap|Pat|Poke|Rub|Pinch|Squeeze|Tickle|Nudge|Prod|Press
+marks_on_skin,Marks on skin,skin,2,body,Freckle|Mole|Scar|Wrinkle|Dimple|Wart|Birthmark|Tattoo|Pimple|Bruise
+body_positions,Body positions,positions,2,body,Kneel|Squat|Crouch|Slouch|Sprawl|Recline|Lean|Stoop|Lounge|Stand|Sit
+
+# ---------------------------------------------------------------- TIER 2: travel, places, time
+islands,Islands,Islands,2,places,Bali|Crete|Sicily|Hawaii|Tahiti|Sardinia|Corsica|Java|Borneo|Ibiza|Tasmania|Cuba|Fiji
+places_to_shop,Places to shop,shop,2,places,Market|Mall|Bazaar|Boutique|Kiosk|Arcade|Stall|Emporium|Souk
+parts_of_a_castle,Parts of a castle,castle,2,places,Moat|Tower|Turret|Keep|Dungeon|Gate|Courtyard|Rampart|Wall
+kinds_of_trip,Kinds of trip,trip,2,travel,Journey|Voyage|Trek|Cruise|Tour|Odyssey|Excursion|Commute|Outing|Jaunt|Hike|Errand|Quest
+parts_of_a_plane,Parts of a plane,plane,2,travel,Wing|Cockpit|Engine|Propeller|Cabin|Fuselage|Rudder|Flap|Galley|Aisle|Nose
+parts_of_a_ship,Parts of a ship,ship,2,travel,Deck|Hull|Mast|Sail|Anchor|Rudder|Bow|Stern|Keel|Porthole|Cabin|Galley|Bridge|Helm|Funnel
+languages,Languages,Languages,2,culture,Spanish|French|German|Arabic|Hindi|Russian|Swahili|Mandarin|Japanese|Greek|Polish|Dutch|Latin|Korean
+words_for_old,Words for old,old,2,time,Ancient|Antique|Vintage|Elderly|Retro|Historic|Dated|Archaic|Aged|Senior
+how_often,How often,often,2,time,Always|Usually|Sometimes|Seldom|Rarely|Never|Daily|Weekly|Hourly|Yearly|Monthly|Annually
+parts_of_a_clock,Parts of a clock,clock,2,time,Hand|Dial|Pendulum|Spring|Gear|Chime|Bell|Numeral
+
+# ---------------------------------------------------------------- TIER 2: science
+star_signs,Star signs,Star,2,culture,Aries|Taurus|Gemini|Leo|Virgo|Libra|Scorpio|Pisces|Capricorn|Aquarius
+in_the_lab,In the lab,lab,2,science,Beaker|Flask|Pipette|Goggles|Tongs|Funnel|Magnet|Prism|Clamp|Tripod
+energy_sources,Energy sources,Energy,2,science,Solar|Wind|Coal|Oil|Nuclear|Tidal|Hydro|Biomass|Diesel|Wood
+volcano_words,Volcano words,Volcano,2,science,Lava|Magma|Crater|Ash|Vent|Cone|Plume|Eruption|Geyser|Pumice
+electricity,Electricity,Electricity,2,science,Circuit|Battery|Wire|Plug|Socket|Switch|Fuse|Current|Spark|Bulb|Volt|Watt|Charge
+chemistry_words,Chemistry words,Chemistry,2,science,Atom|Molecule|Acid|Element|Compound|Bond|Reaction|Solution|Mixture|Formula|Proton|Electron
+physics_words,Physics words,Physics,2,science,Gravity|Force|Motion|Velocity|Friction|Momentum|Inertia|Quantum|Particle|Thrust|Pressure|Density
+biology_words,Biology words,Biology,2,science,Cell|Gene|Tissue|Species|Fossil|Evolution|Habitat|Protein|Enzyme|Embryo
+scientists,Scientists,Scientists,2,science,Newton|Einstein|Darwin|Curie|Galileo|Edison|Pasteur|Hawking|Faraday|Kepler|Turing
+measuring_tools,Measuring tools,Measuring,2,science,Ruler|Scales|Gauge|Barometer|Sundial|Timer|Odometer|Hourglass
+arithmetic,Arithmetic,Arithmetic,2,science,Plus|Minus|Divide|Multiply|Subtract|Add|Equals|Remainder|Fraction|Decimal|Sum
+
+# ---------------------------------------------------------------- TIER 2: shapes
+geometry,Geometry,Geometry,2,shapes,Angle|Radius|Diameter|Tangent|Chord|Arc|Vertex|Axis|Area|Perimeter|Volume|Sector|Segment|Degree
+patterns,Patterns,Patterns,2,shapes,Tartan|Paisley|Gingham|Chevron|Argyle|Floral|Check|Zigzag|Pinstripe
+kinds_of_line,Kinds of line,line,2,shapes,Straight|Curved|Dotted|Wavy|Zigzag|Diagonal|Parallel|Vertical|Dashed
+
+# ---------------------------------------------------------------- TIER 2: tech
+internet_words,Internet words,Internet,2,tech,Email|Browser|Website|Blog|Link|Download|Upload|Password|Stream|Server|Inbox|Podcast
+social_media_words,Social media words,Social,2,tech,Like|Share|Post|Follow|Comment|Block|Subscribe|Reply|Story|Feed|Profile|Selfie|Hashtag
+computer_keys,Computer keys,keys,2,tech,Enter|Shift|Escape|Delete|Tab|Control|End|Insert|Return|Pause
+touchscreen_moves,Touchscreen moves,Touchscreen,2,tech,Tap|Swipe|Pinch|Scroll|Drag|Zoom|Flick|Press
+photography,Photography,Photography,2,tech,Lens|Flash|Shutter|Tripod|Zoom|Film|Filter|Aperture|Focus|Sensor
+text_symbols,Text symbols,symbols,2,tech,Asterisk|Ampersand|Dollar|Plus|Minus|Equals|Slash|Bracket|Tilde
+
+# ---------------------------------------------------------------- EXTENSIONS: my domains
++things_in_space,Nebula|Astronaut|Pulsar|Quasar
++metals,Steel|Bronze|Brass|Titanium|Magnesium|Tungsten
++gases,Chlorine|Propane|Butane|Xenon|Krypton
++rocks,Slate|Shale|Sandstone|Limestone
++units_of_measure,Hectare|Watt|Volt|Degree|Calorie
++shapes,Crescent|Rhombus|Cube|Sphere|Cone|Pyramid|Cylinder
++months,May|December
++shades_of_blue,Sky|Cerulean|Aqua|Midnight
++shades_of_green,Pine|Fern|Pea|Apple|Grass
++shades_of_red,Cranberry|Vermilion
++shades_of_pink,Coral|Peach|Fuchsia|Magenta
++shades_of_yellow,Saffron|Sunflower|Corn|Straw|Daffodil|Canary
++shades_of_brown,Coffee|Walnut|Mahogany|Cinnamon|Bronze|Sepia
++hairstyles,Beehive|Topknot|Undercut|Pompadour
++organs,Bladder|Pancreas|Intestine|Appendix
++bones,Jaw|Kneecap|Fibula|Humerus|Radius|Ulna|Vertebra|Clavicle
++body_parts,Arm|Leg|Hand|Heel|Thigh|Shin
++parts_of_the_face,Jaw|Nostril|Dimple
++parts_of_the_eye,Lid
++at_the_airport,Lounge|Customs|Luggage|Security|Departure|Arrival
++places_in_a_town,Cafe|Cinema|Pharmacy|Stadium|Zoo|Gym
++ways_to_travel,Van|Moped|Rickshaw|Monorail
++boats,Catamaran|Submarine|Trawler|Liner
++capital_cities,London|Moscow|Beijing|Seoul|Bangkok|Vienna
++countries,Spain|India|Brazil|Canada|Greece|Norway
+
+# ---------------------------------------------------------------- EXTENSIONS: crossing declarations in other domains
+# Each of these words is used in one of my categories above and is an honest member here too.
++flowers,Lilac|Lavender|Fuchsia|Sunflower
++fruit,Grape
++gems,Amethyst|Onyx
++birds,Raven|Canary|Magpie|Penguin
++baby_animals,Fawn
++animal_sounds,Hoot|Snort
++animal_homes,Coop
++instruments,Horn
++fabrics,Tartan|Gingham
++trees,Mahogany|Ebony
+
+# ---------------------------------------------------------------- PAIR RULES
+PAIR: Ways to move < Ways to walk
+PAIR: Weather < Storms
+PAIR: Places in a town | Places to shop
+PAIR: Places in a town | Places to eat
+PAIR: Things at the beach | At the pool
+PAIR: Jobs | At the station
+PAIR: Jobs | At a hotel
+PAIR: Jobs | At the pool
+PAIR: Parts of a car | Parts of a bike
+PAIR: Computer parts | Gadgets
+PAIR: On a desk | Gadgets
+PAIR: Things with keys | Computer keys
+PAIR: Ways to touch | Touchscreen moves
+PAIR: Things that tell time | Parts of a clock
+PAIR: Things that tell time | Measuring tools
+PAIR: Landforms | Volcano words
+PAIR: Chemistry words | Physics words
+PAIR: Chemistry words | Biology words
+PAIR: Physics words | Biology words
+PAIR: Shapes | Geometry
+PAIR: Arithmetic | Text symbols
+PAIR: Internet words | Social media words
+PAIR: Things with stripes | Black and white
+PAIR: Hairstyles | Hair textures
+PAIR: On a farm ! animals
+PAIR: In a rainbow | Shades of purple
+PAIR: In a rainbow | Shades of orange
+PAIR: Shades of pink | Shades of purple
+PAIR: Shades of blue | Shades of purple
+PAIR: Shades of red | Shades of purple
+PAIR: Shades of pink | Shades of orange
+PAIR: Shades of red | Shades of orange
+PAIR: Shades of yellow | Shades of orange
+PAIR: Shades of brown | Shades of orange
+PAIR: Shades of brown | Shades of beige
+PAIR: Shades of yellow | Shades of beige
+PAIR: Shades of white | Shades of beige
+PAIR: Bodies of water | Rivers
+PAIR: Bodies of water | Parts of a river
+PAIR: Bodies of water | Ways across a river
+PAIR: Bodies of water | Sea creatures
+PAIR: Stages of life | Baby animals
+
+# ---------------------------------------------------------------- SUMMARY
+# Counts: 68 new categories (24 tier 1, 44 tier 2). 35 extension lines: 25 grow existing categories in my domains,
+#   10 declare crossings in other domains (flowers, fruit, gems, birds, baby_animals, animal_sounds, animal_homes,
+#   instruments, fabrics, trees). 42 PAIR lines (one uses the "! domain" form from pairs.txt: On a farm ! animals).
+# Checked by script: every word is 3-9 letters and sentence case, labels are 22 characters or fewer, each key is
+#   in its label and inside no member, no member contains another member of its own category, no id clashes.
+#
+# Crossings declared (word: categories). The fun herrings:
+#   March (months, ways_to_walk) / Dash, Skate (words_before_board, ways_to_move) / Roar, Howl, Hoot, Snort
+#   (animal_sounds, ways_to_laugh) / Lens (parts_of_the_eye, photography) / Nose (face, things_that_run,
+#   parts_of_a_plane) / Gear (things_with_teeth, car, bike, clock) / Bell (things_with_rings, bike, clock) /
+#   Hand (body_parts, clock) / Radius (bones, geometry) / Degree, Volt, Watt (units, geometry or electricity) /
+#   Current (parts_of_a_river, electricity) / Stream (bodies_of_water, internet_words) / Gate (airport, castle) /
+#   Bow (tie, gestures, ship) / Bridge (card_games, river, ship) / Cabin (places_to_live, plane, ship) /
+#   Mandarin (citrus, languages) / Cuba, Fiji (countries, islands) / Dollar (currencies, text_symbols) /
+#   Drive (golf_terms, computer_parts) / Mouse (pets, desk, computer_parts) / Watch (wear, time, faces, ways_to_look) /
+#   Bench (furniture, park) / Wind (weather, energy) / Wood (words_after_fire, energy) / Coal (black, energy) /
+#   Ash (trees, volcano) / Pumice (rocks, volcano) / Cone (shapes, volcano) / Jet, Ink (black) / Midnight
+#   (times_of_day, blue) / Senior (stages_of_life, words_for_old) / Horn (car, instruments) / Clutch (car, bags).
+#   The new shades lean on food, flowers, gems and metals: Plum, Grape, Lilac, Lavender, Orchid, Amethyst,
+#   Tangerine, Apricot, Peach, Coral, Copper, Ginger, Carrot, Mango, Saffron, Cream, Pearl, Linen, Chalk, Vanilla,
+#   Snow, Onyx, Raven, Obsidian, Sand, Fawn, Mushroom, Latte, Pine, Fern, Pea, Apple, Cranberry, Corn, Straw,
+#   Daffodil, Sunflower, Canary, Coffee, Walnut, Cinnamon, Bronze, Mahogany.
+#   Within my slice: Slide (move, park, pool), Goggles, Whistle, Towel (pool and existing kit), Porter (station,
+#   hotel), Signal, Screen, Speaker, Camera, Battery (phone and others), Engine, Rudder, Galley, Wink, Squint,
+#   Glare, Tap, Pinch, Press, Zoom, Tripod, Flask, Funnel, Wavy, Straight, Zigzag, Plus, Minus, Equals, Hike,
+#   Trek, Pond, Dimple, Lounge, Cafe, Market, Sundial, Timer, Hourglass.
+#
+# Words deliberately avoided:
+#   US/UK or spelling: Grey (so no grey shades), Centre (so no "Parts of a circle"), Tyre, Bonnet, Boot, Trunk, Hood,
+#     Windscreen, Indicator, Fender, Kerb, Pavement, Lift, Torch, Trolley, Holdall, Purse, Caravan, Takeaway,
+#     Snigger/Snicker, Sulphur, Aluminium, Moustache, Percent, Hash (# is "pound" in the US), Outlet (a US power
+#     socket, which would clash with Electricity), Autumn/Fall (no seasons category).
+#   Taste: Wine, Burgundy, Claret (shades), Temple, Church, Cardinal, Cancer (star sign), Blood, Noose, Uranus,
+#     natural disasters as a category.
+#   Brands: Twister, Tarmac, Tesla, Walkman, Polaroid, Kindle. (Zoom is kept as the everyday verb.)
+#   Substrings inside a category: Charcoal (Coal), Tag (Hashtag), Night (Midnight), Afternoon (Noon), Chatter (Chat),
+#     Cafeteria (Cafe), Seatbelt (Seat), Handbag (bag), Sandstorm and Hailstorm (storm), Stopwatch (Watch is in
+#     Things that tell time), Eyelid and Eyebrow (eye, brow), Keypad (would be a phantom Thing with keys).
+#   Label clashes: Castle (Parts of a castle), Pool (At the pool), Planet (Planets), Spine (Things with spines),
+#     Bone (Bones), Tail (Things with tails), Phone (On a phone), Space and Home as computer keys, Times (Times of
+#     day), Energy (Energy sources), Gas (Gases). Camping "gear" became "kit" so the Gear card doesn't echo the label.
+#   Phantom risks: Japan, Malta, Iceland, Cyprus, Jamaica (island nations: would be phantom Islands or Countries),
+#     Pumpkin (fruit/veg dispute), Raspberry (berry pedantry), Monsoon (a season, not a storm), Ramble (also a walk),
+#     Perch (a fish), Cuckoo (a bird), Deli (eat or shop?), Magenta in purple (kept in pink, and pink/purple are
+#     paired). I dropped an "Elements" category: Mercury, Gold, Iron, Tin, Neon and others would be phantoms
+#     everywhere. I dropped a "Sciences" category because Biology, Physics and Chemistry are label words of the
+#     three "words" categories.
+#
+# Possible clashes with other agents' slices (I can't see their drafts):
+#   Crawl (swimming strokes), Forward (football positions), Saddle (riding kit), Chip (potato food), Mole (animal),
+#   Panda and Camel (animal lists), Skate (a fish), Spring (seasons), Wing (things with wings), Appendix (parts of a
+#   book), Tablet (medicine). Bags, Bodies of water, Languages, Numbers, Stages of life, Camping kit,
+#   Social media words and Scientists may duplicate another slice's category. Merge on review.
+#
+# Unsure (most to least):
+#   1. star_signs: astrology sits near the religion taste rule. Leo is the only 3-letter member.
+#   2. measuring_tools: only 8 strong members. Gauge and Odometer are weaker, and it overlaps Things that tell time (paired).
+#   3. marks_on_skin: Mole is an undeclared animal. Pimple, Wart and Bruise are mildly unpleasant.
+#   4. shades_of_beige: Taupe, Khaki and Oatmeal are less universal. Camel is an animal no list declares.
+#   5. ways_to_laugh: shares 4 of 9 words with Animal sounds (Roar, Howl, Hoot, Snort). It's a strong herring, but
+#      consider a pair rule if the generator struggles.
+#   Also watch: black_and_white (Badger is partly grey), reflexes (is a Yawn a reflex?), parts_of_a_clock (Spring,
+#   Numeral), shades_of_black (exactly 8), text_symbols (Tilde), words_for_old (Retro), the three science "words"
+#   categories (textbook feel, all mutually paired), hair_textures (Greasy, Fluffy).

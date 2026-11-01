@@ -2,17 +2,26 @@
 ## Never generates levels at runtime.
 extends Node
 
-const FILES := [
-	"res://data/levels/tutorial.json",
-	"res://data/levels/room1.json",
-	"res://data/levels/test.json",
-]
+## The level files in load order (tutorial, rooms, test), written by tools/room_gen.gd.
+const INDEX := "res://data/levels/index.json"
 
 var catalog: Catalog
 
 
 func _ready() -> void:
-	catalog = Catalog.from_files(PackedStringArray(FILES))
+	catalog = Catalog.from_files(files())
+
+
+static func files() -> PackedStringArray:
+	var index: Variant = JSON.parse_string(FileAccess.get_file_as_string(INDEX)) if FileAccess.file_exists(INDEX) else null
+	var out := PackedStringArray()
+	if not index is Dictionary:
+		push_error("Levels: %s is missing or broken" % INDEX)
+		return out
+	for f in (index as Dictionary).get("files", []):
+		if FileAccess.file_exists(str(f)):
+			out.append(str(f))
+	return out
 
 
 func valid_ids() -> Dictionary:

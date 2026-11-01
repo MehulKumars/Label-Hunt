@@ -30,6 +30,9 @@ bell              pwl_bells/bell_ding1.wav                                  1.40
 tap               kenney_interface/x/Audio/click_001.ogg                    0.12   -15
 whoosh            kenney_interface/x/Audio/minimize_003.ogg                 0.25   -20
 win               kenney_jingles/x/OGG/jingles_PIZZA/jingles_PIZZA07.ogg    2.00   -6
+coin              kenney_rpg/x/OGG/handleCoins2.ogg                         0.60   -11
+levelup           kenney_jingles/x/OGG/jingles_PIZZA/jingles_PIZZA03.ogg    1.60   -8
+gift              kenney_interface/x/Audio/open_002.ogg                     0.45   -12
 "
 
 peak() { ffmpeg -hide_banner -nostats -i "$1" -af volumedetect -f null - 2>&1 | sed -n 's/.*max_volume: \(-\{0,1\}[0-9.]*\) dB.*/\1/p'; }

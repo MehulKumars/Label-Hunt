@@ -1,0 +1,283 @@
+# review_4a: fresh-eyes fairness review of drafts 09a_thin_domains and 09b_people_culture (new categories and + lines).
+# Not flagged: same-domain overlaps, label clashes and hidden-word overlaps (room_gen rejects those itself).
+
+# ---------- 09a: places ----------
+-at_the_museum,Diorama # niche word in a tier 1 set
+-at_the_dentist,Bib # barely fits: a bib means Baby gear, nobody places it at the dentist
+TIER: at_the_dentist,2 # Enamel, Plaque, Fluoride, Retainer are not tier 1
+TIER: at_the_bank,2 # Mortgage, Overdraft, Statement, Interest are adult finance, not tier 1
+PAIR: At the hospital | First aid kit # Bandage, Splint, Sling shared; Gauze, Swab, Dressing, Ointment all fit a hospital too
+PAIR: At the bank | Things you can pay # Loan, Mortgage, Interest, Deposit are all paid; none listed there
+DEL: us_states # US-only knowledge (Idaho, Iowa, Vermont, Wyoming), and one proper-noun geography set too many
+DEL: deserts # mostly niche: Namib, Sonoran, Negev, Thar, Karakum, Atacama, Sinai, Mojave; only Sahara, Gobi, Kalahari are known
+DEL: south_american_nations # fourth continent version of the same set, and the thinnest (10 real members once Guyana, Suriname go)
+-asian_countries,Brunei # too niche to place
+-kinds_of_settlement,Commune|Borough|Homestead # niche or regional senses
+-kinds_of_settlement,Port|Camp # barely settlements: a port is a harbour, a camp is tents
+-mountain_ranges,Tatras|Karakoram|Apennines|Cascades # too niche to place
+
+# ---------- 09a: travel ----------
+-kinds_of_road,Crescent|Parkway # UK street-name sense and US-only road
+-kinds_of_road,Trail|Track # a footpath and a rail or running track, not roads
+DEL: parts_of_a_train # mostly steam-engine trivia (Tender, Firebox, Coupling, Buffer, Funnel, Chimney); too few real members left
+-aircraft,Gyroplane|Monoplane|Triplane|Turboprop # specialist
+PAIR: Aircraft | Things that crash # Plane is declared there; Jet, Glider, Drone crash just as honestly
+PAIR: Aircraft | Things that float # Blimp, Airship, Balloon float on air
+-places_to_stay,Ryokan # too niche to place
+DEL: explorers # surname trivia: Peary, Cabot, Balboa, Raleigh, Tenzing; Drake, Scott, Hillary read as first names
+-road_features,Hairpin|Hump # a hairpin holds hair (and fits At the hairdresser); hump is UK-only and crude-adjacent
+
+# ---------- 09a: tech ----------
+-ways_to_communicate,Semaphore # too niche to place in a tier 1 set
+-coding_words,Boolean|Array|Compile # specialist: only programmers can place them
+-network_words,Latency|Proxy|Protocol # specialist
+-spacecraft,Sputnik # one named craft among kinds of craft; niche
+PAIR: Spacecraft | Ways to travel # Shuttle, Spaceship, Rocket all read as ways to travel
+
+# ---------- 09a: time ----------
+PAIR: Time words | Words for hello # Morning, Evening are plainly time words; listed only under hello
+-lengths_of_time,Fortnight # UK-only (house rule)
+-units_of_time,Fortnight # UK-only (house rule)
+-lengths_of_time,Jiffy # colloquial, unknown to learners
++at_school,Term # Term (Lengths of time) is plainly a school word
+-words_for_new,Current|Original # barely mean new: current is present, an original is often the old one
+-words_for_new,Untried|Unworn # rare, and too many un- words give the group away
+-kinds_of_clock,Carriage|Mantel|Water|Candle|Station # niche or UK: nobody names these clocks
+-kinds_of_clock,Doomsday # niche and grim
+-words_for_fast,Fleet|Nimble # fleet is rare as an adjective; nimble means agile, not fast
+-words_for_slow,Torpid|Languid|Sedate|Tardy # rare words; tardy means late and sedate means calm
+
+# ---------- 09a: home ----------
+-garden_features,Pergola|Rockery|Decking # niche or UK-only in a tier 1 set
+PAIR: Garden features | On a farm # Fence, Gate, Shed, Pond all fit a farm
+-lighting,Sconce|Downlight|Tealight # trade or decor words; niche for tier 1
+-lighting,Pendant # barely fits: everyone reads a necklace
+-parts_of_a_roof,Fascia|Flashing|Truss|Dormer # builders' words
+-kinds_of_door,Stable|Cellar|Stage # UK half-door and weak compounds
+-by_the_fireplace,Flue|Damper # too niche to place
+-by_the_fireplace,Mantel # spelling trap with Mantle (Geology words)
+-plumbing,Gasket|Siphon|Cistern|Trap # trade words; Cistern is UK, nobody knows the Trap sense
++hot_things,Boiler # Boiler (Plumbing) is plainly hot
+-parts_of_a_staircase,Newel|Baluster|Spindle|Stringer|Riser # joiners' words
++at_the_airport,Flight|Landing # both sit in Parts of a staircase and plainly fit an airport
++ways_to_walk,Tread|Step # both sit in Parts of a staircase and plainly mean walking
+
+# ---------- 09a: school ----------
+-at_school,Register # UK sense; most players think cash register
+-at_school,Hall # generic: also fits Rooms in a house
+-kinds_of_number,Ordinal # too niche
+-kinds_of_poem,Tanka # too niche to place
+-kinds_of_poem,Epitaph # a grave inscription, not a kind of poem
+-figures_of_speech,Imagery # not a figure of speech
+-parts_of_a_story,Climax # crude out of context, and the set does not need it
+PAIR: Parts of a story | Roles in a story # Hero, Villain, Narrator shared; near twins
+PAIR: Parts of a book | Parts of a story # Prologue, Epilogue shared; Chapter fits a story too
++words_for_a_fight,Conflict # Conflict (Parts of a story) plainly means a fight
+
+# ---------- 09a: games ----------
+-playground_games,Kickball|Rounders # one US-only, one UK-only
+-chess_terms,Fork|Pin|Rank|Tempo # only club players accept these; Fork and Pin read as anything else
+-video_game_genres,Roguelike # specialist
+-video_game_genres,Platform # the genre is platformer; barely fits
+-game_results,Walkover|Whitewash|Thrashing|Rout # UK sport slang or rare words
++words_for_sad,Upset # Upset (Game results) plainly means sad
+-bowling_terms,Approach|Hook # only league bowlers know these
+
+# ---------- 09a: shapes ----------
+-solid_shapes,Torus|Ellipsoid|Spheroid|Ovoid # university maths
+-curves,Hyperbola # too niche
+DEL: shape_adjectives # dictionary forms of Shapes: every member ends -al or -ed, so no thinking, just a near duplicate
+
+# ---------- 09a: drink ----------
+-hot_drinks,Broth # soup, not a drink
+-hot_drinks,Tisane|Rooibos|Cortado # too niche for tier 1
+PAIR: Italian food | Hot drinks # Espresso is declared; Latte, Macchiato are just as Italian
+-cold_drinks,Horchata|Granita # too niche; a granita is a dessert
+-mexican_food,Horchata # gone from Cold drinks, too niche to place
+-spanish_food,Horchata # gone from Cold drinks, too niche to place
+-italian_food,Granita # gone from Cold drinks, too niche to place
+PAIR: Fast food | Cold drinks # Shake is listed; Cola and Milkshake are fast food staples
+-kinds_of_water,Rose # stretch: every player puts it in Flowers or Shades of pink
+-coffee_words,Robusta|Crema # coffee-nerd words
+-coffee_words,Java|Press|Steam # barely coffee words alone
+
+# ---------- 09a: + extensions ----------
+-in_a_board_game,Marker|Peg # barely fit: Token, Counter are the real words
+-playing_card_terms,Meld # rummy-only word
+-kinds_of_puzzle,Codeword|Cryptic|Acrostic # UK newspaper terms; cryptic is an adjective; acrostic stays a poem
++words_for_a_problem,Conundrum # Conundrum (Kinds of puzzle) sits beside Dilemma, Quandary
+-ways_to_drink,Quaff|Chug|Imbibe # rare, and all three lean towards alcohol
+-coffee_drinks,Lungo # too niche
+-floor_coverings,Terrazzo|Flagstone # too niche
+-parts_of_a_clock,Weight # barely fits: only pendulum clocks
+-kinds_of_bed,Trundle # US and niche
+-parts_of_a_castle,Bailey|Bastion|Barbican # historians' words
+-parts_of_a_door,Lintel|Jamb # builders' words
+-parts_of_a_window,Lintel|Mullion|Casement # builders' words
+-patterns,Damask|Harlequin # too niche
+-gadgets,Tracker # barely a gadget word on its own
+-computer_keys,Option|Command # Mac-only keys
+-parts_of_a_plane,Aileron # specialist
+-garden_tools,Barrow|Loppers # UK short form and trade word in a tier 1 set
+-garden_jobs,Hoeing|Edging # rare; Edging has a crude slang sense
+-in_the_living_room,Throw # decor sense unknown to learners
+-on_the_bed,Throw|Valance|Eiderdown|Coverlet # decor or dated UK words in a tier 1 set
+-chores,Wiping # weak, and an awkward card alone
+-cleaning_kit,Scourer # UK-only
+-stages_of_life,Retiree # US word; the draft itself dropped the Pensioner/Retiree split
+-words_for_old,Primeval # rare
+-text_symbols,Caret # too niche; sounds like Carrot
+-ways_across_a_river,Pontoon # niche; in UK it is a card game
+
+# ---------- 09b: body ----------
+-hands_and_feet,Cuticle|Instep # too niche for tier 1
+-hands_and_feet,Pinky # regional
+PAIR: Things in pairs | Hands and feet # Wrist, Ankle, Palm, Heel all come in pairs
+-muscles,Oblique|Gluteus # gym jargon
+-ways_to_hold,Snatch # crude slang sense; means steal, not hold
+-ways_to_hold,Clench # you clench teeth or fists, you do not hold with it
+-kinds_of_medicine,Salve # rare
+-kinds_of_medicine,Tonic # dated sense; barely medicine now
+-ways_to_run,Lope|Hurtle # rare
+-ways_to_run,Zoom|Canter # zoom is not on foot; canter is a horse pace and rare
+-ways_to_fall,Spill|Sprawl # UK idiom; sprawl is how you lie, not fall
+-parts_of_the_mouth,Uvula # too niche
+-parts_of_the_mouth,Saliva # not a part, and an unpleasant card
+
+# ---------- 09b: culture ----------
+-on_television,Soap|Pilot # jargon senses in a tier 1 set: bathroom and airport words to most learners
+-in_a_library,Aisle|Stamp # barely fit: supermarket word; date stamps are gone
+-on_a_film_set,Crane|Boom # crew jargon; everyone reads a bird or machine and a noise
+DEL: detective_story # open set, crime-adjacent (house rule)
+-pottery_words,Bisque|Slip|Coil|Slab # potters' jargon
+-dance_moves,Grapevine|Worm # niche; Worm reads as Creepy crawlies
+TIER: in_the_wild_west,2 # Bronco, Lasso, Spur, Prairie are film knowledge, not tier 1
+-in_the_wild_west,Posse|Corral # too niche; US-only history
+-at_a_theme_park,Queue # UK-only (house rule)
+-at_a_theme_park,Flume # too niche
+-superhero_words,Emblem|Secret # barely fit: secret is an open word, emblem a stretch
+PAIR: Things you wear | Superhero words # Cape, Mask, Costume, Tights are all worn
+-at_the_post_office,Queue # UK-only (house rule)
+-at_the_post_office,Scale # barely fits
+-ancient_rome,Consul # too niche
+-ancient_rome,Sandal # not Roman in any specific way; Footwear word
+-ancient_egypt,Cairo # a medieval city, not ancient Egypt
+-ancient_egypt,Camel|Desert|Delta|Oasis # barely fit: general desert words, not Egypt
+PAIR: At a wedding | Formal wear # Dress is listed; Tuxedo, Gown, Suit are just as much wedding words
+
+# ---------- 09b: music ----------
+-parts_of_a_guitar,Pickguard|Headstock|Saddle # guitarists' jargon
+-italian_music_words,Lento|Largo|Vivace|Dolce # only musicians know these
+TIER: italian_music_words,3 # specialist even after the cut: you place them by the Italian look, not by knowing them
+-musical_groups,Sextet # awkward card, and the set does not need it
+-musical_groups,Septet # rare
+-music_notation,Stave # UK-only (US staff)
+-music_notation,Stem|Beam|Dot|Tie # readers of music only; every other player reads these as something else
+-classical_pieces,Fugue|Toccata|Scherzo # too niche to place
+-ways_to_sing,Lilt # rare
+-ways_to_sing,Busk|Beatbox|Belt # busking is street work, beatbox is not singing, belt only works as belt out
+-at_the_opera,Libretto # too niche
+-kinds_of_drum,Bodhran|Cajon|Taiko # too niche to place
+-kinds_of_drum,Kettle|Tom # only as kettledrum and tom-tom; barely fit alone
+
+# ---------- 09b: sport ----------
+-snooker_words,Baize|Rest|Bridge # only players know these
+-snooker_words,Screw # crude out of context
+-surfing_terms,Lineup|Leash|Barrel # surfers' jargon
+-playing_positions,Pitcher|Shortstop|Catcher # US-only baseball (house rule)
+-playing_positions,Flanker # rugby-only jargon
+-motor_racing,Chicane|Apex|Marshal # only fans know these
+-at_a_skate_park,Truck|Deck|Bowl # skaters' jargon: all read as something else
+DEL: figure_skating # mostly unplaceable: Axel, Lutz, Salchow, Twizzle, plus Camel, Edge, Loop, Flip that only skaters accept
+
+# ---------- 09b: people ----------
+DEL: at_the_police_station # open set, crime-adjacent (house rule), and it held Constable
+-at_the_fire_station,Smoke # barely fits: smoke is at the fire, not the station
+-old_trades,Chandler|Farrier|Saddler|Milliner # too niche to place
+-household_staff,Coachman # dated
+-household_staff,Steward # airline or ship word; barely household
+PAIR: Household staff | At a hotel # Maid, Valet, Cleaner are all hotel staff
+-terms_of_endearment,Kitten|Petal # barely terms of endearment; Petal is regional UK
+-people_at_sea,Bosun|Purser # too niche to place
+-medical_jobs,Osteopath|Matron|Orderly|Physio # niche or UK-only
+
+# ---------- 09b: science ----------
+-geology_words,Seam # coal-mining sense; everyone reads Parts of a coat
+DEL: minerals # mostly unplaceable: Feldspar, Bauxite, Calcite, Pyrite, Fluorite, Malachite, Borax, Mica, Gypsum
+-science_units,Coulomb|Farad|Lumen # too niche
+-science_units,Mole # chemistry-only sense; everyone reads an animal or a skin mark
+-statistics,Variance # university word
++words_for_evil,Mean # Mean (Statistics) sits beside Cruel, Nasty, Spiteful
+-astronomy_words,Zenith # rare
+-microscopic_life,Diatom|Bacillus # too niche
+-microscopic_life,Mildew # you can see mildew: not microscopic
+PAIR: Ailments | Microscopic life # a Virus or Germ reads as an ailment
++things_you_can_catch,Virus # Virus (Microscopic life) is plainly caught
+DEL: forms_of_energy # near twin of Energy sources (Solar, Tidal, Nuclear), and school-only adjectives
+-optics,Refract # rare
+-prehistoric_life,Smilodon|Allosaur|Pterosaur|Trilobite|Ammonite # too niche to place
+PAIR: Reptiles | Prehistoric life # Dinosaur, Stegosaur, Iguanodon are reptiles
++kinds_of_shark,Megalodon # Megalodon (Prehistoric life) is a shark
+
+# ---------- 09b: clothing ----------
+-sportswear,Unitard|Singlet # too niche for tier 1
+-sportswear,Bib # UK training-bib sense; everyone reads Baby gear
+PAIR: Things with legs | Sportswear # Shorts is listed; Leggings and Tracksuit have legs too
+PAIR: Things with buttons | Formal wear # Suit, Blazer, Tailcoat, Tuxedo have buttons
+PAIR: Things with buttons | Winter clothes # Overcoat, Parka, Anorak have buttons
+-trimmings,Piping|Rosette # tailors' word; a rosette is a prize
+-kinds_of_skirt,Puffball|Tulip|Bubble|Skater # fashion jargon
+-formal_wear,Waistcoat # UK-only (house rule)
+-formal_wear,Corsage|Cravat # US prom word and dated word in a tier 1 set
+-fashion_show,Season|Mannequin # barely fit: a mannequin is a shop window, season is open
++at_the_hairdresser,Stylist # Stylist (Fashion show) is plainly a hairdresser word
++at_a_play,Backstage # Backstage (Fashion show) plainly fits a play
++at_a_concert,Backstage # Backstage (Fashion show) plainly fits a concert
+-knitting_words,Skein|Gauge|Tension|Moss|Cast|Rib # knitters' jargon
+
+# ---------- 09b: + extensions ----------
+-worn_on_the_legs,Culottes|Breeches|Jodhpurs # too niche for tier 1
+-footwear,Galosh|Slingback # dated or fashion jargon
+-hats,Tricorn|Topper|Cloche|Pillbox|Derby # too niche or regional; Derby is the US word for Bowler
+-traditional_clothes,Dirndl|Hanbok|Dashiki|Cheongsam # too niche to place outside their own countries
+-traditional_clothes,Kaftan # spelling variant (Caftan)
+-hairstyles,Quiff|Bouffant # UK-only and dated
+-parts_of_a_dress,Slit # awkward card alone
+-parts_of_a_coat,Vent # tailors' word
+-parts_of_a_shoe,Aglet # trivia word
+-worn_in_the_hair,Barrette|Feather # US-only and a stretch
+-percussion,Cajon # too niche
+-string_instruments,Zither|Koto # too niche
+-kinds_of_song,Madrigal # too niche
+-kinds_of_race,Duathlon # too niche
+-gymnastics_moves,Walkover|Aerial|Straddle # gymnasts' jargon
+-riding_gear,Girth|Blinkers|Jodhpurs # riders' jargon
+-on_the_slopes,Mogul|Binding # skiers' jargon
+-sports_venues,Oval # cricket-only sense; everyone reads Shapes
+-prizes,Wreath # barely a prize today
+-combat_sports,Hapkido # too niche
+-parts_of_the_eye,Sclera # too niche
+-shopkeepers,Milliner|Draper|Chandler # too niche to place
+-trades,Glazier|Joiner # too niche or UK-only
+-experts,Whiz # spelling variant (Whizz)
+-words_for_a_friend,Crony # barely fits: a crony is not a friend you would praise
+-jobs_with_animals,Farrier # too niche
+-card_games,Cribbage|Euchre|Pinochle # regional games, unknown worldwide
+-kinds_of_comedy,Lampoon # rare
+-in_a_newspaper,Masthead # specialist
+-celebrations,Shindig # rare
+-volcano_words,Caldera # specialist
+-rocks,Schist|Gneiss # same level as Feldspar
+-on_the_table,Pitcher # US-only (house rule)
+-flowers,Cosmos # most players never heard of the flower, and this is tier 1
+
+# ---------- Hidden-word lists: members left with no home after the cuts above, or failing a house rule ----------
+-hidden_body_parts,Headstock|Chandler|Slingback|Cribbage|Shindig|Masthead # no home left and rare
+-hidden_body_parts,Handcuffs # crime-adjacent (house rule)
+-hidden_clothing,Waistcoat # UK-only (house rule)
+-hidden_farm_animals,Pillbox # no home left and rare
+-hidden_hues,Corsage|Pinky|Kaftan # no home left, or regional
+-hidden_insects,Bouffant|Sergeant|Radiant|Canter # no home left and rare
+-hidden_instruments,Gluteus # no home left and rare
+-hidden_trees,Dashiki # no home left and rare
+-hidden_vehicles,Busk # no home left and rare

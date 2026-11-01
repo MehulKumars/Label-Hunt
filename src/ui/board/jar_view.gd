@@ -9,9 +9,13 @@ enum Layer { BACK, FRONT }
 const LABEL_SHARE := 0.88
 
 var layer := Layer.BACK
+## The room whose glass, silhouette and lids this jar wears (Themes).
+var room := 1
 var neck := 20.0
 var corked := false
 var labelled_text := ""
+## Where an open labelled jar's label must end: the top edge of the third card's slot.
+var label_bottom := 0.0
 ## 0 = no lid, 1 = lid fully screwed on.
 var lid_t := 0.0
 var lid_label := ""
@@ -36,9 +40,9 @@ func _draw() -> void:
 		if hot:
 			var body := Rect2(0, neck, size.x, size.y - neck)
 			draw_style_box(Style.glow(Color(Style.APRICOT, 0.55), 30, 22), body.grow(-6))
-		draw_texture_rect(Art.tex("jar_back", size, Materials.jar_back), r, false)
+		draw_texture_rect(Art.tex("jar_back|%d" % room, size, RoomArt.jar_back.bind(room)), r, false)
 		return
-	draw_texture_rect(Art.tex("jar_front", size, Materials.jar_front), r, false)
+	draw_texture_rect(Art.tex("jar_front|%d" % room, size, RoomArt.jar_front.bind(room)), r, false)
 	var ni := Materials.jar_neck(size.x)
 	var mouth := Rect2(ni, 0, size.x - ni * 2, neck)
 	if corked:
@@ -69,7 +73,7 @@ func _draw_lid(mouth: Rect2) -> void:
 	var rect := Rect2(mouth.position.x - 8, -lid_size.y * 0.55 + drop, lid_size.x, lid_size.y / squash)
 	rect.position.x -= (rect.size.x * (squash - 1.0)) / 2.0
 	rect.size.x *= squash
-	var tex := Art.tex("lid_%s" % label_color.to_html(false), lid_size, Materials.lid.bind(label_color))
+	var tex := Art.tex("lid_%s|%d" % [label_color.to_html(false), room], lid_size, RoomArt.lid.bind(room, label_color))
 	draw_texture_rect(tex, rect, false)
 
 
@@ -77,14 +81,17 @@ func _draw_label(text: String) -> void:
 	var font := Style.hand()
 	var w := size.x * LABEL_SHARE
 	var max_w := w - 20.0
-	var fs := Style.FS_30
+	# An open labelled jar never holds 4 cards (the 4th brings the lid), so its label rests in the free top slot.
+	var open := lid_t < 1.0
+	var fs := Style.FS_26 if open else Style.FS_30
 	var lines := _wrap(text, font, fs, max_w)
 	if lines.size() > 1 or font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > max_w:
-		fs = Style.FS_26
+		fs = Style.FS_22 if open else Style.FS_26
 		lines = _wrap(text, font, fs, max_w)
 	var line_h := fs * 1.08
-	var box := Vector2(w, line_h * lines.size() + 20.0)
-	var centre := Vector2(size.x / 2.0, neck + (size.y - neck) * 0.46)
+	var pad := 8.0 if open else 20.0
+	var box := Vector2(w, line_h * lines.size() + pad)
+	var centre := Vector2(size.x / 2.0, label_bottom - box.y / 2.0 - 1.0 if open else neck + (size.y - neck) * 0.46)
 	draw_set_transform(centre, deg_to_rad(-2.0), Vector2.ONE)
 	var local := Rect2(-box / 2.0, box)
 	draw_texture_rect(Art.tex("label", box, Materials.label.bind(false)), local, false)
@@ -95,7 +102,7 @@ func _draw_label(text: String) -> void:
 		var visible := clampi(shown - used, 0, line.length())
 		used += line.length() + 1
 		var ts := font.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-		var y := local.position.y + 9.0 + line_h * i + font.get_ascent(fs) * 0.92
+		var y := local.position.y + pad * 0.45 + line_h * i + font.get_ascent(fs) * 0.92
 		draw_string(font, Vector2(-ts.x / 2.0, y), line.substr(0, visible), HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
 	if shine_t >= 0.0 and shine_t <= 1.0:
 		var sx := lerpf(local.position.x - 30, local.end.x + 30, shine_t)

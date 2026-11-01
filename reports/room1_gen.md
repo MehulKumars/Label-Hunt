@@ -1,41 +1,38 @@
-# Room 1 generation
+# Room 1 settle
 
-Bank: 139 categories. Seed 1, 12 candidates x 3 deals x 30 games each; finals 200 games per profile.
+Seed 1, 6 deals x 30 games each; finals 200 games per profile. Budget = the tightest slip limit at which the average bot still wins at the level's floor rate. Win rates are with the budget.
 
-Target = the average bot's mean slips on the sawtooth (rest x0.6, tricky x1.35, hard x1.6). Win rates are with the level's budget.
+| L | kind | groups (tier) | herrings | jars | budget | gold | target | avg slips | floor | avg win | novice win | prober win | after-aha | aha at |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | normal | On a farm (1), Parts of a tree (1), Ways to laugh (2) | 0 | - | - | - | 0.10 | 0.19 | 0.80 | 100% | 100% | 100% | 12 | 0% |
+| 2 | normal | Marks on skin (2), Schoolwork (2), Dances (1) | 0 | - | - | - | 0.15 | 0.31 | 0.80 | 100% | 100% | 100% | 9 | 33% |
+| 3 | normal | School subjects (1), Extreme weather (1), Parts of a song (2) | 0 | - | - | - | 0.30 | 0.19 | 0.80 | 100% | 100% | 100% | 13 | 0% |
+| 4 | normal | Groups of people (2), Bodies of water (2), Parts of a house (1) | 0 | - | - | - | 0.40 | 0.23 | 0.80 | 100% | 100% | 100% | 11 | 22% |
+| 5 | tricky | Words after foot (3), Worn on the face (2), Containers (1) | 0 | - | - | - | 0.60 | 0.54 | 0.80 | 100% | 100% | 100% | 8 | 43% |
+| 6 | rest | Parts of a flower (2), Performers (1), Herbs (1) | 0 | - | - | - | 0.25 | 0.25 | 0.80 | 100% | 100% | 100% | 13 | 0% |
+| 7 | normal | Kinds of puzzle (2), In a newspaper (2), Kinds of home (1) | 1 | - | - | - | 0.50 | 0.56 | 0.80 | 100% | 100% | 100% | 8 | 38% |
+| 8 | normal | Words before hole (3), At a hotel (1), Geometry (2) | 0 | - | - | - | 0.60 | 0.57 | 0.80 | 100% | 100% | 100% | 8 | 47% |
+| 9 | normal | Hair textures (2), Food textures (2), Ways to drink (2) | 1 | - | - | - | 0.65 | 0.66 | 0.80 | 100% | 100% | 100% | 8 | 45% |
+| 10 | hard | Things with lenses (2), Words after head (3), Garden jobs (1) | 1 | - | - | - | 1.00 | 0.83 | 0.80 | 100% | 100% | 100% | 8 | 50% |
+| 11 | rest | Cuts of meat (2), Gadgets (1), Cleaning kit (1) | 0 | - | 3 | 0 | 0.35 | 0.15 | 0.96 | 97% | 97% | 0% | 12 | 0% |
+| 12 | normal | In the lab (2), Riding gear (2), On a phone (1) | 0 | - | 3 | 0 | 0.70 | 0.21 | 0.92 | 99% | 93% | 1% | 11 | 17% |
+| 13 | normal | Things you can pay (3), Australian animals (1), French food (2) | 0 | - | 4 | 0 | 0.75 | 0.53 | 0.92 | 99% | 90% | 3% | 7 | 45% |
+| 14 | normal | Shades of black (2), Energy sources (2), Parts of a door (2) | 1 | - | 4 | 0 | 0.80 | 0.82 | 0.92 | 99% | 90% | 0% | 8 | 50% |
+| 15 | tricky | Ways across a river (2), Words after wind (3), Mexican food (1) | 1 | - | 3 | 0 | 1.10 | 0.63 | 0.82 | 96% | 75% | 0% | 8 | 50% |
+| 16 | rest | Desert animals (1), Currencies (2), Ways to travel (1) | 0 | - | 2 | 0 | 0.45 | 0.13 | 0.95 | 95% | 87% | 0% | 12 | 0% |
+| 17 | normal | Things you can set (3), On a pirate ship (1), Parts of a window (2) | 0 | - | 3 | 0 | 0.85 | 0.56 | 0.92 | 95% | 79% | 0% | 8 | 43% |
+| 18 | normal | Words before coat (3), Things birds do (2), Gymnastics moves (2) | 0 | - | 4 | 0 | 0.90 | 0.64 | 0.92 | 97% | 93% | 1% | 7 | 50% |
+| 19 | normal | Words after hair (3), Sports gear (1), Types of wood (2) | 1 | - | 4 | 0 | 0.95 | 0.63 | 0.92 | 97% | 94% | 2% | 5 | 64% |
+| 20 | hard | Computer keys (2), Words after night (3), Words for old (2) | 1 | - | 3 | 0 | 1.50 | 1.00 | 0.72 | 85% | 63% | 0% | 7 | 58% |
+| 21 | rest | At the pool (1), Fishing gear (2), Birds of prey (2) | 1 | - | 3 | 0 | 0.60 | 0.42 | 0.95 | 99% | 93% | 0% | 8 | 43% |
+| 22 | normal | Things you can strike (3), Music terms (2), Furniture (1) | 1 | - | 4 | 0 | 1.00 | 0.71 | 0.92 | 97% | 89% | 1% | 8 | 50% |
+| 23 | normal | Things that hum (3), Parts of a plane (2), In a video game (2) | 0 | - | 4 | 0 | 1.05 | 0.72 | 0.92 | 99% | 94% | 0% | 7 | 56% |
+| 24 | normal | Words before time (3), Social media words (2), Ways to touch (2) | 1 | - | 4 | 0 | 1.10 | 1.05 | 0.92 | 93% | 85% | 0% | 9 | 45% |
+| 25 | tricky | Words after air (3), Recipe amounts (2), Islands (2) | 1 | - | 3 | 0 | 1.45 | 0.99 | 0.82 | 94% | 62% | 1% | 7 | 55% |
+| 26 | rest | Tastes (1), Combat sports (1), Parts of a mountain (2), Times of day (1) | 0 | - | 3 | 0 | 0.70 | 0.34 | 0.95 | 98% | 89% | 0% | 17 | 0% |
+| 27 | normal | Garden tools (1), Forest animals (1), Cooking oils (2), Things with buttons (3) | 0 | - | 4 | 0 | 1.20 | 0.73 | 0.92 | 95% | 91% | 0% | 11 | 45% |
+| 28 | normal | Preserves (2), Bags (1), On the slopes (2), Things with wings (3) | 0 | - | 5 | 0 | 1.25 | 0.88 | 0.92 | 95% | 87% | 0% | 9 | 57% |
+| 29 | normal | Parts of a clock (2), Words after back (3), In the park (1), Physics words (2) | 1 | - | 5 | 0 | 1.30 | 1.55 | 0.92 | 96% | 86% | 0% | 10 | 57% |
+| 30 | hard | Words before mark (3), Gardening jobs (2), Fasteners (2), Desserts (1) | 1 | - | 4 | 0 | 2.00 | 1.14 | 0.72 | 94% | 69% | 0% | 11 | 54% |
 
-| L | kind | groups (tier) | herrings | budget | gold | target | avg slips | avg win | novice win | prober win | after-aha | aha at |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | normal | Organs (1), In the bathroom (1) | 0 | - | - | 0.10 | 0.06 | 100% | 100% | 100% | 8 | 0% |
-| 2 | normal | Kinds of tea (2), On the table (1) | 0 | - | - | 0.10 | 0.10 | 100% | 100% | 100% | 8 | 0% |
-| 3 | normal | Shapes (1), Things with roots (3), At the airport (1) | 0 | - | - | 0.40 | 0.28 | 100% | 100% | 100% | 8 | 38% |
-| 4 | normal | Things with keys (3), Planets (1), Winter sports (2) | 0 | - | - | 0.47 | 0.55 | 100% | 100% | 100% | 8 | 47% |
-| 5 | tricky | Hairstyles (2), Things with necks (3), Nuts (1) | 0 | - | - | 0.74 | 0.59 | 100% | 100% | 100% | 8 | 52% |
-| 6 | rest | Things in a toolbox (1), Sauces (2), Coffee drinks (1) | 0 | - | - | 0.38 | 0.22 | 100% | 100% | 100% | 11 | 0% |
-| 7 | normal | Metals (1), Shades of yellow (2), Kitchen tools (1) | 1 | - | - | 0.70 | 0.33 | 100% | 100% | 100% | 9 | 36% |
-| 8 | normal | Family (1), Words after fire (3), Things in a wallet (2) | 0 | - | - | 0.78 | 0.81 | 100% | 100% | 100% | 9 | 36% |
-| 9 | normal | Sea creatures (1), Words before cake (3), Things that tell time (2) | 1 | - | - | 0.85 | 0.76 | 100% | 100% | 100% | 7 | 50% |
-| 10 | hard | Street food (2), Things with shells (3), Mythical creatures (2) | 1 | - | - | 1.48 | 1.22 | 100% | 100% | 100% | 8 | 54% |
-| 11 | rest | Card suits (1), Rooms in a house (1), Parts of the eye (2) | 0 | 3 | 0 | 0.60 | 0.16 | 100% | 98% | 0% | 13 | 0% |
-| 12 | normal | Things that pop (3), Shades of green (2), On a desk (1) | 0 | 4 | 0 | 1.08 | 0.53 | 100% | 93% | 0% | 8 | 53% |
-| 13 | normal | Dairy (2), Drinks (1), Capital cities (2) | 1 | 4 | 0 | 1.15 | 0.66 | 100% | 91% | 2% | 9 | 50% |
-| 14 | normal | Golf terms (2), Words before house (3), Card games (2) | 1 | 5 | 0 | 1.23 | 1.09 | 100% | 96% | 4% | 7 | 54% |
-| 15 | tricky | Landforms (2), Things with faces (3), String instruments (2) | 1 | 4 | 0 | 1.76 | 0.95 | 99% | 80% | 1% | 5 | 67% |
-| 16 | rest | Music genres (1), Animal sounds (1), Units of time (1), Dried fruit (2) | 0 | 4 | 0 | 0.82 | 0.37 | 100% | 93% | 0% | 18 | 0% |
-| 17 | normal | Boats (1), Sweets (2), Things in a forest (1), Things with tails (3) | 0 | 4 | 0 | 1.45 | 0.84 | 96% | 92% | 0% | 11 | 46% |
-| 18 | normal | Meats (1), Things you can draw (3), Countries (2), Hats (2) | 0 | 5 | 0 | 1.52 | 0.85 | 98% | 89% | 0% | 7 | 65% |
-| 19 | normal | Shades of brown (2), Ice cream (2), Flowers (1), Words before ball (3) | 1 | 6 | 0 | 1.60 | 1.46 | 98% | 92% | 0% | 8 | 67% |
-| 20 | hard | Things you can tie (3), Units of measure (2), Gems (2), Breads (2) | 1 | 5 | 0 | 2.68 | 1.58 | 96% | 77% | 0% | 8 | 64% |
-| 21 | rest | Things at the beach (1), Body parts (1), Citrus fruit (2) | 0 | 3 | 0 | 1.05 | 0.16 | 98% | 97% | 0% | 12 | 0% |
-| 22 | normal | Things you can catch (3), Things with stripes (2), Trees (1), Sweet treats (1) | 0 | 5 | 0 | 1.83 | 0.81 | 98% | 96% | 0% | 12 | 42% |
-| 23 | normal | Parts of the face (1), Parts of a river (3), Tropical fruit (2), Art supplies (2) | 1 | 6 | 0 | 1.90 | 1.30 | 95% | 91% | 0% | 6 | 70% |
-| 24 | normal | Breakfast foods (1), Things you can crack (3), Shades of pink (2), Gases (2) | 1 | 5 | 0 | 1.97 | 1.00 | 99% | 93% | 0% | 6 | 70% |
-| 25 | tricky | Things in space (2), Words before fish (3), Rivers (2), Spices (2) | 1 | 5 | 0 | 2.77 | 1.41 | 94% | 75% | 0% | 9 | 64% |
-| 26 | rest | Fabrics (1), Shades of blue (2), Pets (1), Bones (2) | 1 | 5 | 0 | 1.27 | 0.58 | 99% | 96% | 0% | 9 | 53% |
-| 27 | normal | Farm animals (1), Words before fly (3), Shades of red (2), Footwear (2) | 1 | 6 | 0 | 2.20 | 1.04 | 98% | 96% | 0% | 9 | 54% |
-| 28 | normal | Pizza toppings (1), Things with crowns (3), Kinds of tea (2), Dog breeds (2) | 1 | 5 | 0 | 2.27 | 1.09 | 97% | 88% | 0% | 8 | 63% |
-| 29 | normal | Toys (1), Rocks (2), At the circus (2), Titles (2) | 1 | 5 | 0 | 2.35 | 1.03 | 98% | 88% | 0% | 12 | 39% |
-> Level 30 needed a wider search (step 3 of 3): { "no crossing pair": 48, "pair already used": 15, "too few crossings": 17, "cover": 1 }
-| 30 | hard | Words before cake (3), Dairy (2), Shades of yellow (2), Things in a wallet (2) | 2 | 5 | 0 | 3.88 | 1.75 | 94% | 80% | 0% | 8 | 62% |
-
-Generated in 91 s.
+Settled in 48 s.

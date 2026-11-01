@@ -1,0 +1,202 @@
+# Draft 03: home, objects, clothing (agent 3 of 8)
+# Format: id,label,key,tier,domain,words | +existing_id,words | PAIR: A | B | PAIR: Parent < Child
+# Every crossing word is listed in all its categories (here or via a +extension line).
+
+# ---------- TIER 1 ----------
+containers,Containers,Containers,1,objects,Box|Jar|Bottle|Basket|Bucket|Tin|Crate|Barrel|Tub|Sack|Carton|Chest|Vase
+stationery,Stationery,Stationery,1,objects,Pen|Ruler|Stapler|Glue|Tape|Folder|Marker|Notepad|Envelope|Paperclip|Scissors|Crayon|Sharpener|Diary
+in_a_jewel_box,In a jewel box,jewel,1,clothing,Necklace|Bracelet|Earring|Brooch|Pendant|Locket|Bangle|Chain|Choker|Cufflink|Anklet|Tiara|Charm
+in_the_garden,In the garden,garden,1,home,Shed|Pond|Lawn|Hedge|Fence|Patio|Gnome|Path|Swing|Gate|Sundial|Trellis|Bench|Compost|Birdbath
+materials,Materials,Materials,1,objects,Wood|Glass|Plastic|Paper|Stone|Leather|Clay|Brick|Concrete|Cardboard|Ceramic|Wax|Cork|Foam
+parts_of_a_house,Parts of a house,house,1,home,Roof|Wall|Door|Window|Floor|Chimney|Ceiling|Porch|Gutter|Balcony|Beam|Stairs
+chores,Chores,Chores,1,home,Dusting|Ironing|Sweeping|Mopping|Tidying|Cooking|Washing|Polishing|Scrubbing|Vacuuming|Shopping
+garden_jobs,Garden jobs,Garden,1,home,Weeding|Mowing|Pruning|Digging|Planting|Watering|Raking|Sowing|Mulching|Trimming
+on_the_bed,On the bed,bed,1,home,Pillow|Duvet|Blanket|Quilt|Sheet|Mattress|Bolster|Cushion|Teddy
+tops,Tops,Tops,1,clothing,Blouse|Shirt|Tunic|Hoodie|Sweater|Cardigan|Polo|Camisole|Fleece
+worn_on_the_legs,Worn on the legs,legs,1,clothing,Jeans|Shorts|Leggings|Tights|Stockings|Trousers|Chinos|Skirt|Kilt|Sarong
+seats,Seats,Seats,1,home,Saddle|Throne|Swing|Stool|Bench|Sofa|Beanbag|Deckchair|Couch|Armchair|Recliner|Highchair|Ottoman
+camping_gear,Camping gear,Camping,1,objects,Tent|Lantern|Compass|Stove|Peg|Rope|Flask|Hammock|Canteen|Mallet|Tarp|Backpack
+baby_gear,Baby gear,Baby,1,objects,Rattle|Bib|Cot|Crib|Cradle|Bottle|Mobile|Bassinet|Highchair|Teddy|Onesie
+on_the_wall,On the wall,wall,1,home,Picture|Mirror|Clock|Poster|Calendar|Shelf|Painting|Photo|Hook|Tapestry|Plaque|Switch|Socket
+laundry_day,Laundry day,Laundry,1,home,Peg|Iron|Basket|Hanger|Dryer|Detergent|Starch|Bleach|Softener
+at_a_picnic,At a picnic,picnic,1,objects,Basket|Blanket|Hamper|Flask|Sandwich|Cooler|Napkin|Rug|Ant|Plate
+at_a_party,At a party,party,1,objects,Balloon|Banner|Streamer|Confetti|Candle|Present|Invite|Garland|Cake
+in_the_living_room,In the living room,living,1,home,Rug|Lamp|Cushion|Remote|Curtain|Sofa|Armchair|Bookcase|Coaster|Ornament
+bags,Bags,Bags,1,objects,Backpack|Suitcase|Briefcase|Rucksack|Satchel|Tote|Pouch|Sack|Clutch|Duffel
+kinds_of_home,Kinds of home,home,1,home,Bungalow|Cottage|Mansion|Villa|Cabin|Apartment|Chalet|Hut|Igloo|Palace|Castle|Shack|Manor|Lodge
+
+# ---------- TIER 2 ----------
+outerwear,Outerwear,Outerwear,2,clothing,Coat|Jacket|Anorak|Parka|Blazer|Cloak|Cape|Poncho|Fleece|Puffer|Shawl
+traditional_clothes,Traditional clothes,Traditional,2,clothing,Sari|Kimono|Kilt|Sarong|Poncho|Kaftan|Toga|Sombrero|Fez
+parts_of_a_shoe,Parts of a shoe,shoe,2,clothing,Sole|Heel|Lace|Tongue|Toe|Insole|Eyelet|Buckle|Strap
+parts_of_a_coat,Parts of a coat,coat,2,clothing,Collar|Cuff|Sleeve|Button|Pocket|Hem|Seam|Lapel|Lining|Hood|Belt
+parts_of_a_dress,Parts of a dress,dress,2,clothing,Bodice|Skirt|Hem|Sleeve|Train|Neckline|Waist|Strap|Bow|Sash
+parts_of_a_door,Parts of a door,door,2,home,Hinge|Handle|Knob|Latch|Bolt|Lock|Knocker|Frame|Chain|Peephole
+parts_of_a_window,Parts of a window,window,2,home,Pane|Sill|Frame|Sash|Latch|Ledge|Shutter|Glass|Hinge|Handle
+in_a_handbag,In a handbag,handbag,2,objects,Lipstick|Mirror|Comb|Tissue|Phone|Pen|Umbrella|Diary|Mascara|Charger|Hairbrush|Perfume
+fabric_patterns,Fabric patterns,patterns,2,clothing,Tartan|Paisley|Gingham|Argyle|Chevron|Check|Spot|Floral|Zigzag|Plaid
+kinds_of_bed,Kinds of bed,bed,2,home,Bunk|Cot|Crib|Futon|Hammock|Cradle|Berth|Bassinet|Divan
+worn_in_the_hair,Worn in the hair,hair,2,clothing,Clip|Scrunchie|Headband|Comb|Bow|Ribbon|Tiara|Bandana|Pin
+worn_on_the_neck,Worn on the neck,neck,2,clothing,Scarf|Cravat|Choker|Collar|Shawl|Bandana|Locket|Pendant|Lanyard|Medal|Garland|Lei|Boa
+worn_on_the_face,Worn on the face,face,2,clothing,Glasses|Mask|Monocle|Veil|Goggles|Lipstick|Mascara|Visor|Blush|Eyeliner
+fasteners,Fasteners,Fasteners,2,objects,Nail|Screw|Bolt|Rivet|Staple|Pin|Tack|Peg|Clip|Button|Buckle|Clasp
+pet_supplies,Pet supplies,Pet,2,objects,Collar|Leash|Kennel|Cage|Hutch|Perch|Litter|Brush|Harness
+things_you_light,Things you light,light,2,objects,Candle|Match|Bonfire|Firework|Fuse|Barbecue|Lantern|Stove|Wick|Fire
+fishing_gear,Fishing gear,Fishing,2,objects,Rod|Reel|Hook|Line|Bait|Float|Lure|Net|Sinker|Tackle
+parts_of_a_book,Parts of a book,book,2,objects,Page|Cover|Chapter|Index|Jacket|Blurb|Preface|Appendix|Glossary|Margin|Spine
+things_with_pages,Things with pages,pages,2,objects,Book|Diary|Magazine|Comic|Atlas|Calendar|Menu|Notebook|Album|Website|Manual|Passport|Brochure|Notepad
+floor_coverings,Floor coverings,Floor,2,home,Carpet|Rug|Tile|Linoleum|Parquet|Laminate|Mat|Vinyl
+building_materials,Building materials,Building,2,objects,Brick|Cement|Concrete|Timber|Slate|Plaster|Gravel|Tile|Stone|Thatch|Sand
+kinds_of_wood,Kinds of wood,wood,2,objects,Teak|Mahogany|Ebony|Balsa|Oak|Pine|Walnut|Cherry|Beech|Cedar|Maple
+measuring_tools,Measuring tools,Measuring,2,objects,Ruler|Scales|Tape|Gauge|Barometer|Odometer|Pedometer|Altimeter|Sextant
+prizes,Prizes,Prizes,2,objects,Trophy|Medal|Cup|Shield|Plaque|Ribbon|Rosette|Badge
+at_the_hairdresser,At the hairdresser,hairdresser,2,objects,Comb|Scissors|Dryer|Gel|Cape|Curler|Clippers|Dye|Mousse|Perm|Razor
+magic_show,Magic show,Magic,2,culture,Wand|Rabbit|Cape|Dove|Card|Coin|Rope|Scarf|Cloak
+crafts,Crafts,Crafts,2,culture,Knitting|Pottery|Weaving|Quilting|Crochet|Origami|Woodwork|Collage|Carving|Mosaic|Batik|Painting
+
+# ---------- EXTENSIONS: my domains (toward 12-16 honest members) ----------
++things_you_wear,Skirt|Sweater|Blouse|Hoodie|Glasses
++fabrics,Chiffon|Corduroy|Muslin|Cashmere|Flannel|Fleece
++hats,Fez|Boater
++footwear,Mule|Brogue
++furniture,Armchair|Bookcase|Cupboard|Futon|Dresser|Ottoman
++rooms_in_a_house,Lounge|Basement|Loft|Nursery|Office|Playroom
++in_the_bathroom,Razor|Plunger|Loofah|Floss|Lotion
++on_the_table,Jug|Coaster|Teapot|Platter
++garden_tools,Hose|Sprinkler|Clippers
++cleaning_kit,Squeegee|Rag|Detergent
++kitchen_tools,Pot|Wok|Masher|Funnel|Pestle|Skewer
++kitchen_appliances,Juicer|Fryer|Steamer
++toys,Puppet|Ball|Pinwheel|Scooter
++sewing_kit,Spool|Elastic|Patch
++things_in_a_wallet,Stamp|Coupon|Voucher
++things_that_fly,Airship
++things_in_a_toolbox,Bolt|Crowbar|Sander
+
+# ---------- EXTENSIONS: crossings into other domains (declares my herrings) ----------
++body_parts,Chest|Heel|Tongue|Waist
++landforms,Cape
++fish,Sole|Perch
++mythical_creatures,Gnome
++reptiles,Boa
++birds,Dove
++farm_animals,Mule
++animal_homes,Hutch
++rocks,Slate
++organs,Appendix
++sweet_treats,Mousse
++shades_of_brown,Mahogany
+
+# ---------- PAIR RULES ----------
+# Children of existing parents
+PAIR: Things you wear < In a jewel box
+PAIR: Things you wear < Tops
+PAIR: Things you wear < Worn on the legs
+PAIR: Things you wear < Outerwear
+PAIR: Things you wear < Traditional clothes
+PAIR: Things you wear < Worn on the neck
+PAIR: Things you wear < Worn on the face
+PAIR: Things you wear < Worn in the hair
+PAIR: Materials < Building materials
+# Heavy overlap (shared honest members a reasonable player would sort either way)
+PAIR: Materials | Fabrics
+PAIR: Materials | Metals
+PAIR: Materials | Rocks
+PAIR: Materials | Kinds of wood
+PAIR: Materials | Floor coverings
+PAIR: Rocks | Building materials
+PAIR: Trees | Kinds of wood
+PAIR: Gems | In a jewel box
+PAIR: In a jewel box | Worn on the neck
+PAIR: Hats | Traditional clothes
+PAIR: Tops | Outerwear
+PAIR: Fabrics | Fabric patterns
+PAIR: Parts of a coat | Parts of a dress
+PAIR: Parts of a door | Parts of a window
+PAIR: Furniture | Seats
+PAIR: Furniture | Kinds of bed
+PAIR: Furniture | In the living room
+PAIR: Seats | In the living room
+PAIR: Baby gear | Kinds of bed
+PAIR: On the bed | Kinds of bed
+PAIR: Containers | On the table
+PAIR: Containers | Kitchen tools
+PAIR: Containers | Bags
+PAIR: Containers | At a picnic
+PAIR: Containers | Camping gear
+PAIR: Garden tools | In the garden
+PAIR: Chores | Garden jobs
+PAIR: Rooms in a house | Parts of a house
+PAIR: On a desk | Stationery
+PAIR: Art supplies | Stationery
+PAIR: In the bathroom | In a handbag
+PAIR: Things in a wallet | In a handbag
+PAIR: Things in a toolbox | Fasteners
+PAIR: Animal homes | Pet supplies
+PAIR: Kinds of home | Animal homes
+PAIR: Hairstyles | At the hairdresser
+PAIR: Things with pages | Parts of a book
+PAIR: Kitchen appliances | Things you light
+# A member of one is the key object of the other (Wall, Door, Window, Floor, Coat, Dress, Book, Wood, Fire)
+PAIR: Parts of a house | On the wall
+PAIR: Parts of a house | Parts of a door
+PAIR: Parts of a house | Parts of a window
+PAIR: Parts of a house | Floor coverings
+PAIR: Things you wear | Parts of a coat
+PAIR: Things you wear | Parts of a dress
+PAIR: Outerwear | Parts of a coat
+PAIR: Things with spines | Parts of a book
+PAIR: Words after fire | Things you light
+PAIR: Words after fire | Kinds of wood
+# Near-identical keys (neck/necks, face/face)
+PAIR: Things with necks | Worn on the neck
+PAIR: Parts of the face | Worn on the face
+# A member elsewhere repeats this label's key or object word (Box, Cake, Light, Bed, House, Neck, Hair)
+PAIR: Containers | In a jewel box
+PAIR: Words before cake | At a party
+PAIR: Words before house | Things you light
+PAIR: Words after sun | Things you light
+PAIR: Furniture | On the bed
+PAIR: Parts of a river | On the bed
+PAIR: Parts of a river | Kinds of bed
+PAIR: Words before fly | Parts of a house
+PAIR: Body parts | Worn on the neck
+PAIR: Things with roots | Worn in the hair
+
+# SUMMARY
+# Counts: 48 new categories (21 tier 1, 27 tier 2), 29 extension lines (17 into my domains, 12 crossing
+#   declarations into other domains), 69 PAIR rules. Target was ~70 new; I stopped at 48 rather than pad.
+#   Cut for weakness or entanglement: Parts of a shirt (Neck/Tail clash with "necks"/"tails" labels),
+#   Parts of a clock and Parts of a pen (Clock/Pen sit in 4+ categories), Made of glass (Glass in 4 categories),
+#   Winter wear (needed 5 pairs), Bedtime, Things you drink from, Electrical bits, Light sources.
+# Crossings declared (fun cross-domain herrings): Sole/Perch (fish), Heel/Tongue/Waist/Chest (body parts),
+#   Appendix (organs), Cape (landforms), Boa (reptiles), Dove (birds), Mule (farm animals), Gnome (mythical),
+#   Hutch (animal homes), Slate (rocks), Mousse (sweet treats), Mahogany (shades of brown), Train (ways to travel),
+#   Polo (sports), Iron (metals, golf), Tin (metals), Blush (shades of pink), Walnut (nuts), Cherry (fruit/red),
+#   Brick (red), Ant (insects), Rabbit (pets), Glasses (words after sun), Goggles (sports gear),
+#   Comb (teeth), Clip (words before board), Floor (words before board), Lock (things with keys).
+#   Within my set: Peg, Pin, Clip, Button, Bow, Ribbon, Collar, Cape, Scarf, Rug, Basket all cross 3+ categories.
+# Deliberately avoided:
+#   Ring (clash with "Things with rings"), Key (clash with "keys"), Wallet (clash with "Things in a wallet"),
+#   Tie (it contains the key of "Things you can tie" but is tie-able), Hat in party/magic (clash with "Hats"),
+#   Can (the label word "can" in five "Things you can..." labels), Bag (clash with "Bags"),
+#   Pencil (contains Pen), Necklace in neckwear (contains key), Raincoat/Overcoat (contain Coat),
+#   Fireplace (contains "fire"), Popper (pops but contains "pop"), Keyhole, Doorstep, Bedspread, Handbag in Bags.
+#   US/UK or variant: Purse, Pram/Stroller/Buggy, Nappy/Diaper, Dummy/Pacifier, Gilet, Vest, Jumper, Torch,
+#   Barrette, Lino, Holdall, Wellies, Plimsoll, Hob/Cooker, Tyre, Catalogue, Pyjamas, Make-up, Jewellery.
+#   Taste: Sickle (hammer and sickle), Mortar (artillery), Bomber, Scythe, Turban, Stiletto, Cleaver, Balaclava.
+#   Overlap risk: Bunting (also a bird), Worm (players may call it an insect), Washer (also a washing machine),
+#   Flute (champagne), Grill (lit, would cross Things you light), Bowl/Tank in Pet supplies (containers),
+#   Spring (season), Top (clash with "Tops"), Stripe (clash with "Things with stripes"), Jersey (fabric and top).
+# Possible undeclared overlaps with OTHER agents' drafts (I can't edit their files; merger please check):
+#   Compass (maths set?), Mobile (phone), Clutch (car part), Vinyl (records), Prism/Cube (3D shapes),
+#   Streamer (online), Index (finger), Match (sport), Reel (dance), Magazine, Menu/Website (tech),
+#   Level (palindromes; I kept it out of the toolbox for that reason), Hanger here vs Hangar at the airport.
+# Least sure:
+#   1. Things you light: Fuse and Wick are weaker; Fire/Bonfire/Firework share "fire"; needs 4 pairs.
+#   2. Fabric patterns: Check/Spot are generic words; Tartan and Plaid near-duplicates; Chevron is also a brand.
+#   3. At a picnic: Ant is a cliche member that some players may find cute rather than fair.
+#   4. Magic show: Rope and Scarf are honest but not first-thought; Card and Coin now sit in 4 categories.
+#   5. Measuring tools: likely duplicated by the science agent; four "-meter" words give it away a little.
+#   Also watch: Prizes (Rosette, Ribbon lean UK/US), Kinds of bed (Divan, Berth), Containers (many pairs),
+#   Pet supplies (Perch as the fish herring), Worn on the face (cosmetics mixed with eyewear).

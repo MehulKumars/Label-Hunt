@@ -139,9 +139,9 @@ func test_stuck_uses_player_knowledge_not_truth() -> void:
 	assert_false(s.is_stuck(), "an empty jar always offers a move")
 
 
-func test_peek_tags_without_slip() -> void:
+func test_hint_tags_without_slip() -> void:
 	var s := _session()
-	var ev := s.peek(_card(s, "Saw"))
+	var ev := s.hint(_card(s, "Saw"))
 	assert_eq(s.slips, 0)
 	assert_eq(s.know.class_tag(_card(s, "Saw")), 2)
 	assert_eq(ev.size(), 2)

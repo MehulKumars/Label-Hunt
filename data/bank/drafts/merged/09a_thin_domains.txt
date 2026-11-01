@@ -1,0 +1,201 @@
+# 09a_thin_domains.txt: new categories for the thin domains places, travel, tech, time, home, school, games, shapes, drink.
+# Format: id,label,key,tier,domain,Word|Word|...   /   +existing_id,Word|Word   /   PAIR: A | B   /   PAIR: Parent < Child
+# Every member was grepped against categories.txt. Words already listed elsewhere are declared crossings; honest but
+# unlisted fits were either dropped, added to their home with a + line, or ruled out with a PAIR.
+# Label clashes (a card containing another jar's label word, e.g. Highway beside Words before way) are left to
+# room_gen's label-clash check, and hidden-word overlaps to its wordplay check.
+# Dropped on purpose: Bug (unlisted insect), Pointer (dog breed), Cuckoo and Swift (birds), Antenna (animal part),
+# Dorm (At university), Coach and Cab (Ways to travel), Barista and Teller (jobs), Period (US full stop),
+# Eon/Aeon, Dialogue/Dialog, Pruners/Secateurs, Motorway/Freeway, Overpass/Flyover, Tap/Faucet, Pensioner/Retiree, Recess,
+# Caboose, Seltzer (spelling or US/UK splits), Hangman (taste, and not a playground game), Foursquare and Conkers (too regional;
+# Kickball and Rounders kept, one each side), Metropolis/Blackboard/Nightlight (over 9 letters).
+
+# ---------- TIER 1 ----------
+at_the_hospital,At the hospital,hospital,1,places,Ward|Stretcher|Bandage|Ambulance|Patient|Crutch|Syringe|Drip|Sling|Splint|Pill|Nurse|Doctor|Gown|Capsule
+at_the_museum,At the museum,museum,1,places,Exhibit|Gallery|Curator|Fossil|Relic|Skeleton|Display|Plaque|Statue|Tapestry|Painting|Sculpture|Vase|Diorama
+at_the_supermarket,At the supermarket,supermarket,1,places,Checkout|Aisle|Basket|Receipt|Barcode|Shelf|Coupon|Scanner|Freezer|Bakery|Deli|Price|Discount
+at_the_dentist,At the dentist,dentist,1,places,Drill|Filling|Brace|Floss|Mirror|Cavity|Plaque|Enamel|Decay|Retainer|Mouthwash|Bib|Dentures|Fluoride|Checkup
+at_the_bank,At the bank,bank,1,places,Cash|Loan|Vault|Safe|Coin|Account|Deposit|Savings|Interest|Mortgage|Balance|Statement|Overdraft|Branch|Counter
+kinds_of_road,Kinds of road,road,1,travel,Avenue|Lane|Street|Highway|Boulevard|Alley|Crescent|Bypass|Causeway|Parkway|Track|Trail|Drive
+ways_to_communicate,Ways to communicate,communicate,1,tech,Email|Text|Letter|Postcard|Fax|Telegram|Voicemail|Memo|Note|Chat|Call|Morse|Semaphore|Telegraph
+time_words,Time words,Time,1,time,Yesterday|Today|Tomorrow|Tonight|Now|Later|Soon|Recently|Lately|Earlier|Already|Then|Nowadays|Formerly|Shortly|Meanwhile
+garden_features,Garden features,Garden,1,home,Shed|Gazebo|Pergola|Trellis|Fence|Gate|Patio|Decking|Pond|Rockery|Fountain|Hedge|Lawn|Sundial|Planter
+lighting,Lighting,Lighting,1,home,Lamp|Lantern|Sconce|Pendant|Spotlight|Downlight|Bulb|Candle|Dimmer|Neon|Tealight|Strobe
+at_school,At school,school,1,school,Assembly|Detention|Uniform|Timetable|Register|Bell|Classroom|Corridor|Locker|Lesson|Canteen|Hall|Desk
+fractions,Fractions,Fractions,1,school,Half|Third|Quarter|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth|Twelfth|Hundredth|Twentieth|Sixteenth
+playground_games,Playground games,Playground,1,games,Tag|Hopscotch|Leapfrog|Marbles|Jacks|Dodgeball|Catch|Skipping|Kickball|Rounders|Chase
+quiz_show,Quiz show,Quiz,1,games,Question|Answer|Round|Buzzer|Host|Score|Clue|Prize|Lifeline|Jackpot|Bonus|Podium|Hint
+hot_drinks,Hot drinks,Hot,1,drink,Tea|Coffee|Cocoa|Chai|Latte|Mocha|Espresso|Americano|Matcha|Cortado|Broth|Tisane|Macchiato|Rooibos|Decaf
+cold_drinks,Cold drinks,Cold,1,drink,Cola|Smoothie|Milkshake|Slush|Frappe|Kombucha|Lassi|Horchata|Punch|Juice|Tonic|Granita
+
+# ---------- TIER 2: places ----------
+european_countries,European countries,European,2,places,France|Germany|Italy|Spain|Portugal|Norway|Sweden|Finland|Poland|Austria|Belgium|Greece|Ireland|Denmark|Hungary|Croatia
+african_countries,African countries,African,2,places,Kenya|Egypt|Ghana|Nigeria|Sudan|Ethiopia|Morocco|Tunisia|Algeria|Uganda|Rwanda|Zambia|Senegal|Angola|Namibia|Botswana
+asian_countries,Asian countries,Asian,2,places,Japan|India|Nepal|Bhutan|Laos|Vietnam|Thailand|Mongolia|Pakistan|Malaysia|Cambodia|Myanmar|Indonesia|Brunei|Maldives
+south_american_nations,South American nations,American,2,places,Brazil|Peru|Chile|Argentina|Colombia|Ecuador|Bolivia|Uruguay|Paraguay|Venezuela|Guyana|Suriname
+us_states,US states,states,2,places,Texas|Ohio|Utah|Iowa|Idaho|Maine|Alaska|Oregon|Nevada|Florida|Kansas|Montana|Vermont|Arizona|Alabama|Wyoming
+kinds_of_settlement,Kinds of settlement,settlement,2,places,Hamlet|Village|Town|City|Suburb|Colony|Outpost|Borough|Commune|Camp|Port|Homestead
+deserts,Deserts,Deserts,2,places,Sahara|Gobi|Kalahari|Namib|Atacama|Mojave|Sonoran|Arabian|Thar|Negev|Sinai|Karakum
+mountain_ranges,Mountain ranges,ranges,2,places,Alps|Andes|Himalayas|Rockies|Pyrenees|Urals|Atlas|Apennines|Caucasus|Cascades|Karakoram|Tatras
+
+# ---------- TIER 2: travel ----------
+parts_of_a_train,Parts of a train,train,2,travel,Engine|Carriage|Wagon|Buffer|Coupling|Boiler|Tender|Firebox|Whistle|Funnel|Piston|Axle|Chimney
+map_words,Map words,Map,2,travel,Legend|Scale|Grid|Contour|Border|Symbol|Latitude|Longitude|Equator|Meridian|Compass|Atlas|Globe|Tropic|Route
+aircraft,Aircraft,Aircraft,2,travel,Jet|Glider|Blimp|Airship|Biplane|Seaplane|Airliner|Balloon|Drone|Jumbo|Gyroplane|Monoplane|Triplane|Turboprop
+places_to_stay,Places to stay,stay,2,travel,Hotel|Motel|Hostel|Inn|Resort|Lodge|Campsite|Chalet|Cabin|Villa|Tent|Ryokan|Hut
+explorers,Explorers,Explorers,2,travel,Columbus|Magellan|Polo|Drake|Cabot|Amundsen|Raleigh|Vespucci|Balboa|Scott|Peary|Hillary|Tenzing
+road_features,Road features,Road,2,travel,Junction|Crossing|Toll|Exit|Ramp|Bend|Hairpin|Underpass|Hump|Pothole|Tunnel|Bridge|Signpost
+
+# ---------- TIER 2: tech ----------
+coding_words,Coding words,Coding,2,tech,Loop|Variable|Function|Compile|Script|Syntax|Array|String|Class|Method|Boolean|Algorithm|Debug|Code
+on_a_computer_screen,On a computer screen,screen,2,tech,Icon|Cursor|Window|Menu|Button|Tab|Scrollbar|Slider|Checkbox|Widget|Folder|Taskbar|Pixel|Avatar
+computer_commands,Computer commands,commands,2,tech,Cut|Copy|Paste|Undo|Redo|Save|Print|Delete|Select|Bold|Italic|Find|Replace|Rename|Refresh|Zoom
+network_words,Network words,Network,2,tech,Router|Modem|Server|Cloud|Firewall|Bandwidth|Ethernet|Hotspot|Signal|Protocol|Proxy|Ping|Broadband|Wireless|Latency
+spacecraft,Spacecraft,Spacecraft,2,tech,Rocket|Shuttle|Satellite|Probe|Rover|Capsule|Lander|Orbiter|Booster|Sputnik|Starship|Spaceship
+media_buttons,Media buttons,buttons,2,tech,Play|Pause|Stop|Rewind|Record|Eject|Mute|Shuffle|Repeat|Skip|Forward|Volume|Loop
+
+# ---------- TIER 2: time ----------
+lengths_of_time,Lengths of time,Lengths,2,time,Era|Epoch|Age|Spell|Stint|Interval|Moment|Fortnight|Jiffy|Season|Term|Shift|Phase|Span
+words_for_new,Words for new,new,2,time,Modern|Fresh|Novel|Recent|Latest|Current|Mint|Pristine|Unused|Original|Untried|Unworn|Unopened
+kinds_of_clock,Kinds of clock,clock,2,time,Alarm|Digital|Atomic|Wall|Carriage|Mantel|Desk|Water|Candle|Body|Chess|Doomsday|Station
+words_for_fast,Words for fast,fast,2,time,Quick|Rapid|Speedy|Hasty|Brisk|Fleet|Express|Prompt|Snappy|Zippy|Hurried|Breakneck|Rushed
+words_for_slow,Words for slow,slow,2,time,Sluggish|Leisurely|Gradual|Unhurried|Dawdling|Lumbering|Languid|Tardy|Lagging|Dragging|Torpid|Sedate
+
+# ---------- TIER 2: home ----------
+parts_of_a_roof,Parts of a roof,roof,2,home,Tile|Slate|Gutter|Ridge|Eaves|Rafter|Chimney|Gable|Thatch|Dormer|Skylight|Truss|Fascia|Flashing
+kinds_of_door,Kinds of door,door,2,home,Revolving|Sliding|Trap|French|Stable|Barn|Garage|Patio|Screen|Swing|Folding|Front|Back|Stage|Cellar
+by_the_fireplace,By the fireplace,fireplace,2,home,Mantel|Hearth|Chimney|Flue|Poker|Tongs|Bellows|Log|Ember|Coal|Kindling|Damper|Firewood|Soot|Ash
+plumbing,Plumbing,Plumbing,2,home,Pipe|Tap|Drain|Valve|Cistern|Sewer|Gasket|Plug|Siphon|Trap|Plunger|Leak|Boiler
+parts_of_a_staircase,Parts of a staircase,staircase,2,home,Step|Tread|Riser|Banister|Handrail|Landing|Newel|Baluster|Spindle|Flight|Rail|Stringer
+
+# ---------- TIER 2: school ----------
+kinds_of_number,Kinds of number,number,2,school,Prime|Even|Odd|Whole|Negative|Positive|Square|Decimal|Integer|Natural|Rational|Imaginary|Complex|Ordinal|Binary
+branches_of_science,Branches of science,science,2,school,Geology|Botany|Zoology|Ecology|Astronomy|Genetics|Anatomy|Optics|Acoustics|Biology|Chemistry|Physics|Forensics|Robotics
+kinds_of_poem,Kinds of poem,poem,2,school,Sonnet|Haiku|Limerick|Ode|Ballad|Elegy|Epic|Lyric|Acrostic|Epitaph|Tanka|Rhyme
+figures_of_speech,Figures of speech,speech,2,school,Simile|Metaphor|Irony|Pun|Hyperbole|Idiom|Cliche|Allegory|Paradox|Oxymoron|Analogy|Euphemism|Sarcasm|Imagery
+parts_of_a_story,Parts of a story,story,2,school,Plot|Setting|Theme|Climax|Conflict|Ending|Hero|Villain|Narrator|Prologue|Epilogue|Twist|Moral|Character
+
+# ---------- TIER 2: games ----------
+chess_terms,Chess terms,Chess,2,games,Check|Checkmate|Castling|Stalemate|Gambit|Opening|Endgame|Fork|Pin|Rank|Promotion|Sacrifice|Blunder|Resign|Tempo
+video_game_genres,Video game genres,genres,2,games,Puzzle|Racing|Strategy|Sandbox|Roguelike|Stealth|Rhythm|Adventure|Arcade|Horror|Survival|Trivia|Platform
+game_results,Game results,results,2,games,Win|Loss|Draw|Tie|Victory|Defeat|Forfeit|Walkover|Upset|Deadlock|Rout|Triumph|Whitewash|Thrashing
+bowling_terms,Bowling terms,Bowling,2,games,Strike|Spare|Gutter|Lane|Pin|Frame|Split|Alley|Foul|Hook|Approach|Ball
+
+# ---------- TIER 2: shapes ----------
+polygons,Polygons,Polygons,2,shapes,Triangle|Square|Pentagon|Hexagon|Heptagon|Octagon|Nonagon|Decagon|Rhombus|Kite|Rectangle|Dodecagon
+solid_shapes,Solid shapes,Solid,2,shapes,Cube|Sphere|Cone|Pyramid|Cylinder|Prism|Cuboid|Torus|Ellipsoid|Spheroid|Ovoid|Wedge|Dome
+curves,Curves,Curves,2,shapes,Arc|Spiral|Helix|Parabola|Ellipse|Loop|Coil|Wave|Bend|Crescent|Curl|Swirl|Hyperbola
+shape_adjectives,Shape adjectives,adjectives,2,shapes,Circular|Spherical|Conical|Tubular|Cubic|Hexagonal|Octagonal|Angular|Domed|Pointed|Helical|Elliptic|Pyramidal|Rounded
+
+# ---------- TIER 2: drink ----------
+kinds_of_water,Kinds of water,water,2,drink,Mineral|Spring|Sparkling|Still|Bottled|Tonic|Salt|Fresh|Rain|Distilled|Filtered|Fizzy|Tap|Rose
+coffee_words,Coffee words,Coffee,2,drink,Arabica|Robusta|Crema|Froth|Roast|Grind|Brew|Bean|Caffeine|Filter|Steam|Press|Java
+
+# ---------- EXTENSIONS: existing categories in these domains with fewer than 13 members ----------
++grammar_words,Adverb|Pronoun|Gerund|Article
++punctuation,Semicolon
++schoolwork,Spelling|Classwork|Revision|Exercise
++ways_to_learn,Coaching|Mentoring|Tuition|Practice
++school_subjects,English|Art|Music|Latin|French|Algebra
++in_a_board_game,Marker|Peg
++playing_card_terms,Suit|Dealer|Meld|Bluff
++kinds_of_puzzle,Conundrum|Codeword|Cryptic|Acrostic
++indoor_games,Ludo|Carrom|Pinball
++ways_to_drink,Quaff|Chug|Imbibe
++coffee_drinks,Instant|Lungo
++drinks,Punch|Slush|Kombucha
++things_to_drink_from,Teacup
++floor_coverings,Terrazzo|Cork|Flagstone|Marble
++parts_of_a_clock,Face|Cog|Weight
++touchscreen_moves,Hold|Rotate|Slide
++kinds_of_bed,Trundle|Canopy|Single|Double|Twin
++kinds_of_line,Broken|Solid|Jagged|Crooked|Squiggly
++parts_of_a_castle,Bailey|Parapet|Bastion|Barbican
++parts_of_a_door,Knob|Panel|Threshold|Lintel|Jamb|Keyhole
++patterns,Plaid|Stripe|Damask|Harlequin|Polka
++places_to_shop,Store|Outlet|Plaza
++at_a_hotel,Buffet|Pool|Gym
++at_the_pool,Chlorine|Kickboard|Ladder
++in_the_park,Path|Kiosk|Gazebo
++on_a_farm,Pigsty|Paddock|Hayloft|Windmill
++gadgets,Speaker|Webcam|Charger|Tracker
++on_a_phone,Keypad|Calendar|Voicemail|Settings
++computer_keys,Home|Space|Backspace|Option|Command
++parts_of_a_plane,Tail|Aileron|Window
++garden_tools,Barrow|Loppers
++garden_jobs,Hoeing|Potting|Edging|Spraying
++in_the_living_room,Fireplace|Footstool|Throw|Ottoman
++laundry_day,Washer|Suds|Rinse|Lint
++on_the_bed,Throw|Valance|Eiderdown|Coverlet
++chores,Laundry|Wiping|Cleaning
++cleaning_kit,Scourer|Wipes|Spray
++parts_of_a_window,Lintel|Mullion|Casement|Lock
++units_of_time,Fortnight
++times_of_day,Afternoon|Sundown
++stages_of_life,Retiree|Juvenile
++words_for_old,Obsolete|Classic|Bygone|Primeval
++how_often,Nightly|Regularly
++internet_words,Domain|Search|Online|Username
++text_symbols,Hash|Caret|Percent|Pound
++ways_across_a_river,Boat|Swim|Wade|Canoe|Pontoon|Zipline
++things_at_the_beach,Pebble|Lifeguard|Surfboard|Sunscreen
+
+# ---------- HONEST FITS: words of the new categories that belong in an existing one that did not list them ----------
++parts_of_a_book,Prologue|Epilogue
++parts_of_a_car,Piston
++things_with_teeth,Dentures
++things_with_needles,Syringe
++in_the_bathroom,Mouthwash
++indian_food,Lassi
++mexican_food,Horchata
++spanish_food,Horchata
++italian_food,Granita
++fermented_foods,Kombucha
++languages,English
+
+# ---------- PAIR RULES ----------
+# Parents: every word of the child honestly belongs to the parent.
+PAIR: Countries < European countries
+PAIR: Countries < African countries
+PAIR: Countries < Asian countries
+PAIR: Countries < South American nations
+PAIR: Things that fly < Aircraft
+PAIR: Things in space < Spacecraft
+PAIR: In the garden < Garden features
+PAIR: Shapes < Polygons
+PAIR: Shapes < Solid shapes
+# Overlaps the listed words alone do not catch.
+PAIR: Spicy things | South American nations # Chile reads as the pepper in the US
+PAIR: Works of art | At the museum # Mural, Portrait, Fresco would all fit the museum
+PAIR: Currencies | At the bank # Dollar, Euro, Yen at the bank
+PAIR: Things in a wallet | At the bank # Card, Cash, Coin
+PAIR: Things with wings | Aircraft # Biplane, Airliner, Seaplane have wings
+PAIR: Things with tails | Aircraft # Plane is declared there, so every plane fits
+PAIR: Things with fins | Aircraft # same
+PAIR: Things that fly | Spacecraft # Shuttle, Starship fly
+PAIR: Kinds of home | Places to stay # Lodge, Chalet, Cabin, Villa, Hut shared
+PAIR: Things you can book | Places to stay # Motel, Hostel, Villa can all be booked
+PAIR: Things you can answer | Ways to communicate # Call, Letter, Email, Text shared
+PAIR: Ways to walk | Words for slow # Lumbering, Dawdling are ways to walk
+PAIR: Things that leak | Plumbing # Valve, Cistern, Sewer leak
+PAIR: Things that overflow | Plumbing # Cistern, Sewer overflow
+PAIR: In the park | Garden features # Pond, Fountain, Lawn shared, Gazebo fits
+PAIR: Things that glow | Lighting # Lamp, Lantern, Bulb, Candle, Neon shared
+PAIR: Things you light | Lighting # Candle, Lantern shared, Tealight fits
+PAIR: Things you light | By the fireplace # Kindling, Coal, Firewood, Log are lit
+PAIR: People at school | At school # two school jars in one level
+PAIR: Kinds of song | Kinds of poem # Ballad shared, Elegy and Ode could be songs
+PAIR: Kinds of comedy | Figures of speech # Irony, Sarcasm read as comedy
+PAIR: Kinds of story | Parts of a story # Moral, Plot, Hero beside Fable, Myth
+PAIR: Numbers | Fractions # Third, Tenth, Twelfth beside Three, Ten, Twelve
+PAIR: Toys | Playground games # Marbles, Jacks are toys
+PAIR: Ways to move | Playground games # Skipping beside Skip, Hop
+PAIR: Social media words | Playground games # Tag
+PAIR: Chess pieces | Chess terms
+PAIR: Film genres | Video game genres # Horror, Adventure, Action, Mystery all fit both
+PAIR: Shapes | Curves # Crescent shared, Spiral and Ellipse are shapes
+PAIR: Shapes | Shape adjectives # Circle beside Circular
+PAIR: Things with faces | Solid shapes # Cuboid, Prism have faces
+PAIR: Things that are hot | Hot drinks # Tea and Coffee are hot things
+PAIR: Things that are cold | Cold drinks # Slush is cold
+PAIR: Kinds of bean | Coffee words # Arabica, Robusta are beans

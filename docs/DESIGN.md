@@ -7,10 +7,10 @@ types in.
 Jarful is built from Mehul's *Word Jars* concept card. The closest game on the market is Tripledot's
 *Bubble Word Sort*, which has hidden groups of 4 in pipes. Jarful differs in five ways:
 1. **Strict jar rules.** Only the top card moves, and each drop is checked against the top card. A wrong drop is a *slip*.
-2. **Labels you earn.** Slips, pairs you build and Peeks each reveal the label one step at a time, like hangman.
+2. **Labels you earn.** Slips, pairs you build and Hints each reveal the label one step at a time, like hangman.
 3. **Lids and a Pantry.** Every category you solve becomes a labelled jar on your shelves.
 4. **Jar types:** frosted, labelled and corked.
-5. **Jar of the Day**, with a streak and a share string.
+5. **A pantry to fill:** 17 rooms, each with its own look, a play streak and ranks (a daily puzzle comes later).
 
 ## Rules
 - **Moving.** Tap a jar to lift its top card, then tap another jar to drop it. Drag works too. You can drop on an
@@ -28,141 +28,114 @@ Jarful is built from Mehul's *Word Jars* concept card. The closest game on the m
   judged only from what the player can know.
 - **Undo** is free back to the last lid; knowledge stays. Once every remaining card's group is proven, **Tidy up**
   finishes the board for you.
-- **Fail state.** From level 11, each level has a slip budget set by a fixed table: chapter × group count. Running
-  out means **Retry** (one tap) or an optional **Continue** for +2 slips. Levels 1–10 can't be failed.
-  After 2 fails on the same level, the next try gives a free Peek and +1 slip.
-  *Open:* budget or stars-only. Mehul decides after playing M1; it's a dev toggle.
-- **Fair deals.** No two cards of the same group start next to each other, and there are always 2 empty jars.
+- **Fail state.** From level 11, each level has a slip budget: the tightest one at which the average bot still wins
+  at its room's floor rate (`data/rooms/curve.json`). Running out means **Retry** (one tap) or an optional
+  **Continue** (+2 slips) for an ad or 150 coins you already have. Levels 1–10 can't be failed. After 2 fails on the
+  same level, the next try gives a free Hint and +1 slip (and no gold lid).
+- **Fair deals.** No two cards of the same group start next to each other, and there are always 2 empty jars (a
+  labelled jar replaces one of them).
+- **Boosters** (`docs/plan-m3.md` §2): **Hint** (50 coins) points at a good next move and tags that card;
+  **Complete** (250 coins) seals a label you tap on the rail, its four cards fly up into it; **+Jar** stays free once
+  per level. Any help withholds the gold lid.
 
 ## First 60 seconds
-1. Tap the icon. The splash shows, then level 1 starts with no menu.
-2. Level 1 has 3 jars and 2 obvious groups (fruit, colours). *Apple* glows and a hand pointer shows tap → tap.
-3. First move at about 8 s.
-4. First lid and label at about 30 s.
-5. Level done at about 50 s, then **Next**.
+1. Tap the icon. The splash shows, then the 3-board tutorial starts (Skip is top right).
+2. Board 1 has 2 obvious groups. A glowing card and a hand pointer show tap → tap.
+3. First move at about 8 s; first lid and label at about 30 s.
+4. "You're ready", 150 coins to start, then **Play level 1**.
 
-Captions only appear the first time something happens: first slip, first pair, first stuck. Each is three words
-or fewer.
+Captions only appear the first time something happens: first slip, first pair, first stuck. Each is short.
 
-## Progression and meta
-- **150 levels in 5 chapters ("pantry rooms") of 30.**
+## Progression and meta (M3)
+- **510 levels in 17 rooms of 30** (specs to 720 for later). Each room has its own walls, wood and jar style.
 - **Sawtooth in packs of 10:** levels 1–4 rise, 5 is *tricky*, 6 is a rest level that brings in the next idea,
-  7–9 rise, 10 is *hard*.
+  7–9 rise, 10 is *hard*. Rooms rise from a medium start (Room 1) to very hard (rooms 14–17).
 - **When new ideas arrive:**
 
   | Level | New idea |
   |---|---|
+  | L2, L4, L6 | Undo, +Jar, Hint |
   | L11 | slip budget |
-  | L16 | 4 groups |
-  | L26 | herrings |
-  | L36 | abstract categories |
-  | L46 | 5 groups |
-  | L66 | frosted jars |
-  | L96 | labelled jars |
-  | L106 | 6 groups |
-  | L126 | corked jars |
-  | L136 | wordplay |
+  | L16 | Complete |
+  | L21 | herrings |
+  | L26 | 4 groups |
+  | L31–60 | the v0.2 levels ("The Kitchen") |
+  | L66 | abstract categories |
+  | L96 | 5 groups |
+  | L126 | double herrings |
+  | L186 | frosted jars |
+  | L216 | wordplay |
+  | L246 | labelled jars |
+  | L276 | 6 groups |
+  | L306 | corked jars |
 
-- **Pantry (Home).** Your shelves of solved categories, with one big **Play · Level N** button in the bottom third.
-- **Jar of the Day.**
-  - One baked puzzle per date, from Monday (easy) to Sunday (hard).
-  - No fail state and no ads. Your score is the slips you used.
-  - Streak with earnable freezes, a spoiler-free share string and an archive.
-  - The code is a game-agnostic module.
-- **Coins.**
-  - You earn them from wins (a bonus for every unused slip), the daily and clearing a chapter.
-  - You spend them on Peek, +Jar and Continue.
-  - No energy, no timers, no paywalls.
+- **Home:** the big Jarful jar fills with every label sorted in the room; the cabinet holds the current shelf (tap it
+  for the room); the profile chip (rank, XP ring), coins, the play streak and today's gift; Levels, Play and Shop in
+  the thumb zone.
+- **Coins** (one currency, `src/rules/economy.gd`): first solves (10–50, rising with groups, level kind and room,
+  because help is wanted more often in harder rooms), the daily gift, rank-ups, room completes, optional ads (capped;
+  one ad is worth one Hint), and coin packs ($0.99–$9.99, mock until Play Billing). Spent on Hint, Complete, Continue.
+  No energy, no timers, no paywalls, no loot boxes.
+- **Play streak:** a day counts once you win any level. The daily gift opens after the first win of the day and
+  grows over a 7-day ladder. Every 7 days earns a streak saver (at most 2) that covers a missed day.
+- **Rank:** XP from first solves, hard levels and gold lids; titles and avatars unlock as you rank up.
+- **Jar of the Day** (deferred): a daily puzzle will count toward the same streak.
 
 ## Difficulty and the level pipeline
-- **Category bank.** About 450 categories drafted by Claude, each with a key word, tier, domain tags and
-  per-word obscurity. Only region-neutral English ships.
+- **Category bank.** Claude-drafted categories (target ~750), each with a key word, tier 1–4, domain and members.
+  Linted (`tools/lint_bank.gd`) and reviewed by fresh-eyes reviewers for weak members and undeclared overlaps.
 - **Fairness gates for every level:**
   - **Unique cover:** there is exactly one way to split the cards into the level's groups.
-  - **No phantom groups:** a bank category outside the level must not hold 3 or more of its cards.
-  - **Reviewed pairs only:** two categories share a level only after that pair has been reviewed.
-  - **Lint:** duplicates, clashes, contested words, card fit at ≥34 px.
-- **Offline, deterministic bake** (`tools/bake.gd`):
-  1. Pick categories and words in level order, respecting reuse caps.
-  2. Deal at random with constraints.
-  3. A weighted A* solver proves the level solvable.
-  4. A human-like bot plays 300 times to measure pass rate, slips, moves after the "aha" and time.
-  5. Exploit bots (random prober, Peek-all) act as gates.
-  6. Near-duplicates are filtered out.
-- **Reports.** Each bake writes `reports/bake_vN.csv`, `.md` and `curve_vN.svg`, plotting pass rate against the
-  target bands.
-- **Pass-rate targets** (average bot, first try):
-
-  | Levels | Target |
-  |---|---|
-  | L1–10 | ≥97% |
-  | Each pack | rising from ~92% to ~80% |
-  | Tricky levels | ~70% |
-  | Rest levels | ≥92% |
-  | Hard levels | 55–65% (never below 50%) |
-  | Daily | median slips from ~1 on Monday to ~3 on Sunday |
-
-- **Calibration.** Mehul's playtest log and stranger tests calibrate the bot. Until it ranks levels the way people
-  do (ρ ≥ 0.6), Mehul's flags win.
+  - **No phantom groups:** a bank category outside the level must not hold 3 or more of its cards drawn from two or
+    more groups. Three cards from one group mislead nobody.
+  - **No label clashes:** a card must not read as naming another group's label.
+  - **Pair rules:** categories that overlap too much never share a level.
+  - **Wordplay rules:** another group's card must not obey a wordplay group's rule (checked from the spelling where
+    the rule allows it), unless it is that level's declared herring.
+- **Vocabulary rises with difficulty.** Room 1, Room 3 and every rest level leave out the hard-word list
+  (`data/bank/hard_words.txt`), so early levels and breathers test thinking, not vocabulary.
+- **Reuse:** a category may appear up to 5 times in the game, normally at least 60 levels apart. A repeat shares at
+  most 2 of its 4 words with any earlier use, or 3 when that use is 150 or more levels back.
+- **Offline, deterministic bake** (`tools/room_gen.gd`, two phases):
+  1. **Pick** (fast, global reuse ledger over all rooms): categories, words and herrings per level.
+  2. **Settle** (one process per room, in parallel): seeded deals with special jars, proven solvable, measured by
+     a human-like bot; budget from the room's floor, gold from the average bot.
+- **Reports:** `reports/pick.md`, `roomN_gen.md`, `curve.md` (all levels against their floors), `audit_content.md`
+  (re-checks against the current bank, including a walk that only follows Hints) and `economy.md`.
+- **Calibration.** Mehul's playtest log calibrates the bot. Until it ranks levels the way people do, Mehul's flags
+  win.
 
 ## Screens
-- **Main screens:**
-  - **Home (Pantry):** shelves, the Daily card, coins, settings, and the big Play button.
-  - **Play:** the top bar holds pause, the level number, coins and the slip meter. Below it sits the label rail,
-    then the board in the lower part (3 columns, within thumb reach). The bottom bar has Undo, Peek, +Jar and Tidy up.
-- **Popups:** Win, Lose, Pause, Settings (music, sound, haptics, reduce motion; Credits, Privacy, How to play,
-  dev menu), Daily result, Boosters, Chapter complete. The **Daily** screen has today's puzzle and the archive.
-- **Launch:** the first launch (or until L3 is done) goes straight into the level. After that, the app opens on
-  Home. A level interrupted when the app is killed resumes exactly.
-- **Back button:**
-  1. Puts down a lifted card.
-  2. Closes the open popup.
-  3. In Play, opens Pause.
-  4. On another screen, goes to Home.
-  5. On Home, moves the app to the background.
+- **Home, Levels (rooms), a Room (3 shelves of 10), Profile (avatar, name, rank, pantry ledger), Play.**
+- **Play:** pause, the level number with the slip meter under it, coins; the label rail; the board (3 columns,
+  within thumb reach); Undo, Hint, +Jar, Complete (and Tidy up when every card is proven).
+- **Sheets:** Win (jar, shelf, coin and XP chips), Lose, Pause, Settings, Shop, Daily gift, Streak, avatar picker,
+  a solved level's card, the room reveal.
+- **Launch:** the tutorial on first launch, then Home. A level interrupted when the app is killed resumes exactly.
+- **Back button:** puts down a lifted card or leaves Complete's choice; closes the open sheet; in Play opens Pause;
+  a room goes back to where it was opened from; other screens go Home; Home moves the app to the background.
 
 ## Art, sound, feel
 - **Look.** Mehul's palette: Paper `#FFF8EC`, Ink `#3D2C2E`, Paprika `#A9432C`, Glass teal `#3B6E6E`, and
-  Apricot `#F28F3B` for decoration. Jars, lids, cards, shelves and icons are drawn in code or hand-made SVG.
-  Fonts are Atkinson Hyperlegible Next plus one typewriter face, both OFL.
-- **Feel.** Calm, with a flourish when you solve something. Juice goes on success only:
-  - lift: 80 ms;
-  - drop: a 150 ms glide and a glass clink;
-  - slip: a ±3° wobble and a knock, with no buzz;
-  - lid: a 300 ms screw-on with a ratchet;
-  - label: typed in, then a shine sweep;
-  - jar to shelf: sparkles;
-  - win: the jars hop in a wave and confetti falls.
-- **Reduce motion** removes the wobble, the hops and the confetti.
-- **Sound.**
-  - Kenney CC0 effects and a soft CC0/CC-BY music bed. Mehul's recorded foley replaces the effects later.
-  - Pitch varies ±3–8%.
-  - Nothing is timed to audio.
-- **Haptics:** 8–50 ms ticks.
+  Apricot `#F28F3B` for decoration. Jars, lids, cards, shelves, coins and room walls are SVG built in code.
+  Fonts: Atkinson Hyperlegible Next and Gochi Hand (OFL).
+- **Feel.** Calm, with a flourish when you solve something. Juice goes on success only (lid ratchet and seat, label
+  typed in, jar onto the shelf, coins flying into the coin pill).
+- **Reduce motion** removes the wobble, the hops and the flights.
+- **Sound.** Kenney and other CC0 effects, "Catmint" by Kistol (CC0) as the music bed.
+- **Haptics:** 15–40 ms, only on lift, drop, slip, lid, win and coins landing.
 
-## Monetisation (mock in v1)
-- Every ad goes through an `AdService` with a mock provider.
-- **Rewarded ads**, always opt-in: Continue, ×2 coins, Peek, +Jar.
-- **Interstitials** only when the results screen opens after a win. Never in session 1, never before L10, at least
-  2 wins and 120 s apart, and never around the daily.
-- Real AdMob, consent, IAP and analytics backends come later. They need accounts, so they're Mehul's call.
+## Monetisation (mock until accounts)
+- Optional rewarded ads only (Mehul's call): free coins, a free Hint, ×2 win coins, ×2 daily gift, Continue.
+  Capped at 12 a day, 30 s apart. No interstitials.
+- Coin packs through a `Store` facade (mock in playtest builds). Real AdMob, Play Billing and Play Games (friends)
+  need Mehul's accounts and the Gradle build.
 
-## Scope of v1
-Included:
-- 150 levels, all passing the gates, and up to 365 dailies (at least 180).
-- Home and Pantry, daily, settings, save and resume, mock ads.
-- Our own art and sound.
-- An Android APK, with the AAB as part of the M4 release prep.
-
-Left for later: real ads/IAP, localisation, leaderboards, notifications.
-
-**Milestones:**
+## Milestones
 
 | Milestone | Version | Contents |
 |---|---|---|
 | M1 | v0.1 | Find the fun: grey-box + toggles + bot |
-| M2 | v0.2 | Home, tutorial, Room 1 progression, the art direction (style frames, SVG materials). See `docs/plan-m2.md` |
-| M2b | v0.2.x | Jar of the Day (daily module) and coins/boosters |
-| M3a | v0.3 | Content: bank, full pipeline, rooms 2–5, dailies |
-| M3b | v0.4 | Sound and music pass, remaining rooms' art, juice pass |
-| M4 | v1.0-rc | Polish, performance, store kit |
+| M2 | v0.2 | Home, tutorial, Room 1, the art direction. See `docs/plan-m2.md` |
+| M3 | v0.3 | Coins, boosters, streak, rank, Levels and rooms, profile, 510 levels. See `docs/plan-m3.md` |
+| M4 | v1.0-rc | Real ads/billing/Play Games (with Mehul's accounts), daily puzzle, polish, store kit |

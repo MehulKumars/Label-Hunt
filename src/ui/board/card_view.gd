@@ -2,6 +2,9 @@
 class_name CardView
 extends Control
 
+## Where the tag chip ends along the card's top edge.
+const CHIP_CLEAR := 24.0
+
 var card := -1
 var word := ""
 var tag_group := -1
@@ -82,6 +85,9 @@ func _draw() -> void:
 		var a := 0.45 + 0.35 * sin(_glow_t * 5.0)
 		draw_style_box(Style.glow(Color(Style.APRICOT, a), Style.R_M, 16), face)
 	draw_texture_rect(Art.tex("card", size, Materials.card), r, false)
+	if glow:
+		# The card a Hint points at: a paprika ring around the face, so it can't be mistaken for a group tag.
+		draw_style_box(Style.box(Color(0, 0, 0, 0), Style.R_M + 2, 5, Style.PAPRIKA), face.grow(3.0))
 	if frosted:
 		draw_style_box(Style.box(Color(Style.FROST, 0.94), Style.R_M), face)
 		for i in 4:
@@ -96,10 +102,13 @@ func _draw() -> void:
 		fs -= 2
 	var ts := font.get_string_size(word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
 	var baseline := (face.size.y - font.get_height(fs)) / 2.0 + font.get_ascent(fs)
-	draw_string(font, Vector2((face.size.x - ts.x) / 2.0, baseline), word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+	var word_x := (face.size.x - ts.x) / 2.0
+	# The group tag is a round sticker on the card's top-left corner: a word stays centred unless it would run under it.
+	if tag_group >= 0:
+		word_x = maxf(word_x, minf(CHIP_CLEAR, face.size.x - ts.x - 3.0))
+	draw_string(font, Vector2(word_x, baseline), word, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
 	if buried:
 		draw_style_box(Style.box(Color(Style.INK, 0.05), Style.R_M), face)
-	# The group tag is a round sticker on the card's top-left corner, so the word stays centred.
 	if tag_group >= 0:
 		var rad := 12.0 + 5.0 * _chip_pop
 		var c := Vector2(9, 9)

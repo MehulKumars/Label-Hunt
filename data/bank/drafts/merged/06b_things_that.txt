@@ -1,0 +1,138 @@
+# 06b_things_that.txt: tier 3 lateral, "Things that X" family.
+# Avoided labels already in the bank: pop, run, fly, tell time, light, melt, glow, spin, buzz, float, sparkle,
+# sting, are hot/cold, squeaky, stretchy, sticky. Every member plainly does the verb for a typical example.
+things_that_crash,Things that crash,crash,3,lateral,Wave|Cymbal|Thunder|Computer|Laptop|Phone|App|Website|Server|Browser|Market|Price
+things_that_roll,Things that roll,roll,3,lateral,Dice|Ball|Wheel|Marble|Barrel|Log|Thunder|Credits|Tear|Coin|Wave|Eye
+things_that_charge,Things that charge,charge,3,lateral,Phone|Battery|Laptop|Bull|Rhino|Elephant|Buffalo|Hippo|Boar|Ram
+things_that_snap,Things that snap,snap,3,lateral,Twig|Branch|Crocodile|Alligator|Camera|Elastic|Pencil|Celery|Wishbone
+things_that_click,Things that click,click,3,lateral,Mouse|Keyboard|Camera|Seatbelt|Lock|Switch|Dolphin|Buckle|Latch|Tongue|Pen
+things_that_roar,Things that roar,roar,3,lateral,Lion|Tiger|Engine|Crowd|Fire|Thunder|Waterfall|Dinosaur|Wind
+things_that_whistle,Things that whistle,whistle,3,lateral,Kettle|Train|Referee|Wind|Firework|Blackbird|Shepherd|Lifeguard|Dolphin
+things_that_blow,Things that blow,blow,3,lateral,Wind|Breeze|Hurricane|Blizzard|Fan|Hairdryer|Whale|Fuse|Volcano|Bellows
+things_that_rise,Things that rise,rise,3,lateral,Sun|Moon|Dough|Cake|Tide|Smoke|Steam|Price|Rent|Balloon|Phoenix
+things_that_set,Things that set,set,3,lateral,Sun|Moon|Concrete|Cement|Glue|Mortar|Jam|Resin|Plaster
+things_that_leak,Things that leak,leak,3,lateral,Tap|Roof|Pipe|Pen|Boat|Hose|Tent|Battery|Secret|Gutter|News
+things_that_expire,Things that expire,expire,3,lateral,Passport|Ticket|Coupon|Voucher|Lease|Contract|Warranty|Password|Permit|Card|Milk
+things_that_swing,Things that swing,swing,3,lateral,Pendulum|Door|Gate|Hammock|Monkey|Mood|Golfer|Trapeze
+things_that_pinch,Things that pinch,pinch,3,lateral,Crab|Lobster|Shoe|Tweezers|Pliers|Earwig|Clamp|Peg|Scorpion
+things_that_spread,Things that spread,spread,3,lateral,Butter|Jam|Honey|Margarine|Marmalade|Gossip|News|Fire|Panic|Ivy
+things_that_fade,Things that fade,fade,3,lateral,Jeans|Photo|Memory|Tan|Echo|Ink|Light|Smile|Paint
+things_that_hold_water,Things that hold water,water,3,lateral,Bucket|Jug|Vase|Tank|Dam|Kettle|Bath|Well|Argument|Theory|Excuse|Story
+things_that_beat,Things that beat,beat,3,lateral,Heart|Drum|Wing|Pulse|Rain|Sun|Whisk|Mixer|Wave
+things_that_flutter,Things that flutter,flutter,3,lateral,Eyelash|Flag|Heart|Leaf|Ribbon|Banner|Wing|Curtain
+things_that_drift,Things that drift,drift,3,lateral,Snow|Cloud|Mind|Smoke|Iceberg|Leaf|Sand|Continent|Boat|Balloon
+things_that_lift,Things that lift,lift,3,lateral,Crane|Jack|Pulley|Lever|Winch|Fog|Mist|Haze|Mood
+things_that_hum,Things that hum,hum,3,lateral,Fridge|Freezer|Microwave|Bee|Engine|Computer|Generator|Fan|Turbine
+things_that_sing,Things that sing,sing,3,lateral,Choir|Whale|Robin|Lark|Blackbird|Canary|Soprano|Tenor|Siren
+things_that_hibernate,Things that hibernate,hibernate,3,lateral,Bear|Hedgehog|Tortoise|Dormouse|Bat|Groundhog|Laptop|Computer
+things_that_pop_up,Things that pop up,pop,3,lateral,Toast|Meerkat|Mushroom|Mole|Shop|Book|Tent|Window
+things_that_tangle,Things that tangle,tangle,3,lateral,Hair|Wire|Cable|Rope|Yarn|Necklace|Thread|String|Hose|Ribbon
+things_that_overflow,Things that overflow,overflow,3,lateral,Bath|Sink|River|Inbox|Gutter|Drain|Dam|Cup
+things_that_ring,Things that ring,ring,3,lateral,Bell|Phone|Alarm|Doorbell|Gong|Ear|Triangle|Cowbell|Chime
+
+# Extensions to existing bank categories (honest members, used above or found while checking)
++things_that_fly,Bat
++things_that_run,Tap
++things_that_float,Iceberg
++cold_things,Iceberg
++always_plural,Tweezers
+# WEAK: things_that_tell_time Alarm - an alarm alerts you, it doesn't tell the time (an alarm clock does)
+# WEAK: things_that_tell_time Timer - measures a span, doesn't tell the time of day
+
+# Pair rules: confusable labels, or a sibling category whose unlisted members also do the verb
+PAIR: Things that ring | Things with rings
+PAIR: Things that ring | Percussion
+PAIR: Things that ring | Parts of a clock
+PAIR: Things that ring | Things that tell time
+PAIR: Things that pop up | Things that pop
+PAIR: Things that pop up | Fungi
+PAIR: Things that pop up | Kinds of mushroom
+PAIR: Things that crash | Things that fly
+PAIR: Things that crash | Ways to travel
+PAIR: Things that crash | Gadgets
+PAIR: Things that crash | Computer parts
+PAIR: Things that crash | Things that buzz
+PAIR: Things that charge | Gadgets
+PAIR: Things that charge | Electricity
+PAIR: Things that charge | Horned animals
+PAIR: Things that charge | Male animals
+PAIR: Things that charge | Forest animals
+PAIR: Things that roar | Big cats
+PAIR: Things that roar | Jungle animals
+PAIR: Things that roar | Forest animals
+PAIR: Things that roar | Loud things
+PAIR: Things that roar | Animal sounds
+PAIR: Things that whistle | Loud things
+PAIR: Things that whistle | At the pool
+PAIR: Things that blow | Weather
+PAIR: Things that blow | Storms
+PAIR: Things that blow | Extreme weather
+PAIR: Things that rise | Things that float
+PAIR: Things that set | Sticky things
+PAIR: Things that set | Building materials
+PAIR: Things that set | Preserves
+PAIR: Things that spread | Preserves
+PAIR: Things that spread | Sticky things
+PAIR: Things that expire | Dairy
+PAIR: Things that swing | In the park
+PAIR: Things that swing | Seats
+PAIR: Things that swing | Squeaky things
+PAIR: Things that swing | Primates
+PAIR: Things that swing | Jungle animals
+PAIR: Things that pinch | Recipe amounts
+PAIR: Things that beat | Music terms
+PAIR: Things that beat | Percussion
+PAIR: Things that beat | Ways to mix
+PAIR: Things that flutter | Insects
+PAIR: Things that flutter | Things that fly
+PAIR: Things that flutter | At a party
+PAIR: Things that flutter | Birthday party
+PAIR: Things that drift | Things that float
+PAIR: Things that drift | Weather
+PAIR: Things that hum | Things that buzz
+PAIR: Things that sing | Birds
+PAIR: Things that sing | Singing voices
+PAIR: Things that sing | Musicians
+PAIR: Things that sing | Groups of people
+PAIR: Things that roll | Ways to move
+PAIR: Things that tangle | Things you can tie
+PAIR: Things that tangle | Fishing gear
+PAIR: Things that hold water | Containers
+PAIR: Things that hold water | Things to drink from
+PAIR: Things that hold water | On the table
+PAIR: Things that hold water | Kitchen tools
+PAIR: Things that hold water | In the bathroom
+PAIR: Things that hold water | Things that overflow
+PAIR: Things that overflow | In the bathroom
+PAIR: Things that overflow | Things that leak
+PAIR: Things that hibernate ! animals
+
+# SUMMARY
+# Counts: 28 new categories, all tier 3 / lateral; 269 member slots (8-12 per category). 5 extensions, 2 WEAK flags,
+#   65 PAIR lines.
+# Crossings inside this file (all declared by listing): Sun (rise/set/beat), Moon (rise/set), Wave (crash/roll/beat),
+#   Thunder (crash/roll/roar), Wind (roar/whistle/blow), Phone (crash/charge/ring), Laptop (crash/charge/hibernate),
+#   Computer (crash/hum/hibernate), Price (crash/rise), Battery (charge/leak), Camera (snap/click),
+#   Dolphin (click/whistle), Fan (blow/hum), Engine (roar/hum), Whale (blow/sing), Blackbird (whistle/sing),
+#   Heart+Wing (beat/flutter), Leaf (flutter/drift), Smoke+Balloon (rise/drift), Boat (leak/drift), Fire (roar/spread),
+#   Jam (set/spread), News (leak/spread), Pen (click/leak), Hose (leak/tangle), Ribbon (flutter/tangle),
+#   Tent (leak/pop up), Kettle (whistle/hold water), Mood (swing/lift), Bath+Dam (hold water/overflow),
+#   Gutter (leak/overflow).
+# Favourite herrings with other domains: Market (town), Tap (touchscreen moves), Bat (sports gear), Crane (water birds),
+#   Jack (card terms), Mole (marks on skin), Toast (breakfast), Yarn (kinds of story), Ram/Bull/Boar (male animals),
+#   Echo (phonetic alphabet), Mouse (pets), Tongue (parts of a shoe), Story (social media), Credits (cinema).
+# Deliberately avoided:
+#   Car, Train-crash, Plane-crash (death/accident taste; vehicles handled by PAIR instead); Bread in rise (clashes with
+#   the "Breads" label); Snake in hiss (clashes with "Snakes"); Comet in "come back" (contains "come"); Butterfly in
+#   flutter (contains "fly" and flies); Bank/Lawyer/Hotel in charge (every business charges: open-ended);
+#   Tyre (spelling); Jelly, Bin, Lift/Elevator (US/UK); Spirits in lift (alcohol); Knight in charge (battle);
+#   Cradle in swing (cradles rock more than swing); Hope in fade (hopes also rise); Kettle in sing (dated phrase).
+#   Whole verbs dropped as unfair or open-ended: hang, fold, peel, crumble, stain, rust (every food/metal/paper item
+#   qualifies), tick (too few), strike, hiss, freeze, flash, come back, go off (UK sense).
+# Unsure:
+#   things_that_ring - close to "Things with rings" (PAIRed); Bell/Doorbell/Cowbell are similar.
+#   things_that_tangle - closer to a property (stringy things) than a true aha.
+#   things_that_hibernate - Groundhog is North American; Laptop/Computer "hibernate" assumes PC users.
+#   things_that_leak - "known to leak" rather than every typical example leaking (Roof, Boat, Tent).
+#   things_that_lift - Winch is a less common word; Fog/Mist/Haze lean on one sense.
+#   Possible stray readings to watch in playtest: Trumpet "blows", Alarm "sets", Train "crashes", Coin "spins".

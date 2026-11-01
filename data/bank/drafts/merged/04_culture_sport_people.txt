@@ -1,0 +1,250 @@
+# Draft 04: culture, music, sport, games, people, school
+# Format: id,label,key,tier,domain,Word|Word|... ; +existing_id,Word|Word ; PAIR: A | B ; PAIR: Parent < Child
+# Every crossing word is listed in all the categories it honestly belongs to (mine or existing).
+
+# ---------- TIER 1 ----------
+school_subjects,School subjects,subjects,1,school,History|Geography|Biology|Chemistry|Physics|Drama|Science|Economics|Sociology|Computing
+school_supplies,School supplies,School,1,school,Pencil|Ruler|Notebook|Crayon|Glue|Scissors|Stapler|Backpack|Compass|Sharpener|Marker|Folder|Chalk|Textbook
+people_at_school,People at school,school,1,people,Teacher|Pupil|Student|Principal|Tutor|Coach|Librarian|Nurse|Classmate
+at_a_wedding,At a wedding,wedding,1,culture,Bride|Groom|Veil|Bouquet|Confetti|Vows|Cake|Usher|Speech|Toast|Dress|Guest
+birthday_party,Birthday party,Birthday,1,culture,Balloon|Cake|Candle|Present|Gift|Card|Streamer|Confetti|Banner|Guest|Wish
+languages,Languages,Languages,1,culture,French|Spanish|German|Italian|Arabic|Hindi|Russian|Japanese|Dutch|Swahili|Korean|Mandarin|Turkish|Latin
+crafts,Crafts,Crafts,1,culture,Knitting|Pottery|Weaving|Origami|Quilting|Crochet|Carving|Woodwork|Batik|Mosaic|Collage|Tapestry
+film_genres,Film genres,Film,1,culture,Western|Thriller|Romance|Comedy|Mystery|Fantasy|Musical|Drama|Action|Adventure|Animation|Epic
+at_the_cinema,At the cinema,cinema,1,culture,Popcorn|Screen|Ticket|Trailer|Usher|Projector|Credits|Sequel|Premiere|Subtitle|Matinee
+indoor_games,Indoor games,Indoor,1,games,Chess|Darts|Bingo|Dominoes|Charades|Mahjong|Snooker|Billiards|Pool|Bowling
+sportspeople,Sportspeople,Sportspeople,1,sport,Boxer|Jockey|Golfer|Skater|Diver|Cyclist|Swimmer|Rower|Surfer|Skier|Sprinter|Wrestler|Gymnast|Fencer
+musicians,Musicians,Musicians,1,music,Drummer|Singer|Pianist|Guitarist|Violinist|Cellist|Bassist|Harpist|Trumpeter|Organist|Rapper|Conductor|Composer
+team_sports,Team sports,Team,1,sport,Rugby|Hockey|Cricket|Polo|Baseball|Netball|Handball|Football|Softball|Lacrosse|Curling
+at_a_concert,At a concert,concert,1,music,Stage|Encore|Crowd|Ticket|Speaker|Amp|Roadie|Spotlight|Band|Singer|Fan|Headliner
+at_the_gym,At the gym,gym,1,sport,Treadmill|Dumbbell|Barbell|Mat|Bench|Locker|Weights|Rope|Rower|Sauna
+water_sports,Water sports,Water,1,sport,Swimming|Surfing|Sailing|Rowing|Diving|Kayaking|Canoeing|Rafting
+phases_of_life,Phases of life,life,1,people,Toddler|Child|Teenager|Adult|Infant|Youth|Senior|Newborn
+performers,Performers,Performers,1,people,Actor|Singer|Dancer|Juggler|Clown|Magician|Comedian|Acrobat|Mime|Puppeteer
+prizes,Prizes,Prizes,1,sport,Trophy|Medal|Cup|Ribbon|Shield|Plaque|Award|Badge|Belt
+at_a_play,At a play,play,1,culture,Actor|Curtain|Spotlight|Prop|Script|Costume|Scenery|Usher|Stage|Ticket|Rehearsal|Director|Audience
+fishing_kit,Fishing kit,Fishing,1,sport,Rod|Reel|Hook|Bait|Net|Line|Float|Lure|Tackle|Sinker
+magic_show,Magic show,Magic,1,culture,Wand|Rabbit|Hat|Card|Trick|Coin|Dove|Illusion|Assistant|Scarf
+combat_sports,Combat sports,Combat,1,sport,Boxing|Wrestling|Fencing|Karate|Judo|Sumo|Taekwondo|Kendo|Aikido
+in_fairy_tales,In fairy tales,fairy,1,culture,Witch|Wolf|Prince|Frog|Beanstalk|Wand|Spell|Tower|Slipper|Cottage|Giant|Ogre|Troll
+pirate_ship,On a pirate ship,pirate,1,culture,Parrot|Treasure|Map|Hook|Plank|Flag|Patch|Compass|Anchor|Telescope|Captain|Deck
+
+# ---------- TIER 2: music ----------
+wind_instruments,Wind instruments,Wind,2,music,Flute|Clarinet|Oboe|Bassoon|Saxophone|Recorder|Piccolo|Trumpet|Trombone|Tuba|Bugle|Harmonica|Bagpipes|Cornet
+percussion,Percussion,Percussion,2,music,Drum|Cymbal|Gong|Xylophone|Triangle|Bongo|Maraca|Tabla|Timpani|Cowbell|Marimba|Conga
+singing_voices,Singing voices,voices,2,music,Soprano|Alto|Tenor|Bass|Baritone|Contralto|Falsetto|Treble
+music_terms,Music terms,Music,2,music,Tempo|Chord|Melody|Rhythm|Harmony|Octave|Scale|Beat|Pitch|Clef|Sharp|Note|Tune
+kinds_of_song,Kinds of song,song,2,music,Ballad|Anthem|Lullaby|Jingle|Shanty|Aria|Serenade|Ditty|Duet|Medley
+parts_of_a_song,Parts of a song,song,2,music,Verse|Chorus|Bridge|Intro|Outro|Riff|Solo|Lyric|Refrain|Coda
+music_releases,Music releases,releases,2,music,Single|Album|Track|Demo|Remix|Mixtape|Record|Cover
+
+# ---------- TIER 2: culture ----------
+works_of_art,Works of art,art,2,culture,Mural|Mosaic|Collage|Fresco|Sketch|Portrait|Statue|Etching|Tapestry|Landscape|Painting|Carving|Sculpture
+at_the_ballet,At the ballet,ballet,2,culture,Tutu|Pointe|Pirouette|Barre|Leotard|Arabesque|Ballerina|Slipper|Tights
+kinds_of_book,Kinds of book,book,2,culture,Novel|Atlas|Diary|Biography|Memoir|Journal|Manual|Thesaurus|Almanac|Anthology
+parts_of_a_book,Parts of a book,book,2,culture,Cover|Page|Chapter|Index|Blurb|Preface|Glossary|Jacket|Footnote|Appendix|Epilogue|Prologue|Margin
+greek_letters,Greek letters,Greek,2,culture,Alpha|Beta|Gamma|Delta|Omega|Sigma|Theta|Lambda|Kappa|Epsilon|Zeta|Iota
+celebrations,Celebrations,Celebrations,2,culture,Reunion|Festival|Parade|Carnival|Gala|Fiesta|Feast|Banquet|Jubilee|Ceremony
+kinds_of_story,Kinds of story,story,2,culture,Fable|Myth|Legend|Saga|Epic|Anecdote|Allegory|Yarn|Novel|Tragedy|Satire
+kinds_of_comedy,Kinds of comedy,comedy,2,culture,Sketch|Skit|Parody|Satire|Farce|Spoof|Slapstick|Sitcom|Pun|Gag|Prank
+in_a_newspaper,In a newspaper,newspaper,2,culture,Headline|Article|Column|Editorial|Cartoon|Crossword|Review|Caption|Interview|Sudoku|Byline
+photography,Photography,Photography,2,culture,Lens|Flash|Shutter|Focus|Zoom|Tripod|Exposure|Filter|Frame|Selfie|Negative
+
+# ---------- TIER 2: people ----------
+in_a_courtroom,In a courtroom,courtroom,2,people,Judge|Jury|Lawyer|Witness|Clerk|Gavel|Verdict|Oath|Bench|Trial|Evidence|Dock|Appeal
+jobs_with_animals,Jobs with animals,animals,2,people,Vet|Farmer|Zookeeper|Jockey|Shepherd|Beekeeper|Breeder|Rancher|Ranger|Groomer|Cowboy|Herder
+trades,Trades,Trades,2,people,Plumber|Builder|Carpenter|Painter|Roofer|Mason|Welder|Locksmith|Mechanic|Plasterer|Tiler
+people_in_charge,People in charge,charge,2,people,Boss|Chief|Captain|Skipper|Commander|Ruler|Director|Manager|Principal|Chair
+groups_of_people,Groups of people,Groups,2,people,Team|Crew|Clan|Squad|Tribe|Cast|Troupe|Jury|Class|Panel|Crowd|Audience|Band|Choir|Chorus|Committee
+words_for_a_friend,Words for a friend,friend,2,people,Pal|Buddy|Mate|Chum|Ally|Companion|Partner|Sidekick|Amigo
+learners,Learners,Learners,2,people,Pupil|Student|Scholar|Trainee|Intern|Novice|Beginner|Rookie|Cadet
+experts,Words for an expert,expert,2,people,Master|Ace|Genius|Maestro|Virtuoso|Pro|Pundit|Veteran|Prodigy|Champ
+shopkeepers,Shopkeepers,Shopkeepers,2,people,Butcher|Baker|Grocer|Florist|Tailor|Barber|Cobbler|Optician|Stationer
+writers,Writers,Writers,2,people,Author|Poet|Novelist|Reporter|Columnist|Blogger|Scribe|Lyricist|Essayist|Diarist
+medieval_people,Medieval people,Medieval,2,people,Jester|Knight|Squire|Page|Herald|Minstrel|Peasant|Serf|Baron
+workplaces,Workplaces,Workplaces,2,people,Office|Factory|Farm|Studio|Lab|Mine|Workshop|Warehouse|Salon|Clinic|Mill|Quarry
+
+# ---------- TIER 2: school ----------
+grammar_words,Grammar words,Grammar,2,school,Noun|Verb|Adjective|Adverb|Pronoun|Clause|Phrase|Prefix|Suffix|Syllable|Vowel|Tense|Plural|Sentence
+punctuation,Punctuation,Punctuation,2,school,Comma|Colon|Hyphen|Dash|Bracket|Asterisk|Semicolon|Slash|Ellipsis
+arithmetic,Arithmetic,Arithmetic,2,school,Plus|Minus|Times|Divide|Equals|Total|Fraction|Decimal|Remainder|Multiply|Subtract|Add|Sum|Product
+schoolwork,Schoolwork,Schoolwork,2,school,Homework|Essay|Exam|Test|Quiz|Project|Report|Dictation|Worksheet
+at_university,At university,university,2,school,Campus|Lecture|Degree|Professor|Dean|Thesis|Seminar|Semester|Faculty|Diploma|Graduate|Tuition
+ways_to_learn,Ways to learn,learn,2,school,Lesson|Lecture|Seminar|Tutorial|Workshop|Class|Course|Webinar|Training
+
+# ---------- TIER 2: sport ----------
+sports_venues,Sports venues,venues,2,sport,Stadium|Arena|Court|Pitch|Track|Rink|Pool|Course|Field|Velodrome|Dojo
+tennis_terms,Tennis terms,Tennis,2,sport,Ace|Love|Deuce|Serve|Volley|Lob|Fault|Rally|Smash|Let|Slice|Net|Match
+ways_to_score,Ways to score,score,2,sport,Goal|Try|Basket|Touchdown|Strike|Bullseye|Point|Ace|Birdie|Wicket
+kinds_of_race,Kinds of race,race,2,sport,Sprint|Relay|Marathon|Rally|Regatta|Triathlon|Hurdles|Slalom|Biathlon
+gymnastics_moves,Gymnastics moves,Gymnastics,2,sport,Cartwheel|Handstand|Headstand|Flip|Vault|Splits|Tuck|Twist|Leap
+exercises,Exercises,Exercises,2,sport,Squat|Lunge|Plank|Crunch|Burpee|Deadlift|Curl|Stretch|Dip
+riding_gear,Riding gear,Riding,2,sport,Saddle|Bridle|Stirrup|Rein|Halter|Horseshoe|Whip|Helmet|Spur
+on_the_slopes,On the slopes,slopes,2,sport,Goggles|Pole|Helmet|Lift|Chalet|Snowboard|Lodge|Gondola|Ski|Skier
+basketball_terms,Basketball terms,Basketball,2,sport,Dunk|Rebound|Dribble|Hoop|Assist|Foul|Pivot|Block|Steal|Court
+
+# ---------- TIER 2: games ----------
+in_a_board_game,In a board game,board,2,games,Dice|Counter|Token|Card|Timer|Spinner|Pawn|Tile|Chip|Hourglass
+playing_card_terms,Playing card terms,card,2,games,Deck|Deal|Shuffle|Trick|Joker|Ace|Jack|Fold|Bid
+kinds_of_puzzle,Kinds of puzzle,puzzle,2,games,Jigsaw|Crossword|Sudoku|Riddle|Maze|Anagram|Rebus|Tangram|Labyrinth
+in_a_video_game,In a video game,video,2,games,Level|Boss|Player|Bonus|Quest|Avatar|Pause|Joystick|Console|Pixel|Arcade|Combo|Glitch
+
+# ---------- EXTENSIONS to existing categories in my domains ----------
++sports,Cycling|Boxing|Sailing|Diving|Judo|Karate
++sports_gear,Bat|Stick|Oar|Glove|Ski
++golf_terms,Rough|Wedge|Divot|Slice|Hook|Hole
++instruments,Guitar|Harp|Cello|Saxophone|Oboe|Xylophone
++string_instruments,Bass|Fiddle
++dances,Jive|Twist|Mambo|Conga|Flamenco|Limbo|Hula
++music_genres,Opera|Techno|Indie|Grunge|Swing|Classical
++card_games,Canasta|Whist|Spades
++art_supplies,Pencil|Charcoal|Ink|Marker|Clay|Stencil|Glitter
++at_the_circus,Strongman|Hoop|Mime|Popcorn
++mythical_creatures,Ogre|Elf|Centaur|Sphinx|Yeti|Cyclops
++currencies,Baht|Won|Shilling|Lira|Yuan|Dirham
++phonetic_alphabet,Foxtrot|November|Sierra|Romeo|Victor|Juliet
++royal_titles,Sultan|Empress|Lady|Viscount|Shah|Sir
++jobs,Lawyer|Judge|Vet|Waiter|Butcher|Tailor
++family,Son|Wife|Husband|Parent|Grandson
+
+# ---------- CROSSING DECLARATIONS outside my domains (rule 3: honest second memberships) ----------
+# Bass (Singing voices, String instruments) is also a common fish.
++fish,Bass
+# Dove (Magic show) is a bird.
++birds,Dove
+# Colon (Punctuation) and Appendix (Parts of a book) are organs.
++organs,Colon|Appendix
+# Jigsaw (Kinds of puzzle) is also a power saw.
++things_in_a_toolbox,Jigsaw
+# Veil (At a wedding) is worn.
++things_you_wear,Veil
+# Degree (At university) is a unit of measure (temperature, angle).
++units_of_measure,Degree
+
+# ---------- PAIR RULES ----------
+# Parent < child
+PAIR: Sports < Team sports
+PAIR: Sports < Water sports
+PAIR: Sports < Combat sports
+PAIR: Instruments < Wind instruments
+PAIR: Instruments < Percussion
+PAIR: Jobs < Trades
+# Jobs is a magnet: every job-shaped person category overlaps it
+PAIR: Jobs | People at school
+PAIR: Jobs | Performers
+PAIR: Jobs | Sportspeople
+PAIR: Jobs | Musicians
+PAIR: Jobs | In a courtroom
+PAIR: Jobs | Jobs with animals
+PAIR: Jobs | Shopkeepers
+PAIR: Jobs | Writers
+# Heavy member overlap
+PAIR: At a wedding | Birthday party
+PAIR: At a play | At the cinema
+PAIR: At a play | At a concert
+PAIR: Art supplies | School supplies
+PAIR: On a desk | School supplies
+PAIR: Art supplies | On a desk
+PAIR: Kinds of book | School supplies
+PAIR: Card games | Indoor games
+PAIR: Sports | Indoor games
+PAIR: Performers | At the circus
+PAIR: Performers | Musicians
+PAIR: Performers | Magic show
+PAIR: Team sports | Water sports
+PAIR: At the gym | Exercises
+PAIR: Mythical creatures | In fairy tales
+PAIR: Crafts | Works of art
+PAIR: Kinds of song | Parts of a song
+PAIR: Music terms | Parts of a song
+PAIR: Kinds of song | Music releases
+PAIR: Things you wear | At the ballet
+PAIR: Kinds of book | Parts of a book
+PAIR: Kinds of book | Kinds of story
+PAIR: Film genres | Kinds of story
+PAIR: Film genres | Kinds of comedy
+PAIR: Titles | People in charge
+PAIR: Titles | Medieval people
+PAIR: Winter sports | On the slopes
+PAIR: Sports gear | On the slopes
+PAIR: Learners | Ways to learn
+PAIR: Places in a town | Workplaces
+PAIR: Rooms in a house | Workplaces
+# A label word that is a card in the other category
+PAIR: Chess pieces | Indoor games
+PAIR: Dances | At the ballet
+PAIR: Sports | Tennis terms
+PAIR: Weather | Wind instruments
+PAIR: Drinks | Water sports
+PAIR: Groups of people | Team sports
+PAIR: In a courtroom | Sports venues
+PAIR: Toys | Kinds of puzzle
+PAIR: Words before board | In a board game
+PAIR: Card games | Playing card terms
+PAIR: Card suits | Playing card terms
+PAIR: Things with spines | Kinds of book
+PAIR: Things with spines | Parts of a book
+PAIR: Places in a town | School subjects
+PAIR: Places in a town | School supplies
+PAIR: Places in a town | People at school
+PAIR: Places in a town | Schoolwork
+PAIR: Words before house | School subjects
+PAIR: Words before house | School supplies
+PAIR: Words before house | People at school
+PAIR: Words before house | Schoolwork
+
+# ---------- SUMMARY ----------
+# New categories: 73 (tier 1: 25, tier 2: 48). Domains: culture 20, sport 16, people 15, music 9, school 8, games 5.
+# (Each tier-1 group is something everyone knows; tier 2 is narrower vocabulary or needs a moment.)
+# Extensions: 16 bank categories in my domains, each taken to 9-16 members (sports, instruments, dances, music
+#   genres, golf terms, mythical creatures, royal titles and jobs now at 16).
+# Crossing declarations outside my domains: +fish Bass, +birds Dove, +organs Colon|Appendix,
+#   +things_in_a_toolbox Jigsaw, +things_you_wear Veil, +units_of_measure Degree.
+#
+# Crossings declared (word listed in every category it fits). Favourite herrings:
+#   Pupil (eye/school/learners), Lens (eye/photography), Boxer (dog/sportspeople), Ruler (supplies/in charge),
+#   Chair (furniture/in charge), Plank (pirate/exercises), Page (book/medieval), Jacket (wear/book),
+#   Appendix (organs/book), Colon (organs/punctuation), Mandarin (citrus/languages), Pitch (music/venues),
+#   Track (releases/venues), Record (break/releases), Screen (sun-words/cinema), Toast (breakfast/wedding),
+#   Bench (furniture/gym/courtroom), Belt (wear/prizes), Hook (fishing/pirate/golf), Ace (tennis/cards/score/expert),
+#   Slice (tennis/golf), Rally (tennis/race), Deck (pirate/cards), Trick (magic/cards), Course (venues/learn),
+#   Class (groups/learn), Chorus (song/groups), Cover (book/releases), Twist (dance/gymnastics), Conga (dance/drum),
+#   Bass (voice/string/fish), Knight (chess/medieval), Prince (titles/fairy tales), Slipper (footwear/fairy/ballet).
+#
+# Words deliberately avoided:
+#   Spelling or US/UK variants: Theatre/Theater (so "At a play", not "In a theatre"), Maths/Math, Bobsleigh/Bobsled,
+#     Racket/Racquet, Jewellery, Layup/Lay-up, Folktale, Snorkelling, Travelling, Piste (US says trail), Zip wire,
+#     Chemist as a shop (US = scientist), Annual (UK children's book), Rounders, Conkers, Sandpit/Sandbox,
+#     Draughts/Checkers, Ludo (unknown in US), Snap (card game), Interval/Intermission, Mum/Mom.
+#   Label-word clashes: Ring (vs "Things with rings"), Rock (vs Rocks), Metal (vs Metals), Country (vs Countries),
+#     House (vs "Words before house"), Club (vs Clubs suit), Spine (vs "Things with spines"), Neck, Nut, Title (vs
+#     Titles), Party/Wedding/Birthday inside Celebrations, Gym inside Sports venues, Score inside video game,
+#     Greek inside Languages, Art and Music inside School subjects, Baby inside Phases of life.
+#   Key inside member: Netball/Volleyball in a "ball" group, Cookbook/Textbook/Notebook in Kinds of book,
+#     Playwright in At a play, Magician in Magic show, Bookmark in Parts of a book.
+#   Taste: Javelin, Archery/Archer, Cannon, Sword, Lance (weapons); Gospel, Hymn, Carol, Psalm, Godmother, Monk,
+#     Lord (religion); Trump (politics); Vampire, Werewolf, Banshee, Zombie, Elegy, Obituary (scary/death);
+#     Gang (crime, replaced by Clan); Handicap (golf, but a dated disability word); Oscar, Frisbee, Scrabble,
+#     Monopoly, Uno, Lego, Zumba (trademarks); Gin rummy; Baccarat/Roulette (gambling); military ranks.
+#   Phantom risks: Cape (landform and garment), Mitten/Tights-type garments outside Ballet, Pumpkin (vegetable),
+#     Castle (casual name for the rook), Hand/Suit/Chest/Head (body/wear), Bluff (landform), Buff (colour),
+#     Roll (bread), Crop (hairstyle), Dwarf (sensitive), Papa/Uniform/India (phonetic words that fit other groups),
+#     Hobbies and Fancy dress (would swallow half the bank), Scientists (too thin without padding).
+#
+# Notes for the merge:
+#   - Wolf and Frog (In fairy tales), Bat (Sports gear), Sphinx (myth; also a cat breed), Cobbler (also a dessert),
+#     Cottage (a house type), Popcorn (a snack) and Cartoon (Newspaper; arguably a film genre) have no existing home.
+#     If another draft adds an animal/house/snack category containing them, declare the crossing there.
+#   - Greek letters and Arithmetic may duplicate a science draft. Pirate ship (Anchor, Deck) may overlap a travel
+#     "Parts of a ship" draft: pair them.
+#   - Jobs is a magnet: any people category (and any person card) can look like a job. I paired Jobs with all 8 of
+#     my job-shaped categories.
+#
+# Least sure (watch in playtests):
+#   1. Words for a friend: Mate, Chum and Buddy are regional in feel; Amigo is a loanword.
+#   2. Kinds of puzzle: Rebus and Tangram are less known; Maze and Labyrinth are near-synonyms.
+#   3. Music releases: Demo, Cover and Record are loose; only 8 members.
+#   4. At the ballet: Pointe and Barre are niche; Tights/Leotard/Tutu need the Things-you-wear pair.
+#   5. Words for an expert: Pundit, Champ and Veteran are softer fits than Maestro or Virtuoso.
+#   Also: Shopkeepers (Stationer, Cobbler dated), Singing voices (Contralto, Treble), In a courtroom (crime-adjacent
+#   but nothing violent), Workplaces (Office could be a room, so it is paired with Rooms in a house).

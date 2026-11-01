@@ -13,12 +13,19 @@ static func next_level(cat: Catalog, save: Dictionary) -> String:
 	return ""
 
 
+## Room levels open in order: the first level, any solved level, and the one after a solved level. (A player whose
+## old levels moved later in the order keeps them playable.)
 static func is_unlocked(cat: Catalog, save: Dictionary, id: String) -> bool:
 	if not cat.has(id):
 		return false
 	if cat.entry(id)["track"] != "room":
 		return true
-	return save.get("solved", {}).has(id) or next_level(cat, save) == id
+	var solved: Dictionary = save.get("solved", {})
+	if solved.has(id) or next_level(cat, save) == id:
+		return true
+	var order := cat.play_order()
+	var i := cat.order_index(id)
+	return i == 0 or (i > 0 and solved.has(order[i - 1]))
 
 
 ## Gold needs a threshold (rooms from L11), slips within it, and no assist (Continue or the two-fails bonus).

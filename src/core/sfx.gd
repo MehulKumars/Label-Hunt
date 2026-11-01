@@ -7,10 +7,10 @@ extends Node
 ## name -> variants (files are name_1.wav ... or name.wav when there is one).
 const SOUNDS := {
 	"lift": 2, "drop": 3, "place": 1, "slip": 2, "refuse": 1, "write": 1, "type": 1, "chime": 1, "ratchet": 1,
-	"seat": 1, "shelf": 1, "bell": 1, "tap": 1, "whoosh": 1, "win": 1, "frost": 1,
+	"seat": 1, "shelf": 1, "bell": 1, "tap": 1, "whoosh": 1, "win": 1, "frost": 1, "coin": 1, "levelup": 1, "gift": 1,
 }
 const UI_SOUNDS := ["tap", "whoosh"]
-const STINGERS := ["win", "bell"]
+const STINGERS := ["win", "bell", "levelup"]
 const POOL := 12
 const MAX_VOICES := 3
 const MUSIC := "res://assets/audio/music/catmint.ogg"

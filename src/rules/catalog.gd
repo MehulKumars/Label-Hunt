@@ -13,7 +13,12 @@ var entries: Dictionary = {}
 var tutorial: PackedStringArray = []
 ## room number -> PackedStringArray of ids in play order
 var rooms: Dictionary = {}
+## room number -> player-facing room name ("The Larder")
+var names: Dictionary = {}
 var test: PackedStringArray = []
+## play_order() cache (rebuilt when a file is added); index lookups by id.
+var _order: PackedStringArray = []
+var _index: Dictionary = {}
 
 
 static func from_files(paths: PackedStringArray) -> Catalog:
@@ -51,6 +56,13 @@ func add_file(file: Dictionary) -> void:
 			var ids: PackedStringArray = rooms.get(room, PackedStringArray())
 			ids.append_array(order)
 			rooms[room] = ids
+			names[room] = str(file.get("name", "Room %d" % room))
+			_order = PackedStringArray()
+			for r in room_numbers():
+				_order.append_array(rooms[r])
+			_index.clear()
+			for i in _order.size():
+				_index[_order[i]] = i
 
 
 func has(id: String) -> bool:
@@ -77,10 +89,16 @@ func room_numbers() -> Array:
 
 ## Every room level in play order, across rooms.
 func play_order() -> PackedStringArray:
-	var out: PackedStringArray = []
-	for r in room_numbers():
-		out.append_array(rooms[r])
-	return out
+	return _order
+
+
+## 0-based position in play order (-1 if not a room level).
+func order_index(id: String) -> int:
+	return int(_index.get(id, -1))
+
+
+func room_name(room: int) -> String:
+	return str(names.get(room, "Room %d" % room))
 
 
 ## 0-based shelf of a room level.
@@ -99,13 +117,13 @@ func features_at(id: String) -> Dictionary:
 		for f in e["introduces"]:
 			out[f] = true
 		if e["track"] == "test":
-			for f in ["slip", "undo", "jar", "peek", "tidy", "budget"]:
+			for f in ["slip", "undo", "jar", "hint", "complete", "tidy", "budget"]:
 				out[f] = true
 		return out
 	for t in tutorial:
 		for f in entries[t]["introduces"]:
 			out[f] = true
-	for other in play_order():
+	for other in _order:
 		for f in entries[other]["introduces"]:
 			out[f] = true
 		if other == id:
@@ -121,4 +139,4 @@ func title(id: String) -> String:
 			return "Tutorial %d" % e["number"]
 		"test":
 			return "Test board %d" % e["number"]
-	return "Level %d" % (play_order().find(id) + 1)
+	return "Level %d" % (order_index(id) + 1)
