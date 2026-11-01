@@ -155,7 +155,7 @@ daily win counts toward the same streak.
 | Free coins (Shop) | +50 per optional ad (one ad = one Hint), 5 a day |
 | Player level-up (§5) | 20; every 5th level +2 Hints and an avatar |
 | Room complete | 150, plus the room reveal |
-| Streak milestones | 7 days: a streak saver; 30 days: 400 + avatar; 100 days: 800 + avatar |
+| Streak bonuses | 7 days: a streak saver; 10: 150; 15: 200; 20: 250; 30: 400 + avatar; 45: 500; 60: 600 + Complete; 75: 700; 100: 1,000 + avatar; then every 50 days: 1,000 + Complete |
 
 - **No coins** for gold lids or replays; gold gives XP.
 - **Starters:** 150 coins after the tutorial; 3 Hints at L6; 1 Complete at L16.

@@ -1,6 +1,6 @@
 ## The Win card's rewards, the moment they land: two chunky chips under "Jar filled": brass coins counting up
-## (their coins then fly to the coin pill) and XP with the rank bar filling. An "x2 with an ad" chip is optional.
-## A rank-up fills the bar, then names the new rank. Replays pay nothing and show a quiet "Practice run" instead.
+## (their coins then fly to the coin pill) and XP with the rank bar filling. An optional "x2" ad button sits inside the
+## coin chip. A rank-up fills the bar, then names the new rank. Replays pay nothing and show a quiet "Practice run".
 class_name RewardRow
 extends Control
 
@@ -22,11 +22,12 @@ var _bar_t := 0.0
 
 
 func _init() -> void:
-	custom_minimum_size = Vector2(0, CHIP_H + 56.0)
+	custom_minimum_size = Vector2(0, CHIP_H)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	chip = PillButton.new("x2 with an ad", false, 64.0)
+	chip = PillButton.new("x2", false, 64.0)
+	chip.icon = "film-slate"
 	chip.font_size = Style.FS_26
-	chip.custom_minimum_size = Vector2(196, 64)
+	chip.custom_minimum_size = Vector2(124, 64)
 	chip.visible = false
 	chip.pressed.connect(func() -> void: double_pressed.emit())
 	add_child(chip)
@@ -72,7 +73,7 @@ func doubled() -> void:
 
 
 func _coin_chip() -> Rect2:
-	return Rect2(0, 0, (size.x - 14.0) * 0.46, CHIP_H)
+	return Rect2(0, 0, (size.x - 14.0) * 0.54, CHIP_H)
 
 
 ## The whole row when no coins were earned (a first gold lid on a replay pays XP only).
@@ -84,7 +85,7 @@ func _xp_chip() -> Rect2:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED:
 		chip.size = chip.custom_minimum_size
-		chip.position = Vector2(size.x - chip.size.x, CHIP_H + 4.0)
+		chip.position = Vector2(_coin_chip().end.x - chip.size.x - 8.0, (CHIP_H - chip.size.y) / 2.0 + 2.0)
 
 
 func _draw() -> void:
@@ -100,8 +101,12 @@ func _draw() -> void:
 		var cc := _coin_chip()
 		_chip_bg(cc, Color("#F7E7BE"))
 		draw_texture_rect(Art.tex("coin", Vector2(52, 52), Materials.coin), Rect2(cc.position + Vector2(14, (CHIP_H - 52) / 2.0), Vector2(52, 52)), false)
-		draw_string(f, Vector2(cc.position.x + 76, CHIP_H / 2.0 + 14), "+%d" % roundi(coins * _coin_t), HORIZONTAL_ALIGNMENT_LEFT,
-			cc.size.x - 84, Style.FS_44, Style.INK)
+		var count := "+%d" % roundi(coins * _coin_t)
+		var fs := Style.FS_44
+		var avail := cc.size.x - 84.0 - (chip.size.x + 8.0 if chip.visible else 0.0)
+		while fs > Style.FS_30 and f.get_string_size("+%d" % coins, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > avail:
+			fs -= 2
+		draw_string(f, Vector2(cc.position.x + 76, CHIP_H / 2.0 + fs * 0.32), count, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
 	# XP chip: the XP and the rank bar.
 	var xc := _xp_chip()
 	_chip_bg(xc, Color("#DCEAE7"))
@@ -134,4 +139,4 @@ func _chip_bg(r: Rect2, fill: Color) -> void:
 
 ## Call after setting coins and xp: a replay (nothing earned) takes one short line, not the chips' height.
 func fit() -> void:
-	custom_minimum_size = Vector2(0, 56.0 if coins == 0 and xp == 0 else CHIP_H + 56.0)
+	custom_minimum_size = Vector2(0, 56.0 if coins == 0 and xp == 0 else CHIP_H)

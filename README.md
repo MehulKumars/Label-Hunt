@@ -12,7 +12,7 @@ Guess wrong and the jar gives away part of the label. Fill a jar and the lid scr
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/version-0.3.1--alpha-3B6E6E" alt="Version 0.3.1-alpha">
+<img src="https://img.shields.io/badge/version-0.3.2--alpha-3B6E6E" alt="Version 0.3.2-alpha">
 <img src="https://img.shields.io/badge/Godot-4.7.2-478CBF?logo=godotengine&logoColor=white" alt="Godot 4.7.2">
 <img src="https://img.shields.io/badge/platform-Android%20(arm64)-3DDC84?logo=android&logoColor=white" alt="Android arm64">
 <img src="https://img.shields.io/badge/orientation-portrait-F28F3B" alt="Portrait">
@@ -53,8 +53,8 @@ The full rules, the level pipeline and the roadmap are in the design doc: [docs/
   level to replay it.
 - **Coins and boosters:** earned from first solves, the daily gift, rank-ups and finished rooms, and harder rooms pay
   more. No energy, no timers, no forced ads, and Retry is always free.
-- **Play streak and daily gift:** the gift opens after the day's first win and grows over 7 days. Streak savers cover
-  a missed day.
+- **Play streak and daily gift:** the gift opens after the day's first win and grows over 7 days, with bonuses at 10,
+  15, 20 and 30 days and on from there. Streak savers cover a missed day.
 - **Profile:** rank, XP, titles, avatars and a pantry ledger.
 - **Exact resume:** a level interrupted when the app is killed picks up where it left off.
 
@@ -72,7 +72,7 @@ The full rules, the level pipeline and the roadmap are in the design doc: [docs/
 2. Open it on the phone and allow installs from your browser or file manager.
 3. It installs as **Jarful** (`com.mehulkumars.jarful`). New builds install over old ones and keep your progress.
 
-Over USB instead: `adb install -r jarful-0.3.1-alpha-arm64.apk`
+Over USB instead: `adb install -r jarful-0.3.2-alpha-arm64.apk`
 
 Older builds are on the [releases page](https://github.com/MehulKumars/jarful/releases).
 

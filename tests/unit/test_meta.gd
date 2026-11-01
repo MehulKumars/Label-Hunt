@@ -14,6 +14,23 @@ func test_win_rewards_grow_with_size_and_kind() -> void:
 	assert_true(Economy.win_xp(5, "tricky") > Economy.win_xp(5, "normal"))
 
 
+func test_streak_bonuses_follow_the_road_and_never_end() -> void:
+	assert_eq(Economy.next_streak_bonuses(0, 5), [10, 15, 20, 30, 45] as Array[int])
+	assert_eq(Economy.next_streak_bonuses(10, 1), [15] as Array[int])
+	assert_eq(Economy.next_streak_bonuses(100, 2), [150, 200] as Array[int])
+	assert_true(Economy.streak_bonus(7).is_empty(), "day 7 is the top of the gift week")
+	assert_eq(int(Economy.streak_bonus(10)["coins"]), 150)
+	assert_eq(int(Economy.streak_bonus(250)["coins"]), 1000)
+	assert_true(Economy.streak_bonus(101).is_empty())
+
+
+func test_the_coin_pill_never_shortens_a_balance_a_player_can_read() -> void:
+	assert_eq(CoinPill.text_for(8184), "8,184")
+	assert_eq(CoinPill.text_for(48221), "48,221")
+	assert_eq(CoinPill.text_for(125400), "125K")
+	assert_eq(CoinPill.text_for(1250000), "1.2M")
+
+
 func test_spending_uses_the_inventory_first_and_never_goes_negative() -> void:
 	var s := _save()
 	s["coins"] = 60

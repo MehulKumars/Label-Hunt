@@ -6,6 +6,8 @@ extends Control
 signal pressed
 
 const H := 64.0
+const MIN_W := 150.0
+const PLUS_W := 30.0
 
 var shown := 0.0
 ## While coins are flying in, the pill keeps the old number (so the count-up happens when they land).
@@ -28,6 +30,7 @@ func set_value(value: int, animate: bool = true) -> void:
 		_tw.kill()
 	if not animate or value <= int(shown) or not is_inside_tree():
 		shown = value
+		_fit()
 		queue_redraw()
 		return
 	_tw = create_tween().set_parallel()
@@ -39,7 +42,22 @@ func set_value(value: int, animate: bool = true) -> void:
 
 func _set_shown(v: float) -> void:
 	shown = v
+	_fit()
 	queue_redraw()
+
+
+## Wide enough for the number at full size, so it is never cut off. Screens place the pill by its right edge.
+func wanted_width() -> float:
+	var text_w := Style.sans_heavy().get_string_size(text_for(roundi(shown)), HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_30).x
+	return maxf(MIN_W, ceilf(H - 4.0 + text_w + PLUS_W + 14.0))
+
+
+## Keeps the right edge where it is while the number changes width.
+func _fit() -> void:
+	var w := wanted_width()
+	if w != size.x:
+		position.x += size.x - w
+		size.x = w
 
 
 ## Where coins should fly to (global position of the coin's centre).
@@ -72,18 +90,23 @@ func _draw() -> void:
 	var cc := Vector2(H / 2.0 - 2.0, (H - 8.0) / 2.0)
 	draw_texture_rect(Art.tex("coin", Vector2(40, 40), Materials.coin), Rect2(cc - Vector2(cs, cs) / 2.0, Vector2(cs, cs)), false)
 	var f := Style.sans_heavy()
-	var txt := _fmt(roundi(shown))
+	var txt := text_for(roundi(shown))
 	var fs := Style.FS_30
-	var plus_w := 30.0
-	var avail := size.x - H - plus_w - 6.0
-	while fs > 22 and f.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > avail:
-		fs -= 2
 	var base := (H - 8.0) / 2.0 + f.get_ascent(fs) / 2.0 - 2.0
-	draw_string(f, Vector2(H - 4.0, base), txt, HORIZONTAL_ALIGNMENT_LEFT, avail, fs, Style.INK)
-	var pc := Vector2(size.x - plus_w / 2.0 - 8.0, (H - 8.0) / 2.0)
+	draw_string(f, Vector2(H - 4.0, base), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+	var pc := Vector2(size.x - PLUS_W / 2.0 - 8.0, (H - 8.0) / 2.0)
 	draw_circle(pc, 13.0, Color(Style.TEAL, 0.9), true, -1.0, true)
 	draw_line(pc - Vector2(6, 0), pc + Vector2(6, 0), Style.PAPER, 3.0, true)
 	draw_line(pc - Vector2(0, 6), pc + Vector2(0, 6), Style.PAPER, 3.0, true)
+
+
+## The balance as the pill shows it: the full number up to 99,999, then 125K, then 1.2M.
+static func text_for(n: int) -> String:
+	if n < 100000:
+		return _fmt(n)
+	if n < 1000000:
+		return "%dK" % (n / 1000)
+	return "%.1fM" % (floorf(n / 100000.0) / 10.0)
 
 
 ## 1240 -> "1,240"

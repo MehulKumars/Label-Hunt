@@ -5,9 +5,9 @@
 class_name ShotRunner
 extends Node
 
-const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "gift", "tutorial", "t01", "t03_slip", "t07",
+const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07",
 	"m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "need_coins", "hint", "complete_pick", "complete_fly",
-	"win", "lose", "room_reveal", "pause", "test", "drag", "pick", "themes"]
+	"win", "rate", "lose", "room_reveal", "pause", "test", "drag", "pick", "themes"]
 
 var out_dir := ""
 var only: PackedStringArray = []
@@ -97,6 +97,21 @@ func _run(name: String) -> void:
 			main.go_home()
 			await _wait(0.3)
 			MetaSheets.shop(main)
+		"streak":
+			Save.data["coins"] = 48221
+			Save.data["streak"] = {"count": 12, "best": 18, "last_day": Wallet.today(), "savers": 1}
+			main.go_home()
+			await _wait(0.3)
+			MetaSheets.streak(main)
+		"streak_new":
+			Save.data["coins"] = 8184
+			Save.data["streak"] = {"count": 0, "best": 0, "last_day": -1, "savers": 0}
+			Save.data["gift"]["claimed_day"] = -1
+			main.go_home()
+			await _wait(0.3)
+			MetaSheets.gift(main)
+		"rate":
+			main._rate_level()
 		"gift":
 			var today := Wallet.today()
 			Save.data["streak"] = {"count": 3, "best": 5, "last_day": today, "savers": 1}
@@ -171,7 +186,8 @@ func _run(name: String) -> void:
 		"win":
 			main.close_all_sheets()
 			Save.data["xp"] = 50
-			main.start_level("l2-01")
+			Save.data["coins"] = 8184
+			main.start_level("l1-01")
 			await _legal(play, 99)
 			await _wait(2.5)
 		"lose":

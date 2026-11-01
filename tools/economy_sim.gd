@@ -130,3 +130,4 @@ func _new_day(p: Dictionary, day: int) -> void:
 	p["shop"] = 0
 	p["streak"] += 1
 	Economy.grant(p["save"], Economy.gift_for_day(p["streak"]))
+	Economy.grant(p["save"], Economy.streak_bonus(p["streak"]))

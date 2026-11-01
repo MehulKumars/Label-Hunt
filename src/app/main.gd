@@ -409,22 +409,21 @@ func _open_win(stats: Dictionary) -> void:
 		row.play(0.95)
 		if row.coins == 0:
 			play.coins.hold = false
+	# One line at most, the biggest news first: the card stays calm, and a gift waiting shows on the Home button.
 	var lines: Array[String] = []
 	if room_level:
-		if res["shelf_full"] >= 0 and not res["room_done"]:
-			lines.append("Shelf %d is full." % (res["shelf_full"] + 1))
-		elif res["new_gold"]:
-			lines.append("Clean sort: your first gold lid." if res["first_gold"] else "Clean sort: gold lid.")
-		for up: Dictionary in rewards["ups"]:
-			lines.append("Rank %d: %s" % [up["level"], MetaSheets._reward_text(up["rewards"])])
 		if res["room_done"]:
 			lines.append("Room complete: +%d coins." % Economy.ROOM_COINS)
 		if not (rewards["milestone"] as Dictionary).is_empty():
 			lines.append("%d-day streak: %s" % [rewards["streak"]["count"], MetaSheets._reward_text(rewards["milestone"])])
-		elif rewards["gift_ready"]:
-			lines.append("Today's gift is ready on Home.")
-	for line in lines.slice(0, 2):
-		s.add_label(line, Style.FS_26, true)
+		for up: Dictionary in rewards["ups"]:
+			lines.append("Rank %d: %s" % [up["level"], MetaSheets._reward_text(up["rewards"])])
+		if res["new_gold"]:
+			lines.append("Clean sort: your first gold lid." if res["first_gold"] else "Clean sort: gold lid.")
+		elif res["shelf_full"] >= 0:
+			lines.append("Shelf %d is full." % (res["shelf_full"] + 1))
+	if not lines.is_empty():
+		s.add_label(lines[0], Style.FS_26, true)
 	var next: String = res["next"] if room_level else ""
 	if entry["track"] == "test":
 		var tests := cat.test
@@ -438,9 +437,12 @@ func _open_win(stats: Dictionary) -> void:
 				MetaSheets.room_reveal(self, next_room, next)
 			else:
 				start_level(next), Style.TOUCH_PRIMARY).icon = "play"
-	s.add_button("Home", next == "", go_home, Style.TOUCH)
+	var gift_waiting: bool = room_level and rewards["gift_ready"]
+	var home_btn := s.add_button("Home: gift ready" if gift_waiting else "Home", next == "", go_home, Style.TOUCH)
+	if gift_waiting:
+		home_btn.icon = "gift"
 	if Build.playtest():
-		_add_flag_row(s)
+		_add_rate_button(s)
 	# Taps are ignored for a moment so the jar's drop onto the shelf is seen, not skipped by a fast double tap.
 	s.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED
 	get_tree().create_timer(0.4).timeout.connect(func() -> void:
@@ -470,19 +472,40 @@ func _win_shelf(id: String) -> ShelfView:
 	return strip
 
 
-func _add_flag_row(s: Sheet) -> void:
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 10)
-	for flag in ["Too hard", "Boring", "Unfair", "Loved it"]:
-		var b := PillButton.new(flag, false, 64.0)
-		b.custom_minimum_size = Vector2(120, 64)
-		b.font_size = 22
+## Test builds: a quiet star in the card's corner opens the level's rating (it goes in the playtest log).
+func _add_rate_button(s: Sheet) -> void:
+	var b := PillButton.new("", false, 64.0)
+	b.icon = "star"
+	b.custom_minimum_size = Vector2(72, 64)
+	b.anchor_left = 1.0
+	b.anchor_right = 1.0
+	b.offset_left = -84.0
+	b.offset_right = -12.0
+	b.offset_top = 12.0
+	b.offset_bottom = 76.0
+	b.pressed.connect(_rate_level)
+	s.panel.add_child(b)
+
+
+func _rate_level() -> void:
+	var s := Sheet.new("Rate this level")
+	s.add_label("Test builds only. Your picks help tune the difficulty.", Style.FS_26)
+	var flags: Array = [] if Save.log_entries.is_empty() else Save.log_entries.back().get("flags", [])
+	var grid := GridContainer.new()
+	grid.columns = 2
+	grid.add_theme_constant_override("h_separation", 12)
+	grid.add_theme_constant_override("v_separation", 12)
+	for flag: String in ["Too hard", "Boring", "Unfair", "Loved it"]:
+		var b := PillButton.new(flag, flags.has(flag), Style.TOUCH)
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		b.pressed.connect(func() -> void:
 			_flag(flag)
 			b.primary = not b.primary
 			b.queue_redraw())
-		row.add_child(b)
-	s.body.add_child(row)
+		grid.add_child(b)
+	s.body.add_child(grid)
+	s.add_button("Done", false, s.close, Style.TOUCH)
+	open_sheet(s)
 
 
 func _flag(flag: String) -> void:
