@@ -1,15 +1,15 @@
 # Bank lint
 
-785 categories, 0 errors, 90 warnings.
+769 categories, 0 errors, 103 warnings.
 
 | tier | categories |
 |---|---|
-| 1 | 192 |
-| 2 | 382 |
-| 3 | 170 |
+| 1 | 188 |
+| 2 | 366 |
+| 3 | 174 |
 | 4 | 41 |
 
-Average members: 13.3. Domains: { "food": 58, "animals": 47, "nature": 29, "sport": 25, "body": 29, "home": 28, "science": 27, "music": 20, "travel": 20, "clothing": 23, "objects": 29, "culture": 42, "drink": 10, "colour": 14, "time": 14, "people": 24, "lateral": 170, "school": 15, "games": 11, "places": 20, "tech": 17, "abstract": 65, "shapes": 7, "wordplay": 41 }
+Average members: 12.5. Domains: { "food": 58, "animals": 46, "nature": 29, "sport": 24, "body": 29, "home": 28, "science": 25, "music": 20, "travel": 18, "clothing": 23, "objects": 29, "culture": 41, "drink": 10, "colour": 13, "time": 14, "people": 23, "lateral": 170, "school": 15, "games": 11, "places": 17, "tech": 17, "abstract": 62, "shapes": 6, "wordplay": 41 }
 
 ## Errors
 
@@ -56,7 +56,6 @@ Average members: 13.3. Domains: { "food": 58, "animals": 47, "nature": 29, "spor
 - things_with_crowns (Things with crowns): only 5 words (fewer uses)
 - desserts (Desserts): 'Pudding' is contested; check its sense here
 - grains (Grains): 'Corn' is contested; check its sense here
-- places_to_eat (Places to eat): 'Eatery' contains its own label word 'eat'
 - cuts_of_meat (Cuts of meat): 'Cutlet' contains its own label word 'cut'
 - cooking_oils (Cooking oils): 'Corn' is contested; check its sense here
 - preserves (Preserves): only 7 words (fewer uses)
@@ -94,15 +93,29 @@ Average members: 13.3. Domains: { "food": 58, "animals": 47, "nature": 29, "spor
 - things_that_pop_up (Things that pop up): 'Mushroom' is contested; check its sense here
 - things_you_can_spread (Things you can spread): 'Jam' is contested; check its sense here
 - things_in_a_pod (Things in a pod): 'Whale' is contested; check its sense here
+- kinds_of_settlement (Kinds of settlement): only 7 words (fewer uses)
+- kinds_of_clock (Kinds of clock): only 7 words (fewer uses)
+- parts_of_a_staircase (Parts of a staircase): only 7 words (fewer uses)
+- music_notation (Music notation): only 7 words (fewer uses)
+- kinds_of_drum (Kinds of drum): only 7 words (fewer uses)
+- prehistoric_life (Prehistoric life): only 7 words (fewer uses)
+- knitting_words (Knitting words): only 7 words (fewer uses)
+- kinds_of_pepper (Kinds of pepper): only 7 words (fewer uses)
+- kinds_of_whale (Kinds of whale): only 6 words (fewer uses)
+- kinds_of_whale (Kinds of whale): 'Orca' is contested; check its sense here
 - kinds_of_shark (Kinds of shark): 'Whale' is contested; check its sense here
-- kinds_of_cloud (Kinds of cloud): 'Mushroom' is contested; check its sense here
+- cat_breeds (Cat breeds): only 7 words (fewer uses)
+- kinds_of_cloud (Kinds of cloud): only 7 words (fewer uses)
+- words_for_funny (Words for funny): only 7 words (fewer uses)
 - words_for_a_problem (Words for a problem): 'Jam' is contested; check its sense here
 - near-duplicates without a pair rule: Fish / Things with fins share 7 words
 - near-duplicates without a pair rule: Fish / Things with gills share 8 words
 - near-duplicates without a pair rule: Things with necks / Things with strings share 6 words
 - near-duplicates without a pair rule: Things with necks / Things with bridges share 5 words
 - near-duplicates without a pair rule: Tops / Things with sleeves share 5 words
-- near-duplicates without a pair rule: Coffee drinks / Hot drinks share 7 words
+- near-duplicates without a pair rule: Things with shells / Shellfish share 6 words
+- near-duplicates without a pair rule: Coffee drinks / Hot drinks share 6 words
 - near-duplicates without a pair rule: Drinks / Cold drinks share 7 words
 - near-duplicates without a pair rule: Things that tangle / Things you can wind share 6 words
+- near-duplicates without a pair rule: Jobs / Medical jobs share 4 words
 - near-duplicates without a pair rule: Reptiles / Things with scales share 7 words

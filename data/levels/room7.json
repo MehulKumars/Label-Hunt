@@ -5,7 +5,7 @@
   "name": "The Winter Cellar",
   "gen": {
     "seed": 1,
-    "bank": "063773f73282"
+    "bank": "96805857cd82"
   },
   "levels": [
     {
@@ -386,51 +386,51 @@
       "budget": 5,
       "groups": [
         {
-          "label": "Parts of a flower",
-          "key": "flower",
+          "label": "Kinds of settlement",
+          "key": "settlement",
           "tier": 2,
-          "words": ["Pistil", "Nectar", "Stem", "Bud"]
+          "words": ["Town", "City", "Hamlet", "Suburb"]
         },
         {
-          "label": "Things that flutter",
-          "key": "flutter",
+          "label": "Words after home",
+          "key": "home",
           "tier": 3,
-          "words": ["Leaf", "Ribbon", "Banner", "Wing"]
+          "words": ["Coming", "Run", "School", "Land"]
         },
         {
-          "label": "Sweeteners",
-          "key": "Sweeteners",
+          "label": "People at sea",
+          "key": "sea",
           "tier": 2,
-          "words": ["Molasses", "Stevia", "Aspartame", "Honey"]
+          "words": ["Stowaway", "Deckhand", "Mariner", "Helmsman"]
         },
         {
-          "label": "Indoor games",
-          "key": "Indoor",
+          "label": "Sweet treats",
+          "key": "Sweet",
           "tier": 1,
-          "words": ["Darts", "Pool", "Bowling", "Billiards"]
+          "words": ["Cake", "Baklava", "Strudel", "Macaron"]
         },
         {
-          "label": "Punctuation",
-          "key": "Punctuation",
+          "label": "Computer commands",
+          "key": "commands",
           "tier": 2,
-          "words": ["Hyphen", "Ellipsis", "Dash", "Asterisk"]
+          "words": ["Replace", "Select", "Undo", "Delete"]
         }
       ],
       "also": {
-        "Leaf": [0]
+        "Town": [1]
       },
-      "jars": [["Wing", "Pool", "Bud", "Asterisk"], ["Ribbon", "Molasses", "Hyphen", "Darts"], ["Banner", "Honey", "Bowling", "Ellipsis"], ["Nectar", "Dash", "Stem", "Aspartame"], ["Billiards", "Stevia", "Leaf", "Pistil"], [], []],
-      "frost": ["Wing", "Ribbon", "Banner", "Nectar", "Billiards"],
+      "jars": [["Hamlet", "Select", "School", "Deckhand"], ["Helmsman", "City", "Undo", "Macaron"], ["Land", "Baklava", "Coming", "Mariner"], ["Run", "Replace", "Suburb", "Strudel"], ["Stowaway", "Delete", "Cake", "Town"], [], []],
+      "frost": ["Hamlet", "Helmsman", "Land", "Run", "Stowaway"],
       "gold": 1,
       "meta": {
         "target": 3.31,
         "floor": 0.78,
-        "avg_slips": 2.21,
-        "avg_win": 0.86,
-        "novice_win": 0.62,
+        "avg_slips": 2.19,
+        "avg_win": 0.84,
+        "novice_win": 0.66,
         "prober_win": 0,
-        "after_med": 4,
-        "aha_frac": 0.87
+        "after_med": 2,
+        "aha_frac": 0.94
       }
     },
     {
@@ -861,50 +861,50 @@
       "budget": 4,
       "groups": [
         {
-          "label": "Golf terms",
-          "key": "Golf",
-          "tier": 2,
-          "words": ["Divot", "Tee", "Hook", "Wedge"]
-        },
-        {
-          "label": "Laundry day",
-          "key": "Laundry",
-          "tier": 1,
-          "words": ["Iron", "Softener", "Detergent", "Basket"]
-        },
-        {
-          "label": "Ways to look",
-          "key": "look",
-          "tier": 2,
-          "words": ["Squint", "Glare", "Peer", "Watch"]
-        },
-        {
-          "label": "Units of time",
-          "key": "time",
-          "tier": 1,
-          "words": ["Decade", "Hour", "Minute", "Week"]
-        },
-        {
-          "label": "Words after ear",
-          "key": "ear",
+          "label": "Kinds of shark",
+          "key": "shark",
           "tier": 3,
-          "words": ["Plug", "Ring", "Phone", "Piece"]
+          "words": ["Basking", "Reef", "Megalodon", "Tiger"]
+        },
+        {
+          "label": "At the hospital",
+          "key": "hospital",
+          "tier": 1,
+          "words": ["Nurse", "Sling", "Ward", "Bandage"]
+        },
+        {
+          "label": "Words for calm",
+          "key": "calm",
+          "tier": 2,
+          "words": ["Serene", "Placid", "Restful", "Mellow"]
+        },
+        {
+          "label": "On television",
+          "key": "television",
+          "tier": 1,
+          "words": ["News", "Channel", "Finale", "Series"]
+        },
+        {
+          "label": "Ways to breathe",
+          "key": "breathe",
+          "tier": 2,
+          "words": ["Sniff", "Wheeze", "Snore", "Yawn"]
         }
       ],
       "also": {
-        "Iron": [0]
+        "Nurse": [0]
       },
-      "jars": [["Squint", "Tee", "Peer", "Decade"], ["Phone", "Week", "Iron", "Divot"], ["Piece", "Softener", "Watch", "Detergent"], ["Minute", "Plug", "Hook", "Hour"], ["Ring", "Basket", "Wedge", "Glare"], [], []],
+      "jars": [["Megalodon", "News", "Tiger", "Ward"], ["Finale", "Nurse", "Placid", "Channel"], ["Sling", "Basking", "Wheeze", "Bandage"], ["Yawn", "Serene", "Sniff", "Restful"], ["Reef", "Snore", "Mellow", "Series"], [], []],
       "gold": 0,
       "meta": {
         "target": 3.45,
         "floor": 0.78,
-        "avg_slips": 1.88,
-        "avg_win": 0.8,
-        "novice_win": 0.63,
+        "avg_slips": 1.8,
+        "avg_win": 0.88,
+        "novice_win": 0.6,
         "prober_win": 0,
-        "after_med": 16,
-        "aha_frac": 0.52
+        "after_med": 13,
+        "aha_frac": 0.54
       }
     },
     {

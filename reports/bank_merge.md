@@ -1,246 +1,402 @@
 # Bank merge
 
-- 09a_thin_domains.txt: 61 new categories
-- 09b_people_culture.txt: 63 new categories
-- 09c_food_nature.txt: 63 new categories
-- 09a_thin_domains.txt: added Adverb, Pronoun, Gerund, Article to grammar_words
-- 09a_thin_domains.txt: added Semicolon to punctuation
-- 09a_thin_domains.txt: added Spelling, Classwork, Revision, Exercise to schoolwork
-- 09a_thin_domains.txt: added Coaching, Mentoring, Tuition, Practice to ways_to_learn
-- 09a_thin_domains.txt: added English, Art, Music, Latin, French, Algebra to school_subjects
-- 09a_thin_domains.txt: added Marker, Peg to in_a_board_game
-- 09a_thin_domains.txt: added Suit, Dealer, Meld, Bluff to playing_card_terms
-- 09a_thin_domains.txt: added Conundrum, Codeword, Cryptic, Acrostic to kinds_of_puzzle
-- 09a_thin_domains.txt: added Ludo, Carrom, Pinball to indoor_games
-- 09a_thin_domains.txt: added Quaff, Chug, Imbibe to ways_to_drink
-- 09a_thin_domains.txt: added Instant, Lungo to coffee_drinks
-- 09a_thin_domains.txt: added Punch, Slush, Kombucha to drinks
-- 09a_thin_domains.txt: added Teacup to things_to_drink_from
-- 09a_thin_domains.txt: added Terrazzo, Cork, Flagstone, Marble to floor_coverings
-- 09a_thin_domains.txt: added Face, Cog, Weight to parts_of_a_clock
-- 09a_thin_domains.txt: added Hold, Rotate, Slide to touchscreen_moves
-- 09a_thin_domains.txt: added Trundle, Canopy, Single, Double, Twin to kinds_of_bed
-- 09a_thin_domains.txt: added Broken, Solid, Jagged, Crooked, Squiggly to kinds_of_line
-- 09a_thin_domains.txt: added Bailey, Parapet, Bastion, Barbican to parts_of_a_castle
-- 09a_thin_domains.txt: added Knob, Panel, Threshold, Lintel, Jamb, Keyhole to parts_of_a_door
-- 09a_thin_domains.txt: added Plaid, Stripe, Damask, Harlequin, Polka to patterns
-- 09a_thin_domains.txt: added Store, Outlet, Plaza to places_to_shop
-- 09a_thin_domains.txt: added Buffet, Pool, Gym to at_a_hotel
-- 09a_thin_domains.txt: added Chlorine, Kickboard, Ladder to at_the_pool
-- 09a_thin_domains.txt: added Path, Kiosk, Gazebo to in_the_park
-- 09a_thin_domains.txt: added Pigsty, Paddock, Hayloft, Windmill to on_a_farm
-- 09a_thin_domains.txt: added Speaker, Webcam, Charger, Tracker to gadgets
-- 09a_thin_domains.txt: added Keypad, Calendar, Voicemail, Settings to on_a_phone
-- 09a_thin_domains.txt: added Home, Space, Backspace, Option, Command to computer_keys
-- 09a_thin_domains.txt: added Tail, Aileron, Window to parts_of_a_plane
-- 09a_thin_domains.txt: added Barrow, Loppers to garden_tools
-- 09a_thin_domains.txt: added Hoeing, Potting, Edging, Spraying to garden_jobs
-- 09a_thin_domains.txt: added Fireplace, Footstool, Throw, Ottoman to in_the_living_room
-- 09a_thin_domains.txt: added Washer, Suds, Rinse, Lint to laundry_day
-- 09a_thin_domains.txt: added Throw, Valance, Eiderdown, Coverlet to on_the_bed
-- 09a_thin_domains.txt: added Laundry, Wiping, Cleaning to chores
-- 09a_thin_domains.txt: added Scourer, Wipes, Spray to cleaning_kit
-- 09a_thin_domains.txt: added Lintel, Mullion, Casement, Lock to parts_of_a_window
-- 09a_thin_domains.txt: added Fortnight to units_of_time
-- 09a_thin_domains.txt: added Afternoon, Sundown to times_of_day
-- 09a_thin_domains.txt: added Retiree, Juvenile to stages_of_life
-- 09a_thin_domains.txt: added Obsolete, Classic, Bygone, Primeval to words_for_old
-- 09a_thin_domains.txt: added Nightly, Regularly to how_often
-- 09a_thin_domains.txt: added Domain, Search, Online, Username to internet_words
-- 09a_thin_domains.txt: added Hash, Caret, Percent, Pound to text_symbols
-- 09a_thin_domains.txt: added Boat, Swim, Wade, Canoe, Pontoon, Zipline to ways_across_a_river
-- 09a_thin_domains.txt: added Pebble, Lifeguard, Surfboard, Sunscreen to things_at_the_beach
-- 09a_thin_domains.txt: added Prologue, Epilogue to parts_of_a_book
-- 09a_thin_domains.txt: added Piston to parts_of_a_car
-- 09a_thin_domains.txt: added Dentures to things_with_teeth
-- 09a_thin_domains.txt: added Syringe to things_with_needles
-- 09a_thin_domains.txt: added Mouthwash to in_the_bathroom
-- 09a_thin_domains.txt: added Lassi to indian_food
-- 09a_thin_domains.txt: added Horchata to mexican_food
-- 09a_thin_domains.txt: added Horchata to spanish_food
-- 09a_thin_domains.txt: added Granita to italian_food
-- 09a_thin_domains.txt: added Kombucha to fermented_foods
-- 09a_thin_domains.txt: added English to languages
-- 09b_people_culture.txt: added Culottes, Breeches, Jodhpurs, Flares to worn_on_the_legs
-- 09b_people_culture.txt: added Wedge, Platform, Galosh, Slingback to footwear
-- 09b_people_culture.txt: added Tricorn, Topper, Cloche, Pillbox, Derby to hats
-- 09b_people_culture.txt: added Dirndl, Hanbok, Kaftan, Dashiki, Kurta, Cheongsam, Dhoti to traditional_clothes
-- 09b_people_culture.txt: added Mohawk, Quiff, Pigtail, Bouffant to hairstyles
-- 09b_people_culture.txt: added Trench to outerwear
-- 09b_people_culture.txt: added Pinstripe to fabric_patterns
-- 09b_people_culture.txt: added Slit, Ruffle, Lining to parts_of_a_dress
-- 09b_people_culture.txt: added Toggle, Vent to parts_of_a_coat
-- 09b_people_culture.txt: added Arch, Upper, Aglet to parts_of_a_shoe
-- 09b_people_culture.txt: added Barrette, Feather to worn_in_the_hair
-- 09b_people_culture.txt: added Eyepatch to worn_on_the_face
-- 09b_people_culture.txt: added Snare, Djembe, Castanets, Cajon to percussion
-- 09b_people_culture.txt: added Zither, Balalaika, Lyre, Koto to string_instruments
-- 09b_people_culture.txt: added Madrigal, Lament to kinds_of_song
-- 09b_people_culture.txt: added Hook, Interlude, Breakdown to parts_of_a_song
-- 09b_people_culture.txt: added Mezzo to singing_voices
-- 09b_people_culture.txt: added Vinyl, Cassette, Reissue to music_releases
-- 09b_people_culture.txt: added Setlist to at_a_concert
-- 09b_people_culture.txt: added Dash, Motocross, Duathlon, Derby to kinds_of_race
-- 09b_people_culture.txt: added Backboard, Swish, Buzzer to basketball_terms
-- 09b_people_culture.txt: added Shrug, Press to exercises
-- 09b_people_culture.txt: added Walkover, Aerial, Straddle to gymnastics_moves
-- 09b_people_culture.txt: added Girth, Blinkers, Jodhpurs, Harness to riding_gear
-- 09b_people_culture.txt: added Mogul, Binding, Avalanche to on_the_slopes
-- 09b_people_culture.txt: added Dodgeball, Futsal, Kabaddi to team_sports
-- 09b_people_culture.txt: added Skeleton, Hockey to winter_sports
-- 09b_people_culture.txt: added Spare, Dunk, Eagle to ways_to_score
-- 09b_people_culture.txt: added Oval, Circuit to sports_venues
-- 09b_people_culture.txt: added Stepper, Towel, Mirror to at_the_gym
-- 09b_people_culture.txt: added Wreath to prizes
-- 09b_people_culture.txt: added Capoeira, Hapkido to combat_sports
-- 09b_people_culture.txt: added Yachting, Paddling to water_sports
-- 09b_people_culture.txt: added Leer, Beam to facial_expressions
-- 09b_people_culture.txt: added Handshake, Facepalm to gestures
-- 09b_people_culture.txt: added Startle, Gag, Wince, Recoil to reflexes
-- 09b_people_culture.txt: added Stroke, Brush, Dab to ways_to_touch
-- 09b_people_culture.txt: added Gawk to ways_to_look
-- 09b_people_culture.txt: added Wiry, Matted, Coily to hair_textures
-- 09b_people_culture.txt: added Sclera, Socket to parts_of_the_eye
-- 09b_people_culture.txt: added Rash, Blister, Graze to marks_on_skin
-- 09b_people_culture.txt: added Hunch to body_positions
-- 09b_people_culture.txt: added Leader, Governor, Mayor to people_in_charge
-- 09b_people_culture.txt: added Scribe, Bard, Falconer, Damsel to medieval_people
-- 09b_people_culture.txt: added Milliner, Draper, Chandler to shopkeepers
-- 09b_people_culture.txt: added Bard, Editor, Dramatist to writers
-- 09b_people_culture.txt: added Glazier, Joiner to trades
-- 09b_people_culture.txt: added Greenhorn, Recruit to learners
-- 09b_people_culture.txt: added Adept, Whiz, Hotshot, Sage to experts
-- 09b_people_culture.txt: added Comrade, Crony, Confidant to words_for_a_friend
-- 09b_people_culture.txt: added Busker, Ballerina, Hypnotist to performers
-- 09b_people_culture.txt: added Farrier to jobs_with_animals
-- 09b_people_culture.txt: added Beading to crafts
-- 09b_people_culture.txt: added Illusion, Trick, Assistant to magic_show
-- 09b_people_culture.txt: added Cribbage, Euchre, Pinochle to card_games
-- 09b_people_culture.txt: added Improv, Lampoon to kinds_of_comedy
-- 09b_people_culture.txt: added Mystery, Romance to kinds_of_story
-- 09b_people_culture.txt: added Masthead, Comic to in_a_newspaper
-- 09b_people_culture.txt: added Prom, Shindig, Bash to celebrations
-- 09b_people_culture.txt: added Aperture to photography
-- 09b_people_culture.txt: added Tau, Omicron to greek_letters
-- 09b_people_culture.txt: added Paperback, Hardback to kinds_of_book
-- 09b_people_culture.txt: added Burner, Crucible, Dropper to in_the_lab
-- 09b_people_culture.txt: added Peat, Steam, Wave to energy_sources
-- 09b_people_culture.txt: added Caldera, Dormant, Molten to volcano_words
-- 09b_people_culture.txt: added Organism, Osmosis, Mutation to biology_words
-- 09b_people_culture.txt: added Schist, Gneiss to rocks
-- 09b_people_culture.txt: added Mendel, Bohr to scientists
-- 09b_people_culture.txt: added Isotope to chemistry_words
-- 09b_people_culture.txt: added Torque to physics_words
-- 09b_people_culture.txt: added Monsoon to storms
-- 09b_people_culture.txt: added Channel to bodies_of_water
-- 09b_people_culture.txt: added Nanny to female_animals
-- 09b_people_culture.txt: added Pitcher to on_the_table
-- 09b_people_culture.txt: added Stamp to stationery
-- 09b_people_culture.txt: added Kiln to hot_things
-- 09b_people_culture.txt: added Warble, Trill to things_birds_do
-- 09b_people_culture.txt: added Maid to words_after_house
-- 09b_people_culture.txt: added Sunshine to weather
-- 09b_people_culture.txt: added Apex to parts_of_a_mountain
-- 09b_people_culture.txt: added Apex to geometry
-- 09b_people_culture.txt: added Cosmos to flowers
-- 09b_people_culture.txt: added Plankton to sea_creatures
-- 09b_people_culture.txt: added Binding to parts_of_a_book
-- 09b_people_culture.txt: added Tie to worn_on_the_neck
-- 09b_people_culture.txt: added Blade to sharp_things
-- 09b_people_culture.txt: added Spiral to shapes
-- 09b_people_culture.txt: added Wagon to ways_to_travel
-- 09b_people_culture.txt: added Forum to internet_words
-- 09b_people_culture.txt: added Scarab to insects
-- 09b_people_culture.txt: added Oasis to landforms
-- 09b_people_culture.txt: added Raptor to birds_of_prey
-- 09b_people_culture.txt: added Uniform to things_you_wear
-- 09b_people_culture.txt: added Uniform to phonetic_alphabet
-- 09b_people_culture.txt: added Tom to male_animals
-- 09b_people_culture.txt: added Mohawk, Henchman, Archenemy to hidden_birds
-- 09b_people_culture.txt: added Headband, Headstock, Facepalm, Chandler, Slingback, Earmuffs, Allegro, Cribbage, Fullback, Flip, Earache, Shindig, Eyepatch, Scribble, Headache, Kneepad, Heels, Wristband, Orchestra, Backstage, Paperback, Masthead, Leggings, Handcuffs, Handshake, Slip, Legato, Inscribe, Sunshine, Scribe, Deckhand, Footman, Kickflip, Hardback, Footprint, Plunge, Nuclear, Eclipse, Toothache, Backboard to hidden_body_parts
-- 09b_people_culture.txt: added Overcoat, Librarian, Waistcoat, Cutie, Snowsuit, Wetsuit, Braid, Embrace, Mitten, Suite, Tracksuit, Tailcoat, Microbe to hidden_clothing
-- 09b_people_culture.txt: added Pyramid, Frame, Paramedic, Pigtail, Henchman, Mailbox, Pillbox, Beatbox, Dramatist, Ramp, Cowboy, Equinox, Archenemy, Pathogen, Longboard, Cramp, Backboard to hidden_farm_animals
-- 09b_people_culture.txt: added Heel, Heels, Coda, Handshake to hidden_fish
-- 09b_people_culture.txt: added Plummet to hidden_fruit
-- 09b_people_culture.txt: added Rosette, Corsage, Castanets, Pinky, Tanner, Assistant, Plummet, Kaftan, Stand to hidden_hues
-- 09b_people_culture.txt: added Mammoth, Mantle, Anthem, Bouffant, Dormant, Pant, Confidant, Radiant, Hydrant, Assistant, Canter, Sergeant, Chant, Antidote, Andante to hidden_insects
-- 09b_people_culture.txt: added Gluteus, Organism, Greenhorn to hidden_instruments
-- 09b_people_culture.txt: added Copy, Telescope to hidden_jobs
-- 09b_people_culture.txt: added Yachting, Latin, Platinum, Buttercup, Pant, Potential, Potter, Potassium, Tinker, Timpani to hidden_kitchen_items
-- 09b_people_culture.txt: added Stoneware, Falconer, Molten, Tenor, Mitten, Potential, Tension, Baritone to hidden_numbers
-- 09b_people_culture.txt: added Firework, Dashiki, Rash, Bash, Helmsman, Leash to hidden_trees
-- 09b_people_culture.txt: added Busk, Scarab, Carbon, Cable, Cartoon, Busker, Carousel to hidden_vehicles
-- 09b_people_culture.txt: added Stoneware, Tongue, Plutonium, Plankton, Skeleton, Tonsil, Newton, Photon, Baritone to hidden_weights
-- 09c_food_nature.txt: added Swift, Emu, Cockatoo, Cassowary to birds
-- 09c_food_nature.txt: added Emu, Cockatoo, Bilby, Cassowary to australian_animals
-- 09c_food_nature.txt: added Butterfly to insects
-- 09c_food_nature.txt: added Carnation to flowers
-- 09c_food_nature.txt: added Sumac to spices
-- 09c_food_nature.txt: added Kofta to indian_food
-- 09c_food_nature.txt: added Baklava to desserts
-- 09c_food_nature.txt: added Onigiri to japanese_food
-- 09c_food_nature.txt: added Swift, Nimble to words_for_fast
-- 09c_food_nature.txt: added Ecru, Buff, Parchment, Flax to shades_of_beige
-- 09c_food_nature.txt: added Pitch, Sable, Tar to shades_of_black
-- 09c_food_nature.txt: added Bone, Porcelain, Milk, Cotton to shades_of_white
-- 09c_food_nature.txt: added Heather, Damson, Puce, Iris, Thistle to shades_of_purple
-- 09c_food_nature.txt: added Carmine, Raspberry, Lipstick to shades_of_red
-- 09c_food_nature.txt: added Carnation, Blossom, Peony to shades_of_pink
-- 09c_food_nature.txt: added Marigold, Flame, Papaya to shades_of_orange
-- 09c_food_nature.txt: added Brazil, Filbert to nuts
-- 09c_food_nature.txt: added Ribeye, Chuck, Cutlet, Skirt to cuts_of_meat
-- 09c_food_nature.txt: added Borscht, Consomme, Wonton to soups
-- 09c_food_nature.txt: added Ziti, Rotini, Bucatini, Capellini to pasta
-- 09c_food_nature.txt: added Cockle, Crayfish, Whelk, Abalone to seafood
-- 09c_food_nature.txt: added Cremini, Puffball, Cep, Maitake to kinds_of_mushroom
-- 09c_food_nature.txt: added Daikon, Jicama, Salsify, Beet to root_vegetables
-- 09c_food_nature.txt: added Red, Carnaroli, Patna to kinds_of_rice
-- 09c_food_nature.txt: added Pilaf, Kedgeree, Onigiri to rice_dishes
-- 09c_food_nature.txt: added Glucose, Fructose, Sucrose, Xylitol to sweeteners
-- 09c_food_nature.txt: added Rapeseed, Grapeseed, Hazelnut to cooking_oils
-- 09c_food_nature.txt: added Satsuma, Citron, Bergamot to citrus_fruit
-- 09c_food_nature.txt: added Pecan, Praline to ice_cream
-- 09c_food_nature.txt: added Chervil, Lovage to herbs
-- 09c_food_nature.txt: added Nutty, Fruity, Peppery, Earthy to tastes
-- 09c_food_nature.txt: added Hotdog, Sub to fast_food
-- 09c_food_nature.txt: added Eatery, Tearoom, Taqueria, Creperie to places_to_eat
-- 09c_food_nature.txt: added Doppio, Piccolo to coffee_drinks
-- 09c_food_nature.txt: added Gelding, Charger, Yearling, Pinto to words_for_a_horse
-- 09c_food_nature.txt: added Krait, Rattler, Moccasin to snakes
-- 09c_food_nature.txt: added Whelk, Limpet, Crayfish, Winkle, Conch to shellfish
-- 09c_food_nature.txt: added Burro, Reindeer to pack_animals
-- 09c_food_nature.txt: added Cell, Brood, Pupa, Propolis to in_a_hive
-- 09c_food_nature.txt: added Cockerel, Billy, Jack, Cob to male_animals
-- 09c_food_nature.txt: added Queen, Jenny, Hind, Heifer to female_animals
-- 09c_food_nature.txt: added Ovine, Ursine, Vulpine, Piscine, Leonine to animal_adjectives
-- 09c_food_nature.txt: added Paw, Wait, Shake, Leave, Roll to dog_commands
-- 09c_food_nature.txt: added Lichen, Fluff, Wool to things_in_a_nest
-- 09c_food_nature.txt: added Down, Fleece, Pelt, Coat, Bristle to animal_coverings
-- 09c_food_nature.txt: added Osprey, Merlin, Peregrine to birds_of_prey
-- 09c_food_nature.txt: added Woodlouse, Mite, Leech to creepy_crawlies
-- 09c_food_nature.txt: added Gopher to rodents
-- 09c_food_nature.txt: added Cowslip, Yarrow, Harebell to wildflowers
-- 09c_food_nature.txt: added Hemlock to conifers
-- 09c_food_nature.txt: added Stigma, Carpel to parts_of_a_flower
-- 09c_food_nature.txt: added Crown, Needle, Cone, Foliage to parts_of_a_tree
-- 09c_food_nature.txt: added Pothos, Bonsai to houseplants
-- 09c_food_nature.txt: added Hickory, Beech, Birch, Elm to types_of_wood
-- 09c_food_nature.txt: added Flank, Spur, Saddle, Crag, Shoulder to parts_of_a_mountain
-- 09c_food_nature.txt: added Bracket, Enoki, Cep to fungi
-- 09c_food_nature.txt: added Dead, Coral, Ionian, Bering to seas_of_the_world
-- 09c_food_nature.txt: added Pram, Stroller, Playpen, Teether to baby_gear
-- 09c_food_nature.txt: added Bedroll to camping_gear
-- 09c_food_nature.txt: added Bunting, Popper, Pinata, Sparkler to at_a_party
-- 09c_food_nature.txt: added Duffel, Knapsack, Holdall to bags
-- 09c_food_nature.txt: added Waders, Creel, Swivel, Bobber, Fly to fishing_gear
-- 09c_food_nature.txt: added Foils, Tongs, Bleach, Shampoo to at_the_hairdresser
-- 09c_food_nature.txt: added Asphalt, Steel, Rebar to building_materials
-- 09c_food_nature.txt: added Footnote, Foreword to parts_of_a_book
-- 09c_food_nature.txt: added Lace, Yarn to sewing_kit
-- 09c_food_nature.txt: added Belt, Pennant, Jackpot to prizes
-- 09c_food_nature.txt: added Note, Stamp, Token, Change to things_in_a_wallet
-- 09c_food_nature.txt: added Level, Compass to measuring_tools
-- 09c_food_nature.txt: added Bowl, Muzzle, Kibble, Tank to pet_supplies
-- 09c_food_nature.txt: added Sparkler, Incense, Beacon, Flare to things_you_light
-- 09c_food_nature.txt: added Diligence, Integrity, Tolerance, Gratitude to virtues
-- 785 categories now (187 new), 264 pair rules added
+- review_4a.txt: 0 new categories
+- review_4b.txt: 0 new categories
+- review_4a.txt: added Term to at_school
+- review_4a.txt: added Boiler to hot_things
+- review_4a.txt: added Flight, Landing to at_the_airport
+- review_4a.txt: added Tread, Step to ways_to_walk
+- review_4a.txt: added Conflict to words_for_a_fight
+- review_4a.txt: added Upset to words_for_sad
+- review_4a.txt: added Conundrum to words_for_a_problem
+- review_4a.txt: added Mean to words_for_evil
+- review_4a.txt: added Virus to things_you_can_catch
+- review_4a.txt: added Megalodon to kinds_of_shark
+- review_4a.txt: added Stylist to at_the_hairdresser
+- review_4a.txt: added Backstage to at_a_play
+- review_4a.txt: added Backstage to at_a_concert
+- review_4b.txt: added Tiny, Micro to words_for_small
+- review_4b.txt: added Can to containers
+- review_4b.txt: added Orca to kinds_of_whale
+- review_4a.txt: removed diorama from at_the_museum
+- review_4a.txt: removed bib from at_the_dentist
+- review_4a.txt: removed brunei from asian_countries
+- review_4a.txt: removed commune, borough, homestead from kinds_of_settlement
+- review_4a.txt: removed port, camp from kinds_of_settlement
+- review_4a.txt: removed tatras, karakoram, apennines, cascades from mountain_ranges
+- review_4a.txt: removed crescent, parkway from kinds_of_road
+- review_4a.txt: removed trail, track from kinds_of_road
+- review_4a.txt: removed gyroplane, monoplane, triplane, turboprop from aircraft
+- review_4a.txt: removed ryokan from places_to_stay
+- review_4a.txt: removed hairpin, hump from road_features
+- review_4a.txt: removed semaphore from ways_to_communicate
+- review_4a.txt: removed boolean, array, compile from coding_words
+- review_4a.txt: removed latency, proxy, protocol from network_words
+- review_4a.txt: removed sputnik from spacecraft
+- review_4a.txt: removed fortnight from lengths_of_time
+- review_4a.txt: removed fortnight from units_of_time
+- review_4a.txt: removed jiffy from lengths_of_time
+- review_4a.txt: removed current, original from words_for_new
+- review_4a.txt: removed untried, unworn from words_for_new
+- review_4a.txt: removed carriage, mantel, water, candle, station from kinds_of_clock
+- review_4a.txt: removed doomsday from kinds_of_clock
+- review_4a.txt: removed fleet, nimble from words_for_fast
+- review_4a.txt: removed torpid, languid, sedate, tardy from words_for_slow
+- review_4a.txt: removed pergola, rockery, decking from garden_features
+- review_4a.txt: removed sconce, downlight, tealight from lighting
+- review_4a.txt: removed pendant from lighting
+- review_4a.txt: removed fascia, flashing, truss, dormer from parts_of_a_roof
+- review_4a.txt: removed stable, cellar, stage from kinds_of_door
+- review_4a.txt: removed flue, damper from by_the_fireplace
+- review_4a.txt: removed mantel from by_the_fireplace
+- review_4a.txt: removed gasket, siphon, cistern, trap from plumbing
+- review_4a.txt: removed newel, baluster, spindle, stringer, riser from parts_of_a_staircase
+- review_4a.txt: removed register from at_school
+- review_4a.txt: removed hall from at_school
+- review_4a.txt: removed ordinal from kinds_of_number
+- review_4a.txt: removed tanka from kinds_of_poem
+- review_4a.txt: removed epitaph from kinds_of_poem
+- review_4a.txt: removed imagery from figures_of_speech
+- review_4a.txt: removed climax from parts_of_a_story
+- review_4a.txt: removed kickball, rounders from playground_games
+- review_4a.txt: removed fork, pin, rank, tempo from chess_terms
+- review_4a.txt: removed roguelike from video_game_genres
+- review_4a.txt: removed platform from video_game_genres
+- review_4a.txt: removed walkover, whitewash, thrashing, rout from game_results
+- review_4a.txt: removed approach, hook from bowling_terms
+- review_4a.txt: removed torus, ellipsoid, spheroid, ovoid from solid_shapes
+- review_4a.txt: removed hyperbola from curves
+- review_4a.txt: removed broth from hot_drinks
+- review_4a.txt: removed tisane, rooibos, cortado from hot_drinks
+- review_4a.txt: removed horchata, granita from cold_drinks
+- review_4a.txt: removed horchata from mexican_food
+- review_4a.txt: removed horchata from spanish_food
+- review_4a.txt: removed granita from italian_food
+- review_4a.txt: removed rose from kinds_of_water
+- review_4a.txt: removed robusta, crema from coffee_words
+- review_4a.txt: removed java, press, steam from coffee_words
+- review_4a.txt: removed marker, peg from in_a_board_game
+- review_4a.txt: removed meld from playing_card_terms
+- review_4a.txt: removed codeword, cryptic, acrostic from kinds_of_puzzle
+- review_4a.txt: removed quaff, chug, imbibe from ways_to_drink
+- review_4a.txt: removed lungo from coffee_drinks
+- review_4a.txt: removed terrazzo, flagstone from floor_coverings
+- review_4a.txt: removed weight from parts_of_a_clock
+- review_4a.txt: removed trundle from kinds_of_bed
+- review_4a.txt: removed bailey, bastion, barbican from parts_of_a_castle
+- review_4a.txt: removed lintel, jamb from parts_of_a_door
+- review_4a.txt: removed lintel, mullion, casement from parts_of_a_window
+- review_4a.txt: removed damask, harlequin from patterns
+- review_4a.txt: removed tracker from gadgets
+- review_4a.txt: removed option, command from computer_keys
+- review_4a.txt: removed aileron from parts_of_a_plane
+- review_4a.txt: removed barrow, loppers from garden_tools
+- review_4a.txt: removed hoeing, edging from garden_jobs
+- review_4a.txt: removed throw from in_the_living_room
+- review_4a.txt: removed throw, valance, eiderdown, coverlet from on_the_bed
+- review_4a.txt: removed wiping from chores
+- review_4a.txt: removed scourer from cleaning_kit
+- review_4a.txt: removed retiree from stages_of_life
+- review_4a.txt: removed primeval from words_for_old
+- review_4a.txt: removed caret from text_symbols
+- review_4a.txt: removed pontoon from ways_across_a_river
+- review_4a.txt: removed cuticle, instep from hands_and_feet
+- review_4a.txt: removed pinky from hands_and_feet
+- review_4a.txt: removed oblique, gluteus from muscles
+- review_4a.txt: removed snatch from ways_to_hold
+- review_4a.txt: removed clench from ways_to_hold
+- review_4a.txt: removed salve from kinds_of_medicine
+- review_4a.txt: removed tonic from kinds_of_medicine
+- review_4a.txt: removed lope, hurtle from ways_to_run
+- review_4a.txt: removed zoom, canter from ways_to_run
+- review_4a.txt: removed spill, sprawl from ways_to_fall
+- review_4a.txt: removed uvula from parts_of_the_mouth
+- review_4a.txt: removed saliva from parts_of_the_mouth
+- review_4a.txt: removed soap, pilot from on_television
+- review_4a.txt: removed aisle, stamp from in_a_library
+- review_4a.txt: removed crane, boom from on_a_film_set
+- review_4a.txt: removed bisque, slip, coil, slab from pottery_words
+- review_4a.txt: removed grapevine, worm from dance_moves
+- review_4a.txt: removed posse, corral from in_the_wild_west
+- review_4a.txt: removed queue from at_a_theme_park
+- review_4a.txt: removed flume from at_a_theme_park
+- review_4a.txt: removed emblem, secret from superhero_words
+- review_4a.txt: removed queue from at_the_post_office
+- review_4a.txt: removed scale from at_the_post_office
+- review_4a.txt: removed consul from ancient_rome
+- review_4a.txt: removed sandal from ancient_rome
+- review_4a.txt: removed cairo from ancient_egypt
+- review_4a.txt: removed camel, desert, delta, oasis from ancient_egypt
+- review_4a.txt: removed pickguard, headstock, saddle from parts_of_a_guitar
+- review_4a.txt: removed lento, largo, vivace, dolce from italian_music_words
+- review_4a.txt: removed sextet from musical_groups
+- review_4a.txt: removed septet from musical_groups
+- review_4a.txt: removed stave from music_notation
+- review_4a.txt: removed stem, beam, dot, tie from music_notation
+- review_4a.txt: removed fugue, toccata, scherzo from classical_pieces
+- review_4a.txt: removed lilt from ways_to_sing
+- review_4a.txt: removed busk, beatbox, belt from ways_to_sing
+- review_4a.txt: removed libretto from at_the_opera
+- review_4a.txt: removed bodhran, cajon, taiko from kinds_of_drum
+- review_4a.txt: removed kettle, tom from kinds_of_drum
+- review_4a.txt: removed baize, rest, bridge from snooker_words
+- review_4a.txt: removed screw from snooker_words
+- review_4a.txt: removed lineup, leash, barrel from surfing_terms
+- review_4a.txt: removed pitcher, shortstop, catcher from playing_positions
+- review_4a.txt: removed flanker from playing_positions
+- review_4a.txt: removed chicane, apex, marshal from motor_racing
+- review_4a.txt: removed truck, deck, bowl from at_a_skate_park
+- review_4a.txt: removed smoke from at_the_fire_station
+- review_4a.txt: removed chandler, farrier, saddler, milliner from old_trades
+- review_4a.txt: removed coachman from household_staff
+- review_4a.txt: removed steward from household_staff
+- review_4a.txt: removed kitten, petal from terms_of_endearment
+- review_4a.txt: removed bosun, purser from people_at_sea
+- review_4a.txt: removed osteopath, matron, orderly, physio from medical_jobs
+- review_4a.txt: removed seam from geology_words
+- review_4a.txt: removed coulomb, farad, lumen from science_units
+- review_4a.txt: removed mole from science_units
+- review_4a.txt: removed variance from statistics
+- review_4a.txt: removed zenith from astronomy_words
+- review_4a.txt: removed diatom, bacillus from microscopic_life
+- review_4a.txt: removed mildew from microscopic_life
+- review_4a.txt: removed refract from optics
+- review_4a.txt: removed smilodon, allosaur, pterosaur, trilobite, ammonite from prehistoric_life
+- review_4a.txt: removed unitard, singlet from sportswear
+- review_4a.txt: removed bib from sportswear
+- review_4a.txt: removed piping, rosette from trimmings
+- review_4a.txt: removed puffball, tulip, bubble, skater from kinds_of_skirt
+- review_4a.txt: removed waistcoat from formal_wear
+- review_4a.txt: removed corsage, cravat from formal_wear
+- review_4a.txt: removed season, mannequin from fashion_show
+- review_4a.txt: removed skein, gauge, tension, moss, cast, rib from knitting_words
+- review_4a.txt: removed culottes, breeches, jodhpurs from worn_on_the_legs
+- review_4a.txt: removed galosh, slingback from footwear
+- review_4a.txt: removed tricorn, topper, cloche, pillbox, derby from hats
+- review_4a.txt: removed dirndl, hanbok, dashiki, cheongsam from traditional_clothes
+- review_4a.txt: removed kaftan from traditional_clothes
+- review_4a.txt: removed quiff, bouffant from hairstyles
+- review_4a.txt: removed slit from parts_of_a_dress
+- review_4a.txt: removed vent from parts_of_a_coat
+- review_4a.txt: removed aglet from parts_of_a_shoe
+- review_4a.txt: removed barrette, feather from worn_in_the_hair
+- review_4a.txt: removed cajon from percussion
+- review_4a.txt: removed zither, koto from string_instruments
+- review_4a.txt: removed madrigal from kinds_of_song
+- review_4a.txt: removed duathlon from kinds_of_race
+- review_4a.txt: removed walkover, aerial, straddle from gymnastics_moves
+- review_4a.txt: removed girth, blinkers, jodhpurs from riding_gear
+- review_4a.txt: removed mogul, binding from on_the_slopes
+- review_4a.txt: removed oval from sports_venues
+- review_4a.txt: removed wreath from prizes
+- review_4a.txt: removed hapkido from combat_sports
+- review_4a.txt: removed sclera from parts_of_the_eye
+- review_4a.txt: removed milliner, draper, chandler from shopkeepers
+- review_4a.txt: removed glazier, joiner from trades
+- review_4a.txt: removed whiz from experts
+- review_4a.txt: removed crony from words_for_a_friend
+- review_4a.txt: removed farrier from jobs_with_animals
+- review_4a.txt: removed cribbage, euchre, pinochle from card_games
+- review_4a.txt: removed lampoon from kinds_of_comedy
+- review_4a.txt: removed masthead from in_a_newspaper
+- review_4a.txt: removed shindig from celebrations
+- review_4a.txt: removed caldera from volcano_words
+- review_4a.txt: removed schist, gneiss from rocks
+- review_4a.txt: removed pitcher from on_the_table
+- review_4a.txt: removed cosmos from flowers
+- review_4a.txt: removed headstock, chandler, slingback, cribbage, shindig, masthead from hidden_body_parts
+- review_4a.txt: removed handcuffs from hidden_body_parts
+- review_4a.txt: removed waistcoat from hidden_clothing
+- review_4a.txt: removed pillbox from hidden_farm_animals
+- review_4a.txt: removed corsage, pinky, kaftan from hidden_hues
+- review_4a.txt: removed bouffant, sergeant, radiant, canter from hidden_insects
+- review_4a.txt: removed gluteus from hidden_instruments
+- review_4a.txt: removed dashiki from hidden_trees
+- review_4a.txt: removed busk from hidden_vehicles
+- review_4b.txt: removed yup from words_for_yes
+- review_4b.txt: removed roger from words_for_yes
+- review_4b.txt: removed evening from words_for_hello
+- review_4b.txt: removed salaam from words_for_hello
+- review_4b.txt: removed cheerio from words_for_goodbye
+- review_4b.txt: removed cheers from words_for_goodbye
+- review_4b.txt: removed toodles from words_for_goodbye
+- review_4b.txt: removed hulking from words_for_big
+- review_4b.txt: removed titanic from words_for_big
+- review_4b.txt: removed wee from words_for_small
+- review_4b.txt: removed pocket from words_for_small
+- review_4b.txt: removed dinky, weeny, elfin from words_for_small
+- review_4b.txt: removed chirpy from words_for_happy
+- review_4b.txt: removed doleful, heartsick, woebegone from words_for_sad
+- review_4b.txt: removed irked, peeved, riled, huffy, wrathful from words_for_angry
+- review_4b.txt: removed aghast, rattled from words_for_scared
+- review_4b.txt: removed startled from words_for_scared
+- review_4b.txt: removed beat from words_for_tired
+- review_4b.txt: removed spent from words_for_tired
+- review_4b.txt: removed jaded from words_for_tired
+- review_4b.txt: removed haggard, bleary from words_for_tired
+- review_4b.txt: removed erudite, canny from words_for_clever
+- review_4b.txt: removed learned from words_for_clever
+- review_4b.txt: removed dauntless from words_for_brave
+- review_4b.txt: removed gritty from words_for_brave
+- review_4b.txt: removed spirited, feisty from words_for_brave
+- review_4b.txt: removed ace from words_for_great
+- review_4b.txt: removed wicked from words_for_great
+- review_4b.txt: removed neat from words_for_great
+- review_4b.txt: removed shoddy from words_for_terrible
+- review_4b.txt: removed crummy from words_for_terrible
+- review_4b.txt: removed pathetic from words_for_terrible
+- review_4b.txt: removed curious from words_for_strange
+- review_4b.txt: removed offbeat from words_for_strange
+- review_4b.txt: removed comely, winsome, ravishing, fetching from words_for_beautiful
+- review_4b.txt: removed prosaic, vapid, trite from words_for_boring
+- review_4b.txt: removed sodden, sopping, squelchy from words_for_wet
+- review_4b.txt: removed dank from words_for_wet
+- review_4b.txt: removed clammy from words_for_wet
+- review_4b.txt: removed mucky from words_for_dirty
+- review_4b.txt: removed squalid from words_for_dirty
+- review_4b.txt: removed soiled from words_for_dirty
+- review_4b.txt: removed halcyon, unruffled from words_for_calm
+- review_4b.txt: removed collected from words_for_calm
+- review_4b.txt: removed poised from words_for_calm
+- review_4b.txt: removed heinous, malign, dastardly, baleful from words_for_evil
+- review_4b.txt: removed droll, waggish, wry, riotous, jokey from words_for_funny
+- review_4b.txt: removed priceless from words_for_funny
+- review_4b.txt: removed swanky, ritzy, upmarket, sumptuous from words_for_fancy
+- review_4b.txt: removed plush from words_for_fancy
+- review_4b.txt: removed shambles from words_for_a_mess
+- review_4b.txt: removed flub, howler, bungle from words_for_a_mistake
+- review_4b.txt: removed tosh, piffle, bunkum, hooey, twaddle from words_for_nonsense
+- review_4b.txt: removed reams, umpteen, myriad from words_for_lots
+- review_4b.txt: removed quandary from words_for_a_problem
+- review_4b.txt: removed bind from words_for_a_problem
+- review_4b.txt: removed harangue, diatribe, soliloquy, spiel from words_for_a_speech
+- review_4b.txt: removed discourse from words_for_a_speech
+- review_4b.txt: removed fracas, melee, fray from words_for_a_fight
+- review_4b.txt: removed scrap from words_for_a_fight
+- review_4b.txt: removed joust from words_for_a_fight
+- review_4b.txt: removed filch, purloin from ways_to_steal
+- review_4b.txt: removed lift from ways_to_steal
+- review_4b.txt: removed pocket from ways_to_steal
+- review_4b.txt: removed snatch from ways_to_steal
+- review_4b.txt: removed propel from ways_to_throw
+- review_4b.txt: removed catapult from ways_to_throw
+- review_4b.txt: removed flick from ways_to_throw
+- review_4b.txt: removed keen, mewl from ways_to_cry
+- review_4b.txt: removed lament from ways_to_cry
+- review_4b.txt: removed runner from parts_of_a_plant
+- review_4b.txt: removed contour from cosmetics
+- review_4b.txt: removed compress from first_aid_kit
+- review_4b.txt: removed fattoush, dolma, mezze, sumac from middle_eastern_food
+- review_4b.txt: removed banana, pink from kinds_of_pepper
+- review_4b.txt: removed paprika from kinds_of_pepper
+- review_4b.txt: removed poblano, serrano, pimento from kinds_of_pepper
+- review_4b.txt: removed damson, greengage, sloe, mirabelle from stone_fruit
+- review_4b.txt: removed scoff from ways_to_eat
+- review_4b.txt: removed bolt from ways_to_eat
+- review_4b.txt: removed escarole, frisee, radicchio, collard from leafy_greens
+- review_4b.txt: removed chill from ways_to_preserve_food
+- review_4b.txt: removed sperm, killer from kinds_of_whale
+- review_4b.txt: removed right, pilot, beaked, pygmy, fin from kinds_of_whale
+- review_4b.txt: removed goblin, zebra, sand, thresher from kinds_of_shark
+- review_4b.txt: removed linnet, oriole, nuthatch from songbirds
+- review_4b.txt: removed birman, tonkinese, bombay, balinese, himalayan, munchkin from cat_breeds
+- review_4b.txt: removed gizzard from parts_of_a_bird
+- review_4b.txt: removed wattle, crop, comb from parts_of_a_bird
+- review_4b.txt: removed mammatus, contrail, funnel, anvil from kinds_of_cloud
+- review_4b.txt: removed mushroom from kinds_of_cloud
+- review_4b.txt: removed mistral, sirocco, chinook from kinds_of_wind
+- review_4b.txt: removed blast from kinds_of_wind
+- review_4b.txt: removed ooze from ways_water_moves
+- review_4b.txt: removed spurt from ways_water_moves
+- review_4b.txt: removed surgeon, fisherman, clove from kinds_of_knot
+- review_4b.txt: removed butterfly, celtic from kinds_of_knot
+- review_4b.txt: removed shoulder, body, lip from parts_of_a_bottle
+- review_4b.txt: removed lid, rim from parts_of_a_bottle
+- review_4b.txt: removed stygian, twilit from words_for_dark
+- review_4b.txt: removed cassowary from birds
+- review_4b.txt: removed bilby, cassowary from australian_animals
+- review_4b.txt: removed sumac from spices
+- review_4b.txt: removed gelding, yearling, pinto from words_for_a_horse
+- review_4b.txt: removed charger from words_for_a_horse
+- review_4b.txt: removed krait, moccasin from snakes
+- review_4b.txt: removed whelk, winkle, limpet from shellfish
+- review_4b.txt: removed burro from pack_animals
+- review_4b.txt: removed propolis from in_a_hive
+- review_4b.txt: removed cockerel from male_animals
+- review_4b.txt: removed jack, cob from male_animals
+- review_4b.txt: removed jenny, hind from female_animals
+- review_4b.txt: removed ovine, ursine, vulpine, piscine, leonine from animal_adjectives
+- review_4b.txt: removed leave from dog_commands
+- review_4b.txt: removed lichen from things_in_a_nest
+- review_4b.txt: removed wool from things_in_a_nest
+- review_4b.txt: removed merlin from birds_of_prey
+- review_4b.txt: removed leech from creepy_crawlies
+- review_4b.txt: removed woodlouse from creepy_crawlies
+- review_4b.txt: removed ecru, buff, flax from shades_of_beige
+- review_4b.txt: removed sable from shades_of_black
+- review_4b.txt: removed damson, puce, thistle, iris from shades_of_purple
+- review_4b.txt: removed carmine from shades_of_red
+- review_4b.txt: removed lipstick from shades_of_red
+- review_4b.txt: removed carnation, blossom, peony from shades_of_pink
+- review_4b.txt: removed filbert from nuts
+- review_4b.txt: removed skirt from cuts_of_meat
+- review_4b.txt: removed ziti, rotini, bucatini, capellini from pasta
+- review_4b.txt: removed cockle, whelk, abalone from seafood
+- review_4b.txt: removed cremini, cep, maitake from kinds_of_mushroom
+- review_4b.txt: removed jicama, salsify from root_vegetables
+- review_4b.txt: removed carnaroli, patna from kinds_of_rice
+- review_4b.txt: removed kedgeree, onigiri from rice_dishes
+- review_4b.txt: removed xylitol from sweeteners
+- review_4b.txt: removed rapeseed from cooking_oils
+- review_4b.txt: removed hazelnut from cooking_oils
+- review_4b.txt: removed citron, bergamot from citrus_fruit
+- review_4b.txt: removed chervil, lovage from herbs
+- review_4b.txt: removed earthy from tastes
+- review_4b.txt: removed eatery from places_to_eat
+- review_4b.txt: removed taqueria, creperie from places_to_eat
+- review_4b.txt: removed lungo, doppio, piccolo from coffee_drinks
+- review_4b.txt: removed cowslip, yarrow, harebell from wildflowers
+- review_4b.txt: removed hemlock from conifers
+- review_4b.txt: removed carpel from parts_of_a_flower
+- review_4b.txt: removed pothos from houseplants
+- review_4b.txt: removed flank, spur, saddle, shoulder from parts_of_a_mountain
+- review_4b.txt: removed bracket, cep from fungi
+- review_4b.txt: removed dead from seas_of_the_world
+- review_4b.txt: removed ionian from seas_of_the_world
+- review_4b.txt: removed coral from seas_of_the_world
+- review_4b.txt: removed pram from baby_gear
+- review_4b.txt: removed bunting from at_a_party
+- review_4b.txt: removed popper from at_a_party
+- review_4b.txt: removed holdall from bags
+- review_4b.txt: removed creel, swivel, bobber from fishing_gear
+- review_4b.txt: removed foils from at_the_hairdresser
+- review_4b.txt: removed rebar from building_materials
+- review_4b.txt: removed yarn from sewing_kit
+- review_4b.txt: removed pennant from prizes
+- review_4b.txt: removed token from things_in_a_wallet
+- review_4b.txt: removed level from measuring_tools
+- review_4a.txt: at_the_dentist is now tier 2
+- review_4a.txt: at_the_bank is now tier 2
+- review_4a.txt: in_the_wild_west is now tier 2
+- review_4a.txt: italian_music_words is now tier 3
+- review_4b.txt: kinds_of_shark is now tier 3
+- review_4b.txt: kinds_of_knot is now tier 3
+- review_4b.txt: words_for_nonsense is now tier 3
+- review_4a.txt: deleted us_states
+- review_4a.txt: deleted deserts
+- review_4a.txt: deleted south_american_nations
+- review_4a.txt: deleted parts_of_a_train
+- review_4a.txt: deleted explorers
+- review_4a.txt: deleted shape_adjectives
+- review_4a.txt: deleted detective_story
+- review_4a.txt: deleted figure_skating
+- review_4a.txt: deleted at_the_police_station
+- review_4a.txt: deleted minerals
+- review_4a.txt: deleted forms_of_energy
+- review_4b.txt: deleted words_for_pale
+- review_4b.txt: deleted words_for_a_fuss
+- review_4b.txt: deleted words_for_courage
+- review_4b.txt: deleted words_for_rude
+- review_4b.txt: deleted seabirds
+- 769 categories now (0 new), 35 pair rules added
+- pair rules naming deleted categories removed

@@ -2,7 +2,7 @@
   "room": 6,
   "name": "The Bakery",
   "seed": 1,
-  "bank": "063773f73282",
+  "bank": "96805857cd82",
   "levels": [
     {
       "number": 1,
@@ -1401,38 +1401,38 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Shades of green",
-            "key": "green",
-            "tier": 2,
-            "words": ["Apple", "Grass", "Mint", "Pea"]
-          },
-          {
-            "label": "Soft things",
-            "key": "Soft",
-            "tier": 2,
-            "words": ["Towel", "Feather", "Velvet", "Fluff"]
-          },
-          {
-            "label": "Chess pieces",
-            "key": "Chess",
-            "tier": 1,
-            "words": ["Castle", "King", "Knight", "Queen"]
-          },
-          {
             "label": "Things with eyes",
             "key": "eyes",
             "tier": 3,
-            "words": ["Doll", "Potato", "Needle", "Puppet"]
+            "words": ["Potato", "Peacock", "Doll", "Cyclops"]
+          },
+          {
+            "label": "Natural disasters",
+            "key": "disasters",
+            "tier": 1,
+            "words": ["Hurricane", "Wildfire", "Eruption", "Mudslide"]
+          },
+          {
+            "label": "Words for dirty",
+            "key": "dirty",
+            "tier": 2,
+            "words": ["Dusty", "Grubby", "Unclean", "Muddy"]
           },
           {
             "label": "At the pool",
             "key": "pool",
             "tier": 1,
-            "words": ["Whistle", "Locker", "Flippers", "Lifeguard"]
+            "words": ["Kickboard", "Ladder", "Slide", "Lane"]
+          },
+          {
+            "label": "Kinds of skirt",
+            "key": "skirt",
+            "tier": 2,
+            "words": ["Wrap", "Mini", "Maxi", "Midi"]
           }
         ],
         "also": {
-          "Towel": [4]
+          "Hurricane": [0]
         }
       },
       "spec": {

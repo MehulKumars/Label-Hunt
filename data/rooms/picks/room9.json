@@ -2,7 +2,7 @@
   "room": 9,
   "name": "The Apothecary",
   "seed": 1,
-  "bank": "063773f73282",
+  "bank": "96805857cd82",
   "levels": [
     {
       "number": 1,
@@ -495,39 +495,39 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Words after wind",
-            "key": "wind",
+            "label": "Bowling terms",
+            "key": "Bowling",
+            "tier": 2,
+            "words": ["Lane", "Spare", "Alley", "Split"]
+          },
+          {
+            "label": "Things that overflow",
+            "key": "overflow",
             "tier": 3,
-            "words": ["Sock", "Surf", "Bag", "Break"]
+            "words": ["Gutter", "River", "Bath", "Dam"]
           },
           {
-            "label": "Things in pairs",
-            "key": "pairs",
+            "label": "Fabric patterns",
+            "key": "patterns",
+            "tier": 2,
+            "words": ["Paisley", "Pinstripe", "Floral", "Check"]
+          },
+          {
+            "label": "Words for sad",
+            "key": "sad",
+            "tier": 2,
+            "words": ["Mournful", "Forlorn", "Tearful", "Dejected"]
+          },
+          {
+            "label": "Kinds of shark",
+            "key": "shark",
             "tier": 3,
-            "words": ["Mitten", "Twin", "Skate", "Shoe"]
-          },
-          {
-            "label": "Basketball terms",
-            "key": "Basketball",
-            "tier": 2,
-            "words": ["Court", "Rebound", "Steal", "Hoop"]
-          },
-          {
-            "label": "In a board game",
-            "key": "board",
-            "tier": 2,
-            "words": ["Dice", "Tile", "Spinner", "Timer"]
-          },
-          {
-            "label": "Punctuation",
-            "key": "Punctuation",
-            "tier": 2,
-            "words": ["Colon", "Comma", "Ellipsis", "Asterisk"]
+            "words": ["Blue", "Whale", "Bull", "Mako"]
           }
         ],
         "also": {
-          "Dice": [1],
-          "Sock": [1]
+          "Blue": [3],
+          "Gutter": [0]
         }
       },
       "spec": {

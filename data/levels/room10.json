@@ -5,7 +5,7 @@
   "name": "The Honey House",
   "gen": {
     "seed": 1,
-    "bank": "063773f73282"
+    "bank": "96805857cd82"
   },
   "levels": [
     {
@@ -462,59 +462,59 @@
       "id": "l10-09",
       "kind": "normal",
       "introduces": [],
-      "budget": 5,
+      "budget": 4,
       "groups": [
         {
-          "label": "Instruments",
-          "key": "Instruments",
-          "tier": 1,
-          "words": ["Triangle", "Cello", "Guitar", "Horn"]
+          "label": "Geology words",
+          "key": "Geology",
+          "tier": 2,
+          "words": ["Crust", "Erosion", "Sediment", "Quake"]
         },
         {
-          "label": "Shapes",
-          "key": "Shapes",
-          "tier": 1,
-          "words": ["Cylinder", "Rectangle", "Rhombus", "Sphere"]
-        },
-        {
-          "label": "Anagrams of body parts",
-          "key": "body",
+          "label": "Hidden hues",
+          "key": "hues",
           "tier": 4,
-          "words": ["Earth", "Slip", "Snail", "Inch"]
+          "words": ["Chamber", "Castanets", "Blackjack", "Plummet"]
         },
         {
-          "label": "French food",
-          "key": "French",
-          "tier": 2,
-          "words": ["Roquefort", "Bisque", "Quiche", "Brie"]
+          "label": "Lighting",
+          "key": "Lighting",
+          "tier": 1,
+          "words": ["Candle", "Strobe", "Neon", "Spotlight"]
         },
         {
-          "label": "Kinds of book",
-          "key": "book",
-          "tier": 2,
-          "words": ["Memoir", "Journal", "Almanac", "Thesaurus"]
+          "label": "At the hospital",
+          "key": "hospital",
+          "tier": 1,
+          "words": ["Patient", "Drip", "Crutch", "Bandage"]
         },
         {
-          "label": "Hats",
-          "key": "Hats",
+          "label": "Words for dirty",
+          "key": "dirty",
           "tier": 2,
-          "words": ["Bonnet", "Bowler", "Fez", "Trilby"]
+          "words": ["Stained", "Sooty", "Grubby", "Muddy"]
+        },
+        {
+          "label": "Figures of speech",
+          "key": "speech",
+          "tier": 2,
+          "words": ["Pun", "Sarcasm", "Simile", "Cliche"]
         }
       ],
       "also": {
-        "Triangle": [1]
+        "Crust": [1]
       },
-      "jars": [["Horn", "Sphere", "Bowler", "Memoir"], ["Quiche", "Slip", "Bonnet", "Snail"], ["Triangle", "Brie", "Cylinder", "Earth"], ["Cello", "Trilby", "Rectangle", "Thesaurus"], ["Journal", "Guitar", "Almanac", "Bisque"], ["Inch", "Roquefort", "Fez", "Rhombus"], [], []],
-      "gold": 1,
+      "jars": [["Grubby", "Simile", "Plummet", "Sarcasm"], ["Crutch", "Quake", "Stained", "Sediment"], ["Spotlight", "Pun", "Chamber", "Muddy"], ["Castanets", "Drip", "Erosion", "Strobe"], ["Cliche", "Candle", "Bandage", "Sooty"], ["Crust", "Blackjack", "Patient", "Neon"], [], []],
+      "gold": 0,
       "meta": {
         "target": 4.76,
         "floor": 0.75,
-        "avg_slips": 2.36,
-        "avg_win": 0.9,
-        "novice_win": 0.6,
+        "avg_slips": 2,
+        "avg_win": 0.78,
+        "novice_win": 0.48,
         "prober_win": 0,
-        "after_med": 16,
-        "aha_frac": 0.63
+        "after_med": 10,
+        "aha_frac": 0.69
       }
     },
     {
@@ -1178,56 +1178,56 @@
       "budget": 5,
       "groups": [
         {
-          "label": "Baking ingredients",
-          "key": "Baking",
+          "label": "At a concert",
+          "key": "concert",
           "tier": 1,
-          "words": ["Vanilla", "Raisin", "Sugar", "Salt"]
+          "words": ["Roadie", "Stage", "Setlist", "Backstage"]
         },
         {
-          "label": "In a hive",
-          "key": "hive",
+          "label": "Groups of people",
+          "key": "Groups",
           "tier": 2,
-          "words": ["Honey", "Bee", "Drone", "Queen"]
+          "words": ["Crowd", "Troupe", "Tribe", "Committee"]
         },
         {
-          "label": "Chemistry words",
-          "key": "Chemistry",
-          "tier": 2,
-          "words": ["Acid", "Atom", "Mixture", "Formula"]
+          "label": "Drinks",
+          "key": "Drinks",
+          "tier": 1,
+          "words": ["Water", "Slush", "Kombucha", "Punch"]
         },
         {
-          "label": "Ways to laugh",
-          "key": "laugh",
-          "tier": 2,
-          "words": ["Roar", "Snort", "Chortle", "Giggle"]
-        },
-        {
-          "label": "Swapped halves",
-          "key": "Swapped",
+          "label": "Anagrams of hues",
+          "key": "hues",
           "tier": 4,
-          "words": ["Overtake", "Outlook", "Overlay", "Turnover"]
+          "words": ["Sore", "Cheap", "Lump", "Genre"]
         },
         {
-          "label": "On a phone",
-          "key": "phone",
-          "tier": 1,
-          "words": ["Wallpaper", "Speaker", "Emoji", "Camera"]
+          "label": "Ways to hold",
+          "key": "hold",
+          "tier": 2,
+          "words": ["Grasp", "Squeeze", "Grip", "Clasp"]
+        },
+        {
+          "label": "Science units",
+          "key": "units",
+          "tier": 2,
+          "words": ["Newton", "Decibel", "Pascal", "Hertz"]
         }
       ],
       "also": {
-        "Honey": [0]
+        "Crowd": [0]
       },
-      "jars": [["Camera", "Vanilla", "Bee", "Chortle"], ["Wallpaper", "Roar", "Speaker", "Giggle"], ["Overlay", "Atom", "Emoji", "Raisin"], ["Mixture", "Overtake", "Formula", "Queen"], ["Salt", "Turnover", "Snort", "Acid"], ["Honey", "Outlook", "Drone", "Sugar"], [], []],
+      "jars": [["Backstage", "Tribe", "Water", "Setlist"], ["Sore", "Punch", "Grasp", "Slush"], ["Decibel", "Crowd", "Roadie", "Grip"], ["Pascal", "Genre", "Stage", "Lump"], ["Committee", "Newton", "Kombucha", "Clasp"], ["Cheap", "Hertz", "Squeeze", "Troupe"], [], []],
       "gold": 1,
       "meta": {
         "target": 4.96,
         "floor": 0.75,
-        "avg_slips": 2.37,
-        "avg_win": 0.83,
-        "novice_win": 0.5,
+        "avg_slips": 2.64,
+        "avg_win": 0.8,
+        "novice_win": 0.54,
         "prober_win": 0,
-        "after_med": 16,
-        "aha_frac": 0.59
+        "after_med": 15,
+        "aha_frac": 0.58
       }
     },
     {
@@ -1647,60 +1647,60 @@
       "id": "l10-29",
       "kind": "normal",
       "introduces": [],
-      "budget": 5,
+      "budget": 7,
       "groups": [
         {
-          "label": "Outerwear",
-          "key": "Outerwear",
+          "label": "Parts of a story",
+          "key": "story",
           "tier": 2,
-          "words": ["Coat", "Blazer", "Puffer", "Shawl"]
+          "words": ["Villain", "Plot", "Setting", "Narrator"]
         },
         {
-          "label": "Words after rain",
-          "key": "rain",
+          "label": "Superhero words",
+          "key": "Superhero",
+          "tier": 1,
+          "words": ["Hideout", "Cape", "Disguise", "Lair"]
+        },
+        {
+          "label": "Parts of a plant",
+          "key": "plant",
+          "tier": 1,
+          "words": ["Tendril", "Stalk", "Root", "Tuber"]
+        },
+        {
+          "label": "Words for funny",
+          "key": "funny",
+          "tier": 2,
+          "words": ["Farcical", "Hilarious", "Laughable", "Humorous"]
+        },
+        {
+          "label": "Patterns",
+          "key": "Patterns",
+          "tier": 2,
+          "words": ["Zigzag", "Floral", "Gingham", "Chevron"]
+        },
+        {
+          "label": "Things with rings",
+          "key": "rings",
           "tier": 3,
-          "words": ["Cloud", "Maker", "Fall", "Proof"]
-        },
-        {
-          "label": "On a farm",
-          "key": "farm",
-          "tier": 1,
-          "words": ["Trough", "Meadow", "Coop", "Scarecrow"]
-        },
-        {
-          "label": "Mexican food",
-          "key": "Mexican",
-          "tier": 1,
-          "words": ["Tortilla", "Nachos", "Burrito", "Enchilada"]
-        },
-        {
-          "label": "Music releases",
-          "key": "releases",
-          "tier": 2,
-          "words": ["Album", "Mixtape", "Single", "Demo"]
-        },
-        {
-          "label": "Black and white",
-          "key": "white",
-          "tier": 2,
-          "words": ["Domino", "Tuxedo", "Barcode", "Magpie"]
+          "words": ["Onion", "Wrestling", "Saturn", "Boxing"]
         }
       ],
       "also": {
-        "Coat": [1]
+        "Villain": [1]
       },
-      "jars": [["Coop", "Maker", "Scarecrow", "Burrito"], ["Nachos", "Barcode", "Blazer", "Single"], ["Magpie", "Album", "Fall", "Trough"], ["Cloud", "Tortilla", "Puffer", "Meadow"], ["Proof", "Coat", "Mixtape", "Tuxedo"], ["Domino", "Demo", "Shawl", "Enchilada"], [], []],
-      "frost": ["Coop", "Nachos", "Magpie", "Cloud", "Proof", "Domino"],
-      "gold": 1,
+      "jars": [["Tendril", "Gingham", "Cape", "Onion"], ["Boxing", "Zigzag", "Wrestling", "Plot"], ["Saturn", "Setting", "Disguise", "Chevron"], ["Tuber", "Humorous", "Lair", "Laughable"], ["Villain", "Farcical", "Floral", "Stalk"], ["Narrator", "Hideout", "Hilarious", "Root"], [], []],
+      "frost": ["Tendril", "Boxing", "Saturn", "Tuber", "Villain", "Narrator"],
+      "gold": 2,
       "meta": {
         "target": 5.08,
         "floor": 0.75,
-        "avg_slips": 2.6,
-        "avg_win": 0.82,
-        "novice_win": 0.53,
+        "avg_slips": 2.87,
+        "avg_win": 0.75,
+        "novice_win": 0.75,
         "prober_win": 0,
         "after_med": 2,
-        "aha_frac": 0.94
+        "aha_frac": 0.96
       }
     },
     {

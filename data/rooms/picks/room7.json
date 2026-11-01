@@ -2,7 +2,7 @@
   "room": 7,
   "name": "The Winter Cellar",
   "seed": 1,
-  "bank": "063773f73282",
+  "bank": "96805857cd82",
   "levels": [
     {
       "number": 1,
@@ -393,38 +393,38 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Parts of a flower",
-            "key": "flower",
+            "label": "Kinds of settlement",
+            "key": "settlement",
             "tier": 2,
-            "words": ["Pistil", "Nectar", "Stem", "Bud"]
+            "words": ["Town", "City", "Hamlet", "Suburb"]
           },
           {
-            "label": "Things that flutter",
-            "key": "flutter",
+            "label": "Words after home",
+            "key": "home",
             "tier": 3,
-            "words": ["Leaf", "Ribbon", "Banner", "Wing"]
+            "words": ["Coming", "Run", "School", "Land"]
           },
           {
-            "label": "Sweeteners",
-            "key": "Sweeteners",
+            "label": "People at sea",
+            "key": "sea",
             "tier": 2,
-            "words": ["Molasses", "Stevia", "Aspartame", "Honey"]
+            "words": ["Stowaway", "Deckhand", "Mariner", "Helmsman"]
           },
           {
-            "label": "Indoor games",
-            "key": "Indoor",
+            "label": "Sweet treats",
+            "key": "Sweet",
             "tier": 1,
-            "words": ["Darts", "Pool", "Bowling", "Billiards"]
+            "words": ["Cake", "Baklava", "Strudel", "Macaron"]
           },
           {
-            "label": "Punctuation",
-            "key": "Punctuation",
+            "label": "Computer commands",
+            "key": "commands",
             "tier": 2,
-            "words": ["Hyphen", "Ellipsis", "Dash", "Asterisk"]
+            "words": ["Replace", "Select", "Undo", "Delete"]
           }
         ],
         "also": {
-          "Leaf": [0]
+          "Town": [1]
         }
       },
       "spec": {
@@ -878,38 +878,38 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Golf terms",
-            "key": "Golf",
-            "tier": 2,
-            "words": ["Divot", "Tee", "Hook", "Wedge"]
-          },
-          {
-            "label": "Laundry day",
-            "key": "Laundry",
-            "tier": 1,
-            "words": ["Iron", "Softener", "Detergent", "Basket"]
-          },
-          {
-            "label": "Ways to look",
-            "key": "look",
-            "tier": 2,
-            "words": ["Squint", "Glare", "Peer", "Watch"]
-          },
-          {
-            "label": "Units of time",
-            "key": "time",
-            "tier": 1,
-            "words": ["Decade", "Hour", "Minute", "Week"]
-          },
-          {
-            "label": "Words after ear",
-            "key": "ear",
+            "label": "Kinds of shark",
+            "key": "shark",
             "tier": 3,
-            "words": ["Plug", "Ring", "Phone", "Piece"]
+            "words": ["Basking", "Reef", "Megalodon", "Tiger"]
+          },
+          {
+            "label": "At the hospital",
+            "key": "hospital",
+            "tier": 1,
+            "words": ["Nurse", "Sling", "Ward", "Bandage"]
+          },
+          {
+            "label": "Words for calm",
+            "key": "calm",
+            "tier": 2,
+            "words": ["Serene", "Placid", "Restful", "Mellow"]
+          },
+          {
+            "label": "On television",
+            "key": "television",
+            "tier": 1,
+            "words": ["News", "Channel", "Finale", "Series"]
+          },
+          {
+            "label": "Ways to breathe",
+            "key": "breathe",
+            "tier": 2,
+            "words": ["Sniff", "Wheeze", "Snore", "Yawn"]
           }
         ],
         "also": {
-          "Iron": [0]
+          "Nurse": [0]
         }
       },
       "spec": {

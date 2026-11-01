@@ -2,7 +2,7 @@
   "room": 4,
   "name": "The Tea Room",
   "seed": 1,
-  "bank": "063773f73282",
+  "bank": "96805857cd82",
   "levels": [
     {
       "number": 1,
@@ -415,38 +415,38 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Words after head",
-            "key": "head",
+            "label": "Things with sleeves",
+            "key": "sleeves",
             "tier": 3,
-            "words": ["Lamp", "Wind", "Phone", "Board"]
+            "words": ["Record", "Cardigan", "Shirt", "Jacket"]
           },
           {
-            "label": "Things that glow",
-            "key": "glow",
+            "label": "Media buttons",
+            "key": "buttons",
             "tier": 2,
-            "words": ["Star", "Candle", "Neon", "Beacon"]
+            "words": ["Volume", "Pause", "Skip", "Loop"]
           },
           {
-            "label": "Garden tools",
-            "key": "Garden",
+            "label": "Sleep words",
+            "key": "Sleep",
             "tier": 1,
-            "words": ["Trowel", "Rake", "Shears", "Fork"]
+            "words": ["Insomnia", "Drowsy", "Doze", "Nap"]
           },
           {
-            "label": "Seeds you eat",
-            "key": "Seeds",
+            "label": "Words for hello",
+            "key": "hello",
+            "tier": 1,
+            "words": ["Greetings", "Hola", "Howdy", "Ciao"]
+          },
+          {
+            "label": "Bowling terms",
+            "key": "Bowling",
             "tier": 2,
-            "words": ["Chia", "Sesame", "Flax", "Mustard"]
-          },
-          {
-            "label": "Dances",
-            "key": "Dances",
-            "tier": 1,
-            "words": ["Disco", "Polka", "Tango", "Salsa"]
+            "words": ["Split", "Foul", "Spare", "Alley"]
           }
         ],
         "also": {
-          "Lamp": [1]
+          "Record": [1]
         }
       },
       "spec": {
@@ -1218,38 +1218,38 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Things that flutter",
-            "key": "flutter",
+            "label": "Things with roots",
+            "key": "roots",
             "tier": 3,
-            "words": ["Eyelash", "Flag", "Butterfly", "Curtain"]
+            "words": ["Tooth", "Radish", "Tree", "Turnip"]
           },
           {
-            "label": "Animal parts",
-            "key": "Animal",
+            "label": "Parts of the mouth",
+            "key": "mouth",
+            "tier": 2,
+            "words": ["Tonsil", "Gum", "Canine", "Incisor"]
+          },
+          {
+            "label": "Ways to eat",
+            "key": "eat",
+            "tier": 2,
+            "words": ["Devour", "Nibble", "Wolf", "Gnaw"]
+          },
+          {
+            "label": "First aid kit",
+            "key": "aid",
             "tier": 1,
-            "words": ["Wing", "Snout", "Talon", "Gill"]
+            "words": ["Wipes", "Splint", "Bandage", "Sling"]
           },
           {
-            "label": "Volcano words",
-            "key": "Volcano",
+            "label": "Songbirds",
+            "key": "Songbirds",
             "tier": 2,
-            "words": ["Plume", "Eruption", "Crater", "Vent"]
-          },
-          {
-            "label": "Cuts of meat",
-            "key": "meat",
-            "tier": 2,
-            "words": ["Loin", "Knuckle", "Rump", "Shank"]
-          },
-          {
-            "label": "Parts of a plane",
-            "key": "plane",
-            "tier": 2,
-            "words": ["Cabin", "Flap", "Nose", "Rudder"]
+            "words": ["Starling", "Thrush", "Finch", "Lark"]
           }
         ],
         "also": {
-          "Wing": [4]
+          "Tooth": [1]
         }
       },
       "spec": {
@@ -1481,38 +1481,38 @@
         "budget": 0,
         "groups": [
           {
-            "label": "In the lab",
-            "key": "lab",
-            "tier": 2,
-            "words": ["Flask", "Clamp", "Tongs", "Pipette"]
-          },
-          {
-            "label": "Things to drink from",
-            "key": "drink",
-            "tier": 1,
-            "words": ["Tumbler", "Goblet", "Carton", "Can"]
-          },
-          {
-            "label": "Times of day",
-            "key": "day",
-            "tier": 1,
-            "words": ["Morning", "Dawn", "Nightfall", "Noon"]
-          },
-          {
             "label": "Words before time",
             "key": "time",
             "tier": 3,
-            "words": ["Show", "Over", "Night", "Down"]
+            "words": ["Down", "Lunch", "Show", "Over"]
           },
           {
-            "label": "Shades of black",
-            "key": "black",
+            "label": "Parts of a bird",
+            "key": "bird",
             "tier": 2,
-            "words": ["Soot", "Obsidian", "Onyx", "Coal"]
+            "words": ["Claw", "Beak", "Plume", "Wing"]
+          },
+          {
+            "label": "On television",
+            "key": "television",
+            "tier": 1,
+            "words": ["Sitcom", "Quiz", "Broadcast", "Remote"]
+          },
+          {
+            "label": "At the dentist",
+            "key": "dentist",
+            "tier": 2,
+            "words": ["Floss", "Cavity", "Enamel", "Filling"]
+          },
+          {
+            "label": "Garden features",
+            "key": "Garden",
+            "tier": 1,
+            "words": ["Patio", "Planter", "Lawn", "Fountain"]
           }
         ],
         "also": {
-          "Flask": [1]
+          "Down": [1]
         }
       },
       "spec": {

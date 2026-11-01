@@ -2,7 +2,7 @@
   "room": 10,
   "name": "The Honey House",
   "seed": 1,
-  "bank": "063773f73282",
+  "bank": "96805857cd82",
   "levels": [
     {
       "number": 1,
@@ -461,44 +461,44 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Instruments",
-            "key": "Instruments",
-            "tier": 1,
-            "words": ["Triangle", "Cello", "Guitar", "Horn"]
+            "label": "Geology words",
+            "key": "Geology",
+            "tier": 2,
+            "words": ["Crust", "Erosion", "Sediment", "Quake"]
           },
           {
-            "label": "Shapes",
-            "key": "Shapes",
-            "tier": 1,
-            "words": ["Cylinder", "Rectangle", "Rhombus", "Sphere"]
-          },
-          {
-            "label": "Anagrams of body parts",
-            "key": "body",
+            "label": "Hidden hues",
+            "key": "hues",
             "tier": 4,
-            "words": ["Earth", "Slip", "Snail", "Inch"]
+            "words": ["Chamber", "Castanets", "Blackjack", "Plummet"]
           },
           {
-            "label": "French food",
-            "key": "French",
-            "tier": 2,
-            "words": ["Roquefort", "Bisque", "Quiche", "Brie"]
+            "label": "Lighting",
+            "key": "Lighting",
+            "tier": 1,
+            "words": ["Candle", "Strobe", "Neon", "Spotlight"]
           },
           {
-            "label": "Kinds of book",
-            "key": "book",
-            "tier": 2,
-            "words": ["Memoir", "Journal", "Almanac", "Thesaurus"]
+            "label": "At the hospital",
+            "key": "hospital",
+            "tier": 1,
+            "words": ["Patient", "Drip", "Crutch", "Bandage"]
           },
           {
-            "label": "Hats",
-            "key": "Hats",
+            "label": "Words for dirty",
+            "key": "dirty",
             "tier": 2,
-            "words": ["Bonnet", "Bowler", "Fez", "Trilby"]
+            "words": ["Stained", "Sooty", "Grubby", "Muddy"]
+          },
+          {
+            "label": "Figures of speech",
+            "key": "speech",
+            "tier": 2,
+            "words": ["Pun", "Sarcasm", "Simile", "Cliche"]
           }
         ],
         "also": {
-          "Triangle": [1]
+          "Crust": [1]
         }
       },
       "spec": {
@@ -1171,44 +1171,44 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Baking ingredients",
-            "key": "Baking",
+            "label": "At a concert",
+            "key": "concert",
             "tier": 1,
-            "words": ["Vanilla", "Raisin", "Sugar", "Salt"]
+            "words": ["Roadie", "Stage", "Setlist", "Backstage"]
           },
           {
-            "label": "In a hive",
-            "key": "hive",
+            "label": "Groups of people",
+            "key": "Groups",
             "tier": 2,
-            "words": ["Honey", "Bee", "Drone", "Queen"]
+            "words": ["Crowd", "Troupe", "Tribe", "Committee"]
           },
           {
-            "label": "Chemistry words",
-            "key": "Chemistry",
-            "tier": 2,
-            "words": ["Acid", "Atom", "Mixture", "Formula"]
+            "label": "Drinks",
+            "key": "Drinks",
+            "tier": 1,
+            "words": ["Water", "Slush", "Kombucha", "Punch"]
           },
           {
-            "label": "Ways to laugh",
-            "key": "laugh",
-            "tier": 2,
-            "words": ["Roar", "Snort", "Chortle", "Giggle"]
-          },
-          {
-            "label": "Swapped halves",
-            "key": "Swapped",
+            "label": "Anagrams of hues",
+            "key": "hues",
             "tier": 4,
-            "words": ["Overtake", "Outlook", "Overlay", "Turnover"]
+            "words": ["Sore", "Cheap", "Lump", "Genre"]
           },
           {
-            "label": "On a phone",
-            "key": "phone",
-            "tier": 1,
-            "words": ["Wallpaper", "Speaker", "Emoji", "Camera"]
+            "label": "Ways to hold",
+            "key": "hold",
+            "tier": 2,
+            "words": ["Grasp", "Squeeze", "Grip", "Clasp"]
+          },
+          {
+            "label": "Science units",
+            "key": "units",
+            "tier": 2,
+            "words": ["Newton", "Decibel", "Pascal", "Hertz"]
           }
         ],
         "also": {
-          "Honey": [0]
+          "Crowd": [0]
         }
       },
       "spec": {
@@ -1640,44 +1640,44 @@
         "budget": 0,
         "groups": [
           {
-            "label": "Outerwear",
-            "key": "Outerwear",
+            "label": "Parts of a story",
+            "key": "story",
             "tier": 2,
-            "words": ["Coat", "Blazer", "Puffer", "Shawl"]
+            "words": ["Villain", "Plot", "Setting", "Narrator"]
           },
           {
-            "label": "Words after rain",
-            "key": "rain",
+            "label": "Superhero words",
+            "key": "Superhero",
+            "tier": 1,
+            "words": ["Hideout", "Cape", "Disguise", "Lair"]
+          },
+          {
+            "label": "Parts of a plant",
+            "key": "plant",
+            "tier": 1,
+            "words": ["Tendril", "Stalk", "Root", "Tuber"]
+          },
+          {
+            "label": "Words for funny",
+            "key": "funny",
+            "tier": 2,
+            "words": ["Farcical", "Hilarious", "Laughable", "Humorous"]
+          },
+          {
+            "label": "Patterns",
+            "key": "Patterns",
+            "tier": 2,
+            "words": ["Zigzag", "Floral", "Gingham", "Chevron"]
+          },
+          {
+            "label": "Things with rings",
+            "key": "rings",
             "tier": 3,
-            "words": ["Cloud", "Maker", "Fall", "Proof"]
-          },
-          {
-            "label": "On a farm",
-            "key": "farm",
-            "tier": 1,
-            "words": ["Trough", "Meadow", "Coop", "Scarecrow"]
-          },
-          {
-            "label": "Mexican food",
-            "key": "Mexican",
-            "tier": 1,
-            "words": ["Tortilla", "Nachos", "Burrito", "Enchilada"]
-          },
-          {
-            "label": "Music releases",
-            "key": "releases",
-            "tier": 2,
-            "words": ["Album", "Mixtape", "Single", "Demo"]
-          },
-          {
-            "label": "Black and white",
-            "key": "white",
-            "tier": 2,
-            "words": ["Domino", "Tuxedo", "Barcode", "Magpie"]
+            "words": ["Onion", "Wrestling", "Saturn", "Boxing"]
           }
         ],
         "also": {
-          "Coat": [1]
+          "Villain": [1]
         }
       },
       "spec": {

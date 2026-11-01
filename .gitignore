@@ -10,3 +10,4 @@
 /reports/cache/
 /shots/
 *.tmp
+/reports/*_part.*

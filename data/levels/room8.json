@@ -5,7 +5,7 @@
   "name": "The Greenhouse",
   "gen": {
     "seed": 1,
-    "bank": "063773f73282"
+    "bank": "96805857cd82"
   },
   "levels": [
     {
@@ -283,48 +283,48 @@
       "budget": 4,
       "groups": [
         {
-          "label": "Hidden farm animals",
-          "key": "farm",
-          "tier": 4,
-          "words": ["When", "Oxygen", "Drama", "Toxic"]
-        },
-        {
-          "label": "Parts of a tree",
-          "key": "tree",
+          "label": "In fairy tales",
+          "key": "fairy",
           "tier": 1,
-          "words": ["Branch", "Trunk", "Twig", "Root"]
+          "words": ["Wand", "Prince", "Tower", "Troll"]
         },
         {
-          "label": "Fabrics",
-          "key": "Fabrics",
-          "tier": 1,
-          "words": ["Lace", "Fleece", "Silk", "Cashmere"]
-        },
-        {
-          "label": "At the station",
-          "key": "station",
-          "tier": 1,
-          "words": ["Porter", "Engine", "Carriage", "Rail"]
-        },
-        {
-          "label": "Sharp things",
-          "key": "Sharp",
+          "label": "Playing positions",
+          "key": "positions",
           "tier": 2,
-          "words": ["Scissors", "Dart", "Cactus", "Pin"]
+          "words": ["Defender", "Goalie", "Forward", "Striker"]
+        },
+        {
+          "label": "Quiz show",
+          "key": "Quiz",
+          "tier": 1,
+          "words": ["Prize", "Clue", "Score", "Host"]
+        },
+        {
+          "label": "At a concert",
+          "key": "concert",
+          "tier": 1,
+          "words": ["Band", "Backstage", "Crowd", "Stage"]
+        },
+        {
+          "label": "Silent W",
+          "key": "Silent",
+          "tier": 4,
+          "words": ["Wrinkle", "Wreck", "Wrestle", "Wrong"]
         }
       ],
       "also": {},
-      "jars": [["Silk", "Scissors", "Porter", "Pin"], ["Root", "Oxygen", "Branch", "Dart"], ["Cactus", "Engine", "Cashmere", "Toxic"], ["Drama", "Trunk", "When", "Lace"], ["Rail", "Fleece", "Carriage", "Twig"], [], []],
+      "jars": [["Wrinkle", "Tower", "Wrong", "Prize"], ["Striker", "Wand", "Defender", "Wreck"], ["Troll", "Stage", "Prince", "Clue"], ["Forward", "Band", "Goalie", "Crowd"], ["Backstage", "Host", "Wrestle", "Score"], [], []],
       "gold": 0,
       "meta": {
         "target": 2.25,
         "floor": 0.9,
-        "avg_slips": 1.03,
-        "avg_win": 0.97,
-        "novice_win": 0.74,
+        "avg_slips": 1.1,
+        "avg_win": 0.93,
+        "novice_win": 0.73,
         "prober_win": 0,
-        "after_med": 9,
-        "aha_frac": 0.68
+        "after_med": 13,
+        "aha_frac": 0.51
       }
     },
     {
@@ -438,50 +438,50 @@
       "id": "l8-09",
       "kind": "normal",
       "introduces": [],
-      "budget": 4,
+      "budget": 3,
       "groups": [
         {
-          "label": "Hidden hues",
-          "key": "hues",
+          "label": "Hidden kitchen items",
+          "key": "kitchen",
           "tier": 4,
-          "words": ["Rectangle", "Brownie", "Crust", "Shred"]
+          "words": ["Tinker", "Timpani", "Porcupine", "Dishonest"]
         },
         {
-          "label": "Shapes",
-          "key": "Shapes",
-          "tier": 1,
-          "words": ["Hexagon", "Crescent", "Square", "Pyramid"]
-        },
-        {
-          "label": "Footwear",
-          "key": "Footwear",
+          "label": "Old trades",
+          "key": "trades",
           "tier": 2,
-          "words": ["Boot", "Mule", "Sandal", "Shoe"]
+          "words": ["Miller", "Spinner", "Weaver", "Smith"]
         },
         {
-          "label": "Seafood",
-          "key": "Seafood",
+          "label": "At the hospital",
+          "key": "hospital",
           "tier": 1,
-          "words": ["Caviar", "Oyster", "Octopus", "Scallop"]
+          "words": ["Splint", "Doctor", "Drip", "Sling"]
         },
         {
-          "label": "Things that are hot",
-          "key": "hot",
+          "label": "Words for hello",
+          "key": "hello",
+          "tier": 1,
+          "words": ["Hiya", "Hola", "Morning", "Howdy"]
+        },
+        {
+          "label": "Surfing terms",
+          "key": "Surfing",
           "tier": 2,
-          "words": ["Steam", "Heatwave", "Radiator", "Ember"]
+          "words": ["Wipeout", "Longboard", "Reef", "Paddle"]
         }
       ],
       "also": {
-        "Rectangle": [1]
+        "Tinker": [1]
       },
-      "jars": [["Shred", "Shoe", "Pyramid", "Sandal"], ["Oyster", "Ember", "Hexagon", "Radiator"], ["Octopus", "Crust", "Boot", "Heatwave"], ["Crescent", "Scallop", "Square", "Rectangle"], ["Brownie", "Caviar", "Mule", "Steam"], [], []],
+      "jars": [["Doctor", "Wipeout", "Howdy", "Drip"], ["Reef", "Dishonest", "Miller", "Longboard"], ["Morning", "Spinner", "Sling", "Timpani"], ["Tinker", "Splint", "Smith", "Paddle"], ["Weaver", "Hiya", "Porcupine", "Hola"], [], []],
       "gold": 0,
       "meta": {
         "target": 3.8,
         "floor": 0.78,
-        "avg_slips": 1.51,
-        "avg_win": 0.86,
-        "novice_win": 0.56,
+        "avg_slips": 1.64,
+        "avg_win": 0.75,
+        "novice_win": 0.49,
         "prober_win": 0,
         "after_med": 12,
         "aha_frac": 0.52
@@ -861,47 +861,47 @@
       "budget": 4,
       "groups": [
         {
-          "label": "Things that fly",
-          "key": "fly",
-          "tier": 1,
-          "words": ["Balloon", "Pigeon", "Rocket", "Blimp"]
-        },
-        {
-          "label": "Gadgets",
-          "key": "Gadgets",
-          "tier": 1,
-          "words": ["Drone", "Headset", "Projector", "Scanner"]
-        },
-        {
-          "label": "Things that lift",
-          "key": "lift",
+          "label": "Things that drift",
+          "key": "drift",
           "tier": 3,
-          "words": ["Winch", "Fog", "Pulley", "Haze"]
+          "words": ["Cloud", "Balloon", "Continent", "Smoke"]
         },
         {
-          "label": "At the ballet",
-          "key": "ballet",
+          "label": "Network words",
+          "key": "Network",
           "tier": 2,
-          "words": ["Tutu", "Leotard", "Barre", "Slipper"]
+          "words": ["Router", "Wireless", "Modem", "Broadband"]
         },
         {
-          "label": "Groups of people",
-          "key": "Groups",
+          "label": "Astronomy words",
+          "key": "Astronomy",
           "tier": 2,
-          "words": ["Clan", "Panel", "Band", "Crowd"]
+          "words": ["Cosmos", "Axis", "Supernova", "Equinox"]
+        },
+        {
+          "label": "At the fire station",
+          "key": "fire",
+          "tier": 1,
+          "words": ["Pole", "Ladder", "Hydrant", "Uniform"]
+        },
+        {
+          "label": "Natural disasters",
+          "key": "disasters",
+          "tier": 1,
+          "words": ["Hurricane", "Mudslide", "Sinkhole", "Landslide"]
         }
       ],
       "also": {
-        "Drone": [0]
+        "Cloud": [1]
       },
-      "jars": [["Winch", "Projector", "Tutu", "Headset"], ["Barre", "Band", "Pigeon", "Clan"], ["Scanner", "Pulley", "Balloon", "Leotard"], ["Panel", "Drone", "Fog", "Slipper"], ["Rocket", "Haze", "Blimp", "Crowd"], [], []],
+      "jars": [["Cosmos", "Modem", "Pole", "Wireless"], ["Hydrant", "Sinkhole", "Balloon", "Hurricane"], ["Broadband", "Supernova", "Cloud", "Ladder"], ["Mudslide", "Router", "Axis", "Uniform"], ["Continent", "Equinox", "Smoke", "Landslide"], [], []],
       "gold": 0,
       "meta": {
         "target": 3.93,
         "floor": 0.78,
-        "avg_slips": 1.52,
-        "avg_win": 0.89,
-        "novice_win": 0.74,
+        "avg_slips": 1.68,
+        "avg_win": 0.85,
+        "novice_win": 0.62,
         "prober_win": 0,
         "after_med": 9,
         "aha_frac": 0.61

@@ -1222,13 +1222,11 @@ At the hairdresser | Worn in the hair
 Countries < European countries
 Countries < African countries
 Countries < Asian countries
-Countries < South American nations
 Things that fly < Aircraft
 Things in space < Spacecraft
 In the garden < Garden features
 Shapes < Polygons
 Shapes < Solid shapes
-Spicy things | South American nations
 Works of art | At the museum
 Currencies | At the bank
 Things in a wallet | At the bank
@@ -1257,7 +1255,6 @@ Social media words | Playground games
 Chess pieces | Chess terms
 Film genres | Video game genres
 Shapes | Curves
-Shapes | Shape adjectives
 Things with faces | Solid shapes
 Things that are hot | Hot drinks
 Things that are cold | Cold drinks
@@ -1295,8 +1292,6 @@ Landforms | In the Wild West
 In the park | At a theme park
 Roles in a story | Superhero words
 Magic show | Superhero words
-In a courtroom | At the police station
-Detective story | At the police station
 Social media words | At the post office
 Workplaces | At the post office
 Rooms in a house | At the post office
@@ -1304,7 +1299,6 @@ At a play | On a film set
 Photography | On a film set
 Jobs | On a film set
 In fairy tales | Roles in a story
-In a courtroom | Detective story
 Crafts | Pottery words
 Materials | Pottery words
 Dances | Dance moves
@@ -1350,10 +1344,6 @@ Things with fins | Surfing terms
 Sportspeople | Playing positions
 Sportspeople | At a skate park
 Ways to move | At a skate park
-Things with blades | Figure skating
-Things that spin | Figure skating
-Winter sports | Figure skating
-Sportspeople | Figure skating
 Shopkeepers | Old trades
 Trades | Old trades
 Medieval people | Old trades
@@ -1377,11 +1367,8 @@ Gases | Chemical elements
 Chemistry words | Chemical elements
 Rocks | Geology words
 Volcano words | Geology words
-Minerals | Geology words
 Branches of science | Geology words
 Natural disasters | Geology words
-Rocks | Minerals
-Gems | Minerals
 Units of measure | Science units
 Electricity | Science units
 Scientists | Science units
@@ -1393,9 +1380,6 @@ Fungi | Microscopic life
 Tiny things | Microscopic life
 Biology words | Microscopic life
 At the museum | Prehistoric life
-Energy sources | Forms of energy
-Electricity | Forms of energy
-Chemical elements | Forms of energy
 Photography | Optics
 Physics words | Optics
 In the lab | Optics
@@ -1439,9 +1423,6 @@ Sea creatures | Kinds of whale
 Kinds of whale | Kinds of shark
 Birds < Songbirds
 Things that sing | Songbirds
-Birds < Seabirds
-Water birds < Seabirds
-Things at the beach | Seabirds
 Languages | Cat breeds
 Animal parts | Parts of a bird
 Animal coverings | Parts of a bird
@@ -1458,12 +1439,7 @@ Words for terrible | Words for evil
 Words for clever | Words for fancy
 Words for beautiful | Words for fancy
 Words for great | Words for beautiful
-Words for brave | Words for courage
-Virtues | Words for courage
-Words for courage ! body
-Words for a mess | Words for a fuss
 Words for a mess | Words for a problem
-Words for a fight | Words for a fuss
 Words for a mistake | Words for a problem
 Ways to talk | Words for a speech
 Kinds of comedy | Words for funny
@@ -1471,7 +1447,6 @@ Words for funny | Words for strange
 Animal sounds | Ways to cry
 Ways to talk | Ways to cry
 Food textures | Words for wet
-Words for angry | Words for rude
 Words for dirty | Words for dark
 Things that glow | Ways to shine
 Things that sparkle | Ways to shine
@@ -1483,3 +1458,39 @@ Weather forecast | Words for angry
 Weather forecast | Words for wet
 Weather forecast | Words for dark
 Parts of a bird ! body
+# Merged from data/bank/drafts
+At the hospital | First aid kit
+At the bank | Things you can pay
+Aircraft | Things that crash
+Aircraft | Things that float
+Spacecraft | Ways to travel
+Time words | Words for hello
+Garden features | On a farm
+Parts of a story | Roles in a story
+Parts of a book | Parts of a story
+Italian food | Hot drinks
+Fast food | Cold drinks
+Things in pairs | Hands and feet
+Things you wear | Superhero words
+At a wedding | Formal wear
+Household staff | At a hotel
+Ailments | Microscopic life
+Reptiles | Prehistoric life
+Things with legs | Sportswear
+Things with buttons | Formal wear
+Things with buttons | Winter clothes
+Words for tired | Sleep words
+Words for tired | Words for slow
+Words for calm | Words for slow
+Words for clever | Words for an expert
+Words for evil | Words for dark
+Words for boring | Words for dark
+Weather forecast | Words for boring
+Ways to cry | Words for sad
+Emotions | Virtues
+Emotions | Things you can spread
+Ways to steal | Ways to hold
+Units of measure | Words for lots
+In the Wild West | Words for a fight
+Kinds of medicine | First aid kit
+Kinds of wind | Things that blow

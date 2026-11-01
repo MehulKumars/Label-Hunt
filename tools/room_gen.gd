@@ -126,6 +126,9 @@ func _pick_rooms(rooms: Array[int], only: Array[int], dry: bool) -> int:
 			print(md.back())
 		if not dry:
 			DirAccess.make_dir_recursive_absolute("res://data/rooms/picks")
+			# A partial run keeps the file's other levels, so a later full settle still sees the whole room.
+			if not only.is_empty() and FileAccess.file_exists(PICKS % room):
+				out = _merged_picks(room, out)
 			JsonOut.write(PICKS % room, {"room": room, "name": spec.get("name", ""), "seed": base_seed,
 				"bank": FileAccess.get_md5(BANK).left(12), "levels": out})
 	md.append("")
@@ -370,6 +373,16 @@ func _crossing_pair(at: int, tiers: Array, exclude: Array, familiar: bool) -> Ar
 		pairs.append([a, b])
 	return [] if pairs.is_empty() else pairs[rng.randi_range(0, pairs.size() - 1)]
 # --- phase 2: settle ----------------------------------------------------------------------------------------------
+
+func _merged_picks(room: int, fresh: Array) -> Array:
+	var by_number := {}
+	var old: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PICKS % room))
+	for p: Dictionary in old["levels"] + fresh:
+		by_number[int(p["number"])] = p
+	var numbers := by_number.keys()
+	numbers.sort()
+	return numbers.map(func(k: int) -> Dictionary: return by_number[k])
+
 
 func _settle_room(room: int, only: Array[int]) -> int:
 	var picks: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(PICKS % room))
