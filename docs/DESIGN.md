@@ -80,7 +80,7 @@ Captions only appear the first time something happens: first slip, first pair, f
 - **Home:** the big Jarful jar fills with every label sorted in the room; the cabinet holds the current shelf (tap it
   for the room); the profile chip (rank, XP ring), coins, the play streak and today's gift; Levels, Play and Shop in
   the thumb zone.
-- **Coins** (one currency, `src/rules/economy.gd`): first solves (10–50, rising with groups, level kind and room,
+- **Coins** (one currency, `src/rules/economy.gd`): first solves (14–66, rising with groups, level kind and room,
   because help is wanted more often in harder rooms), the daily gift, rank-ups, room completes, optional ads (capped;
   one ad is worth one Hint), and coin packs ($0.99–$9.99, mock until Play Billing). Spent on Hint, Complete, Continue.
   No energy, no timers, no paywalls, no loot boxes.

@@ -46,11 +46,12 @@ const AVATARS := [
 ]
 
 
-## First-solve coins: 10 + 4 per group above 2; tricky +4, hard +8; +1 per room after the first, since help is wanted
-## more often as rooms get harder while groups stop at 6. A hard level in Room 17 pays one Hint. Replays and gold lids
-## pay no coins.
+## First-solve coins: 10 + 4 per group above 2; tricky +4, hard +8; +2 per room after the first, since help is wanted
+## more often as rooms get harder while groups stop at 6 (at +1, free players got only 55-66% of the Hints they wanted
+## in late rooms; at +2, 68-74%; reports/economy.md). A hard level in Room 17 pays 66. Replays and gold lids pay no
+## coins.
 static func win_coins(groups: int, kind: String, room: int = 1) -> int:
-	return 10 + 4 * maxi(groups - 2, 0) + {"tricky": 4, "hard": 8}.get(kind, 0) + maxi(room - 1, 0)
+	return 10 + 4 * maxi(groups - 2, 0) + {"tricky": 4, "hard": 8}.get(kind, 0) + 2 * maxi(room - 1, 0)
 
 
 ## First-solve XP: 10 + 5 per group above 2; tricky +5, hard +10. A first gold lid adds GOLD_XP.

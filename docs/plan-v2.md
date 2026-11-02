@@ -55,3 +55,4 @@ where they depend on it.
 | 5–7 | Done: peppers (`SpiceMark`), the Next button's label, the finale line. |
 | 8 | Done: the head start after three fails; both rungs are announced. |
 | 9 | 0.4.0-alpha (version code 7). |
+| 13 (part) | Economy review (2026-11-02): first-solve coins now rise +2 a room (was +1). Free players get 86% of the Hints they want (was 73%; late rooms 68–74%, was 55–66%). A cap on "x2 coins" ads was tested and rejected: with a realistic ad player (stops watching above 1,500 coins), it cut ad views by about a fifth for no gain. economy_sim now models that player, reports ads watched a day, and gates on coins keeping their value late. Ad views are limited by what coins can buy, so the looks shop is the income lever; starter pack and Supporter are proposed with it. |
