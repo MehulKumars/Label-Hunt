@@ -217,20 +217,27 @@ func _begin(id: String, mode: String, retry: bool) -> void:
 			_fails = int(saved.get("fails", 0))
 			_assisted = bool(saved.get("assisted", false))
 	var bonus := 0
+	var assist := ""
 	if s == null:
 		s = Session.new(level, rules.duplicate())
 		_assisted = false
 		if _fails >= 2:
-			# The assist after two fails: one more slip and a free Hint (gold is withheld).
+			# The help ladder (gold is withheld, and the help is announced, never hidden). Two fails: one more slip
+			# and a free Hint. Three or more: the hardest blank label also starts at its first step.
 			if s.budget > 0:
 				s.grant_slips(1)
 			bonus = 1
 			_assisted = true
+			assist = "hint"
+			if _fails >= 3 and not s.head_start(s.head_start_group()).is_empty():
+				assist = "head"
 	var e := Levels.catalog.entry(id)
 	var look := int(e["room"]) if e["track"] == "room" else 1
 	backdrop.set_room(look)
 	play.board.room = look
 	play.start(id, s, bonus)
+	if assist != "":
+		play.announce_assist(assist == "head")
 	play.set_tutorial(mode == "tutorial")
 	_show(play, mode)
 	if mode == "play":

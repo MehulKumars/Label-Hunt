@@ -268,3 +268,19 @@ func test_fingerprint_changes_with_content() -> void:
 	var b := LevelData.from_dict(d)
 	assert_ne(a.fingerprint(), b.fingerprint())
 	assert_eq(a.fingerprint(), LevelData.from_dict(LEVEL).fingerprint())
+
+
+func test_head_start_picks_the_hardest_blank_label_and_replays() -> void:
+	var d := LEVEL.duplicate(true)
+	d["groups"][2]["tier"] = 3
+	var s := _session({}, d)
+	assert_eq(s.head_start_group(), 2, "the tier-3 group needs the help most")
+	var ev := s.head_start(2)
+	assert_eq(ev.size(), 1)
+	assert_eq(s.know.step[2], 1, "its label starts at the first step, as a slip would show it")
+	assert_eq(s.log.back(), ["l", 2])
+	assert_true(s.head_start(2).is_empty(), "only a blank label gets one")
+	assert_eq(s.head_start_group(), 0, "next blank, hardest first")
+	var r := Session.replay(LevelData.from_dict(d), {}, s.log)
+	assert_not_null(r)
+	assert_eq(r.know.step, s.know.step)

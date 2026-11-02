@@ -5,7 +5,7 @@
 class_name ShotRunner
 extends Node
 
-const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07", "spicy",
+const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07", "spicy", "assist",
 	"m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "need_coins", "hint", "complete_pick", "complete_fly",
 	"win", "finale", "rate", "lose", "room_reveal", "pause", "test", "drag", "pick", "themes"]
 
@@ -57,6 +57,11 @@ func _run(name: String) -> void:
 		"t07":
 			main.start_level("r1-04")
 			await _legal(play, 3)
+		"assist":
+			# The fourth try at a hard level: the help ladder's head start on its hardest label, announced.
+			Save.data["seen_captions"]["hard"] = true
+			main._fails = 3
+			main.start_level("l1-20", true)
 		"spicy":
 			# A hard room level, first met: two peppers by the title and their one-time caption.
 			main.start_level("l1-10")

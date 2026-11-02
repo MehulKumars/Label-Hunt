@@ -34,7 +34,7 @@ var history: Array[Dictionary] = []
 ## [moved word, target word or "#label"] per slip, for the playtest log.
 var slip_log: Array = []
 ## Replayable actions: ["m", from, to] (a move or slip; pours under the pour rule), ["n", from, to] (a single-card
-## solver step), ["u"], ["h", card], ["j"], ["c", group], ["s", slips].
+## solver step), ["u"], ["h", card], ["j"], ["c", group], ["s", slips], ["l", group] (a head start).
 var log: Array = []
 
 
@@ -185,6 +185,27 @@ func grant_slips(extra: int) -> void:
 		lost = false
 
 
+## The group a head start helps most: the hardest (highest tier) whose label is still blank, or -1.
+func head_start_group() -> int:
+	var best := -1
+	for g in level.group_count():
+		if know.step[g] == 0 and board.sealed[g] == 0 and (best < 0 or int(level.groups[g]["tier"]) > int(level.groups[best]["tier"])):
+			best = g
+	return best
+
+
+## A head start after repeated fails: group g's label starts at its first step (context words and the key word's
+## length), as a slip would show it. Logged, so a resumed attempt keeps it.
+func head_start(g: int) -> Array[Dictionary]:
+	var ev: Array[Dictionary] = []
+	if g < 0 or g >= level.group_count() or know.step[g] != 0:
+		return ev
+	know.step[g] = 1
+	log.append(["l", g])
+	ev.append({"type": "step", "group": g, "step": 1})
+	return ev
+
+
 ## Rebuilds an attempt from its action log. Returns null if any step doesn't apply (a changed level, a tampered
 ## save): the caller then starts the level fresh.
 static func replay(lvl: LevelData, rule_overrides: Dictionary, actions: Array) -> Session:
@@ -215,6 +236,8 @@ static func replay(lvl: LevelData, rule_overrides: Dictionary, actions: Array) -
 				ok = act.size() == 2 and int(act[1]) > 0 and int(act[1]) <= 4
 				if ok:
 					s.grant_slips(int(act[1]))
+			"l":
+				ok = act.size() == 2 and not s.head_start(int(act[1])).is_empty()
 			_:
 				ok = false
 		if not ok:

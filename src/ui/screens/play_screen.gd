@@ -334,6 +334,16 @@ func _teach(button: RoundButton, text: String) -> void:
 	get_tree().create_timer(3.5).timeout.connect(button.set_pulse.bind(false))
 
 
+## Says what the help ladder gave this attempt, so help is never hidden (after two fails, or three for the head start).
+func announce_assist(head_start: bool) -> void:
+	if head_start:
+		caption.say("Head start: one label shows its length", 3.5)
+	elif session.has_budget():
+		caption.say("Another go: a free Hint and one more slip", 3.5)
+	else:
+		caption.say("Another go: a free Hint", 3.0)
+
+
 func _caption_once(key: String, text: String) -> void:
 	var seen: Dictionary = Save.data["seen_captions"]
 	if seen.has(key):

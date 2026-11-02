@@ -30,8 +30,11 @@ Jarful is built from Mehul's *Word Jars* concept card. The closest game on the m
   finishes the board for you.
 - **Fail state.** From level 11, each level has a slip budget: the tightest one at which the average bot still wins
   at its room's floor rate (`data/rooms/curve.json`). Running out means **Retry** (one tap) or an optional
-  **Continue** (+2 slips) for an ad or 150 coins you already have. Levels 1–10 can't be failed. After 2 fails on the
-  same level, the next try gives a free Hint and +1 slip (and no gold lid).
+  **Continue** (+2 slips) for an ad or 150 coins you already have. Levels 1–10 can't be failed. A help ladder, always
+  announced and never hidden (and no gold lid): after 2 fails on the same level the next try gives a free Hint and
+  +1 slip; after 3, the hardest blank label also starts at its first step ("Things with ▢▢▢▢").
+- **Difficulty is told up front.** Tricky levels carry one pepper and hard levels two, on their shelf slot and beside
+  the title; the Win card's Next button names what comes next ("Next: hard level").
 - **Fair deals.** No two cards of the same group start next to each other, and there are always 2 empty jars (a
   labelled jar replaces one of them).
 - **Boosters** (`docs/plan-m3.md` §2): **Hint** (50 coins) points at a good next move and tags that card;
