@@ -12,7 +12,7 @@ Guess wrong and the jar gives away part of the label. Fill a jar and the lid scr
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/version-0.4.0--alpha-3B6E6E" alt="Version 0.4.0-alpha">
+<img src="https://img.shields.io/badge/version-0.4.1--alpha-3B6E6E" alt="Version 0.4.1-alpha">
 <img src="https://img.shields.io/badge/Godot-4.7.2-478CBF?logo=godotengine&logoColor=white" alt="Godot 4.7.2">
 <img src="https://img.shields.io/badge/platform-Android%20(arm64)-3DDC84?logo=android&logoColor=white" alt="Android arm64">
 <img src="https://img.shields.io/badge/orientation-portrait-F28F3B" alt="Portrait">
@@ -80,7 +80,7 @@ The full rules, the level pipeline and the roadmap are in the design doc: [docs/
 2. Open it on the phone and allow installs from your browser or file manager.
 3. It installs as **Jarful** (`com.mehulkumars.jarful`). New builds install over old ones and keep your progress.
 
-Over USB instead: `adb install -r jarful-0.4.0-alpha-arm64.apk`
+Over USB instead: `adb install -r jarful-0.4.1-alpha-arm64.apk`
 
 Older builds are on the [releases page](https://github.com/MehulKumars/jarful/releases).
 
