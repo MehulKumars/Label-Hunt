@@ -49,14 +49,19 @@ Captions only appear the first time something happens: first slip, first pair, f
 ## Progression and meta (M3)
 - **510 levels in 17 rooms of 30** (specs to 720 for later). Each room has its own walls, wood and jar style.
 - **Sawtooth in packs of 10:** levels 1–4 rise, 5 is *tricky*, 6 is a rest level that brings in the next idea,
-  7–9 rise, 10 is *hard*. Rooms rise from a medium start (Room 1) to very hard (rooms 14–17).
+  7–9 rise, 10 is *hard*. Rooms rise from an easy on-ramp (Room 1) to very hard (rooms 14–17).
+- **Room 1 is hand-made** (`data/rooms/room1_spec.json`): L1–10 teach sorting by meaning with everyday categories,
+  L11–20 add the slip limit and lateral groups, L21–30 add herrings and 4 groups. Its levels are *strict* (no two
+  cards of different groups share another bank category), and the spec keeps out words that read as another group
+  ("Orchard" beside trees) or name their own weakly. It ends just under Room 2's difficulty.
 - **When new ideas arrive:**
 
   | Level | New idea |
   |---|---|
   | L2, L4, L6 | Undo, +Jar, Hint |
-  | L11 | slip budget |
-  | L16 | Complete |
+  | L11 | slip budget (never below 3 in Room 1) |
+  | L13 | Complete |
+  | L16 | lateral groups ("Words after snow") |
   | L21 | herrings |
   | L26 | 4 groups |
   | L31–60 | the v0.2 levels ("The Kitchen") |

@@ -43,6 +43,11 @@ var n := 30
 var n_final := 200
 var rejects := {}
 var _crossings: Array = []
+## The room being picked: bank indices and lower-case words its spec keeps out ("avoid_cats", "avoid_words").
+var _avoid_cats := {}
+var _avoid_words := {}
+## The level being picked: bank index -> the words its spec pins for that category (empty = let the chooser pick).
+var _pins := {}
 
 
 func _init() -> void:
@@ -101,6 +106,7 @@ func _pick_rooms(rooms: Array[int], only: Array[int], dry: bool) -> int:
 	var t0 := Time.get_ticks_msec()
 	for room in rooms:
 		var spec: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SPEC % room))
+		_set_avoid(spec)
 		var out: Array = []
 		var levels: Array = spec["levels"]
 		for i in levels.size():
@@ -141,6 +147,19 @@ func _pick_rooms(rooms: Array[int], only: Array[int], dry: bool) -> int:
 	return 1 if failed > 0 and not dry else 0
 
 
+## A hand-made room can keep out categories too vague for its players and words that read as another group's.
+func _set_avoid(spec: Dictionary) -> void:
+	_avoid_cats.clear()
+	_avoid_words.clear()
+	for id: String in spec.get("avoid_cats", []):
+		if not bank.by_id.has(id):
+			push_error("room_gen: avoid_cats names an unknown category '%s'" % id)
+			continue
+		_avoid_cats[int(bank.by_id[id])] = true
+	for w: String in spec.get("avoid_words", []):
+		_avoid_words[w.to_lower()] = true
+
+
 ## {pick: {cats, words, also} or {}, relax: the relax step that worked}
 func _pick_level(room: int, number: int, ls: Dictionary, at: int) -> Dictionary:
 	rejects.clear()
@@ -164,7 +183,19 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 	Dealer._shuffle_array(tiers, rng)
 	var want := int(ls.get("herrings", 0))
 	var familiar: bool = ls.get("familiar", false)
-	# A level that needs a herring starts from a real crossing: two categories sharing a word.
+	# A level that teaches something can pin its categories (and their words): {"pin": {"words_after_snow": [...]}}.
+	# Pins take their tier out of the mix; every gate below still applies. Not combined with herrings.
+	_pins.clear()
+	var pin: Dictionary = ls.get("pin", {})
+	for id: String in pin:
+		var idx := int(bank.by_id.get(id, -1))
+		if idx < 0 or want > 0 or not tiers.has(int(bank.categories[idx]["tier"])) or not ledger.cat_ok(idx, at):
+			_reject("pin %s" % id)
+			return {}
+		cats.append(idx)
+		domains[_domain_key(idx)] = true
+		tiers.erase(int(bank.categories[idx]["tier"]))
+		_pins[idx] = PackedStringArray(pin[id])
 	if want > 0:
 		var pair := _crossing_pair(at, tiers, exclude, familiar)
 		if pair.is_empty():
@@ -178,7 +209,8 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 		var pool: Array[int] = []
 		for i in bank.categories.size():
 			var c: Dictionary = bank.categories[i]
-			if int(c["tier"]) != int(t) or cats.has(i) or exclude.has(c["domain"]) or domains.has(_domain_key(i)):
+			if int(c["tier"]) != int(t) or cats.has(i) or exclude.has(c["domain"]) or domains.has(_domain_key(i)) \
+					or _avoid_cats.has(i):
 				continue
 			if not ledger.cat_ok(i, at) or not cats.all(func(k: int) -> bool: return bank.compatible(i, k) and ledger.pair_ok(i, k, at)):
 				continue
@@ -198,7 +230,8 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 	var crossings: Array = []
 	for a in cats.size():
 		for w in bank.categories[cats[a]]["words"]:
-			if w.length() > MAX_WORD or not ledger.word_ok(w, at) or (familiar and bank.hard.has(w.to_lower())):
+			if w.length() > MAX_WORD or not ledger.word_ok(w, at) or (familiar and bank.hard.has(w.to_lower())) \
+					or _avoid_words.has(w.to_lower()):
 				continue
 			for h in bank.homes(w):
 				var b := cats.find(h)
@@ -249,6 +282,9 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 	# Phantom groups: no category outside the level (with its children's words) may hold 3 or more of its words from
 	# two or more groups (three from one group mislead nobody: they belong together anyway).
 	# A parent of a picked category may hold none outside that category's own group (Fruit next to Citrus fruit).
+	# A `strict` level (first-room boards) allows no false pair at all: two cards of different groups that share
+	# another category read as a pair to a new player.
+	var phantom_hits := 2 if ls.get("strict", false) else 3
 	var all_words: Array = []
 	for ws in words:
 		all_words.append_array(Array(ws))
@@ -272,7 +308,7 @@ func _pick(ls: Dictionary, at: int) -> Dictionary:
 			hits += here
 			if here > 0:
 				groups_hit += 1
-		if (own >= 0 and hits >= 1) or (hits >= 3 and groups_hit >= 2):
+		if (own >= 0 and hits >= 1) or (hits >= phantom_hits and groups_hit >= 2):
 			_reject("phantom")
 			return {}
 	var also := {}
@@ -295,13 +331,22 @@ func _choose_words(cats: Array[int], a: int, herrings: Array, herring_words: Dic
 	for x: Array in herrings:
 		if x[1] == a:
 			chosen.append(x[0])
+	var pinned: PackedStringArray = _pins.get(idx, PackedStringArray())
+	if not pinned.is_empty():
+		for w in pinned:
+			var mine := Array(bank.homes(w)).has(idx)
+			if not mine or not ledger.word_ok(w, at) or Array(bank.homes(w)).any(func(h: int) -> bool: return h != idx and cats.has(h)):
+				_reject("pinned word %s" % w)
+				return PackedStringArray()
+		chosen.append_array(pinned)
+		return chosen if ledger.words_ok(idx, chosen, at) else PackedStringArray()
 	var fresh: Array = []
 	var reused: Array = []
 	for w in bank.categories[idx]["words"]:
 		var lw := (w as String).to_lower()
 		if herring_words.has(lw) or w.length() > MAX_WORD or w.length() < 3 or not ledger.word_ok(w, at):
 			continue
-		if familiar and bank.hard.has(lw):
+		if (familiar and bank.hard.has(lw)) or _avoid_words.has(lw):
 			continue
 		if Array(bank.homes(w)).any(func(h: int) -> bool: return h != idx and cats.has(h)):
 			continue
@@ -359,7 +404,8 @@ func _crossing_pair(at: int, tiers: Array, exclude: Array, familiar: bool) -> Ar
 		var b: int = cr[2]
 		var ca: Dictionary = bank.categories[a]
 		var cb: Dictionary = bank.categories[b]
-		if exclude.has(ca["domain"]) or exclude.has(cb["domain"]):
+		if exclude.has(ca["domain"]) or exclude.has(cb["domain"]) or _avoid_cats.has(a) or _avoid_cats.has(b) \
+				or _avoid_words.has(cr[0]):
 			continue
 		var left := tiers.duplicate()
 		if not left.has(int(ca["tier"])):
@@ -486,8 +532,9 @@ func _write_deal(d: Dictionary, lvl: LevelData) -> void:
 
 
 ## Sets budget, gold and meta from the bots. The budget is the smallest slip limit at which the average bot wins at
-## least `floor` of the time (and the novice at least `novice_floor`), never below 2. Gold is the largest slip count
-## below the budget that 20-50% of average runs stay within (else the one nearest 35%).
+## least `floor` of the time (and the novice at least `novice_floor`), never below the level's `min_budget` (2 unless
+## the spec says more: the first room says 3, so a new player survives a misread and a mis-drop). Gold is the largest
+## slip count below the budget that 20-50% of average runs stay within (else the one nearest 35%).
 func _budget(d: Dictionary, lvl: LevelData, ls: Dictionary) -> Dictionary:
 	var nov := _measure(lvl, "novice", n_final, 0)
 	var avg := _measure(lvl, "average", n_final, 0)
@@ -496,7 +543,7 @@ func _budget(d: Dictionary, lvl: LevelData, ls: Dictionary) -> Dictionary:
 	var budget := 0
 	var gold := -1
 	if ls.get("budget", false):
-		budget = maxi(2, _floor_slips(avg["slips"], floor_avg) + 1)
+		budget = maxi(int(ls.get("min_budget", 2)), _floor_slips(avg["slips"], floor_avg) + 1)
 		if floor_nov > 0.0:
 			budget = maxi(budget, _floor_slips(nov["slips"], floor_nov) + 1)
 		# That count comes from games without a limit, and a limit changes the play: check it, give room if needed.

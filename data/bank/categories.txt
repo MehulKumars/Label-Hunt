@@ -683,7 +683,7 @@ ways_to_hold,Ways to hold,hold,2,body,Grip|Grasp|Clutch|Clasp|Hug|Cradle|Cuddle|
 kinds_of_medicine,Kinds of medicine,medicine,2,body,Pill|Tablet|Capsule|Syrup|Ointment|Cream|Inhaler|Lozenge|Vitamin|Vaccine|Balm|Antidote|Remedy
 ways_to_run,Ways to run,run,2,body,Sprint|Jog|Dash|Bolt|Scamper|Scurry|Gallop|Trot|Scuttle
 ways_to_fall,Ways to fall,fall,2,body,Tumble|Slip|Topple|Plunge|Plummet|Collapse|Slump|Flop|Crumple|Nosedive
-chemical_elements,Chemical elements,elements,2,science,Carbon|Sodium|Calcium|Iodine|Silicon|Lithium|Uranium|Radium|Boron|Potassium|Plutonium|Platinum|Chromium|Arsenic
+chemical_elements,Chemical elements,elements,2,science,Carbon|Sodium|Calcium|Iodine|Silicon|Lithium|Uranium|Radium|Boron|Potassium|Plutonium|Platinum|Chromium|Arsenic|Chlorine
 geology_words,Geology words,Geology,2,science,Crust|Mantle|Core|Plate|Fault|Fossil|Strata|Sediment|Erosion|Mineral|Tremor|Rift|Bedrock|Quake
 science_units,Science units,units,2,science,Volt|Watt|Amp|Ohm|Joule|Newton|Hertz|Kelvin|Pascal|Decibel|Calorie
 statistics,Statistics,Statistics,2,science,Mean|Median|Mode|Average|Sample|Survey|Ratio|Percent|Tally|Outlier|Graph|Chart

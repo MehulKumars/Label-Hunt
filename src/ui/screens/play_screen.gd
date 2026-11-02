@@ -293,6 +293,8 @@ func _intro_captions() -> void:
 				caption.say("Six groups now", 3.0)
 			"herrings", "double":
 				caption.say("Some words fit two", 3.0)
+			"lateral":
+				caption.say("Some labels join words", 3.0)
 			"abstract":
 				caption.say("Some labels are ideas", 3.0)
 			"wordplay":
