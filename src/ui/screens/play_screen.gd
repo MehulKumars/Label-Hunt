@@ -245,14 +245,15 @@ func _show_tutorial_hand() -> void:
 	_point(res["path"][0])
 
 
-## Glows the card to move and runs the hand from it to the slot it lands in (never over a word).
+## Glows the card to move and runs the hand from it to the slot it lands in. The fingertip touches the card's right
+## edge, so the hand hangs over the jar wall and the gap beside it rather than the words of the cards below.
 func _point(mv: Vector2i) -> void:
 	_hint_shown = true
 	board.set_glow_card(session.board.top(mv.x))
 	var cs: Vector2 = board.layout["card_size"]
 	var top_slot := session.board.size(mv.x) - 1
-	var a := board.position + board.slot_pos(mv.x, top_slot) + Vector2(cs.x * 0.82, cs.y * 0.8)
-	var b := board.position + board.slot_pos(mv.y, session.board.size(mv.y)) + Vector2(cs.x * 0.62, cs.y * 0.75)
+	var a := board.position + board.slot_pos(mv.x, top_slot) + Vector2(cs.x * 0.96, cs.y * 0.62)
+	var b := board.position + board.slot_pos(mv.y, session.board.size(mv.y)) + Vector2(cs.x * 0.96, cs.y * 0.62)
 	hand.show_path(a, b)
 
 
