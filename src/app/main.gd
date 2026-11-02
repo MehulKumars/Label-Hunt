@@ -628,7 +628,13 @@ func _open_pause() -> void:
 	Sfx.muffle(true)
 	s.closed.connect(Sfx.muffle.bind(false))
 	s.add_button("Resume", true, s.close)
-	s.add_button("Restart level", false, start_level.bind(play.level_id, true))
+	s.add_button("Restart level", false, func() -> void:
+		# It sits right under Resume: an attempt with progress asks first, so a mis-tap can't throw it away.
+		if play.session == null or play.session.log.is_empty():
+			start_level(play.level_id, true)
+			return
+		s.close()
+		_confirm_restart())
 	s.add_button("Rules", false, func() -> void:
 		s.close()
 		_open_rules())
@@ -638,6 +644,15 @@ func _open_pause() -> void:
 		s.add_button("Test menu", false, func() -> void:
 			s.close()
 			_open_test_menu())
+	open_sheet(s)
+
+
+## Restarting throws away the attempt in progress; Keep playing goes straight back to the board.
+func _confirm_restart() -> void:
+	var s := Sheet.new("Restart this level?")
+	s.add_label("This attempt starts over from the first move.", Style.FS_26)
+	s.add_button("Restart level", true, start_level.bind(play.level_id, true))
+	s.add_button("Keep playing", false, s.close)
 	open_sheet(s)
 
 

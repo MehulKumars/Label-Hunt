@@ -731,15 +731,15 @@ class _ChoiceBar extends Control:
 
 	func open(free: bool) -> void:
 		_free = free
-		_text.text = "Tap a label above to finish its jar"
-		_confirm.text = "Finish it"
+		_text.text = "Tap a label above to complete its jar"
+		_confirm.text = "Complete"
 		_confirm.enabled = false
 		_confirm.queue_redraw()
 		show()
 
 	func ready_to_finish() -> void:
 		_text.text = "Its four cards will fly into the label"
-		_confirm.text = "Finish: 1 free" if _free else "Finish: %d coins" % Economy.PRICES["complete"]
+		_confirm.text = "Complete: 1 free" if _free else "Complete: %d coins" % Economy.PRICES["complete"]
 		_confirm.enabled = true
 		_confirm.queue_redraw()
 

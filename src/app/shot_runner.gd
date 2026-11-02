@@ -7,7 +7,7 @@ extends Node
 
 const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07", "spicy", "assist",
 	"m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "need_coins", "hint", "complete_pick", "complete_fly",
-	"win", "finale", "rate", "lose", "room_reveal", "pause", "test", "drag", "pick", "themes"]
+	"win", "finale", "rate", "lose", "room_reveal", "pause", "restart", "test", "drag", "pick", "themes"]
 
 var out_dir := ""
 var only: PackedStringArray = []
@@ -215,6 +215,11 @@ func _run(name: String) -> void:
 			main.start_level("l2-01")
 			await _wait(0.3)
 			main._open_pause()
+		"restart":
+			# Restart from Pause after some moves: it asks first.
+			main.start_level("l2-01")
+			await _legal(play, 3)
+			main._confirm_restart()
 		"test":
 			main.start_level("l2-01")
 			await _wait(0.3)

@@ -71,8 +71,8 @@ keystore over.
 - **Bot:** about 5 ms per game on small boards. Baking is slower on late rooms: rooms 11-17 (210 levels, 5-6 groups) took about 18 min on 6 processes.
   Post-aha busywork on 5-group boards runs 5–18 moves, above the ≤8 target. Tidy up only appears when the
   board *proves* every group, which is rare.
-- **Sounds:** `kenney.nl` blocks scripted downloads, so the placeholder SFX are synthesised. Kenney packs must be
-  downloaded by hand.
+- **Sounds:** real CC0 effects (Kenney and others, listed in CREDITS.md), imported by `tools/import_sfx.sh` from packs
+  downloaded by hand (`kenney.nl` blocks scripted downloads). Only `frost.wav` is still synthesised (`tools/make_sfx.sh`).
 
 ## Gotchas
 - `class_name Popup` clashes with the built-in Popup class. Our popup base is `Sheet`.
