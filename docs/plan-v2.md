@@ -43,3 +43,15 @@ the moment of failure.
 
 Steps 10 and 11 need people. Steps 12–14 change saves and the economy, so they wait for the calibration in 11
 where they depend on it.
+
+## Status
+| # | Outcome |
+|---|---|
+| 0 | Done. |
+| 1 | Done. Room 1 averages 0.4 / 0.6 / 0.8 slips (normal / tricky / hard), was 0.6 / 0.7 / 1.0; the novice bot wins every level at least 76% (was 62%). room_gen gained `avoid_cats`, `avoid_words`, `pin`, `strict` and `min_budget`. Bank: Chlorine is an element. |
+| 2 | Done. The hand covers at most the last letter of a long word below. |
+| 3 | **Pour rejected by measurement.** On Room 14 it made the human-like bot loop: win rates fell by up to 50 points, moves rose from 30–100 to 200–450. Forced pour also broke the Hint walk on 10 levels; a pour limited to the run's own stack still collapsed the bot. Pour stays off. Kept: resume checks the rules an attempt was played under; Tidy plays solver paths as single moves. |
+| 4 | Dropped: no measured case, and it can't touch moves whose destination isn't proven. Busywork moves to step 11: re-deal with a stronger long-tail penalty in settle (`after_med` is measured with no slip limit; `tools/sim.gd` applies the budget, so its after-aha column isn't comparable). |
+| 5–7 | Done: peppers (`SpiceMark`), the Next button's label, the finale line. |
+| 8 | Done: the head start after three fails; both rungs are announced. |
+| 9 | 0.4.0-alpha (version code 7). |
