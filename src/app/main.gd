@@ -360,6 +360,34 @@ func _result_sheet(heading: String) -> Sheet:
 	return s
 
 
+## The Next button says what comes next, so the main action builds a little anticipation and a hard level is no
+## surprise: a new room, a new idea, the level's peppers, or just the next level.
+func _next_label(next: String, new_room: bool) -> String:
+	var e := Levels.catalog.entry(next)
+	if new_room:
+		return "Next: a new room"
+	if not (e.get("introduces", PackedStringArray()) as PackedStringArray).is_empty():
+		return "Next: something new"
+	match str(e.get("kind", "")):
+		"hard":
+			return "Next: hard level"
+		"tricky":
+			return "Next: tricky level"
+	return "Next level"
+
+
+## News for the last three jars of a room: the finish line and what it brings ("" otherwise).
+func _finale_line(room: int) -> String:
+	var cat := Levels.catalog
+	var left := cat.room_ids(room).size() - Progression.solved_count(cat, Save.data, room)
+	if left < 1 or left > 3:
+		return ""
+	var jars := "1 more jar" if left == 1 else "%d more jars" % left
+	if not cat.room_ids(room + 1).is_empty():
+		return "%s: %s opens, +%d coins." % [jars, cat.room_name(room + 1), Economy.ROOM_COINS]
+	return "%s to fill %s, +%d coins." % [jars, cat.room_name(room), Economy.ROOM_COINS]
+
+
 func _open_win(stats: Dictionary) -> void:
 	var id := play.level_id
 	var cat := Levels.catalog
@@ -421,9 +449,14 @@ func _open_win(stats: Dictionary) -> void:
 			lines.append("%d-day streak: %s" % [rewards["streak"]["count"], MetaSheets._reward_text(rewards["milestone"])])
 		for up: Dictionary in rewards["ups"]:
 			lines.append("Rank %d: %s" % [up["level"], MetaSheets._reward_text(up["rewards"])])
-		if res["new_gold"]:
-			lines.append("Clean sort: your first gold lid." if res["first_gold"] else "Clean sort: gold lid.")
-		elif res["shelf_full"] >= 0:
+		if res["new_gold"] and res["first_gold"]:
+			lines.append("Clean sort: your first gold lid.")
+		var finale := _finale_line(int(entry["room"]))
+		if finale != "":
+			lines.append(finale)
+		if res["new_gold"] and not res["first_gold"]:
+			lines.append("Clean sort: gold lid.")
+		elif not res["new_gold"] and res["shelf_full"] >= 0:
 			lines.append("Shelf %d is full." % (res["shelf_full"] + 1))
 	if not lines.is_empty():
 		s.add_label(lines[0], Style.FS_26, true)
@@ -434,7 +467,7 @@ func _open_win(stats: Dictionary) -> void:
 	if next != "":
 		var next_room := int(cat.entry(next)["room"])
 		var new_room: bool = room_level and next_room != int(entry["room"]) and cat.entry(next)["track"] == "room"
-		s.add_button("Next level", true, func() -> void:
+		s.add_button(_next_label(next, new_room) if room_level else "Next level", true, func() -> void:
 			if new_room:
 				close_all_sheets()
 				MetaSheets.room_reveal(self, next_room, next)

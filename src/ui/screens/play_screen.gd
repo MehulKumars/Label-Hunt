@@ -28,6 +28,8 @@ var board: BoardView
 var rail: LabelRail
 var meter: SlipMeter
 var title_label: Label
+## Peppers beside the title on tricky and hard room levels.
+var spice: SpiceMark
 var pause_btn: RoundButton
 var coins: CoinPill
 var undo_btn: RoundButton
@@ -74,6 +76,9 @@ func _init() -> void:
 	title_label.add_theme_font_size_override("font_size", 32)
 	title_label.add_theme_color_override("font_color", Style.INK)
 	add_child(title_label)
+	spice = SpiceMark.new()
+	spice.icon_size = 28.0
+	add_child(spice)
 	meter = SlipMeter.new()
 	add_child(meter)
 	coins = CoinPill.new()
@@ -163,6 +168,8 @@ func start(id: String, s: Session, bonus_hints: int = 0) -> void:
 	hide_rail = not features.has("slip")
 	rail.visible = not hide_rail
 	title_label.text = Levels.title(id)
+	var entry := Levels.catalog.entry(id)
+	spice.kind = str(entry.get("kind", "")) if entry.get("track", "") == "room" else ""
 	board.reduce_motion = bool(Save.setting("reduce_motion"))
 	board.setup(s)
 	rail.setup(s)
@@ -202,6 +209,11 @@ func _layout() -> void:
 	var with_meter := meter.visible
 	title_label.position = Vector2(mid_x, top + (0.0 if with_meter else 0.0))
 	title_label.size = Vector2(mid_w, RoundButton.D * (0.5 if with_meter else 1.0))
+	# The peppers follow the centred title text.
+	var title_w := Style.sans_heavy().get_string_size(title_label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, 32).x
+	spice.size = spice.custom_minimum_size
+	spice.position = Vector2(mid_x + (mid_w + title_w) / 2.0 + 10.0,
+		title_label.position.y + (title_label.size.y - spice.size.y) / 2.0)
 	meter.position = Vector2(mid_x, top + RoundButton.D * 0.48)
 	meter.size = Vector2(mid_w, RoundButton.D * 0.52)
 	var rail_h := 0.0 if hide_rail else LabelRail.height_for(session.level.group_count())
@@ -308,6 +320,12 @@ func _intro_captions() -> void:
 				caption.say("Corks pop when a lid goes on", 3.5)
 	if session.has_budget() and not Save.data["seen_captions"].has("budget"):
 		_caption_once("budget", "%d slips allowed" % session.budget)
+	# The first tricky and the first hard level say what their peppers mean (they never introduce anything else).
+	match spice.kind:
+		"tricky":
+			_caption_once("tricky", "One pepper: tricky, worth more coins")
+		"hard":
+			_caption_once("hard", "Two peppers: hard, worth more coins")
 
 
 func _teach(button: RoundButton, text: String) -> void:

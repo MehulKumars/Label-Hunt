@@ -117,7 +117,7 @@ static func slots_for(ids: PackedStringArray, save: Dictionary, next_id: String)
 		var s: Dictionary = save["solved"].get(id, {})
 		if s.is_empty():
 			out.append({"state": "next" if id == next_id else "locked", "layers": [], "gold": false,
-				"number": Levels.catalog.order_index(id) + 1})
+				"number": Levels.catalog.order_index(id) + 1, "kind": str(Levels.catalog.entry(id).get("kind", ""))})
 			continue
 		var labels: Array = []
 		for g: Dictionary in Levels.catalog.entry(id)["data"].get("groups", []):
@@ -142,3 +142,7 @@ func _number(rect: Rect2, s: Dictionary, next: bool) -> void:
 	draw_style_box(Style.box(fill, Style.R_S), Rect2(c - tag / 2.0, tag))
 	draw_string(f, Vector2(c.x - ts.x / 2.0, c.y - f.get_height(fs) / 2.0 + f.get_ascent(fs)), n,
 		HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK if next else Color(Style.INK, 0.7))
+	# Tricky and hard levels carry their peppers above the tag, inside the jar outline.
+	var spice := minf(rect.size.x * 0.24, 26.0)
+	SpiceMark.draw_at(self, Vector2(c.x, c.y - tag.y / 2.0 - spice * 0.75), str(s.get("kind", "")), spice,
+		Style.PAPRIKA if next else Color(Style.PAPRIKA, 0.7))

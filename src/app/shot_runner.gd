@@ -5,9 +5,9 @@
 class_name ShotRunner
 extends Node
 
-const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07",
+const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07", "spicy",
 	"m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "need_coins", "hint", "complete_pick", "complete_fly",
-	"win", "rate", "lose", "room_reveal", "pause", "test", "drag", "pick", "themes"]
+	"win", "finale", "rate", "lose", "room_reveal", "pause", "test", "drag", "pick", "themes"]
 
 var out_dir := ""
 var only: PackedStringArray = []
@@ -57,6 +57,9 @@ func _run(name: String) -> void:
 		"t07":
 			main.start_level("r1-04")
 			await _legal(play, 3)
+		"spicy":
+			# A hard room level, first met: two peppers by the title and their one-time caption.
+			main.start_level("l1-10")
 		"m01":
 			main.start_level("m01")
 		"m01_play":
@@ -188,6 +191,14 @@ func _run(name: String) -> void:
 			Save.data["xp"] = 50
 			Save.data["coins"] = 8184
 			main.start_level("l1-01")
+			await _legal(play, 99)
+			await _wait(2.5)
+		"finale":
+			# Two jars from the end of Room 1, a hard level next: the finish line and the Next button's label.
+			main.close_all_sheets()
+			for i in range(1, 28):
+				Save.data["solved"]["l1-%02d" % i] = {"slips": 0 if i == 1 else 1, "gold": i == 1}
+			main.start_level("l1-28")
 			await _legal(play, 99)
 			await _wait(2.5)
 		"lose":
