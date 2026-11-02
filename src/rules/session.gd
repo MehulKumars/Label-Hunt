@@ -6,7 +6,8 @@ extends RefCounted
 
 enum Result { MOVED, SLIP, REFUSE_FULL, REFUSE_CLOSED, REFUSE_PROVEN, NOOP }
 
-## Rule toggles exposed in the dev menu for M1 playtests.
+## Rule toggles (the test menu can override them). Pour (a move carries the proven same-group cards under it) stays
+## off: measured in v2, it made the human-like bot loop (win rates fell up to 50 points) and broke Hint walks.
 const DEFAULT_RULES := {
 	"tag_on_slip": true,
 	"pair_reveal": true,
@@ -32,14 +33,21 @@ var lost: bool = false
 var history: Array[Dictionary] = []
 ## [moved word, target word or "#label"] per slip, for the playtest log.
 var slip_log: Array = []
-## Replayable actions: ["m", from, to] (a move or slip), ["u"], ["h", card], ["j"], ["c", group], ["s", slips].
+## Replayable actions: ["m", from, to] (a move or slip; pours under the pour rule), ["n", from, to] (a single-card
+## solver step), ["u"], ["h", card], ["j"], ["c", group], ["s", slips].
 var log: Array = []
+
+
+## The rules an attempt plays under: the defaults with any overrides on top.
+static func rules_with(rule_overrides: Dictionary) -> Dictionary:
+	var r := DEFAULT_RULES.duplicate()
+	r.merge(rule_overrides, true)
+	return r
 
 
 func _init(lvl: LevelData, rule_overrides: Dictionary = {}) -> void:
 	level = lvl
-	rules = DEFAULT_RULES.duplicate()
-	rules.merge(rule_overrides, true)
+	rules = rules_with(rule_overrides)
 	board = BoardState.from_level(lvl)
 	know = Knowledge.new(lvl.card_count(), lvl.group_count())
 	budget = lvl.budget
@@ -62,7 +70,8 @@ func is_over() -> bool:
 	return won or lost
 
 
-func try_move(from: int, to: int) -> Dictionary:
+## `pour` false moves one card even when the pour rule is on: solver paths (Tidy up) are single-card moves.
+func try_move(from: int, to: int, pour := true) -> Dictionary:
 	var ev: Array[Dictionary] = []
 	if is_over() or from == to or not board.can_take(from):
 		return {"result": Result.NOOP, "events": ev}
@@ -74,13 +83,13 @@ func try_move(from: int, to: int) -> Dictionary:
 	if is_proven_wrong(card, to):
 		ev.append({"type": "refuse", "card": card, "to": to})
 		return {"result": Result.REFUSE_PROVEN, "events": ev}
-	log.append(["m", from, to])
+	log.append(["m" if pour else "n", from, to])
 	if board.drop_check(card, to) == BoardState.Drop.WRONG:
 		_slip(card, to, ev)
 		return {"result": Result.SLIP, "events": ev}
 	_push_history()
 	_move(from, to, ev)
-	if rules["pour"]:
+	if rules["pour"] and pour:
 		while not is_over() and board.can_take(from) and not board.is_full(to) and not board.is_closed(to) \
 				and know.proven_same(board.top(from), card):
 			_move(from, to, ev)
@@ -187,9 +196,9 @@ static func replay(lvl: LevelData, rule_overrides: Dictionary, actions: Array) -
 		var kind := str(act[0])
 		var ok := true
 		match kind:
-			"m":
+			"m", "n":
 				ok = act.size() == 3 and _jar_ok(s, act[1]) and _jar_ok(s, act[2]) \
-					and int(s.try_move(int(act[1]), int(act[2]))["result"]) in [Result.MOVED, Result.SLIP]
+					and int(s.try_move(int(act[1]), int(act[2]), kind == "m")["result"]) in [Result.MOVED, Result.SLIP]
 			"u":
 				ok = s.can_undo() and not s.undo().is_empty()
 			"h":

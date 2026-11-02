@@ -77,12 +77,7 @@ static func sanitize(raw: Variant, valid_ids: Dictionary) -> Dictionary:
 	for k in ["haptics", "reduce_motion", "fps"]:
 		if s.get(k) is bool:
 			os[k] = s[k]
-	var r: Dictionary = _dict(d.get("rules"))
-	for k in RULE_KEYS:
-		if r.get(k) is bool:
-			out["rules"][k] = r[k]
-	if r.get("mode") in ["budget", "stars"]:
-		out["rules"]["mode"] = r["mode"]
+	out["rules"] = rules(_dict(d.get("rules")))
 	for k in _dict(d.get("seen_captions")):
 		if k is String and k.length() <= 32:
 			out["seen_captions"][k] = true
@@ -156,7 +151,20 @@ static func clean_name(v: Variant) -> String:
 	return out.left(MAX_NAME).strip_edges()
 
 
-## The saved attempt: {id, fingerprint, log, fails, assisted}. Its log is only replayed (and checked) by Session.
+## Rule toggles with known keys and values only: the test menu's overrides, and the rules a saved attempt was
+## played under.
+static func rules(r: Dictionary) -> Dictionary:
+	var out := {}
+	for k in RULE_KEYS:
+		if r.get(k) is bool:
+			out[k] = r[k]
+	if r.get("mode") in ["budget", "stars"]:
+		out["mode"] = r["mode"]
+	return out
+
+
+## The saved attempt: {id, fingerprint, rules, log, fails, assisted}. Its log is only replayed (and checked) by
+## Session, and only under the rules it was played with.
 static func _board(b: Dictionary, valid_ids: Dictionary) -> Dictionary:
 	if b.get("id") is not String or (not valid_ids.is_empty() and not valid_ids.has(b["id"])):
 		return {}
@@ -173,7 +181,7 @@ static func _board(b: Dictionary, valid_ids: Dictionary) -> Dictionary:
 				return {}
 			row.append(int(x))
 		clean.append(row)
-	return {"id": b["id"], "fingerprint": (b["fingerprint"] as String).left(32), "log": clean,
+	return {"id": b["id"], "fingerprint": (b["fingerprint"] as String).left(32), "rules": rules(_dict(b.get("rules"))), "log": clean,
 		"fails": clampi(int(_num(b.get("fails"), 0)), 0, 99), "assisted": b.get("assisted") is bool and b["assisted"]}
 
 

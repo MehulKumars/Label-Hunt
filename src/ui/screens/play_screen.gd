@@ -620,7 +620,7 @@ func _play_path(path: Array, i: int) -> void:
 		board.input_locked = false
 		return
 	var mv: Vector2i = path[i]
-	var r := session.try_move(mv.x, mv.y)
+	var r := session.try_move(mv.x, mv.y, false)  # a solver path is single-card moves: no pour, or later steps miss
 	board.show_move(r["events"])
 	_after(r["events"])
 	get_tree().create_timer(0.16).timeout.connect(_play_path.bind(path, i + 1))

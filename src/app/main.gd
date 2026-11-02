@@ -208,8 +208,10 @@ func _begin(id: String, mode: String, retry: bool) -> void:
 	var level: LevelData = Levels.make_level(id, bool(rules.get("one_empty", false)))
 	var s: Session = null
 	var saved: Dictionary = Save.data["board"]
-	# Resume: the same level, unchanged since it was saved, replayed action by action.
-	if mode == "play" and not retry and str(saved.get("id", "")) == id and str(saved.get("fingerprint", "")) == level.fingerprint():
+	# Resume: the same level, unchanged since it was saved and played under the same rules, replayed action by action.
+	# (A log replayed under other rules, such as before pour, would rebuild a different board.)
+	if mode == "play" and not retry and str(saved.get("id", "")) == id and str(saved.get("fingerprint", "")) == level.fingerprint() \
+			and SaveSchema.rules(saved.get("rules", {})) == SaveSchema.rules(Session.rules_with(rules)):
 		s = Session.replay(level, rules.duplicate(), saved.get("log", []))
 		if s != null:
 			_fails = int(saved.get("fails", 0))
@@ -243,7 +245,8 @@ func _save_board() -> void:
 		Save.data["board"] = {}
 	else:
 		Save.data["board"] = {"id": play.level_id, "fingerprint": play.session.level.fingerprint(),
-			"log": play.session.log.duplicate(true), "fails": _fails, "assisted": _assisted}
+			"rules": SaveSchema.rules(play.session.rules), "log": play.session.log.duplicate(true), "fails": _fails,
+			"assisted": _assisted}
 	Save.touch()
 
 

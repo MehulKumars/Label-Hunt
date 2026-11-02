@@ -145,6 +145,17 @@ func test_sanitize_survives_garbage() -> void:
 	assert_eq(s["solved"]["r02"], {"slips": 0, "gold": false})
 
 
+func test_a_saved_board_keeps_the_rules_it_was_played_under() -> void:
+	var raw := {"version": SaveSchema.VERSION, "board": {"id": "r01", "fingerprint": "abc", "log": [["m", 0, 3], ["n", 3, 0]],
+		"rules": {"pour": true, "mode": "budget", "evil": 1}}}
+	var b: Dictionary = SaveSchema.sanitize(raw, {"r01": true})["board"]
+	assert_eq(b["rules"], {"pour": true, "mode": "budget"}, "known rule keys only")
+	assert_eq(b["log"], [["m", 0, 3], ["n", 3, 0]])
+	var old: Dictionary = SaveSchema.sanitize({"version": SaveSchema.VERSION, "board": {"id": "r01", "fingerprint": "abc", "log": []}},
+		{"r01": true})["board"]
+	assert_ne(SaveSchema.rules(old["rules"]), SaveSchema.rules(Session.rules_with({})), "a board saved before pour won't resume")
+
+
 func test_sanitize_is_idempotent() -> void:
 	var s := SaveSchema.defaults()
 	s["solved"] = {"r01": {"slips": 2, "gold": true}}

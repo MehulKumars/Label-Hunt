@@ -212,9 +212,53 @@ func test_solver_solves_and_path_replays() -> void:
 	var res := Solver.solve(s.board)
 	assert_true(res["solved"])
 	for mv in res["path"]:
-		var r := s.try_move(mv.x, mv.y)
+		var r := s.try_move(mv.x, mv.y, false)  # as Tidy plays it: single-card moves
 		assert_eq(r["result"], Session.Result.MOVED, "solver path replays legally")
 	assert_true(s.won)
+
+
+## Builds Cow under Sheep (a proven pair) on top of jar 0, and leaves Pig alone in jar 1. Pour is off by default
+## (the test menu can turn it on), so these tests turn it on.
+func _pour_setup(overrides: Dictionary = {"pour": true}) -> Session:
+	var s := _session(overrides)
+	s.try_move(0, 3)  # Pear to an empty jar
+	s.try_move(0, 4)  # Rake to the other
+	s.try_move(1, 0)  # Sheep onto Cow: a pair
+	s.try_move(1, 3)  # Plum onto Pear
+	s.try_move(1, 4)  # Hoe onto Rake; jar 1 is [Pig]
+	return s
+
+
+func test_pour_carries_a_proven_pair_in_one_move() -> void:
+	var s := _pour_setup()
+	var r := s.try_move(0, 1)  # Sheep onto Pig: Cow, proven the same, comes too
+	assert_eq(r["result"], Session.Result.MOVED)
+	assert_eq((r["events"] as Array).filter(func(e: Dictionary) -> bool: return e["type"] == "move").size(), 2)
+	assert_eq(s.board.jars[1], PackedInt32Array([_card(s, "Pig"), _card(s, "Sheep"), _card(s, "Cow")]))
+	assert_eq(s.board.jars[0], PackedInt32Array([_card(s, "Apple")]), "Apple is not proven Farm, so it stays")
+	s.undo()
+	assert_eq(s.board.jars[0], PackedInt32Array([_card(s, "Apple"), _card(s, "Cow"), _card(s, "Sheep")]), "one undo, whole pour")
+
+
+func test_single_moves_and_the_rule_toggle_skip_pour() -> void:
+	var s := _pour_setup()
+	s.try_move(0, 1, false)
+	assert_eq(s.board.size(1), 2, "a solver step moves one card")
+	assert_eq(s.log.back(), ["n", 0, 1], "logged as a single move")
+	var off := _pour_setup({"pour": false})
+	off.try_move(0, 1)
+	assert_eq(off.board.size(1), 2, "pour off: one card")
+
+
+func test_replay_rebuilds_pours_and_single_moves() -> void:
+	var s := _pour_setup()
+	s.try_move(0, 1)
+	s.try_move(3, 0, false)
+	var r := Session.replay(LevelData.from_dict(LEVEL), {"pour": true}, s.log)
+	assert_not_null(r)
+	assert_eq(r.board.jars, s.board.jars)
+	var wrong_rules := Session.replay(LevelData.from_dict(LEVEL), {}, s.log)
+	assert_true(wrong_rules == null or wrong_rules.board.jars != s.board.jars, "why a resume checks the rules first")
 
 
 func test_fingerprint_changes_with_content() -> void:
