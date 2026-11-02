@@ -24,6 +24,12 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 
 ## Commands (Git Bash; `godot.cmd` wraps Godot 4.7.2)
 
+**On the Linux machine (Fedora):** type `godot` (the system 4.7.2 package) wherever a command says `godot.cmd`. Export
+templates, the Android SDK (`~/Android/Sdk`) and JDK 17 (`~/.local/opt/jdk-17`) are already set in the editor
+settings. The release keystore for test APKs is `~/.local/share/godot/keystores/debug.keystore`. That key is not the
+Windows one, so an APK built here can't update an install built on Windows: uninstall first, or copy the Windows
+keystore over.
+
 | Task | Command |
 |---|---|
 | Import (after adding a `class_name`) | `godot.cmd --headless --path . --import` |
