@@ -14,6 +14,46 @@ func test_win_rewards_grow_with_size_and_kind() -> void:
 	assert_true(Economy.win_xp(5, "tricky") > Economy.win_xp(5, "normal"))
 
 
+func test_stars_pay_coins_per_star() -> void:
+	assert_eq(Economy.per_star(2, "normal"), 4, "a 2-group Room 1 level: 4, 8 or 12 coins")
+	assert_eq(Economy.per_star(5, "hard", 10), 22, "Room 10, hard: 22 a star")
+	assert_eq(Economy.per_star(6, "hard", 17), 33, "the hardest levels: 33 a star, 99 for 3 stars")
+	assert_true(Economy.per_star(4, "normal", 14) * 1.0 / Economy.win_coins(4, "normal", 14) > Economy.per_star(4, "normal", 3) * 1.0 / Economy.win_coins(4, "normal", 3), "late rooms pay more per star")
+	for groups in range(2, 7):
+		assert_true(Economy.per_star(groups, "normal") >= 1)
+
+
+func test_diamonds_anchor_and_value() -> void:
+	# The anchor: 1 Hint = 50 coins = 10 diamonds; bigger boosters are a little better value in diamonds.
+	var rate := float(Economy.PRICES["hint"]) / Economy.DIAMOND_PRICES["hint"]
+	for item in Economy.DIAMOND_PRICES:
+		assert_true(Economy.DIAMOND_PRICES[item] * rate <= Economy.PRICES[item], "%s is never dearer in diamonds" % item)
+	assert_true(int(Economy.PACKS[0]["diamonds"]) / int(Economy.DIAMOND_PRICES["hint"]) >= 10, "the $0.99 pack buys 10 Hints")
+	var per_dollar := 0.0
+	for p: Dictionary in Economy.PACKS:
+		var v := float(p["diamonds"]) / float(p["usd"])
+		assert_true(v >= per_dollar, "bigger packs are never worse value")
+		per_dollar = v
+	assert_true(float(Economy.PACKS.back()["usd"]) <= 9.99, "no big-spender pack")
+	assert_true(Economy.AD_DIAMONDS * 2 <= Economy.DIAMOND_PRICES["hint"], "a shop ad banks half a Hint at most")
+	for b: Dictionary in Economy.BUNDLES:
+		assert_true(int(b["diamonds"]) < int(b["count"]) * int(Economy.DIAMOND_PRICES[b["item"]]), "bundles are cheaper")
+
+
+func test_diamonds_pay_grant_and_clamp() -> void:
+	var s := SaveSchema.defaults()
+	assert_false(Economy.can_pay_diamonds(s, "hint"))
+	assert_false(Economy.pay_diamonds(s, 10), "can't go below zero")
+	Economy.grant(s, {"diamonds": 25})
+	assert_true(Economy.can_pay_diamonds(s, "continue"))
+	assert_false(Economy.can_pay_diamonds(s, "complete"))
+	assert_true(Economy.pay_diamonds(s, 25))
+	assert_eq(Economy.diamonds(s), 0)
+	Economy.grant(s, {"diamonds": 99999999})
+	assert_eq(Economy.diamonds(s), Economy.MAX_DIAMONDS)
+	assert_eq(int(s["coins"]), 0, "diamonds never touch coins")
+
+
 func test_streak_bonuses_follow_the_road_and_never_end() -> void:
 	assert_eq(Economy.next_streak_bonuses(0, 5), [10, 15, 20, 30, 45] as Array[int])
 	assert_eq(Economy.next_streak_bonuses(10, 1), [15] as Array[int])

@@ -30,16 +30,23 @@ Jarful is built from Mehul's *Word Jars* concept card. The closest game on the m
   finishes the board for you.
 - **Fail state.** From level 11, each level has a slip budget: the tightest one at which the average bot still wins
   at its room's floor rate (`data/rooms/curve.json`). Running out means **Retry** (one tap) or an optional
-  **Continue** (+2 slips) for an ad or 150 coins you already have. Levels 1–10 can't be failed. A help ladder, always
-  announced and never hidden (and no gold lid): after 2 fails on the same level the next try gives a free Hint and
-  +1 slip; after 3, the hardest blank label also starts at its first step ("Things with ▢▢▢▢").
+  **Continue** (+2 slips) for an ad, 150 coins or 25 diamonds you already have. Levels 1–10 can't be failed. A help
+  ladder, always announced and never hidden: after 2 fails on the same level the next try gives a free Hint and +1
+  slip; after 3, the hardest blank label also starts at its first step ("Things with ▢▢▢▢").
+- **Stars.** A win earns 1 to 3 stars, and stars count slips, nothing else: Hints, +Jar, Undo, Complete and the help
+  ladder never cost a star (so nobody hoards a Hint to protect a score). Each level's limits come from its baked
+  `gold` G, a strong average-bot run, plus an offset by room (`Economy.STAR_OFFSETS`): +2 in rooms 1–4, +1 in rooms
+  5–7, 0 in rooms 8–13 and −1 in rooms 14–17. 3 stars needs at most that many slips, 2 stars two more; both stay
+  below the budget, so a win after a Continue is 1 star. Levels without a budget: 3 stars up to 3 slips, 2 up to 5.
+  Tuned with `tools/star_report.gd`: the average bot earns 3 stars on 93% of its wins in rooms 1–4, 62% in 5–13 and
+  47% in 14–17. 3 stars is the **gold lid** on the shelf. The slip meter shows the stars you'd get right now.
 - **Difficulty is told up front.** Tricky levels carry one pepper and hard levels two, on their shelf slot and beside
   the title; the Win card's Next button names what comes next ("Next: hard level").
 - **Fair deals.** No two cards of the same group start next to each other, and there are always 2 empty jars (a
   labelled jar replaces one of them).
 - **Boosters** (`docs/plan-m3.md` §2): **Hint** (50 coins) points at a good next move and tags that card;
   **Complete** (250 coins) seals a label you tap on the rail, its four cards fly up into it; **+Jar** stays free once
-  per level. Any help withholds the gold lid.
+  per level. Help never costs a star.
 
 ## First 60 seconds
 1. Tap the icon. The splash shows, then the 3-board tutorial starts (Skip is top right).
@@ -78,12 +85,17 @@ Captions only appear the first time something happens: first slip, first pair, f
   | L306 | corked jars |
 
 - **Home:** the big Jarful jar fills with every label sorted in the room; the cabinet holds the current shelf (tap it
-  for the room); the profile chip (rank, XP ring), coins, the play streak and today's gift; Levels, Play and Shop in
-  the thumb zone.
-- **Coins** (one currency, `src/rules/economy.gd`): first solves (14–66, rising with groups, level kind and room,
-  because help is wanted more often in harder rooms), the daily gift, rank-ups, room completes, optional ads (capped;
-  one ad is worth one Hint), and coin packs ($0.99–$9.99, mock until Play Billing). Spent on Hint, Complete, Continue.
-  No energy, no timers, no paywalls, no loot boxes.
+  for the room); the profile chip (rank, XP ring), diamonds and coins, the play streak and today's gift; Levels, Play and
+  Shop in the thumb zone (without a Shop, Play takes its place).
+- **Coins** (earned, never sold; `src/rules/economy.gd`): every star pays (`Economy.per_star`: 40% of the old
+  first-solve coins a star in rooms 1–7, 45% in 8–13, 50% in 14–17, because 3 stars is rarer late; a Room 1 level pays
+  4/8/12, a hard Room 17 level 33/66/99). A replay pays only the stars it adds. Also the daily gift, rank-ups and room
+  completes. Spent on Hint (50), Complete (250) and Continue (150).
+- **Diamonds** (premium): bought (100 for $0.99 up to 1,300 for $9.99, bonus +10/20/30%) or 5 per optional shop ad
+  (5 a day). The anchor: 1 Hint = 50 coins = 10 diamonds. They are the fallback when coins run short (Hint 10,
+  Continue 25, Complete 40, shown only when you hold enough) and buy bundles in the Shop (5 Hints for 40, 3 Completes
+  for 100). `tools/economy_sim.gd` checks the whole economy (`reports/economy.md`).
+- No energy, no timers, no paywalls, no loot boxes.
 - **Play streak:** a day counts once you win any level. The daily gift opens after the first win of the day and
   grows over a 7-day ladder. Every 7 days earns a streak saver (at most 2) that covers a missed day. Bonuses at 10,
   15, 20, 30, 45, 60, 75 and 100 days, then every 50 days, are shown in advance on the Streak and Daily gift sheets.
@@ -116,10 +128,12 @@ Captions only appear the first time something happens: first slip, first pair, f
 
 ## Screens
 - **Home, Levels (rooms), a Room (3 shelves of 10), Profile (avatar, name, rank, pantry ledger), Play.**
-- **Play:** pause, the level number with the slip meter under it, coins; the label rail; the board (3 columns,
-  within thumb reach); Undo, Hint, +Jar, Complete (and Tidy up when every card is proven).
-- **Sheets:** Win (jar, shelf, coin and XP chips, one line of news; test builds add a star to rate the level), Lose, Pause, Settings, Shop, Daily gift, Streak, avatar picker,
-  a solved level's card, the room reveal.
+- **Play:** pause, the level number with the slip meter and the stars you'd get now under it, coins; the label rail;
+  the board (3 columns, within thumb reach); Undo, Hint, +Jar, Complete (and Tidy up when every card is proven).
+- **Sheets:** Win (jar, the stars stamping in, shelf, coin and XP chips, one line of news; test builds add a star
+  to rate the level), Lose, Pause, Settings, Shop, Daily gift, Streak, avatar picker, a solved level's card (its
+  stars), the room reveal.
+- Stars also show on the shelf planks under solved jars, as "★ 74/90" on each Levels room card, and on the Profile.
 - **Launch:** the tutorial on first launch, then Home. A level interrupted when the app is killed resumes exactly.
 - **Back button:** puts down a lifted card or leaves Complete's choice; closes the open sheet; in Play opens Pause;
   a room goes back to where it was opened from; other screens go Home; Home moves the app to the background.
@@ -135,10 +149,13 @@ Captions only appear the first time something happens: first slip, first pair, f
 - **Haptics:** 15–40 ms, only on lift, drop, slip, lid, win and coins landing.
 
 ## Monetisation (mock until accounts)
-- Optional rewarded ads only (Mehul's call): free coins, a free Hint, ×2 win coins, ×2 daily gift, Continue.
-  Capped at 12 a day, 30 s apart. No interstitials.
-- Coin packs through a `Store` facade (mock in playtest builds). Real AdMob, Play Billing and Play Games (friends)
+- Optional rewarded ads only (Mehul's call): +5 diamonds in the Shop, a free Hint, ×2 win coins, ×2 daily gift,
+  Continue. Capped at 12 a day, 30 s apart. No interstitials.
+- Diamond packs through a `Store` facade (mock in playtest builds). Real AdMob, Play Billing and Play Games (friends)
   need Mehul's accounts and the Gradle build.
+- **The Shop switch** (`Build.shop_open()`): the Shop, the diamond pill and every diamond price appear only while a
+  store or ad provider is available. The Play testing build has none, so it shows coins only; real providers turn
+  it all back on with no UI change.
 
 ## Milestones
 
@@ -147,4 +164,6 @@ Captions only appear the first time something happens: first slip, first pair, f
 | M1 | v0.1 | Find the fun: grey-box + toggles + bot |
 | M2 | v0.2 | Home, tutorial, Room 1, the art direction. See `docs/plan-m2.md` |
 | M3 | v0.3 | Coins, boosters, streak, rank, Levels and rooms, profile, 510 levels. See `docs/plan-m3.md` |
+| | v0.5 | Stars from slips, coins per star, diamonds and the diamond Shop (mock), the Shop switch |
+| | v0.6 | The Google Play testing build: "Label Hunt" (`com.tiffingames.labelhunt`), AAB, no Shop |
 | M4 | v1.0-rc | Real ads/billing/Play Games (with Mehul's accounts), daily puzzle, polish, store kit |

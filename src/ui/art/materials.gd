@@ -296,6 +296,48 @@ static func coin(size: Vector2) -> String:
 		_f(c - r * 0.55), _f(c - r * 0.35), _f(r * 0.62), _f(r * 0.62), _f(c - r * 0.15), _f(c - r * 0.62), _f(maxf(r * 0.08, 1.0))])
 
 
+## The diamond: a cut gem of the jars' own teal glass (the premium currency; bought, or banked from a shop ad).
+static func diamond(size: Vector2) -> String:
+	var w := size.x
+	var h := size.y
+	var p := func(x: float, y: float) -> String: return "%s %s" % [_f(w * x), _f(h * y)]
+	var outline := "M %s L %s L %s L %s L %s Z" % [p.call(0.3, 0.16), p.call(0.7, 0.16), p.call(0.94, 0.38),
+		p.call(0.5, 0.9), p.call(0.06, 0.38)]
+	return _svg(size, """
+<defs><linearGradient id="g" x1="0.2" y1="0.1" x2="0.8" y2="0.95"><stop offset="0" stop-color="#9FD0C9"/><stop offset="0.45" stop-color="#4F8A86"/><stop offset="1" stop-color="#244A4A"/></linearGradient></defs>
+<path d="%s" fill="url(#g)" stroke="#1F3F3F" stroke-width="%s" stroke-linejoin="round"/>
+<path d="M %s L %s L %s Z" fill="#FFFFFF" fill-opacity="0.32"/>
+<path d="M %s L %s M %s L %s M %s L %s M %s L %s" fill="none" stroke="#1F3F3F" stroke-opacity="0.45" stroke-width="%s" stroke-linejoin="round"/>
+<path d="M %s L %s" fill="none" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="%s" stroke-linecap="round"/>
+""" % [outline, _f(maxf(w * 0.05, 1.0)),
+		p.call(0.3, 0.16), p.call(0.42, 0.38), p.call(0.06, 0.38),
+		p.call(0.06, 0.38), p.call(0.94, 0.38), p.call(0.42, 0.38), p.call(0.5, 0.9), p.call(0.58, 0.38), p.call(0.5, 0.9),
+		p.call(0.3, 0.16), p.call(0.42, 0.38), _f(maxf(w * 0.03, 0.8)),
+		p.call(0.36, 0.24), p.call(0.5, 0.24), _f(maxf(w * 0.05, 1.0))])
+
+
+## A star for the stars a level earned: brass like the coin when won (the same gold as the gold lid), an empty
+## paper star with a soft ink edge when not.
+static func star(size: Vector2, filled: bool) -> String:
+	var c := size / 2.0
+	var r := minf(size.x, size.y) * 0.46
+	var pts: Array[String] = []
+	for i in 10:
+		var a := -PI / 2.0 + i * PI / 5.0
+		var rr := r if i % 2 == 0 else r * 0.48
+		pts.append("%s %s" % [_f(c.x + cos(a) * rr), _f(c.y + 0.04 * size.y + sin(a) * rr)])
+	var path := "M " + " L ".join(pts) + " Z"
+	var sw := _f(maxf(r * 0.12, 1.0))
+	if not filled:
+		return _svg(size, '<path d="%s" fill="#FFF8EC" stroke="#3D2C2E" stroke-opacity="0.32" stroke-width="%s" stroke-linejoin="round"/>' % [path, sw])
+	return _svg(size, """
+<defs><radialGradient id="s" cx="0.4" cy="0.32" r="0.75"><stop offset="0" stop-color="#F6DC8C"/><stop offset="0.55" stop-color="#D9A441"/><stop offset="1" stop-color="#B07E2C"/></radialGradient></defs>
+<path d="%s" fill="url(#s)" stroke="#8A5F1E" stroke-width="%s" stroke-linejoin="round"/>
+<path d="M %s %s Q %s %s %s %s" fill="none" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="%s" stroke-linecap="round"/>
+""" % [path, sw, _f(c.x - r * 0.28), _f(c.y - r * 0.1), _f(c.x - r * 0.2), _f(c.y - r * 0.45), _f(c.x + r * 0.02), _f(c.y - r * 0.58),
+		_f(maxf(r * 0.1, 1.0))])
+
+
 ## Preserve colours for the layers in a solved jar on the shelf. A category always gets the same one.
 const PRESERVES := ["#7B3F61", "#E8A04A", "#8A9A4B", "#5B4A7A", "#C6553A", "#4A5A8C", "#7FA88E", "#B98A5A",
 	"#EBD3A2", "#5E7F9A", "#B5C77A", "#6D8B3A"]

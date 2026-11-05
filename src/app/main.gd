@@ -35,6 +35,7 @@ func _ready() -> void:
 	home.settings_pressed.connect(_open_settings)
 	home.levels_pressed.connect(open_levels)
 	home.shop_pressed.connect(func() -> void: _sheet_once(MetaSheets.shop))
+	home.coins_pressed.connect(func() -> void: _sheet_once(MetaSheets.coins_tapped))
 	home.profile_pressed.connect(open_profile)
 	home.gift_pressed.connect(func() -> void: _sheet_once(MetaSheets.gift))
 	home.streak_pressed.connect(func() -> void: _sheet_once(MetaSheets.streak))
@@ -60,7 +61,7 @@ func _ready() -> void:
 	play.finished.connect(_on_finished)
 	play.pause_requested.connect(_open_pause)
 	play.skip_requested.connect(_open_skip)
-	play.shop_requested.connect(func() -> void: _sheet_once(MetaSheets.shop))
+	play.shop_requested.connect(func() -> void: _sheet_once(MetaSheets.coins_tapped))
 	play.need_coins.connect(func(item: String) -> void: _sheet_once(MetaSheets.need_coins.bind(item)))
 	play.progress_changed.connect(_save_board)
 	play.visible = false
@@ -400,9 +401,9 @@ func _open_win(stats: Dictionary) -> void:
 	var cat := Levels.catalog
 	var entry := cat.entry(id)
 	var room_level: bool = entry["track"] == "room"
-	# Any help (a Hint, Complete, Continue or the two-fails assist) keeps the gold lid for a clean sort.
-	var helped := _assisted or play.session.continues > 0 or play.session.hints > 0 or play.session.completes > 0
-	var res := Progression.record_win(cat, Save.data, id, int(stats["slips"]), helped)
+	# Stars count slips only: Hints, Complete and the help ladder cost none, and a Continue win is 1 star by itself.
+	var res := Progression.record_win(cat, Save.data, id, int(stats["slips"]))
+	var stars: int = res["stars"] if room_level else Progression.stars_for_win(cat, id, int(stats["slips"]))
 	var before := Wallet.level_info()
 	# The HUD pill keeps its number until the earned coins fly into it.
 	play.coins.hold = room_level
@@ -413,11 +414,16 @@ func _open_win(stats: Dictionary) -> void:
 		var labels: Array = []
 		for g: Dictionary in entry["data"].get("groups", []):
 			labels.append(str(g.get("label", "")))
-		var trophy := JarTrophy.new(Materials.preserve_layers(labels), bool(Save.data["solved"][id]["gold"]))
+		var trophy := JarTrophy.new(Materials.preserve_layers(labels), stars == 3)
 		s.body.add_child(trophy)
 		trophy.play()
-		if res["new_gold"]:
-			Sfx.play_at(0.6, "bell")
+	# The stars stamp in once the jar has landed (the third rings the bell).
+	if entry["track"] != "tutorial":
+		var star_row := StarRow.new(stars, 64.0)
+		star_row.lift = 0.25
+		star_row.custom_minimum_size.y = 92.0
+		s.body.add_child(star_row)
+		star_row.play(0.45)
 	var title := s.add_label("Jar filled" if room_level else "Solved", Style.FS_72)
 	title.add_theme_font_override("font", Style.hand())
 	if room_level:
@@ -450,6 +456,11 @@ func _open_win(stats: Dictionary) -> void:
 	# One line at most, the biggest news first: the card stays calm, and a gift waiting shows on the Home button.
 	var lines: Array[String] = []
 	if room_level:
+		# The first card with stars says what they are, once.
+		if not Save.data["seen_captions"].has("stars"):
+			Save.data["seen_captions"]["stars"] = true
+			Save.touch()
+			lines.append("Fewer slips, more stars. Stars pay coins.")
 		if res["room_done"]:
 			lines.append("Room complete: +%d coins." % Economy.ROOM_COINS)
 		if not (rewards["milestone"] as Dictionary).is_empty():
@@ -457,12 +468,14 @@ func _open_win(stats: Dictionary) -> void:
 		for up: Dictionary in rewards["ups"]:
 			lines.append("Rank %d: %s" % [up["level"], MetaSheets._reward_text(up["rewards"])])
 		if res["new_gold"] and res["first_gold"]:
-			lines.append("Clean sort: your first gold lid.")
+			lines.append("3 stars: your first gold lid.")
+		if not res["first_solve"] and int(res["gained"]) > 0:
+			lines.append("New best: %d stars, +%d coins." % [int(res["best"]), int(rewards["coins"])])
 		var finale := _finale_line(int(entry["room"]))
 		if finale != "":
 			lines.append(finale)
 		if res["new_gold"] and not res["first_gold"]:
-			lines.append("Clean sort: gold lid.")
+			lines.append("3 stars: a gold lid.")
 		elif not res["new_gold"] and res["shelf_full"] >= 0:
 			lines.append("Shelf %d is full." % (res["shelf_full"] + 1))
 	if not lines.is_empty():
@@ -583,6 +596,11 @@ func _open_lose() -> void:
 				if Wallet.pay(price):
 					s.close()
 					go_on.call())
+		elif Build.shop_open() and Wallet.can_pay_diamonds("continue"):
+			s.add_button("2 more slips: %d diamonds" % int(Economy.DIAMOND_PRICES["continue"]), false, func() -> void:
+				if Wallet.pay_diamonds("continue"):
+					s.close()
+					go_on.call())
 	s.add_button("Home", false, go_home)
 	open_sheet(s)
 
@@ -604,7 +622,7 @@ func rewarded(placement: String, grant: Callable) -> void:
 		grant.call()
 
 
-## Buys a coin pack through Store (a test purchase in playtest builds).
+## Buys a diamond pack through Store (a test purchase in playtest builds).
 func purchase(id: String) -> void:
 	var s := Sheet.new("Purchase")
 	s.dismissible = false
@@ -616,7 +634,9 @@ func purchase(id: String) -> void:
 		s.close()
 	if ok:
 		Sfx.play("coin", 1.0, 0.0)
-		toast("+%s coins" % CoinPill._fmt(int(Economy.pack(id).get("coins", 0))))
+		Haptics.coin()
+		toast("+%s diamonds" % CoinPill._fmt(int(Economy.pack(id).get("diamonds", 0))))
+		refresh_home()
 
 
 func _open_pause() -> void:

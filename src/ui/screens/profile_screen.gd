@@ -54,10 +54,12 @@ func refresh() -> void:
 	# The pantry ledger: what the player has done, and for anything still at zero, the next thing to aim for.
 	var room1 := int(cat.room_numbers()[0]) if not cat.room_numbers().is_empty() else 1
 	var gold := Progression.gold_count(cat, save, -1)
+	var stars := Progression.star_count(cat, save, -1)
 	var streak := Wallet.streak_shown()
 	var rows: Array = [
 		["Levels solved", str(solved) if solved > 0 else "Play your first level", solved == 0],
-		["Gold lids", str(gold) if gold > 0 else "Sort a level with no slips", gold == 0],
+		["Stars", str(stars) if stars > 0 else "Win a level for stars", stars == 0],
+		["Gold lids", str(gold) if gold > 0 else "Win a level with 3 stars", gold == 0],
 		["Labels collected", str(categories.size()) if categories.size() > 0 else "Fill a jar to keep its label", categories.is_empty()],
 		["Rooms finished", str(rooms_done) if rooms_done > 0 else "%s: %d of %d" % [cat.room_name(room1),
 			Progression.solved_count(cat, save, room1), cat.room_ids(room1).size()], rooms_done == 0],

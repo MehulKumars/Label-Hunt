@@ -7,7 +7,7 @@ extends Node
 
 const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07", "spicy", "assist",
 	"m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "need_coins", "hint", "complete_pick", "complete_fly",
-	"win", "finale", "rate", "lose", "room_reveal", "pause", "restart", "test", "drag", "pick", "themes"]
+	"win", "win2", "replay", "finale", "rate", "lose", "lose_gems", "need_gems", "shop_off", "play_off", "room_reveal", "pause", "restart", "test", "drag", "pick", "themes"]
 
 var out_dir := ""
 var only: PackedStringArray = []
@@ -88,9 +88,10 @@ func _run(name: String) -> void:
 			# A player well into the game: Room 1 done, Room 2 under way.
 			var cat := Levels.catalog
 			for id in cat.room_ids(1):
-				Save.data["solved"][id] = {"slips": 0, "gold": int(id.substr(id.length() - 1)) % 3 == 0}
+				var st := 3 if int(id.substr(id.length() - 1)) % 3 == 0 else 2
+				Save.data["solved"][id] = {"slips": 0, "stars": st, "gold": st == 3}
 			for id in cat.room_ids(2).slice(0, 12):
-				Save.data["solved"][id] = {"slips": 1, "gold": false}
+				Save.data["solved"][id] = {"slips": 1, "stars": 1 + int(id.substr(id.length() - 1)) % 3, "gold": false}
 			main.open_levels()
 			await _wait(0.4)
 		"room":
@@ -102,9 +103,66 @@ func _run(name: String) -> void:
 			main.open_profile()
 			await _wait(0.4)
 		"shop":
+			Save.data["diamonds"] = 120
 			main.go_home()
 			await _wait(0.3)
 			MetaSheets.shop(main)
+		"shop_off", "play_off":
+			# The Play testing build: no providers, so no Shop, no diamonds, coins only.
+			var keep := [Store.provider, Ads.provider]
+			Store.provider = "none"
+			Ads.provider = "none"
+			Save.data["coins"] = 20
+			Save.data["inventory"] = {"hint": 0, "complete": 0}
+			if name == "shop_off":
+				main.go_home()
+				await _wait(0.4)
+				await RenderingServer.frame_post_draw
+				_save(name, play)
+				MetaSheets.coins_tapped(main)
+				await _wait(0.4)
+				await RenderingServer.frame_post_draw
+				_save("coins_off", play)
+			else:
+				main.start_level("l2-01")
+				await _wait(0.5)
+				play._on_hint()
+				await _wait(0.4)
+				await RenderingServer.frame_post_draw
+				_save(name, play)
+			main.close_all_sheets()
+			Store.provider = keep[0]
+			Ads.provider = keep[1]
+			return
+		"need_gems":
+			Save.data["coins"] = 20
+			Save.data["diamonds"] = 40
+			Save.data["inventory"] = {"hint": 0, "complete": 0}
+			main.start_level("m01")
+			await _wait(0.5)
+			play._on_hint()
+		"lose_gems":
+			Save.data["coins"] = 40
+			Save.data["diamonds"] = 60
+			main.start_level("m01")
+			await _slips(play, 4)
+			await _wait(1.5)
+		"win2":
+			# Room 5 (3 stars up to 1 slip, 2 up to 3): two slips, then a clean finish.
+			main.close_all_sheets()
+			Save.data["seen_captions"]["stars"] = true
+			main.start_level("l5-01")
+			await _slips(play, 2)
+			await _legal(play, 99)
+			await _wait(2.5)
+		"replay":
+			# A level solved at 1 star, replayed cleanly: the new best pays the stars it adds.
+			main.close_all_sheets()
+			Save.data["seen_captions"]["stars"] = true
+			Save.data["solved"]["r1-05"] = {"slips": 3, "stars": 1, "gold": false}
+			main.start_level("r1-05")
+			await _legal(play, 99)
+			await _wait(2.5)
 		"streak":
 			Save.data["coins"] = 48221
 			Save.data["streak"] = {"count": 12, "best": 18, "last_day": Wallet.today(), "savers": 1}
@@ -185,7 +243,7 @@ func _run(name: String) -> void:
 			# A player a few levels in: four jars on the shelf, two with gold lids.
 			var ids := Levels.catalog.play_order()
 			for i in mini(4, ids.size() - 1):
-				Save.data["solved"][ids[i]] = {"slips": 0, "gold": i % 2 == 1}
+				Save.data["solved"][ids[i]] = {"slips": 0, "stars": 3 if i % 2 == 1 else 2, "gold": i % 2 == 1}
 			main.go_home()
 			await _wait(0.4)
 		"tutorial":
@@ -202,7 +260,7 @@ func _run(name: String) -> void:
 			# Two jars from the end of Room 1, a hard level next: the finish line and the Next button's label.
 			main.close_all_sheets()
 			for i in range(1, 28):
-				Save.data["solved"]["l1-%02d" % i] = {"slips": 0 if i == 1 else 1, "gold": i == 1}
+				Save.data["solved"]["l1-%02d" % i] = {"slips": 0 if i == 1 else 1, "stars": 3 if i == 1 else 2, "gold": i == 1}
 			main.start_level("l1-28")
 			await _legal(play, 99)
 			await _wait(2.5)

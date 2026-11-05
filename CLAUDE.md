@@ -45,6 +45,7 @@ keystore over.
 | Merge bank drafts (`data/bank/drafts/*.txt`), then lint the bank → `reports/bank_merge.md`, `reports/lint_bank.md` | `-s res://tools/merge_bank.gd [-- --dry]`, then `-s res://tools/lint_bank.gd` |
 | Re-check every baked level against the bank (phantoms, clashes, cover, a Hint-only walk) → `reports/audit_content.md` | `godot.cmd --headless --path . -s res://tools/audit_content.gd [-- --rooms=1-3 --no-hints]` |
 | Difficulty curve over all levels: floors missed and levels out of shape (a hard level under its room's normal, a slip limit above 8) → `reports/curve.md` | `godot.cmd --headless --path . -s res://tools/curve_report.gd` |
+| Star rates by room (average bot under each budget; slip histograms, so `--merge` re-checks new offsets without replaying) → `reports/stars.md/csv` (economy_sim reads the csv) | `godot.cmd --headless --path . -s res://tools/star_report.gd -- --n=60 --rooms=1-8` (several at once), then `-- --merge` |
 | Coin economy over all levels (free, ad and one-purchase players) → `reports/economy.md` | `godot.cmd --headless --path . -s res://tools/economy_sim.gd` |
 | Bot sims + bake benchmark → `reports/sim_*.md/csv` | `godot.cmd --headless --path . -s res://tools/sim.gd -- --n=200` |
 | Trace one bot game | `godot.cmd --headless --path . -s res://tools/trace_bot.gd -- --level=l1-01 --profile=average --seed=1` |
@@ -71,6 +72,8 @@ keystore over.
 - **Bot:** about 5 ms per game on small boards. Baking is slower on late rooms: rooms 11-17 (210 levels, 5-6 groups) took about 18 min on 6 processes.
   Post-aha busywork on 5-group boards runs 5–18 moves, above the ≤8 target. Tidy up only appears when the
   board *proves* every group, which is rare.
+- **Stars and diamonds** (v0.5): stars count slips only; limits = each level's baked `gold` + `Economy.STAR_OFFSETS` by room, capped below the budget. Coins are per star (`STAR_COIN_RATES` by room) and never sold; diamonds are bought or from the shop ad. Tune offsets against `tools/star_report.gd` bands, coin rates against `tools/economy_sim.gd` gates.
+- **The Shop switch:** `Build.shop_open()` (a store or ad provider is available) shows the Shop, the diamond pill and every diamond price. The Play testing build has no providers, so it shows coins only. `--no-shop` on a debug run previews that.
 - **Sounds:** real CC0 effects (Kenney and others, listed in CREDITS.md), imported by `tools/import_sfx.sh` from packs
   downloaded by hand (`kenney.nl` blocks scripted downloads). Only `frost.wav` is still synthesised (`tools/make_sfx.sh`).
 
@@ -103,4 +106,5 @@ keystore over.
 - Prices, rewards, XP and the gift ladder are one table: `src/rules/economy.gd`. The Wallet autoload writes at once.
 - `data/bank/wordplay_targets.txt` holds the rule of each checkable wordplay category (`hidden`, `anagram`, `palindrome`, `reverse`, `y_only`, `double2`, `roman`; see `Bank.trips`). A test checks every member obeys its own rule.
 - `data/bank/hard_words.txt` lists rare vocabulary. Spec levels marked `familiar` (Rooms 1 and 3, the two re-made Kitchen levels, every rest level) leave those words out.
+- GUT and headless tool runs boot the autoloads, so they load (and can migrate) the real desktop save in `user://save.json`.
 - A runtime error inside a tool's `_init` skips `quit()`, so Godot hangs forever with no output when piped. Run tools with `timeout` and write the output to a file.

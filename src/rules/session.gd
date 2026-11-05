@@ -12,7 +12,7 @@ const DEFAULT_RULES := {
 	"tag_on_slip": true,
 	"pair_reveal": true,
 	"pour": false,
-	"mode": "budget", # "budget" (fail when slips run out) or "stars" (no fail; stars from slips)
+	"mode": "budget", # "budget" (fail when slips run out) or "stars" (test menu: no fail; stars still from slips)
 }
 
 var level: LevelData
@@ -295,12 +295,6 @@ func all_known() -> bool:
 	var open_groups := board.group_count - board.lid_count() - board.sealed_count()
 	# Exactly one unlidded group lacks a proven class: the leftover cards must be it.
 	return unknown_cards == LevelData.CAPACITY and open_groups - known_groups.size() == 1
-
-
-func stars() -> int:
-	if slips <= 1:
-		return 3
-	return 2 if slips <= 3 else 1
 
 
 func _slip(card: int, to: int, ev: Array[Dictionary]) -> void:

@@ -1,4 +1,5 @@
-## The coin balance: a paper pill with the brass coin, the number and a small plus (tap opens the Shop). Gains count
+## A balance: a paper pill with the brass coin (or the teal diamond), the number and a small plus when the Shop is
+## open (tap opens it; with the Shop closed, a coin pill explains how coins are earned). Gains count
 ## up and give the coin a bump, so a reward is seen landing; spends just settle.
 class_name CoinPill
 extends Control
@@ -12,13 +13,17 @@ const PLUS_W := 30.0
 var shown := 0.0
 ## While coins are flying in, the pill keeps the old number (so the count-up happens when they land).
 var hold := false
+## The diamond balance instead of coins.
+var diamond := false
+## The small plus (the Shop is open).
+var plus := true
 var _bump := 0.0
 var _down := false
 var _tw: Tween
 
 
 func _init() -> void:
-	custom_minimum_size = Vector2(150, H)
+	custom_minimum_size = Vector2(110, H)
 	mouse_filter = Control.MOUSE_FILTER_STOP
 
 
@@ -49,7 +54,7 @@ func _set_shown(v: float) -> void:
 ## Wide enough for the number at full size, so it is never cut off. Screens place the pill by its right edge.
 func wanted_width() -> float:
 	var text_w := Style.sans_heavy().get_string_size(text_for(roundi(shown)), HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_30).x
-	return maxf(MIN_W, ceilf(H - 4.0 + text_w + PLUS_W + 14.0))
+	return maxf(MIN_W if plus else 110.0, ceilf(H - 4.0 + text_w + (PLUS_W if plus else 0.0) + 14.0))
 
 
 ## Keeps the right edge where it is while the number changes width.
@@ -88,12 +93,17 @@ func _draw() -> void:
 	draw_texture_rect(Art.tex("pill_paper", face.size, Materials.pill.bind(Style.PAPER, true)), face, false)
 	var cs := 40.0 * (1.0 + 0.18 * _bump)
 	var cc := Vector2(H / 2.0 - 2.0, (H - 8.0) / 2.0)
-	draw_texture_rect(Art.tex("coin", Vector2(40, 40), Materials.coin), Rect2(cc - Vector2(cs, cs) / 2.0, Vector2(cs, cs)), false)
+	if diamond:
+		draw_texture_rect(Art.tex("diamond", Vector2(42, 42), Materials.diamond), Rect2(cc - Vector2(cs, cs) * 0.525, Vector2(cs, cs) * 1.05), false)
+	else:
+		draw_texture_rect(Art.tex("coin", Vector2(40, 40), Materials.coin), Rect2(cc - Vector2(cs, cs) / 2.0, Vector2(cs, cs)), false)
 	var f := Style.sans_heavy()
 	var txt := text_for(roundi(shown))
 	var fs := Style.FS_30
 	var base := (H - 8.0) / 2.0 + f.get_ascent(fs) / 2.0 - 2.0
 	draw_string(f, Vector2(H - 4.0, base), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+	if not plus:
+		return
 	var pc := Vector2(size.x - PLUS_W / 2.0 - 8.0, (H - 8.0) / 2.0)
 	draw_circle(pc, 13.0, Color(Style.TEAL, 0.9), true, -1.0, true)
 	draw_line(pc - Vector2(6, 0), pc + Vector2(6, 0), Style.PAPER, 3.0, true)

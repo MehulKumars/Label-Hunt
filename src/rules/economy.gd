@@ -1,14 +1,22 @@
-## Jarful's coin economy and player levels: every price, reward and curve in one place (docs/plan-m3.md sections 3
-## and 5). Pure functions over plain dictionaries; src/core/wallet.gd applies them to the save and writes it.
+## Jarful's economy, stars and player levels: every price, reward and curve in one place (docs/plan-m3.md sections 3
+## and 5, docs/DESIGN.md "Stars, coins and diamonds"). Pure functions over plain dictionaries; src/core/wallet.gd
+## applies them to the save and writes it.
+##
+## Two currencies. Coins are earned by play (stars, gifts, rank-ups, room completes) and never sold. Diamonds are
+## bought or earned from an optional shop ad, and are the fallback when coins run short. The anchor:
+## 1 Hint = 50 coins = 10 diamonds (about $0.10 in the smallest pack); a shop ad banks half a Hint (5 diamonds).
 class_name Economy
 extends RefCounted
 
 const PRICES := {"hint": 50, "complete": 250, "continue": 150}
-## Boosters that can sit in the inventory (gifts, level-ups, intros). +Jar and Undo stay free.
+## The same boosters for diamonds: a little better value on the bigger ones (Continue 17%, Complete 20%).
+const DIAMOND_PRICES := {"hint": 10, "complete": 40, "continue": 25}
+## Boosters that can sit in the inventory (gifts, level-ups, intros, shop bundles). +Jar and Undo stay free.
 const ITEMS := ["hint", "complete"]
 const STARTER_COINS := 150
-## One optional ad is worth one Hint, here and at the not-enough-coins sheet.
-const AD_COINS := 50
+## An optional shop ad banks half a Hint in diamonds. (The free-Hint ad, at the moment of need, is worth a whole one.)
+const AD_DIAMONDS := 5
+const MAX_DIAMONDS := 999999
 const LEVEL_UP_COINS := 20
 const ROOM_COINS := 150
 ## The 7-day daily gift, by streak day (repeats after day 7).
@@ -28,13 +36,32 @@ const STREAK_LATE_EVERY := 50
 const STREAK_LATE := {"coins": 1000, "complete": 1}
 ## Free samples when a booster is first introduced (by the level's `introduces` tag).
 const INTRO_GIFTS := {"hint": {"hint": 3}, "complete": {"complete": 1}}
-## Coin packs (USD base; the store sets local prices). The largest is $9.99: a calm game has no big-spender pack.
+## Diamond packs (USD base; the store sets local prices), with a bonus that grows with the pack. The largest is
+## $9.99: a calm game has no big-spender pack. The smallest buys 10 Hints.
 const PACKS := [
-	{"id": "coins_500", "coins": 500, "usd": "0.99"},
-	{"id": "coins_1200", "coins": 1200, "usd": "1.99"},
-	{"id": "coins_3500", "coins": 3500, "usd": "4.99"},
-	{"id": "coins_8000", "coins": 8000, "usd": "9.99"},
+	{"id": "diamonds_100", "diamonds": 100, "usd": "0.99", "bonus": 0},
+	{"id": "diamonds_220", "diamonds": 220, "usd": "1.99", "bonus": 10},
+	{"id": "diamonds_600", "diamonds": 600, "usd": "4.99", "bonus": 20},
+	{"id": "diamonds_1300", "diamonds": 1300, "usd": "9.99", "bonus": 30},
 ]
+## Booster bundles for diamonds in the shop, cheaper than one at a time (Hints 20% off, Completes 17% off).
+const BUNDLES := [
+	{"id": "hints_5", "item": "hint", "count": 5, "diamonds": 40},
+	{"id": "completes_3", "item": "complete", "count": 3, "diamonds": 100},
+]
+
+## Stars count slips, nothing else: Hints, +Jar, Undo, Complete and the help ladder never cost a star. A level's
+## limits come from its baked gold G (a strong average-bot run: 20-50% of its runs stay within it) plus an offset
+## that tightens by room, generous early and strict late: [first room, offset]. Tuned with tools/star_report.gd so the
+## average bot earns 3 stars on about 93% of its wins in rooms 1-4, 62% in rooms 5-13 (a step at room 8) and 47% in
+## rooms 14-17, where a slip under the strong-run mark already costs a star.
+const STAR_OFFSETS := [[1, 2], [5, 1], [8, 0], [14, -1]]
+## Levels without a slip budget (Room 1, L1-10): 3 stars up to 3 slips, 2 stars up to 5.
+const FREE_STAR_LIMITS := Vector2i(3, 5)
+## Coins per star, as a share of win_coins, by room ([first room, rate]). Late rooms pay more per star because 3 stars
+## is rarer there: with one rate for all, either early coins piled up or late rooms ran short of Hints
+## (tools/economy_sim.gd, reports/economy.md).
+const STAR_COIN_RATES := [[1, 0.4], [8, 0.45], [14, 0.5]]
 const TITLES := [[1, "Apprentice"], [5, "Jam Maker"], [10, "Pickler"], [15, "Preserver"], [20, "Pantry Keeper"],
 	[30, "Larder Master"], [40, "Grand Preserver"], [50, "Legend of the Larder"]]
 ## Avatars (Phosphor food icons on a lid disc): [id, icon, colour, unlocked at player level (0 = by milestone)].
@@ -52,6 +79,46 @@ const AVATARS := [
 ## coins.
 static func win_coins(groups: int, kind: String, room: int = 1) -> int:
 	return 10 + 4 * maxi(groups - 2, 0) + {"tricky": 4, "hard": 8}.get(kind, 0) + 2 * maxi(room - 1, 0)
+
+
+## Coins one star is worth on this level. A win pays per star; a replay pays only the stars it adds.
+static func per_star(groups: int, kind: String, room: int = 1) -> int:
+	var rate: float = STAR_COIN_RATES[0][1]
+	for row: Array in STAR_COIN_RATES:
+		if room >= int(row[0]):
+			rate = float(row[1])
+	return maxi(1, roundi(rate * win_coins(groups, kind, room)))
+
+
+## The star offset for a room (see STAR_OFFSETS).
+static func star_offset(room: int) -> int:
+	var off: int = STAR_OFFSETS[0][1]
+	for row: Array in STAR_OFFSETS:
+		if room >= int(row[0]):
+			off = int(row[1])
+	return off
+
+
+## The slip limits for 3 and 2 stars: Vector2i(l3, l2), any win past l2 is 1 star. With a budget both stay below it,
+## so a win after a Continue (slips >= budget) is always 1 star; l2 == l3 means 2 stars can't happen on this level.
+static func star_limits(room: int, gold: int, budget: int) -> Vector2i:
+	if budget <= 0:
+		return FREE_STAR_LIMITS
+	var l3 := clampi(maxi(gold, 0) + star_offset(room), 0, budget - 1)
+	var l2 := maxi(l3, mini(l3 + 2, budget - 1))
+	return Vector2i(l3, l2)
+
+
+## The limits of a catalog entry (its baked budget, not a session's, which the help ladder raises).
+static func entry_limits(entry: Dictionary) -> Vector2i:
+	var d: Dictionary = entry.get("data", {})
+	return star_limits(int(entry.get("room", 1)), int(entry.get("gold", -1)), int(d.get("budget", 0)))
+
+
+static func stars_for(slips: int, limits: Vector2i) -> int:
+	if slips <= limits.x:
+		return 3
+	return 2 if slips <= limits.y else 1
 
 
 ## First-solve XP: 10 + 5 per group above 2; tricky +5, hard +10. A first gold lid adds GOLD_XP.
@@ -144,6 +211,13 @@ static func pack(id: String) -> Dictionary:
 	return {}
 
 
+static func bundle(id: String) -> Dictionary:
+	for b: Dictionary in BUNDLES:
+		if b["id"] == id:
+			return b
+	return {}
+
+
 # --- wallet arithmetic on the save dictionary ---------------------------------------------------------------------
 
 static func count(save: Dictionary, item: String) -> int:
@@ -167,9 +241,28 @@ static func spend(save: Dictionary, item: String) -> String:
 	return "coins"
 
 
-## Adds rewards {coins, hint, complete, saver, avatar} to the save.
+static func diamonds(save: Dictionary) -> int:
+	return int(save.get("diamonds", 0))
+
+
+## True if the save holds enough diamonds for this booster (or Continue).
+static func can_pay_diamonds(save: Dictionary, item: String) -> bool:
+	return DIAMOND_PRICES.has(item) and diamonds(save) >= int(DIAMOND_PRICES[item])
+
+
+## Pays a booster (or Continue) in diamonds. False if it can't be paid; nothing changes then.
+static func pay_diamonds(save: Dictionary, amount: int) -> bool:
+	if amount < 0 or diamonds(save) < amount:
+		return false
+	save["diamonds"] = diamonds(save) - amount
+	return true
+
+
+## Adds rewards {coins, diamonds, hint, complete, saver, avatar} to the save.
 static func grant(save: Dictionary, rewards: Dictionary) -> void:
 	save["coins"] = clampi(int(save.get("coins", 0)) + int(rewards.get("coins", 0)), 0, 9999999)
+	if rewards.has("diamonds"):
+		save["diamonds"] = clampi(diamonds(save) + int(rewards["diamonds"]), 0, MAX_DIAMONDS)
 	for item in ITEMS:
 		if rewards.has(item):
 			save["inventory"][item] = clampi(count(save, item) + int(rewards[item]), 0, 999)

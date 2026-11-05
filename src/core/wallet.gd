@@ -9,10 +9,48 @@ signal changed
 func _ready() -> void:
 	if Save.data.get("xp_backdate", false):
 		_backdate()
+	if Save.data.get("stars_backdate", false):
+		# Saves from before stars: each solved level's stars from its best slips (gold lids stay 3 stars). No coins.
+		Progression.backdate_stars(Levels.catalog, Save.data)
+		Save.data["stars_backdate"] = false
+		_commit()
 
 
 func coins() -> int:
 	return int(Save.data["coins"])
+
+
+func diamonds() -> int:
+	return Economy.diamonds(Save.data)
+
+
+## True if this booster (or Continue) can be paid in diamonds now.
+func can_pay_diamonds(item: String) -> bool:
+	return Economy.can_pay_diamonds(Save.data, item)
+
+
+## Pays a booster's (or Continue's) diamond price. False if there aren't enough. A Hint or Complete bought this way
+## goes into the inventory, so the booster's own flow uses it at once (and a cancelled Complete keeps it).
+func pay_diamonds(item: String) -> bool:
+	var price := int(Economy.DIAMOND_PRICES.get(item, -1))
+	if price < 0 or not Economy.pay_diamonds(Save.data, price):
+		return false
+	Save.data["stats"]["diamonds_spent"] = int(Save.data["stats"]["diamonds_spent"]) + price
+	if item in Economy.ITEMS:
+		Economy.grant(Save.data, {item: 1})
+	_commit()
+	return true
+
+
+## Buys a shop bundle (boosters into the inventory) with diamonds. False if there aren't enough.
+func buy_bundle(id: String) -> bool:
+	var b := Economy.bundle(id)
+	if b.is_empty() or not Economy.pay_diamonds(Save.data, int(b["diamonds"])):
+		return false
+	Save.data["stats"]["diamonds_spent"] = int(Save.data["stats"]["diamonds_spent"]) + int(b["diamonds"])
+	Economy.grant(Save.data, {str(b["item"]): int(b["count"])})
+	_commit()
+	return true
 
 
 func count(item: String) -> int:
@@ -65,15 +103,16 @@ func level_info() -> Dictionary:
 	return info
 
 
-## Applies a room win: coins and XP on a first solve, XP on a first gold lid, room coins, the streak day.
+## Applies a room win: coins for the stars it adds over the level's best (all of them on a first solve), XP on a
+## first solve, XP on a first gold lid (3 stars), room coins, the streak day.
 ## `progress` is Progression.record_win's result. Returns what happened, for the Win card:
 ## {coins, xp, ups: [{level, rewards}], room_coins, streak: {count, kind, saver_earned}, milestone, gift_ready}
 func record_win(entry: Dictionary, progress: Dictionary) -> Dictionary:
 	var out := {"coins": 0, "xp": 0, "ups": [], "room_coins": 0, "streak": {}, "milestone": {}, "gift_ready": false}
 	var groups := (entry["data"]["groups"] as Array).size()
 	var kind := str(entry["kind"])
+	out["coins"] = Economy.per_star(groups, kind, int(entry.get("room", 1))) * int(progress.get("gained", 0))
 	if progress.get("first_solve", false):
-		out["coins"] = Economy.win_coins(groups, kind, int(entry.get("room", 1)))
 		out["xp"] = Economy.win_xp(groups, kind)
 	if progress.get("new_gold", false):
 		out["xp"] += Economy.GOLD_XP

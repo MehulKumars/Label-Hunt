@@ -20,6 +20,8 @@ const BAR_H := 122.0
 const HINT_BUDGET_MS := 150
 
 var level_id := ""
+## A tutorial board (no slip meter, no coins).
+var tutorial := false
 ## Features taught by this level (Catalog.features_at) and the ones it introduces.
 var features: Dictionary = {}
 var introduces: PackedStringArray = []
@@ -82,6 +84,7 @@ func _init() -> void:
 	meter = SlipMeter.new()
 	add_child(meter)
 	coins = CoinPill.new()
+	coins.plus = false
 	coins.pressed.connect(func() -> void: shop_requested.emit())
 	add_child(coins)
 	rail = LabelRail.new()
@@ -425,10 +428,11 @@ func _refresh() -> void:
 		tidy_btn.set_pulse(tidy)
 		_layout()
 	var meter_was := meter.visible
-	meter.visible = session.budget > 0 or session.rules["mode"] == "stars"
+	# Stars show on every level (the slip jars only where there is a budget); tutorial boards show neither.
+	meter.visible = not tutorial
 	if meter.visible != meter_was:
 		_layout()
-	meter.set_state(session.budget, session.slips, session.rules["mode"] == "stars")
+	meter.set_state(session.budget if session.has_budget() else 0, session.slips, Economy.entry_limits(Levels.catalog.entry(level_id)))
 	rail.queue_redraw()
 	for b in [undo_btn, hint_btn, jar_btn, complete_btn, tidy_btn]:
 		b.queue_redraw()
@@ -530,6 +534,15 @@ func _show_hint_move(mv: Vector2i, rest: Array, kind: String) -> void:
 		after.check_lid(mv.y)
 		_hint_expect = Advisor.board_key(after)
 	_after(ev)
+
+
+## Runs a booster again after the player paid for it some other way (diamonds put one in the inventory).
+func use_booster(item: String) -> void:
+	_refresh()
+	if item == "hint":
+		_on_hint()
+	elif item == "complete":
+		_on_complete()
 
 
 ## Watched an ad for a free hint (main calls this after a rewarded ad).
@@ -696,9 +709,10 @@ func on_back() -> bool:
 
 ## Tutorial boards swap the slip meter and coins for a visible Skip.
 func set_tutorial(on: bool) -> void:
+	tutorial = on
 	skip_btn.visible = on
+	meter.visible = not on
 	if on:
-		meter.visible = false
 		coins.visible = false
 	_layout()
 
