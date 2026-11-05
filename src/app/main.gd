@@ -704,7 +704,7 @@ func _open_settings() -> void:
 		s.add_button("Test menu", false, func() -> void:
 			s.close()
 			_open_test_menu())
-	s.add_label("Jarful %s" % ProjectSettings.get_setting("application/config/version"), 22)
+	s.add_label("%s %s" % [ProjectSettings.get_setting("application/config/name"), ProjectSettings.get_setting("application/config/version")], 22)
 	open_sheet(s)
 
 

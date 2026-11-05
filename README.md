@@ -1,6 +1,6 @@
-<p align="center"><img src="assets/icon/icon_512.png" width="128" alt="Jarful icon"></p>
+<p align="center"><img src="assets/icon/icon_512.png" width="128" alt="Label Hunt icon"></p>
 
-<h1 align="center">Jarful</h1>
+<h1 align="center">Label Hunt</h1>
 
 <p align="center">
 <b>A calm word-sorting puzzle.</b> Sort word cards into glass jars by their hidden category.<br>
@@ -12,7 +12,7 @@ Guess wrong and the jar gives away part of the label. Fill a jar and the lid scr
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/version-0.5.0--alpha-3B6E6E" alt="Version 0.5.0-alpha">
+<img src="https://img.shields.io/badge/version-0.6.0-3B6E6E" alt="Version 0.6.0">
 <img src="https://img.shields.io/badge/Godot-4.7.2-478CBF?logo=godotengine&logoColor=white" alt="Godot 4.7.2">
 <img src="https://img.shields.io/badge/platform-Android%20(arm64)-3DDC84?logo=android&logoColor=white" alt="Android arm64">
 <img src="https://img.shields.io/badge/orientation-portrait-F28F3B" alt="Portrait">
@@ -45,6 +45,12 @@ Guess wrong and the jar gives away part of the label. Fill a jar and the lid scr
 - **Hint** (50 coins) shows a good next move. **Complete** (250 coins) seals a label you pick from the rail.
 
 The full rules, the level pipeline and the roadmap are in the design doc: [docs/DESIGN.md](docs/DESIGN.md).
+
+## New in 0.6
+- **Jarful is now Label Hunt**, by Tiffin Games, and has a Google Play build (`com.tiffingames.labelhunt`) for
+  internal and closed testing. That build has no Shop, diamonds or ads until real billing and AdMob are in.
+- The store kit is in `docs/store/`: listing text, privacy policy, Play Console checklist, icon, feature graphic and
+  screenshots.
 
 ## New in 0.5
 - **Stars.** Every win earns 1 to 3 stars, counted from your slips and shown live beside the slip jars. Early rooms
@@ -89,9 +95,11 @@ The full rules, the level pipeline and the roadmap are in the design doc: [docs/
 1. Open the [latest release](https://github.com/MehulKumars/jarful/releases/latest) while signed in to GitHub
    (the repo is private) and download the `.apk`.
 2. Open it on the phone and allow installs from your browser or file manager.
-3. It installs as **Jarful** (`com.mehulkumars.jarful`). New builds install over old ones and keep your progress.
+3. It installs as **Label Hunt (test)** (`com.mehulkumars.jarful`, the same app as the old Jarful builds). New builds
+   install over old ones and keep your progress. The Google Play version (`com.tiffingames.labelhunt`) is a separate app
+   with its own progress, and has no Shop, diamonds or ads yet.
 
-Over USB instead: `adb install -r jarful-0.5.0-alpha-arm64.apk`
+Over USB instead: `adb install -r labelhunt-test-0.6.0-alpha-arm64.apk`
 
 Older builds are on the [releases page](https://github.com/MehulKumars/jarful/releases).
 
@@ -102,7 +110,7 @@ Older builds are on the [releases page](https://github.com/MehulKumars/jarful/re
 | M2 | v0.2 | Home, tutorial, the first room's progression, the art and sound direction | ✅ |
 | M3 | v0.3 | Coins, boosters, streak, profile, Levels map, room themes, 510 levels | 🧪 alpha |
 | | v0.5 | Stars, coins per star, diamonds and the Shop | 🧪 alpha |
-| | v0.6 | First Google Play testing build ("Label Hunt") | next |
+| | v0.6 | First Google Play testing build ("Label Hunt") | 🧪 internal testing |
 | M4 | v1.0-rc | Real ads, billing and Play Games, Jar of the Day, polish, store kit | |
 
 ## How it's made

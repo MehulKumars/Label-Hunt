@@ -3,7 +3,7 @@
 extends Node
 
 ## "mock" or "none"
-var provider := "mock" if Build.playtest() and not OS.get_cmdline_user_args().has("--no-shop") else "none"
+var provider := "mock" if Build.playtest() else "none"
 
 const SAMPLE := [
 	{"name": "Asha", "level": 64, "avatar": "avocado"},

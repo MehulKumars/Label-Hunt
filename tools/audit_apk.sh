@@ -11,9 +11,11 @@ fail=0
 echo "== $APK ($(stat -c %s "$APK") bytes)"
 echo "-- signature"; "$APKSIGNER" verify --print-certs "$APK" | head -3
 echo "-- permissions (only VIBRATE expected)"
+pkg=$("$AAPT2" dump packagename "$APK" | tr -d "\r")
+echo "package $pkg"
 perms=$("$AAPT2" dump permissions "$APK" | grep -o "name='[^']*'" | sed "s/name='//; s/'//" | sort -u)
 echo "$perms"
-for p in $perms; do case "$p" in android.permission.VIBRATE|com.mehulkumars.jarful.*) ;; *) echo "UNEXPECTED permission $p"; fail=1;; esac; done
+for p in $perms; do case "$p" in android.permission.VIBRATE|"$pkg".*) ;; *) echo "UNEXPECTED permission $p"; fail=1;; esac; done
 echo "-- manifest flags"
 flags=$("$AAPT2" dump xmltree --file AndroidManifest.xml "$APK" | grep -E "debuggable|allowBackup" || true)
 echo "$flags"

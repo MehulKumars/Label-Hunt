@@ -1,11 +1,12 @@
-# Jarful: notes for future sessions
+# Jarful (Label Hunt): notes for future sessions
 
-Game 3 for Mehul: a word ball-sort puzzle, built with Godot 4.7.2 and GDScript, Android first, portrait.
+Game 3 for Mehul (studio: Tiffin Games): a word ball-sort puzzle, on Google Play as **Label Hunt**, built with Godot 4.7.2 and GDScript, Android first, portrait.
 
 - **Design:** `docs/DESIGN.md`. The full approved plan was written outside the repo; the design doc is the source
   of truth.
 - **Repo:** `MehulKumars/jarful` (private).
-- **Package:** `com.mehulkumars.jarful`. The final name is Mehul's call before any Play upload.
+- **Packages:** the Google Play build ("Play" preset, no `playtest` feature, AAB) is **Label Hunt**, `com.tiffingames.labelhunt` (permanent after the first upload). Sideloaded test APKs ("Android" preset, mocks and test menu) stay `com.mehulkumars.jarful`, shown as "Label Hunt (test)", so they keep updating Mehul's install. Repo, code and the playtest log keep the Jarful name.
+- **Store kit:** `docs/store/` (listing, privacy policy for tiffingames.com, Play Console checklist, icon, feature graphic, screenshots).
 
 ## Skills: use them without being asked
 Mehul wants these consulted automatically, every session (they live in `.claude/skills/`). Load the skill **before**
@@ -55,6 +56,8 @@ keystore over.
 | App icons from SVG | `godot.cmd --headless --path . -s res://tools/make_icons.gd` |
 | Sounds from the CC0 packs (sources in CREDITS.md) | `bash tools/import_sfx.sh <folder of unzipped packs>` |
 | Test APK (arm64, release template, debug key) | set `GODOT_ANDROID_KEYSTORE_RELEASE_PATH=C:/Users/lordi/AppData/Roaming/Godot/keystores/debug.keystore`, `_USER=androiddebugkey`, `_PASSWORD=android`, then `godot.cmd --headless --path . --export-release "Android" build/jarful-X.Y.Z-arm64.apk` |
+| Play AAB (upload key; Gradle; installs the build template under `android/`, git-ignored) | set `GODOT_ANDROID_KEYSTORE_RELEASE_PATH=C:/Users/lordi/AppData/Roaming/Godot/keystores/labelhunt-upload.jks`, `_USER=upload`, `_PASSWORD="$(cat <same folder>/labelhunt-upload.password.txt)"` (never print it), then `godot.cmd --headless --path . --install-android-build-template --export-release "Play" build/labelhunt-X.Y.Z.aab`. Bump the Play preset's version code every upload |
+| Audit the AAB (package, target SDK 36, upload signature, no playtest, 16 KB pages, then the universal APK) | `bash tools/audit_aab.sh build/labelhunt-X.Y.Z.aab` (bundletool in `GameDev/Tools`) |
 | Audit an APK (permissions, debuggable, files that must not ship) | `bash tools/audit_apk.sh build/jarful-X.Y.Z-arm64.apk` |
 
 ## Decisions (facts, not rules)
@@ -73,7 +76,7 @@ keystore over.
   Post-aha busywork on 5-group boards runs 5–18 moves, above the ≤8 target. Tidy up only appears when the
   board *proves* every group, which is rare.
 - **Stars and diamonds** (v0.5): stars count slips only; limits = each level's baked `gold` + `Economy.STAR_OFFSETS` by room, capped below the budget. Coins are per star (`STAR_COIN_RATES` by room) and never sold; diamonds are bought or from the shop ad. Tune offsets against `tools/star_report.gd` bands, coin rates against `tools/economy_sim.gd` gates.
-- **The Shop switch:** `Build.shop_open()` (a store or ad provider is available) shows the Shop, the diamond pill and every diamond price. The Play testing build has no providers, so it shows coins only. `--no-shop` on a debug run previews that.
+- **The Shop switch:** `Build.shop_open()` (a store or ad provider is available) shows the Shop, the diamond pill and every diamond price. The Play testing build has no providers, so it shows coins only. `--store-build` on a debug run previews the Play build (no mocks, no Shop, no test menu); store screenshots use it.
 - **Sounds:** real CC0 effects (Kenney and others, listed in CREDITS.md), imported by `tools/import_sfx.sh` from packs
   downloaded by hand (`kenney.nl` blocks scripted downloads). Only `frost.wav` is still synthesised (`tools/make_sfx.sh`).
 
@@ -106,5 +109,6 @@ keystore over.
 - Prices, rewards, XP and the gift ladder are one table: `src/rules/economy.gd`. The Wallet autoload writes at once.
 - `data/bank/wordplay_targets.txt` holds the rule of each checkable wordplay category (`hidden`, `anagram`, `palindrome`, `reverse`, `y_only`, `double2`, `roman`; see `Bank.trips`). A test checks every member obeys its own rule.
 - `data/bank/hard_words.txt` lists rare vocabulary. Spec levels marked `familiar` (Rooms 1 and 3, the two re-made Kitchen levels, every rest level) leave those words out.
+- `config/name` is "Label Hunt" since v0.6, so desktop runs keep their save in `%APPDATA%/Godot/app_userdata/Label Hunt/` (the older `.../Jarful/` folder holds the pre-0.6 desktop data). Android keeps each package's own storage.
 - GUT and headless tool runs boot the autoloads, so they load (and can migrate) the real desktop save in `user://save.json`.
 - A runtime error inside a tool's `_init` skips `quit()`, so Godot hangs forever with no output when piped. Run tools with `timeout` and write the output to a file.

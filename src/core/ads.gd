@@ -6,7 +6,7 @@ extends Node
 const MOCK_SECONDS := 1.5
 
 ## "mock" or "none"
-var provider := "mock" if Build.playtest() and not OS.get_cmdline_user_args().has("--no-shop") else "none"
+var provider := "mock" if Build.playtest() else "none"
 
 
 func available() -> bool:

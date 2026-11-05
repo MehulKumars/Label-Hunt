@@ -1,4 +1,4 @@
-# Jarful: design
+# Label Hunt (Jarful): design
 
 **Pitch:** Sort word cards into glass jars by a hidden category. Only the top card moves, and a wrong drop
 bounces back but shows you part of the label. When four cards belong together, the lid screws on and the label

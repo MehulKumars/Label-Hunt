@@ -7,7 +7,7 @@ extends Node
 
 const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07", "spicy", "assist",
 	"m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "need_coins", "hint", "complete_pick", "complete_fly",
-	"win", "win2", "replay", "finale", "rate", "lose", "lose_gems", "need_gems", "shop_off", "play_off", "room_reveal", "pause", "restart", "test", "drag", "pick", "themes"]
+	"win", "win2", "replay", "finale", "rate", "lose", "lose_gems", "need_gems", "shop_off", "play_off", "room_reveal", "pause", "restart", "test", "drag", "pick", "themes", "feature"]
 
 var out_dir := ""
 var only: PackedStringArray = []
@@ -236,6 +236,19 @@ func _run(name: String) -> void:
 				for line in play.board.misplaced():
 					print("  MISPLACED ", line)
 			return
+		"feature":
+			# The Play feature graphic (run at --size=1024x500 --true-size --rgb): the wall, jars on a plank, the name.
+			main.close_all_sheets()
+			var art := _FeatureArt.new()
+			art.z_index = 100
+			add_child(art)
+			art.position = Vector2.ZERO
+			art.size = get_viewport().get_visible_rect().size
+			await _wait(0.4)
+			await RenderingServer.frame_post_draw
+			_save(name, play)
+			art.queue_free()
+			return
 		"home":
 			main.go_home()
 			await _wait(0.4)
@@ -256,6 +269,8 @@ func _run(name: String) -> void:
 			main.start_level("l1-01")
 			await _legal(play, 99)
 			await _wait(2.5)
+			if OS.get_cmdline_user_args().has("--rgb"):
+				await _wait(2.5)  # store shots: let the coins land
 		"finale":
 			# Two jars from the end of Room 1, a hard level next: the finish line and the Next button's label.
 			main.close_all_sheets()
@@ -315,6 +330,9 @@ func _run(name: String) -> void:
 
 func _save(name: String, play: PlayScreen) -> void:
 	var img := get_viewport().get_texture().get_image()
+	# Store screenshots and the feature graphic must have no transparency (Google Play).
+	if OS.get_cmdline_user_args().has("--rgb"):
+		img.convert(Image.FORMAT_RGB8)
 	var path := "%s/%s_%dx%d.png" % [out_dir, name, img.get_width(), img.get_height()]
 	img.save_png(path)
 	print("shot: ", path, "  viewport=", get_viewport().get_visible_rect().size, " main=", main.size, " play=", play.size, " board=", play.board.size)
@@ -396,3 +414,44 @@ func _slips(play: PlayScreen, n: int) -> void:
 
 func _wait(s: float) -> void:
 	await get_tree().create_timer(s).timeout
+
+
+## The Google Play feature graphic, drawn from the game's own art: a room wall, five filled jars on a plank (the middle
+## one with a gold lid) and the name hand-lettered on a kraft label, with one line under it. Sized from the viewport,
+## so it works at any landscape size.
+class _FeatureArt extends Control:
+	const ROOM := 2
+	const SETS := [["Birds", "Trees", "Fruit"], ["Things that click", "Fasteners", "Citrus fruit", "Big cats"],
+		["Hairstyles", "Nuts", "Things with necks", "Fractions"], ["Cleaning kit", "Birthday party", "Planets"],
+		["Superhero words", "Pasta", "Knots"]]
+
+	func _init() -> void:
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	func _draw() -> void:
+		var w := size
+		draw_texture_rect(Art.tex("feat_wall|%dx%d" % [int(w.x), int(w.y)], w, RoomArt.wall.bind(ROOM)), Rect2(Vector2.ZERO, w), false)
+		var jar := Vector2(w.y * 0.25, w.y * 0.35)
+		var plank := Rect2(-8.0, w.y * 0.84, w.x + 16.0, w.y * 0.06)
+		var step := jar.x * 1.3
+		for i in SETS.size():
+			var c := Vector2(w.x / 2.0 + (i - 2) * step, plank.position.y + jar.y * 0.04)
+			var layers := Materials.preserve_layers(SETS[i])
+			var key := "feat_jar%d|%d" % [i, int(jar.x)]
+			draw_texture_rect(Art.tex(key, jar, RoomArt.mini_jar.bind(ROOM, layers, false, i == 2)),
+				Rect2(c - Vector2(jar.x / 2.0, jar.y), jar), false)
+		draw_texture_rect(Art.tex("feat_plank|%d" % int(w.x), plank.size, RoomArt.plank.bind(ROOM)), plank, false)
+		var title := str(ProjectSettings.get_setting("application/config/name"))
+		var f := Style.hand()
+		var fs := roundi(w.y * 0.2)
+		var ts := f.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
+		var tag := Vector2(ts.x + fs * 0.9, fs * 1.2)
+		draw_set_transform(Vector2(w.x / 2.0, w.y * 0.22), deg_to_rad(-3.0), Vector2.ONE)
+		draw_texture_rect(Art.tex("feat_label|%dx%d" % [int(tag.x), int(tag.y)], tag, Materials.label.bind(true)), Rect2(-tag / 2.0, tag), false)
+		draw_string(f, Vector2(-ts.x / 2.0, f.get_ascent(fs) * 0.36), title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+		var line := "Sort the words. Find the labels."
+		var fb := Style.sans_bold()
+		var ls := roundi(w.y * 0.055)
+		var lw := fb.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, ls)
+		draw_string(fb, Vector2((w.x - lw.x) / 2.0, w.y * 0.41), line, HORIZONTAL_ALIGNMENT_LEFT, -1, ls, Style.INK)

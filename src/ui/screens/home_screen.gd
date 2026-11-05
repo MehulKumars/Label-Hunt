@@ -274,12 +274,17 @@ class _HeroJar extends Control:
 		draw_texture_rect(Art.tex("hero_lid_%s|%d" % [lid_color.to_html(false), room], lid, RoomArt.lid.bind(room, lid_color)),
 			Rect2(Vector2(ni - 9.0, -lid.y * 0.5), lid), false)
 		var f := Style.hand()
+		# The game's name on the big jar's label, shrunk until it fits the label.
+		var title := str(ProjectSettings.get_setting("application/config/name"))
 		var fs := clampi(roundi(size.x * 0.27), 56, 96)
-		var ts := f.get_string_size("Jarful", HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-		var tag := Vector2(minf(size.x * 0.86, ts.x + 48.0), fs * 1.05)
+		var ts := f.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
+		while ts.x + 48.0 > size.x * 0.86 and fs > 40:
+			fs -= 2
+			ts = f.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
+		var tag := Vector2(minf(size.x * 0.86, ts.x + 48.0), maxf(fs * 1.05, 64.0))
 		draw_set_transform(Vector2(size.x / 2.0, neck + (size.y - neck) * 0.42), deg_to_rad(-3.0), Vector2.ONE)
-		draw_texture_rect(Art.tex("hero_label", tag, Materials.label.bind(false)), Rect2(-tag / 2.0, tag), false)
-		draw_string(f, Vector2(-ts.x / 2.0, f.get_ascent(fs) * 0.36), "Jarful", HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+		draw_texture_rect(Art.tex("hero_label|%dx%d" % [int(tag.x), int(tag.y)], tag, Materials.label.bind(false)), Rect2(-tag / 2.0, tag), false)
+		draw_string(f, Vector2(-ts.x / 2.0, f.get_ascent(fs) * 0.36), title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
 		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
