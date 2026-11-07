@@ -9,6 +9,8 @@ signal play_pressed
 signal settings_pressed
 signal levels_pressed
 signal shop_pressed
+## The coin pill: the Shop when it is open, else a note on how coins are earned.
+signal coins_pressed
 signal profile_pressed
 signal gift_pressed
 signal streak_pressed
@@ -21,6 +23,7 @@ var room := 1
 var _gear: RoundButton
 var _profile: _ProfileChip
 var _coins: CoinPill
+var _diamonds: CoinPill
 var _streak: RoundButton
 var _gift: RoundButton
 var _hero: _HeroJar
@@ -39,8 +42,14 @@ func _init() -> void:
 	_profile.pressed.connect(func() -> void: profile_pressed.emit())
 	add_child(_profile)
 	_coins = CoinPill.new()
-	_coins.pressed.connect(func() -> void: shop_pressed.emit())
+	# Coins are earned, never sold: no plus. With the Shop open a tap opens it; else it says how coins are earned.
+	_coins.plus = false
+	_coins.pressed.connect(func() -> void: coins_pressed.emit())
 	add_child(_coins)
+	_diamonds = CoinPill.new()
+	_diamonds.diamond = true
+	_diamonds.pressed.connect(func() -> void: shop_pressed.emit())
+	add_child(_diamonds)
 	_gear = RoundButton.new("gear")
 	_gear.pressed.connect(func() -> void: settings_pressed.emit())
 	add_child(_gear)
@@ -80,6 +89,7 @@ func _ready() -> void:
 	Wallet.changed.connect(func() -> void:
 		if visible:
 			_coins.set_value(Wallet.coins())
+			_diamonds.set_value(Wallet.diamonds())
 			_profile.refresh())
 
 
@@ -116,6 +126,11 @@ func refresh() -> void:
 	_shelf.queue_redraw()
 	_shelf.breathe()
 	_coins.set_value(Wallet.coins(), false)
+	_diamonds.set_value(Wallet.diamonds(), false)
+	# The Shop and diamonds appear only when something can be bought or watched (Build.shop_open).
+	var shop := Build.shop_open()
+	_diamonds.visible = shop
+	_shop.visible = shop
 	_profile.refresh()
 	var streak := Wallet.streak_shown()
 	_streak.badge = str(streak) if streak > 0 else ""
@@ -144,13 +159,23 @@ func _layout() -> void:
 	_gear.position = Vector2(w - left - RoundButton.D, top)
 	_gear.size = _gear.custom_minimum_size
 	var coin_w := _coins.wanted_width()
+	var pill_y := top + (RoundButton.D - CoinPill.H) / 2.0
 	_coins.size = Vector2(coin_w, CoinPill.H)
-	_coins.position = Vector2(_gear.position.x - 12.0 - coin_w, top + (RoundButton.D - CoinPill.H) / 2.0)
-	# Thumb row: Levels, Play, Shop.
+	_coins.position = Vector2(_gear.position.x - 12.0 - coin_w, pill_y)
+	var chip_end := _coins.position.x - 12.0
+	if _diamonds.visible:
+		var gem_w := _diamonds.wanted_width()
+		_diamonds.size = Vector2(gem_w, CoinPill.H)
+		_diamonds.position = Vector2(_coins.position.x - 10.0 - gem_w, pill_y)
+		chip_end = _diamonds.position.x - 10.0
+	# The profile chip gives way to big balances rather than overlap them.
+	_profile.size.x = clampf(chip_end - _profile.position.x, 150.0, 230.0)
+	# Thumb row: Levels, Play, Shop (without the Shop, Play takes its place).
 	var disc_w := RoundButton.D + 12.0
 	var play_h := Style.TOUCH_PRIMARY + 8.0
 	var row_y := bottom - play_h - 36.0
-	_play.size = Vector2(w - left * 2.0 - disc_w * 2.0 - 16.0, play_h)
+	var discs := 2.0 if _shop.visible else 1.0
+	_play.size = Vector2(w - left * 2.0 - disc_w * discs - 8.0 * discs, play_h)
 	_play.position = Vector2(left + disc_w + 8.0, row_y)
 	for b: RoundButton in [_levels, _shop]:
 		b.size = Vector2(disc_w, b.custom_minimum_size.y)
@@ -249,12 +274,17 @@ class _HeroJar extends Control:
 		draw_texture_rect(Art.tex("hero_lid_%s|%d" % [lid_color.to_html(false), room], lid, RoomArt.lid.bind(room, lid_color)),
 			Rect2(Vector2(ni - 9.0, -lid.y * 0.5), lid), false)
 		var f := Style.hand()
+		# The game's name on the big jar's label, shrunk until it fits the label.
+		var title := str(ProjectSettings.get_setting("application/config/name"))
 		var fs := clampi(roundi(size.x * 0.27), 56, 96)
-		var ts := f.get_string_size("Jarful", HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
-		var tag := Vector2(minf(size.x * 0.86, ts.x + 48.0), fs * 1.05)
+		var ts := f.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
+		while ts.x + 48.0 > size.x * 0.86 and fs > 40:
+			fs -= 2
+			ts = f.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
+		var tag := Vector2(minf(size.x * 0.86, ts.x + 48.0), maxf(fs * 1.05, 64.0))
 		draw_set_transform(Vector2(size.x / 2.0, neck + (size.y - neck) * 0.42), deg_to_rad(-3.0), Vector2.ONE)
-		draw_texture_rect(Art.tex("hero_label", tag, Materials.label.bind(false)), Rect2(-tag / 2.0, tag), false)
-		draw_string(f, Vector2(-ts.x / 2.0, f.get_ascent(fs) * 0.36), "Jarful", HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+		draw_texture_rect(Art.tex("hero_label|%dx%d" % [int(tag.x), int(tag.y)], tag, Materials.label.bind(false)), Rect2(-tag / 2.0, tag), false)
+		draw_string(f, Vector2(-ts.x / 2.0, f.get_ascent(fs) * 0.36), title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
 		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 

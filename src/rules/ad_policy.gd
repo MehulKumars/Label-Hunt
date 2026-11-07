@@ -8,7 +8,7 @@ const CONTINUES_PER_ATTEMPT := 1
 const DAILY_CAP := 12
 const COOLDOWN_S := 30
 ## Placements with their own daily caps (others only count toward DAILY_CAP).
-const PLACEMENT_CAPS := {"shop_coins": 5, "free_hint": 3, "gift_double": 1}
+const PLACEMENT_CAPS := {"shop_diamonds": 5, "free_hint": 3, "gift_double": 1}
 
 
 static func can_offer_continue(continues_used: int) -> bool:

@@ -35,6 +35,7 @@ func _ready() -> void:
 	home.settings_pressed.connect(_open_settings)
 	home.levels_pressed.connect(open_levels)
 	home.shop_pressed.connect(func() -> void: _sheet_once(MetaSheets.shop))
+	home.coins_pressed.connect(func() -> void: _sheet_once(MetaSheets.coins_tapped))
 	home.profile_pressed.connect(open_profile)
 	home.gift_pressed.connect(func() -> void: _sheet_once(MetaSheets.gift))
 	home.streak_pressed.connect(func() -> void: _sheet_once(MetaSheets.streak))
@@ -60,7 +61,7 @@ func _ready() -> void:
 	play.finished.connect(_on_finished)
 	play.pause_requested.connect(_open_pause)
 	play.skip_requested.connect(_open_skip)
-	play.shop_requested.connect(func() -> void: _sheet_once(MetaSheets.shop))
+	play.shop_requested.connect(func() -> void: _sheet_once(MetaSheets.coins_tapped))
 	play.need_coins.connect(func(item: String) -> void: _sheet_once(MetaSheets.need_coins.bind(item)))
 	play.progress_changed.connect(_save_board)
 	play.visible = false
@@ -208,27 +209,36 @@ func _begin(id: String, mode: String, retry: bool) -> void:
 	var level: LevelData = Levels.make_level(id, bool(rules.get("one_empty", false)))
 	var s: Session = null
 	var saved: Dictionary = Save.data["board"]
-	# Resume: the same level, unchanged since it was saved, replayed action by action.
-	if mode == "play" and not retry and str(saved.get("id", "")) == id and str(saved.get("fingerprint", "")) == level.fingerprint():
+	# Resume: the same level, unchanged since it was saved and played under the same rules, replayed action by action.
+	# (A log replayed under other rules, such as before pour, would rebuild a different board.)
+	if mode == "play" and not retry and str(saved.get("id", "")) == id and str(saved.get("fingerprint", "")) == level.fingerprint() \
+			and SaveSchema.rules(saved.get("rules", {})) == SaveSchema.rules(Session.rules_with(rules)):
 		s = Session.replay(level, rules.duplicate(), saved.get("log", []))
 		if s != null:
 			_fails = int(saved.get("fails", 0))
 			_assisted = bool(saved.get("assisted", false))
 	var bonus := 0
+	var assist := ""
 	if s == null:
 		s = Session.new(level, rules.duplicate())
 		_assisted = false
 		if _fails >= 2:
-			# The assist after two fails: one more slip and a free Hint (gold is withheld).
+			# The help ladder (gold is withheld, and the help is announced, never hidden). Two fails: one more slip
+			# and a free Hint. Three or more: the hardest blank label also starts at its first step.
 			if s.budget > 0:
 				s.grant_slips(1)
 			bonus = 1
 			_assisted = true
+			assist = "hint"
+			if _fails >= 3 and not s.head_start(s.head_start_group()).is_empty():
+				assist = "head"
 	var e := Levels.catalog.entry(id)
 	var look := int(e["room"]) if e["track"] == "room" else 1
 	backdrop.set_room(look)
 	play.board.room = look
 	play.start(id, s, bonus)
+	if assist != "":
+		play.announce_assist(assist == "head")
 	play.set_tutorial(mode == "tutorial")
 	_show(play, mode)
 	if mode == "play":
@@ -243,7 +253,8 @@ func _save_board() -> void:
 		Save.data["board"] = {}
 	else:
 		Save.data["board"] = {"id": play.level_id, "fingerprint": play.session.level.fingerprint(),
-			"log": play.session.log.duplicate(true), "fails": _fails, "assisted": _assisted}
+			"rules": SaveSchema.rules(play.session.rules), "log": play.session.log.duplicate(true), "fails": _fails,
+			"assisted": _assisted}
 	Save.touch()
 
 
@@ -357,14 +368,42 @@ func _result_sheet(heading: String) -> Sheet:
 	return s
 
 
+## The Next button says what comes next, so the main action builds a little anticipation and a hard level is no
+## surprise: a new room, a new idea, the level's peppers, or just the next level.
+func _next_label(next: String, new_room: bool) -> String:
+	var e := Levels.catalog.entry(next)
+	if new_room:
+		return "Next: a new room"
+	if not (e.get("introduces", PackedStringArray()) as PackedStringArray).is_empty():
+		return "Next: something new"
+	match str(e.get("kind", "")):
+		"hard":
+			return "Next: hard level"
+		"tricky":
+			return "Next: tricky level"
+	return "Next level"
+
+
+## News for the last three jars of a room: the finish line and what it brings ("" otherwise).
+func _finale_line(room: int) -> String:
+	var cat := Levels.catalog
+	var left := cat.room_ids(room).size() - Progression.solved_count(cat, Save.data, room)
+	if left < 1 or left > 3:
+		return ""
+	var jars := "1 more jar" if left == 1 else "%d more jars" % left
+	if not cat.room_ids(room + 1).is_empty():
+		return "%s: %s opens, +%d coins." % [jars, cat.room_name(room + 1), Economy.ROOM_COINS]
+	return "%s to fill %s, +%d coins." % [jars, cat.room_name(room), Economy.ROOM_COINS]
+
+
 func _open_win(stats: Dictionary) -> void:
 	var id := play.level_id
 	var cat := Levels.catalog
 	var entry := cat.entry(id)
 	var room_level: bool = entry["track"] == "room"
-	# Any help (a Hint, Complete, Continue or the two-fails assist) keeps the gold lid for a clean sort.
-	var helped := _assisted or play.session.continues > 0 or play.session.hints > 0 or play.session.completes > 0
-	var res := Progression.record_win(cat, Save.data, id, int(stats["slips"]), helped)
+	# Stars count slips only: Hints, Complete and the help ladder cost none, and a Continue win is 1 star by itself.
+	var res := Progression.record_win(cat, Save.data, id, int(stats["slips"]))
+	var stars: int = res["stars"] if room_level else Progression.stars_for_win(cat, id, int(stats["slips"]))
 	var before := Wallet.level_info()
 	# The HUD pill keeps its number until the earned coins fly into it.
 	play.coins.hold = room_level
@@ -375,11 +414,16 @@ func _open_win(stats: Dictionary) -> void:
 		var labels: Array = []
 		for g: Dictionary in entry["data"].get("groups", []):
 			labels.append(str(g.get("label", "")))
-		var trophy := JarTrophy.new(Materials.preserve_layers(labels), bool(Save.data["solved"][id]["gold"]))
+		var trophy := JarTrophy.new(Materials.preserve_layers(labels), stars == 3)
 		s.body.add_child(trophy)
 		trophy.play()
-		if res["new_gold"]:
-			Sfx.play_at(0.6, "bell")
+	# The stars stamp in once the jar has landed (the third rings the bell).
+	if entry["track"] != "tutorial":
+		var star_row := StarRow.new(stars, 64.0)
+		star_row.lift = 0.25
+		star_row.custom_minimum_size.y = 92.0
+		s.body.add_child(star_row)
+		star_row.play(0.45)
 	var title := s.add_label("Jar filled" if room_level else "Solved", Style.FS_72)
 	title.add_theme_font_override("font", Style.hand())
 	if room_level:
@@ -412,15 +456,27 @@ func _open_win(stats: Dictionary) -> void:
 	# One line at most, the biggest news first: the card stays calm, and a gift waiting shows on the Home button.
 	var lines: Array[String] = []
 	if room_level:
+		# The first card with stars says what they are, once.
+		if not Save.data["seen_captions"].has("stars"):
+			Save.data["seen_captions"]["stars"] = true
+			Save.touch()
+			lines.append("Fewer slips, more stars. Stars pay coins.")
 		if res["room_done"]:
 			lines.append("Room complete: +%d coins." % Economy.ROOM_COINS)
 		if not (rewards["milestone"] as Dictionary).is_empty():
 			lines.append("%d-day streak: %s" % [rewards["streak"]["count"], MetaSheets._reward_text(rewards["milestone"])])
 		for up: Dictionary in rewards["ups"]:
 			lines.append("Rank %d: %s" % [up["level"], MetaSheets._reward_text(up["rewards"])])
-		if res["new_gold"]:
-			lines.append("Clean sort: your first gold lid." if res["first_gold"] else "Clean sort: gold lid.")
-		elif res["shelf_full"] >= 0:
+		if res["new_gold"] and res["first_gold"]:
+			lines.append("3 stars: your first gold lid.")
+		if not res["first_solve"] and int(res["gained"]) > 0:
+			lines.append("New best: %d stars, +%d coins." % [int(res["best"]), int(rewards["coins"])])
+		var finale := _finale_line(int(entry["room"]))
+		if finale != "":
+			lines.append(finale)
+		if res["new_gold"] and not res["first_gold"]:
+			lines.append("3 stars: a gold lid.")
+		elif not res["new_gold"] and res["shelf_full"] >= 0:
 			lines.append("Shelf %d is full." % (res["shelf_full"] + 1))
 	if not lines.is_empty():
 		s.add_label(lines[0], Style.FS_26, true)
@@ -431,7 +487,7 @@ func _open_win(stats: Dictionary) -> void:
 	if next != "":
 		var next_room := int(cat.entry(next)["room"])
 		var new_room: bool = room_level and next_room != int(entry["room"]) and cat.entry(next)["track"] == "room"
-		s.add_button("Next level", true, func() -> void:
+		s.add_button(_next_label(next, new_room) if room_level else "Next level", true, func() -> void:
 			if new_room:
 				close_all_sheets()
 				MetaSheets.room_reveal(self, next_room, next)
@@ -540,6 +596,11 @@ func _open_lose() -> void:
 				if Wallet.pay(price):
 					s.close()
 					go_on.call())
+		elif Build.shop_open() and Wallet.can_pay_diamonds("continue"):
+			s.add_button("2 more slips: %d diamonds" % int(Economy.DIAMOND_PRICES["continue"]), false, func() -> void:
+				if Wallet.pay_diamonds("continue"):
+					s.close()
+					go_on.call())
 	s.add_button("Home", false, go_home)
 	open_sheet(s)
 
@@ -561,7 +622,7 @@ func rewarded(placement: String, grant: Callable) -> void:
 		grant.call()
 
 
-## Buys a coin pack through Store (a test purchase in playtest builds).
+## Buys a diamond pack through Store (a test purchase in playtest builds).
 func purchase(id: String) -> void:
 	var s := Sheet.new("Purchase")
 	s.dismissible = false
@@ -573,7 +634,9 @@ func purchase(id: String) -> void:
 		s.close()
 	if ok:
 		Sfx.play("coin", 1.0, 0.0)
-		toast("+%s coins" % CoinPill._fmt(int(Economy.pack(id).get("coins", 0))))
+		Haptics.coin()
+		toast("+%s diamonds" % CoinPill._fmt(int(Economy.pack(id).get("diamonds", 0))))
+		refresh_home()
 
 
 func _open_pause() -> void:
@@ -585,7 +648,13 @@ func _open_pause() -> void:
 	Sfx.muffle(true)
 	s.closed.connect(Sfx.muffle.bind(false))
 	s.add_button("Resume", true, s.close)
-	s.add_button("Restart level", false, start_level.bind(play.level_id, true))
+	s.add_button("Restart level", false, func() -> void:
+		# It sits right under Resume: an attempt with progress asks first, so a mis-tap can't throw it away.
+		if play.session == null or play.session.log.is_empty():
+			start_level(play.level_id, true)
+			return
+		s.close()
+		_confirm_restart())
 	s.add_button("Rules", false, func() -> void:
 		s.close()
 		_open_rules())
@@ -595,6 +664,15 @@ func _open_pause() -> void:
 		s.add_button("Test menu", false, func() -> void:
 			s.close()
 			_open_test_menu())
+	open_sheet(s)
+
+
+## Restarting throws away the attempt in progress; Keep playing goes straight back to the board.
+func _confirm_restart() -> void:
+	var s := Sheet.new("Restart this level?")
+	s.add_label("This attempt starts over from the first move.", Style.FS_26)
+	s.add_button("Restart level", true, start_level.bind(play.level_id, true))
+	s.add_button("Keep playing", false, s.close)
 	open_sheet(s)
 
 
@@ -626,7 +704,7 @@ func _open_settings() -> void:
 		s.add_button("Test menu", false, func() -> void:
 			s.close()
 			_open_test_menu())
-	s.add_label("Jarful %s" % ProjectSettings.get_setting("application/config/version"), 22)
+	s.add_label("%s %s" % [ProjectSettings.get_setting("application/config/name"), ProjectSettings.get_setting("application/config/version")], 22)
 	open_sheet(s)
 
 

@@ -20,6 +20,8 @@ const BAR_H := 122.0
 const HINT_BUDGET_MS := 150
 
 var level_id := ""
+## A tutorial board (no slip meter, no coins).
+var tutorial := false
 ## Features taught by this level (Catalog.features_at) and the ones it introduces.
 var features: Dictionary = {}
 var introduces: PackedStringArray = []
@@ -28,6 +30,8 @@ var board: BoardView
 var rail: LabelRail
 var meter: SlipMeter
 var title_label: Label
+## Peppers beside the title on tricky and hard room levels.
+var spice: SpiceMark
 var pause_btn: RoundButton
 var coins: CoinPill
 var undo_btn: RoundButton
@@ -74,9 +78,13 @@ func _init() -> void:
 	title_label.add_theme_font_size_override("font_size", 32)
 	title_label.add_theme_color_override("font_color", Style.INK)
 	add_child(title_label)
+	spice = SpiceMark.new()
+	spice.icon_size = 28.0
+	add_child(spice)
 	meter = SlipMeter.new()
 	add_child(meter)
 	coins = CoinPill.new()
+	coins.plus = false
 	coins.pressed.connect(func() -> void: shop_requested.emit())
 	add_child(coins)
 	rail = LabelRail.new()
@@ -163,6 +171,8 @@ func start(id: String, s: Session, bonus_hints: int = 0) -> void:
 	hide_rail = not features.has("slip")
 	rail.visible = not hide_rail
 	title_label.text = Levels.title(id)
+	var entry := Levels.catalog.entry(id)
+	spice.kind = str(entry.get("kind", "")) if entry.get("track", "") == "room" else ""
 	board.reduce_motion = bool(Save.setting("reduce_motion"))
 	board.setup(s)
 	rail.setup(s)
@@ -202,6 +212,11 @@ func _layout() -> void:
 	var with_meter := meter.visible
 	title_label.position = Vector2(mid_x, top + (0.0 if with_meter else 0.0))
 	title_label.size = Vector2(mid_w, RoundButton.D * (0.5 if with_meter else 1.0))
+	# The peppers follow the centred title text.
+	var title_w := Style.sans_heavy().get_string_size(title_label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, 32).x
+	spice.size = spice.custom_minimum_size
+	spice.position = Vector2(mid_x + (mid_w + title_w) / 2.0 + 10.0,
+		title_label.position.y + (title_label.size.y - spice.size.y) / 2.0)
 	meter.position = Vector2(mid_x, top + RoundButton.D * 0.48)
 	meter.size = Vector2(mid_w, RoundButton.D * 0.52)
 	var rail_h := 0.0 if hide_rail else LabelRail.height_for(session.level.group_count())
@@ -245,14 +260,15 @@ func _show_tutorial_hand() -> void:
 	_point(res["path"][0])
 
 
-## Glows the card to move and runs the hand from it to the slot it lands in (never over a word).
+## Glows the card to move and runs the hand from it to the slot it lands in. The fingertip touches the card's right
+## edge, so the hand hangs over the jar wall and the gap beside it rather than the words of the cards below.
 func _point(mv: Vector2i) -> void:
 	_hint_shown = true
 	board.set_glow_card(session.board.top(mv.x))
 	var cs: Vector2 = board.layout["card_size"]
 	var top_slot := session.board.size(mv.x) - 1
-	var a := board.position + board.slot_pos(mv.x, top_slot) + Vector2(cs.x * 0.82, cs.y * 0.8)
-	var b := board.position + board.slot_pos(mv.y, session.board.size(mv.y)) + Vector2(cs.x * 0.62, cs.y * 0.75)
+	var a := board.position + board.slot_pos(mv.x, top_slot) + Vector2(cs.x * 0.96, cs.y * 0.62)
+	var b := board.position + board.slot_pos(mv.y, session.board.size(mv.y)) + Vector2(cs.x * 0.96, cs.y * 0.62)
 	hand.show_path(a, b)
 
 
@@ -293,6 +309,8 @@ func _intro_captions() -> void:
 				caption.say("Six groups now", 3.0)
 			"herrings", "double":
 				caption.say("Some words fit two", 3.0)
+			"lateral":
+				caption.say("Some labels join words", 3.0)
 			"abstract":
 				caption.say("Some labels are ideas", 3.0)
 			"wordplay":
@@ -305,12 +323,28 @@ func _intro_captions() -> void:
 				caption.say("Corks pop when a lid goes on", 3.5)
 	if session.has_budget() and not Save.data["seen_captions"].has("budget"):
 		_caption_once("budget", "%d slips allowed" % session.budget)
+	# The first tricky and the first hard level say what their peppers mean (they never introduce anything else).
+	match spice.kind:
+		"tricky":
+			_caption_once("tricky", "One pepper: tricky, worth more coins")
+		"hard":
+			_caption_once("hard", "Two peppers: hard, worth more coins")
 
 
 func _teach(button: RoundButton, text: String) -> void:
 	button.set_pulse(true)
 	caption.say(text, 3.5)
 	get_tree().create_timer(3.5).timeout.connect(button.set_pulse.bind(false))
+
+
+## Says what the help ladder gave this attempt, so help is never hidden (after two fails, or three for the head start).
+func announce_assist(head_start: bool) -> void:
+	if head_start:
+		caption.say("Head start: one label shows its length", 3.5)
+	elif session.has_budget():
+		caption.say("Another go: a free Hint and one more slip", 3.5)
+	else:
+		caption.say("Another go: a free Hint", 3.0)
 
 
 func _caption_once(key: String, text: String) -> void:
@@ -394,10 +428,11 @@ func _refresh() -> void:
 		tidy_btn.set_pulse(tidy)
 		_layout()
 	var meter_was := meter.visible
-	meter.visible = session.budget > 0 or session.rules["mode"] == "stars"
+	# Stars show on every level (the slip jars only where there is a budget); tutorial boards show neither.
+	meter.visible = not tutorial
 	if meter.visible != meter_was:
 		_layout()
-	meter.set_state(session.budget, session.slips, session.rules["mode"] == "stars")
+	meter.set_state(session.budget if session.has_budget() else 0, session.slips, Economy.entry_limits(Levels.catalog.entry(level_id)))
 	rail.queue_redraw()
 	for b in [undo_btn, hint_btn, jar_btn, complete_btn, tidy_btn]:
 		b.queue_redraw()
@@ -499,6 +534,15 @@ func _show_hint_move(mv: Vector2i, rest: Array, kind: String) -> void:
 		after.check_lid(mv.y)
 		_hint_expect = Advisor.board_key(after)
 	_after(ev)
+
+
+## Runs a booster again after the player paid for it some other way (diamonds put one in the inventory).
+func use_booster(item: String) -> void:
+	_refresh()
+	if item == "hint":
+		_on_hint()
+	elif item == "complete":
+		_on_complete()
 
 
 ## Watched an ad for a free hint (main calls this after a rewarded ad).
@@ -617,7 +661,7 @@ func _play_path(path: Array, i: int) -> void:
 		board.input_locked = false
 		return
 	var mv: Vector2i = path[i]
-	var r := session.try_move(mv.x, mv.y)
+	var r := session.try_move(mv.x, mv.y, false)  # a solver path is single-card moves: no pour, or later steps miss
 	board.show_move(r["events"])
 	_after(r["events"])
 	get_tree().create_timer(0.16).timeout.connect(_play_path.bind(path, i + 1))
@@ -665,9 +709,10 @@ func on_back() -> bool:
 
 ## Tutorial boards swap the slip meter and coins for a visible Skip.
 func set_tutorial(on: bool) -> void:
+	tutorial = on
 	skip_btn.visible = on
+	meter.visible = not on
 	if on:
-		meter.visible = false
 		coins.visible = false
 	_layout()
 
@@ -700,15 +745,15 @@ class _ChoiceBar extends Control:
 
 	func open(free: bool) -> void:
 		_free = free
-		_text.text = "Tap a label above to finish its jar"
-		_confirm.text = "Finish it"
+		_text.text = "Tap a label above to complete its jar"
+		_confirm.text = "Complete"
 		_confirm.enabled = false
 		_confirm.queue_redraw()
 		show()
 
 	func ready_to_finish() -> void:
 		_text.text = "Its four cards will fly into the label"
-		_confirm.text = "Finish: 1 free" if _free else "Finish: %d coins" % Economy.PRICES["complete"]
+		_confirm.text = "Complete: 1 free" if _free else "Complete: %d coins" % Economy.PRICES["complete"]
 		_confirm.enabled = true
 		_confirm.queue_redraw()
 

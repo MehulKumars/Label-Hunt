@@ -4,7 +4,7 @@
 class_name ShelfView
 extends Control
 
-## [{state: "solved"|"next"|"locked", layers: Array[Color], gold: bool, number: int}]
+## [{state: "solved"|"next"|"locked", layers: Array[Color], gold: bool, stars: int, number: int}]
 var slots: Array = []
 var cols := 5
 ## The slot whose jar is dropping in (Win), and how far it has fallen (0..1).
@@ -98,6 +98,8 @@ func _draw() -> void:
 				var layers: Array = s["layers"]
 				var key := "mini|%d|%s|%s" % [room, ",".join(layers.map(func(c: Color) -> String: return c.to_html(false))), s["gold"]]
 				draw_texture_rect(Art.tex(key, jar, RoomArt.mini_jar.bind(room, layers, false, bool(s["gold"]))), rect, false)
+				if i != drop_index or drop_t >= 1.0:
+					_stars(rect, int(s.get("stars", 0)), cell)
 			_:
 				draw_texture_rect(Art.tex("mini_outline|%d" % room, jar, RoomArt.mini_jar.bind(room, [], true)), rect, false)
 				_number(rect, s, str(s["state"]) == "next")
@@ -117,14 +119,14 @@ static func slots_for(ids: PackedStringArray, save: Dictionary, next_id: String)
 		var s: Dictionary = save["solved"].get(id, {})
 		if s.is_empty():
 			out.append({"state": "next" if id == next_id else "locked", "layers": [], "gold": false,
-				"number": Levels.catalog.order_index(id) + 1})
+				"number": Levels.catalog.order_index(id) + 1, "kind": str(Levels.catalog.entry(id).get("kind", ""))})
 			continue
 		var labels: Array = []
 		for g: Dictionary in Levels.catalog.entry(id)["data"].get("groups", []):
 			labels.append(str(g.get("label", "")))
 		var layers := Materials.preserve_layers(labels)
 		out.append({"state": "solved", "layers": layers, "gold": bool(s.get("gold", false)),
-			"number": Levels.catalog.order_index(id) + 1})
+			"stars": int(s.get("stars", 1)), "number": Levels.catalog.order_index(id) + 1})
 	return out
 
 
@@ -142,3 +144,21 @@ func _number(rect: Rect2, s: Dictionary, next: bool) -> void:
 	draw_style_box(Style.box(fill, Style.R_S), Rect2(c - tag / 2.0, tag))
 	draw_string(f, Vector2(c.x - ts.x / 2.0, c.y - f.get_height(fs) / 2.0 + f.get_ascent(fs)), n,
 		HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK if next else Color(Style.INK, 0.7))
+	# Tricky and hard levels carry their peppers above the tag, inside the jar outline.
+	var spice := minf(rect.size.x * 0.24, 26.0)
+	SpiceMark.draw_at(self, Vector2(c.x, c.y - tag.y / 2.0 - spice * 0.75), str(s.get("kind", "")), spice,
+		Style.PAPRIKA if next else Color(Style.PAPRIKA, 0.7))
+
+
+## The stars a solved level earned, stamped small on the plank's front edge under its jar.
+func _stars(rect: Rect2, n: int, cell: Vector2) -> void:
+	if n <= 0:
+		return
+	var sz := clampf(cell.x * 0.14, 12.0, 18.0)
+	var on := Art.tex("star_on_%d" % int(sz), Vector2(sz, sz), Materials.star.bind(true))
+	var off := Art.tex("star_off_%d" % int(sz), Vector2(sz, sz), Materials.star.bind(false))
+	var w := sz * 3.0 + 4.0
+	var x := rect.get_center().x - w / 2.0
+	var y := rect.end.y + 2.0
+	for i in 3:
+		draw_texture_rect(on if i < n else off, Rect2(x + i * (sz + 2.0), y, sz, sz), false)

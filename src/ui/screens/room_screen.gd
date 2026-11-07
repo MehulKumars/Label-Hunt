@@ -49,8 +49,8 @@ func show_room(r: int, from: String) -> void:
 	header.title = cat.room_name(room)
 	var save := Save.data
 	var next := Progression.next_level(cat, save)
-	_count.text = "%d of %d jars filled, %d gold lids" % [Progression.solved_count(cat, save, room), _ids.size(),
-		Progression.gold_count(cat, save, room)]
+	_count.text = "%d of %d jars filled, %d of %d stars" % [Progression.solved_count(cat, save, room), _ids.size(),
+		Progression.star_count(cat, save, room), _ids.size() * 3]
 	for i in 3:
 		var s := shelves[i]
 		s.room = room

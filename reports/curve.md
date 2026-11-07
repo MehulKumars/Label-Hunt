@@ -4,7 +4,7 @@ Average bot = the target player; its first-try win rate must meet each level's f
 
 | room | levels | groups | avg slips (normal / tricky / hard) | avg win (min) | floor misses | novice win (mean) | prober win (max) |
 |---|---|---|---|---|---|---|---|
-| 1 The Larder | 1-30 | 3-4 | 0.6 / 0.7 / 1.0 | 85% | 0 | 90% | 100% |
+| 1 The Larder | 1-30 | 3-4 | 0.4 / 0.6 / 0.8 | 91% | 0 | 95% | 100% |
 | 2 The Kitchen | 31-60 | 3-4 | 0.8 / 1.0 / 1.4 | 91% | 0 | 81% | 1% |
 | 3 The Orchard Shed | 61-90 | 4 | 1.3 / 1.2 / 1.5 | 77% | 0 | 69% | 0% |
 | 4 The Tea Room | 91-120 | 4-5 | 1.5 / 1.4 / 1.8 | 83% | 0 | 67% | 0% |

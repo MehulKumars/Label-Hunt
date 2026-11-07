@@ -1,5 +1,5 @@
 ## Levels: every room as a card in a vertical, touch-scrolled list, opened at the current room. A card shows the
-## room's wall and jars, its name, how many jars are filled and the gold lids; locked rooms say when they open.
+## room's wall and jars, its name, how many jars are filled and its stars; locked rooms say when they open.
 class_name LevelsScreen
 extends Control
 
@@ -45,7 +45,7 @@ func refresh() -> void:
 		card.name_text = cat.room_name(room)
 		card.solved = Progression.solved_count(cat, save, room)
 		card.total = ids.size()
-		card.gold = Progression.gold_count(cat, save, room)
+		card.stars = Progression.star_count(cat, save, room)
 		card.first_level = cat.order_index(ids[0]) + 1 if not ids.is_empty() else 0
 		card.last_level = card.first_level + ids.size() - 1
 		card.locked = ids.is_empty() or not Progression.is_unlocked(cat, save, ids[0])
@@ -88,7 +88,7 @@ class RoomCard extends Control:
 	var name_text := ""
 	var solved := 0
 	var total := 30
-	var gold := 0
+	var stars := 0
 	var first_level := 1
 	var last_level := 30
 	var locked := false
@@ -169,10 +169,10 @@ class RoomCard extends Control:
 			draw_style_box(Style.box(Style.TEAL, 7), Rect2(bar.position, Vector2(bar.size.x * solved / float(maxi(total, 1)), bar.size.y)))
 		var fh := Style.sans_heavy()
 		draw_string(fh, Vector2(x, r.size.y - 22), "%d / %d" % [solved, total], HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Style.INK)
-		if gold > 0:
-			var gx := x + w - 70
-			# A tiny gold lid (not a coin): gold lids are mastery, coins are currency.
-			draw_style_box(Style.box(Style.GOLD, 4), Rect2(gx - 14, r.size.y - 40, 28, 14))
-			draw_rect(Rect2(gx - 8, r.size.y - 36, 9, 3), Color("#FFF6D6"))
-			draw_style_box(Style.box(Color(Style.TEAL, 0.35), 3), Rect2(gx - 11, r.size.y - 27, 22, 8))
-			draw_string(fh, Vector2(gx + 18, r.size.y - 22), str(gold), HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Style.INK)
+		if stars > 0:
+			# The room's stars out of its most (3 a level): a gold star, mastery, not a coin.
+			var txt := "%d/%d" % [stars, total * 3]
+			var tw := fh.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26).x
+			var sx := x + w - tw - 34.0
+			draw_texture_rect(Art.tex("star_on_26", Vector2(26, 26), Materials.star.bind(true)), Rect2(sx, r.size.y - 44, 26, 26), false)
+			draw_string(fh, Vector2(sx + 32, r.size.y - 22), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, Style.FS_26, Style.INK)

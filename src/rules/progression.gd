@@ -1,5 +1,6 @@
 ## Where the player is and what they've earned, as pure functions over a Catalog and the save dictionary
-## (save["solved"] = {id: {"slips": best, "gold": bool}}). Levels unlock in order; solved ones can be replayed.
+## (save["solved"] = {id: {"slips": best, "stars": best 1-3, "gold": stars == 3}}). Levels unlock in order; solved
+## ones can be replayed for more stars.
 class_name Progression
 extends RefCounted
 
@@ -28,33 +29,35 @@ static func is_unlocked(cat: Catalog, save: Dictionary, id: String) -> bool:
 	return i == 0 or (i > 0 and solved.has(order[i - 1]))
 
 
-## Gold needs a threshold (rooms from L11), slips within it, and no assist (Continue or the two-fails bonus).
-static func earns_gold(cat: Catalog, id: String, slips: int, assisted: bool) -> bool:
-	var gold: int = cat.entry(id).get("gold", -1)
-	return gold >= 0 and slips <= gold and not assisted
+## Stars for a win on this level with this many slips (Economy.star_limits). Stars count slips only.
+static func stars_for_win(cat: Catalog, id: String, slips: int) -> int:
+	return Economy.stars_for(slips, Economy.entry_limits(cat.entry(id)))
 
 
 ## Records a win and returns what it unlocked, for the Win card:
-## {first_solve, gold, new_gold, first_gold, shelf_full: -1 or shelf index, room_done, next}.
-static func record_win(cat: Catalog, save: Dictionary, id: String, slips: int, assisted: bool) -> Dictionary:
+## {first_solve, stars (this win), best (after it), gained (stars over the old best, which pay coins),
+##  gold (3 stars: the gold lid), new_gold, first_gold, shelf_full: -1 or shelf index, room_done, next}.
+static func record_win(cat: Catalog, save: Dictionary, id: String, slips: int) -> Dictionary:
 	var solved: Dictionary = save.get("solved", {})
 	save["solved"] = solved
 	var e := cat.entry(id)
-	var out := {"first_solve": false, "gold": false, "new_gold": false, "first_gold": false,
-		"shelf_full": -1, "room_done": false, "next": ""}
+	var out := {"first_solve": false, "stars": 0, "best": 0, "gained": 0, "gold": false, "new_gold": false,
+		"first_gold": false, "shelf_full": -1, "room_done": false, "next": ""}
 	if e.is_empty() or e["track"] != "room":
 		return out
 	var had_any_gold := gold_count(cat, save, -1) > 0
 	var prev: Dictionary = solved.get(id, {})
-	var gold := earns_gold(cat, id, slips, assisted)
+	var stars := stars_for_win(cat, id, slips)
+	var old_best := int(prev.get("stars", 0))
+	var best := maxi(stars, old_best)
 	out["first_solve"] = prev.is_empty()
-	out["gold"] = gold
-	out["new_gold"] = gold and not bool(prev.get("gold", false))
+	out["stars"] = stars
+	out["best"] = best
+	out["gained"] = best - old_best
+	out["gold"] = stars == 3
+	out["new_gold"] = best == 3 and old_best < 3
 	out["first_gold"] = out["new_gold"] and not had_any_gold
-	solved[id] = {
-		"slips": mini(slips, int(prev.get("slips", slips))),
-		"gold": gold or bool(prev.get("gold", false)),
-	}
+	solved[id] = {"slips": mini(slips, int(prev.get("slips", slips))), "stars": best, "gold": best == 3}
 	if out["first_solve"]:
 		var room: int = e["room"]
 		var shelf := cat.shelf_of(id)
@@ -74,7 +77,34 @@ static func solved_count(cat: Catalog, save: Dictionary, room: int) -> int:
 	return n
 
 
-## Gold lids in one room, or in every room when room is -1.
+## Stars collected in one room, or in every room when room is -1 (best per level).
+static func star_count(cat: Catalog, save: Dictionary, room: int) -> int:
+	var solved: Dictionary = save.get("solved", {})
+	var ids := cat.play_order() if room < 0 else cat.room_ids(room)
+	var n := 0
+	for id in ids:
+		n += int(solved.get(id, {}).get("stars", 0))
+	return n
+
+
+## Sets every solved level's stars from its stored best slips (once, for saves from before stars). A level that had
+## a gold lid keeps it as 3 stars. Returns how many levels changed.
+static func backdate_stars(cat: Catalog, save: Dictionary) -> int:
+	var solved: Dictionary = save.get("solved", {})
+	var n := 0
+	for id in solved:
+		if not cat.has(id):
+			continue
+		var rec: Dictionary = solved[id]
+		var stars := 3 if bool(rec.get("gold", false)) else stars_for_win(cat, id, int(rec.get("slips", 0)))
+		if int(rec.get("stars", 0)) != stars:
+			n += 1
+		rec["stars"] = stars
+		rec["gold"] = stars == 3
+	return n
+
+
+## Gold lids (3-star levels) in one room, or in every room when room is -1.
 static func gold_count(cat: Catalog, save: Dictionary, room: int) -> int:
 	var solved: Dictionary = save.get("solved", {})
 	var ids := cat.play_order() if room < 0 else cat.room_ids(room)

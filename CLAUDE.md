@@ -1,11 +1,12 @@
-# Jarful: notes for future sessions
+# Jarful (Label Hunt): notes for future sessions
 
-Game 3 for Mehul: a word ball-sort puzzle, built with Godot 4.7.2 and GDScript, Android first, portrait.
+Game 3 for Mehul (studio: Tiffin Games): a word ball-sort puzzle, on Google Play as **Label Hunt**, built with Godot 4.7.2 and GDScript, Android first, portrait.
 
 - **Design:** `docs/DESIGN.md`. The full approved plan was written outside the repo; the design doc is the source
   of truth.
 - **Repo:** `MehulKumars/jarful` (private).
-- **Package:** `com.mehulkumars.jarful`. The final name is Mehul's call before any Play upload.
+- **Packages:** the Google Play build ("Play" preset, no `playtest` feature, AAB) is **Label Hunt**, `com.tiffingames.labelhunt` (permanent after the first upload). Sideloaded test APKs ("Android" preset, mocks and test menu) stay `com.mehulkumars.jarful`, shown as "Label Hunt (test)", so they keep updating Mehul's install. Repo, code and the playtest log keep the Jarful name.
+- **Store kit:** `docs/store/` (listing, privacy policy for tiffingames.com, Play Console checklist, icon, feature graphic, screenshots).
 
 ## Skills: use them without being asked
 Mehul wants these consulted automatically, every session (they live in `.claude/skills/`). Load the skill **before**
@@ -24,6 +25,12 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 
 ## Commands (Git Bash; `godot.cmd` wraps Godot 4.7.2)
 
+**On the Linux machine (Fedora):** type `godot` (the system 4.7.2 package) wherever a command says `godot.cmd`. Export
+templates, the Android SDK (`~/Android/Sdk`) and JDK 17 (`~/.local/opt/jdk-17`) are already set in the editor
+settings. The release keystore for test APKs is `~/.local/share/godot/keystores/debug.keystore`. That key is not the
+Windows one, so an APK built here can't update an install built on Windows: uninstall first, or copy the Windows
+keystore over.
+
 | Task | Command |
 |---|---|
 | Import (after adding a `class_name`) | `godot.cmd --headless --path . --import` |
@@ -39,6 +46,7 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 | Merge bank drafts (`data/bank/drafts/*.txt`), then lint the bank → `reports/bank_merge.md`, `reports/lint_bank.md` | `-s res://tools/merge_bank.gd [-- --dry]`, then `-s res://tools/lint_bank.gd` |
 | Re-check every baked level against the bank (phantoms, clashes, cover, a Hint-only walk) → `reports/audit_content.md` | `godot.cmd --headless --path . -s res://tools/audit_content.gd [-- --rooms=1-3 --no-hints]` |
 | Difficulty curve over all levels: floors missed and levels out of shape (a hard level under its room's normal, a slip limit above 8) → `reports/curve.md` | `godot.cmd --headless --path . -s res://tools/curve_report.gd` |
+| Star rates by room (average bot under each budget; slip histograms, so `--merge` re-checks new offsets without replaying) → `reports/stars.md/csv` (economy_sim reads the csv) | `godot.cmd --headless --path . -s res://tools/star_report.gd -- --n=60 --rooms=1-8` (several at once), then `-- --merge` |
 | Coin economy over all levels (free, ad and one-purchase players) → `reports/economy.md` | `godot.cmd --headless --path . -s res://tools/economy_sim.gd` |
 | Bot sims + bake benchmark → `reports/sim_*.md/csv` | `godot.cmd --headless --path . -s res://tools/sim.gd -- --n=200` |
 | Trace one bot game | `godot.cmd --headless --path . -s res://tools/trace_bot.gd -- --level=l1-01 --profile=average --seed=1` |
@@ -48,6 +56,8 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 | App icons from SVG | `godot.cmd --headless --path . -s res://tools/make_icons.gd` |
 | Sounds from the CC0 packs (sources in CREDITS.md) | `bash tools/import_sfx.sh <folder of unzipped packs>` |
 | Test APK (arm64, release template, debug key) | set `GODOT_ANDROID_KEYSTORE_RELEASE_PATH=C:/Users/lordi/AppData/Roaming/Godot/keystores/debug.keystore`, `_USER=androiddebugkey`, `_PASSWORD=android`, then `godot.cmd --headless --path . --export-release "Android" build/jarful-X.Y.Z-arm64.apk` |
+| Play AAB (upload key; Gradle; installs the build template under `android/`, git-ignored) | set `GODOT_ANDROID_KEYSTORE_RELEASE_PATH=C:/Users/lordi/AppData/Roaming/Godot/keystores/labelhunt-upload.jks`, `_USER=upload`, `_PASSWORD="$(cat <same folder>/labelhunt-upload.password.txt)"` (never print it) and `GRADLE_OPTS=-Dorg.gradle.daemon=false` (else the Gradle daemon keeps the command open), then `godot.cmd --headless --path . --install-android-build-template --export-release "Play" build/labelhunt-X.Y.Z.aab`. Bump the Play preset's version code every upload |
+| Audit the AAB (package, target SDK 36, upload signature, no playtest, 16 KB pages, then the universal APK) | `bash tools/audit_aab.sh build/labelhunt-X.Y.Z.aab` (bundletool in `GameDev/Tools`) |
 | Audit an APK (permissions, debuggable, files that must not ship) | `bash tools/audit_apk.sh build/jarful-X.Y.Z-arm64.apk` |
 
 ## Decisions (facts, not rules)
@@ -65,8 +75,10 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 - **Bot:** about 5 ms per game on small boards. Baking is slower on late rooms: rooms 11-17 (210 levels, 5-6 groups) took about 18 min on 6 processes.
   Post-aha busywork on 5-group boards runs 5–18 moves, above the ≤8 target. Tidy up only appears when the
   board *proves* every group, which is rare.
-- **Sounds:** `kenney.nl` blocks scripted downloads, so the placeholder SFX are synthesised. Kenney packs must be
-  downloaded by hand.
+- **Stars and diamonds** (v0.5): stars count slips only; limits = each level's baked `gold` + `Economy.STAR_OFFSETS` by room, capped below the budget. Coins are per star (`STAR_COIN_RATES` by room) and never sold; diamonds are bought or from the shop ad. Tune offsets against `tools/star_report.gd` bands, coin rates against `tools/economy_sim.gd` gates.
+- **The Shop switch:** `Build.shop_open()` (a store or ad provider is available) shows the Shop, the diamond pill and every diamond price. The Play testing build has no providers, so it shows coins only. `--store-build` on a debug run previews the Play build (no mocks, no Shop, no test menu); store screenshots use it.
+- **Sounds:** real CC0 effects (Kenney and others, listed in CREDITS.md), imported by `tools/import_sfx.sh` from packs
+  downloaded by hand (`kenney.nl` blocks scripted downloads). Only `frost.wav` is still synthesised (`tools/make_sfx.sh`).
 
 ## Gotchas
 - `class_name Popup` clashes with the built-in Popup class. Our popup base is `Sheet`.
@@ -86,7 +98,10 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 - JSON numbers are floats, and `[1.0].has(1)` is false: cast before `has`, `find` or `erase` (bit the room spec).
 - A SceneTree tool script can't define `_finalize()`: it's a MainLoop virtual.
 - Material art is SVG built in code (`src/ui/art/materials.gd`) and rasterised at device scale by `Art`; nothing
-  imports it. Icons are raw Phosphor SVGs, shipped as text via the export `include_filter`.
+  imports it. Icons are raw Phosphor SVGs that `Art.icon` reads as text, so every
+  `assets/icons/*.svg.import` must be `importer="keep"`: Godot never exports an imported file's source, include
+  filter or not (builds before 0.6.1 shipped no icons). Desktop runs read the project folder and hide this; a new
+  icon needs Import As: Keep File. `audit_apk.sh` checks every icon ships, and a smoke test checks the importer.
 - Screenshot runs use their own fresh save (`user://shots_save.json`) and mute audio unless `--with-audio`.
 - Level ids are stable and opaque: `r1-NN` is the v0.2 room, now Room 2 ("The Kitchen"); new levels are `l<room>-NN`.
   Never reuse an id for different content (saves and playtest logs key on it).
@@ -97,4 +112,6 @@ Never run `/game-design wire`: it edits settings and adds a Node hook, and there
 - Prices, rewards, XP and the gift ladder are one table: `src/rules/economy.gd`. The Wallet autoload writes at once.
 - `data/bank/wordplay_targets.txt` holds the rule of each checkable wordplay category (`hidden`, `anagram`, `palindrome`, `reverse`, `y_only`, `double2`, `roman`; see `Bank.trips`). A test checks every member obeys its own rule.
 - `data/bank/hard_words.txt` lists rare vocabulary. Spec levels marked `familiar` (Rooms 1 and 3, the two re-made Kitchen levels, every rest level) leave those words out.
+- `config/name` is "Label Hunt" since v0.6, so desktop runs keep their save in `%APPDATA%/Godot/app_userdata/Label Hunt/` (the older `.../Jarful/` folder holds the pre-0.6 desktop data). Android keeps each package's own storage.
+- GUT and headless tool runs boot the autoloads, so they load (and can migrate) the real desktop save in `user://save.json`.
 - A runtime error inside a tool's `_init` skips `quit()`, so Godot hangs forever with no output when piped. Run tools with `timeout` and write the output to a file.

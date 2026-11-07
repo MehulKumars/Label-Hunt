@@ -5,9 +5,9 @@
 class_name ShotRunner
 extends Node
 
-const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07",
+const SCENARIOS := ["home", "home_mid", "levels", "room", "profile", "shop", "streak", "streak_new", "gift", "tutorial", "t01", "t03_slip", "t07", "spicy", "assist",
 	"m01", "m01_play", "m06_frost", "m07_label", "m08_cork", "worst", "need_coins", "hint", "complete_pick", "complete_fly",
-	"win", "rate", "lose", "room_reveal", "pause", "test", "drag", "pick", "themes"]
+	"win", "win2", "replay", "finale", "rate", "lose", "lose_gems", "need_gems", "shop_off", "play_off", "room_reveal", "pause", "restart", "test", "drag", "pick", "themes", "feature"]
 
 var out_dir := ""
 var only: PackedStringArray = []
@@ -57,6 +57,14 @@ func _run(name: String) -> void:
 		"t07":
 			main.start_level("r1-04")
 			await _legal(play, 3)
+		"assist":
+			# The fourth try at a hard level: the help ladder's head start on its hardest label, announced.
+			Save.data["seen_captions"]["hard"] = true
+			main._fails = 3
+			main.start_level("l1-20", true)
+		"spicy":
+			# A hard room level, first met: two peppers by the title and their one-time caption.
+			main.start_level("l1-10")
 		"m01":
 			main.start_level("m01")
 		"m01_play":
@@ -80,9 +88,10 @@ func _run(name: String) -> void:
 			# A player well into the game: Room 1 done, Room 2 under way.
 			var cat := Levels.catalog
 			for id in cat.room_ids(1):
-				Save.data["solved"][id] = {"slips": 0, "gold": int(id.substr(id.length() - 1)) % 3 == 0}
+				var st := 3 if int(id.substr(id.length() - 1)) % 3 == 0 else 2
+				Save.data["solved"][id] = {"slips": 0, "stars": st, "gold": st == 3}
 			for id in cat.room_ids(2).slice(0, 12):
-				Save.data["solved"][id] = {"slips": 1, "gold": false}
+				Save.data["solved"][id] = {"slips": 1, "stars": 1 + int(id.substr(id.length() - 1)) % 3, "gold": false}
 			main.open_levels()
 			await _wait(0.4)
 		"room":
@@ -94,9 +103,66 @@ func _run(name: String) -> void:
 			main.open_profile()
 			await _wait(0.4)
 		"shop":
+			Save.data["diamonds"] = 120
 			main.go_home()
 			await _wait(0.3)
 			MetaSheets.shop(main)
+		"shop_off", "play_off":
+			# The Play testing build: no providers, so no Shop, no diamonds, coins only.
+			var keep := [Store.provider, Ads.provider]
+			Store.provider = "none"
+			Ads.provider = "none"
+			Save.data["coins"] = 20
+			Save.data["inventory"] = {"hint": 0, "complete": 0}
+			if name == "shop_off":
+				main.go_home()
+				await _wait(0.4)
+				await RenderingServer.frame_post_draw
+				_save(name, play)
+				MetaSheets.coins_tapped(main)
+				await _wait(0.4)
+				await RenderingServer.frame_post_draw
+				_save("coins_off", play)
+			else:
+				main.start_level("l2-01")
+				await _wait(0.5)
+				play._on_hint()
+				await _wait(0.4)
+				await RenderingServer.frame_post_draw
+				_save(name, play)
+			main.close_all_sheets()
+			Store.provider = keep[0]
+			Ads.provider = keep[1]
+			return
+		"need_gems":
+			Save.data["coins"] = 20
+			Save.data["diamonds"] = 40
+			Save.data["inventory"] = {"hint": 0, "complete": 0}
+			main.start_level("m01")
+			await _wait(0.5)
+			play._on_hint()
+		"lose_gems":
+			Save.data["coins"] = 40
+			Save.data["diamonds"] = 60
+			main.start_level("m01")
+			await _slips(play, 4)
+			await _wait(1.5)
+		"win2":
+			# Room 5 (3 stars up to 1 slip, 2 up to 3): two slips, then a clean finish.
+			main.close_all_sheets()
+			Save.data["seen_captions"]["stars"] = true
+			main.start_level("l5-01")
+			await _slips(play, 2)
+			await _legal(play, 99)
+			await _wait(2.5)
+		"replay":
+			# A level solved at 1 star, replayed cleanly: the new best pays the stars it adds.
+			main.close_all_sheets()
+			Save.data["seen_captions"]["stars"] = true
+			Save.data["solved"]["r1-05"] = {"slips": 3, "stars": 1, "gold": false}
+			main.start_level("r1-05")
+			await _legal(play, 99)
+			await _wait(2.5)
 		"streak":
 			Save.data["coins"] = 48221
 			Save.data["streak"] = {"count": 12, "best": 18, "last_day": Wallet.today(), "savers": 1}
@@ -170,6 +236,19 @@ func _run(name: String) -> void:
 				for line in play.board.misplaced():
 					print("  MISPLACED ", line)
 			return
+		"feature":
+			# The Play feature graphic (run at --size=1024x500 --true-size --rgb): the wall, jars on a plank, the name.
+			main.close_all_sheets()
+			var art := _FeatureArt.new()
+			art.z_index = 100
+			add_child(art)
+			art.position = Vector2.ZERO
+			art.size = get_viewport().get_visible_rect().size
+			await _wait(0.4)
+			await RenderingServer.frame_post_draw
+			_save(name, play)
+			art.queue_free()
+			return
 		"home":
 			main.go_home()
 			await _wait(0.4)
@@ -177,7 +256,7 @@ func _run(name: String) -> void:
 			# A player a few levels in: four jars on the shelf, two with gold lids.
 			var ids := Levels.catalog.play_order()
 			for i in mini(4, ids.size() - 1):
-				Save.data["solved"][ids[i]] = {"slips": 0, "gold": i % 2 == 1}
+				Save.data["solved"][ids[i]] = {"slips": 0, "stars": 3 if i % 2 == 1 else 2, "gold": i % 2 == 1}
 			main.go_home()
 			await _wait(0.4)
 		"tutorial":
@@ -190,6 +269,16 @@ func _run(name: String) -> void:
 			main.start_level("l1-01")
 			await _legal(play, 99)
 			await _wait(2.5)
+			if OS.get_cmdline_user_args().has("--rgb"):
+				await _wait(2.5)  # store shots: let the coins land
+		"finale":
+			# Two jars from the end of Room 1, a hard level next: the finish line and the Next button's label.
+			main.close_all_sheets()
+			for i in range(1, 28):
+				Save.data["solved"]["l1-%02d" % i] = {"slips": 0 if i == 1 else 1, "stars": 3 if i == 1 else 2, "gold": i == 1}
+			main.start_level("l1-28")
+			await _legal(play, 99)
+			await _wait(2.5)
 		"lose":
 			Save.data["coins"] = 300
 			main.start_level("m01")
@@ -199,6 +288,11 @@ func _run(name: String) -> void:
 			main.start_level("l2-01")
 			await _wait(0.3)
 			main._open_pause()
+		"restart":
+			# Restart from Pause after some moves: it asks first.
+			main.start_level("l2-01")
+			await _legal(play, 3)
+			main._confirm_restart()
 		"test":
 			main.start_level("l2-01")
 			await _wait(0.3)
@@ -236,6 +330,9 @@ func _run(name: String) -> void:
 
 func _save(name: String, play: PlayScreen) -> void:
 	var img := get_viewport().get_texture().get_image()
+	# Store screenshots and the feature graphic must have no transparency (Google Play).
+	if OS.get_cmdline_user_args().has("--rgb"):
+		img.convert(Image.FORMAT_RGB8)
 	var path := "%s/%s_%dx%d.png" % [out_dir, name, img.get_width(), img.get_height()]
 	img.save_png(path)
 	print("shot: ", path, "  viewport=", get_viewport().get_visible_rect().size, " main=", main.size, " play=", play.size, " board=", play.board.size)
@@ -317,3 +414,44 @@ func _slips(play: PlayScreen, n: int) -> void:
 
 func _wait(s: float) -> void:
 	await get_tree().create_timer(s).timeout
+
+
+## The Google Play feature graphic, drawn from the game's own art: a room wall, five filled jars on a plank (the middle
+## one with a gold lid) and the name hand-lettered on a kraft label, with one line under it. Sized from the viewport,
+## so it works at any landscape size.
+class _FeatureArt extends Control:
+	const ROOM := 2
+	const SETS := [["Birds", "Trees", "Fruit"], ["Things that click", "Fasteners", "Citrus fruit", "Big cats"],
+		["Hairstyles", "Nuts", "Things with necks", "Fractions"], ["Cleaning kit", "Birthday party", "Planets"],
+		["Superhero words", "Pasta", "Knots"]]
+
+	func _init() -> void:
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	func _draw() -> void:
+		var w := size
+		draw_texture_rect(Art.tex("feat_wall|%dx%d" % [int(w.x), int(w.y)], w, RoomArt.wall.bind(ROOM)), Rect2(Vector2.ZERO, w), false)
+		var jar := Vector2(w.y * 0.25, w.y * 0.35)
+		var plank := Rect2(-8.0, w.y * 0.84, w.x + 16.0, w.y * 0.06)
+		var step := jar.x * 1.3
+		for i in SETS.size():
+			var c := Vector2(w.x / 2.0 + (i - 2) * step, plank.position.y + jar.y * 0.04)
+			var layers := Materials.preserve_layers(SETS[i])
+			var key := "feat_jar%d|%d" % [i, int(jar.x)]
+			draw_texture_rect(Art.tex(key, jar, RoomArt.mini_jar.bind(ROOM, layers, false, i == 2)),
+				Rect2(c - Vector2(jar.x / 2.0, jar.y), jar), false)
+		draw_texture_rect(Art.tex("feat_plank|%d" % int(w.x), plank.size, RoomArt.plank.bind(ROOM)), plank, false)
+		var title := str(ProjectSettings.get_setting("application/config/name"))
+		var f := Style.hand()
+		var fs := roundi(w.y * 0.2)
+		var ts := f.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs)
+		var tag := Vector2(ts.x + fs * 0.9, fs * 1.2)
+		draw_set_transform(Vector2(w.x / 2.0, w.y * 0.22), deg_to_rad(-3.0), Vector2.ONE)
+		draw_texture_rect(Art.tex("feat_label|%dx%d" % [int(tag.x), int(tag.y)], tag, Materials.label.bind(true)), Rect2(-tag / 2.0, tag), false)
+		draw_string(f, Vector2(-ts.x / 2.0, f.get_ascent(fs) * 0.36), title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Style.INK)
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+		var line := "Sort the words. Find the labels."
+		var fb := Style.sans_bold()
+		var ls := roundi(w.y * 0.055)
+		var lw := fb.get_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, -1, ls)
+		draw_string(fb, Vector2((w.x - lw.x) / 2.0, w.y * 0.41), line, HORIZONTAL_ALIGNMENT_LEFT, -1, ls, Style.INK)

@@ -3,10 +3,11 @@
 class_name SaveSchema
 extends RefCounted
 
-const VERSION := 3
+const VERSION := 4
 const MAX_BYTES := 1 << 20
 const RULE_KEYS := ["tag_on_slip", "pair_reveal", "pour", "one_empty"]
 const MAX_COINS := 9999999
+const MAX_DIAMONDS := 999999
 const MAX_NAME := 16
 const MAX_LOG := 3000
 const MAX_TOKENS := 200
@@ -26,9 +27,11 @@ static func defaults() -> Dictionary:
 		"solved": {},
 		"board": {},
 		"coins": 0,
+		"diamonds": 0,
 		"inventory": {"hint": 0, "complete": 0},
 		"xp": 0,
 		"xp_backdate": false,
+		"stars_backdate": false,
 		"profile": {"name": "", "avatar": Economy.starter_avatars()[0]},
 		"avatars": avatars,
 		"streak": Streak.fresh(),
@@ -37,7 +40,7 @@ static func defaults() -> Dictionary:
 		"ads": AdPolicy.fresh(),
 		"purchases": {"tokens": []},
 		"intro_gifts": {},
-		"stats": {"hints": 0, "completes": 0, "coins_earned": 0, "coins_spent": 0, "ads": 0},
+		"stats": {"hints": 0, "completes": 0, "coins_earned": 0, "coins_spent": 0, "diamonds_spent": 0, "ads": 0},
 	}
 
 
@@ -59,6 +62,18 @@ static func migrate(d: Dictionary) -> Dictionary:
 		d["xp_backdate"] = true
 		d["board"] = {}  # v2 boards had no action log
 		d["version"] = 3
+	if int(_num(d.get("version", 3), 3)) < 4:
+		# v4: stars and diamonds. Stars need the catalog, so Wallet derives them once it loads (stars_backdate). The
+		# shop ad now pays diamonds; today's count carries over so its daily cap still holds.
+		d["diamonds"] = 0
+		d["stars_backdate"] = true
+		var ads: Variant = d.get("ads", {})
+		if ads is Dictionary and ads.get("by_placement") is Dictionary:
+			var bp: Dictionary = ads["by_placement"]
+			if bp.has("shop_coins"):
+				bp["shop_diamonds"] = bp["shop_coins"]
+				bp.erase("shop_coins")
+		d["version"] = 4
 	return d
 
 
@@ -77,12 +92,7 @@ static func sanitize(raw: Variant, valid_ids: Dictionary) -> Dictionary:
 	for k in ["haptics", "reduce_motion", "fps"]:
 		if s.get(k) is bool:
 			os[k] = s[k]
-	var r: Dictionary = _dict(d.get("rules"))
-	for k in RULE_KEYS:
-		if r.get(k) is bool:
-			out["rules"][k] = r[k]
-	if r.get("mode") in ["budget", "stars"]:
-		out["rules"]["mode"] = r["mode"]
+	out["rules"] = rules(_dict(d.get("rules")))
 	for k in _dict(d.get("seen_captions")):
 		if k is String and k.length() <= 32:
 			out["seen_captions"][k] = true
@@ -96,12 +106,14 @@ static func sanitize(raw: Variant, valid_ids: Dictionary) -> Dictionary:
 		if id is not String or (not valid_ids.is_empty() and not valid_ids.has(id)):
 			continue
 		var e: Dictionary = _dict(solved[id])
-		out["solved"][id] = {
-			"slips": clampi(int(_num(e.get("slips"), 0)), 0, 99),
-			"gold": e.get("gold") is bool and e["gold"],
-		}
+		var gold: bool = e.get("gold") is bool and e["gold"]
+		# A solved level has at least 1 star; gold is the same fact as 3 stars.
+		var stars := clampi(int(_num(e.get("stars"), 3 if gold else 1)), 1, 3)
+		out["solved"][id] = {"slips": clampi(int(_num(e.get("slips"), 0)), 0, 99), "stars": stars, "gold": stars == 3}
 	out["board"] = _board(_dict(d.get("board")), valid_ids)
 	out["coins"] = clampi(int(_num(d.get("coins"), 0)), 0, MAX_COINS)
+	out["diamonds"] = clampi(int(_num(d.get("diamonds"), 0)), 0, MAX_DIAMONDS)
+	out["stars_backdate"] = d.get("stars_backdate") is bool and d["stars_backdate"]
 	var inv: Dictionary = _dict(d.get("inventory"))
 	for item in Economy.ITEMS:
 		out["inventory"][item] = clampi(int(_num(inv.get(item), 0)), 0, 999)
@@ -156,7 +168,20 @@ static func clean_name(v: Variant) -> String:
 	return out.left(MAX_NAME).strip_edges()
 
 
-## The saved attempt: {id, fingerprint, log, fails, assisted}. Its log is only replayed (and checked) by Session.
+## Rule toggles with known keys and values only: the test menu's overrides, and the rules a saved attempt was
+## played under.
+static func rules(r: Dictionary) -> Dictionary:
+	var out := {}
+	for k in RULE_KEYS:
+		if r.get(k) is bool:
+			out[k] = r[k]
+	if r.get("mode") in ["budget", "stars"]:
+		out["mode"] = r["mode"]
+	return out
+
+
+## The saved attempt: {id, fingerprint, rules, log, fails, assisted}. Its log is only replayed (and checked) by
+## Session, and only under the rules it was played with.
 static func _board(b: Dictionary, valid_ids: Dictionary) -> Dictionary:
 	if b.get("id") is not String or (not valid_ids.is_empty() and not valid_ids.has(b["id"])):
 		return {}
@@ -173,7 +198,7 @@ static func _board(b: Dictionary, valid_ids: Dictionary) -> Dictionary:
 				return {}
 			row.append(int(x))
 		clean.append(row)
-	return {"id": b["id"], "fingerprint": (b["fingerprint"] as String).left(32), "log": clean,
+	return {"id": b["id"], "fingerprint": (b["fingerprint"] as String).left(32), "rules": rules(_dict(b.get("rules"))), "log": clean,
 		"fails": clampi(int(_num(b.get("fails"), 0)), 0, 99), "assisted": b.get("assisted") is bool and b["assisted"]}
 
 
