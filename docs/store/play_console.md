@@ -2,12 +2,14 @@
 
 The build to upload is `build/labelhunt-<version>.aab` (Play preset; check it first with
 `bash tools/audit_aab.sh build/labelhunt-0.6.0.aab`). Package `com.tiffingames.labelhunt`: it can never change after
-the first upload, so do the trademark check (step 0) first.
+the first upload, but players never see it. The name they see (store title, icon label) can change at any time, so
+the trademark check has to be done before the public launch, not before the first upload.
 
 ## 0. Before the first upload
-- [ ] Trademark check of "Label Hunt" in a browser (each needs a captcha, so it can't be scripted): USPTO trademark
-      search (tmsearch.uspto.gov), WIPO Global Brand Database (branddb.wipo.int), EUIPO TMview (tmdn.org/tmview) and
-      IP India public search (ipindia.gov.in). Search "Label Hunt" and "LabelHunt"; look at classes 9, 28 and 41.
+- [x] IP India public search: no "Label Hunt" (Mehul, 2026-11-07).
+- [ ] Before the public launch: the same search in a browser (each site needs a captcha, so it can't be scripted) on
+      USPTO (tmsearch.uspto.gov), WIPO Global Brand Database (branddb.wipo.int) and EUIPO TMview (tmdn.org/tmview).
+      Search "Label Hunt" and "LabelHunt"; look at classes 9, 28 and 41.
 - [ ] Quick search of "Label Hunt" on the Play Store and the App Store from your phone.
 - [ ] Save the upload key in 1Password: one item holding the file
       `%APPDATA%\Godot\keystores\labelhunt-upload.jks` (attach it as a document), its password (the text in
@@ -21,12 +23,16 @@ the first upload, so do the trademark check (step 0) first.
 Play Console > Create app: name **Label Hunt**, default language English, **Game**, **Free**. Accept the
 declarations. (Free can't later become paid; in-app purchases stay possible.)
 
+New personal accounts: if the Dashboard asks you to verify access to a real Android device, install the Play
+Console app on your phone and sign in with the developer account. It has to be done once before publishing.
+
 ## 2. App content (Policy and programs > App content)
 | Form | Answer for this build |
 |---|---|
 | Privacy policy | the tiffingames.com link from step 0 |
 | App access | All functionality is available without special access |
 | Ads | No, the app does not contain ads |
+| Advertising ID | No, the app does not use advertising ID (the build has no AD_ID permission) |
 | Content rating | IARC questionnaire: Game, no violence, no fear, no gambling, no user-to-user content, no purchases. Expect Everyone / PEGI 3 |
 | Target audience | 13-15, 16-17 and 18+ only (not under 13: that keeps the app outside the Families policy, which matters once ads come) |
 | News app | No |
