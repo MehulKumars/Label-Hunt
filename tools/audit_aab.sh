@@ -3,7 +3,7 @@
 # and updates since 31 Aug 2026), not debuggable, the "Play" preset built without the playtest feature (so no mock
 # shop, ads or test menu), then the universal APK through tools/audit_apk.sh and the 16 KB page alignment of its
 # native libraries. Needs bundletool (GameDev/Tools/bundletool-all-*.jar, or $BUNDLETOOL) and JDK 17.
-#   bash tools/audit_aab.sh build/labelhunt-0.6.0.aab
+#   bash tools/audit_aab.sh build/labelhunt-0.6.1.aab
 set -euo pipefail
 AAB="${1:?usage: bash tools/audit_aab.sh <aab>}"
 HERE="$(cd "$(dirname "$0")" && pwd)"

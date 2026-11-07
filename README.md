@@ -12,7 +12,7 @@ Guess wrong and the jar gives away part of the label. Fill a jar and the lid scr
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/badge/version-0.6.0-3B6E6E" alt="Version 0.6.0">
+<img src="https://img.shields.io/badge/version-0.6.1-3B6E6E" alt="Version 0.6.1">
 <img src="https://img.shields.io/badge/Godot-4.7.2-478CBF?logo=godotengine&logoColor=white" alt="Godot 4.7.2">
 <img src="https://img.shields.io/badge/platform-Android%20(arm64)-3DDC84?logo=android&logoColor=white" alt="Android arm64">
 <img src="https://img.shields.io/badge/orientation-portrait-F28F3B" alt="Portrait">
@@ -51,6 +51,8 @@ The full rules, the level pipeline and the roadmap are in the design doc: [docs/
   internal and closed testing. That build has no Shop, diamonds or ads until real billing and AdMob are in.
 - The store kit is in `docs/store/`: listing text, privacy policy, Play Console checklist, icon, feature graphic and
   screenshots.
+- **0.6.1:** icons show on phones again. Exported builds had been missing every icon (buttons, chillies, avatars)
+  since 0.2; desktop runs read the project folder, so only devices showed it.
 
 ## New in 0.5
 - **Stars.** Every win earns 1 to 3 stars, counted from your slips and shown live beside the slip jars. Early rooms
@@ -99,7 +101,7 @@ The full rules, the level pipeline and the roadmap are in the design doc: [docs/
    install over old ones and keep your progress. The Google Play version (`com.tiffingames.labelhunt`) is a separate app
    with its own progress, and has no Shop, diamonds or ads yet.
 
-Over USB instead: `adb install -r labelhunt-test-0.6.0-alpha-arm64.apk`
+Over USB instead: `adb install -r labelhunt-test-0.6.1-alpha-arm64.apk`
 
 Older builds are on the [releases page](https://github.com/MehulKumars/jarful/releases).
 

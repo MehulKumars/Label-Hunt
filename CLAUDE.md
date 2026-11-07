@@ -56,7 +56,7 @@ keystore over.
 | App icons from SVG | `godot.cmd --headless --path . -s res://tools/make_icons.gd` |
 | Sounds from the CC0 packs (sources in CREDITS.md) | `bash tools/import_sfx.sh <folder of unzipped packs>` |
 | Test APK (arm64, release template, debug key) | set `GODOT_ANDROID_KEYSTORE_RELEASE_PATH=C:/Users/lordi/AppData/Roaming/Godot/keystores/debug.keystore`, `_USER=androiddebugkey`, `_PASSWORD=android`, then `godot.cmd --headless --path . --export-release "Android" build/jarful-X.Y.Z-arm64.apk` |
-| Play AAB (upload key; Gradle; installs the build template under `android/`, git-ignored) | set `GODOT_ANDROID_KEYSTORE_RELEASE_PATH=C:/Users/lordi/AppData/Roaming/Godot/keystores/labelhunt-upload.jks`, `_USER=upload`, `_PASSWORD="$(cat <same folder>/labelhunt-upload.password.txt)"` (never print it), then `godot.cmd --headless --path . --install-android-build-template --export-release "Play" build/labelhunt-X.Y.Z.aab`. Bump the Play preset's version code every upload |
+| Play AAB (upload key; Gradle; installs the build template under `android/`, git-ignored) | set `GODOT_ANDROID_KEYSTORE_RELEASE_PATH=C:/Users/lordi/AppData/Roaming/Godot/keystores/labelhunt-upload.jks`, `_USER=upload`, `_PASSWORD="$(cat <same folder>/labelhunt-upload.password.txt)"` (never print it) and `GRADLE_OPTS=-Dorg.gradle.daemon=false` (else the Gradle daemon keeps the command open), then `godot.cmd --headless --path . --install-android-build-template --export-release "Play" build/labelhunt-X.Y.Z.aab`. Bump the Play preset's version code every upload |
 | Audit the AAB (package, target SDK 36, upload signature, no playtest, 16 KB pages, then the universal APK) | `bash tools/audit_aab.sh build/labelhunt-X.Y.Z.aab` (bundletool in `GameDev/Tools`) |
 | Audit an APK (permissions, debuggable, files that must not ship) | `bash tools/audit_apk.sh build/jarful-X.Y.Z-arm64.apk` |
 
@@ -98,7 +98,10 @@ keystore over.
 - JSON numbers are floats, and `[1.0].has(1)` is false: cast before `has`, `find` or `erase` (bit the room spec).
 - A SceneTree tool script can't define `_finalize()`: it's a MainLoop virtual.
 - Material art is SVG built in code (`src/ui/art/materials.gd`) and rasterised at device scale by `Art`; nothing
-  imports it. Icons are raw Phosphor SVGs, shipped as text via the export `include_filter`.
+  imports it. Icons are raw Phosphor SVGs that `Art.icon` reads as text, so every
+  `assets/icons/*.svg.import` must be `importer="keep"`: Godot never exports an imported file's source, include
+  filter or not (builds before 0.6.1 shipped no icons). Desktop runs read the project folder and hide this; a new
+  icon needs Import As: Keep File. `audit_apk.sh` checks every icon ships, and a smoke test checks the importer.
 - Screenshot runs use their own fresh save (`user://shots_save.json`) and mute audio unless `--with-audio`.
 - Level ids are stable and opaque: `r1-NN` is the v0.2 room, now Room 2 ("The Kitchen"); new levels are `l<room>-NN`.
   Never reuse an id for different content (saves and playtest logs key on it).

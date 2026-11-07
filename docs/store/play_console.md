@@ -1,7 +1,7 @@
 # Label Hunt on Google Play: Mehul's checklist
 
 The build to upload is `build/labelhunt-<version>.aab` (Play preset; check it first with
-`bash tools/audit_aab.sh build/labelhunt-0.6.0.aab`). Package `com.tiffingames.labelhunt`: it can never change after
+`bash tools/audit_aab.sh build/labelhunt-0.6.1.aab`). Package `com.tiffingames.labelhunt`: it can never change after
 the first upload, but players never see it. The name they see (store title, icon label) can change at any time, so
 the trademark check has to be done before the public launch, not before the first upload.
 
@@ -60,7 +60,7 @@ Game > Word. Contact email tiffingames.studio@gmail.com, website https://tiffing
       under 7 days).
 
 ## 6. Later
-- Every new build needs a higher version code (the Play preset in `export_presets.cfg`; 0.6.0 is 10).
+- Every new build needs a higher version code (the Play preset in `export_presets.cfg`; 0.6.0 was 10, 0.6.1 is 11).
 - When real ads or purchases arrive (v0.7+): turn on the INTERNET permission (and BILLING for purchases), update the
   privacy policy and the Data safety, Ads and content-rating answers, and add `app-ads.txt` to tiffingames.com for
   AdMob. Play Billing products can be created and test-bought on internal testing; real AdMob ads need the public
