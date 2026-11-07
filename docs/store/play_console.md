@@ -11,15 +11,17 @@ the trademark check has to be done before the public launch, not before the firs
       USPTO (tmsearch.uspto.gov), WIPO Global Brand Database (branddb.wipo.int) and EUIPO TMview (tmdn.org/tmview).
       Search "Label Hunt" and "LabelHunt"; look at classes 9, 28 and 41.
 - [ ] Quick search of "Label Hunt" on the Play Store and the App Store from your phone.
-- [ ] Save the upload key in 1Password: one item holding the file
+- [x] Save the upload key in 1Password (Mehul, 2026-11-07): one item holding the file
       `%APPDATA%\Godot\keystores\labelhunt-upload.jks` (attach it as a document), its password (the text in
       `labelhunt-upload.password.txt` next to it), the alias `upload` and the SHA-256 fingerprint
       `0B:84:CE:56:5E:2E:32:1E:27:2F:05:BC:6E:F5:F9:94:54:0C:3D:4D:3C:D6:F6:C1:76:D5:5A:65:C9:27:2E:B5`.
-      Keep one more copy offline (a USB stick). Builds on this PC read the two files; keep them there too.
-- [ ] Upload `docs/store/privacy.html` to tiffingames.com (for example https://tiffingames.com/labelhunt/privacy) and
-      open the link on your phone once.
+      Builds on this PC read the two files; keep them there too.
+- [ ] One more copy of the key and its password offline (a USB stick).
+- [ ] Upload `docs/store/privacy.html` to tiffingames.com as its own page (for example
+      https://tiffingames.com/labelhunt/privacy) and open the link on your phone once. The site's existing
+      `/privacy` page covers only the website, so it doesn't meet Play's rule that the policy covers the app.
 
-## 1. Create the app
+## 1. Create the app (done 2026-11-07)
 Play Console > Create app: name **Label Hunt**, default language English, **Game**, **Free**. Accept the
 declarations. (Free can't later become paid; in-app purchases stay possible.)
 
@@ -41,15 +43,17 @@ Console app on your phone and sign in with the developer account. It has to be d
 
 ## 3. Store listing (Grow users > Store presence > Main store listing)
 Paste from `docs/store/listing.md`; upload the icon, the feature graphic and the screenshots listed there. Category
-Game > Word. Contact email tiffingames.studio@gmail.com, website https://tiffingames.com.
+Game > Word. Contact email tiffingames.studio@gmail.com, website https://tiffingames.com. Until this is done, the
+Play page testers see shows the package name and a plain Android icon instead of "Label Hunt" and its icon.
 
 ## 4. Internal testing (Test and release > Testing > Internal testing)
-- [ ] Create a release; when asked, keep **Play App Signing** on (Google holds the app signing key; the
-      `labelhunt-upload.jks` key only uploads, and a lost upload key can be reset through Play support).
-- [ ] Upload the .aab. Release name: 0.6.0. Notes: one line on what to try.
-- [ ] Testers: create an email list (or a Google Group) with your own Gmail and up to 100 testers. Share the opt-in
-      link; testers install from the Play Store, not from a file.
-- [ ] Internal tests appear within minutes and skip review.
+- [x] Create a release with **Play App Signing** on (Google holds the app signing key; the `labelhunt-upload.jks` key
+      only uploads, and a lost upload key can be reset through Play support).
+- [x] Upload the .aab. 0.6.0 (code 10) went up on 2026-11-07; its icons were blank on phones, fixed in 0.6.1 (code 11).
+      Release name: the version. Notes: one line on what to try.
+- [x] Testers: the "Dev List" email list (up to 100). Testers open the opt-in link and install from the Play Store,
+      not from a file. To update, publish a new release; phones get it through the Play Store, no uninstall.
+- Internal tests appear within minutes and skip review.
 
 ## 5. Closed testing (needed before production on a new personal account)
 - [ ] Create a closed track (for example "Alpha"), add **at least 12 testers** (a Google Group is easiest), roll the
@@ -59,7 +63,14 @@ Game > Word. Contact email tiffingames.studio@gmail.com, website https://tiffing
 - [ ] Then Dashboard > Apply for production, answer the questions about the test, and wait for review (usually
       under 7 days).
 
-## 6. Later
+## 6. tiffingames.com
+| Stage | On the site |
+|---|---|
+| Internal testing (now) | Only the Label Hunt privacy page. No Play link: it shows "item not found" to anyone not on the tester list |
+| Closed testing | A Label Hunt page: one line, 3 or 4 screenshots, the privacy link, and **Join the beta** (a Google Group anyone can join; the closed track lets that group in). Do the USPTO, WIPO and EUIPO searches before it goes up |
+| Open testing or launch | Add the official "Get it on Google Play" badge linking to the store page |
+
+## 7. Later
 - Every new build needs a higher version code (the Play preset in `export_presets.cfg`; 0.6.0 was 10, 0.6.1 is 11).
 - When real ads or purchases arrive (v0.7+): turn on the INTERNET permission (and BILLING for purchases), update the
   privacy policy and the Data safety, Ads and content-rating answers, and add `app-ads.txt` to tiffingames.com for

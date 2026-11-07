@@ -112,7 +112,7 @@ Older builds are on the [releases page](https://github.com/MehulKumars/jarful/re
 | M2 | v0.2 | Home, tutorial, the first room's progression, the art and sound direction | ✅ |
 | M3 | v0.3 | Coins, boosters, streak, profile, Levels map, room themes, 510 levels | 🧪 alpha |
 | | v0.5 | Stars, coins per star, diamonds and the Shop | 🧪 alpha |
-| | v0.6 | First Google Play testing build ("Label Hunt") | 🧪 internal testing |
+| | v0.6 | First Google Play testing build ("Label Hunt"); 0.6.1 fixes icons on phones | 🧪 internal testing |
 | M4 | v1.0-rc | Real ads, billing and Play Games, Jar of the Day, polish, store kit | |
 
 ## How it's made

@@ -165,5 +165,5 @@ Captions only appear the first time something happens: first slip, first pair, f
 | M2 | v0.2 | Home, tutorial, Room 1, the art direction. See `docs/plan-m2.md` |
 | M3 | v0.3 | Coins, boosters, streak, rank, Levels and rooms, profile, 510 levels. See `docs/plan-m3.md` |
 | | v0.5 | Stars from slips, coins per star, diamonds and the diamond Shop (mock), the Shop switch |
-| | v0.6 | The Google Play testing build: "Label Hunt" (`com.tiffingames.labelhunt`), AAB, no Shop |
+| | v0.6 | The Google Play testing build: "Label Hunt" (`com.tiffingames.labelhunt`), AAB, no Shop. On internal testing since 0.6.0; 0.6.1 ships the icons, which no exported build had before |
 | M4 | v1.0-rc | Real ads/billing/Play Games (with Mehul's accounts), daily puzzle, polish, store kit |
