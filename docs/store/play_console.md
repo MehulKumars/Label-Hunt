@@ -17,8 +17,8 @@ the trademark check has to be done before the public launch, not before the firs
       `0B:84:CE:56:5E:2E:32:1E:27:2F:05:BC:6E:F5:F9:94:54:0C:3D:4D:3C:D6:F6:C1:76:D5:5A:65:C9:27:2E:B5`.
       Builds on this PC read the two files; keep them there too.
 - [ ] One more copy of the key and its password offline (a USB stick).
-- [ ] Upload `docs/store/privacy.html` to tiffingames.com as its own page (for example
-      https://tiffingames.com/labelhunt/privacy) and open the link on your phone once. The site's existing
+- [x] Upload `docs/store/privacy.html` to tiffingames.com as its own page: live at
+      https://tiffingames.com/labelhunt/privacy (checked 2026-11-07). The site's existing
       `/privacy` page covers only the website, so it doesn't meet Play's rule that the policy covers the app.
 
 ## 1. Create the app (done 2026-11-07)
